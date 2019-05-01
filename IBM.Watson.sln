@@ -77,6 +77,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.PersonalityInsig
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.SpeechToText.v1.IntegrationTests", "test\SpeechToText.v1.IntegrationTests\IBM.Watson.SpeechToText.v1.IntegrationTests.csproj", "{056AC681-3542-4579-828F-6D5C718701D5}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.TextToSpeech.v1.IntegrationTests", "test\TextToSpeech.v1.IntegrationTests\IBM.Watson.TextToSpeech.v1.IntegrationTests.csproj", "{AF02393E-9799-4C01-B699-8BDEBEBD5B86}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -179,6 +181,10 @@ Global
 		{056AC681-3542-4579-828F-6D5C718701D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{056AC681-3542-4579-828F-6D5C718701D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{056AC681-3542-4579-828F-6D5C718701D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF02393E-9799-4C01-B699-8BDEBEBD5B86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF02393E-9799-4C01-B699-8BDEBEBD5B86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF02393E-9799-4C01-B699-8BDEBEBD5B86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF02393E-9799-4C01-B699-8BDEBEBD5B86}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -206,6 +212,7 @@ Global
 		{10712DA1-91A2-4407-9ACD-F9188060E54C} = {89D715BF-7464-45FB-8DA0-9D7B46AB8C7F}
 		{582D051B-DDF9-4679-84EE-4ACCAAEA0FD1} = {D65AC99F-4E63-4362-8765-EB6F15838CA0}
 		{056AC681-3542-4579-828F-6D5C718701D5} = {254924C9-64CD-4902-97C4-5F9E48DCDF7F}
+		{AF02393E-9799-4C01-B699-8BDEBEBD5B86} = {A86D4D5B-AECE-49F2-A2BC-F6897B3EB2E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B9D9D17B-1C17-402F-B701-DC671528690A}

@@ -26,10 +26,10 @@ namespace IBM.Watson.VisualRecognition.v3
         DetailedResponse<ClassifiedImages> Classify(System.IO.MemoryStream imagesFile = null, string imagesFilename = null, string imagesFileContentType = null, string url = null, float? threshold = null, List<string> owners = null, List<string> classifierIds = null, string acceptLanguage = null);
         DetailedResponse<DetectedFaces> DetectFaces(System.IO.MemoryStream imagesFile = null, string imagesFilename = null, string imagesFileContentType = null, string url = null, string acceptLanguage = null);
         DetailedResponse<Classifier> CreateClassifier(string name, Dictionary<string, System.IO.MemoryStream> positiveExamples, System.IO.MemoryStream negativeExamples = null, string negativeExamplesFilename = null);
-        DetailedResponse<object> DeleteClassifier(string classifierId);
-        DetailedResponse<Classifier> GetClassifier(string classifierId);
         DetailedResponse<Classifiers> ListClassifiers(bool? verbose = null);
+        DetailedResponse<Classifier> GetClassifier(string classifierId);
         DetailedResponse<Classifier> UpdateClassifier(string classifierId, Dictionary<string, System.IO.MemoryStream> positiveExamples = null, System.IO.MemoryStream negativeExamples = null, string negativeExamplesFilename = null);
+        DetailedResponse<object> DeleteClassifier(string classifierId);
         DetailedResponse<System.IO.MemoryStream> GetCoreMlModel(string classifierId);
         DetailedResponse<object> DeleteUserData(string customerId);
     }

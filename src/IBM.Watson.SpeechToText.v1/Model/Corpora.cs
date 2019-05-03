@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 namespace IBM.Watson.SpeechToText.v1.Model
 {
     /// <summary>
-    /// Corpora.
+    /// Information about the corpora from a custom language model.
     /// </summary>
     public class Corpora
     {

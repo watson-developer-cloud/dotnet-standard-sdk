@@ -92,9 +92,11 @@ namespace IBM.Watson.PersonalityInsights.v3
         /// in Arabic, English, Japanese, Korean, or Spanish. It can return its results in a variety of languages.
         ///
         /// **See also:**
-        /// * [Requesting a profile](https://cloud.ibm.com/docs/services/personality-insights/input.html)
+        /// * [Requesting a
+        /// profile](https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-input#input)
         /// * [Providing sufficient
-        /// input](https://cloud.ibm.com/docs/services/personality-insights/input.html#sufficient)
+        /// input](https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-input#sufficient)
+        ///
         ///
         /// ### Content types
         ///
@@ -108,7 +110,7 @@ namespace IBM.Watson.PersonalityInsights.v3
         /// character encoding of the input text; for example, `Content-Type: text/plain;charset=utf-8`.
         ///
         /// **See also:** [Specifying request and response
-        /// formats](https://cloud.ibm.com/docs/services/personality-insights/input.html#formats)
+        /// formats](https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-input#formats)
         ///
         /// ### Accept types
         ///
@@ -117,13 +119,15 @@ namespace IBM.Watson.PersonalityInsights.v3
         /// parameter to `true` to request optional column headers for CSV output.
         ///
         /// **See also:**
-        /// * [Understanding a JSON profile](https://cloud.ibm.com/docs/services/personality-insights/output.html)
-        /// * [Understanding a CSV profile](https://cloud.ibm.com/docs/services/personality-insights/output-csv.html).
+        /// * [Understanding a JSON
+        /// profile](https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-output#output)
+        /// * [Understanding a CSV
+        /// profile](https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-outputCSV#outputCSV).
         /// </summary>
         /// <param name="content">A maximum of 20 MB of content to analyze, though the service requires much less text;
         /// for more information, see [Providing sufficient
-        /// input](https://cloud.ibm.com/docs/services/personality-insights/input.html#sufficient). For JSON input,
-        /// provide an object of type `Content`.</param>
+        /// input](https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-input#sufficient).
+        /// For JSON input, provide an object of type `Content`.</param>
         /// <param name="contentType">The type of the input. For more information, see **Content types** in the method
         /// description.
         ///
@@ -153,11 +157,15 @@ namespace IBM.Watson.PersonalityInsights.v3
         /// <returns><see cref="Profile" />Profile</returns>
         public DetailedResponse<Profile> Profile(Content content, string contentType = null, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null)
         {
-        if (content == null)
-            throw new ArgumentNullException("`content` is required for `Profile`");
+            if (content == null)
+            {
+                throw new ArgumentNullException("`content` is required for `Profile`");
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
+            }
 
             DetailedResponse<Profile> result = null;
 
@@ -177,35 +185,34 @@ namespace IBM.Watson.PersonalityInsights.v3
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+
                 if (!string.IsNullOrEmpty(contentType))
+                {
                     restRequest.WithHeader("Content-Type", contentType);
+                }
+
                 if (!string.IsNullOrEmpty(contentLanguage))
+                {
                     restRequest.WithHeader("Content-Language", contentLanguage);
+                }
+
                 if (!string.IsNullOrEmpty(acceptLanguage))
+                {
                     restRequest.WithHeader("Accept-Language", acceptLanguage);
+                }
                 if (rawScores != null)
+                {
                     restRequest.WithArgument("raw_scores", rawScores);
+                }
                 if (csvHeaders != null)
+                {
                     restRequest.WithArgument("csv_headers", csvHeaders);
+                }
                 if (consumptionPreferences != null)
+                {
                     restRequest.WithArgument("consumption_preferences", consumptionPreferences);
-                restRequest.WithHeader("Accept", "application/json");
-
-                if (!string.IsNullOrEmpty(contentType))
-                {
-                    restRequest.WithHeader("Content-Type", contentType);
                 }
-
-                if (!string.IsNullOrEmpty(contentLanguage))
-                {
-                    restRequest.WithHeader("Content-Language", contentLanguage);
-                }
-
-                if (!string.IsNullOrEmpty(acceptLanguage))
-                {
-                    restRequest.WithHeader("Accept-Language", acceptLanguage);
-                }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
+                var httpContent = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("personality_insights", "v3", "Profile"))
@@ -215,7 +222,9 @@ namespace IBM.Watson.PersonalityInsights.v3
 
                 result = restRequest.As<Profile>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<Profile>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -233,9 +242,11 @@ namespace IBM.Watson.PersonalityInsights.v3
         /// in Arabic, English, Japanese, Korean, or Spanish. It can return its results in a variety of languages.
         ///
         /// **See also:**
-        /// * [Requesting a profile](https://cloud.ibm.com/docs/services/personality-insights/input.html)
+        /// * [Requesting a
+        /// profile](https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-input#input)
         /// * [Providing sufficient
-        /// input](https://cloud.ibm.com/docs/services/personality-insights/input.html#sufficient)
+        /// input](https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-input#sufficient)
+        ///
         ///
         /// ### Content types
         ///
@@ -249,7 +260,7 @@ namespace IBM.Watson.PersonalityInsights.v3
         /// character encoding of the input text; for example, `Content-Type: text/plain;charset=utf-8`.
         ///
         /// **See also:** [Specifying request and response
-        /// formats](https://cloud.ibm.com/docs/services/personality-insights/input.html#formats)
+        /// formats](https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-input#formats)
         ///
         /// ### Accept types
         ///
@@ -258,13 +269,15 @@ namespace IBM.Watson.PersonalityInsights.v3
         /// parameter to `true` to request optional column headers for CSV output.
         ///
         /// **See also:**
-        /// * [Understanding a JSON profile](https://cloud.ibm.com/docs/services/personality-insights/output.html)
-        /// * [Understanding a CSV profile](https://cloud.ibm.com/docs/services/personality-insights/output-csv.html).
+        /// * [Understanding a JSON
+        /// profile](https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-output#output)
+        /// * [Understanding a CSV
+        /// profile](https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-outputCSV#outputCSV).
         /// </summary>
         /// <param name="content">A maximum of 20 MB of content to analyze, though the service requires much less text;
         /// for more information, see [Providing sufficient
-        /// input](https://cloud.ibm.com/docs/services/personality-insights/input.html#sufficient). For JSON input,
-        /// provide an object of type `Content`.</param>
+        /// input](https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-input#sufficient).
+        /// For JSON input, provide an object of type `Content`.</param>
         /// <param name="contentType">The type of the input. For more information, see **Content types** in the method
         /// description.
         ///
@@ -294,11 +307,15 @@ namespace IBM.Watson.PersonalityInsights.v3
         /// <returns><see cref="System.IO.MemoryStream" />System.IO.MemoryStream</returns>
         public DetailedResponse<System.IO.MemoryStream> ProfileAsCsv(Content content, string contentType = null, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null)
         {
-        if (content == null)
-            throw new ArgumentNullException("`content` is required for `ProfileAsCsv`");
+            if (content == null)
+            {
+                throw new ArgumentNullException("`content` is required for `ProfileAsCsv`");
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
+            }
 
             DetailedResponse<System.IO.MemoryStream> result = null;
 
@@ -318,35 +335,34 @@ namespace IBM.Watson.PersonalityInsights.v3
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "text/csv");
+
                 if (!string.IsNullOrEmpty(contentType))
+                {
                     restRequest.WithHeader("Content-Type", contentType);
+                }
+
                 if (!string.IsNullOrEmpty(contentLanguage))
+                {
                     restRequest.WithHeader("Content-Language", contentLanguage);
+                }
+
                 if (!string.IsNullOrEmpty(acceptLanguage))
+                {
                     restRequest.WithHeader("Accept-Language", acceptLanguage);
+                }
                 if (rawScores != null)
+                {
                     restRequest.WithArgument("raw_scores", rawScores);
+                }
                 if (csvHeaders != null)
+                {
                     restRequest.WithArgument("csv_headers", csvHeaders);
+                }
                 if (consumptionPreferences != null)
+                {
                     restRequest.WithArgument("consumption_preferences", consumptionPreferences);
-                restRequest.WithHeader("Accept", "text/csv");
-
-                if (!string.IsNullOrEmpty(contentType))
-                {
-                    restRequest.WithHeader("Content-Type", contentType);
                 }
-
-                if (!string.IsNullOrEmpty(contentLanguage))
-                {
-                    restRequest.WithHeader("Content-Language", contentLanguage);
-                }
-
-                if (!string.IsNullOrEmpty(acceptLanguage))
-                {
-                    restRequest.WithHeader("Accept-Language", acceptLanguage);
-                }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
+                var httpContent = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("personality_insights", "v3", "ProfileAsCsv"))

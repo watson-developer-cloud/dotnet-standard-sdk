@@ -16,7 +16,6 @@
 */
 
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace IBM.Watson.Assistant.v2.Model
 {
@@ -37,7 +36,7 @@ namespace IBM.Watson.Assistant.v2.Model
         /// that apply to the dialog skill used by the assistant.
         /// </summary>
         [JsonProperty("skills", NullValueHandling = NullValueHandling.Ignore)]
-        public JObject Skills { get; set; }
+        public MessageContextSkills Skills { get; set; }
     }
 
 }

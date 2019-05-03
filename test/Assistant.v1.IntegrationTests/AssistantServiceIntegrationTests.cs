@@ -126,7 +126,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
         [TestMethod]
         public void Message_Success()
         {
-            JObject context;
+            Context context;
 
             List<string> intents = new List<string>();
             MessageInput input = new MessageInput()
@@ -136,16 +136,17 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
 
             var results0 = service.Message(
                 workspaceId: workspaceId,
-                input: JObject.FromObject(input)
+                input: input
                 );
             context = results0.Result.Context;
+            context.Add("name", "Watson");
             intents.Add(GetIntent(results0.Result));
 
             input.Text = assistantString0;
 
             var results1 = service.Message(
                 workspaceId: workspaceId,
-                input: JObject.FromObject(input),
+                input: input,
                 context: context
                 );
             context = results1.Result.Context;
@@ -155,7 +156,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
 
             var results2 = service.Message(
                 workspaceId: workspaceId,
-                input: JObject.FromObject(input),
+                input: input,
                 context: context
                 );
             context = results2.Result.Context;
@@ -165,15 +166,19 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
 
             var results3 = service.Message(
                 workspaceId: workspaceId,
-                input: JObject.FromObject(input),
+                input: input,
                 context: context);
             context = results3.Result.Context;
             intents.Add(GetIntent(results3.Result));
 
             Assert.IsNotNull(results0);
+            Assert.IsTrue(results0.Result.Context.Get("name").ToString() == "Watson");
             Assert.IsNotNull(results1);
+            Assert.IsTrue(results1.Result.Context.Get("name").ToString() == "Watson");
             Assert.IsNotNull(results2);
+            Assert.IsTrue(results2.Result.Context.Get("name").ToString() == "Watson");
             Assert.IsNotNull(results3);
+            Assert.IsTrue(results3.Result.Context.Get("name").ToString() == "Watson");
             foreach (string intent in intents)
             {
                 Assert.IsTrue(IsUniqueInList(intent, intents));
@@ -198,7 +203,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
         #region Get Intent
         private string GetIntent(MessageResponse messageResponse)
         {
-            return messageResponse.Intents[0]["intent"].ToString(); ;
+            return messageResponse.Intents[0].Intent;
         }
         #endregion
 

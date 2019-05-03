@@ -88,7 +88,7 @@ namespace IBM.Watson.ToneAnalyzer.v3
         /// <summary>
         /// Analyze general tone.
         ///
-        /// Use the general purpose endpoint to analyze the tone of your input content. The service analyzes the content
+        /// Use the general-purpose endpoint to analyze the tone of your input content. The service analyzes the content
         /// for emotional and language tones. The method always analyzes the tone of the full document; by default, it
         /// also analyzes the tone of each individual sentence of the content.
         ///
@@ -103,7 +103,7 @@ namespace IBM.Watson.ToneAnalyzer.v3
         /// For `text/html`, the service removes HTML tags and analyzes only the textual content.
         ///
         /// **See also:** [Using the general-purpose
-        /// endpoint](https://cloud.ibm.com/docs/services/tone-analyzer/using-tone.html#using-the-general-purpose-endpoint).
+        /// endpoint](https://cloud.ibm.com/docs/services/tone-analyzer?topic=tone-analyzer-utgpe#utgpe).
         /// </summary>
         /// <param name="toneInput">JSON, plain text, or HTML input that contains the content to be analyzed. For JSON
         /// input, provide an object of type `ToneInput`.</param>
@@ -131,11 +131,15 @@ namespace IBM.Watson.ToneAnalyzer.v3
         /// <returns><see cref="ToneAnalysis" />ToneAnalysis</returns>
         public DetailedResponse<ToneAnalysis> Tone(ToneInput toneInput, string contentType = null, bool? sentences = null, List<string> tones = null, string contentLanguage = null, string acceptLanguage = null)
         {
-        if (toneInput == null)
-            throw new ArgumentNullException("`toneInput` is required for `Tone`");
+            if (toneInput == null)
+            {
+                throw new ArgumentNullException("`toneInput` is required for `Tone`");
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
+            }
 
             DetailedResponse<ToneAnalysis> result = null;
 
@@ -155,33 +159,30 @@ namespace IBM.Watson.ToneAnalyzer.v3
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+
                 if (!string.IsNullOrEmpty(contentType))
+                {
                     restRequest.WithHeader("Content-Type", contentType);
+                }
+
                 if (!string.IsNullOrEmpty(contentLanguage))
+                {
                     restRequest.WithHeader("Content-Language", contentLanguage);
+                }
+
                 if (!string.IsNullOrEmpty(acceptLanguage))
+                {
                     restRequest.WithHeader("Accept-Language", acceptLanguage);
+                }
                 if (sentences != null)
+                {
                     restRequest.WithArgument("sentences", sentences);
+                }
                 if (tones != null && tones.Count > 0)
+                {
                     restRequest.WithArgument("tones", string.Join(",", tones.ToArray()));
-                restRequest.WithHeader("Accept", "application/json");
-
-                if (!string.IsNullOrEmpty(contentType))
-                {
-                    restRequest.WithHeader("Content-Type", contentType);
                 }
-
-                if (!string.IsNullOrEmpty(contentLanguage))
-                {
-                    restRequest.WithHeader("Content-Language", contentLanguage);
-                }
-
-                if (!string.IsNullOrEmpty(acceptLanguage))
-                {
-                    restRequest.WithHeader("Accept-Language", acceptLanguage);
-                }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(toneInput), Encoding.UTF8, "application/json");
+                var httpContent = new StringContent(JsonConvert.SerializeObject(toneInput), Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("tone_analyzer", "v3", "Tone"))
@@ -191,7 +192,9 @@ namespace IBM.Watson.ToneAnalyzer.v3
 
                 result = restRequest.As<ToneAnalysis>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<ToneAnalysis>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -202,9 +205,9 @@ namespace IBM.Watson.ToneAnalyzer.v3
         }
 
         /// <summary>
-        /// Analyze customer engagement tone.
+        /// Analyze customer-engagement tone.
         ///
-        /// Use the customer engagement endpoint to analyze the tone of customer service and customer support
+        /// Use the customer-engagement endpoint to analyze the tone of customer service and customer support
         /// conversations. For each utterance of a conversation, the method reports the most prevalent subset of the
         /// following seven tones: sad, frustrated, satisfied, excited, polite, impolite, and sympathetic.
         ///
@@ -215,7 +218,7 @@ namespace IBM.Watson.ToneAnalyzer.v3
         /// JSON content is effectively always UTF-8.
         ///
         /// **See also:** [Using the customer-engagement
-        /// endpoint](https://cloud.ibm.com/docs/services/tone-analyzer/using-tone-chat.html#using-the-customer-engagement-endpoint).
+        /// endpoint](https://cloud.ibm.com/docs/services/tone-analyzer?topic=tone-analyzer-utco#utco).
         /// </summary>
         /// <param name="utterances">An object that contains the content to be analyzed.</param>
         /// <param name="contentLanguage">The language of the input text for the request: English or French. Regional
@@ -230,11 +233,15 @@ namespace IBM.Watson.ToneAnalyzer.v3
         /// <returns><see cref="UtteranceAnalyses" />UtteranceAnalyses</returns>
         public DetailedResponse<UtteranceAnalyses> ToneChat(List<Utterance> utterances, string contentLanguage = null, string acceptLanguage = null)
         {
-        if (utterances == null)
-            throw new ArgumentNullException("`utterances` is required for `ToneChat`");
+            if (utterances == null)
+            {
+                throw new ArgumentNullException("`utterances` is required for `ToneChat`");
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
+            }
 
             DetailedResponse<UtteranceAnalyses> result = null;
 
@@ -254,27 +261,24 @@ namespace IBM.Watson.ToneAnalyzer.v3
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+
                 if (!string.IsNullOrEmpty(contentLanguage))
+                {
                     restRequest.WithHeader("Content-Language", contentLanguage);
+                }
+
                 if (!string.IsNullOrEmpty(acceptLanguage))
+                {
                     restRequest.WithHeader("Accept-Language", acceptLanguage);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
-                restRequest.WithHeader("Accept", "application/json");
-
-                if (!string.IsNullOrEmpty(contentLanguage))
-                {
-                    restRequest.WithHeader("Content-Language", contentLanguage);
-                }
-
-                if (!string.IsNullOrEmpty(acceptLanguage))
-                {
-                    restRequest.WithHeader("Accept-Language", acceptLanguage);
-                }
 
                 JObject bodyObject = new JObject();
                 if (utterances != null && utterances.Count > 0)
+                {
                     bodyObject["utterances"] = JToken.FromObject(utterances);
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("tone_analyzer", "v3", "ToneChat"))
@@ -284,7 +288,9 @@ namespace IBM.Watson.ToneAnalyzer.v3
 
                 result = restRequest.As<UtteranceAnalyses>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<UtteranceAnalyses>();
+                }
             }
             catch (AggregateException ae)
             {

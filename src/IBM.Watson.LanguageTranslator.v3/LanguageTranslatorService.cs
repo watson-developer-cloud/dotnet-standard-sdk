@@ -97,11 +97,15 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <returns><see cref="TranslationResult" />TranslationResult</returns>
         public DetailedResponse<TranslationResult> Translate(List<string> text, string modelId = null, string source = null, string target = null)
         {
-        if (text == null)
-            throw new ArgumentNullException("`text` is required for `Translate`");
+            if (text == null)
+            {
+                throw new ArgumentNullException("`text` is required for `Translate`");
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
+            }
 
             DetailedResponse<TranslationResult> result = null;
 
@@ -122,18 +126,25 @@ namespace IBM.Watson.LanguageTranslator.v3
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
                 restRequest.WithHeader("Content-Type", "application/json");
-                restRequest.WithHeader("Accept", "application/json");
 
                 JObject bodyObject = new JObject();
                 if (text != null && text.Count > 0)
+                {
                     bodyObject["text"] = JToken.FromObject(text);
+                }
                 if (!string.IsNullOrEmpty(modelId))
+                {
                     bodyObject["model_id"] = modelId;
+                }
                 if (!string.IsNullOrEmpty(source))
+                {
                     bodyObject["source"] = source;
+                }
                 if (!string.IsNullOrEmpty(target))
+                {
                     bodyObject["target"] = target;
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("language_translator", "v3", "Translate"))
@@ -143,7 +154,9 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 result = restRequest.As<TranslationResult>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<TranslationResult>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -152,61 +165,6 @@ namespace IBM.Watson.LanguageTranslator.v3
 
             return result;
         }
-        /// <summary>
-        /// Identify language.
-        ///
-        /// Identifies the language of the input text.
-        /// </summary>
-        /// <param name="text">Input text in UTF-8 format.</param>
-        /// <returns><see cref="IdentifiedLanguages" />IdentifiedLanguages</returns>
-        public DetailedResponse<IdentifiedLanguages> Identify(string text)
-        {
-        if (string.IsNullOrEmpty(text))
-            throw new ArgumentNullException("`text` is required for `Identify`");
-
-            if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DetailedResponse<IdentifiedLanguages> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-
-                var restRequest = client.PostAsync($"{this.Endpoint}/v3/identify");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                restRequest.WithHeader("Content-Type", "text/plain");
-                restRequest.WithHeader("Accept", "application/json");
-                var httpContent = new StringContent(JsonConvert.SerializeObject(text), Encoding.UTF8, "application/json");
-                restRequest.WithBodyContent(httpContent);
-
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("language_translator", "v3", "Identify"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                result = restRequest.As<IdentifiedLanguages>().Result;
-                if (result == null)
-                    result = new DetailedResponse<IdentifiedLanguages>();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
         /// <summary>
         /// List identifiable languages.
         ///
@@ -218,7 +176,9 @@ namespace IBM.Watson.LanguageTranslator.v3
         {
 
             if (string.IsNullOrEmpty(VersionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
+            }
 
             DetailedResponse<IdentifiableLanguages> result = null;
 
@@ -246,7 +206,9 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 result = restRequest.As<IdentifiableLanguages>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<IdentifiableLanguages>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -255,6 +217,136 @@ namespace IBM.Watson.LanguageTranslator.v3
 
             return result;
         }
+
+        /// <summary>
+        /// Identify language.
+        ///
+        /// Identifies the language of the input text.
+        /// </summary>
+        /// <param name="text">Input text in UTF-8 format.</param>
+        /// <returns><see cref="IdentifiedLanguages" />IdentifiedLanguages</returns>
+        public DetailedResponse<IdentifiedLanguages> Identify(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+            {
+                throw new ArgumentNullException("`text` is required for `Identify`");
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<IdentifiedLanguages> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v3/identify");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "text/plain");
+                var httpContent = new StringContent(JsonConvert.SerializeObject(text), Encoding.UTF8);
+                restRequest.WithBodyContent(httpContent);
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("language_translator", "v3", "Identify"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<IdentifiedLanguages>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<IdentifiedLanguages>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// List models.
+        ///
+        /// Lists available translation models.
+        /// </summary>
+        /// <param name="source">Specify a language code to filter results by source language. (optional)</param>
+        /// <param name="target">Specify a language code to filter results by target language. (optional)</param>
+        /// <param name="defaultModels">If the default parameter isn't specified, the service will return all models
+        /// (default and non-default) for each language pair. To return only default models, set this to `true`. To
+        /// return only non-default models, set this to `false`. There is exactly one default model per language pair,
+        /// the IBM provided base model. (optional)</param>
+        /// <returns><see cref="TranslationModels" />TranslationModels</returns>
+        public DetailedResponse<TranslationModels> ListModels(string source = null, string target = null, bool? defaultModels = null)
+        {
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<TranslationModels> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v3/models");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(source))
+                {
+                    restRequest.WithArgument("source", source);
+                }
+                if (!string.IsNullOrEmpty(target))
+                {
+                    restRequest.WithArgument("target", target);
+                }
+                if (defaultModels != null)
+                {
+                    restRequest.WithArgument("default", defaultModels);
+                }
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("language_translator", "v3", "ListModels"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<TranslationModels>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<TranslationModels>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
         /// <summary>
         /// Create model.
         ///
@@ -288,11 +380,15 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <returns><see cref="TranslationModel" />TranslationModel</returns>
         public DetailedResponse<TranslationModel> CreateModel(string baseModelId, System.IO.MemoryStream forcedGlossary = null, System.IO.MemoryStream parallelCorpus = null, string name = null)
         {
-        if (string.IsNullOrEmpty(baseModelId))
-            throw new ArgumentNullException("`baseModelId` is required for `CreateModel`");
+            if (string.IsNullOrEmpty(baseModelId))
+            {
+                throw new ArgumentNullException("`baseModelId` is required for `CreateModel`");
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
+            }
 
             DetailedResponse<TranslationModel> result = null;
 
@@ -302,20 +398,20 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 if (forcedGlossary != null)
                 {
-                    var forcedGlossaryContent = new ByteArrayContent((forcedGlossary as Stream).ReadAllBytes());
+                    var forcedGlossaryContent = new ByteArrayContent(forcedGlossary.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
                     forcedGlossaryContent.Headers.ContentType = contentType;
-                    formData.Add(forcedGlossaryContent, "forced_glossary");
+                    formData.Add(forcedGlossaryContent, "forced_glossary", "filename");
                 }
 
                 if (parallelCorpus != null)
                 {
-                    var parallelCorpusContent = new ByteArrayContent((parallelCorpus as Stream).ReadAllBytes());
+                    var parallelCorpusContent = new ByteArrayContent(parallelCorpus.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
                     parallelCorpusContent.Headers.ContentType = contentType;
-                    formData.Add(parallelCorpusContent, "parallel_corpus");
+                    formData.Add(parallelCorpusContent, "parallel_corpus", "filename");
                 }
 
                 IClient client = this.Client;
@@ -333,9 +429,13 @@ namespace IBM.Watson.LanguageTranslator.v3
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(baseModelId))
+                {
                     restRequest.WithArgument("base_model_id", baseModelId);
+                }
                 if (!string.IsNullOrEmpty(name))
+                {
                     restRequest.WithArgument("name", name);
+                }
                 restRequest.WithBodyContent(formData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("language_translator", "v3", "CreateModel"))
@@ -345,7 +445,9 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 result = restRequest.As<TranslationModel>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<TranslationModel>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -364,11 +466,15 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <returns><see cref="DeleteModelResult" />DeleteModelResult</returns>
         public DetailedResponse<DeleteModelResult> DeleteModel(string modelId)
         {
-        if (string.IsNullOrEmpty(modelId))
-            throw new ArgumentNullException("`modelId` is required for `DeleteModel`");
+            if (string.IsNullOrEmpty(modelId))
+            {
+                throw new ArgumentNullException("`modelId` is required for `DeleteModel`");
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
+            }
 
             DetailedResponse<DeleteModelResult> result = null;
 
@@ -396,7 +502,9 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 result = restRequest.As<DeleteModelResult>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<DeleteModelResult>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -417,11 +525,15 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <returns><see cref="TranslationModel" />TranslationModel</returns>
         public DetailedResponse<TranslationModel> GetModel(string modelId)
         {
-        if (string.IsNullOrEmpty(modelId))
-            throw new ArgumentNullException("`modelId` is required for `GetModel`");
+            if (string.IsNullOrEmpty(modelId))
+            {
+                throw new ArgumentNullException("`modelId` is required for `GetModel`");
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
+            }
 
             DetailedResponse<TranslationModel> result = null;
 
@@ -449,67 +561,9 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 result = restRequest.As<TranslationModel>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<TranslationModel>();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// List models.
-        ///
-        /// Lists available translation models.
-        /// </summary>
-        /// <param name="source">Specify a language code to filter results by source language. (optional)</param>
-        /// <param name="target">Specify a language code to filter results by target language. (optional)</param>
-        /// <param name="defaultModels">If the default parameter isn't specified, the service will return all models
-        /// (default and non-default) for each language pair. To return only default models, set this to `true`. To
-        /// return only non-default models, set this to `false`. There is exactly one default model per language pair,
-        /// the IBM provided base model. (optional)</param>
-        /// <returns><see cref="TranslationModels" />TranslationModels</returns>
-        public DetailedResponse<TranslationModels> ListModels(string source = null, string target = null, bool? defaultModels = null)
-        {
-
-            if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DetailedResponse<TranslationModels> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
-
-                var restRequest = client.GetAsync($"{this.Endpoint}/v3/models");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (!string.IsNullOrEmpty(source))
-                    restRequest.WithArgument("source", source);
-                if (!string.IsNullOrEmpty(target))
-                    restRequest.WithArgument("target", target);
-                if (defaultModels != null)
-                    restRequest.WithArgument("default", defaultModels);
-
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("language_translator", "v3", "ListModels"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                result = restRequest.As<TranslationModels>().Result;
-                if (result == null)
-                    result = new DetailedResponse<TranslationModels>();
             }
             catch (AggregateException ae)
             {

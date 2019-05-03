@@ -16,6 +16,7 @@
 */
 
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core.Model;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Assistant.v1.Model
@@ -23,7 +24,7 @@ namespace IBM.Watson.Assistant.v1.Model
     /// <summary>
     /// A term from the request that was identified as an entity.
     /// </summary>
-    public class RuntimeEntity
+    public class RuntimeEntity : DynamicModel<object>
     {
         /// <summary>
         /// An entity detected in the input.

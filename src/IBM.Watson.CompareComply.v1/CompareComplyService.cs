@@ -87,13 +87,19 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="HTMLReturn" />HTMLReturn</returns>
         public DetailedResponse<HTMLReturn> ConvertToHtml(System.IO.MemoryStream file, string filename, string fileContentType = null, string model = null)
         {
-        if (file == null)
-            throw new ArgumentNullException("`file` is required for `ConvertToHtml`");
-        if (string.IsNullOrEmpty(filename))
-            throw new ArgumentNullException("`filename` is required for `ConvertToHtml`");
+            if (file == null)
+            {
+                throw new ArgumentNullException("`file` is required for `ConvertToHtml`");
+            }
+            if (string.IsNullOrEmpty(filename))
+            {
+                throw new ArgumentNullException("`filename` is required for `ConvertToHtml`");
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
+            }
 
             DetailedResponse<HTMLReturn> result = null;
 
@@ -103,7 +109,7 @@ namespace IBM.Watson.CompareComply.v1
 
                 if (file != null)
                 {
-                    var fileContent = new ByteArrayContent((file as Stream).ReadAllBytes());
+                    var fileContent = new ByteArrayContent(file.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
                     fileContent.Headers.ContentType = contentType;
@@ -121,7 +127,9 @@ namespace IBM.Watson.CompareComply.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(model))
+                {
                     restRequest.WithArgument("model", model);
+                }
                 restRequest.WithBodyContent(formData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "ConvertToHtml"))
@@ -131,7 +139,9 @@ namespace IBM.Watson.CompareComply.v1
 
                 result = restRequest.As<HTMLReturn>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<HTMLReturn>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -154,11 +164,15 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="ClassifyReturn" />ClassifyReturn</returns>
         public DetailedResponse<ClassifyReturn> ClassifyElements(System.IO.MemoryStream file, string fileContentType = null, string model = null)
         {
-        if (file == null)
-            throw new ArgumentNullException("`file` is required for `ClassifyElements`");
+            if (file == null)
+            {
+                throw new ArgumentNullException("`file` is required for `ClassifyElements`");
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
+            }
 
             DetailedResponse<ClassifyReturn> result = null;
 
@@ -168,11 +182,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 if (file != null)
                 {
-                    var fileContent = new ByteArrayContent((file as Stream).ReadAllBytes());
+                    var fileContent = new ByteArrayContent(file.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
                     fileContent.Headers.ContentType = contentType;
-                    formData.Add(fileContent, "file");
+                    formData.Add(fileContent, "file", "filename");
                 }
 
                 IClient client = this.Client;
@@ -186,7 +200,9 @@ namespace IBM.Watson.CompareComply.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(model))
+                {
                     restRequest.WithArgument("model", model);
+                }
                 restRequest.WithBodyContent(formData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "ClassifyElements"))
@@ -196,7 +212,9 @@ namespace IBM.Watson.CompareComply.v1
 
                 result = restRequest.As<ClassifyReturn>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<ClassifyReturn>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -219,11 +237,15 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="TableReturn" />TableReturn</returns>
         public DetailedResponse<TableReturn> ExtractTables(System.IO.MemoryStream file, string fileContentType = null, string model = null)
         {
-        if (file == null)
-            throw new ArgumentNullException("`file` is required for `ExtractTables`");
+            if (file == null)
+            {
+                throw new ArgumentNullException("`file` is required for `ExtractTables`");
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
+            }
 
             DetailedResponse<TableReturn> result = null;
 
@@ -233,11 +255,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 if (file != null)
                 {
-                    var fileContent = new ByteArrayContent((file as Stream).ReadAllBytes());
+                    var fileContent = new ByteArrayContent(file.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
                     fileContent.Headers.ContentType = contentType;
-                    formData.Add(fileContent, "file");
+                    formData.Add(fileContent, "file", "filename");
                 }
 
                 IClient client = this.Client;
@@ -251,7 +273,9 @@ namespace IBM.Watson.CompareComply.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(model))
+                {
                     restRequest.WithArgument("model", model);
+                }
                 restRequest.WithBodyContent(formData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "ExtractTables"))
@@ -261,7 +285,9 @@ namespace IBM.Watson.CompareComply.v1
 
                 result = restRequest.As<TableReturn>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<TableReturn>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -288,13 +314,19 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="CompareReturn" />CompareReturn</returns>
         public DetailedResponse<CompareReturn> CompareDocuments(System.IO.MemoryStream file1, System.IO.MemoryStream file2, string file1ContentType = null, string file2ContentType = null, string file1Label = null, string file2Label = null, string model = null)
         {
-        if (file1 == null)
-            throw new ArgumentNullException("`file1` is required for `CompareDocuments`");
-        if (file2 == null)
-            throw new ArgumentNullException("`file2` is required for `CompareDocuments`");
+            if (file1 == null)
+            {
+                throw new ArgumentNullException("`file1` is required for `CompareDocuments`");
+            }
+            if (file2 == null)
+            {
+                throw new ArgumentNullException("`file2` is required for `CompareDocuments`");
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
+            }
 
             DetailedResponse<CompareReturn> result = null;
 
@@ -304,20 +336,20 @@ namespace IBM.Watson.CompareComply.v1
 
                 if (file1 != null)
                 {
-                    var file1Content = new ByteArrayContent((file1 as Stream).ReadAllBytes());
+                    var file1Content = new ByteArrayContent(file1.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(file1ContentType, out contentType);
                     file1Content.Headers.ContentType = contentType;
-                    formData.Add(file1Content, "file_1");
+                    formData.Add(file1Content, "file_1", "filename");
                 }
 
                 if (file2 != null)
                 {
-                    var file2Content = new ByteArrayContent((file2 as Stream).ReadAllBytes());
+                    var file2Content = new ByteArrayContent(file2.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(file2ContentType, out contentType);
                     file2Content.Headers.ContentType = contentType;
-                    formData.Add(file2Content, "file_2");
+                    formData.Add(file2Content, "file_2", "filename");
                 }
 
                 IClient client = this.Client;
@@ -331,11 +363,17 @@ namespace IBM.Watson.CompareComply.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(file1Label))
+                {
                     restRequest.WithArgument("file_1_label", file1Label);
+                }
                 if (!string.IsNullOrEmpty(file2Label))
+                {
                     restRequest.WithArgument("file_2_label", file2Label);
+                }
                 if (!string.IsNullOrEmpty(model))
+                {
                     restRequest.WithArgument("model", model);
+                }
                 restRequest.WithBodyContent(formData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "CompareDocuments"))
@@ -345,7 +383,9 @@ namespace IBM.Watson.CompareComply.v1
 
                 result = restRequest.As<CompareReturn>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<CompareReturn>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -366,11 +406,15 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="FeedbackReturn" />FeedbackReturn</returns>
         public DetailedResponse<FeedbackReturn> AddFeedback(FeedbackDataInput feedbackData, string userId = null, string comment = null)
         {
-        if (feedbackData == null)
-            throw new ArgumentNullException("`feedbackData` is required for `AddFeedback`");
+            if (feedbackData == null)
+            {
+                throw new ArgumentNullException("`feedbackData` is required for `AddFeedback`");
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
+            }
 
             DetailedResponse<FeedbackReturn> result = null;
 
@@ -387,16 +431,21 @@ namespace IBM.Watson.CompareComply.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
                 restRequest.WithHeader("Content-Type", "application/json");
-                restRequest.WithHeader("Accept", "application/json");
 
                 JObject bodyObject = new JObject();
                 if (feedbackData != null)
+                {
                     bodyObject["feedback_data"] = JToken.FromObject(feedbackData);
+                }
                 if (!string.IsNullOrEmpty(userId))
+                {
                     bodyObject["user_id"] = userId;
+                }
                 if (!string.IsNullOrEmpty(comment))
+                {
                     bodyObject["comment"] = comment;
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "AddFeedback"))
@@ -406,113 +455,9 @@ namespace IBM.Watson.CompareComply.v1
 
                 result = restRequest.As<FeedbackReturn>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<FeedbackReturn>();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Delete a specified feedback entry.
-        ///
-        /// Deletes a feedback entry with a specified `feedback_id`.
-        /// </summary>
-        /// <param name="feedbackId">A string that specifies the feedback entry to be deleted from the document.</param>
-        /// <param name="model">The analysis model to be used by the service. For the **Element classification** and
-        /// **Compare two documents** methods, the default is `contracts`. For the **Extract tables** method, the
-        /// default is `tables`. These defaults apply to the standalone methods as well as to the methods' use in
-        /// batch-processing requests. (optional)</param>
-        /// <returns><see cref="FeedbackDeleted" />FeedbackDeleted</returns>
-        public DetailedResponse<FeedbackDeleted> DeleteFeedback(string feedbackId, string model = null)
-        {
-        if (string.IsNullOrEmpty(feedbackId))
-            throw new ArgumentNullException("`feedbackId` is required for `DeleteFeedback`");
-
-            if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DetailedResponse<FeedbackDeleted> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
                 }
-
-                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/feedback/{feedbackId}");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (!string.IsNullOrEmpty(model))
-                    restRequest.WithArgument("model", model);
-
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "DeleteFeedback"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                result = restRequest.As<FeedbackDeleted>().Result;
-                if (result == null)
-                    result = new DetailedResponse<FeedbackDeleted>();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// List a specified feedback entry.
-        ///
-        /// Lists a feedback entry with a specified `feedback_id`.
-        /// </summary>
-        /// <param name="feedbackId">A string that specifies the feedback entry to be included in the output.</param>
-        /// <param name="model">The analysis model to be used by the service. For the **Element classification** and
-        /// **Compare two documents** methods, the default is `contracts`. For the **Extract tables** method, the
-        /// default is `tables`. These defaults apply to the standalone methods as well as to the methods' use in
-        /// batch-processing requests. (optional)</param>
-        /// <returns><see cref="GetFeedback" />GetFeedback</returns>
-        public DetailedResponse<GetFeedback> GetFeedback(string feedbackId, string model = null)
-        {
-        if (string.IsNullOrEmpty(feedbackId))
-            throw new ArgumentNullException("`feedbackId` is required for `GetFeedback`");
-
-            if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DetailedResponse<GetFeedback> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/feedback/{feedbackId}");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (!string.IsNullOrEmpty(model))
-                    restRequest.WithArgument("model", model);
-
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "GetFeedback"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                result = restRequest.As<GetFeedback>().Result;
-                if (result == null)
-                    result = new DetailedResponse<GetFeedback>();
             }
             catch (AggregateException ae)
             {
@@ -572,7 +517,9 @@ namespace IBM.Watson.CompareComply.v1
         {
 
             if (string.IsNullOrEmpty(VersionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
+            }
 
             DetailedResponse<FeedbackList> result = null;
 
@@ -589,37 +536,69 @@ namespace IBM.Watson.CompareComply.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(feedbackType))
+                {
                     restRequest.WithArgument("feedback_type", feedbackType);
+                }
                 if (before != null)
+                {
                     restRequest.WithArgument("before", before);
+                }
                 if (after != null)
+                {
                     restRequest.WithArgument("after", after);
+                }
                 if (!string.IsNullOrEmpty(documentTitle))
+                {
                     restRequest.WithArgument("document_title", documentTitle);
+                }
                 if (!string.IsNullOrEmpty(modelId))
+                {
                     restRequest.WithArgument("model_id", modelId);
+                }
                 if (!string.IsNullOrEmpty(modelVersion))
+                {
                     restRequest.WithArgument("model_version", modelVersion);
+                }
                 if (!string.IsNullOrEmpty(categoryRemoved))
+                {
                     restRequest.WithArgument("category_removed", categoryRemoved);
+                }
                 if (!string.IsNullOrEmpty(categoryAdded))
+                {
                     restRequest.WithArgument("category_added", categoryAdded);
+                }
                 if (!string.IsNullOrEmpty(categoryNotChanged))
+                {
                     restRequest.WithArgument("category_not_changed", categoryNotChanged);
+                }
                 if (!string.IsNullOrEmpty(typeRemoved))
+                {
                     restRequest.WithArgument("type_removed", typeRemoved);
+                }
                 if (!string.IsNullOrEmpty(typeAdded))
+                {
                     restRequest.WithArgument("type_added", typeAdded);
+                }
                 if (!string.IsNullOrEmpty(typeNotChanged))
+                {
                     restRequest.WithArgument("type_not_changed", typeNotChanged);
+                }
                 if (pageLimit != null)
+                {
                     restRequest.WithArgument("page_limit", pageLimit);
+                }
                 if (!string.IsNullOrEmpty(cursor))
+                {
                     restRequest.WithArgument("cursor", cursor);
+                }
                 if (!string.IsNullOrEmpty(sort))
+                {
                     restRequest.WithArgument("sort", sort);
+                }
                 if (includeTotal != null)
+                {
                     restRequest.WithArgument("include_total", includeTotal);
+                }
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "ListFeedback"))
                 {
@@ -628,7 +607,131 @@ namespace IBM.Watson.CompareComply.v1
 
                 result = restRequest.As<FeedbackList>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<FeedbackList>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// List a specified feedback entry.
+        ///
+        /// Lists a feedback entry with a specified `feedback_id`.
+        /// </summary>
+        /// <param name="feedbackId">A string that specifies the feedback entry to be included in the output.</param>
+        /// <param name="model">The analysis model to be used by the service. For the **Element classification** and
+        /// **Compare two documents** methods, the default is `contracts`. For the **Extract tables** method, the
+        /// default is `tables`. These defaults apply to the standalone methods as well as to the methods' use in
+        /// batch-processing requests. (optional)</param>
+        /// <returns><see cref="GetFeedback" />GetFeedback</returns>
+        public DetailedResponse<GetFeedback> GetFeedback(string feedbackId, string model = null)
+        {
+            if (string.IsNullOrEmpty(feedbackId))
+            {
+                throw new ArgumentNullException("`feedbackId` is required for `GetFeedback`");
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<GetFeedback> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/feedback/{feedbackId}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(model))
+                {
+                    restRequest.WithArgument("model", model);
+                }
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "GetFeedback"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<GetFeedback>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<GetFeedback>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Delete a specified feedback entry.
+        ///
+        /// Deletes a feedback entry with a specified `feedback_id`.
+        /// </summary>
+        /// <param name="feedbackId">A string that specifies the feedback entry to be deleted from the document.</param>
+        /// <param name="model">The analysis model to be used by the service. For the **Element classification** and
+        /// **Compare two documents** methods, the default is `contracts`. For the **Extract tables** method, the
+        /// default is `tables`. These defaults apply to the standalone methods as well as to the methods' use in
+        /// batch-processing requests. (optional)</param>
+        /// <returns><see cref="FeedbackDeleted" />FeedbackDeleted</returns>
+        public DetailedResponse<FeedbackDeleted> DeleteFeedback(string feedbackId, string model = null)
+        {
+            if (string.IsNullOrEmpty(feedbackId))
+            {
+                throw new ArgumentNullException("`feedbackId` is required for `DeleteFeedback`");
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<FeedbackDeleted> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/feedback/{feedbackId}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(model))
+                {
+                    restRequest.WithArgument("model", model);
+                }
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "DeleteFeedback"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<FeedbackDeleted>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<FeedbackDeleted>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -668,23 +771,39 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="BatchStatus" />BatchStatus</returns>
         public DetailedResponse<BatchStatus> CreateBatch(string function, System.IO.MemoryStream inputCredentialsFile, string inputBucketLocation, string inputBucketName, System.IO.MemoryStream outputCredentialsFile, string outputBucketLocation, string outputBucketName, string model = null)
         {
-        if (string.IsNullOrEmpty(function))
-            throw new ArgumentNullException("`function` is required for `CreateBatch`");
-        if (inputCredentialsFile == null)
-            throw new ArgumentNullException("`inputCredentialsFile` is required for `CreateBatch`");
-        if (string.IsNullOrEmpty(inputBucketLocation))
-            throw new ArgumentNullException("`inputBucketLocation` is required for `CreateBatch`");
-        if (string.IsNullOrEmpty(inputBucketName))
-            throw new ArgumentNullException("`inputBucketName` is required for `CreateBatch`");
-        if (outputCredentialsFile == null)
-            throw new ArgumentNullException("`outputCredentialsFile` is required for `CreateBatch`");
-        if (string.IsNullOrEmpty(outputBucketLocation))
-            throw new ArgumentNullException("`outputBucketLocation` is required for `CreateBatch`");
-        if (string.IsNullOrEmpty(outputBucketName))
-            throw new ArgumentNullException("`outputBucketName` is required for `CreateBatch`");
+            if (string.IsNullOrEmpty(function))
+            {
+                throw new ArgumentNullException("`function` is required for `CreateBatch`");
+            }
+            if (inputCredentialsFile == null)
+            {
+                throw new ArgumentNullException("`inputCredentialsFile` is required for `CreateBatch`");
+            }
+            if (string.IsNullOrEmpty(inputBucketLocation))
+            {
+                throw new ArgumentNullException("`inputBucketLocation` is required for `CreateBatch`");
+            }
+            if (string.IsNullOrEmpty(inputBucketName))
+            {
+                throw new ArgumentNullException("`inputBucketName` is required for `CreateBatch`");
+            }
+            if (outputCredentialsFile == null)
+            {
+                throw new ArgumentNullException("`outputCredentialsFile` is required for `CreateBatch`");
+            }
+            if (string.IsNullOrEmpty(outputBucketLocation))
+            {
+                throw new ArgumentNullException("`outputBucketLocation` is required for `CreateBatch`");
+            }
+            if (string.IsNullOrEmpty(outputBucketName))
+            {
+                throw new ArgumentNullException("`outputBucketName` is required for `CreateBatch`");
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
+            }
 
             DetailedResponse<BatchStatus> result = null;
 
@@ -694,11 +813,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 if (inputCredentialsFile != null)
                 {
-                    var inputCredentialsFileContent = new ByteArrayContent((inputCredentialsFile as Stream).ReadAllBytes());
+                    var inputCredentialsFileContent = new ByteArrayContent(inputCredentialsFile.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/json", out contentType);
                     inputCredentialsFileContent.Headers.ContentType = contentType;
-                    formData.Add(inputCredentialsFileContent, "input_credentials_file");
+                    formData.Add(inputCredentialsFileContent, "input_credentials_file", "filename");
                 }
 
                 if (inputBucketLocation != null)
@@ -717,11 +836,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 if (outputCredentialsFile != null)
                 {
-                    var outputCredentialsFileContent = new ByteArrayContent((outputCredentialsFile as Stream).ReadAllBytes());
+                    var outputCredentialsFileContent = new ByteArrayContent(outputCredentialsFile.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/json", out contentType);
                     outputCredentialsFileContent.Headers.ContentType = contentType;
-                    formData.Add(outputCredentialsFileContent, "output_credentials_file");
+                    formData.Add(outputCredentialsFileContent, "output_credentials_file", "filename");
                 }
 
                 if (outputBucketLocation != null)
@@ -749,9 +868,13 @@ namespace IBM.Watson.CompareComply.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(function))
+                {
                     restRequest.WithArgument("function", function);
+                }
                 if (!string.IsNullOrEmpty(model))
+                {
                     restRequest.WithArgument("model", model);
+                }
                 restRequest.WithBodyContent(formData);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "CreateBatch"))
@@ -761,54 +884,9 @@ namespace IBM.Watson.CompareComply.v1
 
                 result = restRequest.As<BatchStatus>().Result;
                 if (result == null)
-                    result = new DetailedResponse<BatchStatus>();
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Get information about a specific batch-processing job.
-        ///
-        /// Gets information about a batch-processing job with a specified ID.
-        /// </summary>
-        /// <param name="batchId">The ID of the batch-processing job whose information you want to retrieve.</param>
-        /// <returns><see cref="BatchStatus" />BatchStatus</returns>
-        public DetailedResponse<BatchStatus> GetBatch(string batchId)
-        {
-        if (string.IsNullOrEmpty(batchId))
-            throw new ArgumentNullException("`batchId` is required for `GetBatch`");
-
-            if (string.IsNullOrEmpty(VersionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            DetailedResponse<BatchStatus> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                if (_tokenManager != null)
                 {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/batches/{batchId}");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "GetBatch"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                result = restRequest.As<BatchStatus>().Result;
-                if (result == null)
                     result = new DetailedResponse<BatchStatus>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -828,7 +906,9 @@ namespace IBM.Watson.CompareComply.v1
         {
 
             if (string.IsNullOrEmpty(VersionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
+            }
 
             DetailedResponse<Batches> result = null;
 
@@ -852,7 +932,62 @@ namespace IBM.Watson.CompareComply.v1
 
                 result = restRequest.As<Batches>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<Batches>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get information about a specific batch-processing job.
+        ///
+        /// Gets information about a batch-processing job with a specified ID.
+        /// </summary>
+        /// <param name="batchId">The ID of the batch-processing job whose information you want to retrieve.</param>
+        /// <returns><see cref="BatchStatus" />BatchStatus</returns>
+        public DetailedResponse<BatchStatus> GetBatch(string batchId)
+        {
+            if (string.IsNullOrEmpty(batchId))
+            {
+                throw new ArgumentNullException("`batchId` is required for `GetBatch`");
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<BatchStatus> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/batches/{batchId}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+
+                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "GetBatch"))
+                {
+                   restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                result = restRequest.As<BatchStatus>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<BatchStatus>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -877,13 +1012,19 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="BatchStatus" />BatchStatus</returns>
         public DetailedResponse<BatchStatus> UpdateBatch(string batchId, string action, string model = null)
         {
-        if (string.IsNullOrEmpty(batchId))
-            throw new ArgumentNullException("`batchId` is required for `UpdateBatch`");
-        if (string.IsNullOrEmpty(action))
-            throw new ArgumentNullException("`action` is required for `UpdateBatch`");
+            if (string.IsNullOrEmpty(batchId))
+            {
+                throw new ArgumentNullException("`batchId` is required for `UpdateBatch`");
+            }
+            if (string.IsNullOrEmpty(action))
+            {
+                throw new ArgumentNullException("`action` is required for `UpdateBatch`");
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
+            }
 
             DetailedResponse<BatchStatus> result = null;
 
@@ -900,9 +1041,13 @@ namespace IBM.Watson.CompareComply.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
                 if (!string.IsNullOrEmpty(action))
+                {
                     restRequest.WithArgument("action", action);
+                }
                 if (!string.IsNullOrEmpty(model))
+                {
                     restRequest.WithArgument("model", model);
+                }
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "UpdateBatch"))
                 {
@@ -911,7 +1056,9 @@ namespace IBM.Watson.CompareComply.v1
 
                 result = restRequest.As<BatchStatus>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<BatchStatus>();
+                }
             }
             catch (AggregateException ae)
             {

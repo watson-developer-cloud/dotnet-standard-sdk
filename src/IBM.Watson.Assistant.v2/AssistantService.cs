@@ -128,16 +128,8 @@ namespace IBM.Watson.Assistant.v2
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v2", "CreateSession"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v2", "CreateSession"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<SessionResponse>().Result;
@@ -201,16 +193,8 @@ namespace IBM.Watson.Assistant.v2
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v2", "DeleteSession"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v2", "DeleteSession"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<object>().Result;
@@ -290,16 +274,8 @@ namespace IBM.Watson.Assistant.v2
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v2", "Message"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v2", "Message"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<MessageResponse>().Result;

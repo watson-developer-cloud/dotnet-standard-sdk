@@ -179,16 +179,8 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural-language-understanding", "v1", "Analyze"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("natural-language-understanding", "v1", "Analyze"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<AnalysisResults>().Result;
@@ -239,16 +231,8 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural-language-understanding", "v1", "ListModels"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("natural-language-understanding", "v1", "ListModels"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<ListModelsResults>().Result;
@@ -303,16 +287,8 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("natural-language-understanding", "v1", "DeleteModel"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("natural-language-understanding", "v1", "DeleteModel"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<DeleteModelResults>().Result;

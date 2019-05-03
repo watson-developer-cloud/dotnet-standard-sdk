@@ -587,7 +587,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             Assert.IsNotNull(result);
             client.Received().PostAsync(Arg.Any<string>());
-   
+
             Assert.IsNotNull(result.Result.ConfigurationId);
             Assert.IsNotNull(result.Result.Status);
             Assert.IsNotNull(result.Result.EnrichedFieldUnits);
@@ -1245,7 +1245,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                             }
                         }
                     },
-                        Normalizations = new List<NormalizationOperation>()
+                    Normalizations = new List<NormalizationOperation>()
                     {
                         new NormalizationOperation()
                         {
@@ -1254,7 +1254,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                             DestinationField = "destinationField"
                         }
                     }
-                    }
+                }
             };
             #endregion
 
@@ -1377,7 +1377,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                             }
                         }
                     },
-                        Normalizations = new List<NormalizationOperation>()
+                    Normalizations = new List<NormalizationOperation>()
                     {
                         new NormalizationOperation()
                         {
@@ -2064,7 +2064,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             var documentAccepted = new DetailedResponse<DocumentAccepted>()
             {
-                Result =  new DocumentAccepted()
+                Result = new DocumentAccepted()
                 {
                     Status = DocumentAccepted.StatusEnumValue.PROCESSING,
                     DocumentId = "documentId",

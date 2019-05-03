@@ -197,7 +197,7 @@ namespace IBM.Watson.CompareComply.v1.UT
             TokenOptions tokenOptions = new TokenOptions()
             {
                 IamAccessToken = "iamAccessToken",
-                ServiceUrl="https://www.serviceurl.com"
+                ServiceUrl = "https://www.serviceurl.com"
             };
             service.SetCredential(tokenOptions);
             service.VersionDate = "versionDate";

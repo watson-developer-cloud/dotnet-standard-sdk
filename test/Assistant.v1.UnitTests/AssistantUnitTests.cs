@@ -1220,7 +1220,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             response.Result = Substitute.For<Example>();
             response.Result.Created.Returns(DateTime.MinValue);
             response.Result.Updated.Returns(DateTime.MinValue);
-            response.Result.Text= "text";
+            response.Result.Text = "text";
             #endregion
 
             request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
@@ -2639,7 +2639,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             Assert.IsNotNull(result.Result.Synonyms[0].Created);
             Assert.IsNotNull(result.Result.Synonyms[0].Updated);
             Assert.IsTrue(!string.IsNullOrEmpty(result.Result.Synonyms[0]._Synonym));
-            Assert.IsTrue(result.Result.Synonyms[0]._Synonym== "synonym");
+            Assert.IsTrue(result.Result.Synonyms[0]._Synonym == "synonym");
             Assert.IsTrue(result.Result.Pagination.RefreshUrl == "refreshUrl");
             Assert.IsTrue(result.Result.Pagination.NextUrl == "nextUrl");
             Assert.IsTrue(result.Result.Pagination.Total == 1);

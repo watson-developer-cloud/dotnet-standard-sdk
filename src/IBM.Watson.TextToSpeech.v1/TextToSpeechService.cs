@@ -105,6 +105,13 @@ namespace IBM.Watson.TextToSpeech.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<Voices>().Result;
                 if (result == null)
                 {
@@ -167,6 +174,13 @@ namespace IBM.Watson.TextToSpeech.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<Voice>().Result;
                 if (result == null)
@@ -326,6 +340,13 @@ namespace IBM.Watson.TextToSpeech.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = new DetailedResponse<System.IO.MemoryStream>();
                 result.Result = new System.IO.MemoryStream(restRequest.AsByteArray().Result);
             }
@@ -406,6 +427,13 @@ namespace IBM.Watson.TextToSpeech.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<Pronunciation>().Result;
                 if (result == null)
                 {
@@ -480,6 +508,13 @@ namespace IBM.Watson.TextToSpeech.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<VoiceModel>().Result;
                 if (result == null)
                 {
@@ -539,6 +574,13 @@ namespace IBM.Watson.TextToSpeech.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<VoiceModels>().Result;
                 if (result == null)
@@ -635,6 +677,13 @@ namespace IBM.Watson.TextToSpeech.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<object>().Result;
                 if (result == null)
                 {
@@ -693,6 +742,13 @@ namespace IBM.Watson.TextToSpeech.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<VoiceModel>().Result;
                 if (result == null)
                 {
@@ -748,6 +804,13 @@ namespace IBM.Watson.TextToSpeech.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
@@ -837,6 +900,13 @@ namespace IBM.Watson.TextToSpeech.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<object>().Result;
                 if (result == null)
                 {
@@ -894,6 +964,13 @@ namespace IBM.Watson.TextToSpeech.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<Words>().Result;
                 if (result == null)
@@ -992,6 +1069,13 @@ namespace IBM.Watson.TextToSpeech.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<object>().Result;
                 if (result == null)
                 {
@@ -1055,6 +1139,13 @@ namespace IBM.Watson.TextToSpeech.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<Translation>().Result;
                 if (result == null)
                 {
@@ -1116,6 +1207,13 @@ namespace IBM.Watson.TextToSpeech.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<object>().Result;
                 if (result == null)
                 {
@@ -1176,6 +1274,13 @@ namespace IBM.Watson.TextToSpeech.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<object>().Result;
                 if (result == null)

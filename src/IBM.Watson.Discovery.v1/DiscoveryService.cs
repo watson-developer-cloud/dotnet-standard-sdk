@@ -153,6 +153,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<Environment>().Result;
                 if (result == null)
                 {
@@ -210,6 +217,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<ListEnvironmentsResponse>().Result;
                 if (result == null)
                 {
@@ -264,6 +278,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<Environment>().Result;
                 if (result == null)
@@ -341,6 +362,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<Environment>().Result;
                 if (result == null)
                 {
@@ -395,6 +423,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<DeleteEnvironmentResponse>().Result;
                 if (result == null)
@@ -461,6 +496,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<ListCollectionFieldsResponse>().Result;
                 if (result == null)
@@ -573,6 +615,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<Configuration>().Result;
                 if (result == null)
                 {
@@ -635,6 +684,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<ListConfigurationsResponse>().Result;
                 if (result == null)
                 {
@@ -694,6 +750,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<Configuration>().Result;
                 if (result == null)
@@ -811,6 +874,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<Configuration>().Result;
                 if (result == null)
                 {
@@ -875,6 +945,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<DeleteConfigurationResponse>().Result;
                 if (result == null)
@@ -990,6 +1067,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<TestDocument>().Result;
                 if (result == null)
                 {
@@ -1070,6 +1154,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<Collection>().Result;
                 if (result == null)
                 {
@@ -1132,6 +1223,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<ListCollectionsResponse>().Result;
                 if (result == null)
                 {
@@ -1191,6 +1289,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<Collection>().Result;
                 if (result == null)
@@ -1270,6 +1375,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<Collection>().Result;
                 if (result == null)
                 {
@@ -1329,6 +1441,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<DeleteCollectionResponse>().Result;
                 if (result == null)
@@ -1392,6 +1511,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<ListCollectionFieldsResponse>().Result;
                 if (result == null)
                 {
@@ -1453,6 +1579,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<Expansions>().Result;
                 if (result == null)
@@ -1532,6 +1665,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<Expansions>().Result;
                 if (result == null)
                 {
@@ -1594,6 +1734,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<object>().Result;
                 if (result == null)
                 {
@@ -1655,6 +1802,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<TokenDictStatusResponse>().Result;
                 if (result == null)
@@ -1729,6 +1883,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<TokenDictStatusResponse>().Result;
                 if (result == null)
                 {
@@ -1789,6 +1950,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
@@ -1851,6 +2019,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<TokenDictStatusResponse>().Result;
                 if (result == null)
@@ -1936,6 +2111,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<TokenDictStatusResponse>().Result;
                 if (result == null)
                 {
@@ -1997,6 +2179,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
@@ -2112,6 +2301,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<DocumentAccepted>().Result;
                 if (result == null)
                 {
@@ -2180,6 +2376,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<DocumentStatus>().Result;
                 if (result == null)
@@ -2283,6 +2486,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<DocumentAccepted>().Result;
                 if (result == null)
                 {
@@ -2350,6 +2560,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<DeleteDocumentResponse>().Result;
                 if (result == null)
@@ -2507,6 +2724,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<QueryResponse>().Result;
                 if (result == null)
@@ -2687,6 +2911,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<QueryNoticesResponse>().Result;
                 if (result == null)
                 {
@@ -2839,6 +3070,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<QueryResponse>().Result;
                 if (result == null)
@@ -2999,6 +3237,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<QueryNoticesResponse>().Result;
                 if (result == null)
                 {
@@ -3088,6 +3333,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<QueryEntitiesResponse>().Result;
                 if (result == null)
@@ -3183,6 +3435,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<QueryRelationsResponse>().Result;
                 if (result == null)
                 {
@@ -3243,6 +3502,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<TrainingDataSet>().Result;
                 if (result == null)
@@ -3326,6 +3592,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<TrainingQuery>().Result;
                 if (result == null)
                 {
@@ -3386,6 +3659,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
@@ -3454,6 +3734,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<TrainingQuery>().Result;
                 if (result == null)
                 {
@@ -3519,6 +3806,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
@@ -3586,6 +3880,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<TrainingExampleList>().Result;
                 if (result == null)
@@ -3672,6 +3973,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<TrainingExample>().Result;
                 if (result == null)
                 {
@@ -3742,6 +4050,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
@@ -3829,6 +4144,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<TrainingExample>().Result;
                 if (result == null)
                 {
@@ -3901,6 +4223,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<TrainingExample>().Result;
                 if (result == null)
                 {
@@ -3964,6 +4293,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
@@ -4038,6 +4374,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<CreateEventResponse>().Result;
                 if (result == null)
@@ -4127,6 +4470,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<LogQueryResponse>().Result;
                 if (result == null)
                 {
@@ -4195,6 +4545,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<MetricResponse>().Result;
                 if (result == null)
@@ -4267,6 +4624,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<MetricResponse>().Result;
                 if (result == null)
                 {
@@ -4336,6 +4700,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<MetricResponse>().Result;
                 if (result == null)
@@ -4408,6 +4779,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<MetricResponse>().Result;
                 if (result == null)
                 {
@@ -4468,6 +4846,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<MetricTokenResponse>().Result;
                 if (result == null)
                 {
@@ -4525,6 +4910,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<CredentialsList>().Result;
                 if (result == null)
@@ -4600,6 +4992,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<Credentials>().Result;
                 if (result == null)
                 {
@@ -4664,6 +5063,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<Credentials>().Result;
                 if (result == null)
@@ -4743,6 +5149,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<Credentials>().Result;
                 if (result == null)
                 {
@@ -4805,6 +5218,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<DeleteCredentials>().Result;
                 if (result == null)
                 {
@@ -4860,6 +5280,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<GatewayList>().Result;
                 if (result == null)
@@ -4928,6 +5355,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<Gateway>().Result;
                 if (result == null)
                 {
@@ -4990,6 +5424,13 @@ namespace IBM.Watson.Discovery.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<Gateway>().Result;
                 if (result == null)
                 {
@@ -5051,6 +5492,13 @@ namespace IBM.Watson.Discovery.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<GatewayDelete>().Result;
                 if (result == null)

@@ -152,6 +152,13 @@ namespace IBM.Watson.LanguageTranslator.v3
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<TranslationResult>().Result;
                 if (result == null)
                 {
@@ -203,6 +210,13 @@ namespace IBM.Watson.LanguageTranslator.v3
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<IdentifiableLanguages>().Result;
                 if (result == null)
@@ -263,6 +277,13 @@ namespace IBM.Watson.LanguageTranslator.v3
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<IdentifiedLanguages>().Result;
                 if (result == null)
@@ -332,6 +353,13 @@ namespace IBM.Watson.LanguageTranslator.v3
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<TranslationModels>().Result;
                 if (result == null)
@@ -443,6 +471,13 @@ namespace IBM.Watson.LanguageTranslator.v3
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<TranslationModel>().Result;
                 if (result == null)
                 {
@@ -499,6 +534,13 @@ namespace IBM.Watson.LanguageTranslator.v3
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<DeleteModelResult>().Result;
                 if (result == null)
@@ -558,6 +600,13 @@ namespace IBM.Watson.LanguageTranslator.v3
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<TranslationModel>().Result;
                 if (result == null)

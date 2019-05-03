@@ -122,6 +122,13 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<Classification>().Result;
                 if (result == null)
                 {
@@ -188,6 +195,13 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<ClassificationCollection>().Result;
                 if (result == null)
@@ -271,6 +285,13 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<Classifier>().Result;
                 if (result == null)
                 {
@@ -315,6 +336,13 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<ClassifierList>().Result;
                 if (result == null)
@@ -366,6 +394,13 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<Classifier>().Result;
                 if (result == null)
                 {
@@ -413,6 +448,13 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<object>().Result;
                 if (result == null)

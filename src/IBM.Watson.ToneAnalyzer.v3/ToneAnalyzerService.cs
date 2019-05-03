@@ -190,6 +190,13 @@ namespace IBM.Watson.ToneAnalyzer.v3
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<ToneAnalysis>().Result;
                 if (result == null)
                 {
@@ -285,6 +292,13 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<UtteranceAnalyses>().Result;
                 if (result == null)

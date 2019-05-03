@@ -184,6 +184,13 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<AnalysisResults>().Result;
                 if (result == null)
                 {
@@ -236,6 +243,13 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<ListModelsResults>().Result;
                 if (result == null)
@@ -293,6 +307,13 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<DeleteModelResults>().Result;
                 if (result == null)

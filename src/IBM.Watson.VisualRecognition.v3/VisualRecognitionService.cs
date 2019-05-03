@@ -181,6 +181,13 @@ namespace IBM.Watson.VisualRecognition.v3
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<ClassifiedImages>().Result;
                 if (result == null)
                 {
@@ -279,6 +286,13 @@ namespace IBM.Watson.VisualRecognition.v3
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<DetectedFaces>().Result;
                 if (result == null)
@@ -393,6 +407,13 @@ namespace IBM.Watson.VisualRecognition.v3
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<Classifier>().Result;
                 if (result == null)
                 {
@@ -444,6 +465,13 @@ namespace IBM.Watson.VisualRecognition.v3
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<Classifiers>().Result;
                 if (result == null)
@@ -497,6 +525,13 @@ namespace IBM.Watson.VisualRecognition.v3
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<Classifier>().Result;
                 if (result == null)
@@ -602,6 +637,13 @@ namespace IBM.Watson.VisualRecognition.v3
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
 
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
+
                 result = restRequest.As<Classifier>().Result;
                 if (result == null)
                 {
@@ -652,6 +694,13 @@ namespace IBM.Watson.VisualRecognition.v3
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
@@ -705,6 +754,13 @@ namespace IBM.Watson.VisualRecognition.v3
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = new DetailedResponse<System.IO.MemoryStream>();
                 result.Result = new System.IO.MemoryStream(restRequest.AsByteArray().Result);
@@ -763,6 +819,13 @@ namespace IBM.Watson.VisualRecognition.v3
                 {
                    restRequest.WithHeader(kvp.Key, kvp.Value);
                 }
+
+                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
+                {
+                    restRequest.WithHeader(kvp.Key, kvp.Value);
+                }
+
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<object>().Result;
                 if (result == null)

@@ -86,6 +86,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.IntegrationTests
         [TestMethod]
         public void TestClassifiers_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var listClassifiersResult = service.ListClassifiers();
 
             string classifierId = null;
@@ -96,6 +97,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.IntegrationTests
             if (!string.IsNullOrEmpty(classifierId))
             {
 
+                service.WithHeader("X-Watson-Test", "1");
                 classifyResult = service.Classify(
                     classifierId: classifierId,
                     text: textToClassify1
@@ -117,6 +119,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.IntegrationTests
                         }
                 };
 
+                service.WithHeader("X-Watson-Test", "1");
                 classifyCollectionResult = service.ClassifyCollection(
                     classifierId: classifierId,
                     collection: collection
@@ -130,6 +133,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.IntegrationTests
                 {
                     trainingDataFile.CopyTo(trainingData);
                     metadataFile.CopyTo(metadata);
+                    service.WithHeader("X-Watson-Test", "1");
                     createClassifierResult = service.CreateClassifier(
                         metadata: metadata,
                         trainingData: trainingData
@@ -139,12 +143,14 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.IntegrationTests
 
             var createdClassifierId = createClassifierResult.Result.ClassifierId;
 
+            service.WithHeader("X-Watson-Test", "1");
             var getClassifierResult = service.GetClassifier(
                 classifierId: createdClassifierId
                 );
 
             if (!string.IsNullOrEmpty(classifierId) && !string.IsNullOrEmpty(createdClassifierId))
             {
+                service.WithHeader("X-Watson-Test", "1");
                 service.DeleteClassifier(
                     classifierId: createdClassifierId
                     );

@@ -102,8 +102,10 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void TestModels_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var listModelsResult = service.ListModels();
 
+            service.WithHeader("X-Watson-Test", "1");
             var getModelResult = service.GetModel(
                 modelId: EN_US
                 );
@@ -119,8 +121,10 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void TestCustomLanguageModels_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var listLanguageModelsResult = service.ListLanguageModels();
 
+            service.WithHeader("X-Watson-Test", "1");
             var createLanguageModelResult = service.CreateLanguageModel(
                 name: customModelName,
                 baseModelName: EN_US,
@@ -129,10 +133,12 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
                 );
             string customizationId = createLanguageModelResult.Result.CustomizationId;
 
+            service.WithHeader("X-Watson-Test", "1");
             var getLanguageModelResult = service.GetLanguageModel(
                 customizationId: customizationId
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var listCorporaResults = service.ListCorpora(
                 customizationId: customizationId
                 );
@@ -143,6 +149,7 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
+                    service.WithHeader("X-Watson-Test", "1");
                     addCorpusResults = service.AddCorpus(
                         customizationId: customizationId,
                         corpusName: corpusName,
@@ -151,6 +158,7 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
                 }
             }
 
+            service.WithHeader("X-Watson-Test", "1");
             var getCorpusResults = service.GetCorpus(
                 customizationId: customizationId,
                 corpusName: corpusName
@@ -162,6 +170,7 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
                 );
             autoEvent.WaitOne();
 
+            service.WithHeader("X-Watson-Test", "1");
             var trainLanguageModelResult = service.TrainLanguageModel(
                 customizationId: customizationId
                 );
@@ -173,6 +182,7 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
             Assert.IsNotNull(trainLanguageModelResult);
             trainLanguageModelResult = null;
 
+            service.WithHeader("X-Watson-Test", "1");
             var listCustomWordsResult = service.ListWords(
                 customizationId: customizationId,
                 wordType: "all",
@@ -210,6 +220,7 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
                 }
             };
 
+            service.WithHeader("X-Watson-Test", "1");
             var addCustomWordsResult = service.AddWords(
                 customizationId: customizationId,
                 words: words
@@ -220,6 +231,7 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
                 );
             autoEvent.WaitOne();
 
+            service.WithHeader("X-Watson-Test", "1");
             trainLanguageModelResult = service.TrainLanguageModel(
                 customizationId: customizationId
                 );
@@ -241,6 +253,7 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
                 Word = "dotnet"
             };
 
+            service.WithHeader("X-Watson-Test", "1");
             var addCustomWordResult = service.AddWord(
                 customizationId: customizationId,
                 wordName: "dotnet",
@@ -249,11 +262,13 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
                 displayAs: ".NET"
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var getCustomWordResult = service.GetWord(
                 customizationId: customizationId,
                 wordName: "dotnet"
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             trainLanguageModelResult = service.TrainLanguageModel(
                 customizationId: customizationId
                 );
@@ -270,18 +285,22 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
                 );
             autoEvent.WaitOne();
 
+            //service.WithHeader("X-Watson-Test", "1");
             //var upgradeLanguageModelResult = service.UpgradeLanguageModel(
             //    customizationId: customizationId
             //    );
             //Assert.IsNotNull(upgradeLanguageModelResult);
 
+            service.WithHeader("X-Watson-Test", "1");
             var listGrammarsResult = service.ListGrammars(customizationId: customizationId);
+            service.WithHeader("X-Watson-Test", "1");
             var addGrammarResult = service.AddGrammar(
                 customizationId: customizationId,
                 grammarName: grammarName,
                 grammarFile: File.ReadAllText(grammarPath),
                 contentType: grammarsContentType
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var getGrammarResult = service.GetGrammar(
                 customizationId: customizationId,
                 grammarName: grammarName
@@ -292,26 +311,31 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
                 );
             autoEvent.WaitOne();
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteGrammarResult = service.DeleteGrammar(
                 customizationId: customizationId,
                 grammarName: grammarName
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteCustomWordResults = service.DeleteWord(
                 customizationId: customizationId,
                 wordName: "csharp"
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteCorpusResults = service.DeleteCorpus(
                 customizationId: customizationId,
                 corpusName: corpusName
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var resetLanguageModelResult = service.ResetLanguageModel(
                 customizationId: customizationId
                 );
             Assert.IsNotNull(resetLanguageModelResult);
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteLanguageModelResults = service.DeleteLanguageModel(
                 customizationId: customizationId
                 );
@@ -347,6 +371,7 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void TestGermanLanguageModel_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var createLanguageModelResult = service.CreateLanguageModel(
                 name: customModelName,
                 baseModelName: "de-DE_BroadbandModel",
@@ -355,10 +380,12 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
                 );
             string customizationId = createLanguageModelResult.Result.CustomizationId;
 
+            service.WithHeader("X-Watson-Test", "1");
             var getLanguageModelResult = service.GetLanguageModel(
                 customizationId: customizationId
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteLanguageModelResult = service.DeleteLanguageModel(
                 customizationId: customizationId
                 );
@@ -374,6 +401,7 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void TestBrazilianBroadbandLanguageModel_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var createLanguageModelResult = service.CreateLanguageModel(
                 name: customModelName,
                 baseModelName: "pt-BR_BroadbandModel",
@@ -382,10 +410,12 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
                 );
             string customizationId = createLanguageModelResult.Result.CustomizationId;
 
+            service.WithHeader("X-Watson-Test", "1");
             var getLanguageModelResult = service.GetLanguageModel(
                 customizationId: customizationId
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteLanguageModelResult = service.DeleteLanguageModel(
                 customizationId: customizationId
                 );
@@ -401,6 +431,7 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void TestBrazilianNarrowbandLanguageModel_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var createLanguageModelResult = service.CreateLanguageModel(
                 name: customModelName,
                 baseModelName: "pt-BR_NarrowbandModel",
@@ -409,10 +440,12 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
                 );
             string customizationId = createLanguageModelResult.Result.CustomizationId;
 
+            service.WithHeader("X-Watson-Test", "1");
             var getLanguageModelResult = service.GetLanguageModel(
                 customizationId: customizationId
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteLanguageModelResult = service.DeleteLanguageModel(
                 customizationId: customizationId
                 );
@@ -441,13 +474,17 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
 
             Task.WaitAll();
 
+            service.WithHeader("X-Watson-Test", "1");
             var listAcousticModelsResult = service.ListAcousticModels();
 
+            service.WithHeader("X-Watson-Test", "1");
             var createAcousticModelResult = service.CreateAcousticModel(name: acousticModelName, baseModelName: "de-DE_BroadbandModel", description: acousticModelDescription);
             var acousticCustomizationId = createAcousticModelResult.Result.CustomizationId;
+            service.WithHeader("X-Watson-Test", "1");
             var getAcousticModelResult = service.GetAcousticModel(
                 customizationId: acousticCustomizationId
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var deleteAcousticModelResult = service.DeleteAcousticModel(
                 customizationId: acousticCustomizationId
                 );
@@ -476,8 +513,10 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
 
             Task.WaitAll();
 
+            service.WithHeader("X-Watson-Test", "1");
             var listAcousticModelsResult = service.ListAcousticModels();
 
+            service.WithHeader("X-Watson-Test", "1");
             var createAcousticModelResult = service.CreateAcousticModel(
                 name: acousticModelName,
                 baseModelName: EN_US,
@@ -485,16 +524,19 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
                 );
             var acousticCustomizationId = createAcousticModelResult.Result.CustomizationId;
 
+            service.WithHeader("X-Watson-Test", "1");
             var getAcousticModelResult = service.GetAcousticModel(
                 customizationId: acousticCustomizationId
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var listAudioResult = service.ListAudio(
                 customizationId: acousticCustomizationId
                 );
 
             DetailedResponse<object> addAudioResult = null;
 
+            service.WithHeader("X-Watson-Test", "1");
             addAudioResult = service.AddAudio(
                 customizationId: acousticCustomizationId,
                 audioName: acousticResourceName,
@@ -503,6 +545,7 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
                 allowOverwrite: true
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var getAudioResult = service.GetAudio(
                 customizationId: acousticCustomizationId,
                 audioName: acousticResourceName
@@ -519,6 +562,7 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
                 );
             autoEvent.WaitOne();
 
+            service.WithHeader("X-Watson-Test", "1");
             var trainAcousticModelResult = service.TrainAcousticModel(
                 customizationId: acousticCustomizationId
                 );
@@ -533,15 +577,18 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
             //CheckAcousticCustomizationStatus(acousticCustomizationId);
             //autoEvent.WaitOne();
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteAudioResult = service.DeleteAudio(
                 customizationId: acousticCustomizationId,
                 audioName: acousticResourceName
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var resetAcousticModelResult = service.ResetAcousticModel(
                 customizationId: acousticCustomizationId
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteAcousticModelResult = service.DeleteAcousticModel(
                 customizationId: acousticCustomizationId
                 );
@@ -567,6 +614,7 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
         public void TestRecognize_Success()
         {
             var testAudio = File.ReadAllBytes(testAudioPath);
+            service.WithHeader("X-Watson-Test", "1");
             var recognizeResult = service.Recognize(
                 audio: testAudio,
                 contentType: "audio/wav"
@@ -582,17 +630,21 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
         public void TestJobs_Success()
         {
             var testAudio = File.ReadAllBytes(testAudioPath);
+            service.WithHeader("X-Watson-Test", "1");
             var createJobResult = service.CreateJob(
                 audio: testAudio,
                 contentType: "audio/mp3"
                 );
             var jobId = createJobResult.Result.Id;
 
+            service.WithHeader("X-Watson-Test", "1");
             var checkJobsResult = service.CheckJobs();
+            service.WithHeader("X-Watson-Test", "1");
             var checkJobResult = service.CheckJob(
                 id: jobId
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteJobResult = service.DeleteJob(
                 id: jobId
                 );
@@ -606,6 +658,7 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
 
         private void CheckCustomizationStatus(string customizationId)
         {
+            service.WithHeader("X-Watson-Test", "1");
             var getLangaugeModelResult = service.GetLanguageModel(customizationId);
 
             Console.WriteLine(string.Format("Classifier status is {0}", getLangaugeModelResult.Result.Status));
@@ -624,6 +677,7 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
 
         private void CheckCorpusStatus(string customizationId, string corpusName)
         {
+            service.WithHeader("X-Watson-Test", "1");
             var getCorpusResult = service.GetCorpus(customizationId, corpusName);
 
             Console.WriteLine(string.Format("Corpus status is {0}", getCorpusResult.Result.Status));
@@ -648,6 +702,7 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
 
         private void CheckAcousticCustomizationStatus(string customizationId)
         {
+            service.WithHeader("X-Watson-Test", "1");
             var getAcousticModelResult = service.GetAcousticModel(customizationId);
 
             Console.WriteLine(string.Format("Classifier status is {0}", getAcousticModelResult.Result.Status));
@@ -666,6 +721,7 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
 
         private void CheckAudioStatus(string customizationId, string audioName)
         {
+            service.WithHeader("X-Watson-Test", "1");
             var getAudioResult = service.GetAudio(customizationId, audioName);
 
             Console.WriteLine(string.Format("Classifier status is {0}", getAudioResult.Result.Status));

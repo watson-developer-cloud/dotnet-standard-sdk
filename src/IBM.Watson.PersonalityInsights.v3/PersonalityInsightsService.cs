@@ -215,10 +215,9 @@ namespace IBM.Watson.PersonalityInsights.v3
                 var httpContent = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("personality_insights", "v3", "Profile"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("personality_insights", "v3", "Profile"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<Profile>().Result;
                 if (result == null)
@@ -365,10 +364,9 @@ namespace IBM.Watson.PersonalityInsights.v3
                 var httpContent = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("personality_insights", "v3", "ProfileAsCsv"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("personality_insights", "v3", "ProfileAsCsv"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = new DetailedResponse<System.IO.MemoryStream>();
                 result.Result = new System.IO.MemoryStream(restRequest.AsByteArray().Result);

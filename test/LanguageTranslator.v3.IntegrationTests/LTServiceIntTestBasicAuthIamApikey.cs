@@ -33,7 +33,7 @@ namespace IBM.Watson.LanguageTranslator.v3.IntegrationTests
         private static string endpoint;
         private static LanguageTranslatorService service;
         private static string credentials = string.Empty;
-        
+
         private static string baseModel = "en-fr";
         private static string text = "I'm sorry, Dave. I'm afraid I can't do that.";
         private string versionDate = "2018-05-01";
@@ -80,6 +80,7 @@ namespace IBM.Watson.LanguageTranslator.v3.IntegrationTests
         [TestMethod]
         public void GetIdentifiableLanguages_Sucess_IamAsBasicAuth()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var results = service.ListIdentifiableLanguages();
 
             Assert.IsNotNull(results);
@@ -89,6 +90,7 @@ namespace IBM.Watson.LanguageTranslator.v3.IntegrationTests
         [TestMethod]
         public void Identify_Sucess_IamAsBasicAuth()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var results = service.Identify(
                 text: text
                 );
@@ -100,6 +102,7 @@ namespace IBM.Watson.LanguageTranslator.v3.IntegrationTests
         [TestMethod]
         public void Translate_Sucess_IamAsBasicAuth()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var results = service.Translate(
                 text: new List<string>() { text },
                 modelId: baseModel
@@ -112,6 +115,7 @@ namespace IBM.Watson.LanguageTranslator.v3.IntegrationTests
         [TestMethod]
         public void ListModels_Sucess_IamAsBasicAuth()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var results = service.ListModels();
 
             Assert.IsNotNull(results);

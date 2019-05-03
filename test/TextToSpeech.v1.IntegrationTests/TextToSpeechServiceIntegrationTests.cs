@@ -89,8 +89,10 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
         [TestMethod]
         public void Voices_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var listVoicesResult = service.ListVoices();
 
+            service.WithHeader("X-Watson-Test", "1");
             var getVoiceResult = service.GetVoice(
                 voice: allisonVoice
                 );
@@ -106,6 +108,7 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
         [TestMethod]
         public void Synthesize_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var synthesizeResult = service.Synthesize(
                 text: synthesizeText,
                 accept: "audio/wav",
@@ -128,6 +131,7 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
         [TestMethod]
         public void Pronunciation_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var getPronunciationResult = service.GetPronunciation(
                 text: "IBM",
                 voice: allisonVoice,
@@ -143,14 +147,17 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
         [TestMethod]
         public void CustomVoiceModels_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var listVoiceModelsResult = service.ListVoiceModels();
 
+            service.WithHeader("X-Watson-Test", "1");
             var createVoiceModelResult = service.CreateVoiceModel(
                 name: voiceModelName,
                 language: "en-US",
                 description: voiceModelDescription);
             var customizationId = createVoiceModelResult.Result.CustomizationId;
 
+            service.WithHeader("X-Watson-Test", "1");
             var getVoiceModelResult = service.GetVoiceModel(
                 customizationId: customizationId
                 );
@@ -174,6 +181,7 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
                 }
             };
 
+            service.WithHeader("X-Watson-Test", "1");
             var updateVoiceModelResult = service.UpdateVoiceModel(
                 customizationId: customizationId,
                 name: voiceModelUpdatedName,
@@ -181,10 +189,12 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
                 words: words
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var getVoiceModelResult2 = service.GetVoiceModel(
                 customizationId: customizationId
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteVoiceModelResult = service.DeleteVoiceModel(
                 customizationId: customizationId
                 );
@@ -207,9 +217,10 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
         [TestMethod]
         public void Words_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var createVoiceModelResult = service.CreateVoiceModel(
-                name: voiceModelName, 
-                language: "en-US", 
+                name: voiceModelName,
+                language: "en-US",
                 description: voiceModelDescription
                 );
             var customizationId = createVoiceModelResult.Result.CustomizationId;
@@ -233,40 +244,48 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
                 }
             };
 
+            service.WithHeader("X-Watson-Test", "1");
             var addWordsResult = service.AddWords(
-                customizationId: customizationId, 
+                customizationId: customizationId,
                 words: words
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var listWordsResult = service.ListWords(
                 customizationId: customizationId
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var getWordResult = service.GetWord(
-                customizationId: customizationId, 
+                customizationId: customizationId,
                 word: "hello"
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var addWordResult = service.AddWord(
-                customizationId: customizationId, 
-                word: "IBM", 
-                translation: "eye bee m", 
+                customizationId: customizationId,
+                word: "IBM",
+                translation: "eye bee m",
                 partOfSpeech: "noun"
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var checkAddWordResult = service.ListWords(
                 customizationId: customizationId
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteWordResult = service.DeleteWord(
-                customizationId: customizationId, 
+                customizationId: customizationId,
                 word: "hi"
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var checkDeleteWordResult = service.ListWords(
                 customizationId: customizationId
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteVoiceModelResult = service.DeleteVoiceModel(
                 customizationId: customizationId
                 );

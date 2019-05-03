@@ -50,13 +50,15 @@ namespace IBM.Watson.Assistant.v2.IntTests
         [TestMethod]
         public void CreateDeleteSession_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var createSessionResult = service.CreateSession(
                 assistantId: assistantId
                 );
             sessionId = createSessionResult.Result.SessionId;
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteSessionResult = service.DeleteSession(
-                assistantId: assistantId, 
+                assistantId: assistantId,
                 sessionId: sessionId
                 );
 
@@ -72,6 +74,7 @@ namespace IBM.Watson.Assistant.v2.IntTests
         [TestMethod]
         public void Message_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var createSessionResult = service.CreateSession(
                 assistantId: assistantId
                 );
@@ -88,14 +91,16 @@ namespace IBM.Watson.Assistant.v2.IntTests
                 }
             };
 
+            service.WithHeader("X-Watson-Test", "1");
             var messageResult = service.Message(
-                assistantId: assistantId, 
-                sessionId: sessionId, 
+                assistantId: assistantId,
+                sessionId: sessionId,
                 input: input
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteSessionResult = service.DeleteSession(
-                assistantId: assistantId, 
+                assistantId: assistantId,
                 sessionId: sessionId
                 );
             sessionId = string.Empty;

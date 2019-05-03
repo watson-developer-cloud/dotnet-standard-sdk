@@ -87,6 +87,7 @@ namespace IBM.Watson.LanguageTranslator.v3.IntegrationTests
         [TestMethod]
         public void GetIdentifiableLanguages_Sucess()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var results = service.ListIdentifiableLanguages();
 
             Assert.IsNotNull(results);
@@ -96,6 +97,7 @@ namespace IBM.Watson.LanguageTranslator.v3.IntegrationTests
         [TestMethod]
         public void Identify_Sucess()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var results = service.Identify(
                 text: text
                 );
@@ -107,8 +109,9 @@ namespace IBM.Watson.LanguageTranslator.v3.IntegrationTests
         [TestMethod]
         public void Translate_Sucess()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var results = service.Translate(
-                text: new List<string>() { text }, 
+                text: new List<string>() { text },
                 modelId: baseModel
                 );
 
@@ -119,6 +122,7 @@ namespace IBM.Watson.LanguageTranslator.v3.IntegrationTests
         [TestMethod]
         public void ListModels_Sucess()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var results = service.ListModels();
 
             Assert.IsNotNull(results);
@@ -128,6 +132,7 @@ namespace IBM.Watson.LanguageTranslator.v3.IntegrationTests
         [TestMethod]
         public void GetModelDetails_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var results = service.GetModel(
                 modelId: baseModel
                 );
@@ -146,6 +151,7 @@ namespace IBM.Watson.LanguageTranslator.v3.IntegrationTests
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
+                    service.WithHeader("X-Watson-Test", "1");
                     createModelResult = service.CreateModel(
                         baseModelId: baseModel,
                         forcedGlossary: ms,
@@ -163,6 +169,7 @@ namespace IBM.Watson.LanguageTranslator.v3.IntegrationTests
                 }
             }
 
+            service.WithHeader("X-Watson-Test", "1");
             var result = service.DeleteModel(
                 modelId: customModelID
                 );

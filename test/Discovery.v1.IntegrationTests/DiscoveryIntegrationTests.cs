@@ -105,6 +105,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             service = new DiscoveryService(tokenOptions, version);
             service.SetEndpoint(endpoint);
 
+            service.WithHeader("X-Watson-Test", "1");
             var environments = service.ListEnvironments();
             environmentId = environments.Result.Environments[1].EnvironmentId;
 
@@ -118,6 +119,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         [TestMethod]
         public void TestConfigurations_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var listConfigurationsResults = service.ListConfigurations(environmentId);
 
             List<Enrichment> enrichments = new List<Enrichment>()
@@ -137,6 +139,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 }
             };
 
+            service.WithHeader("X-Watson-Test", "1");
             var createConfigurationResults = service.CreateConfiguration(
                 environmentId: environmentId,
                 name: createdConfigurationName,
@@ -146,6 +149,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
 
             configurationId = createConfigurationResults.Result.ConfigurationId;
 
+            service.WithHeader("X-Watson-Test", "1");
             var getConfigurationResults = service.GetConfiguration(
                 environmentId: environmentId,
                 configurationId: configurationId
@@ -156,12 +160,14 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 Name = updatedConfigurationName
             };
 
+            service.WithHeader("X-Watson-Test", "1");
             var updateConfigurationResults = service.UpdateConfiguration(
                 environmentId: environmentId,
                 configurationId: configurationId,
                 name: updatedConfigurationName
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteConfigurationResults = service.DeleteConfiguration(
                 environmentId: environmentId,
                 configurationId: configurationId
@@ -197,6 +203,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 Description = createdConfigurationDescription
             };
 
+            service.WithHeader("X-Watson-Test", "1");
             var createConfigurationResults = service.CreateConfiguration(
                 environmentId: environmentId,
                 name: createdConfigurationName,
@@ -205,11 +212,13 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
 
             configurationId = createConfigurationResults.Result.ConfigurationId;
 
+            service.WithHeader("X-Watson-Test", "1");
             var listCollectionsResult = service.ListCollections(
                 environmentId: environmentId
                 );
 
             string collectionName = createdCollectionName + "-" + Guid.NewGuid();
+            service.WithHeader("X-Watson-Test", "1");
             var createCollectionResult = service.CreateCollection(
                 environmentId: environmentId,
                 name: collectionName,
@@ -219,8 +228,10 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 );
             var collectionId = createCollectionResult.Result.CollectionId;
 
+            service.WithHeader("X-Watson-Test", "1");
             var getCollectionResult = service.GetCollection(environmentId, collectionId);
 
+            service.WithHeader("X-Watson-Test", "1");
             var updateCollectionResult = service.UpdateCollection(
                 environmentId: environmentId,
                 collectionId: collectionId,
@@ -229,15 +240,18 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 configurationId: configurationId
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var listCollectionFieldsResult = service.ListCollectionFields(
                 environmentId: environmentId,
                 collectionId: collectionId
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteCollectionResult = service.DeleteCollection(
                 environmentId: environmentId,
                 collectionId: collectionId
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var deleteConfigurationResults = service.DeleteConfiguration(
                 environmentId: environmentId,
                 configurationId: configurationId
@@ -265,6 +279,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         [TestMethod]
         public void PreviewEnvironment()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var createConfigurationResults = service.CreateConfiguration(
                 environmentId: environmentId,
                 name: createdConfigurationName,
@@ -278,6 +293,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
+                    service.WithHeader("X-Watson-Test", "1");
                     var testConfigurationInEnvironmentResult = service.TestConfigurationInEnvironment(
                         environmentId: environmentId,
                         configurationId: configurationId,
@@ -285,6 +301,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                         fileContentType: "text/html"
                         );
 
+                    service.WithHeader("X-Watson-Test", "1");
                     var deleteConfigurationResults = service.DeleteConfiguration(
                         environmentId: environmentId,
                         configurationId: configurationId
@@ -303,6 +320,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         [TestMethod]
         public void TestDocuments_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var createConfigurationResults = service.CreateConfiguration(
                 environmentId: environmentId,
                 name: createdConfigurationName,
@@ -312,6 +330,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             configurationId = createConfigurationResults.Result.ConfigurationId;
 
             string collectionName = createdCollectionName + "-" + Guid.NewGuid();
+            service.WithHeader("X-Watson-Test", "1");
             var createCollectionResult = service.CreateCollection(
                 environmentId: environmentId,
                 name: collectionName,
@@ -327,6 +346,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
+                    service.WithHeader("X-Watson-Test", "1");
                     addDocumentResult = service.AddDocument(
                     environmentId: environmentId,
                     collectionId: collectionId,
@@ -339,6 +359,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 }
             }
 
+            service.WithHeader("X-Watson-Test", "1");
             var getDocumentStatusResult = service.GetDocumentStatus(
                 environmentId: environmentId,
                 collectionId: collectionId,
@@ -351,6 +372,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
+                    service.WithHeader("X-Watson-Test", "1");
                     updateDocumentResult = service.UpdateDocument(
                     environmentId: environmentId,
                     collectionId: collectionId,
@@ -362,8 +384,11 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 }
             }
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteDocumentResult = service.DeleteDocument(environmentId, collectionId, documentId);
+            service.WithHeader("X-Watson-Test", "1");
             var deleteCollectionResult = service.DeleteCollection(environmentId, collectionId);
+            service.WithHeader("X-Watson-Test", "1");
             var deleteConfigurationResults = service.DeleteConfiguration(environmentId, configurationId);
 
             Assert.IsNotNull(deleteDocumentResult);
@@ -385,6 +410,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         [TestMethod]
         public void TestQuery()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var createConfigurationResults = service.CreateConfiguration(
                 environmentId: environmentId,
                 name: createdConfigurationName,
@@ -394,6 +420,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             configurationId = createConfigurationResults.Result.ConfigurationId;
 
             string collectionName = createdCollectionName + "-" + Guid.NewGuid();
+            service.WithHeader("X-Watson-Test", "1");
             var createCollectionResult = service.CreateCollection(
                 environmentId: environmentId,
                 name: collectionName,
@@ -409,6 +436,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
+                    service.WithHeader("X-Watson-Test", "1");
                     addDocumentResult = service.AddDocument(
                     environmentId: environmentId,
                     collectionId: collectionId,
@@ -421,6 +449,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 }
             }
 
+            service.WithHeader("X-Watson-Test", "1");
             var queryResult = service.Query(
                 environmentId: environmentId,
                 collectionId: collectionId,
@@ -428,17 +457,20 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 returnFields: "extracted_metadata.sha1"
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteDocumentResult = service.DeleteDocument(
                 environmentId: environmentId,
                 collectionId: collectionId,
                 documentId: documentId
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteCollectionResult = service.DeleteCollection(
                 environmentId: environmentId,
                 collectionId: collectionId
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteConfigurationResults = service.DeleteConfiguration(environmentId: environmentId,
                 configurationId: configurationId
                 );
@@ -456,6 +488,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         [TestMethod]
         public void TestGetNotices()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var createConfigurationResults = service.CreateConfiguration(
                 environmentId: environmentId,
                 name: createdConfigurationName,
@@ -465,6 +498,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             configurationId = createConfigurationResults.Result.ConfigurationId;
 
             string collectionName = createdCollectionName + "-" + Guid.NewGuid();
+            service.WithHeader("X-Watson-Test", "1");
             var createCollectionResult = service.CreateCollection(
                 environmentId: environmentId,
                 name: collectionName,
@@ -480,6 +514,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
+                    service.WithHeader("X-Watson-Test", "1");
                     addDocumentResult = service.AddDocument(
                     environmentId: environmentId,
                     collectionId: collectionId,
@@ -492,12 +527,14 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 }
             }
 
+            service.WithHeader("X-Watson-Test", "1");
             var queryResult = service.Query(
                 environmentId: environmentId,
                 collectionId: collectionId,
                 naturalLanguageQuery: naturalLanguageQuery
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var queryNoticesResult = service.QueryNotices(
                 environmentId: environmentId,
                 collectionId: collectionId,
@@ -505,17 +542,20 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 passages: true
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteDocumentResult = service.DeleteDocument(
                 environmentId: environmentId,
                 collectionId: collectionId,
                 documentId: documentId
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteCollectionResult = service.DeleteCollection(
                 environmentId: environmentId,
                 collectionId: collectionId
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteConfigurationResults = service.DeleteConfiguration(
                 environmentId: environmentId,
                 configurationId: configurationId
@@ -534,6 +574,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         [TestMethod]
         public void TestTrainingData()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var createConfigurationResults = service.CreateConfiguration(
                 environmentId: environmentId,
                 name: createdConfigurationName,
@@ -543,6 +584,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             configurationId = createConfigurationResults.Result.ConfigurationId;
 
             string collectionName = createdCollectionName + "-" + Guid.NewGuid();
+            service.WithHeader("X-Watson-Test", "1");
             var createCollectionResult = service.CreateCollection(
                 environmentId: environmentId,
                 name: collectionName,
@@ -558,6 +600,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
+                    service.WithHeader("X-Watson-Test", "1");
                     addDocumentResult = service.AddDocument(
                     environmentId: environmentId,
                     collectionId: collectionId,
@@ -570,6 +613,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 }
             }
 
+            service.WithHeader("X-Watson-Test", "1");
             var listTrainingDataResult = service.ListTrainingData(
                 environmentId: environmentId,
                 collectionId: collectionId
@@ -585,6 +629,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 }
             };
 
+            service.WithHeader("X-Watson-Test", "1");
             var addTrainingDataResult = service.AddTrainingData(
                 environmentId: environmentId,
                 collectionId: collectionId,
@@ -594,6 +639,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 );
             queryId = addTrainingDataResult.Result.QueryId;
 
+            service.WithHeader("X-Watson-Test", "1");
             var getTrainingDataResult = service.GetTrainingData(
                 environmentId: environmentId,
                 collectionId: collectionId,
@@ -606,6 +652,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 Relevance = 1
             };
 
+            service.WithHeader("X-Watson-Test", "1");
             var createTrainingExampleResult = service.CreateTrainingExample(
                 environmentId: environmentId,
                 collectionId: collectionId,
@@ -615,6 +662,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 );
             exampleId = createTrainingExampleResult.Result.DocumentId;
 
+            service.WithHeader("X-Watson-Test", "1");
             var getTrainingExampleResult = service.GetTrainingExample(
                 environmentId: environmentId,
                 collectionId: collectionId,
@@ -622,6 +670,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 exampleId: exampleId
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var updateTrainingExampleResult = service.UpdateTrainingExample(
                 environmentId: environmentId,
                 collectionId: collectionId,
@@ -631,30 +680,36 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 relevance: 1
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteTrainingExampleResult = service.DeleteTrainingExample(
                 environmentId: environmentId,
                 collectionId: collectionId,
                 queryId: queryId,
                 exampleId: exampleId
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var deleteTrainingDataResult = service.DeleteTrainingData(
                 environmentId: environmentId,
                 collectionId: collectionId,
                 queryId: queryId
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var deleteAllTrainingDataResult = service.DeleteAllTrainingData(
                 environmentId: environmentId,
                 collectionId: collectionId
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var deleteDocumentResult = service.DeleteDocument(
                 environmentId: environmentId,
                 collectionId: collectionId,
                 documentId: documentId
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var deleteCollectionResult = service.DeleteCollection(
                 environmentId: environmentId,
                 collectionId: collectionId
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var deleteConfigurationResults = service.DeleteConfiguration(
                 environmentId: environmentId,
                 configurationId: configurationId
@@ -688,6 +743,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         [TestMethod]
         public void TestCredentials_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var listCredentialsResult = service.ListCredentials(
                 environmentId: environmentId
                 );
@@ -703,6 +759,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 PrivateKey = "myPrivateKey"
             };
 
+            service.WithHeader("X-Watson-Test", "1");
             var createCredentialsResult = service.CreateCredentials(
                 environmentId: environmentId,
                 sourceType: Credentials.SourceTypeEnumValue.BOX,
@@ -710,6 +767,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 );
             string credentialId = createCredentialsResult.Result.CredentialId;
 
+            service.WithHeader("X-Watson-Test", "1");
             var getCredentialResult = service.GetCredentials(
                 environmentId: environmentId,
                 credentialId: credentialId
@@ -730,6 +788,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 PrivateKey = base64PrivateKey
             };
 
+            service.WithHeader("X-Watson-Test", "1");
             var updateCredentialResult = service.UpdateCredentials(
                 environmentId: environmentId,
                 credentialId: credentialId,
@@ -737,6 +796,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 credentialDetails: updatedCredentialDetails
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteCredentialsResult = service.DeleteCredentials(
                 environmentId: environmentId,
                 credentialId: credentialId
@@ -766,6 +826,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         public void TestCreateEvent_Success()
         {
             Configuration configuration = new Configuration();
+            service.WithHeader("X-Watson-Test", "1");
             var createConfigurationResults = service.CreateConfiguration(
                 environmentId: environmentId,
                 name: createdConfigurationName,
@@ -775,6 +836,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             configurationId = createConfigurationResults.Result.ConfigurationId;
 
             string collectionName = createdCollectionName + "-" + Guid.NewGuid();
+            service.WithHeader("X-Watson-Test", "1");
             var createCollectionResult = service.CreateCollection(
                 environmentId: environmentId,
                 name: collectionName,
@@ -790,6 +852,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
+                    service.WithHeader("X-Watson-Test", "1");
                     addDocumentResult = service.AddDocument(
                     environmentId: environmentId,
                     collectionId: collectionId,
@@ -802,6 +865,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 }
             }
 
+            service.WithHeader("X-Watson-Test", "1");
             var queryResult = service.Query(
                 environmentId: environmentId,
                 collectionId: collectionId,
@@ -817,20 +881,24 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 DocumentId = documentId
             };
 
+            service.WithHeader("X-Watson-Test", "1");
             var createEventResult = service.CreateEvent(
                 type: CreateEventResponse.TypeEnumValue.CLICK,
                 data: data
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteDocumentResult = service.DeleteDocument(
                 environmentId: environmentId,
                 collectionId: collectionId,
                 documentId: documentId
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var deleteCollectionResult = service.DeleteCollection(
                 environmentId: environmentId,
                 collectionId: collectionId
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var deleteConfigurationResults = service.DeleteConfiguration(
                 environmentId: environmentId,
                 configurationId: configurationId
@@ -850,16 +918,22 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         [TestMethod]
         public void TestMetrics_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var getMetricsEventRateResult = service.GetMetricsEventRate();
 
+            service.WithHeader("X-Watson-Test", "1");
             var getMetricsQueryResult = service.GetMetricsQuery();
 
+            service.WithHeader("X-Watson-Test", "1");
             var getMetricsQueryEventResult = service.GetMetricsQueryEvent();
 
+            service.WithHeader("X-Watson-Test", "1");
             var getMetricsQueryNoResultsResult = service.GetMetricsQueryNoResults();
 
+            service.WithHeader("X-Watson-Test", "1");
             var getMetricsQueryTokenEventResult = service.GetMetricsQueryTokenEvent();
 
+            service.WithHeader("X-Watson-Test", "1");
             var queryLogResult = service.QueryLog();
 
             Assert.IsNotNull(queryLogResult);
@@ -882,6 +956,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         public void TestExpansions_Success()
         {
             Configuration configuration = new Configuration();
+            service.WithHeader("X-Watson-Test", "1");
             var createConfigurationResults = service.CreateConfiguration(
                 environmentId: environmentId,
                 name: createdConfigurationName,
@@ -891,6 +966,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             configurationId = createConfigurationResults.Result.ConfigurationId;
 
             string collectionName = createdCollectionName + "-" + Guid.NewGuid();
+            service.WithHeader("X-Watson-Test", "1");
             var createCollectionResult = service.CreateCollection(
                 environmentId: environmentId,
                 name: collectionName,
@@ -915,23 +991,28 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 }
             };
 
+            service.WithHeader("X-Watson-Test", "1");
             var createExpansionsResult = service.CreateExpansions(
                 environmentId: environmentId,
                 collectionId: collectionId,
                 expansions: expansions
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var listExpansionsResult = service.ListExpansions(
                 environmentId: environmentId,
                 collectionId: collectionId
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var deleteExpansionResult = service.DeleteExpansions(
                 environmentId: environmentId,
                 collectionId: collectionId
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var deleteCollectionResult = service.DeleteCollection(
                 environmentId: environmentId,
                 collectionId: collectionId
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var deleteConfigurationResults = service.DeleteConfiguration(
                 environmentId: environmentId,
                 configurationId: configurationId
@@ -952,6 +1033,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         public void TestTokenization_Success()
         {
             Configuration configuration = new Configuration();
+            service.WithHeader("X-Watson-Test", "1");
             var createConfigurationResults = service.CreateConfiguration(
                 environmentId: environmentId,
                 name: createdConfigurationName,
@@ -961,6 +1043,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             configurationId = createConfigurationResults.Result.ConfigurationId;
 
             string collectionName = createdCollectionName + "-" + Guid.NewGuid();
+            service.WithHeader("X-Watson-Test", "1");
             var createCollectionResult = service.CreateCollection(
                 environmentId: environmentId,
                 name: collectionName,
@@ -1000,11 +1083,13 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
 
             try
             {
+                service.WithHeader("X-Watson-Test", "1");
                 var createTokenizationDictionaryResult = service.CreateTokenizationDictionary(
                     environmentId: environmentId,
                     collectionId: collectionId,
                     tokenizationRules: tokenizationRules
                     );
+                service.WithHeader("X-Watson-Test", "1");
                 var getTokenizationDictionaryStatusResult = service.GetTokenizationDictionaryStatus(
                     environmentId: environmentId,
                     collectionId: collectionId
@@ -1016,6 +1101,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                     );
                 autoEvent.WaitOne();
 
+                service.WithHeader("X-Watson-Test", "1");
                 var deleteTokenizationDictionary = service.DeleteTokenizationDictionary(
                     environmentId: environmentId,
                     collectionId: collectionId
@@ -1032,10 +1118,12 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 Console.WriteLine(e.Message);
             }
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteCollectionResult = service.DeleteCollection(
                 environmentId: environmentId,
                 collectionId: collectionId
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var deleteConfigurationResults = service.DeleteConfiguration(
                 environmentId: environmentId,
                 configurationId: configurationId
@@ -1047,6 +1135,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         //[TestMethod]
         public void TestStopword_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var collectionsList = service.ListCollections(
                 environmentId: environmentId
                 );
@@ -1057,6 +1146,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 {
                     if (collection.Description.ToLower().Contains("safe to delete") || collection.Description.Contains("Please delete me") || collection.Name.Contains("-updated") || collection.Name.Contains("-collection"))
                     {
+                        service.WithHeader("X-Watson-Test", "1");
                         service.DeleteCollection(
                             environmentId: environmentId,
                             collectionId: collection.CollectionId
@@ -1072,6 +1162,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             autoEvent.WaitOne();
 
             Configuration configuration = new Configuration();
+            service.WithHeader("X-Watson-Test", "1");
             var createConfigurationResults = service.CreateConfiguration(
                 environmentId: environmentId,
                 name: createdConfigurationName,
@@ -1081,6 +1172,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             configurationId = createConfigurationResults.Result.ConfigurationId;
 
             string collectionName = createdCollectionName + "-" + Guid.NewGuid();
+            service.WithHeader("X-Watson-Test", "1");
             var createCollectionResult = service.CreateCollection(
                 environmentId: environmentId,
                 name: collectionName,
@@ -1102,6 +1194,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
+                    service.WithHeader("X-Watson-Test", "1");
                     createStopwordListResult = service.CreateStopwordList(
                         environmentId: environmentId,
                         collectionId: collectionId, stopwordFile: ms,
@@ -1116,14 +1209,17 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 );
             autoEvent.WaitOne();
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteStopwordListResult = service.DeleteStopwordList(
                 environmentId: environmentId,
                 collectionId: collectionId
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var deleteCollectionResult = service.DeleteCollection(
                 environmentId: environmentId,
                 collectionId: collectionId
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var deleteConfigurationResults = service.DeleteConfiguration(
                 environmentId: environmentId,
                 configurationId: configurationId
@@ -1139,18 +1235,22 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         [TestMethod]
         public void TestGateway_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var listGatewaysResult = service.ListGateways(
                 environmentId: environmentId
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var createGatewayResult = service.CreateGateway(
                 environmentId: environmentId,
                 name: dotnetGatewayName
                 );
             var gatewayId = createGatewayResult.Result.GatewayId;
+            service.WithHeader("X-Watson-Test", "1");
             var getGatewayResult = service.GetGateway(
                 environmentId: environmentId,
                 gatewayId: gatewayId
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var deleteGatewayResult = service.DeleteGateway(
                 environmentId: environmentId,
                 gatewayId: gatewayId
@@ -1171,6 +1271,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         #region IsEnvironmentReady
         private void IsEnvironmentReady(string environmentId)
         {
+            service.WithHeader("X-Watson-Test", "1");
             var result = service.GetEnvironment(
                 environmentId: environmentId
                 );
@@ -1195,6 +1296,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         #region IsDictionaryReady
         private void IsDictionaryReady(string environmentId, string tokenizationCollectionId)
         {
+            service.WithHeader("X-Watson-Test", "1");
             var result = service.GetTokenizationDictionaryStatus(
                 environmentId: environmentId,
                 collectionId: tokenizationCollectionId
@@ -1220,6 +1322,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         #region IsStopwordsReady
         private void IsStopwordsReady(string environmentId, string collectionId)
         {
+            service.WithHeader("X-Watson-Test", "1");
             var result = service.GetStopwordListStatus(
                 environmentId: environmentId,
                 collectionId: collectionId
@@ -1245,6 +1348,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         #region IsCollectionReady
         private void IsCollectionReady(string environmentId, string collectionId)
         {
+            service.WithHeader("X-Watson-Test", "1");
             var result = service.GetCollection(
                 environmentId: environmentId,
                 collectionId: collectionId

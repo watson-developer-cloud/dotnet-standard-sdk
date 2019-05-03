@@ -89,6 +89,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.Assistant.v1.Uni
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.CompareComply.v1.UnitTests", "test\CompareComply.v1.UnitTests\IBM.Watson.CompareComply.v1.UnitTests.csproj", "{14E2BB2F-FE6F-43D9-AC5E-727E1E327FE9}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.Discovery.v1.UnitTests", "test\Discovery.v1.UnitTests\IBM.Watson.Discovery.v1.UnitTests.csproj", "{DADD6C25-5ED6-48B9-9A33-397228F392E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -215,6 +217,10 @@ Global
 		{14E2BB2F-FE6F-43D9-AC5E-727E1E327FE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14E2BB2F-FE6F-43D9-AC5E-727E1E327FE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14E2BB2F-FE6F-43D9-AC5E-727E1E327FE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DADD6C25-5ED6-48B9-9A33-397228F392E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DADD6C25-5ED6-48B9-9A33-397228F392E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DADD6C25-5ED6-48B9-9A33-397228F392E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DADD6C25-5ED6-48B9-9A33-397228F392E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -248,6 +254,7 @@ Global
 		{C95F8533-9CEB-4F97-BCC2-6F65037C4444} = {90E09BF8-A647-43B8-B721-05CAECFADD72}
 		{6E244D72-6709-4D33-BFD8-6AAE070BCE55} = {E3D238D7-7A09-4447-B836-8D6ABF4BFF80}
 		{14E2BB2F-FE6F-43D9-AC5E-727E1E327FE9} = {B368DCF7-FB57-4302-8467-4EB142394A29}
+		{DADD6C25-5ED6-48B9-9A33-397228F392E6} = {BE946662-3884-45E9-A3B1-B28F3081AD1B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B9D9D17B-1C17-402F-B701-DC671528690A}

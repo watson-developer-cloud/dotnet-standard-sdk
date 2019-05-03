@@ -428,7 +428,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
                 },
                 Skills = new MessageContextSkills()
                 {
-                    
+
                 }
             };
             #endregion

@@ -15,7 +15,6 @@
 *
 */
 
-using IBM.Watson.LanguageTranslator.v3.Model;
 using IBM.Cloud.SDK.Core.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;

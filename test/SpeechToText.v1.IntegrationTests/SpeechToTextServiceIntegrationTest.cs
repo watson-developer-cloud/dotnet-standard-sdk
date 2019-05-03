@@ -15,10 +15,8 @@
 *
 */
 
-using IBM.Cloud.SDK.Core;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Util;
-using IBM.Watson.SpeechToText.v1;
 using IBM.Watson.SpeechToText.v1.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;

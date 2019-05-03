@@ -17,16 +17,13 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using System.Net;
 using IBM.Cloud.SDK.Core.Http;
-using IBM.Watson.LanguageTranslator.v3;
 using IBM.Watson.LanguageTranslator.v3.Model;
 using IBM.Cloud.SDK.Core.Http.Exceptions;
 

@@ -23,11 +23,10 @@ using Newtonsoft.Json;
 using IBM.Watson.Discovery.v1.Model;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Environment = IBM.Watson.Discovery.v1.Model.Environment;
 using IBM.Cloud.SDK.Core.Util;
 using Newtonsoft.Json.Linq;
-using IBM.Cloud.SDK.Core;
 using IBM.Cloud.SDK.Core.Http;
+using Environment = IBM.Watson.Discovery.v1.Model.Environment;
 
 namespace IBM.Watson.Discovery.v1.IntegrationTests
 {

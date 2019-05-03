@@ -25,7 +25,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using IBM.Cloud.SDK.Core.Util;
 using Newtonsoft.Json;
-using IBM.Cloud.SDK.Core;
 using System.Globalization;
 using IBM.Cloud.SDK.Core.Http;
 

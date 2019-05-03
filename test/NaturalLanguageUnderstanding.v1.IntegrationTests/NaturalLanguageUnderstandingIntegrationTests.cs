@@ -96,11 +96,12 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.IntegrationTests
                 }
             };
 
+            service.WithHeader("X-Watson-Test", "1");
             var result = service.Analyze(
                 features: features,
-                text: text, 
-                clean: true, 
-                fallbackToRaw: true, 
+                text: text,
+                clean: true,
+                fallbackToRaw: true,
                 returnAnalyzedText: true,
                 language: "en"
                 );
@@ -113,6 +114,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.IntegrationTests
         [TestMethod]
         public void ListModels_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var result = service.ListModels();
 
             Assert.IsNotNull(result.Result);

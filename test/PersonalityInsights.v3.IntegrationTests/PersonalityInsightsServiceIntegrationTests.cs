@@ -95,13 +95,14 @@ namespace IBM.Watson.PersonalityInsights.v3.IntegrationTests
                 }
             };
 
+            service.WithHeader("X-Watson-Test", "1");
             var result = service.Profile(
                 content: content,
                 contentType: "text/plain",
                 contentLanguage: "en",
-                acceptLanguage: "en", 
-                rawScores: true, 
-                consumptionPreferences: true, 
+                acceptLanguage: "en",
+                rawScores: true,
+                consumptionPreferences: true,
                 csvHeaders: true
                 );
 
@@ -127,6 +128,7 @@ namespace IBM.Watson.PersonalityInsights.v3.IntegrationTests
                 }
             };
 
+            service.WithHeader("X-Watson-Test", "1");
             var result = service.ProfileAsCsv(
                 content: content,
                 contentLanguage: "en",
@@ -139,7 +141,7 @@ namespace IBM.Watson.PersonalityInsights.v3.IntegrationTests
 
             StreamReader reader = new StreamReader(result.Result);
             var text = reader.ReadToEnd();
-            
+
             Assert.IsFalse(text.StartsWith("{"));
         }
     }

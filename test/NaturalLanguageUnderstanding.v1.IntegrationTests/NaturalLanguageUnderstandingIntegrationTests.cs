@@ -22,7 +22,6 @@ using System.IO;
 using IBM.Watson.NaturalLanguageUnderstanding.v1.Model;
 using IBM.Cloud.SDK.Core.Util;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
 namespace IBM.Watson.NaturalLanguageUnderstanding.v1.IntegrationTests
 {

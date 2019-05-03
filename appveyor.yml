@@ -136,9 +136,9 @@ after_build:
 
     }
 
-    # Copy-Item C:\projects\dotnet-standard-sdk\test\VisualRecognition.v3.IntegrationTests\VisualRecognitionTestData C:\projects\dotnet-standard-sdk\VisualRecognitionTestData
+    Copy-Item C:\projects\dotnet-standard-sdk\test\VisualRecognition.v3.IntegrationTests\VisualRecognitionTestData C:\projects\dotnet-standard-sdk\VisualRecognitionTestData
 
-    # Copy-Item C:\projects\dotnet-standard-sdk\test\SpeechToText.v1.IntegrationTests\SpeechToTextTestData C:\projects\dotnet-standard-sdk\SpeechToTextTestData
+    Copy-Item C:\projects\dotnet-standard-sdk\test\SpeechToText.v1.IntegrationTests\SpeechToTextTestData C:\projects\dotnet-standard-sdk\SpeechToTextTestData
 
     Copy-Item C:\projects\dotnet-standard-sdk\test\Discovery.v1.IntegrationTests\DiscoveryTestData C:\projects\dotnet-standard-sdk\DiscoveryTestData
     

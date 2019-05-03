@@ -93,17 +93,21 @@ namespace IBM.Watson.Assistant.v2
         /// </summary>
         /// <param name="assistantId">Unique identifier of the assistant. You can find the assistant ID of an assistant
         /// on the **Assistants** tab of the Watson Assistant tool. For information about creating assistants, see the
-        /// [documentation](https://console.bluemix.net/docs/services/assistant/assistant-add.html#assistant-add-task).
+        /// [documentation](https://cloud.ibm.com/docs/services/assistant?topic=assistant-assistant-add#assistant-add-task).
         ///
         /// **Note:** Currently, the v2 API does not support creating assistants.</param>
         /// <returns><see cref="SessionResponse" />SessionResponse</returns>
         public DetailedResponse<SessionResponse> CreateSession(string assistantId)
         {
-        if (string.IsNullOrEmpty(assistantId))
-            throw new ArgumentNullException("`assistantId` is required for `CreateSession`");
+            if (string.IsNullOrEmpty(assistantId))
+            {
+                throw new ArgumentNullException("`assistantId` is required for `CreateSession`");
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
+            }
 
             DetailedResponse<SessionResponse> result = null;
 
@@ -131,7 +135,9 @@ namespace IBM.Watson.Assistant.v2
 
                 result = restRequest.As<SessionResponse>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<SessionResponse>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -148,20 +154,26 @@ namespace IBM.Watson.Assistant.v2
         /// </summary>
         /// <param name="assistantId">Unique identifier of the assistant. You can find the assistant ID of an assistant
         /// on the **Assistants** tab of the Watson Assistant tool. For information about creating assistants, see the
-        /// [documentation](https://console.bluemix.net/docs/services/assistant/assistant-add.html#assistant-add-task).
+        /// [documentation](https://cloud.ibm.com/docs/services/assistant?topic=assistant-assistant-add#assistant-add-task).
         ///
         /// **Note:** Currently, the v2 API does not support creating assistants.</param>
         /// <param name="sessionId">Unique identifier of the session.</param>
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteSession(string assistantId, string sessionId)
         {
-        if (string.IsNullOrEmpty(assistantId))
-            throw new ArgumentNullException("`assistantId` is required for `DeleteSession`");
-        if (string.IsNullOrEmpty(sessionId))
-            throw new ArgumentNullException("`sessionId` is required for `DeleteSession`");
+            if (string.IsNullOrEmpty(assistantId))
+            {
+                throw new ArgumentNullException("`assistantId` is required for `DeleteSession`");
+            }
+            if (string.IsNullOrEmpty(sessionId))
+            {
+                throw new ArgumentNullException("`sessionId` is required for `DeleteSession`");
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
+            }
 
             DetailedResponse<object> result = null;
 
@@ -189,7 +201,9 @@ namespace IBM.Watson.Assistant.v2
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<object>();
+                }
             }
             catch (AggregateException ae)
             {
@@ -207,7 +221,7 @@ namespace IBM.Watson.Assistant.v2
         /// </summary>
         /// <param name="assistantId">Unique identifier of the assistant. You can find the assistant ID of an assistant
         /// on the **Assistants** tab of the Watson Assistant tool. For information about creating assistants, see the
-        /// [documentation](https://console.bluemix.net/docs/services/assistant/assistant-add.html#assistant-add-task).
+        /// [documentation](https://cloud.ibm.com/docs/services/assistant?topic=assistant-assistant-add#assistant-add-task).
         ///
         /// **Note:** Currently, the v2 API does not support creating assistants.</param>
         /// <param name="sessionId">Unique identifier of the session.</param>
@@ -216,13 +230,19 @@ namespace IBM.Watson.Assistant.v2
         /// <returns><see cref="MessageResponse" />MessageResponse</returns>
         public DetailedResponse<MessageResponse> Message(string assistantId, string sessionId, MessageInput input = null, MessageContext context = null)
         {
-        if (string.IsNullOrEmpty(assistantId))
-            throw new ArgumentNullException("`assistantId` is required for `Message`");
-        if (string.IsNullOrEmpty(sessionId))
-            throw new ArgumentNullException("`sessionId` is required for `Message`");
+            if (string.IsNullOrEmpty(assistantId))
+            {
+                throw new ArgumentNullException("`assistantId` is required for `Message`");
+            }
+            if (string.IsNullOrEmpty(sessionId))
+            {
+                throw new ArgumentNullException("`sessionId` is required for `Message`");
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
+            }
 
             DetailedResponse<MessageResponse> result = null;
 
@@ -243,14 +263,17 @@ namespace IBM.Watson.Assistant.v2
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
                 restRequest.WithHeader("Content-Type", "application/json");
-                restRequest.WithHeader("Accept", "application/json");
 
                 JObject bodyObject = new JObject();
                 if (input != null)
+                {
                     bodyObject["input"] = JToken.FromObject(input);
+                }
                 if (context != null)
+                {
                     bodyObject["context"] = JToken.FromObject(context);
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, "application/json");
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
                 foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v2", "Message"))
@@ -260,7 +283,9 @@ namespace IBM.Watson.Assistant.v2
 
                 result = restRequest.As<MessageResponse>().Result;
                 if (result == null)
+                {
                     result = new DetailedResponse<MessageResponse>();
+                }
             }
             catch (AggregateException ae)
             {

@@ -16,7 +16,6 @@
 */
 
 using IBM.Cloud.SDK.Core.Http;
-using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using IBM.Watson.NaturalLanguageClassifier.v1.Model;
 
@@ -27,8 +26,8 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
         DetailedResponse<Classification> Classify(string classifierId, string text);
         DetailedResponse<ClassificationCollection> ClassifyCollection(string classifierId, List<ClassifyInput> collection);
         DetailedResponse<Classifier> CreateClassifier(System.IO.MemoryStream metadata, System.IO.MemoryStream trainingData);
-        DetailedResponse<object> DeleteClassifier(string classifierId);
-        DetailedResponse<Classifier> GetClassifier(string classifierId);
         DetailedResponse<ClassifierList> ListClassifiers();
+        DetailedResponse<Classifier> GetClassifier(string classifierId);
+        DetailedResponse<object> DeleteClassifier(string classifierId);
     }
 }

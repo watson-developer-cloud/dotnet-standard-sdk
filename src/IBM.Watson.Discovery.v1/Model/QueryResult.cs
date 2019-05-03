@@ -16,6 +16,7 @@
 */
 
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core.Model;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Discovery.v1.Model
@@ -23,7 +24,7 @@ namespace IBM.Watson.Discovery.v1.Model
     /// <summary>
     /// QueryResult.
     /// </summary>
-    public class QueryResult
+    public class QueryResult : DynamicModel<object>
     {
         /// <summary>
         /// The unique identifier of the document.

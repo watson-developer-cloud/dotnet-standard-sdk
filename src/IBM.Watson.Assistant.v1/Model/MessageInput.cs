@@ -15,6 +15,7 @@
 *
 */
 
+using IBM.Cloud.SDK.Core.Model;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Assistant.v1.Model
@@ -22,11 +23,10 @@ namespace IBM.Watson.Assistant.v1.Model
     /// <summary>
     /// An input object that includes the input text.
     /// </summary>
-    public class MessageInput
+    public class MessageInput : DynamicModel<object>
     {
         /// <summary>
-        /// The text of the user input. This string cannot contain carriage return, newline, or tab characters, and it
-        /// must be no longer than 2048 characters.
+        /// The text of the user input. This string cannot contain carriage return, newline, or tab characters.
         /// </summary>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }

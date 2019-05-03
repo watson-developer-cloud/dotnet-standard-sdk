@@ -20,7 +20,7 @@ using Newtonsoft.Json;
 namespace IBM.Watson.SpeechToText.v1.Model
 {
     /// <summary>
-    /// KeywordResult.
+    /// Information about a match for a keyword from speech recognition results.
     /// </summary>
     public class KeywordResult
     {

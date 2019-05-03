@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 namespace IBM.Watson.PersonalityInsights.v3.Model
 {
     /// <summary>
-    /// ConsumptionPreferencesCategory.
+    /// The consumption preferences that the service inferred from the input content.
     /// </summary>
     public class ConsumptionPreferencesCategory
     {

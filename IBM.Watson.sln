@@ -63,8 +63,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.IntegrationTests
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.Discovery.v1.IntegrationTests", "test\Discovery.v1.IntegrationTests\IBM.Watson.Discovery.v1.IntegrationTests.csproj", "{813C103F-C215-4DAF-B30D-632DDA091F63}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Cloud.SDK.Core", "..\dotnet-sdk-core\src\IBM.Cloud.SDK.Core\IBM.Cloud.SDK.Core.csproj", "{434E15AB-975C-46D0-A2DD-945DAAFEEC24}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.CompareComply.v1.IntegrationTests", "test\CompareComply.v1.IntegrationTests\IBM.Watson.CompareComply.v1.IntegrationTests.csproj", "{1CD17D3B-E3B9-42E9-BD4A-6D7A1A0E716A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.LanguageTranslator.v3.IntegrationTests", "test\LanguageTranslator.v3.IntegrationTests\IBM.Watson.LanguageTranslator.v3.IntegrationTests.csproj", "{E8219459-4F03-41B0-8C87-9B373BF8D754}"

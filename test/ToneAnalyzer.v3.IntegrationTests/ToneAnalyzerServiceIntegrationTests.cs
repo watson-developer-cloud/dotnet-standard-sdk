@@ -90,11 +90,12 @@ namespace IBM.Watson.ToneAnalyzer.v3.IntegrationTests
                 Text = inputText
             };
 
+            service.WithHeader("X-Watson-Test", "1");
             var result = service.Tone(
-                toneInput: toneInput, 
-                contentType: "text/html", 
-                sentences: true, 
-                contentLanguage: "en-US", 
+                toneInput: toneInput,
+                contentType: "text/html",
+                sentences: true,
+                contentLanguage: "en-US",
                 acceptLanguage: "en-US"
                 );
 
@@ -114,9 +115,10 @@ namespace IBM.Watson.ToneAnalyzer.v3.IntegrationTests
                     User = chatUser
                 }
             };
+            service.WithHeader("X-Watson-Test", "1");
             var result = service.ToneChat(
-                utterances: utterances, 
-                contentLanguage: "en-US", 
+                utterances: utterances,
+                contentLanguage: "en-US",
                 acceptLanguage: "en-US"
                 );
 

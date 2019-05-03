@@ -100,10 +100,9 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("text_to_speech", "v1", "ListVoices"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "ListVoices"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<Voices>().Result;
                 if (result == null)
@@ -163,10 +162,9 @@ namespace IBM.Watson.TextToSpeech.v1
                     restRequest.WithArgument("customization_id", customizationId);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("text_to_speech", "v1", "GetVoice"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "GetVoice"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<Voice>().Result;
                 if (result == null)
@@ -321,10 +319,9 @@ namespace IBM.Watson.TextToSpeech.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("text_to_speech", "v1", "Synthesize"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "Synthesize"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = new DetailedResponse<System.IO.MemoryStream>();
                 result.Result = new System.IO.MemoryStream(restRequest.AsByteArray().Result);
@@ -401,10 +398,9 @@ namespace IBM.Watson.TextToSpeech.v1
                     restRequest.WithArgument("customization_id", customizationId);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("text_to_speech", "v1", "GetPronunciation"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "GetPronunciation"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<Pronunciation>().Result;
                 if (result == null)
@@ -475,10 +471,9 @@ namespace IBM.Watson.TextToSpeech.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("text_to_speech", "v1", "CreateVoiceModel"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "CreateVoiceModel"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<VoiceModel>().Result;
                 if (result == null)
@@ -535,10 +530,9 @@ namespace IBM.Watson.TextToSpeech.v1
                     restRequest.WithArgument("language", language);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("text_to_speech", "v1", "ListVoiceModels"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "ListVoiceModels"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<VoiceModels>().Result;
                 if (result == null)
@@ -630,10 +624,9 @@ namespace IBM.Watson.TextToSpeech.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("text_to_speech", "v1", "UpdateVoiceModel"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "UpdateVoiceModel"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
@@ -688,10 +681,9 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("text_to_speech", "v1", "GetVoiceModel"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "GetVoiceModel"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<VoiceModel>().Result;
                 if (result == null)
@@ -744,10 +736,9 @@ namespace IBM.Watson.TextToSpeech.v1
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}");
 
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("text_to_speech", "v1", "DeleteVoiceModel"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "DeleteVoiceModel"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
@@ -832,10 +823,9 @@ namespace IBM.Watson.TextToSpeech.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("text_to_speech", "v1", "AddWords"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "AddWords"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
@@ -890,10 +880,9 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("text_to_speech", "v1", "ListWords"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "ListWords"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<Words>().Result;
                 if (result == null)
@@ -987,10 +976,9 @@ namespace IBM.Watson.TextToSpeech.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("text_to_speech", "v1", "AddWord"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "AddWord"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
@@ -1050,10 +1038,9 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("text_to_speech", "v1", "GetWord"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "GetWord"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<Translation>().Result;
                 if (result == null)
@@ -1111,10 +1098,9 @@ namespace IBM.Watson.TextToSpeech.v1
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{word}");
 
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("text_to_speech", "v1", "DeleteWord"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "DeleteWord"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<object>().Result;
                 if (result == null)
@@ -1172,10 +1158,9 @@ namespace IBM.Watson.TextToSpeech.v1
                     restRequest.WithArgument("customer_id", customerId);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("text_to_speech", "v1", "DeleteUserData"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "DeleteUserData"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<object>().Result;
                 if (result == null)

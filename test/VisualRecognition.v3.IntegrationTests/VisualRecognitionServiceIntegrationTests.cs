@@ -104,6 +104,7 @@ namespace IBM.Watson.VisualRecognition.v3.IntegrationTests
         [TestCleanup]
         public void Teardown()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var classifiers = service.ListClassifiers();
             List<string> dotnet_classifiers = new List<string>();
 
@@ -117,13 +118,15 @@ namespace IBM.Watson.VisualRecognition.v3.IntegrationTests
             {
                 try
                 {
+                    service.WithHeader("X-Watson-Test", "1");
                     var getClassifierResult = service.GetClassifier(
                         classifierId: classifierId
                         );
                     if (getClassifierResult != null)
-                        service.DeleteClassifier(
-                            classifierId: classifierId
-                            );
+                        service.WithHeader("X-Watson-Test", "1");
+                    service.DeleteClassifier(
+                        classifierId: classifierId
+                        );
                 }
                 catch (Exception e)
                 {
@@ -143,6 +146,7 @@ namespace IBM.Watson.VisualRecognition.v3.IntegrationTests
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
+                    service.WithHeader("X-Watson-Test", "1");
                     var result = service.Classify(
                         imagesFile: ms,
                         imagesFilename: Path.GetFileName(localGiraffeFilePath),
@@ -174,6 +178,7 @@ namespace IBM.Watson.VisualRecognition.v3.IntegrationTests
 
                     CultureInfo.CurrentCulture = previousCulture;
 
+                    service.WithHeader("X-Watson-Test", "1");
                     var result = service.Classify(
                         imagesFile: ms,
                         imagesFilename: Path.GetFileName(localGiraffeFilePath),
@@ -192,6 +197,7 @@ namespace IBM.Watson.VisualRecognition.v3.IntegrationTests
         [TestMethod]
         public void ClassifyURL_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var result = service.Classify(
                 url: imageUrl,
                 threshold: 0.5f,
@@ -213,6 +219,7 @@ namespace IBM.Watson.VisualRecognition.v3.IntegrationTests
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
+                    service.WithHeader("X-Watson-Test", "1");
                     var result = service.DetectFaces(
                         imagesFile: ms,
                         imagesFilename: Path.GetFileName(localFaceFilePath),
@@ -235,6 +242,7 @@ namespace IBM.Watson.VisualRecognition.v3.IntegrationTests
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
+                    service.WithHeader("X-Watson-Test", "1");
                     var result = service.DetectFaces(
                         imagesFile: ms,
                         imagesFilename: Path.GetFileName(localFaceFilePath),
@@ -258,6 +266,7 @@ namespace IBM.Watson.VisualRecognition.v3.IntegrationTests
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
+                    service.WithHeader("X-Watson-Test", "1");
                     var result = service.DetectFaces(
                         url: faceUrl,
                         imagesFile: ms,
@@ -280,6 +289,7 @@ namespace IBM.Watson.VisualRecognition.v3.IntegrationTests
 
             try
             {
+                service.WithHeader("X-Watson-Test", "1");
                 listClassifiersResult = service.ListClassifiers();
             }
             catch
@@ -306,6 +316,7 @@ namespace IBM.Watson.VisualRecognition.v3.IntegrationTests
                     negativeExamplesFileStream.CopyTo(negativeExamplesMemoryStream);
                     Dictionary<string, MemoryStream> positiveExamples = new Dictionary<string, MemoryStream>();
                     positiveExamples.Add(giraffeClassname, positiveExamplesMemoryStream);
+                    service.WithHeader("X-Watson-Test", "1");
                     createClassifierResult = service.CreateClassifier(
                         name: createdClassifierName,
                         positiveExamples: positiveExamples,
@@ -316,6 +327,7 @@ namespace IBM.Watson.VisualRecognition.v3.IntegrationTests
                 }
             }
 
+            service.WithHeader("X-Watson-Test", "1");
             var getClassifierResult = service.GetClassifier(
                     classifierId: createdClassifierId
                     );
@@ -339,9 +351,10 @@ namespace IBM.Watson.VisualRecognition.v3.IntegrationTests
                 {
                     Dictionary<string, MemoryStream> positiveExamples = new Dictionary<string, MemoryStream>();
                     positiveExamples.Add(turtleClassname, positiveExamplesMemoryStream);
+                    service.WithHeader("X-Watson-Test", "1");
                     updateClassifierResult = service.UpdateClassifier(
                         classifierId: createdClassifierId,
-                        positiveExamples: positiveExamples 
+                        positiveExamples: positiveExamples
                         );
                 }
             }
@@ -361,6 +374,7 @@ namespace IBM.Watson.VisualRecognition.v3.IntegrationTests
             DetailedResponse<MemoryStream> getCoreMlModelResult = null;
             try
             {
+                service.WithHeader("X-Watson-Test", "1");
                 getCoreMlModelResult = service.GetCoreMlModel(
                     classifierId: createdClassifierId
                     );
@@ -382,6 +396,7 @@ namespace IBM.Watson.VisualRecognition.v3.IntegrationTests
             }
             autoEvent.WaitOne();
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteClassifierResult = service.DeleteClassifier(
                 classifierId: createdClassifierId
                 );
@@ -396,11 +411,12 @@ namespace IBM.Watson.VisualRecognition.v3.IntegrationTests
             Assert.IsTrue(createClassifierResult.Result.Name == createdClassifierName);
         }
         #endregion
-       
+
         #region Utility
         #region IsClassifierReady
         private void IsClassifierReady(string classifierId)
         {
+            service.WithHeader("X-Watson-Test", "1");
             var getClassifierResponse = service.GetClassifier(classifierId);
 
             Console.WriteLine(string.Format("Classifier status is {0}", getClassifierResponse.Result.Status.ToString()));

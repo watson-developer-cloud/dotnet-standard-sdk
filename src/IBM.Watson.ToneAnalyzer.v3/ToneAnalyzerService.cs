@@ -185,10 +185,9 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 var httpContent = new StringContent(JsonConvert.SerializeObject(toneInput), Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("tone_analyzer", "v3", "Tone"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("tone_analyzer", "v3", "Tone"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<ToneAnalysis>().Result;
                 if (result == null)
@@ -281,10 +280,9 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("tone_analyzer", "v3", "ToneChat"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("tone_analyzer", "v3", "ToneChat"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<UtteranceAnalyses>().Result;
                 if (result == null)

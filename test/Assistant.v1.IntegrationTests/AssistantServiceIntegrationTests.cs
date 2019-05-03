@@ -61,6 +61,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
             workspaceId = Environment.GetEnvironmentVariable("ASSISTANT_WORKSPACE_ID");
 
 #if DELETE_DOTNET_WORKSPACES
+            service.WithHeader("X-Watson-Test", "1");
             var workspaces = service.ListWorkspaces();
             List<string> dotnet_workpaces = new List<string>();
 
@@ -93,6 +94,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
         [TestCleanup]
         public void Teardown()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var workspaces = service.ListWorkspaces();
             List<string> dotnet_workpaces = new List<string>();
 
@@ -106,13 +108,17 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
             {
                 try
                 {
+                    service.WithHeader("X-Watson-Test", "1");
                     var getWorkspaceResult = service.GetWorkspace(
                         workspaceId: workspaceId
                         );
                     if (getWorkspaceResult != null)
+                    {
+                        service.WithHeader("X-Watson-Test", "1");
                         service.DeleteWorkspace(
                             workspaceId: workspaceId
                             );
+                    }
                 }
                 catch (Exception e)
                 {
@@ -134,6 +140,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 Text = inputString
             };
 
+            service.WithHeader("X-Watson-Test", "1");
             var results0 = service.Message(
                 workspaceId: workspaceId,
                 input: input
@@ -144,6 +151,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
 
             input.Text = assistantString0;
 
+            service.WithHeader("X-Watson-Test", "1");
             var results1 = service.Message(
                 workspaceId: workspaceId,
                 input: input,
@@ -154,6 +162,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
 
             input.Text = assistantString1;
 
+            service.WithHeader("X-Watson-Test", "1");
             var results2 = service.Message(
                 workspaceId: workspaceId,
                 input: input,
@@ -164,6 +173,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
 
             input.Text = assistantString2;
 
+            service.WithHeader("X-Watson-Test", "1");
             var results3 = service.Message(
                 workspaceId: workspaceId,
                 input: input,
@@ -211,21 +221,25 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
         [TestMethod]
         public void TestCounterExamples_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var createWorkspaceResult = service.CreateWorkspace(
                 name: createdWorkspaceName,
                 description: createdWorkspaceDescription,
                 language: createdWorkspaceLanguage
                 );
             var workspaceId = createWorkspaceResult.Result.WorkspaceId;
+            service.WithHeader("X-Watson-Test", "1");
             var listCounterExamplesResult = service.ListCounterexamples(
                 workspaceId: workspaceId
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var createCounterexampleResult = service.CreateCounterexample(
                 workspaceId: workspaceId,
                 text: createdCounterExampleText
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var getCounterexampleResult = service.GetCounterexample(
                 workspaceId: workspaceId,
                 text: createdCounterExampleText,
@@ -234,17 +248,20 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
 
             string updatedCounterExampleText = createdCounterExampleText + "-updated";
 
+            service.WithHeader("X-Watson-Test", "1");
             var updateCounterexampleResult = service.UpdateCounterexample(
                 workspaceId: workspaceId,
                 text: createdCounterExampleText,
                 newText: updatedCounterExampleText
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteCounterexampleResult = service.DeleteCounterexample(
                 workspaceId: workspaceId,
                 text: updatedCounterExampleText
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteWorkspaceResult = service.DeleteWorkspace(
                 workspaceId: workspaceId
                 );
@@ -265,8 +282,10 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
         [TestMethod]
         public void TestWorkspaces_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var ListWorkspacesResult = service.ListWorkspaces();
 
+            service.WithHeader("X-Watson-Test", "1");
             var createWorkspaceResult = service.CreateWorkspace(
                 name: createdWorkspaceName,
                 description: createdWorkspaceDescription,
@@ -276,12 +295,14 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
 
             var workspaceId = createWorkspaceResult.Result.WorkspaceId;
 
+            service.WithHeader("X-Watson-Test", "1");
             var getWorkspaceResult = service.GetWorkspace(
                 workspaceId: workspaceId,
                 export: true,
                 includeAudit: true
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var updateWorkspaceResult = service.UpdateWorkspace(
                 workspaceId: workspaceId,
                 name: createdWorkspaceName + "-updated",
@@ -290,6 +311,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 learningOptOut: true
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteWorkspaceResult = service.DeleteWorkspace(
                 workspaceId: workspaceId);
 
@@ -309,6 +331,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
         [TestMethod]
         public void TestEntities_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var createWorkspaceResult = service.CreateWorkspace(
                  name: createdWorkspaceName,
                  description: createdWorkspaceDescription,
@@ -317,6 +340,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                  );
 
             var workspaceId = createWorkspaceResult.Result.WorkspaceId;
+            service.WithHeader("X-Watson-Test", "1");
             var listEntitiesResult = service.ListEntities(
                 workspaceId: workspaceId,
                 export: true,
@@ -325,6 +349,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 sort: "-updated",
                 includeAudit: true);
 
+            service.WithHeader("X-Watson-Test", "1");
             var createEntityResult = service.CreateEntity(
                 workspaceId: workspaceId,
                 entity: createdEntity,
@@ -332,6 +357,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 fuzzyMatch: true
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var getEntityResult = service.GetEntity(
                 workspaceId: workspaceId,
                 entity: createdEntity,
@@ -341,6 +367,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
 
             string updatedEntity = createdEntity + "-updated";
             string updatedEntityDescription = createdEntityDescription + "-updated";
+            service.WithHeader("X-Watson-Test", "1");
             var updateEntityResult = service.UpdateEntity(
                 workspaceId: workspaceId,
                 entity: createdEntity,
@@ -349,11 +376,13 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 newFuzzyMatch: true
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteEntityResult = service.DeleteEntity(
                 workspaceId: workspaceId,
                 entity: updatedEntity
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteWorkspaceResult = service.DeleteWorkspace(
                 workspaceId: workspaceId
                 );
@@ -374,6 +403,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
         [TestMethod]
         public void TestValues_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var createWorkspaceResult = service.CreateWorkspace(
                  name: createdWorkspaceName,
                  description: createdWorkspaceDescription,
@@ -383,6 +413,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
 
             var workspaceId = createWorkspaceResult.Result.WorkspaceId;
 
+            service.WithHeader("X-Watson-Test", "1");
             var createEntityResult = service.CreateEntity(
                 workspaceId: workspaceId,
                 entity: createdEntity,
@@ -390,17 +421,20 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 fuzzyMatch: true
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var listValuesResult = service.ListValues(
                 workspaceId: workspaceId,
                 entity: createdEntity
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var createValueResult = service.CreateValue(
                 workspaceId: workspaceId,
                 entity: createdEntity,
                 value: createdValue
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var getValueResult = service.GetValue(
                 workspaceId: workspaceId,
                 entity: createdEntity,
@@ -409,6 +443,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
 
             string updatedValue = createdValue + "-updated";
 
+            service.WithHeader("X-Watson-Test", "1");
             var updateValueResult = service.UpdateValue(
                 workspaceId: workspaceId,
                 entity: createdEntity,
@@ -416,15 +451,18 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 newValue: updatedValue
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteValueResult = service.DeleteValue(
                 workspaceId: workspaceId,
                 entity: createdEntity,
                 value: updatedValue
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var deleteEntityResult = service.DeleteEntity(
                 workspaceId: workspaceId,
                 entity: createdEntity
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var deleteWorkspaceResult = service.DeleteWorkspace(
                 workspaceId: workspaceId
                 );
@@ -444,6 +482,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
         [TestMethod]
         public void TestSynonyms_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var createWorkspaceResult = service.CreateWorkspace(
                  name: createdWorkspaceName,
                  description: createdWorkspaceDescription,
@@ -453,6 +492,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
 
             var workspaceId = createWorkspaceResult.Result.WorkspaceId;
 
+            service.WithHeader("X-Watson-Test", "1");
             var createEntityResult = service.CreateEntity(
                 workspaceId: workspaceId,
                 entity: createdEntity,
@@ -460,12 +500,14 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 fuzzyMatch: true
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var createValueResult = service.CreateValue(
                 workspaceId: workspaceId,
                 entity: createdEntity,
                 value: createdValue
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var listSynonymsResult = service.ListSynonyms(
                 workspaceId: workspaceId,
                 entity: createdEntity,
@@ -475,6 +517,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 sort: "-updated"
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var createSynonymResult = service.CreateSynonym(
                 workspaceId: workspaceId,
                 entity: createdEntity,
@@ -482,6 +525,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 synonym: createdSynonym
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var getSynonymResult = service.GetSynonym(
                 workspaceId: workspaceId,
                 entity: createdEntity,
@@ -490,6 +534,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 );
 
             string updatedSynonym = createdSynonym + "-updated";
+            service.WithHeader("X-Watson-Test", "1");
             var updateSynonymResult = service.UpdateSynonym(
                 workspaceId: workspaceId,
                 entity: createdEntity,
@@ -497,21 +542,25 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 synonym: createdSynonym,
                 newSynonym: updatedSynonym);
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteSynonymResult = service.DeleteSynonym(
-                workspaceId: workspaceId, 
-                entity: createdEntity, 
-                value: createdValue, 
+                workspaceId: workspaceId,
+                entity: createdEntity,
+                value: createdValue,
                 synonym: updatedSynonym
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var deleteValueResult = service.DeleteValue(
-                workspaceId: workspaceId, 
-                entity: createdEntity, 
+                workspaceId: workspaceId,
+                entity: createdEntity,
                 value: createdValue
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var deleteEntityResult = service.DeleteEntity(
-                workspaceId: workspaceId, 
+                workspaceId: workspaceId,
                 entity: createdEntity
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var deleteWorkspaceResult = service.DeleteWorkspace(
                 workspaceId: workspaceId
                 );
@@ -531,6 +580,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
         [TestMethod]
         public void TestIntents_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var createWorkspaceResult = service.CreateWorkspace(
                  name: createdWorkspaceName,
                  description: createdWorkspaceDescription,
@@ -540,6 +590,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
 
             var workspaceId = createWorkspaceResult.Result.WorkspaceId;
 
+            service.WithHeader("X-Watson-Test", "1");
             var listIntentsReult = service.ListIntents(
                 workspaceId: workspaceId,
                 export: true,
@@ -549,30 +600,35 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 includeAudit: true
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var createIntentResult = service.CreateIntent(
-                workspaceId: workspaceId, 
-                intent: createdIntent, 
+                workspaceId: workspaceId,
+                intent: createdIntent,
                 description: createdIntentDescription
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var getIntentResult = service.GetIntent(
-                workspaceId: workspaceId, 
+                workspaceId: workspaceId,
                 intent: createdIntent
                 );
 
             string updatedIntent = createdIntent + "-updated";
             string updatedIntentDescription = createdIntentDescription + "-updated";
 
+            service.WithHeader("X-Watson-Test", "1");
             var updateIntentResult = service.UpdateIntent(
-                workspaceId: workspaceId, 
-                intent: createdIntent, 
-                newIntent: updatedIntent, 
+                workspaceId: workspaceId,
+                intent: createdIntent,
+                newIntent: updatedIntent,
                 newDescription: updatedIntentDescription
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var deleteIntentResult = service.DeleteIntent(
-                workspaceId: workspaceId, 
+                workspaceId: workspaceId,
                 intent: updatedIntent
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var deleteWorkspaceResult = service.DeleteWorkspace(workspaceId);
 
             Assert.IsNotNull(listIntentsReult);
@@ -591,6 +647,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
         [TestMethod]
         public void TestExamples_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var createWorkspaceResult = service.CreateWorkspace(
                 name: createdWorkspaceName,
                 description: createdWorkspaceDescription,
@@ -600,51 +657,59 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
 
             var workspaceId = createWorkspaceResult.Result.WorkspaceId;
 
+            service.WithHeader("X-Watson-Test", "1");
             var createIntentResult = service.CreateIntent(
                 workspaceId: workspaceId,
                 intent: createdIntent,
                 description: createdIntentDescription
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var listExamplesResult = service.ListExamples(
-                workspaceId: workspaceId, 
-                intent: createdIntent, 
-                pageLimit: 1, 
-                includeCount: true, 
-                sort: "-updated", 
+                workspaceId: workspaceId,
+                intent: createdIntent,
+                pageLimit: 1,
+                includeCount: true,
+                sort: "-updated",
                 includeAudit: true
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var createExampleResult = service.CreateExample(
-                workspaceId: workspaceId, 
-                intent: createdIntent, 
+                workspaceId: workspaceId,
+                intent: createdIntent,
                 text: createdExample
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var getExampleResult = service.GetExample(
-                workspaceId: workspaceId, 
-                intent: createdIntent, 
-                text: createdExample, 
+                workspaceId: workspaceId,
+                intent: createdIntent,
+                text: createdExample,
                 includeAudit: true
                 );
 
             string updatedExample = createdExample + "-updated";
+            service.WithHeader("X-Watson-Test", "1");
             var updateExampleResult = service.UpdateExample(
                 workspaceId: workspaceId,
-                intent: createdIntent, 
-                text: createdExample, 
+                intent: createdIntent,
+                text: createdExample,
                 newText: updatedExample
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteExampleResult = service.DeleteExample(
-                workspaceId: workspaceId, 
-                intent: createdIntent, 
+                workspaceId: workspaceId,
+                intent: createdIntent,
                 text: updatedExample
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var deleteIntentResult = service.DeleteIntent(
-                workspaceId: workspaceId, 
+                workspaceId: workspaceId,
                 intent: createdIntent
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var deleteWorkspaceResult = service.DeleteWorkspace(
                 workspaceId: workspaceId
                 );
@@ -664,6 +729,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
         [TestMethod]
         public void TestDialogNodes_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var createWorkspaceResult = service.CreateWorkspace(
                 name: createdWorkspaceName,
                 description: createdWorkspaceDescription,
@@ -673,35 +739,41 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
 
             var workspaceId = createWorkspaceResult.Result.WorkspaceId;
 
+            service.WithHeader("X-Watson-Test", "1");
             var listDialogNodes = service.ListDialogNodes(
                 workspaceId: workspaceId
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var createDialogNodeResult = service.CreateDialogNode(
                 workspaceId: workspaceId,
                 dialogNode: dialogNodeName,
                 description: dialogNodeDesc
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var getDialogNodeResult = service.GetDialogNode(
-                workspaceId: workspaceId, 
-                dialogNode: dialogNodeName, 
+                workspaceId: workspaceId,
+                dialogNode: dialogNodeName,
                 includeAudit: true
                 );
 
             string updatedDialogNodeName = dialogNodeName + "_updated";
             string updatedDialogNodeDescription = dialogNodeDesc + "_updated";
+            service.WithHeader("X-Watson-Test", "1");
             var updateDialogNodeResult = service.UpdateDialogNode(
-                workspaceId: workspaceId, 
-                dialogNode: dialogNodeName, 
-                newDialogNode: updatedDialogNodeName, 
+                workspaceId: workspaceId,
+                dialogNode: dialogNodeName,
+                newDialogNode: updatedDialogNodeName,
                 newDescription: updatedDialogNodeDescription
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteDialogNodeResult = service.DeleteDialogNode(
-                workspaceId: workspaceId, 
+                workspaceId: workspaceId,
                 dialogNode: updatedDialogNodeName
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var deleteWorkspaceResult = service.DeleteWorkspace(
                 workspaceId: workspaceId
                 );
@@ -724,6 +796,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
         [TestMethod]
         public void ListLogs_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var createWorkspaceResult = service.CreateWorkspace(
                 name: createdWorkspaceName,
                 description: createdWorkspaceDescription,
@@ -732,9 +805,11 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 );
 
             var workspaceId = createWorkspaceResult.Result.WorkspaceId;
+            service.WithHeader("X-Watson-Test", "1");
             var listLogsResult = service.ListLogs(
                 workspaceId: workspaceId
                 );
+            service.WithHeader("X-Watson-Test", "1");
             var deleteWorkspaceResult = service.DeleteWorkspace(
                 workspaceId: workspaceId
                 );
@@ -747,6 +822,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
         public void ListAllLogs_Success()
         {
             var filter = "(language::en,request.context.metadata.deployment::deployment_1)";
+            service.WithHeader("X-Watson-Test", "1");
             var listAllLogsResult = service.ListAllLogs(filter);
             Assert.IsNotNull(listAllLogsResult.Result);
             Assert.IsNotNull(listAllLogsResult.Result.Logs);
@@ -757,6 +833,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
         [TestMethod]
         public void TestMentions_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var createWorkspaceResult = service.CreateWorkspace(
                  name: createdWorkspaceName,
                  description: createdWorkspaceDescription,
@@ -772,14 +849,16 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 Description = createdEntityDescription
             };
 
+            service.WithHeader("X-Watson-Test", "1");
             var createEntityResult = service.CreateEntity(
-                workspaceId: workspaceId, 
-                entity: createdEntity, 
+                workspaceId: workspaceId,
+                entity: createdEntity,
                 description: createdEntityDescription
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var ListMentionsResult = service.ListMentions(
-                workspaceId: workspaceId, 
+                workspaceId: workspaceId,
                 entity: createdEntity
                 );
 

@@ -99,6 +99,7 @@ namespace IBM.Watson.CompareComply.v1.IT
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
+                    service.WithHeader("X-Watson-Test", "1");
                     var htmlConversionResult = service.ConvertToHtml(
                         file: ms,
                         filename: Path.GetFileName(contractAFilePath),
@@ -123,6 +124,7 @@ namespace IBM.Watson.CompareComply.v1.IT
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
+                    service.WithHeader("X-Watson-Test", "1");
                     var elementClassificationResult = service.ClassifyElements(
                         file: ms,
                         fileContentType: "application/pdf",
@@ -145,6 +147,7 @@ namespace IBM.Watson.CompareComply.v1.IT
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
+                    service.WithHeader("X-Watson-Test", "1");
                     var extractTablesResult = service.ExtractTables(
                         file: ms,
                         fileContentType: "application/pdf",
@@ -172,6 +175,7 @@ namespace IBM.Watson.CompareComply.v1.IT
                         {
                             fs0.CopyTo(ms0);
                             fs1.CopyTo(ms1);
+                            service.WithHeader("X-Watson-Test", "1");
                             var comparisonResults = service.CompareDocuments(
                                 file1: ms0,
                                 file2: ms1,
@@ -198,6 +202,7 @@ namespace IBM.Watson.CompareComply.v1.IT
         {
             DateTime before = DateTime.Now;
             DateTime after = new DateTime(2018, 11, 13);
+            service.WithHeader("X-Watson-Test", "1");
             var ListFeedbackResult = service.ListFeedback(
                 feedbackType: "element_classification",
                 before: before,
@@ -316,6 +321,7 @@ namespace IBM.Watson.CompareComply.v1.IT
             };
             #endregion
 
+            service.WithHeader("X-Watson-Test", "1");
             var addFeedbackResult = service.AddFeedback(
                 feedbackData: feedbackData,
                 userId: userId,
@@ -324,11 +330,13 @@ namespace IBM.Watson.CompareComply.v1.IT
 
             string feedbackId = addFeedbackResult.Result.FeedbackId;
 
+            service.WithHeader("X-Watson-Test", "1");
             var getFeedbackResult = service.GetFeedback(
                 feedbackId: feedbackId,
                 model: compareComplyModel
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteFeedbackResult = service.DeleteFeedback(
                 feedbackId: feedbackId
                 );
@@ -344,6 +352,7 @@ namespace IBM.Watson.CompareComply.v1.IT
         [TestMethod]
         public void Batches_Success()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var getBatchesResult = service.ListBatches();
             string batchId = "";
 
@@ -357,6 +366,7 @@ namespace IBM.Watson.CompareComply.v1.IT
                         {
                             fsInput.CopyTo(msInput);
                             fsOutput.CopyTo(msOutput);
+                            service.WithHeader("X-Watson-Test", "1");
                             var createBatchResult = service.CreateBatch(
                                 function: "html_conversion",
                                 inputCredentialsFile: msInput,
@@ -375,13 +385,15 @@ namespace IBM.Watson.CompareComply.v1.IT
                 }
             }
 
+            service.WithHeader("X-Watson-Test", "1");
             var getBatchResult = service.GetBatch(
                 batchId: batchId
                 );
 
+            service.WithHeader("X-Watson-Test", "1");
             var updateBatchResult = service.UpdateBatch(
-                batchId: batchId, 
-                action: "rescan", 
+                batchId: batchId,
+                action: "rescan",
                 model: compareComplyModel
                 );
 

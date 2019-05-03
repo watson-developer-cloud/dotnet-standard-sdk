@@ -132,10 +132,9 @@ namespace IBM.Watson.CompareComply.v1
                 }
                 restRequest.WithBodyContent(formData);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "ConvertToHtml"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("compare-comply", "v1", "ConvertToHtml"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<HTMLReturn>().Result;
                 if (result == null)
@@ -205,10 +204,9 @@ namespace IBM.Watson.CompareComply.v1
                 }
                 restRequest.WithBodyContent(formData);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "ClassifyElements"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("compare-comply", "v1", "ClassifyElements"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<ClassifyReturn>().Result;
                 if (result == null)
@@ -278,10 +276,9 @@ namespace IBM.Watson.CompareComply.v1
                 }
                 restRequest.WithBodyContent(formData);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "ExtractTables"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("compare-comply", "v1", "ExtractTables"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<TableReturn>().Result;
                 if (result == null)
@@ -376,10 +373,9 @@ namespace IBM.Watson.CompareComply.v1
                 }
                 restRequest.WithBodyContent(formData);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "CompareDocuments"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("compare-comply", "v1", "CompareDocuments"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<CompareReturn>().Result;
                 if (result == null)
@@ -448,10 +444,9 @@ namespace IBM.Watson.CompareComply.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "AddFeedback"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("compare-comply", "v1", "AddFeedback"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<FeedbackReturn>().Result;
                 if (result == null)
@@ -600,10 +595,9 @@ namespace IBM.Watson.CompareComply.v1
                     restRequest.WithArgument("include_total", includeTotal);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "ListFeedback"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("compare-comply", "v1", "ListFeedback"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<FeedbackList>().Result;
                 if (result == null)
@@ -661,10 +655,9 @@ namespace IBM.Watson.CompareComply.v1
                     restRequest.WithArgument("model", model);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "GetFeedback"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("compare-comply", "v1", "GetFeedback"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<GetFeedback>().Result;
                 if (result == null)
@@ -722,10 +715,9 @@ namespace IBM.Watson.CompareComply.v1
                     restRequest.WithArgument("model", model);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "DeleteFeedback"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("compare-comply", "v1", "DeleteFeedback"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<FeedbackDeleted>().Result;
                 if (result == null)
@@ -877,10 +869,9 @@ namespace IBM.Watson.CompareComply.v1
                 }
                 restRequest.WithBodyContent(formData);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "CreateBatch"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("compare-comply", "v1", "CreateBatch"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<BatchStatus>().Result;
                 if (result == null)
@@ -925,10 +916,9 @@ namespace IBM.Watson.CompareComply.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "ListBatches"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("compare-comply", "v1", "ListBatches"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<Batches>().Result;
                 if (result == null)
@@ -978,10 +968,9 @@ namespace IBM.Watson.CompareComply.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "GetBatch"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("compare-comply", "v1", "GetBatch"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<BatchStatus>().Result;
                 if (result == null)
@@ -1049,10 +1038,9 @@ namespace IBM.Watson.CompareComply.v1
                     restRequest.WithArgument("model", model);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("compare-comply", "v1", "UpdateBatch"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
+                restRequest.WithHeaders(Common.GetSdkHeaders("compare-comply", "v1", "UpdateBatch"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
 
                 result = restRequest.As<BatchStatus>().Result;
                 if (result == null)

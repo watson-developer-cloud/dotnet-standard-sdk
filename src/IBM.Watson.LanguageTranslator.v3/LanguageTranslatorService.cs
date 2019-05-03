@@ -147,16 +147,8 @@ namespace IBM.Watson.LanguageTranslator.v3
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("language_translator", "v3", "Translate"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "Translate"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<TranslationResult>().Result;
@@ -206,16 +198,8 @@ namespace IBM.Watson.LanguageTranslator.v3
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("language_translator", "v3", "ListIdentifiableLanguages"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "ListIdentifiableLanguages"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<IdentifiableLanguages>().Result;
@@ -273,16 +257,8 @@ namespace IBM.Watson.LanguageTranslator.v3
                 var httpContent = new StringContent(JsonConvert.SerializeObject(text), Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("language_translator", "v3", "Identify"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "Identify"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<IdentifiedLanguages>().Result;
@@ -349,16 +325,8 @@ namespace IBM.Watson.LanguageTranslator.v3
                     restRequest.WithArgument("default", defaultModels);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("language_translator", "v3", "ListModels"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "ListModels"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<TranslationModels>().Result;
@@ -466,16 +434,8 @@ namespace IBM.Watson.LanguageTranslator.v3
                 }
                 restRequest.WithBodyContent(formData);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("language_translator", "v3", "CreateModel"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "CreateModel"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<TranslationModel>().Result;
@@ -530,16 +490,8 @@ namespace IBM.Watson.LanguageTranslator.v3
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("language_translator", "v3", "DeleteModel"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "DeleteModel"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<DeleteModelResult>().Result;
@@ -596,16 +548,8 @@ namespace IBM.Watson.LanguageTranslator.v3
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("language_translator", "v3", "GetModel"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "GetModel"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<TranslationModel>().Result;

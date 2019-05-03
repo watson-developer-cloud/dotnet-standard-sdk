@@ -162,16 +162,8 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "Message"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "Message"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<MessageResponse>().Result;
@@ -250,16 +242,8 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListWorkspaces"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListWorkspaces"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<WorkspaceCollection>().Result;
@@ -361,16 +345,8 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateWorkspace"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateWorkspace"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<Workspace>().Result;
@@ -448,16 +424,8 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("sort", sort);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetWorkspace"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "GetWorkspace"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<Workspace>().Result;
@@ -575,16 +543,8 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "UpdateWorkspace"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateWorkspace"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<Workspace>().Result;
@@ -641,16 +601,8 @@ namespace IBM.Watson.Assistant.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteWorkspace"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "DeleteWorkspace"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<object>().Result;
@@ -742,16 +694,8 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListIntents"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListIntents"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<IntentCollection>().Result;
@@ -833,16 +777,8 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateIntent"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateIntent"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<Intent>().Result;
@@ -918,16 +854,8 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetIntent"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "GetIntent"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<Intent>().Result;
@@ -1016,16 +944,8 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "UpdateIntent"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateIntent"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<Intent>().Result;
@@ -1087,16 +1007,8 @@ namespace IBM.Watson.Assistant.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteIntent"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "DeleteIntent"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<object>().Result;
@@ -1185,16 +1097,8 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListExamples"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListExamples"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<ExampleCollection>().Result;
@@ -1277,16 +1181,8 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateExample"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateExample"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<Example>().Result;
@@ -1359,16 +1255,8 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetExample"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "GetExample"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<Example>().Result;
@@ -1452,16 +1340,8 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "UpdateExample"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateExample"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<Example>().Result;
@@ -1528,16 +1408,8 @@ namespace IBM.Watson.Assistant.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteExample"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "DeleteExample"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<object>().Result;
@@ -1622,16 +1494,8 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListCounterexamples"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListCounterexamples"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<CounterexampleCollection>().Result;
@@ -1706,16 +1570,8 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateCounterexample"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateCounterexample"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<Counterexample>().Result;
@@ -1784,16 +1640,8 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetCounterexample"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "GetCounterexample"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<Counterexample>().Result;
@@ -1868,16 +1716,8 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "UpdateCounterexample"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateCounterexample"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<Counterexample>().Result;
@@ -1940,16 +1780,8 @@ namespace IBM.Watson.Assistant.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteCounterexample"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "DeleteCounterexample"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<object>().Result;
@@ -2041,16 +1873,8 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListEntities"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListEntities"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<EntityCollection>().Result;
@@ -2140,16 +1964,8 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateEntity"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateEntity"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<Entity>().Result;
@@ -2225,16 +2041,8 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetEntity"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "GetEntity"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<Entity>().Result;
@@ -2330,16 +2138,8 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "UpdateEntity"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateEntity"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<Entity>().Result;
@@ -2401,16 +2201,8 @@ namespace IBM.Watson.Assistant.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteEntity"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "DeleteEntity"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<object>().Result;
@@ -2485,16 +2277,8 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListMentions"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListMentions"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<EntityMentionCollection>().Result;
@@ -2590,16 +2374,8 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListValues"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListValues"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<ValueCollection>().Result;
@@ -2694,16 +2470,8 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateValue"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateValue"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<Value>().Result;
@@ -2783,16 +2551,8 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetValue"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "GetValue"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<Value>().Result;
@@ -2894,16 +2654,8 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "UpdateValue"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateValue"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<Value>().Result;
@@ -2970,16 +2722,8 @@ namespace IBM.Watson.Assistant.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteValue"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "DeleteValue"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<object>().Result;
@@ -3073,16 +2817,8 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListSynonyms"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListSynonyms"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<SynonymCollection>().Result;
@@ -3166,16 +2902,8 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateSynonym"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateSynonym"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<Synonym>().Result;
@@ -3253,16 +2981,8 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetSynonym"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "GetSynonym"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<Synonym>().Result;
@@ -3347,16 +3067,8 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "UpdateSynonym"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateSynonym"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<Synonym>().Result;
@@ -3428,16 +3140,8 @@ namespace IBM.Watson.Assistant.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteSynonym"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "DeleteSynonym"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<object>().Result;
@@ -3521,16 +3225,8 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListDialogNodes"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListDialogNodes"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<DialogNodeCollection>().Result;
@@ -3672,16 +3368,8 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "CreateDialogNode"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateDialogNode"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<DialogNode>().Result;
@@ -3749,16 +3437,8 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "GetDialogNode"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "GetDialogNode"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<DialogNode>().Result;
@@ -3906,16 +3586,8 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "UpdateDialogNode"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateDialogNode"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<DialogNode>().Result;
@@ -3977,16 +3649,8 @@ namespace IBM.Watson.Assistant.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteDialogNode"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "DeleteDialogNode"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<object>().Result;
@@ -4068,16 +3732,8 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("cursor", cursor);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListLogs"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListLogs"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<LogCollection>().Result;
@@ -4159,16 +3815,8 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("cursor", cursor);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "ListAllLogs"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListAllLogs"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<LogCollection>().Result;
@@ -4231,16 +3879,8 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("customer_id", customerId);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in Common.GetSdkHeaders("conversation", "v1", "DeleteUserData"))
-                {
-                   restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
-                foreach (KeyValuePair<string, string> kvp in customRequestHeaders)
-                {
-                    restRequest.WithHeader(kvp.Key, kvp.Value);
-                }
-
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "DeleteUserData"));
+                restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
                 result = restRequest.As<object>().Result;

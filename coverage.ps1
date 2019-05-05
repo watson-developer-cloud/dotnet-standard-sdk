@@ -11,8 +11,8 @@ if((Test-Path -Path packages))
 }
 
 New-Item -path . -name packages -itemtype directory
-nuget install -Verbosity quiet -OutputDirectory packages -Version 4.6.519 OpenCover
-nuget install -Verbosity quiet -OutputDirectory packages -Version 2.4.5.0 ReportGenerator
+nuget install -Verbosity quiet -OutputDirectory packages -Version 4.7.922 OpenCover
+nuget install -Verbosity quiet -OutputDirectory packages -Version 4.1.4 ReportGenerator
 
 New-Item -path . -name coverage -itemtype directory
 Copy-Item .\test\VisualRecognition.v3.IntegrationTests\VisualRecognitionTestData .\VisualRecognitionTestData -recurse
@@ -20,7 +20,7 @@ Copy-Item .\test\SpeechToText.v1.IntegrationTests\SpeechToTextTestData .\SpeechT
 Copy-Item .\test\Discovery.v1.IntegrationTests\DiscoveryTestData .\DiscoveryTestData -recurse
 Copy-Item .\test\CompareComply.v1.IntegrationTests\CompareComplyTestData .\CompareComplyTestData -recurse
 
-$openCover = '.\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe'
+$openCover = '.\packages\OpenCover.4.7.922\tools\OpenCover.Console.exe'
 
 ForEach ($folder in (Get-ChildItem -Path .\test -Directory)) 
 {
@@ -29,7 +29,7 @@ ForEach ($folder in (Get-ChildItem -Path .\test -Directory))
     & $openCover '-target:C:\\Program Files\\dotnet\\dotnet.exe' $targetArgs '-register:user' $filter '-oldStyle' '-mergeoutput' '-hideskipped:File' '-searchdirs:$testdir\\bin\\release\\netcoreapp2.0' '-output:coverage\\coverage.xml'
 }
 
-$reportGenerator = '.\packages\ReportGenerator.2.4.5.0\tools\ReportGenerator.exe'
+$reportGenerator = '.\packages\ReportGenerator.4.1.4\tools\ReportGenerator.exe'
 & $reportGenerator -reports:coverage\coverage.xml -targetdir:coverage -verbosity:Error
 
 Remove-Item .\VisualRecognitionTestData -recurse

@@ -183,7 +183,7 @@ test_script:
             
             $targetArgs = '-targetargs: test ' + $folder.FullName + ' -c Release -f netcoreapp2.0'
             
-            $filter = '-filter:+[*.IntegrationTests]*+[*.UnitTests]*-[*Tests*]*-[*Example*]*'
+            $filter = '-filter:+[IBM.Watson*]*-[*Tests*]*-[*Example*]*'
             
             & $openCover '-target:C:\\Program Files\\dotnet\\dotnet.exe' $targetArgs '-register:user' $filter '-oldStyle' '-mergeoutput' '-hideskipped:File' '-searchdirs:$testdir\\bin\\release\\netcoreapp2.0' '-output:coverage\\coverage.xml'
 

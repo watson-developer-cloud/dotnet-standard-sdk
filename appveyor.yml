@@ -39,8 +39,6 @@ install:
 
     nuget install -Verbosity quiet -OutputDirectory packages -Version 4.7.922 OpenCover
 
-    nuget install -Verbosity quiet -OutputDirectory packages -Version 4.1.4 ReportGenerator
-
     nuget install -Verbosity quiet -OutputDirectory packages -Version 0.7.0 coveralls.net
 
     nuget install -Verbosity quiet -OutputDirectory packages -Version 1.8.14 Doxygen
@@ -188,8 +186,6 @@ test_script:
             $filter = '-filter:+[IBM.Watson*]*-[*Tests*]*-[*Example*]*'
             
             & $openCover '-target:C:\\Program Files\\dotnet\\dotnet.exe' $targetArgs '-register:user' $filter '-oldStyle' '-mergeoutput' '-hideskipped:File' '-searchdirs:$testdir\\bin\\release\\netcoreapp2.0' '-output:coverage\\coverage.xml'
-
-            C:\projects\dotnet-standard-sdk\packages\ReportGenerator.4.1.4\tools\ReportGenerator.exe -reports:coverage\coverage.xml -targetdir:coverage -verbosity:Error
 
             if($env:COVERALLS_REPO_TOKEN)
             

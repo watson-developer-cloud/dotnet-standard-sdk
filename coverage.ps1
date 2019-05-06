@@ -23,6 +23,7 @@ Copy-Item .\test\VisualRecognition.v3.IntegrationTests\VisualRecognitionTestData
 Copy-Item .\test\SpeechToText.v1.IntegrationTests\SpeechToTextTestData .\SpeechToTextTestData -recurse
 Copy-Item .\test\Discovery.v1.IntegrationTests\DiscoveryTestData .\DiscoveryTestData -recurse
 Copy-Item .\test\CompareComply.v1.IntegrationTests\CompareComplyTestData .\CompareComplyTestData -recurse
+Copy-Item .\test\NaturalLanguageClassifier.v1.IntegrationTests\NaturalLanguageClassifierTestData .\NaturalLanguageClassifierTestData - recurse
 
 
 ForEach ($folder in (Get-ChildItem -Path .\test -Directory)) 
@@ -38,4 +39,5 @@ Remove-Item .\VisualRecognitionTestData -recurse
 Remove-Item .\SpeechToTextTestData -recurse
 Remove-Item .\DiscoveryTestData -recurse
 Remove-Item .\CompareComplyTestData -recurse
+Remove-Item .\NaturalLanguageClassifierTestData -recurse
 Remove-Item .\packages -recurse

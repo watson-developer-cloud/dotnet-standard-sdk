@@ -5,31 +5,33 @@
 
 dotnet restore
 
-if((Test-Path -Path packages))
+if(-Not (Test-Path -Path '\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe'))
 {
-    Remove-Item .\packages -recurse
+    nuget install -Verbosity quiet -OutputDirectory packages -Version 4.6.519 OpenCover
 }
+$openCover = '.\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe'
 
-New-Item -path . -name packages -itemtype directory
-nuget install -Verbosity quiet -OutputDirectory packages -Version 4.7.922 OpenCover
-nuget install -Verbosity quiet -OutputDirectory packages -Version 4.1.4 ReportGenerator
+if(-Not (Test-Path -Path '\packages\ReportGenerator.2.4.5.0\tools\ReportGenerator.exe'))
+{
+    nuget install -Verbosity quiet -OutputDirectory packages -Version 2.4.5.0 ReportGenerator
+}
+$reportGenerator = '.\packages\ReportGenerator.2.4.5.0\tools\ReportGenerator.exe'
 
 New-Item -path . -name coverage -itemtype directory
+
 Copy-Item .\test\VisualRecognition.v3.IntegrationTests\VisualRecognitionTestData .\VisualRecognitionTestData -recurse
 Copy-Item .\test\SpeechToText.v1.IntegrationTests\SpeechToTextTestData .\SpeechToTextTestData -recurse
 Copy-Item .\test\Discovery.v1.IntegrationTests\DiscoveryTestData .\DiscoveryTestData -recurse
 Copy-Item .\test\CompareComply.v1.IntegrationTests\CompareComplyTestData .\CompareComplyTestData -recurse
 
-$openCover = '.\packages\OpenCover.4.7.922\tools\OpenCover.Console.exe'
 
 ForEach ($folder in (Get-ChildItem -Path .\test -Directory)) 
 {
     $targetArgs = '-targetargs: test ' + $folder.FullName + ' -c Release -f netcoreapp2.0'
-    $filter = '-filter:+[*.IntegrationTests]*+[*.UnitTests]*-[*Tests*]*-[*Example*]*'
+    $filter = '-filter:+[IBM.Watson*]*-[*Tests*]*-[*Example*]*'
     & $openCover '-target:C:\\Program Files\\dotnet\\dotnet.exe' $targetArgs '-register:user' $filter '-oldStyle' '-mergeoutput' '-hideskipped:File' '-searchdirs:$testdir\\bin\\release\\netcoreapp2.0' '-output:coverage\\coverage.xml'
 }
 
-$reportGenerator = '.\packages\ReportGenerator.4.1.4\tools\ReportGenerator.exe'
 & $reportGenerator -reports:coverage\coverage.xml -targetdir:coverage -verbosity:Error
 
 Remove-Item .\VisualRecognitionTestData -recurse

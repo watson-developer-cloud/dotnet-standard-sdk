@@ -189,13 +189,13 @@ test_script:
             
             & $openCover '-target:C:\\Program Files\\dotnet\\dotnet.exe' $targetArgs '-register:user' $filter '-oldStyle' '-mergeoutput' '-hideskipped:File' '-searchdirs:$testdir\\bin\\release\\netcoreapp2.0' '-output:coverage\\coverage.xml'
 
-            C:\\projects\\dotnet-standard-sdk\\packages\\ReportGenerator.4.1.4\\tools\\ReportGenerator.exe -reports:coverage\\coverage.xml -targetdir:coverage -verbosity:Error
+            C:\projects\dotnet-standard-sdk\packages\ReportGenerator.4.1.4\tools\ReportGenerator.exe -reports:coverage\coverage.xml -targetdir:coverage -verbosity:Error
 
             if($env:COVERALLS_REPO_TOKEN)
             
             {
             
-                C:\\projects\\dotnet-standard-sdk\\packages\\coveralls.net.0.7.0\\tools\\csmacnz.Coveralls.exe --opencover -i coverage\\coverage.xml --useRelativePaths
+                C:\projects\dotnet-standard-sdk\packages\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover -i coverage\coverage.xml --useRelativePaths
             
                 }
             

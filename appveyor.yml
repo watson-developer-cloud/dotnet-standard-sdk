@@ -37,9 +37,7 @@ install:
 
     nuget restore
 
-    nuget install -Verbosity quiet -OutputDirectory packages -Version 4.6.519 OpenCover
-
-    nuget install -Verbosity quiet -OutputDirectory packages -Version 2.4.5.0 ReportGenerator
+    nuget install -Verbosity quiet -OutputDirectory packages -Version 4.7.922 OpenCover
 
     nuget install -Verbosity quiet -OutputDirectory packages -Version 0.7.0 coveralls.net
 
@@ -143,6 +141,8 @@ after_build:
     Copy-Item C:\projects\dotnet-standard-sdk\test\Discovery.v1.IntegrationTests\DiscoveryTestData C:\projects\dotnet-standard-sdk\DiscoveryTestData
     
     Copy-Item C:\projects\dotnet-standard-sdk\test\CompareComply.v1.IntegrationTests\CompareComplyTestData C:\projects\dotnet-standard-sdk\CompareComplyTestData
+
+    Copy-Item C:\projects\dotnet-standard-sdk\test\NaturalLanguageClassifier.v1.IntegrationTests\NaturalLanguageClassifierTestData C:\projects\dotnet-standard-sdk\NaturalLanguageClassifierTestData
 test_script:
 - ps: >-
     if(Test-Path -Path coverage)
@@ -179,21 +179,19 @@ test_script:
 
             echo \"LastExitCode: $LastExitCode\"
 
-            $openCover = 'C:\\projects\\dotnet-standard-sdk\\packages\\OpenCover.4.6.519\\tools\\OpenCover.Console.exe'    
+            $openCover = 'C:\\projects\\dotnet-standard-sdk\\packages\\OpenCover.4.7.922\\tools\\OpenCover.Console.exe'    
             
             $targetArgs = '-targetargs: test ' + $folder.FullName + ' -c Release -f netcoreapp2.0'
             
-            $filter = '-filter:+[*.IntegrationTests]*+[*.UnitTests]*-[*Tests*]*-[*Example*]*'
+            $filter = '-filter:+[IBM.Watson*]*-[*Tests*]*-[*Example*]*'
             
             & $openCover '-target:C:\\Program Files\\dotnet\\dotnet.exe' $targetArgs '-register:user' $filter '-oldStyle' '-mergeoutput' '-hideskipped:File' '-searchdirs:$testdir\\bin\\release\\netcoreapp2.0' '-output:coverage\\coverage.xml'
-
-            C:\\projects\\dotnet-standard-sdk\\packages\\ReportGenerator.2.4.5.0\\tools\\ReportGenerator.exe -reports:coverage\\coverage.xml -targetdir:coverage -verbosity:Error
 
             if($env:COVERALLS_REPO_TOKEN)
             
             {
             
-                C:\\projects\\dotnet-standard-sdk\\packages\\coveralls.net.0.7.0\\tools\\csmacnz.Coveralls.exe --opencover -i coverage\\coverage.xml --useRelativePaths
+                C:\projects\dotnet-standard-sdk\packages\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover -i coverage\coverage.xml --useRelativePaths
             
                 }
             

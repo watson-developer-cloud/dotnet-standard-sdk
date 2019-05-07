@@ -48,18 +48,15 @@ install:
 before_build:
 - ps: >-
     if($env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null)
-
     {
-
       git clone https://$env:CREDENTIALS_GITHUB_TOKEN@github.ibm.com/germanatt/sdk-credentials.git C:\projects\sdk-credentials
-    
     }
 
     dotnet restore
 
 build:
   project: IBM.Watson.sln
-  verbosity: normal
+  verbosity: minimal
 after_build:
 - ps: >-
     git config --global user.email "wps@us.ibm.com"

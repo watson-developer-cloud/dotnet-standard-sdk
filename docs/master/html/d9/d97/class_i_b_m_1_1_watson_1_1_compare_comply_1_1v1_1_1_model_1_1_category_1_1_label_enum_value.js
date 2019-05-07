@@ -1,0 +1,27 @@
+var class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value =
+[
+    [ "AMENDMENTS", "d9/d97/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value.html#ac79b00799381d0d22e8c225f14ef2e09", null ],
+    [ "ASSET_USE", "d9/d97/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value.html#a1867a3e9834efb4d6ab42d41a5a682eb", null ],
+    [ "ASSIGNMENTS", "d9/d97/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value.html#a6392b105a7afaf44f2b7e37e288b5cd1", null ],
+    [ "AUDITS", "d9/d97/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value.html#a39657cc7c3d35df3107b8cbf85ac6182", null ],
+    [ "BUSINESS_CONTINUITY", "d9/d97/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value.html#a57f6129cb1c381e492b7fcfdc28fec03", null ],
+    [ "COMMUNICATION", "d9/d97/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value.html#a3e2832298ba6456c2e534c87262c5723", null ],
+    [ "CONFIDENTIALITY", "d9/d97/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value.html#ac730ff95c91fc0be672d00026f61ec79", null ],
+    [ "DELIVERABLES", "d9/d97/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value.html#ab42127dde1e0a160f6b0fc90ce200199", null ],
+    [ "DELIVERY", "d9/d97/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value.html#a94379115cec8ea74b21a1c8d3b52641e", null ],
+    [ "DISPUTE_RESOLUTION", "d9/d97/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value.html#a0f5881cda739dbbb405e5b6e0a066af2", null ],
+    [ "FORCE_MAJEURE", "d9/d97/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value.html#a45800ed77cc413361c9e1ce80d0a2405", null ],
+    [ "INDEMNIFICATION", "d9/d97/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value.html#a585cdbbc55fe7664ac3803e21169e850", null ],
+    [ "INSURANCE", "d9/d97/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value.html#a712e1e141c37b20d949c60217c4e2af5", null ],
+    [ "INTELLECTUAL_PROPERTY", "d9/d97/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value.html#a6d92baec9073c678fe806e4f90edd33d", null ],
+    [ "LIABILITY", "d9/d97/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value.html#aad2a93904b3c123f2308fe291749bad8", null ],
+    [ "PAYMENT_TERMS_BILLING", "d9/d97/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value.html#a6c2e74b57f19c146f52914c4a0a2d7cc", null ],
+    [ "PRICING_TAXES", "d9/d97/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value.html#a97b15ea8a93280b9fa98c698b8ce3d89", null ],
+    [ "PRIVACY", "d9/d97/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value.html#a9853a2756dacc52f510d5b3a8bab0c05", null ],
+    [ "RESPONSIBILITIES", "d9/d97/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value.html#a67902f15b3572e111c0764513679fbff", null ],
+    [ "SAFETY_AND_SECURITY", "d9/d97/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value.html#a58824ee73f6749bd1c50b94ecf8cad87", null ],
+    [ "SCOPE_OF_WORK", "d9/d97/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value.html#a562cd15a657bc32f52fc88f4c934bc30", null ],
+    [ "SUBCONTRACTS", "d9/d97/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value.html#a33ad3473d86394b3a393f560d87fb6c8", null ],
+    [ "TERM_TERMINATION", "d9/d97/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value.html#a1339dd30cc8e5a32d40db39eccc060ea", null ],
+    [ "WARRANTIES", "d9/d97/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value.html#a9015ddf1e6a3839c78b3fdd442c56193", null ]
+];

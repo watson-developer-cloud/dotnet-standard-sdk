@@ -4,8 +4,9 @@
 [![wdc-community.slack.com](https://wdc-slack-inviter.mybluemix.net/badge.svg)](http://wdc-slack-inviter.mybluemix.net/)
 [![CLA assistant](https://cla-assistant.io/readme/badge/watson-developer-cloud/dotnet-standard-sdk)](https://cla-assistant.io/watson-developer-cloud/dotnet-standard-sdk)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+[![Documentation](https://img.shields.io/badge/documentation-API-blue.svg)][dotnet-standard-sdk-documentation]
 
-The .Net SDK uses the [Watson Developer Cloud][wdc] services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.
+The .Net SDK uses [Watson][wdc] services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.
 
 ## Table of Contents
 * [Before you begin](#before-you-begin)
@@ -29,7 +30,6 @@ You can get the latest SDK packages through NuGet. Installation instructions can
 * [Assistant V1](/src/IBM.WatsonDeveloperCloud.Assistant.v1)
 * [Assistant V2](/src/IBM.WatsonDeveloperCloud.Assistant.v2)
 * [Compare Comply](/src/IBM.WatsonDeveloperCloud.CompareComply.v1)
-* [Conversation](/src/IBM.WatsonDeveloperCloud.Conversation.v1) (deprecated - Use Assistant V1 or Assistant V2)
 * [Discovery](/src/IBM.WatsonDeveloperCloud.Discovery.v1)
 * [Language Translator V3](/src/IBM.WatsonDeveloperCloud.LanguageTranslator.v3)
 * [Natural Language Understanding](/src/IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1)
@@ -138,35 +138,27 @@ where `<path>` is something like `/home/user/Downloads/<file_name>.env`.
 If you'd prefer to set authentication values manually in your code, the SDK supports that as well. The way you'll do this depends on what type of credentials your service instance gives you.
 
 ## Custom Request Headers
-You can send custom request headers by adding them to the `customData` object.
+You can send custom request headers by adding them to the service using `.WithHeader(<key>, <value>)`.
 ```cs
 void Example()
 {
     AssistantService assistant = new AssistantService("<username>", "<password>", "<version-date>");
-
-    //  Create customData object
-    Dictionary<string, object> customData = new Dictionary<string, object>();
-    //  Create a dictionary of custom headers
-    Dictionary<string, string> customHeaders = new Dictionary<string, string>();
-    //  Add to the header dictionary
-    customHeaders.Add("X-Watson-Metadata", "customer_id=some-assistant-customer-id");
-    //  Add the header dictionary to the custom data object
-    customData.Add(Constants.String.CUSTOM_REQUEST_HEADERS, customHeaders);
-
-    var results = assistant.Message("<workspace-id>", "<message-request>", customData: customData);
+    assistant.WithHeader("X-Watson-Metadata", "customer_id=some-assistant-customer-id");
+    var results = assistant.Message("<workspace-id>", "<message-request>");
 }
 ```
 
-## Response Headers
-You can get the response headers and the raw json response in the result object.
+## Response Headers, Status Code and Raw Json
+You can get the response headers, status code and the raw json response in the result object.
 ```cs
 void Example()
 {
     AssistantService assistant = new AssistantService("<username>", "<password>", "<version-date>");
     var results = assistant.Message("<workspace-id>", "<message-request>");
     
-    var responseHeaders = results.ResponseHeaders;  //  The response headers
-    var responseJson = results.ResponseJson;        //  The raw response json
+    var responseHeaders = results.Headers;  //  The response headers
+    var responseJson = results.Response;    //  The raw response json
+    var statusCode = results.StatusCode;    //  The response status code
 }
 ```
 
@@ -176,7 +168,7 @@ You can disable SSL verification on calls to Watson (only do this if you really 
 void Example()
 {
     AssistantService assistant = new AssistantService("<username>", "<password>", "<version-date>");
-    assistant.SendAsInsecure(true);
+    assistant.DisableSslVerification(true);
     var results = assistant.Message("<workspace-id>", "<message-request>");
 }
 ```
@@ -186,9 +178,7 @@ Click [here][dotnet-standard-sdk-documentation] for documentation by release and
 
 ## Questions
 
-If you are having difficulties using the APIs or have a question about the IBM Watson Services, please ask a question on
-[dW Answers][dw-answers]
-or [Stack Overflow][stack-overflow].
+If you are having difficulties using the APIs or have a question about the IBM Watson Services, please ask a question on [dW Answers][dw-answers] or [Stack Overflow][stack-overflow].
 
 ## Open Source @ IBM
 Find more open source projects on the [IBM Github Page][ibm-github].
@@ -210,7 +200,6 @@ We'd love to highlight cool open-source projects that use this SDK! If you'd lik
 [dw-answers]: https://developer.ibm.com/answers/questions/ask/?topics=watson
 [stack-overflow]: http://stackoverflow.com/questions/ask?tags=ibm-watson
 
-[conversation]:https://www.ibm.com/watson/developercloud/conversation/api/v1/
 [discovery]: https://www.ibm.com/watson/developercloud/discovery/api/v1/
 [language_translator]: https://www.ibm.com/watson/developercloud/language-translator/api/v2/
 [natural_language_understanding]: https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/

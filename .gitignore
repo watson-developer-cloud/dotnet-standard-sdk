@@ -243,3 +243,4 @@ _Pvt_Extensions
 src/tests/
 package-lock.json
 npm-debug.log
+**/*.openapi-generator*

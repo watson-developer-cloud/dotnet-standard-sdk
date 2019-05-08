@@ -64,7 +64,7 @@ Some services use token-based Identity and Access Management (IAM) authenticatio
 You supply either an IAM service **API key** or an **access token**:
 
 - Use the API key to have the SDK manage the lifecycle of the access token. The SDK requests an access token, ensures that the access token is valid, and refreshes it if necessary.
-- Use the access token if you want to manage the lifecycle yourself. For details, see [Authenticating with IAM tokens](https://console.bluemix.net/docs/services/watson/getting-started-iam.html). If you want to switch to API key override your stored IAM credentials with an IAM API key.
+- Use the access token if you want to manage the lifecycle yourself. For details, see [Authenticating with IAM tokens](https://cloud.ibm.com/docs/services/watson?topic=watson-iam). If you want to switch to API key override your stored IAM credentials with an IAM API key.
 
 #### Supplying the IAM API key
 ```cs
@@ -193,7 +193,6 @@ See [CONTRIBUTING.md](.github/CONTRIBUTING.md).<TODO revise coding standard>
 We'd love to highlight cool open-source projects that use this SDK! If you'd like to get your project added to the list, feel free to make an issue linking us to it.
 
 [wdc]: https://www.ibm.com/watson/developer/
-[bluemix_registration]: http://bluemix.net/registration
 [ibm-github]: http://ibm.github.io/
 
 [latest_release]: https://github.com/watson-developer-cloud/dotnet-standard-sdk/releases/latest
@@ -218,4 +217,4 @@ We'd love to highlight cool open-source projects that use this SDK! If you'd lik
 [visual-studio-download]: https://www.visualstudio.com/vs/community/
 [visual-studio-code-download]: https://code.visualstudio.com/
 [dotnet-standard-sdk-documentation]: https://watson-developer-cloud.github.io/dotnet-standard-sdk/
-[ibm-cloud-onboarding]: http://console.bluemix.net/registration?target=/developer/watson&cm_sp=WatsonPlatform-WatsonServices-_-OnPageNavLink-IBMWatson_SDKs-_-DotNet
+[ibm-cloud-onboarding]: http://cloud.ibm.com/registration?target=/developer/watson&cm_sp=WatsonPlatform-WatsonServices-_-OnPageNavLink-IBMWatson_SDKs-_-DotNet

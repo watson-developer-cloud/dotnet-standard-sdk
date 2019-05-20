@@ -1,0 +1,4 @@
+var class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_integration_tests_1_1_recognition_integration_tests =
+[
+    [ "Setup", "d6/d09/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_integration_tests_1_1_recognition_integration_tests.html#acb792ba004b43d753fb0719ba3816734", null ]
+];

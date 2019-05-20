@@ -1,0 +1,4 @@
+var namespace_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_integration_tests =
+[
+    [ "TranslatorIntegrationTests", "d4/dfd/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_integration_tests_1_1_translator_integration_tests.html", "d4/dfd/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_integration_tests_1_1_translator_integration_tests" ]
+];

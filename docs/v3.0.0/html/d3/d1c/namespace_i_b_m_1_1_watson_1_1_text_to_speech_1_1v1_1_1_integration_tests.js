@@ -1,0 +1,4 @@
+var namespace_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_integration_tests =
+[
+    [ "SpeechIntegrationTests", "db/d9f/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_integration_tests_1_1_speech_integration_tests.html", "db/d9f/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_integration_tests_1_1_speech_integration_tests" ]
+];

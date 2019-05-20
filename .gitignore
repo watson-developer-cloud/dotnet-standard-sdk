@@ -6,9 +6,12 @@
 *.user
 *.userosscache
 *.sln.docstates
-
+config
+packages/
+coverage/
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
+.nuget
 
 # Build results
 [Dd]ebug/
@@ -137,7 +140,7 @@ publish/
 # Publish Web Output
 *.[Pp]ublish.xml
 *.azurePubxml
-# TODO: Comment the next line if you want to checkin your web deploy settings 
+# TODO: Comment the next line if you want to checkin your web deploy settings
 # but database connection strings (with potential passwords) will be unencrypted
 *.pubxml
 *.publishproj
@@ -234,5 +237,13 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
-/src/IBM.WatsonDeveloperCloud.LanguageTranslator.Test/appsettings.json
-/test/IBM.WatsonDeveloperCloud.LanguageTranslator.IntegrationTests/appsettings.json
+
+**/.swagger-codegen-ignore
+**/.swagger-codegen
+src/tests/
+package-lock.json
+npm-debug.log
+**/*.openapi-generator*
+
+.pre-commit-config.yaml
+.secrets.baseline

@@ -1,0 +1,4 @@
+var class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_integration_tests_1_1_translator_integration_tests =
+[
+    [ "Setup", "d4/dfd/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_integration_tests_1_1_translator_integration_tests.html#a5b831ad1b0d28156fdc687c8b7b9bc3d", null ]
+];

@@ -1,0 +1,4 @@
+var namespace_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_integration_tests =
+[
+    [ "RecognitionIntegrationTests", "d6/d09/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_integration_tests_1_1_recognition_integration_tests.html", "d6/d09/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_integration_tests_1_1_recognition_integration_tests" ]
+];

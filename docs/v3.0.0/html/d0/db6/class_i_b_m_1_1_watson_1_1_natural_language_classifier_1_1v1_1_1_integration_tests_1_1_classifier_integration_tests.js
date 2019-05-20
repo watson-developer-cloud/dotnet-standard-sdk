@@ -1,0 +1,4 @@
+var class_i_b_m_1_1_watson_1_1_natural_language_classifier_1_1v1_1_1_integration_tests_1_1_classifier_integration_tests =
+[
+    [ "Setup", "d0/db6/class_i_b_m_1_1_watson_1_1_natural_language_classifier_1_1v1_1_1_integration_tests_1_1_classifier_integration_tests.html#af0cfd631b106b318c36df5cb89beeb2d", null ]
+];

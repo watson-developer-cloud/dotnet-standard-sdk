@@ -95,6 +95,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.NaturalLanguageU
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.ToneAnalyzer.v3.UnitTests", "test\ToneAnalyzer.v3.UnitTests\IBM.Watson.ToneAnalyzer.v3.UnitTests.csproj", "{28F5A68C-CF5B-4691-A5E5-9135C99470A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.Assistant.V1.Examples", "examples\IBM.Watson.Assistant.V1.Examples\IBM.Watson.Assistant.V1.Examples.csproj", "{001824EA-F16F-4F38-9214-AA7848C9B20C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -233,6 +235,10 @@ Global
 		{28F5A68C-CF5B-4691-A5E5-9135C99470A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28F5A68C-CF5B-4691-A5E5-9135C99470A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28F5A68C-CF5B-4691-A5E5-9135C99470A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{001824EA-F16F-4F38-9214-AA7848C9B20C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{001824EA-F16F-4F38-9214-AA7848C9B20C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{001824EA-F16F-4F38-9214-AA7848C9B20C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{001824EA-F16F-4F38-9214-AA7848C9B20C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -270,6 +276,7 @@ Global
 		{57C7F28F-822A-4C52-909A-F9DB6A0CFA51} = {65D78D49-E54F-4952-A1D4-7C8D0EDAA1B3}
 		{415AADD4-CC05-4B77-8E57-C1B079421875} = {89D715BF-7464-45FB-8DA0-9D7B46AB8C7F}
 		{28F5A68C-CF5B-4691-A5E5-9135C99470A0} = {C7873F44-7188-49BE-84C5-532BE4E07147}
+		{001824EA-F16F-4F38-9214-AA7848C9B20C} = {E3D238D7-7A09-4447-B836-8D6ABF4BFF80}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B9D9D17B-1C17-402F-B701-DC671528690A}

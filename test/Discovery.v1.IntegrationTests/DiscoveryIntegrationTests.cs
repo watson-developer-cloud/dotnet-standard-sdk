@@ -311,8 +311,6 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                     Assert.IsNotNull(testConfigurationInEnvironmentResult.Result.Status);
                 }
             }
-
-
         }
         #endregion
 

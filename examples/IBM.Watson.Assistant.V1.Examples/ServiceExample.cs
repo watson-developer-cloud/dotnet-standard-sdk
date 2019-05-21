@@ -20,7 +20,7 @@ using IBM.Watson.Assistant.v1;
 using IBM.Watson.Assistant.v1.Model;
 using System;
 
-namespace IBM.Watson.Assistant.V1.Examples
+namespace IBM.Watson.Assistant.v1.Examples
 {
     public class ServiceExample
     {

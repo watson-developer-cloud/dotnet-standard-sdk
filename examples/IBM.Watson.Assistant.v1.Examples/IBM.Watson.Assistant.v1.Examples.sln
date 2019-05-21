@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.Assistant.v1.Examples", "IBM.Watson.Assistant.v1.Examples.csproj", "{F2B633AA-B7DC-4B0B-819A-C29A5D65D1FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F2B633AA-B7DC-4B0B-819A-C29A5D65D1FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2B633AA-B7DC-4B0B-819A-C29A5D65D1FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2B633AA-B7DC-4B0B-819A-C29A5D65D1FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2B633AA-B7DC-4B0B-819A-C29A5D65D1FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -41,6 +41,7 @@ namespace IBM.Watson.Discovery.v1.Examples
         private string metadata = "{\"Creator\": \".NET SDK Example\",\"Subject\": \"Discovery service\"}";
         private string naturalLanguageQuery = "Who beat Ken Jennings in Jeopardy!";
         private string gatewayId;
+        private string credentialId;
         private string sessionToken;   
         private static string configurationName;
         private static string updatedConfigurationName;
@@ -1313,7 +1314,7 @@ namespace IBM.Watson.Discovery.v1.Examples
 
             Console.WriteLine(result.Response);
 
-            string credentialId = result.Result.CredentialId;
+            credentialId = result.Result.CredentialId;
         }
 
         public void GetCredentials()

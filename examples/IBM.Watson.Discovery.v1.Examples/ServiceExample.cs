@@ -20,6 +20,8 @@ using Environment = IBM.Watson.Discovery.v1.Model.Environment;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using IBM.Watson.Discovery.v1.Model;
+using IBM.Cloud.SDK.Core.Http;
 
 namespace IBM.Watson.Discovery.v1.Examples
 {
@@ -35,6 +37,9 @@ namespace IBM.Watson.Discovery.v1.Examples
         private string queryId;
         private string exampleId;
         private string filepathToIngest = @"DiscoveryTestData\watson_beats_jeopardy.html";
+        private string stopwordFileToIngest = @"DiscoveryTestData\stopwords.txt";
+        private string metadata = "{\"Creator\": \".NET SDK Example\",\"Subject\": \"Discovery service\"}";
+        private string naturalLanguageQuery = "Who beat Ken Jennings in Jeopardy!";
         private static string configurationName;
         private static string updatedConfigurationName;
         private static string collectionName;
@@ -68,6 +73,29 @@ namespace IBM.Watson.Discovery.v1.Examples
             example.ListCollectionFields();
             example.ListFields();
 
+            example.ListExpansions();
+            example.CreateExpansions();
+            example.GetTokenizationDictionaryStatus();
+            example.CreateTokenizationDictionary();
+            example.GetStopwordListStatus();
+            example.CreateStopwordList();
+
+            example.AddDocument();
+            example.GetDocument();
+            example.UpdateDocument();
+
+            example.Query();
+            example.QueryNotices();
+            example.FederatedQuery();
+            example.FederatedQueryNotices();
+            example.QueryEntities();
+            example.QueryRelations();
+
+
+            example.DeleteDocument();
+            example.DeleteStopwordList();
+            example.DeleteTokenizationDictionary();
+            example.DeleteExpansion();
             example.DeleteCollection();
             example.DeleteConfiguration();
             //example.DeleteEnvironment();      // Commented since we do not want to delete our environment.
@@ -416,7 +444,7 @@ namespace IBM.Watson.Discovery.v1.Examples
             DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
 
             var result = service.ListCollectionFields(
-                environmentId: environmentId, 
+                environmentId: environmentId,
                 collectionId: collectionId
                 );
 
@@ -425,12 +453,433 @@ namespace IBM.Watson.Discovery.v1.Examples
         #endregion
 
         #region Query Modifications
+        public void ListExpansions()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.ListExpansions(
+                environmentId: environmentId,
+                collectionId: collectionId
+                );
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void CreateExpansions()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var expansions = new List<Expansion>()
+            {
+                new Expansion()
+                {
+                    InputTerms = new List<string>()
+                    {
+                        "input-term"
+                    },
+                    ExpandedTerms = new List<string>()
+                    {
+                        "expanded-term"
+                    }
+                }
+            };
+
+            var result = service.CreateExpansions(
+                environmentId: environmentId,
+                collectionId: collectionId,
+                expansions: expansions
+                );
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void DeleteExpansion()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.DeleteExpansions(
+                environmentId: environmentId,
+                collectionId: collectionId
+                );
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void GetTokenizationDictionaryStatus()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.GetTokenizationDictionaryStatus(
+                environmentId: environmentId,
+                collectionId: collectionId
+                );
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void CreateTokenizationDictionary()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var tokenizationRules = new List<TokenDictRule>()
+            {
+                new TokenDictRule()
+                {
+                    Text = "すしネコ",
+                    Tokens = new List<string>()
+                    {
+                        "すし", "ネコ"
+                    },
+                    Readings = new List<string>()
+                    {
+                        "寿司", "ネコ"
+                    },
+                    PartOfSpeech = "カスタム名詞"
+                }
+            };
+
+            var result = service.CreateTokenizationDictionary(
+                    environmentId: environmentId,
+                    collectionId: collectionId,
+                    tokenizationRules: tokenizationRules
+                    );
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void DeleteTokenizationDictionary()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.DeleteTokenizationDictionary(
+                environmentId: environmentId,
+                collectionId: collectionId
+                );
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void GetStopwordListStatus()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.GetStopwordListStatus(
+                environmentId: environmentId,
+                collectionId: collectionId
+                );
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void CreateStopwordList()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            DetailedResponse<TokenDictStatusResponse> result;
+            using (FileStream fs = File.OpenRead(stopwordFileToIngest))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    fs.CopyTo(ms);
+                    service.WithHeader("X-Watson-Test", "1");
+                    result = service.CreateStopwordList(
+                        environmentId: environmentId,
+                        collectionId: collectionId, 
+                        stopwordFile: ms,
+                        stopwordFilename: Path.GetFileName(stopwordFileToIngest)
+                        );
+                }
+            }
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void DeleteStopwordList()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.DeleteStopwordList(
+                environmentId: environmentId,
+                collectionId: collectionId
+                );
+
+            Console.WriteLine(result.Response);
+        }
         #endregion
 
         #region Documents
+        public void AddDocument()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            DetailedResponse<DocumentAccepted> result;
+            using (FileStream fs = File.OpenRead(filepathToIngest))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    fs.CopyTo(ms);
+                    service.WithHeader("X-Watson-Test", "1");
+                    result = service.AddDocument(
+                    environmentId: environmentId,
+                    collectionId: collectionId,
+                    file: ms,
+                    filename: "watson_beats_jeopardy.html",
+                    fileContentType: "text/html",
+                    metadata: metadata
+                    );
+
+                    documentId = result.Result.DocumentId;
+                }
+            }
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void GetDocument()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.GetDocumentStatus(
+                environmentId: environmentId,
+                collectionId: collectionId,
+                documentId: documentId
+                );
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void UpdateDocument()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            DetailedResponse<DocumentAccepted> result;
+            using (FileStream fs = File.OpenRead(filepathToIngest))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    fs.CopyTo(ms);
+                    service.WithHeader("X-Watson-Test", "1");
+                    result = service.UpdateDocument(
+                    environmentId: environmentId,
+                    collectionId: collectionId,
+                    documentId: documentId,
+                    file: ms,
+                    filename: "watson_beats_jeopardy.html",
+                    fileContentType: "text/html",
+                    metadata: metadata
+                    );
+                }
+            }
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void DeleteDocument()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.DeleteDocument(
+                environmentId: environmentId,
+                collectionId: collectionId,
+                documentId: documentId
+                );
+
+            Console.WriteLine(result.Response);
+        }
         #endregion
 
         #region Queries
+        public void Query()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.Query(
+                environmentId: environmentId,
+                collectionId: collectionId,
+                naturalLanguageQuery: naturalLanguageQuery,
+                returnFields: "extracted_metadata.sha1"
+                );
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void QueryNotices()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.QueryNotices(
+                environmentId: environmentId,
+                collectionId: collectionId,
+                naturalLanguageQuery: naturalLanguageQuery,
+                passages: true
+                );
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void FederatedQuery()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.FederatedQuery(
+                environmentId: environmentId,
+                naturalLanguageQuery: naturalLanguageQuery,
+                returnFields: "extracted_metadata.sha1"
+                );
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void FederatedQueryNotices()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.FederatedQueryNotices(
+                environmentId: environmentId,
+                naturalLanguageQuery: naturalLanguageQuery,
+                collectionIds: new List<string> { collectionId }
+                );
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void QueryEntities()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.QueryEntities(
+                environmentId: environmentId,
+                collectionId: collectionId
+                );
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void QueryRelations()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.QueryRelations(
+                environmentId: environmentId,
+                collectionId: collectionId
+                );
+
+            Console.WriteLine(result.Response);
+        }
         #endregion
 
         #region Training Data

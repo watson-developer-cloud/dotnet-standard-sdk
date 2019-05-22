@@ -40,6 +40,8 @@ namespace IBM.Watson.Discovery.v1.Examples
         private string stopwordFileToIngest = @"DiscoveryTestData\stopwords.txt";
         private string metadata = "{\"Creator\": \".NET SDK Example\",\"Subject\": \"Discovery service\"}";
         private string naturalLanguageQuery = "Who beat Ken Jennings in Jeopardy!";
+        private string gatewayId;
+        private string sessionToken;   
         private static string configurationName;
         private static string updatedConfigurationName;
         private static string collectionName;
@@ -91,7 +93,38 @@ namespace IBM.Watson.Discovery.v1.Examples
             example.QueryEntities();
             example.QueryRelations();
 
+            example.ListTrainingData();
+            example.AddTrainingData();
+            example.GetTrainingData();
+            example.ListTrainingExamples();
+            example.CreateTrainingExample();
+            example.UpdateTrainingExample();
+            example.GetTrainingExample();
 
+            example.DeleteUserData();
+
+            example.CreateEvent();
+            example.QueryLog();
+            example.GetMetricsQuery();
+            example.GetMetricsQueryEvent();
+            example.GetMetricsQueryNoResult();
+            example.GetMetricsQueryEventRate();
+            example.GetMetricsQueryTokenEvent();
+
+            example.ListCredentials();
+            example.CreateCredentials();
+            example.GetCredentials();
+            example.UpdateCredentials();
+
+            example.ListGateways();
+            example.CreateGateway();
+            example.GetGateway();
+
+            example.DeleteGateway();
+            example.DeleteCredentials();
+            example.DeleteTrainingExample();
+            example.DeleteTrainingData();
+            example.DeleteAllTraininData();
             example.DeleteDocument();
             example.DeleteStopwordList();
             example.DeleteTokenizationDictionary();
@@ -785,6 +818,8 @@ namespace IBM.Watson.Discovery.v1.Examples
                 );
 
             Console.WriteLine(result.Response);
+
+            sessionToken = result.Result.SessionToken;
         }
 
         public void QueryNotices()
@@ -883,18 +918,549 @@ namespace IBM.Watson.Discovery.v1.Examples
         #endregion
 
         #region Training Data
+        public void ListTrainingData()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.ListTrainingData(
+                environmentId: environmentId,
+                collectionId: collectionId
+                );
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void AddTrainingData()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var examples = new List<TrainingExample>()
+            {
+                new TrainingExample()
+                {
+                    DocumentId = "documentId",
+                    CrossReference = "crossReference",
+                    Relevance = 1
+                }
+            };
+
+            var result = service.AddTrainingData(
+                environmentId: environmentId,
+                collectionId: collectionId,
+                naturalLanguageQuery: naturalLanguageQuery,
+                filter: "filter",
+                examples: examples
+                );
+            queryId = result.Result.QueryId;
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void DeleteAllTraininData()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.DeleteAllTrainingData(
+                environmentId: environmentId,
+                collectionId: collectionId
+                );
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void GetTrainingData()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.GetTrainingData(
+                environmentId: environmentId,
+                collectionId: collectionId,
+                queryId: queryId
+                );
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void DeleteTrainingData()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.DeleteTrainingData(
+                environmentId: environmentId,
+                collectionId: collectionId,
+                queryId: queryId
+                );
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void ListTrainingExamples()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.ListTrainingExamples(
+                environmentId: environmentId,
+                collectionId: collectionId,
+                queryId: queryId
+                );
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void CreateTrainingExample()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.CreateTrainingExample(
+                environmentId: environmentId,
+                collectionId: collectionId,
+                queryId: queryId,
+                documentId: documentId,
+                relevance: 1
+                );
+
+            Console.WriteLine(result.Response);
+
+            exampleId = result.Result.DocumentId;
+        }
+
+        public void DeleteTrainingExample()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.DeleteTrainingExample(
+                environmentId: environmentId,
+                collectionId: collectionId,
+                queryId: queryId,
+                exampleId: exampleId
+                );
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void UpdateTrainingExample()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.UpdateTrainingExample(
+                environmentId: environmentId,
+                collectionId: collectionId,
+                queryId: queryId,
+                exampleId: exampleId,
+                crossReference: "crossReference",
+                relevance: 1
+                );
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void GetTrainingExample()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.GetTrainingExample(
+                environmentId: environmentId,
+                collectionId: collectionId,
+                queryId: queryId,
+                exampleId: exampleId
+                );
+
+            Console.WriteLine(result.Response);
+        }
         #endregion
 
         #region User data
+        public void DeleteUserData()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.DeleteUserData(
+                customerId: "customerId"
+                );
+
+            Console.WriteLine(result.Response);
+        }
         #endregion
 
         #region Events and Feedback
+        public void CreateEvent()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var data = new EventData()
+            {
+                EnvironmentId = environmentId,
+                SessionToken = sessionToken,
+                CollectionId = collectionId,
+                DocumentId = documentId
+            };
+
+            var result = service.CreateEvent(
+                type: CreateEventResponse.TypeEnumValue.CLICK,
+                data: data
+                );
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void QueryLog()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.QueryLog();
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void GetMetricsQuery()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.GetMetricsQuery();
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void GetMetricsQueryEvent()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.GetMetricsQueryEvent();
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void GetMetricsQueryNoResult()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.GetMetricsQueryNoResults();
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void GetMetricsQueryEventRate()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.GetMetricsEventRate();
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void GetMetricsQueryTokenEvent()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.GetMetricsQueryTokenEvent();
+
+            Console.WriteLine(result.Response);
+        }
         #endregion
 
         #region Credentials
+        public void ListCredentials()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.ListCredentials(
+                environmentId: environmentId
+                );
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void CreateCredentials()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var credentialDetails = new CredentialDetails()
+            {
+                CredentialType = CredentialDetails.CredentialTypeEnumValue.OAUTH2,
+                EnterpriseId = "myEnterpriseId",
+                ClientId = "myClientId",
+                ClientSecret = "myClientSecret",
+                PublicKeyId = "myPublicIdKey",
+                Passphrase = "myPassphrase",
+                PrivateKey = "myPrivateKey"
+            };
+
+            var result = service.CreateCredentials(
+                environmentId: environmentId,
+                sourceType: Credentials.SourceTypeEnumValue.BOX,
+                credentialDetails: credentialDetails
+                );
+
+            Console.WriteLine(result.Response);
+
+            string credentialId = result.Result.CredentialId;
+        }
+
+        public void GetCredentials()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.GetCredentials(
+                environmentId: environmentId,
+                credentialId: credentialId
+                );
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void UpdateCredentials()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            string privateKey = "privatekey";
+            var privateKeyBytes = System.Text.Encoding.UTF8.GetBytes(privateKey);
+            var base64PrivateKey = Convert.ToBase64String(privateKeyBytes);
+
+            var updatedCredentialDetails = new CredentialDetails()
+            {
+                CredentialType = CredentialDetails.CredentialTypeEnumValue.OAUTH2,
+                EnterpriseId = "myEnterpriseIdUpdated",
+                ClientId = "myClientIdUpdated",
+                ClientSecret = "myClientSecretUpdated",
+                PublicKeyId = "myPublicIdKeyUpdated",
+                Passphrase = "myPassphraseUpdated",
+                PrivateKey = base64PrivateKey
+            };
+
+            var result = service.UpdateCredentials(
+                environmentId: environmentId,
+                credentialId: credentialId,
+                sourceType: Credentials.SourceTypeEnumValue.BOX,
+                credentialDetails: updatedCredentialDetails
+                );
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void DeleteCredentials()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.DeleteCredentials(
+                environmentId: environmentId,
+                credentialId: credentialId
+                );
+
+            Console.WriteLine(result.Response);
+        }
         #endregion
 
         #region Gateway Configuration
+        public void ListGateways()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.ListGateways(
+                environmentId: environmentId
+                );
+                
+            Console.WriteLine(result.Response);
+        }
+
+        public void CreateGateway()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.CreateGateway(
+                environmentId: environmentId,
+                name: "dotnet-sdk-example-gateway"
+                );
+
+            Console.WriteLine(result.Response);
+
+            gatewayId = result.Result.GatewayId;
+        }
+
+        public void GetGateway()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.GetGateway(
+                environmentId: environmentId,
+                gatewayId: gatewayId
+                );
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void DeleteGateway()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            DiscoveryService service = new DiscoveryService(tokenOptions, versionDate);
+
+            var result = service.DeleteGateway(
+                environmentId: environmentId,
+                gatewayId: gatewayId
+                );
+
+            Console.WriteLine(result.Response);
+        }
         #endregion
     }
 }

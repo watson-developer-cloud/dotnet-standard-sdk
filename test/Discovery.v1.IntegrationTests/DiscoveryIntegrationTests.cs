@@ -49,7 +49,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         private string updatedConfigurationName;
         private string createdConfigurationDescription = "configDescription - safe to delete";
         private string filepathToIngest = @"DiscoveryTestData\watson_beats_jeopardy.html";
-        private string metadata = "{\"Creator\": \"DotnetSDK Test\",\"Subject\": \"Discovery service\"}";
+        private string metadata = "{\"Creator\": \".NET SDK Test\",\"Subject\": \"Discovery service\"}";
         private string stopwordFileToIngest = @"DiscoveryTestData\stopwords.txt";
 
         private string createdCollectionName;
@@ -378,7 +378,8 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                     file: ms,
                     filename: "watson_beats_jeopardy.html",
                     fileContentType: "text/html",
-                    metadata: metadata);
+                    metadata: metadata
+                    );
                 }
             }
 
@@ -607,6 +608,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                     fileContentType: "text/html",
                     metadata: metadata
                     );
+
                     documentId = addDocumentResult.Result.DocumentId;
                 }
             }
@@ -1195,7 +1197,8 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                     service.WithHeader("X-Watson-Test", "1");
                     createStopwordListResult = service.CreateStopwordList(
                         environmentId: environmentId,
-                        collectionId: collectionId, stopwordFile: ms,
+                        collectionId: collectionId,
+                        stopwordFile: ms,
                         stopwordFilename: Path.GetFileName(stopwordFileToIngest)
                         );
                 }

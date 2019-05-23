@@ -49,7 +49,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         private string updatedConfigurationName;
         private string createdConfigurationDescription = "configDescription - safe to delete";
         private string filepathToIngest = @"DiscoveryTestData\watson_beats_jeopardy.html";
-        private string metadata = "{\"Creator\": \"DotnetSDK Test\",\"Subject\": \"Discovery service\"}";
+        private string metadata = "{\"Creator\": \".NET SDK Test\",\"Subject\": \"Discovery service\"}";
         private string stopwordFileToIngest = @"DiscoveryTestData\stopwords.txt";
 
         private string createdCollectionName;
@@ -65,45 +65,8 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
-            #region Get Credentials
-            if (string.IsNullOrEmpty(credentials))
-            {
-                var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.Parent.FullName;
-                string credentialsFilepath = parentDirectory + Path.DirectorySeparatorChar + "sdk-credentials" + Path.DirectorySeparatorChar + "credentials.json";
-                if (File.Exists(credentialsFilepath))
-                {
-                    try
-                    {
-                        credentials = File.ReadAllText(credentialsFilepath);
-                        credentials = Utility.AddTopLevelObjectToJson(credentials, "VCAP_SERVICES");
-                    }
-                    catch (Exception e)
-                    {
-                        throw new Exception(string.Format("Failed to load credentials: {0}", e.Message));
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Credentials file does not exist.");
-                }
-
-                VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
-                var vcapServices = JObject.Parse(credentials);
-
-                Credential credential = vcapCredentials.GetCredentialByname("discovery-sdk")[0].Credentials;
-                endpoint = credential.Url;
-                apikey = credential.IamApikey;
-            }
-            #endregion
-
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = endpoint
-            };
-
-            service = new DiscoveryService(tokenOptions, version);
-            service.SetEndpoint(endpoint);
+            service = new DiscoveryService();
+            service.VersionDate = version;
 
             service.WithHeader("X-Watson-Test", "1");
             var environments = service.ListEnvironments();
@@ -311,8 +274,6 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                     Assert.IsNotNull(testConfigurationInEnvironmentResult.Result.Status);
                 }
             }
-
-
         }
         #endregion
 
@@ -380,7 +341,8 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                     file: ms,
                     filename: "watson_beats_jeopardy.html",
                     fileContentType: "text/html",
-                    metadata: metadata);
+                    metadata: metadata
+                    );
                 }
             }
 
@@ -609,6 +571,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                     fileContentType: "text/html",
                     metadata: metadata
                     );
+
                     documentId = addDocumentResult.Result.DocumentId;
                 }
             }
@@ -1197,7 +1160,8 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                     service.WithHeader("X-Watson-Test", "1");
                     createStopwordListResult = service.CreateStopwordList(
                         environmentId: environmentId,
-                        collectionId: collectionId, stopwordFile: ms,
+                        collectionId: collectionId,
+                        stopwordFile: ms,
                         stopwordFilename: Path.GetFileName(stopwordFileToIngest)
                         );
                 }

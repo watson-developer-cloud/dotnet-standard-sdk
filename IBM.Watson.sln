@@ -95,17 +95,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.NaturalLanguageU
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.ToneAnalyzer.v3.UnitTests", "test\ToneAnalyzer.v3.UnitTests\IBM.Watson.ToneAnalyzer.v3.UnitTests.csproj", "{28F5A68C-CF5B-4691-A5E5-9135C99470A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.Assistant.v2.Examples", "examples\IBM.Watson.Assistant.v2.Examples\IBM.Watson.Assistant.v2.Examples.csproj", "{4CFF70FE-F96E-46EE-B7FC-E06AEE4EE2AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.Assistant.v2.Examples", "examples\IBM.Watson.Assistant.v2.Examples\IBM.Watson.Assistant.v2.Examples.csproj", "{4CFF70FE-F96E-46EE-B7FC-E06AEE4EE2AC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.Assistant.v1.Examples", "examples\IBM.Watson.Assistant.v1.Examples\IBM.Watson.Assistant.v1.Examples.csproj", "{AE7F758A-A6FA-49E7-AD3C-52B784BEBA3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.CompareComply.v1.Examples", "examples\IBM.Watson.CompareComply.v1.Examples\IBM.Watson.CompareComply.v1.Examples.csproj", "{58A819F6-2F99-4A79-95ED-2DED2F9D5DB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.CompareComply.v1.Examples", "examples\IBM.Watson.CompareComply.v1.Examples\IBM.Watson.CompareComply.v1.Examples.csproj", "{58A819F6-2F99-4A79-95ED-2DED2F9D5DB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.Discovery.v1.Examples", "examples\IBM.Watson.Discovery.v1.Examples\IBM.Watson.Discovery.v1.Examples.csproj", "{D3FBC964-AF1B-4416-9FE8-8F0A511908D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.Discovery.v1.Examples", "examples\IBM.Watson.Discovery.v1.Examples\IBM.Watson.Discovery.v1.Examples.csproj", "{D3FBC964-AF1B-4416-9FE8-8F0A511908D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.LanguageTranslator.v3.Examples", "examples\IBM.Watson.LanguageTranslator.v3.Examples\IBM.Watson.LanguageTranslator.v3.Examples.csproj", "{03B2FA0D-14C8-485C-8EE8-16715871E813}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.LanguageTranslator.v3.Examples", "examples\IBM.Watson.LanguageTranslator.v3.Examples\IBM.Watson.LanguageTranslator.v3.Examples.csproj", "{03B2FA0D-14C8-485C-8EE8-16715871E813}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.NaturalLangaugeClassifier.v1.Examples", "examples\IBM.Watson.NaturalLangaugeClassifier.v1.Examples\IBM.Watson.NaturalLangaugeClassifier.v1.Examples.csproj", "{B74E72B5-E2C9-43EE-88D2-34315AF3AD33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.NaturalLangaugeClassifier.v1.Examples", "examples\IBM.Watson.NaturalLangaugeClassifier.v1.Examples\IBM.Watson.NaturalLangaugeClassifier.v1.Examples.csproj", "{B74E72B5-E2C9-43EE-88D2-34315AF3AD33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.SpeechToText.v1.Examples", "examples\IBM.Watson.SpeechToText.v1.Examples\IBM.Watson.SpeechToText.v1.Examples.csproj", "{7D175FD3-128F-48EE-9DBC-9B0D28109CB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -269,6 +271,10 @@ Global
 		{B74E72B5-E2C9-43EE-88D2-34315AF3AD33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B74E72B5-E2C9-43EE-88D2-34315AF3AD33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B74E72B5-E2C9-43EE-88D2-34315AF3AD33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D175FD3-128F-48EE-9DBC-9B0D28109CB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D175FD3-128F-48EE-9DBC-9B0D28109CB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D175FD3-128F-48EE-9DBC-9B0D28109CB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D175FD3-128F-48EE-9DBC-9B0D28109CB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -312,6 +318,7 @@ Global
 		{D3FBC964-AF1B-4416-9FE8-8F0A511908D5} = {BE946662-3884-45E9-A3B1-B28F3081AD1B}
 		{03B2FA0D-14C8-485C-8EE8-16715871E813} = {65D78D49-E54F-4952-A1D4-7C8D0EDAA1B3}
 		{B74E72B5-E2C9-43EE-88D2-34315AF3AD33} = {5917402E-D9A2-4308-8A1A-9C0692939420}
+		{7D175FD3-128F-48EE-9DBC-9B0D28109CB3} = {254924C9-64CD-4902-97C4-5F9E48DCDF7F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B9D9D17B-1C17-402F-B701-DC671528690A}

@@ -19,8 +19,11 @@ using System;
 
 namespace IBM.Watson.TextToSpeech.v1.Examples
 {
-    class ServiceExample
+    public class ServiceExample
     {
+        string apikey = "{apikey}";
+        string url = "{url}";
+
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");

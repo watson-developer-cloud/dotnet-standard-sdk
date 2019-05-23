@@ -23,7 +23,7 @@ using System.IO;
 
 namespace IBM.Watson.CompareComply.v1.Examples
 {
-    class ServiceExample
+    public class ServiceExample
     {
         string apikey = "{apikey}";
         string url = "{url}";

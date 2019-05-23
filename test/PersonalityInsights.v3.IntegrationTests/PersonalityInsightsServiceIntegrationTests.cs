@@ -33,6 +33,7 @@ namespace IBM.Watson.PersonalityInsights.v3.IntegrationTests
         private static string endpoint;
         private PersonalityInsightsService service;
         private static string credentials = string.Empty;
+        private string versionDate = "2016-10-20";
 
         [TestInitialize]
         public void Setup()
@@ -74,7 +75,8 @@ namespace IBM.Watson.PersonalityInsights.v3.IntegrationTests
                 ServiceUrl = endpoint
             };
 
-            service = new PersonalityInsightsService(tokenOptions, "2016-10-20");
+            service = new PersonalityInsightsService();
+            service.VersionDate = versionDate;
         }
 
         [TestMethod]

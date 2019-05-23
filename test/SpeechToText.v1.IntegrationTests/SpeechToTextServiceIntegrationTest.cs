@@ -431,7 +431,7 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
             }
             catch (Exception e)
             {
-                Console.WriteLine(string.Format("Failed to get credentials: {0}", e.Message));
+                Console.WriteLine(string.Format("Failed to get acoustic resource data: {0}", e.Message));
             }
 
             Task.WaitAll();
@@ -440,7 +440,11 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
             var listAcousticModelsResult = service.ListAcousticModels();
 
             service.WithHeader("X-Watson-Test", "1");
-            var createAcousticModelResult = service.CreateAcousticModel(name: acousticModelName, baseModelName: "de-DE_BroadbandModel", description: acousticModelDescription);
+            var createAcousticModelResult = service.CreateAcousticModel(
+                name: acousticModelName,
+                baseModelName: "de-DE_BroadbandModel",
+                description: acousticModelDescription
+                );
             var acousticCustomizationId = createAcousticModelResult.Result.CustomizationId;
             service.WithHeader("X-Watson-Test", "1");
             var getAcousticModelResult = service.GetAcousticModel(
@@ -615,6 +619,29 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
             Assert.IsNotNull(createJobResult);
             Assert.IsTrue(!string.IsNullOrEmpty(createJobResult.Result.Id));
             Assert.IsNotNull(deleteJobResult);
+        }
+        #endregion
+
+        #region Callbacks
+        [TestMethod]
+        public void TestCallbacks_Success()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var registerCallbackResult = service.RegisterCallback(
+                callbackUrl: "https://watson-test-resources.mybluemix.net/speech-to-text-async/secure/callback",
+                userSecret: "ThisIsMySecret"
+                );
+
+            service.WithHeader("X-Watson-Test", "1");
+            var unregisterCallbackResult = service.UnregisterCallback(
+                callbackUrl: "https://watson-test-resources.mybluemix.net/speech-to-text-async/secure/callback"
+                );
+
+            Assert.IsNotNull(registerCallbackResult);
+            Assert.IsNotNull(registerCallbackResult.Result);
+            Assert.IsNotNull(registerCallbackResult.Result.Status);
+            Assert.IsTrue(registerCallbackResult.Result.Url == "https://watson-test-resources.mybluemix.net/speech-to-text-async/secure/callback");
+            Assert.IsNotNull(unregisterCallbackResult.StatusCode == 200);
         }
         #endregion
 

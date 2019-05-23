@@ -135,7 +135,6 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
-                    service.WithHeader("X-Watson-Test", "1");
                     result = service.CreateModel(
                         baseModelId: "en-fr",
                         forcedGlossary: ms,

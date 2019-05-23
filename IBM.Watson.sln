@@ -101,6 +101,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.Assistant.v1.Exa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.CompareComply.v1.Examples", "examples\IBM.Watson.CompareComply.v1.Examples\IBM.Watson.CompareComply.v1.Examples.csproj", "{58A819F6-2F99-4A79-95ED-2DED2F9D5DB4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.Discovery.v1.Examples", "examples\IBM.Watson.Discovery.v1.Examples\IBM.Watson.Discovery.v1.Examples.csproj", "{D3FBC964-AF1B-4416-9FE8-8F0A511908D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -251,6 +253,10 @@ Global
 		{58A819F6-2F99-4A79-95ED-2DED2F9D5DB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58A819F6-2F99-4A79-95ED-2DED2F9D5DB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58A819F6-2F99-4A79-95ED-2DED2F9D5DB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3FBC964-AF1B-4416-9FE8-8F0A511908D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3FBC964-AF1B-4416-9FE8-8F0A511908D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3FBC964-AF1B-4416-9FE8-8F0A511908D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3FBC964-AF1B-4416-9FE8-8F0A511908D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -291,6 +297,7 @@ Global
 		{4CFF70FE-F96E-46EE-B7FC-E06AEE4EE2AC} = {90E09BF8-A647-43B8-B721-05CAECFADD72}
 		{AE7F758A-A6FA-49E7-AD3C-52B784BEBA3F} = {E3D238D7-7A09-4447-B836-8D6ABF4BFF80}
 		{58A819F6-2F99-4A79-95ED-2DED2F9D5DB4} = {B368DCF7-FB57-4302-8467-4EB142394A29}
+		{D3FBC964-AF1B-4416-9FE8-8F0A511908D5} = {BE946662-3884-45E9-A3B1-B28F3081AD1B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B9D9D17B-1C17-402F-B701-DC671528690A}

@@ -23,7 +23,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update=".\NLCTestData\**\*;">
+    <None Update=".\NaturalLanguageClassifierTestData\**\*;">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

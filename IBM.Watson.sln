@@ -107,6 +107,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.LanguageTranslat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.NaturalLangaugeClassifier.v1.Examples", "examples\IBM.Watson.NaturalLangaugeClassifier.v1.Examples\IBM.Watson.NaturalLangaugeClassifier.v1.Examples.csproj", "{B74E72B5-E2C9-43EE-88D2-34315AF3AD33}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.NaturalLanguageUnderstanding.v1.Examples", "examples\IBM.Watson.NaturalLanguageUnderstanding.v1.Examples\IBM.Watson.NaturalLanguageUnderstanding.v1.Examples.csproj", "{0D0A16C3-CCBD-4072-BA81-40E015F0A062}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -269,6 +271,10 @@ Global
 		{B74E72B5-E2C9-43EE-88D2-34315AF3AD33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B74E72B5-E2C9-43EE-88D2-34315AF3AD33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B74E72B5-E2C9-43EE-88D2-34315AF3AD33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D0A16C3-CCBD-4072-BA81-40E015F0A062}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D0A16C3-CCBD-4072-BA81-40E015F0A062}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D0A16C3-CCBD-4072-BA81-40E015F0A062}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D0A16C3-CCBD-4072-BA81-40E015F0A062}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -312,6 +318,7 @@ Global
 		{D3FBC964-AF1B-4416-9FE8-8F0A511908D5} = {BE946662-3884-45E9-A3B1-B28F3081AD1B}
 		{03B2FA0D-14C8-485C-8EE8-16715871E813} = {65D78D49-E54F-4952-A1D4-7C8D0EDAA1B3}
 		{B74E72B5-E2C9-43EE-88D2-34315AF3AD33} = {5917402E-D9A2-4308-8A1A-9C0692939420}
+		{0D0A16C3-CCBD-4072-BA81-40E015F0A062} = {89D715BF-7464-45FB-8DA0-9D7B46AB8C7F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B9D9D17B-1C17-402F-B701-DC671528690A}

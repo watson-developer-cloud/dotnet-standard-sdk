@@ -38,43 +38,6 @@ namespace IBM.Watson.PersonalityInsights.v3.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
-            #region Get Credentials
-            if (string.IsNullOrEmpty(credentials))
-            {
-                var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.Parent.FullName;
-                string credentialsFilepath = parentDirectory + Path.DirectorySeparatorChar + "sdk-credentials" + Path.DirectorySeparatorChar + "credentials.json";
-                if (File.Exists(credentialsFilepath))
-                {
-                    try
-                    {
-                        credentials = File.ReadAllText(credentialsFilepath);
-                        credentials = Utility.AddTopLevelObjectToJson(credentials, "VCAP_SERVICES");
-                    }
-                    catch (Exception e)
-                    {
-                        throw new Exception(string.Format("Failed to load credentials: {0}", e.Message));
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Credentials file does not exist.");
-                }
-
-                VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
-                var vcapServices = JObject.Parse(credentials);
-
-                Credential credential = vcapCredentials.GetCredentialByname("personality-insights-sdk")[0].Credentials;
-                endpoint = credential.Url;
-                apikey = credential.IamApikey;
-            }
-            #endregion
-
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = endpoint
-            };
-
             service = new PersonalityInsightsService();
             service.VersionDate = versionDate;
         }

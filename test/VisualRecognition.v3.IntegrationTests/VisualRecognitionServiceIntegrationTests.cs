@@ -47,6 +47,7 @@ namespace IBM.Watson.VisualRecognition.v3.IntegrationTests
         private string turtleClassname = "turtle";
         private string localNegativeExamplesFilePath = @"VisualRecognitionTestData/negative_examples.zip";
         private string createdClassifierName = "dotnet-standard-test-integration-classifier";
+        private string versionDate = "2018-03-19";
         AutoResetEvent autoEvent = new AutoResetEvent(false);
 
         private static int _trainRetries = 3;
@@ -57,45 +58,8 @@ namespace IBM.Watson.VisualRecognition.v3.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
-            Console.WriteLine(string.Format("\nSetting up test"));
-
-            #region Get Credentials
-            if (string.IsNullOrEmpty(credentials))
-            {
-                var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.Parent.FullName;
-                string credentialsFilepath = parentDirectory + Path.DirectorySeparatorChar + "sdk-credentials" + Path.DirectorySeparatorChar + "credentials.json";
-                if (File.Exists(credentialsFilepath))
-                {
-                    try
-                    {
-                        credentials = File.ReadAllText(credentialsFilepath);
-                        credentials = Utility.AddTopLevelObjectToJson(credentials, "VCAP_SERVICES");
-                    }
-                    catch (Exception e)
-                    {
-                        throw new Exception(string.Format("Failed to load credentials: {0}", e.Message));
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Credentials file does not exist.");
-                }
-
-                VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
-                var vcapServices = JObject.Parse(credentials);
-
-                Credential credential = vcapCredentials.GetCredentialByname("visual-recognition-sdk")[0].Credentials;
-                endpoint = credential.Url;
-                apikey = credential.IamApikey;
-            }
-            #endregion
-
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = endpoint
-            };
-            service = new VisualRecognitionService(tokenOptions, "2018-03-19");
+            service = new VisualRecognitionService();
+            service.VersionDate = versionDate;
             service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(120);
         }
         #endregion

@@ -32,50 +32,14 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.IntegrationTests
         private static string endpoint;
         private NaturalLanguageUnderstandingService service;
         private static string credentials = string.Empty;
+        private string versionDate = "2017-02-27";
         private string nluText = "Analyze various features of text content at scale. Provide text, raw HTML, or a public URL, and IBM Watson Natural Language Understanding will give you results for the features you request. The service cleans HTML content before analysis by default, so the results can ignore most advertisements and other unwanted content.";
 
         [TestInitialize]
         public void Setup()
         {
-            #region Get Credentials
-            if (string.IsNullOrEmpty(credentials))
-            {
-                var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.Parent.FullName;
-                string credentialsFilepath = parentDirectory + Path.DirectorySeparatorChar + "sdk-credentials" + Path.DirectorySeparatorChar + "credentials.json";
-                if (File.Exists(credentialsFilepath))
-                {
-                    try
-                    {
-                        credentials = File.ReadAllText(credentialsFilepath);
-                        credentials = Utility.AddTopLevelObjectToJson(credentials, "VCAP_SERVICES");
-                    }
-                    catch (Exception e)
-                    {
-                        throw new Exception(string.Format("Failed to load credentials: {0}", e.Message));
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Credentials file does not exist.");
-                }
-
-                VcapCredentials vcapCredentials = JsonConvert.DeserializeObject<VcapCredentials>(credentials);
-                var vcapServices = JObject.Parse(credentials);
-
-                Credential credential = vcapCredentials.GetCredentialByname("natural-language-understanding-sdk")[0].Credentials;
-                endpoint = credential.Url;
-                apikey = credential.IamApikey;
-            }
-            #endregion
-
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = endpoint
-            };
-
-            service = new NaturalLanguageUnderstandingService(tokenOptions, "2017-02-27");
-            service.SetEndpoint(endpoint);
+            service = new NaturalLanguageUnderstandingService();
+            service.VersionDate = versionDate;
         }
 
         [TestMethod]

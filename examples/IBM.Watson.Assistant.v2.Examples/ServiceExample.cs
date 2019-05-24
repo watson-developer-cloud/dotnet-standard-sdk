@@ -22,7 +22,7 @@ using System;
 
 namespace IBM.Watson.Assistant.v2.Examples
 {
-    class ServiceExample
+    public class ServiceExample
     {
         string apikey = "{apikey}";
         string url = "{url}";

@@ -25,7 +25,7 @@ using IBM.Cloud.SDK.Core.Http;
 
 namespace IBM.Watson.Discovery.v1.Examples
 {
-    class ServiceExample
+    public class ServiceExample
     {
         string apikey = "{apikey}";
         string url = "{url}";

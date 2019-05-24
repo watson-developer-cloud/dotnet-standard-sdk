@@ -663,7 +663,6 @@ namespace IBM.Watson.Discovery.v1.Examples
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
-                    service.WithHeader("X-Watson-Test", "1");
                     result = service.CreateStopwordList(
                         environmentId: environmentId,
                         collectionId: collectionId, 
@@ -712,7 +711,6 @@ namespace IBM.Watson.Discovery.v1.Examples
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
-                    service.WithHeader("X-Watson-Test", "1");
                     result = service.AddDocument(
                     environmentId: environmentId,
                     collectionId: collectionId,
@@ -764,16 +762,15 @@ namespace IBM.Watson.Discovery.v1.Examples
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
-                    service.WithHeader("X-Watson-Test", "1");
                     result = service.UpdateDocument(
-                    environmentId: environmentId,
-                    collectionId: collectionId,
-                    documentId: documentId,
-                    file: ms,
-                    filename: "watson_beats_jeopardy.html",
-                    fileContentType: "text/html",
-                    metadata: metadata
-                    );
+                        environmentId: environmentId,
+                        collectionId: collectionId,
+                        documentId: documentId,
+                        file: ms,
+                        filename: "watson_beats_jeopardy.html",
+                        fileContentType: "text/html",
+                        metadata: metadata
+                        );
                 }
             }
 

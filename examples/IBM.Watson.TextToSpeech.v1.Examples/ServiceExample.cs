@@ -33,6 +33,28 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
         {
             ServiceExample example = new ServiceExample();
 
+            example.ListVoices();
+            example.GetVoice();
+
+            example.Synthesize();
+
+            example.GetPronunciation();
+
+            example.CreateVoiceModel();
+            example.ListVoiceModels();
+            example.UpdateVoiceModel();
+            example.GetVoiceModel();
+
+            example.AddWords();
+            example.ListWords();
+            example.AddWord();
+            example.GetWord();
+
+            example.DeleteWord();
+            example.DeleteVoiceModel();
+
+            example.DeleteUserData();
+
             Console.WriteLine("Examples complete. Press any key to close the application.");
             Console.ReadKey();
         }
@@ -135,7 +157,7 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
             Console.WriteLine(result.Result);
         }
 
-        public void CreateVoiceModels()
+        public void CreateVoiceModel()
         {
             TokenOptions tokenOptions = new TokenOptions()
             {

@@ -5,4 +5,12 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="IBM.Cloud.SDK.Core" Version="0.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\IBM.Watson.ToneAnalyzer.v3\IBM.Watson.ToneAnalyzer.v3.csproj" />
+  </ItemGroup>
+
 </Project>

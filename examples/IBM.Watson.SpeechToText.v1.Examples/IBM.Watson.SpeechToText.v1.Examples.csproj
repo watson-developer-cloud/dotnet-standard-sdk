@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IBM.Cloud.SDK.Core" Version="0.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\IBM.Watson.SpeechToText.v1\IBM.Watson.SpeechToText.v1.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="SpeechToTextTestData\test-audio.wav;SpeechToTextTestData\theJabberwocky-utf8.txt;SpeechToTextTestData\confirm.abnf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

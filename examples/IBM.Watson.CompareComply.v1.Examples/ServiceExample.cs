@@ -168,7 +168,6 @@ namespace IBM.Watson.CompareComply.v1.Examples
                         {
                             fs0.CopyTo(ms0);
                             fs1.CopyTo(ms1);
-                            service.WithHeader("X-Watson-Test", "1");
                             var result = service.CompareDocuments(
                                 file1: ms0,
                                 file2: ms1,

@@ -105,7 +105,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.Discovery.v1.Exa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.LanguageTranslator.v3.Examples", "examples\IBM.Watson.LanguageTranslator.v3.Examples\IBM.Watson.LanguageTranslator.v3.Examples.csproj", "{03B2FA0D-14C8-485C-8EE8-16715871E813}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.NaturalLangaugeClassifier.v1.Examples", "examples\IBM.Watson.NaturalLangaugeClassifier.v1.Examples\IBM.Watson.NaturalLangaugeClassifier.v1.Examples.csproj", "{B74E72B5-E2C9-43EE-88D2-34315AF3AD33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.NaturalLangaugeClassifier.v1.Examples", "examples\IBM.Watson.NaturalLangaugeClassifier.v1.Examples\IBM.Watson.NaturalLangaugeClassifier.v1.Examples.csproj", "{B74E72B5-E2C9-43EE-88D2-34315AF3AD33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.SpeechToText.v1.Examples", "examples\IBM.Watson.SpeechToText.v1.Examples\IBM.Watson.SpeechToText.v1.Examples.csproj", "{7D175FD3-128F-48EE-9DBC-9B0D28109CB3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.NaturalLanguageUnderstanding.v1.Examples", "examples\IBM.Watson.NaturalLanguageUnderstanding.v1.Examples\IBM.Watson.NaturalLanguageUnderstanding.v1.Examples.csproj", "{0D0A16C3-CCBD-4072-BA81-40E015F0A062}"
 EndProject
@@ -281,6 +283,10 @@ Global
 		{E28E9097-E145-4E36-A762-A55E25686945}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E28E9097-E145-4E36-A762-A55E25686945}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E28E9097-E145-4E36-A762-A55E25686945}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D175FD3-128F-48EE-9DBC-9B0D28109CB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D175FD3-128F-48EE-9DBC-9B0D28109CB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D175FD3-128F-48EE-9DBC-9B0D28109CB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D175FD3-128F-48EE-9DBC-9B0D28109CB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -326,6 +332,7 @@ Global
 		{B74E72B5-E2C9-43EE-88D2-34315AF3AD33} = {5917402E-D9A2-4308-8A1A-9C0692939420}
 		{0D0A16C3-CCBD-4072-BA81-40E015F0A062} = {89D715BF-7464-45FB-8DA0-9D7B46AB8C7F}
 		{E28E9097-E145-4E36-A762-A55E25686945} = {D65AC99F-4E63-4362-8765-EB6F15838CA0}
+		{7D175FD3-128F-48EE-9DBC-9B0D28109CB3} = {254924C9-64CD-4902-97C4-5F9E48DCDF7F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B9D9D17B-1C17-402F-B701-DC671528690A}

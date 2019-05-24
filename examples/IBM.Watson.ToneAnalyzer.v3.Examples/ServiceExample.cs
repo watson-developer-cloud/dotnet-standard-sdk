@@ -15,7 +15,10 @@
 *
 */
 
+using IBM.Cloud.SDK.Core.Util;
+using IBM.Watson.ToneAnalyzer.v3.Model;
 using System;
+using System.Collections.Generic;
 
 namespace IBM.Watson.ToneAnalyzer.v3.Examples
 {
@@ -23,14 +26,75 @@ namespace IBM.Watson.ToneAnalyzer.v3.Examples
     {
         string apikey = "{apikey}";
         string url = "{url}";
-        private string versionDate = "2016-05-19";
+        private string versionDate = "{versionDate}";
 
         static void Main(string[] args)
         {
             ServiceExample example = new ServiceExample();
 
+            example.Tone();
+            example.ToneChat();
+
             Console.WriteLine("Examples complete. Press any key to close the application.");
             Console.ReadKey();
         }
+
+        #region Analyze Tone
+        public void Tone()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            ToneAnalyzerService service = new ToneAnalyzerService(tokenOptions, versionDate);
+
+            ToneInput toneInput = new ToneInput()
+            {
+                Text = "Hello! Welcome to IBM Watson! How can I help you?"
+            };
+
+            var result = service.Tone(
+                toneInput: toneInput,
+                contentType: "text/html",
+                sentences: true,
+                contentLanguage: "en-US",
+                acceptLanguage: "en-US"
+                );
+
+            Console.WriteLine(result.Response);
+        }
+        #endregion
+
+        #region Analyze Customer Engagment Tone
+        public void ToneChat()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            ToneAnalyzerService service = new ToneAnalyzerService(tokenOptions, versionDate);
+
+            var utterances = new List<Utterance>()
+            {
+                new Utterance()
+                {
+                    Text = "Hello! Welcome to IBM Watson! How can I help you?",
+                    User = "testChatUser"
+                }
+            };
+
+            var result = service.ToneChat(
+                utterances: utterances,
+                contentLanguage: "en-US",
+                acceptLanguage: "en-US"
+                );
+
+            Console.WriteLine(result.Response);
+        }
+        #endregion
     }
 }

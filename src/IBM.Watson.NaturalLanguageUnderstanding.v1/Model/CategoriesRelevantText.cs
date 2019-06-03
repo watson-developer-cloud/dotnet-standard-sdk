@@ -17,18 +17,18 @@
 
 using Newtonsoft.Json;
 
-namespace IBM.Watson.Assistant.v1.Model
+namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// Workspace settings related to the Watson Assistant user interface.
+    /// Relevant text that contributed to the categorization.
     /// </summary>
-    public class WorkspaceSystemSettingsTooling
+    public class CategoriesRelevantText
     {
         /// <summary>
-        /// Whether the dialog JSON editor displays text responses within the `output.generic` object.
+        /// Text from the analyzed source that supports the categorization.
         /// </summary>
-        [JsonProperty("store_generic_responses", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? StoreGenericResponses { get; set; }
+        [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
+        public string Text { get; set; }
     }
 
 }

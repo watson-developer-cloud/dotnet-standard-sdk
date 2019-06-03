@@ -270,10 +270,11 @@ namespace IBM.Watson.SpeechToText.v1
         /// the service that owns the custom model. By default, no custom acoustic model is used. See [Custom
         /// models](https://cloud.ibm.com/docs/services/speech-to-text?topic=speech-to-text-input#custom-input).
         /// (optional)</param>
-        /// <param name="baseModelVersion">The version of the specified base model that is to be used with recognition
-        /// request. Multiple versions of a base model can exist when a model is updated for internal improvements. The
-        /// parameter is intended primarily for use with custom models that have been upgraded for a new base model. The
-        /// default value depends on whether the parameter is used with or without a custom model. See [Base model
+        /// <param name="baseModelVersion">The version of the specified base model that is to be used with the
+        /// recognition request. Multiple versions of a base model can exist when a model is updated for internal
+        /// improvements. The parameter is intended primarily for use with custom models that have been upgraded for a
+        /// new base model. The default value depends on whether the parameter is used with or without a custom model.
+        /// See [Base model
         /// version](https://cloud.ibm.com/docs/services/speech-to-text?topic=speech-to-text-input#version).
         /// (optional)</param>
         /// <param name="customizationWeight">If you specify the customization ID (GUID) of a custom language model with
@@ -380,8 +381,27 @@ namespace IBM.Watson.SpeechToText.v1
         /// See [Numeric
         /// redaction](https://cloud.ibm.com/docs/services/speech-to-text?topic=speech-to-text-output#redaction).
         /// (optional, default to false)</param>
+        /// <param name="processingMetrics">If `true`, requests processing metrics about the service's transcription of
+        /// the input audio. The service returns processing metrics at the interval specified by the
+        /// `processing_metrics_interval` parameter. It also returns processing metrics for transcription events, for
+        /// example, for final and interim results. By default, the service returns no processing metrics. (optional,
+        /// default to false)</param>
+        /// <param name="processingMetricsInterval">Specifies the interval in real wall-clock seconds at which the
+        /// service is to return processing metrics. The parameter is ignored unless the `processing_metrics` parameter
+        /// is set to `true`.
+        ///
+        /// The parameter accepts a minimum value of 0.1 seconds. The level of precision is not restricted, so you can
+        /// specify values such as 0.25 and 0.125.
+        ///
+        /// The service does not impose a maximum value. If you want to receive processing metrics only for
+        /// transcription events instead of at periodic intervals, set the value to a large number. If the value is
+        /// larger than the duration of the audio, the service returns processing metrics only for transcription events.
+        /// (optional)</param>
+        /// <param name="audioMetrics">If `true`, requests detailed information about the signal characteristics of the
+        /// input audio. The service returns audio metrics with the final transcription results. By default, the service
+        /// returns no audio metrics. (optional, default to false)</param>
         /// <returns><see cref="SpeechRecognitionResults" />SpeechRecognitionResults</returns>
-        public DetailedResponse<SpeechRecognitionResults> Recognize(byte[] audio, string contentType = null, string model = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null)
+        public DetailedResponse<SpeechRecognitionResults> Recognize(byte[] audio, string contentType = null, string model = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, bool? processingMetrics = null, float? processingMetricsInterval = null, bool? audioMetrics = null)
         {
             if (audio == null)
             {
@@ -480,6 +500,18 @@ namespace IBM.Watson.SpeechToText.v1
                 if (redaction != null)
                 {
                     restRequest.WithArgument("redaction", redaction);
+                }
+                if (processingMetrics != null)
+                {
+                    restRequest.WithArgument("processing_metrics", processingMetrics);
+                }
+                if (processingMetricsInterval != null)
+                {
+                    restRequest.WithArgument("processing_metrics_interval", processingMetricsInterval);
+                }
+                if (audioMetrics != null)
+                {
+                    restRequest.WithArgument("audio_metrics", audioMetrics);
                 }
                 var httpContent = new ByteArrayContent(audio);
                 System.Net.Http.Headers.MediaTypeHeaderValue audioContentType;
@@ -789,10 +821,11 @@ namespace IBM.Watson.SpeechToText.v1
         /// the service that owns the custom model. By default, no custom acoustic model is used. See [Custom
         /// models](https://cloud.ibm.com/docs/services/speech-to-text?topic=speech-to-text-input#custom-input).
         /// (optional)</param>
-        /// <param name="baseModelVersion">The version of the specified base model that is to be used with recognition
-        /// request. Multiple versions of a base model can exist when a model is updated for internal improvements. The
-        /// parameter is intended primarily for use with custom models that have been upgraded for a new base model. The
-        /// default value depends on whether the parameter is used with or without a custom model. See [Base model
+        /// <param name="baseModelVersion">The version of the specified base model that is to be used with the
+        /// recognition request. Multiple versions of a base model can exist when a model is updated for internal
+        /// improvements. The parameter is intended primarily for use with custom models that have been upgraded for a
+        /// new base model. The default value depends on whether the parameter is used with or without a custom model.
+        /// See [Base model
         /// version](https://cloud.ibm.com/docs/services/speech-to-text?topic=speech-to-text-input#version).
         /// (optional)</param>
         /// <param name="customizationWeight">If you specify the customization ID (GUID) of a custom language model with
@@ -899,8 +932,27 @@ namespace IBM.Watson.SpeechToText.v1
         /// See [Numeric
         /// redaction](https://cloud.ibm.com/docs/services/speech-to-text?topic=speech-to-text-output#redaction).
         /// (optional, default to false)</param>
+        /// <param name="processingMetrics">If `true`, requests processing metrics about the service's transcription of
+        /// the input audio. The service returns processing metrics at the interval specified by the
+        /// `processing_metrics_interval` parameter. It also returns processing metrics for transcription events, for
+        /// example, for final and interim results. By default, the service returns no processing metrics. (optional,
+        /// default to false)</param>
+        /// <param name="processingMetricsInterval">Specifies the interval in real wall-clock seconds at which the
+        /// service is to return processing metrics. The parameter is ignored unless the `processing_metrics` parameter
+        /// is set to `true`.
+        ///
+        /// The parameter accepts a minimum value of 0.1 seconds. The level of precision is not restricted, so you can
+        /// specify values such as 0.25 and 0.125.
+        ///
+        /// The service does not impose a maximum value. If you want to receive processing metrics only for
+        /// transcription events instead of at periodic intervals, set the value to a large number. If the value is
+        /// larger than the duration of the audio, the service returns processing metrics only for transcription events.
+        /// (optional)</param>
+        /// <param name="audioMetrics">If `true`, requests detailed information about the signal characteristics of the
+        /// input audio. The service returns audio metrics with the final transcription results. By default, the service
+        /// returns no audio metrics. (optional, default to false)</param>
         /// <returns><see cref="RecognitionJob" />RecognitionJob</returns>
-        public DetailedResponse<RecognitionJob> CreateJob(byte[] audio, string contentType = null, string model = null, string callbackUrl = null, string events = null, string userToken = null, long? resultsTtl = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null)
+        public DetailedResponse<RecognitionJob> CreateJob(byte[] audio, string contentType = null, string model = null, string callbackUrl = null, string events = null, string userToken = null, long? resultsTtl = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, bool? processingMetrics = null, float? processingMetricsInterval = null, bool? audioMetrics = null)
         {
             if (audio == null)
             {
@@ -1015,6 +1067,18 @@ namespace IBM.Watson.SpeechToText.v1
                 if (redaction != null)
                 {
                     restRequest.WithArgument("redaction", redaction);
+                }
+                if (processingMetrics != null)
+                {
+                    restRequest.WithArgument("processing_metrics", processingMetrics);
+                }
+                if (processingMetricsInterval != null)
+                {
+                    restRequest.WithArgument("processing_metrics_interval", processingMetricsInterval);
+                }
+                if (audioMetrics != null)
+                {
+                    restRequest.WithArgument("audio_metrics", audioMetrics);
                 }
                 var httpContent = new ByteArrayContent(audio);
                 System.Net.Http.Headers.MediaTypeHeaderValue audioContentType;

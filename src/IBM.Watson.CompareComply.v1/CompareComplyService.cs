@@ -614,9 +614,9 @@ namespace IBM.Watson.CompareComply.v1
         }
 
         /// <summary>
-        /// List a specified feedback entry.
+        /// Get a specified feedback entry.
         ///
-        /// Lists a feedback entry with a specified `feedback_id`.
+        /// Gets a feedback entry with a specified `feedback_id`.
         /// </summary>
         /// <param name="feedbackId">A string that specifies the feedback entry to be included in the output.</param>
         /// <param name="model">The analysis model to be used by the service. For the **Element classification** and
@@ -736,10 +736,11 @@ namespace IBM.Watson.CompareComply.v1
         /// Submit a batch-processing request.
         ///
         /// Run Compare and Comply methods over a collection of input documents.
+        ///
         /// **Important:** Batch processing requires the use of the [IBM Cloud Object Storage
-        /// service](https://cloud.ibm.com/docs/services/cloud-object-storage/about-cos.html#about-ibm-cloud-object-storage).
+        /// service](https://cloud.ibm.com/docs/services/cloud-object-storage?topic=cloud-object-storage-about#about-ibm-cloud-object-storage).
         /// The use of IBM Cloud Object Storage with Compare and Comply is discussed at [Using batch
-        /// processing](https://cloud.ibm.com/docs/services/compare-comply/batching.html#before-you-batch).
+        /// processing](https://cloud.ibm.com/docs/services/compare-comply?topic=compare-comply-batching#before-you-batch).
         /// </summary>
         /// <param name="function">The Compare and Comply method to run across the submitted input documents.</param>
         /// <param name="inputCredentialsFile">A JSON file containing the input Cloud Object Storage credentials. At a

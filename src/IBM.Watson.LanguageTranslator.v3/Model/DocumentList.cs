@@ -15,20 +15,21 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace IBM.Watson.Assistant.v1.Model
+namespace IBM.Watson.LanguageTranslator.v3.Model
 {
     /// <summary>
-    /// Workspace settings related to the Watson Assistant user interface.
+    /// DocumentList.
     /// </summary>
-    public class WorkspaceSystemSettingsTooling
+    public class DocumentList
     {
         /// <summary>
-        /// Whether the dialog JSON editor displays text responses within the `output.generic` object.
+        /// An array of all previously submitted documents.
         /// </summary>
-        [JsonProperty("store_generic_responses", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? StoreGenericResponses { get; set; }
+        [JsonProperty("documents", NullValueHandling = NullValueHandling.Ignore)]
+        public List<DocumentStatus> Documents { get; set; }
     }
 
 }

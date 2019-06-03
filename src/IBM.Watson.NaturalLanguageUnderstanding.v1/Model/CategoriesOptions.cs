@@ -27,6 +27,12 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
     public class CategoriesOptions
     {
         /// <summary>
+        /// Set this to `true` to return explanations for each categorization. **This is available only for English
+        /// categories.**.
+        /// </summary>
+        [JsonProperty("explanation", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? Explanation { get; set; }
+        /// <summary>
         /// Maximum number of categories to return.
         /// </summary>
         [JsonProperty("limit", NullValueHandling = NullValueHandling.Ignore)]

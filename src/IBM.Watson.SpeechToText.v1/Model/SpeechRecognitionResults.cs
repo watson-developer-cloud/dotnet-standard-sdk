@@ -49,6 +49,16 @@ namespace IBM.Watson.SpeechToText.v1.Model
         [JsonProperty("speaker_labels", NullValueHandling = NullValueHandling.Ignore)]
         public List<SpeakerLabelsResult> SpeakerLabels { get; set; }
         /// <summary>
+        /// If processing metrics are requested, information about the service's processing of the input audio.
+        /// </summary>
+        [JsonProperty("processing_metrics", NullValueHandling = NullValueHandling.Ignore)]
+        public ProcessingMetrics ProcessingMetrics { get; set; }
+        /// <summary>
+        /// If audio metrics are requested, information about the signal characteristics of the input audio.
+        /// </summary>
+        [JsonProperty("audio_metrics", NullValueHandling = NullValueHandling.Ignore)]
+        public AudioMetrics AudioMetrics { get; set; }
+        /// <summary>
         /// An array of warning messages associated with the request:
         /// * Warnings for invalid parameters or fields can include a descriptive message and a list of invalid argument
         /// strings, for example, `\"Unknown arguments:\"` or `\"Unknown url query arguments:\"` followed by a list of

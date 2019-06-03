@@ -17,18 +17,23 @@
 
 using Newtonsoft.Json;
 
-namespace IBM.Watson.Assistant.v1.Model
+namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
-    /// Workspace settings related to the Watson Assistant user interface.
+    /// Information about custom smart document understanding fields that exist in this collection.
     /// </summary>
-    public class WorkspaceSystemSettingsTooling
+    public class SduStatusCustomFields
     {
         /// <summary>
-        /// Whether the dialog JSON editor displays text responses within the `output.generic` object.
+        /// The number of custom fields defined for this collection.
         /// </summary>
-        [JsonProperty("store_generic_responses", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? StoreGenericResponses { get; set; }
+        [JsonProperty("defined", NullValueHandling = NullValueHandling.Ignore)]
+        public long? Defined { get; set; }
+        /// <summary>
+        /// The maximum number of custom fields that are allowed in this collection.
+        /// </summary>
+        [JsonProperty("maximum_allowed", NullValueHandling = NullValueHandling.Ignore)]
+        public long? MaximumAllowed { get; set; }
     }
 
 }

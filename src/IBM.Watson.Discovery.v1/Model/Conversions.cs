@@ -51,6 +51,14 @@ namespace IBM.Watson.Discovery.v1.Model
         /// </summary>
         [JsonProperty("json_normalizations", NullValueHandling = NullValueHandling.Ignore)]
         public List<NormalizationOperation> JsonNormalizations { get; set; }
+        /// <summary>
+        /// When `true`, automatic text extraction from images (this includes images embedded in supported document
+        /// formats, for example PDF, and suppported image formats, for example TIFF) is performed on documents uploaded
+        /// to the collection. This field is supported on **Advanced** and higher plans only. **Lite** plans do not
+        /// support image text recognition.
+        /// </summary>
+        [JsonProperty("image_text_recognition", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? ImageTextRecognition { get; set; }
     }
 
 }

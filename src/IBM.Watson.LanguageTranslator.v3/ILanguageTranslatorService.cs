@@ -30,5 +30,10 @@ namespace IBM.Watson.LanguageTranslator.v3
         DetailedResponse<TranslationModel> CreateModel(string baseModelId, System.IO.MemoryStream forcedGlossary = null, System.IO.MemoryStream parallelCorpus = null, string name = null);
         DetailedResponse<DeleteModelResult> DeleteModel(string modelId);
         DetailedResponse<TranslationModel> GetModel(string modelId);
+        DetailedResponse<DocumentList> ListDocuments();
+        DetailedResponse<DocumentStatus> TranslateDocument(System.IO.MemoryStream file, string fileContentType = null, string modelId = null, string source = null, string target = null, string documentId = null);
+        DetailedResponse<DocumentStatus> GetDocumentStatus(string documentId);
+        DetailedResponse<object> DeleteDocument(string documentId);
+        DetailedResponse<System.IO.MemoryStream> GetTranslatedDocument(string documentId, string accept = null);
     }
 }

@@ -23,7 +23,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="appsettings.json;.\glossary.tmx">
+    <None Update="appsettings.json;.\LanguageTranslatorTestData\**\*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -29,8 +29,10 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
         string apikey = "{apikey}";
         string url = "{url}";
         string versionDate = "{versionDate}";
-        private string glossaryPath = "glossary.tmx";
+        private static string glossaryPath = "LanguageTranslatorTestData/glossary.tmx";
+        private static string documentToTranslatePath = "LanguageTranslatorTestData/document-to-translate.txt";
         private string modelId;
+        private string documentId;
 
         static void Main(string[] args)
         {
@@ -43,6 +45,11 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
             example.CreateModel();
             example.GetModel();
             example.DeleteModel();
+            example.ListDocuments();
+            example.TranslateDocument();
+            example.GetDocumentStatus();
+            example.GetTranslatedDocument();
+            example.DeleteDocument();
 
             Console.WriteLine("Examples complete. Press any key to close the application.");
             Console.ReadKey();
@@ -176,6 +183,103 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
 
             var result = service.DeleteModel(
                 modelId: modelId
+                );
+
+            Console.WriteLine(result.Response);
+        }
+        #endregion
+
+        #region Documents
+        public void ListDocuments()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            LanguageTranslatorService service = new LanguageTranslatorService(tokenOptions, versionDate);
+
+            var result = service.ListDocuments();
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void TranslateDocument()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            LanguageTranslatorService service = new LanguageTranslatorService(tokenOptions, versionDate);
+
+            DetailedResponse<DocumentStatus> result;
+
+            using (FileStream fs = File.OpenRead(documentToTranslatePath))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    fs.CopyTo(ms);
+                    result = service.TranslateDocument(
+                        file: ms,
+                        fileContentType: "text/plain",
+                        modelId: "en-es"
+                        );
+                }
+            }
+
+            Console.WriteLine(result.Response);
+            documentId = result.Result.DocumentId;
+        }
+
+        public void GetDocumentStatus()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            LanguageTranslatorService service = new LanguageTranslatorService(tokenOptions, versionDate);
+
+            var result = service.GetDocumentStatus(
+                documentId: documentId
+                );
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void DeleteDocument()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            LanguageTranslatorService service = new LanguageTranslatorService(tokenOptions, versionDate);
+
+            var result = service.DeleteDocument(
+                documentId: documentId
+                );
+
+            Console.WriteLine(result.StatusCode);
+        }
+
+        public void GetTranslatedDocument()
+        {
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = apikey,
+                ServiceUrl = url
+            };
+
+            LanguageTranslatorService service = new LanguageTranslatorService(tokenOptions, versionDate);
+
+            var result = service.GetTranslatedDocument(
+                documentId: documentId
                 );
 
             Console.WriteLine(result.Response);

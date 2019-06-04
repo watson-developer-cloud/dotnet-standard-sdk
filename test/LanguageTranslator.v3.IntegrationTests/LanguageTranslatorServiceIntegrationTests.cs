@@ -188,7 +188,10 @@ namespace IBM.Watson.LanguageTranslator.v3.IntegrationTests
             }
             autoEvent.WaitOne();
 
-            var getTranslatedDocumentResult = service.GetTranslatedDocument(documentId);
+            service.WithHeader("X-Watson-Test", "1");
+            var getTranslatedDocumentResult = service.GetTranslatedDocument(
+                documentId: documentId
+                );
 
             using (FileStream fs = File.Create("translate.txt"))
             {
@@ -197,7 +200,10 @@ namespace IBM.Watson.LanguageTranslator.v3.IntegrationTests
                 getTranslatedDocumentResult.Result.Close();
             }
 
-            var deleteDocumentResult = service.DeleteDocument(documentId);
+            service.WithHeader("X-Watson-Test", "1");
+            var deleteDocumentResult = service.DeleteDocument(
+                documentId: documentId
+                );
 
             Assert.IsTrue(deleteDocumentResult.StatusCode == 204);
             Assert.IsNotNull(getTranslatedDocumentResult);

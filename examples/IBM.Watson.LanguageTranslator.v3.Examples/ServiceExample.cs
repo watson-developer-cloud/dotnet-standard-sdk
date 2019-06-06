@@ -224,6 +224,7 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
                     fs.CopyTo(ms);
                     result = service.TranslateDocument(
                         file: ms,
+                        filename: Path.GetFileName(documentToTranslatePath),
                         fileContentType: "text/plain",
                         modelId: "en-es"
                         );

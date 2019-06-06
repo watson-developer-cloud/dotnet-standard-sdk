@@ -628,6 +628,7 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// types](https://cloud.ibm.com/docs/services/language-translator?topic=language-translator-document-translator-tutorial#supported-file-formats)
         ///
         /// Maximum file size: **20 MB**.</param>
+        /// <param name="filename">The filename for file.</param>
         /// <param name="fileContentType">The content type of file. (optional)</param>
         /// <param name="modelId">The model to use for translation. `model_id` or both `source` and `target` are
         /// required. (optional)</param>
@@ -636,11 +637,15 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <param name="documentId">To use a previously submitted document as the source for a new translation, enter
         /// the `document_id` of the document. (optional)</param>
         /// <returns><see cref="DocumentStatus" />DocumentStatus</returns>
-        public DetailedResponse<DocumentStatus> TranslateDocument(System.IO.MemoryStream file, string fileContentType = null, string modelId = null, string source = null, string target = null, string documentId = null)
+        public DetailedResponse<DocumentStatus> TranslateDocument(System.IO.MemoryStream file, string filename, string fileContentType = null, string modelId = null, string source = null, string target = null, string documentId = null)
         {
             if (file == null)
             {
                 throw new ArgumentNullException("`file` is required for `TranslateDocument`");
+            }
+            if (string.IsNullOrEmpty(filename))
+            {
+                throw new ArgumentNullException("`filename` is required for `TranslateDocument`");
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -660,7 +665,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
                     fileContent.Headers.ContentType = contentType;
-                    formData.Add(fileContent, "file", "filename");
+                    formData.Add(fileContent, "file", filename);
                 }
 
                 if (modelId != null)

@@ -132,7 +132,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ad8a1e3aa140eabc7a63821a3df5494fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">List the feedback in a document.  <a href="#ad8a1e3aa140eabc7a63821a3df5494fc">More...</a><br /></td></tr>
 <tr class="separator:ad8a1e3aa140eabc7a63821a3df5494fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3de741bddf6e04e46ff5aa4561ab2704"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../dc/d5e/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_get_feedback.html">GetFeedback</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d67/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service.html#a3de741bddf6e04e46ff5aa4561ab2704">GetFeedback</a> (string feedbackId, string model=null)</td></tr>
-<tr class="memdesc:a3de741bddf6e04e46ff5aa4561ab2704"><td class="mdescLeft">&#160;</td><td class="mdescRight">List a specified feedback entry.  <a href="#a3de741bddf6e04e46ff5aa4561ab2704">More...</a><br /></td></tr>
+<tr class="memdesc:a3de741bddf6e04e46ff5aa4561ab2704"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a specified feedback entry.  <a href="#a3de741bddf6e04e46ff5aa4561ab2704">More...</a><br /></td></tr>
 <tr class="separator:a3de741bddf6e04e46ff5aa4561ab2704"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af39d87af59cf31fc53fc0560f96bbd66"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../dd/d1b/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_feedback_deleted.html">FeedbackDeleted</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d67/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service.html#af39d87af59cf31fc53fc0560f96bbd66">DeleteFeedback</a> (string feedbackId, string model=null)</td></tr>
 <tr class="memdesc:af39d87af59cf31fc53fc0560f96bbd66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete a specified feedback entry.  <a href="#af39d87af59cf31fc53fc0560f96bbd66">More...</a><br /></td></tr>
@@ -572,7 +572,8 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Submit a batch-processing request. </p>
-<p>Run Compare and Comply methods over a collection of input documents. <b>Important:</b> Batch processing requires the use of the <a href="https://cloud.ibm.com/docs/services/cloud-object-storage/about-cos.html#about-ibm-cloud-object-storage">IBM Cloud Object Storage service</a>. The use of <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud Object Storage with Compare and Comply is discussed at <a href="https://cloud.ibm.com/docs/services/compare-comply/batching.html#before-you-batch">Using batch processing</a>. </p>
+<p>Run Compare and Comply methods over a collection of input documents.</p>
+<p><b>Important:</b> Batch processing requires the use of the <a href="https://cloud.ibm.com/docs/services/cloud-object-storage?topic=cloud-object-storage-about#about-ibm-cloud-object-storage">IBM Cloud Object Storage service</a>. The use of <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud Object Storage with Compare and Comply is discussed at <a href="https://cloud.ibm.com/docs/services/compare-comply?topic=compare-comply-batching#before-you-batch">Using batch processing</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">function</td><td>The Compare and Comply method to run across the submitted input documents.</td></tr>
@@ -769,8 +770,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>List a specified feedback entry. </p>
-<p>Lists a feedback entry with a specified <code>feedback_id</code>. </p>
+<p>Get a specified feedback entry. </p>
+<p>Gets a feedback entry with a specified <code>feedback_id</code>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">feedbackId</td><td>A string that specifies the feedback entry to be included in the output.</td></tr>
@@ -778,7 +779,7 @@ Properties</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../de/d67/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service.html#a3de741bddf6e04e46ff5aa4561ab2704" title="List a specified feedback entry. ">GetFeedback</a>GetFeedback</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../de/d67/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service.html#a3de741bddf6e04e46ff5aa4561ab2704" title="Get a specified feedback entry. ">GetFeedback</a>GetFeedback</dd></dl>
 
 <p>Implements <a class="el" href="../../d8/d70/interface_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_i_compare_comply_service.html#a531253b072c30a168e3244f6fe75a312">IBM.Watson.CompareComply.v1.ICompareComplyService</a>.</p>
 

@@ -120,6 +120,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac5e3312359224be6d06f04a67f14c41f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b15b5615c8d2fe13c491077dd9a6f2c"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d6/d16/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_translation_model.html">TranslationModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dcd/interface_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_i_language_translator_service.html#a9b15b5615c8d2fe13c491077dd9a6f2c">GetModel</a> (string modelId)</td></tr>
 <tr class="separator:a9b15b5615c8d2fe13c491077dd9a6f2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc86227d41b0d54ef4069bf9307eadc2"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../de/da3/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_document_list.html">DocumentList</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dcd/interface_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_i_language_translator_service.html#abc86227d41b0d54ef4069bf9307eadc2">ListDocuments</a> ()</td></tr>
+<tr class="separator:abc86227d41b0d54ef4069bf9307eadc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abafe749e76b12eb0cb4fdded1d8a6916"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d8/d19/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_document_status.html">DocumentStatus</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dcd/interface_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_i_language_translator_service.html#abafe749e76b12eb0cb4fdded1d8a6916">TranslateDocument</a> (System.IO.MemoryStream file, string filename, string fileContentType=null, string modelId=null, string source=null, string target=null, string documentId=null)</td></tr>
+<tr class="separator:abafe749e76b12eb0cb4fdded1d8a6916"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0983084e0f0211ce4c090b7be49ac310"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d8/d19/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_document_status.html">DocumentStatus</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dcd/interface_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_i_language_translator_service.html#a0983084e0f0211ce4c090b7be49ac310">GetDocumentStatus</a> (string documentId)</td></tr>
+<tr class="separator:a0983084e0f0211ce4c090b7be49ac310"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a930b1daffc2b588766fb9e90b4beebfe"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dcd/interface_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_i_language_translator_service.html#a930b1daffc2b588766fb9e90b4beebfe">DeleteDocument</a> (string documentId)</td></tr>
+<tr class="separator:a930b1daffc2b588766fb9e90b4beebfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29f7e2602cd7ab37c34be95a0f4f38bc"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; System.IO.MemoryStream &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dcd/interface_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_i_language_translator_service.html#a29f7e2602cd7ab37c34be95a0f4f38bc">GetTranslatedDocument</a> (string documentId, string accept=null)</td></tr>
+<tr class="separator:a29f7e2602cd7ab37c34be95a0f4f38bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a1baa9724916fb07e697de026e240b999"></a>
@@ -164,6 +174,26 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a930b1daffc2b588766fb9e90b4beebfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a930b1daffc2b588766fb9e90b4beebfe">&#9670;&nbsp;</a></span>DeleteDocument()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;object&gt; IBM.Watson.LanguageTranslator.v3.ILanguageTranslatorService.DeleteDocument </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>documentId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d0/d37/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service.html#aee79336645cab8980f5e4fcf618c83a0">IBM.Watson.LanguageTranslator.v3.LanguageTranslatorService</a>.</p>
+
+</div>
+</div>
 <a id="ac5e3312359224be6d06f04a67f14c41f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac5e3312359224be6d06f04a67f14c41f">&#9670;&nbsp;</a></span>DeleteModel()</h2>
 
@@ -181,6 +211,26 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implemented in <a class="el" href="../../d0/d37/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service.html#a534c695fca59a610eacd695b10dacbf9">IBM.Watson.LanguageTranslator.v3.LanguageTranslatorService</a>.</p>
+
+</div>
+</div>
+<a id="a0983084e0f0211ce4c090b7be49ac310"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0983084e0f0211ce4c090b7be49ac310">&#9670;&nbsp;</a></span>GetDocumentStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../d8/d19/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_document_status.html">DocumentStatus</a>&gt; IBM.Watson.LanguageTranslator.v3.ILanguageTranslatorService.GetDocumentStatus </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>documentId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d0/d37/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service.html#a18cf9d7ec6c398b263455e75fb63dc00">IBM.Watson.LanguageTranslator.v3.LanguageTranslatorService</a>.</p>
 
 </div>
 </div>
@@ -204,6 +254,36 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a29f7e2602cd7ab37c34be95a0f4f38bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29f7e2602cd7ab37c34be95a0f4f38bc">&#9670;&nbsp;</a></span>GetTranslatedDocument()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;System.IO.MemoryStream&gt; IBM.Watson.LanguageTranslator.v3.ILanguageTranslatorService.GetTranslatedDocument </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>documentId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>accept</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d0/d37/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service.html#a749faff1a01754d913203f6125a281c1">IBM.Watson.LanguageTranslator.v3.LanguageTranslatorService</a>.</p>
+
+</div>
+</div>
 <a id="ae57378296df661053bdcde45fc09ab5d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae57378296df661053bdcde45fc09ab5d">&#9670;&nbsp;</a></span>Identify()</h2>
 
@@ -221,6 +301,25 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implemented in <a class="el" href="../../d0/d37/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service.html#a5f52ac0a28da6dcbfb2120ea2a439e87">IBM.Watson.LanguageTranslator.v3.LanguageTranslatorService</a>.</p>
+
+</div>
+</div>
+<a id="abc86227d41b0d54ef4069bf9307eadc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc86227d41b0d54ef4069bf9307eadc2">&#9670;&nbsp;</a></span>ListDocuments()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../de/da3/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_document_list.html">DocumentList</a>&gt; IBM.Watson.LanguageTranslator.v3.ILanguageTranslatorService.ListDocuments </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d0/d37/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service.html#a3afabf2db1a545361e6a6d218dce551e">IBM.Watson.LanguageTranslator.v3.LanguageTranslatorService</a>.</p>
 
 </div>
 </div>
@@ -318,6 +417,66 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implemented in <a class="el" href="../../d0/d37/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service.html#a39b94c7473a48425c4964e9e8d3f785e">IBM.Watson.LanguageTranslator.v3.LanguageTranslatorService</a>.</p>
+
+</div>
+</div>
+<a id="abafe749e76b12eb0cb4fdded1d8a6916"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abafe749e76b12eb0cb4fdded1d8a6916">&#9670;&nbsp;</a></span>TranslateDocument()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../d8/d19/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_document_status.html">DocumentStatus</a>&gt; IBM.Watson.LanguageTranslator.v3.ILanguageTranslatorService.TranslateDocument </td>
+          <td>(</td>
+          <td class="paramtype">System.IO.MemoryStream&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>filename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>fileContentType</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>modelId</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>source</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>target</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>documentId</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d0/d37/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service.html#acecf9d280def73faf797e5af337e38b4">IBM.Watson.LanguageTranslator.v3.LanguageTranslatorService</a>.</p>
 
 </div>
 </div>

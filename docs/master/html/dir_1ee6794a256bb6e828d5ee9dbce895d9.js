@@ -15,8 +15,14 @@ var dir_1ee6794a256bb6e828d5ee9dbce895d9 =
     [ "CategoriesOptions.cs", "d5/dba/_categories_options_8cs.html", [
       [ "CategoriesOptions", "dc/d12/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_options.html", "dc/d12/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_options" ]
     ] ],
+    [ "CategoriesRelevantText.cs", "d1/d84/_categories_relevant_text_8cs.html", [
+      [ "CategoriesRelevantText", "d8/dc4/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_relevant_text.html", "d8/dc4/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_relevant_text" ]
+    ] ],
     [ "CategoriesResult.cs", "dd/d0a/_categories_result_8cs.html", [
       [ "CategoriesResult", "da/d7f/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_result.html", "da/d7f/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_result" ]
+    ] ],
+    [ "CategoriesResultExplanation.cs", "d3/d2e/_categories_result_explanation_8cs.html", [
+      [ "CategoriesResultExplanation", "d7/db3/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_result_explanation.html", "d7/db3/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_result_explanation" ]
     ] ],
     [ "ConceptsOptions.cs", "d2/d09/_concepts_options_8cs.html", [
       [ "ConceptsOptions", "da/d4a/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_concepts_options.html", "da/d4a/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_concepts_options" ]

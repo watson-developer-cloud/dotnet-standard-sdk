@@ -3,6 +3,13 @@ var dir_da6de04501287f349f79bdf115b05cd6 =
     [ "DeleteModelResult.cs", "dd/d70/_delete_model_result_8cs.html", [
       [ "DeleteModelResult", "d9/d88/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_delete_model_result.html", "d9/d88/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_delete_model_result" ]
     ] ],
+    [ "DocumentList.cs", "d5/d9c/_document_list_8cs.html", [
+      [ "DocumentList", "de/da3/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_document_list.html", "de/da3/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_document_list" ]
+    ] ],
+    [ "DocumentStatus.cs", "df/d0a/_i_b_m_8_watson_8_language_translator_8v3_2_model_2_document_status_8cs.html", [
+      [ "DocumentStatus", "d8/d19/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_document_status.html", "d8/d19/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_document_status" ],
+      [ "StatusEnumValue", "df/ddb/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_document_status_1_1_status_enum_value.html", "df/ddb/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_document_status_1_1_status_enum_value" ]
+    ] ],
     [ "IdentifiableLanguage.cs", "d1/d6b/_identifiable_language_8cs.html", [
       [ "IdentifiableLanguage", "d0/d50/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_identifiable_language.html", "d0/d50/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_identifiable_language" ]
     ] ],

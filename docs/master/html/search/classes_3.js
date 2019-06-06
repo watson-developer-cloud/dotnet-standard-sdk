@@ -38,9 +38,10 @@ var searchData=
   ['documentanalysis',['DocumentAnalysis',['../de/d96/class_i_b_m_1_1_watson_1_1_tone_analyzer_1_1v3_1_1_model_1_1_document_analysis.html',1,'IBM::Watson::ToneAnalyzer::v3::Model']]],
   ['documentcounts',['DocumentCounts',['../db/df6/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_document_counts.html',1,'IBM::Watson::Discovery::v1::Model']]],
   ['documentemotionresults',['DocumentEmotionResults',['../da/dd6/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_document_emotion_results.html',1,'IBM::Watson::NaturalLanguageUnderstanding::v1::Model']]],
+  ['documentlist',['DocumentList',['../de/da3/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_document_list.html',1,'IBM::Watson::LanguageTranslator::v3::Model']]],
   ['documentretrievalstrategyenumvalue',['DocumentRetrievalStrategyEnumValue',['../d4/d53/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_retrieval_details_1_1_document_retrieval_strategy_enum_value.html',1,'IBM::Watson::Discovery::v1::Model::RetrievalDetails']]],
   ['documentsentimentresults',['DocumentSentimentResults',['../d8/d17/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_document_sentiment_results.html',1,'IBM::Watson::NaturalLanguageUnderstanding::v1::Model']]],
   ['documentsnapshot',['DocumentSnapshot',['../de/dd8/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_document_snapshot.html',1,'IBM::Watson::Discovery::v1::Model']]],
-  ['documentstatus',['DocumentStatus',['../da/d4f/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_document_status.html',1,'IBM::Watson::Discovery::v1::Model']]],
+  ['documentstatus',['DocumentStatus',['../d8/d19/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_document_status.html',1,'IBM.Watson.LanguageTranslator.v3.Model.DocumentStatus'],['../da/d4f/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_document_status.html',1,'IBM.Watson.Discovery.v1.Model.DocumentStatus']]],
   ['documenttypeenumvalue',['DocumentTypeEnumValue',['../d5/d2e/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_log_query_response_result_1_1_document_type_enum_value.html',1,'IBM::Watson::Discovery::v1::Model::LogQueryResponseResult']]]
 ];

@@ -1,6 +1,8 @@
 var namespace_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model =
 [
     [ "DeleteModelResult", "d9/d88/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_delete_model_result.html", "d9/d88/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_delete_model_result" ],
+    [ "DocumentList", "de/da3/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_document_list.html", "de/da3/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_document_list" ],
+    [ "DocumentStatus", "d8/d19/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_document_status.html", "d8/d19/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_document_status" ],
     [ "IdentifiableLanguage", "d0/d50/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_identifiable_language.html", "d0/d50/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_identifiable_language" ],
     [ "IdentifiableLanguages", "d8/dea/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_identifiable_languages.html", "d8/dea/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_identifiable_languages" ],
     [ "IdentifiedLanguage", "df/d42/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_identified_language.html", "df/d42/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_identified_language" ],

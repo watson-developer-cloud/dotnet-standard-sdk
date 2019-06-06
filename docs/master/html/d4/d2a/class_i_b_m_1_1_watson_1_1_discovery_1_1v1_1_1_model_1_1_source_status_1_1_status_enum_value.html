@@ -112,13 +112,17 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a087daac205ce43ea48fc11edc00bd4ca"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d2a/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_source_status_1_1_status_enum_value.html#a087daac205ce43ea48fc11edc00bd4ca">QUEUED</a> = &quot;queued&quot;</td></tr>
 <tr class="memdesc:a087daac205ce43ea48fc11edc00bd4ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant QUEUED for queued  <a href="#a087daac205ce43ea48fc11edc00bd4ca">More...</a><br /></td></tr>
 <tr class="separator:a087daac205ce43ea48fc11edc00bd4ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25eae898f5462e43d7be467a579747a1"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d2a/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_source_status_1_1_status_enum_value.html#a25eae898f5462e43d7be467a579747a1">UNKNOWN</a> = &quot;unknown&quot;</td></tr>
+<tr class="memdesc:a25eae898f5462e43d7be467a579747a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant UNKNOWN for unknown  <a href="#a25eae898f5462e43d7be467a579747a1">More...</a><br /></td></tr>
+<tr class="separator:a25eae898f5462e43d7be467a579747a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The current status of the source crawl for this collection. This field returns <code>not_configured</code> if the default configuration for this source does not have a <b>source</b> object defined. </p>
 <ul>
 <li><code>running</code> indicates that a crawl to fetch more documents is in progress.</li>
 <li><code>complete</code> indicates that the crawl has completed with no errors.</li>
-<li><code>queued</code> indicates that the crawl has been paused by the system and will automatically restart when possible. </li>
+<li><code>queued</code> indicates that the crawl has been paused by the system and will automatically restart when possible.</li>
+<li><code>unknown</code> indicates that an unidentified error has occured in the service. </li>
 </ul>
 </div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="a44d1761a9ead626c86b57921800f13aa"></a>
@@ -182,6 +186,22 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Constant RUNNING for running </p>
+
+</div>
+</div>
+<a id="a25eae898f5462e43d7be467a579747a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25eae898f5462e43d7be467a579747a1">&#9670;&nbsp;</a></span>UNKNOWN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string IBM.Watson.Discovery.v1.Model.SourceStatus.StatusEnumValue.UNKNOWN = &quot;unknown&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constant UNKNOWN for unknown </p>
 
 </div>
 </div>

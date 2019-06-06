@@ -16,6 +16,15 @@ var dir_20a6667e7161b71ab15c63c687ebc90f =
       [ "AudioListing", "d1/d9b/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_listing.html", "d1/d9b/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_listing" ],
       [ "StatusEnumValue", "d5/dc5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_listing_1_1_status_enum_value.html", "d5/dc5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_listing_1_1_status_enum_value" ]
     ] ],
+    [ "AudioMetrics.cs", "dc/d9a/_audio_metrics_8cs.html", [
+      [ "AudioMetrics", "d1/dd2/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_metrics.html", "d1/dd2/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_metrics" ]
+    ] ],
+    [ "AudioMetricsDetails.cs", "d2/d07/_audio_metrics_details_8cs.html", [
+      [ "AudioMetricsDetails", "dd/dc6/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_metrics_details.html", "dd/dc6/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_metrics_details" ]
+    ] ],
+    [ "AudioMetricsHistogramBin.cs", "d2/d44/_audio_metrics_histogram_bin_8cs.html", [
+      [ "AudioMetricsHistogramBin", "d9/d31/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_metrics_histogram_bin.html", "d9/d31/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_metrics_histogram_bin" ]
+    ] ],
     [ "AudioResource.cs", "d7/d34/_audio_resource_8cs.html", [
       [ "AudioResource", "df/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_resource.html", "df/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_resource" ],
       [ "StatusEnumValue", "dc/d37/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_resource_1_1_status_enum_value.html", "dc/d37/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_resource_1_1_status_enum_value" ]
@@ -49,6 +58,12 @@ var dir_20a6667e7161b71ab15c63c687ebc90f =
     ] ],
     [ "LanguageModels.cs", "db/d2a/_language_models_8cs.html", [
       [ "LanguageModels", "df/df8/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_models.html", "df/df8/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_models" ]
+    ] ],
+    [ "ProcessedAudio.cs", "db/d84/_processed_audio_8cs.html", [
+      [ "ProcessedAudio", "d4/d62/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_processed_audio.html", "d4/d62/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_processed_audio" ]
+    ] ],
+    [ "ProcessingMetrics.cs", "de/df8/_processing_metrics_8cs.html", [
+      [ "ProcessingMetrics", "d1/d13/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_processing_metrics.html", "d1/d13/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_processing_metrics" ]
     ] ],
     [ "RecognitionJob.cs", "d3/d94/_recognition_job_8cs.html", [
       [ "RecognitionJob", "de/d7f/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_recognition_job.html", "de/d7f/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_recognition_job" ],

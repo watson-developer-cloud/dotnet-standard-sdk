@@ -199,10 +199,10 @@ namespace IBM.Watson.VisualRecognition.v3
         /// **Important:** On April 2, 2018, the identity information in the response to calls to the Face model was
         /// removed. The identity information refers to the `name` of the person, `score`, and `type_hierarchy`
         /// knowledge graph. For details about the enhanced Face model, see the [Release
-        /// notes](https://cloud.ibm.com/docs/services/visual-recognition/release-notes.html#2april2018).
+        /// notes](https://cloud.ibm.com/docs/services/visual-recognition?topic=visual-recognition-release-notes#2april2018).
         ///
         /// Analyze and get data about faces in images. Responses can include estimated age and gender. This feature
-        /// uses a built-in model, so no training is necessary. The Detect faces method does not support general
+        /// uses a built-in model, so no training is necessary. The **Detect faces** method does not support general
         /// biometric facial recognition.
         ///
         /// Supported image formats include .gif, .jpg, .png, and .tif. The maximum image size is 10 MB. The minimum
@@ -513,7 +513,7 @@ namespace IBM.Watson.VisualRecognition.v3
         /// Update a custom classifier by adding new positive or negative classes or by adding new images to existing
         /// classes. You must supply at least one set of positive or negative examples. For details, see [Updating
         /// custom
-        /// classifiers](https://cloud.ibm.com/docs/services/visual-recognition/customizing.html#updating-custom-classifiers).
+        /// classifiers](https://cloud.ibm.com/docs/services/visual-recognition?topic=visual-recognition-customizing#updating-custom-classifiers).
         ///
         /// Encode all names in UTF-8 if they contain non-ASCII characters (.zip and image file names, and classifier
         /// and class names). The service assumes UTF-8 encoding if it encounters non-ASCII characters.
@@ -716,7 +716,7 @@ namespace IBM.Watson.VisualRecognition.v3
         ///
         /// You associate a customer ID with data by passing the `X-Watson-Metadata` header with a request that passes
         /// data. For more information about personal data and customer IDs, see [Information
-        /// security](https://cloud.ibm.com/docs/services/visual-recognition/information-security.html).
+        /// security](https://cloud.ibm.com/docs/services/visual-recognition?topic=visual-recognition-information-security).
         /// </summary>
         /// <param name="customerId">The customer ID for which all data is to be deleted.</param>
         /// <returns><see cref="object" />object</returns>

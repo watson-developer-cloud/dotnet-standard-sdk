@@ -91,8 +91,9 @@ namespace IBM.Watson.Assistant.v2
         /// Create a new session. A session is used to send user input to a skill and receive responses. It also
         /// maintains the state of the conversation.
         /// </summary>
-        /// <param name="assistantId">Unique identifier of the assistant. You can find the assistant ID of an assistant
-        /// on the **Assistants** tab of the Watson Assistant tool. For information about creating assistants, see the
+        /// <param name="assistantId">Unique identifier of the assistant. To find the assistant ID in the Watson
+        /// Assistant user interface, open the assistant settings and click **API Details**. For information about
+        /// creating assistants, see the
         /// [documentation](https://cloud.ibm.com/docs/services/assistant?topic=assistant-assistant-add#assistant-add-task).
         ///
         /// **Note:** Currently, the v2 API does not support creating assistants.</param>
@@ -151,8 +152,9 @@ namespace IBM.Watson.Assistant.v2
         ///
         /// Deletes a session explicitly before it times out.
         /// </summary>
-        /// <param name="assistantId">Unique identifier of the assistant. You can find the assistant ID of an assistant
-        /// on the **Assistants** tab of the Watson Assistant tool. For information about creating assistants, see the
+        /// <param name="assistantId">Unique identifier of the assistant. To find the assistant ID in the Watson
+        /// Assistant user interface, open the assistant settings and click **API Details**. For information about
+        /// creating assistants, see the
         /// [documentation](https://cloud.ibm.com/docs/services/assistant?topic=assistant-assistant-add#assistant-add-task).
         ///
         /// **Note:** Currently, the v2 API does not support creating assistants.</param>
@@ -217,8 +219,9 @@ namespace IBM.Watson.Assistant.v2
         ///
         /// There is no rate limit for this operation.
         /// </summary>
-        /// <param name="assistantId">Unique identifier of the assistant. You can find the assistant ID of an assistant
-        /// on the **Assistants** tab of the Watson Assistant tool. For information about creating assistants, see the
+        /// <param name="assistantId">Unique identifier of the assistant. To find the assistant ID in the Watson
+        /// Assistant user interface, open the assistant settings and click **API Details**. For information about
+        /// creating assistants, see the
         /// [documentation](https://cloud.ibm.com/docs/services/assistant?topic=assistant-assistant-add#assistant-add-task).
         ///
         /// **Note:** Currently, the v2 API does not support creating assistants.</param>

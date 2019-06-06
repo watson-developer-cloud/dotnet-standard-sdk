@@ -10,6 +10,9 @@ var dir_f918a9c434a2a184dbb4779f6e2bb01d =
       [ "Collection", "df/da8/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_collection.html", "df/da8/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_collection" ],
       [ "StatusEnumValue", "d5/dd3/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_collection_1_1_status_enum_value.html", "d5/dd3/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_collection_1_1_status_enum_value" ]
     ] ],
+    [ "CollectionCrawlStatus.cs", "da/d23/_collection_crawl_status_8cs.html", [
+      [ "CollectionCrawlStatus", "dc/d69/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_collection_crawl_status.html", "dc/d69/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_collection_crawl_status" ]
+    ] ],
     [ "CollectionDiskUsage.cs", "dd/ddc/_collection_disk_usage_8cs.html", [
       [ "CollectionDiskUsage", "dd/de5/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_collection_disk_usage.html", "dd/de5/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_collection_disk_usage" ]
     ] ],
@@ -33,7 +36,8 @@ var dir_f918a9c434a2a184dbb4779f6e2bb01d =
     ] ],
     [ "Credentials.cs", "d5/d48/_credentials_8cs.html", [
       [ "Credentials", "de/d95/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_credentials.html", "de/d95/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_credentials" ],
-      [ "SourceTypeEnumValue", "d3/d69/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_credentials_1_1_source_type_enum_value.html", "d3/d69/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_credentials_1_1_source_type_enum_value" ]
+      [ "SourceTypeEnumValue", "d3/d69/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_credentials_1_1_source_type_enum_value.html", "d3/d69/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_credentials_1_1_source_type_enum_value" ],
+      [ "StatusEnumValue", "d6/d59/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_credentials_1_1_status_enum_value.html", "d6/d59/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_credentials_1_1_status_enum_value" ]
     ] ],
     [ "CredentialsList.cs", "d2/d6a/_credentials_list_8cs.html", [
       [ "CredentialsList", "d6/d22/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_credentials_list.html", "d6/d22/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_credentials_list" ]
@@ -72,7 +76,7 @@ var dir_f918a9c434a2a184dbb4779f6e2bb01d =
       [ "DocumentSnapshot", "de/dd8/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_document_snapshot.html", "de/dd8/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_document_snapshot" ],
       [ "StepEnumValue", "d8/db6/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_document_snapshot_1_1_step_enum_value.html", "d8/db6/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_document_snapshot_1_1_step_enum_value" ]
     ] ],
-    [ "DocumentStatus.cs", "da/d0a/_document_status_8cs.html", [
+    [ "DocumentStatus.cs", "dc/dec/_i_b_m_8_watson_8_discovery_8v1_2_model_2_document_status_8cs.html", [
       [ "DocumentStatus", "da/d4f/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_document_status.html", "da/d4f/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_document_status" ],
       [ "StatusEnumValue", "de/de8/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_document_status_1_1_status_enum_value.html", "de/de8/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_document_status_1_1_status_enum_value" ],
       [ "FileTypeEnumValue", "df/de3/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_document_status_1_1_file_type_enum_value.html", "df/de3/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_document_status_1_1_file_type_enum_value" ]
@@ -280,6 +284,12 @@ var dir_f918a9c434a2a184dbb4779f6e2bb01d =
     [ "RetrievalDetails.cs", "de/d0f/_retrieval_details_8cs.html", [
       [ "RetrievalDetails", "d8/d9b/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_retrieval_details.html", "d8/d9b/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_retrieval_details" ],
       [ "DocumentRetrievalStrategyEnumValue", "d4/d53/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_retrieval_details_1_1_document_retrieval_strategy_enum_value.html", "d4/d53/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_retrieval_details_1_1_document_retrieval_strategy_enum_value" ]
+    ] ],
+    [ "SduStatus.cs", "dd/dcf/_sdu_status_8cs.html", [
+      [ "SduStatus", "d9/df4/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_sdu_status.html", "d9/df4/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_sdu_status" ]
+    ] ],
+    [ "SduStatusCustomFields.cs", "d1/d4f/_sdu_status_custom_fields_8cs.html", [
+      [ "SduStatusCustomFields", "d1/d28/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_sdu_status_custom_fields.html", "d1/d28/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_sdu_status_custom_fields" ]
     ] ],
     [ "SearchStatus.cs", "dc/dd8/_search_status_8cs.html", [
       [ "SearchStatus", "da/dba/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_search_status.html", "da/dba/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_search_status" ],

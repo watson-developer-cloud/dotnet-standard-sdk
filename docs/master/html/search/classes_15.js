@@ -8,7 +8,7 @@ var searchData=
   ['wordalternativeresults',['WordAlternativeResults',['../d5/dbf/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_word_alternative_results.html',1,'IBM::Watson::SpeechToText::v1::Model']]],
   ['worderror',['WordError',['../db/d1c/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_word_error.html',1,'IBM::Watson::SpeechToText::v1::Model']]],
   ['wordheadingdetection',['WordHeadingDetection',['../d9/d11/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_word_heading_detection.html',1,'IBM::Watson::Discovery::v1::Model']]],
-  ['words',['Words',['../d4/d94/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_words.html',1,'IBM.Watson.SpeechToText.v1.Model.Words'],['../d7/d64/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_model_1_1_words.html',1,'IBM.Watson.TextToSpeech.v1.Model.Words']]],
+  ['words',['Words',['../d7/d64/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_model_1_1_words.html',1,'IBM.Watson.TextToSpeech.v1.Model.Words'],['../d4/d94/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_words.html',1,'IBM.Watson.SpeechToText.v1.Model.Words']]],
   ['wordsettings',['WordSettings',['../d2/d1e/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_word_settings.html',1,'IBM::Watson::Discovery::v1::Model']]],
   ['wordstyle',['WordStyle',['../d7/dba/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_word_style.html',1,'IBM::Watson::Discovery::v1::Model']]],
   ['workspace',['Workspace',['../d6/d2d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace.html',1,'IBM::Watson::Assistant::v1::Model']]],

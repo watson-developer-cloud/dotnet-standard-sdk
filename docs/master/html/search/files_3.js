@@ -35,7 +35,8 @@ var searchData=
   ['documentanalysis_2ecs',['DocumentAnalysis.cs',['../d4/dd0/_document_analysis_8cs.html',1,'']]],
   ['documentcounts_2ecs',['DocumentCounts.cs',['../da/dd5/_document_counts_8cs.html',1,'']]],
   ['documentemotionresults_2ecs',['DocumentEmotionResults.cs',['../d5/ddf/_document_emotion_results_8cs.html',1,'']]],
+  ['documentlist_2ecs',['DocumentList.cs',['../d5/d9c/_document_list_8cs.html',1,'']]],
   ['documentsentimentresults_2ecs',['DocumentSentimentResults.cs',['../de/d57/_document_sentiment_results_8cs.html',1,'']]],
   ['documentsnapshot_2ecs',['DocumentSnapshot.cs',['../d0/d4b/_document_snapshot_8cs.html',1,'']]],
-  ['documentstatus_2ecs',['DocumentStatus.cs',['../da/d0a/_document_status_8cs.html',1,'']]]
+  ['documentstatus_2ecs',['DocumentStatus.cs',['../dc/dec/_i_b_m_8_watson_8_discovery_8v1_2_model_2_document_status_8cs.html',1,'(Global Namespace)'],['../df/d0a/_i_b_m_8_watson_8_language_translator_8v3_2_model_2_document_status_8cs.html',1,'(Global Namespace)']]]
 ];

@@ -104,12 +104,39 @@ Properties</h2></td></tr>
 <tr class="memdesc:a5cd5f03d666b0019f358b9fe8dcbf956"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables/disables the Document Segmentation feature.  <a href="#a5cd5f03d666b0019f358b9fe8dcbf956">More...</a><br /></td></tr>
 <tr class="separator:a5cd5f03d666b0019f358b9fe8dcbf956"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a927bf207d177972dfd3b1b13bb055ad5"><td class="memItemLeft" align="right" valign="top">List&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/de0/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_segment_settings.html#a927bf207d177972dfd3b1b13bb055ad5">SelectorTags</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a927bf207d177972dfd3b1b13bb055ad5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the heading level that splits into document segments. Valid values are h1, h2, h3, h4, h5, h6. The content of the header field that the segmentation splits at is used as the <b>title</b> field for that segmented result.  <a href="#a927bf207d177972dfd3b1b13bb055ad5">More...</a><br /></td></tr>
+<tr class="memdesc:a927bf207d177972dfd3b1b13bb055ad5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the heading level that splits into document segments. Valid values are h1, h2, h3, h4, h5, h6. The content of the header field that the segmentation splits at is used as the <b>title</b> field for that segmented result. Only valid if used with a collection that has <b>enabled</b> set to <code>false</code> in the <b>smart_document_understanding</b> object.  <a href="#a927bf207d177972dfd3b1b13bb055ad5">More...</a><br /></td></tr>
 <tr class="separator:a927bf207d177972dfd3b1b13bb055ad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35b4359eb5f2e03162f2a37fa786f4cf"><td class="memItemLeft" align="right" valign="top">List&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/de0/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_segment_settings.html#a35b4359eb5f2e03162f2a37fa786f4cf">AnnotatedFields</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a35b4359eb5f2e03162f2a37fa786f4cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the annotated smart document understanding fields that the document is split on. The content of the annotated field that the segmentation splits at is used as the <b>title</b> field for that segmented result. For example, if the field <code>sub-title</code> is specified, when a document is uploaded each time the smart documement understanding conversion encounters a field of type <code>sub-title</code> the document is split at that point and the content of the field used as the title of the remaining content. Thnis split is performed for all instances of the listed fields in the uploaded document. Only valid if used with a collection that has <b>enabled</b> set to <code>true</code> in the <b>smart_document_understanding</b> object.  <a href="#a35b4359eb5f2e03162f2a37fa786f4cf">More...</a><br /></td></tr>
+<tr class="separator:a35b4359eb5f2e03162f2a37fa786f4cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A list of Document Segmentation settings. </p>
 </div><h2 class="groupheader">Property Documentation</h2>
+<a id="a35b4359eb5f2e03162f2a37fa786f4cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35b4359eb5f2e03162f2a37fa786f4cf">&#9670;&nbsp;</a></span>AnnotatedFields</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;string&gt; IBM.Watson.Discovery.v1.Model.SegmentSettings.AnnotatedFields</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Defines the annotated smart document understanding fields that the document is split on. The content of the annotated field that the segmentation splits at is used as the <b>title</b> field for that segmented result. For example, if the field <code>sub-title</code> is specified, when a document is uploaded each time the smart documement understanding conversion encounters a field of type <code>sub-title</code> the document is split at that point and the content of the field used as the title of the remaining content. Thnis split is performed for all instances of the listed fields in the uploaded document. Only valid if used with a collection that has <b>enabled</b> set to <code>true</code> in the <b>smart_document_understanding</b> object. </p>
+
+</div>
+</div>
 <a id="a5cd5f03d666b0019f358b9fe8dcbf956"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5cd5f03d666b0019f358b9fe8dcbf956">&#9670;&nbsp;</a></span>Enabled</h2>
 
@@ -154,7 +181,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Defines the heading level that splits into document segments. Valid values are h1, h2, h3, h4, h5, h6. The content of the header field that the segmentation splits at is used as the <b>title</b> field for that segmented result. </p>
+<p>Defines the heading level that splits into document segments. Valid values are h1, h2, h3, h4, h5, h6. The content of the header field that the segmentation splits at is used as the <b>title</b> field for that segmented result. Only valid if used with a collection that has <b>enabled</b> set to <code>false</code> in the <b>smart_document_understanding</b> object. </p>
 
 </div>
 </div>

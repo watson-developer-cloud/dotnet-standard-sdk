@@ -110,15 +110,15 @@ Properties</h2></td></tr>
 <tr class="memitem:afe03741ff85c2f36f19e7d6b4e9d7f9e"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d2d/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_source_status.html#afe03741ff85c2f36f19e7d6b4e9d7f9e">Status</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:afe03741ff85c2f36f19e7d6b4e9d7f9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current status of the source crawl for this collection. This field returns <code>not_configured</code> if the default configuration for this source does not have a <b>source</b> object defined.  <a href="#afe03741ff85c2f36f19e7d6b4e9d7f9e">More...</a><br /></td></tr>
 <tr class="separator:afe03741ff85c2f36f19e7d6b4e9d7f9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f29e626f88462962275c274e713470c"><td class="memItemLeft" align="right" valign="top">DateTime&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d2d/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_source_status.html#a5f29e626f88462962275c274e713470c">LastUpdated</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a5f29e626f88462962275c274e713470c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Date in UTC format indicating when the last crawl was attempted. If <code>null</code>, no crawl was completed.  <a href="#a5f29e626f88462962275c274e713470c">More...</a><br /></td></tr>
-<tr class="separator:a5f29e626f88462962275c274e713470c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bba9dd250cd28194c58ff601c1c03d6"><td class="memItemLeft" align="right" valign="top">DateTime&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d2d/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_source_status.html#a3bba9dd250cd28194c58ff601c1c03d6">NextCrawl</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a3bba9dd250cd28194c58ff601c1c03d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Date in <code>RFC 3339</code> format indicating the time of the next crawl attempt.  <a href="#a3bba9dd250cd28194c58ff601c1c03d6">More...</a><br /></td></tr>
+<tr class="separator:a3bba9dd250cd28194c58ff601c1c03d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Object containing source crawl status information. </p>
 </div><h2 class="groupheader">Property Documentation</h2>
-<a id="a5f29e626f88462962275c274e713470c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5f29e626f88462962275c274e713470c">&#9670;&nbsp;</a></span>LastUpdated</h2>
+<a id="a3bba9dd250cd28194c58ff601c1c03d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3bba9dd250cd28194c58ff601c1c03d6">&#9670;&nbsp;</a></span>NextCrawl</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -127,7 +127,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">DateTime IBM.Watson.Discovery.v1.Model.SourceStatus.LastUpdated</td>
+          <td class="memname">DateTime IBM.Watson.Discovery.v1.Model.SourceStatus.NextCrawl</td>
         </tr>
       </table>
   </td>
@@ -137,7 +137,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Date in UTC format indicating when the last crawl was attempted. If <code>null</code>, no crawl was completed. </p>
+<p>Date in <code>RFC 3339</code> format indicating the time of the next crawl attempt. </p>
 
 </div>
 </div>
@@ -165,7 +165,8 @@ Properties</h2></td></tr>
 <ul>
 <li><code>running</code> indicates that a crawl to fetch more documents is in progress.</li>
 <li><code>complete</code> indicates that the crawl has completed with no errors.</li>
-<li><code>queued</code> indicates that the crawl has been paused by the system and will automatically restart when possible. Constants for possible values can be found using <a class="el" href="../../d4/d2a/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_source_status_1_1_status_enum_value.html" title="The current status of the source crawl for this collection. This field returns not_configured if the ...">SourceStatus.StatusEnumValue</a> </li>
+<li><code>queued</code> indicates that the crawl has been paused by the system and will automatically restart when possible.</li>
+<li><code>unknown</code> indicates that an unidentified error has occured in the service. Constants for possible values can be found using <a class="el" href="../../d4/d2a/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_source_status_1_1_status_enum_value.html" title="The current status of the source crawl for this collection. This field returns not_configured if the ...">SourceStatus.StatusEnumValue</a> </li>
 </ul>
 
 </div>

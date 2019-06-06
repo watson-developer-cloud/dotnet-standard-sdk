@@ -494,7 +494,7 @@ Properties</h2></td></tr>
 
 <p>Delete labeled data. </p>
 <p>Deletes all data associated with a specified customer ID. The method has no effect if no data is associated with the customer ID.</p>
-<p>You associate a customer ID with data by passing the <code>X-Watson-Metadata</code> header with a request that passes data. For more information about personal data and customer IDs, see <a href="https://cloud.ibm.com/docs/services/visual-recognition/information-security.html">Information security</a>. </p>
+<p>You associate a customer ID with data by passing the <code>X-Watson-Metadata</code> header with a request that passes data. For more information about personal data and customer IDs, see <a href="https://cloud.ibm.com/docs/services/visual-recognition?topic=visual-recognition-information-security">Information security</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">customerId</td><td>The customer ID for which all data is to be deleted.</td></tr>
@@ -560,8 +560,8 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Detect faces in images. </p>
-<p><b>Important:</b> On April 2, 2018, the identity information in the response to calls to the Face model was removed. The identity information refers to the <code>name</code> of the person, <code>score</code>, and <code>type_hierarchy</code> knowledge graph. For details about the enhanced Face model, see the <a href="https://cloud.ibm.com/docs/services/visual-recognition/release-notes.html#2april2018">Release notes</a>.</p>
-<p>Analyze and get data about faces in images. Responses can include estimated age and gender. This feature uses a built-in model, so no training is necessary. The Detect faces method does not support general biometric facial recognition.</p>
+<p><b>Important:</b> On April 2, 2018, the identity information in the response to calls to the Face model was removed. The identity information refers to the <code>name</code> of the person, <code>score</code>, and <code>type_hierarchy</code> knowledge graph. For details about the enhanced Face model, see the <a href="https://cloud.ibm.com/docs/services/visual-recognition?topic=visual-recognition-release-notes#2april2018">Release notes</a>.</p>
+<p>Analyze and get data about faces in images. Responses can include estimated age and gender. This feature uses a built-in model, so no training is necessary. The <b>Detect faces</b> method does not support general biometric facial recognition.</p>
 <p>Supported image formats include .gif, .jpg, .png, and .tif. The maximum image size is 10 MB. The minimum recommended pixel density is 32X32 pixels, but the service tends to perform better with images that are at least 224 x 224 pixels. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -752,7 +752,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Update a classifier. </p>
-<p>Update a custom classifier by adding new positive or negative classes or by adding new images to existing classes. You must supply at least one set of positive or negative examples. For details, see [Updating custom classifiers](<a href="https://cloud.ibm.com/docs/services/visual-recognition/customizing.html#updating-custom-classifiers">https://cloud.ibm.com/docs/services/visual-recognition/customizing.html#updating-custom-classifiers</a>).</p>
+<p>Update a custom classifier by adding new positive or negative classes or by adding new images to existing classes. You must supply at least one set of positive or negative examples. For details, see [Updating custom classifiers](<a href="https://cloud.ibm.com/docs/services/visual-recognition?topic=visual-recognition-customizing#updating-custom-classifiers">https://cloud.ibm.com/docs/services/visual-recognition?topic=visual-recognition-customizing#updating-custom-classifiers</a>).</p>
 <p>Encode all names in UTF-8 if they contain non-ASCII characters (.zip and image file names, and classifier and class names). The service assumes UTF-8 encoding if it encounters non-ASCII characters.</p>
 <p><b>Tip:</b> Don't make retraining calls on a classifier until the status is ready. When you submit retraining requests in parallel, the last request overwrites the previous requests. The retrained property shows the last time the classifier retraining finished. </p>
 <dl class="params"><dt>Parameters</dt><dd>

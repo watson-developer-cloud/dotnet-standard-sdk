@@ -17,18 +17,18 @@
 
 using Newtonsoft.Json;
 
-namespace IBM.Watson.Assistant.v1.Model
+namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
-    /// Workspace settings related to the Watson Assistant user interface.
+    /// Object containing information about the crawl status of this collection.
     /// </summary>
-    public class WorkspaceSystemSettingsTooling
+    public class CollectionCrawlStatus
     {
         /// <summary>
-        /// Whether the dialog JSON editor displays text responses within the `output.generic` object.
+        /// Object containing source crawl status information.
         /// </summary>
-        [JsonProperty("store_generic_responses", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? StoreGenericResponses { get; set; }
+        [JsonProperty("source_crawl", NullValueHandling = NullValueHandling.Ignore)]
+        public SourceStatus SourceCrawl { get; set; }
     }
 
 }

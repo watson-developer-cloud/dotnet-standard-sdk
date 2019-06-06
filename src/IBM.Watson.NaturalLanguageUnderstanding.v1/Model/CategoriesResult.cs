@@ -37,6 +37,11 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
         /// </summary>
         [JsonProperty("score", NullValueHandling = NullValueHandling.Ignore)]
         public double? Score { get; set; }
+        /// <summary>
+        /// Information that helps to explain what contributed to the categories result.
+        /// </summary>
+        [JsonProperty("explanation", NullValueHandling = NullValueHandling.Ignore)]
+        public CategoriesResultExplanation Explanation { get; set; }
     }
 
 }

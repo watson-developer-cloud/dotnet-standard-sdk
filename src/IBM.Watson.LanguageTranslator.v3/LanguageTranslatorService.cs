@@ -565,5 +565,346 @@ namespace IBM.Watson.LanguageTranslator.v3
 
             return result;
         }
+        /// <summary>
+        /// List documents.
+        ///
+        /// Lists documents that have been submitted for translation.
+        /// </summary>
+        /// <returns><see cref="DocumentList" />DocumentList</returns>
+        public DetailedResponse<DocumentList> ListDocuments()
+        {
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<DocumentList> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v3/documents");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "ListDocuments"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<DocumentList>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<DocumentList>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Translate document.
+        ///
+        /// Submit a document for translation. You can submit the document contents in the `file` parameter, or you can
+        /// reference a previously submitted document by document ID.
+        /// </summary>
+        /// <param name="file">The source file to translate.
+        ///
+        /// [Supported file
+        /// types](https://cloud.ibm.com/docs/services/language-translator?topic=language-translator-document-translator-tutorial#supported-file-formats)
+        ///
+        /// Maximum file size: **20 MB**.</param>
+        /// <param name="filename">The filename for file.</param>
+        /// <param name="fileContentType">The content type of file. (optional)</param>
+        /// <param name="modelId">The model to use for translation. `model_id` or both `source` and `target` are
+        /// required. (optional)</param>
+        /// <param name="source">Language code that specifies the language of the source document. (optional)</param>
+        /// <param name="target">Language code that specifies the target language for translation. (optional)</param>
+        /// <param name="documentId">To use a previously submitted document as the source for a new translation, enter
+        /// the `document_id` of the document. (optional)</param>
+        /// <returns><see cref="DocumentStatus" />DocumentStatus</returns>
+        public DetailedResponse<DocumentStatus> TranslateDocument(System.IO.MemoryStream file, string filename, string fileContentType = null, string modelId = null, string source = null, string target = null, string documentId = null)
+        {
+            if (file == null)
+            {
+                throw new ArgumentNullException("`file` is required for `TranslateDocument`");
+            }
+            if (string.IsNullOrEmpty(filename))
+            {
+                throw new ArgumentNullException("`filename` is required for `TranslateDocument`");
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<DocumentStatus> result = null;
+
+            try
+            {
+                var formData = new MultipartFormDataContent();
+
+                if (file != null)
+                {
+                    var fileContent = new ByteArrayContent(file.ToArray());
+                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
+                    fileContent.Headers.ContentType = contentType;
+                    formData.Add(fileContent, "file", filename);
+                }
+
+                if (modelId != null)
+                {
+                    var modelIdContent = new StringContent(modelId, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                    modelIdContent.Headers.ContentType = null;
+                    formData.Add(modelIdContent, "model_id");
+                }
+
+                if (source != null)
+                {
+                    var sourceContent = new StringContent(source, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                    sourceContent.Headers.ContentType = null;
+                    formData.Add(sourceContent, "source");
+                }
+
+                if (target != null)
+                {
+                    var targetContent = new StringContent(target, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                    targetContent.Headers.ContentType = null;
+                    formData.Add(targetContent, "target");
+                }
+
+                if (documentId != null)
+                {
+                    var documentIdContent = new StringContent(documentId, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                    documentIdContent.Headers.ContentType = null;
+                    formData.Add(documentIdContent, "document_id");
+                }
+
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v3/documents");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithBodyContent(formData);
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "TranslateDocument"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<DocumentStatus>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<DocumentStatus>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get document status.
+        ///
+        /// Gets the translation status of a document.
+        /// </summary>
+        /// <param name="documentId">The document ID of the document.</param>
+        /// <returns><see cref="DocumentStatus" />DocumentStatus</returns>
+        public DetailedResponse<DocumentStatus> GetDocumentStatus(string documentId)
+        {
+            if (string.IsNullOrEmpty(documentId))
+            {
+                throw new ArgumentNullException("`documentId` is required for `GetDocumentStatus`");
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<DocumentStatus> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v3/documents/{documentId}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "GetDocumentStatus"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<DocumentStatus>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<DocumentStatus>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Delete document.
+        ///
+        /// Deletes a document.
+        /// </summary>
+        /// <param name="documentId">Document ID of the document to delete.</param>
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteDocument(string documentId)
+        {
+            if (string.IsNullOrEmpty(documentId))
+            {
+                throw new ArgumentNullException("`documentId` is required for `DeleteDocument`");
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<object> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v3/documents/{documentId}");
+
+                restRequest.WithArgument("version", VersionDate);
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "DeleteDocument"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<object>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<object>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get translated document.
+        ///
+        /// Gets the translated document associated with the given document ID.
+        /// </summary>
+        /// <param name="documentId">The document ID of the document that was submitted for translation.</param>
+        /// <param name="accept">The type of the response: application/powerpoint, application/mspowerpoint,
+        /// application/x-rtf, application/json, application/xml, application/vnd.ms-excel,
+        /// application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-powerpoint,
+        /// application/vnd.openxmlformats-officedocument.presentationml.presentation, application/msword,
+        /// application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+        /// application/vnd.oasis.opendocument.spreadsheet, application/vnd.oasis.opendocument.presentation,
+        /// application/vnd.oasis.opendocument.text, application/pdf, application/rtf, text/html, text/json, text/plain,
+        /// text/richtext, text/rtf, or text/xml. A character encoding can be specified by including a `charset`
+        /// parameter. For example, 'text/html;charset=utf-8'. (optional)</param>
+        /// <returns><see cref="byte[]" />byte[]</returns>
+        public DetailedResponse<System.IO.MemoryStream> GetTranslatedDocument(string documentId, string accept = null)
+        {
+            if (string.IsNullOrEmpty(documentId))
+            {
+                throw new ArgumentNullException("`documentId` is required for `GetTranslatedDocument`");
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<System.IO.MemoryStream> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                if (_tokenManager != null)
+                {
+                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
+                }
+                if (_tokenManager == null)
+                {
+                    client = this.Client.WithAuthentication(this.UserName, this.Password);
+                }
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v3/documents/{documentId}/translated_document");
+
+                restRequest.WithArgument("version", VersionDate);
+
+                if (!string.IsNullOrEmpty(accept))
+                {
+                    restRequest.WithHeader("Accept", accept);
+                }
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "GetTranslatedDocument"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = new DetailedResponse<System.IO.MemoryStream>();
+                result.Result = new System.IO.MemoryStream(restRequest.AsByteArray().Result);
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
     }
 }

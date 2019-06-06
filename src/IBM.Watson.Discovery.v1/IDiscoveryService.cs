@@ -81,9 +81,9 @@ namespace IBM.Watson.Discovery.v1
         DetailedResponse<MetricResponse> GetMetricsEventRate(DateTime? startTime = null, DateTime? endTime = null, string resultType = null);
         DetailedResponse<MetricTokenResponse> GetMetricsQueryTokenEvent(long? count = null);
         DetailedResponse<CredentialsList> ListCredentials(string environmentId);
-        DetailedResponse<Credentials> CreateCredentials(string environmentId, string sourceType = null, CredentialDetails credentialDetails = null);
+        DetailedResponse<Credentials> CreateCredentials(string environmentId, string sourceType = null, CredentialDetails credentialDetails = null, string status = null);
         DetailedResponse<Credentials> GetCredentials(string environmentId, string credentialId);
-        DetailedResponse<Credentials> UpdateCredentials(string environmentId, string credentialId, string sourceType = null, CredentialDetails credentialDetails = null);
+        DetailedResponse<Credentials> UpdateCredentials(string environmentId, string credentialId, string sourceType = null, CredentialDetails credentialDetails = null, string status = null);
         DetailedResponse<DeleteCredentials> DeleteCredentials(string environmentId, string credentialId);
         DetailedResponse<GatewayList> ListGateways(string environmentId);
         DetailedResponse<Gateway> CreateGateway(string environmentId, string name = null);

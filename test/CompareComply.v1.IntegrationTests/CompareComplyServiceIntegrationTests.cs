@@ -33,7 +33,7 @@ namespace IBM.Watson.CompareComply.v1.IntegrationTests
         private static string endpoint;
         private CompareComplyService service;
         private static string credentials = string.Empty;
-        private readonly string versionDate = "2018-11-12";
+        private readonly string versionDate = "2019-06-03";
 
         private string contractAFilePath = @"CompareComplyTestData/contract_A.pdf";
         private string contractBFilePath = @"CompareComplyTestData/contract_B.pdf";

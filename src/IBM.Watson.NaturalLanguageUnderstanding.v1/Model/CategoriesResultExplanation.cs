@@ -15,20 +15,23 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace IBM.Watson.Assistant.v1.Model
+namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// Workspace settings related to the Watson Assistant user interface.
+    /// Information that helps to explain what contributed to the categories result.
     /// </summary>
-    public class WorkspaceSystemSettingsTooling
+    public class CategoriesResultExplanation
     {
         /// <summary>
-        /// Whether the dialog JSON editor displays text responses within the `output.generic` object.
+        /// An array of relevant text from the source that contributed to the categorization. The sorted array begins
+        /// with the phrase that contributed most significantly to the result, followed by phrases that were less and
+        /// less impactful.
         /// </summary>
-        [JsonProperty("store_generic_responses", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? StoreGenericResponses { get; set; }
+        [JsonProperty("relevant_text", NullValueHandling = NullValueHandling.Ignore)]
+        public List<CategoriesRelevantText> RelevantText { get; set; }
     }
 
 }

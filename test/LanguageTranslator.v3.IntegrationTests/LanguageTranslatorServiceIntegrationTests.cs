@@ -163,6 +163,7 @@ namespace IBM.Watson.LanguageTranslator.v3.IntegrationTests
                     service.WithHeader("X-Watson-Test", "1");
                     translateDocumentResult = service.TranslateDocument(
                         file: ms,
+                        filename: Path.GetFileName(documentToTranslatePath),
                         fileContentType: "text/plain",
                         modelId: "en-es"
                         );

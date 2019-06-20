@@ -117,7 +117,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.TextToSpeech.v1.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.ToneAnalyzer.v3.Examples", "examples\IBM.Watson.ToneAnalyzer.v3.Examples\IBM.Watson.ToneAnalyzer.v3.Examples.csproj", "{523AE6E0-11CD-40CA-ABB1-8010E35C416D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.VisualRecognition.v3.Examples", "examples\IBM.Watson.VisualRecognition.v3.Examples\IBM.Watson.VisualRecognition.v3.Examples.csproj", "{EBED7B56-15D3-472E-A758-6452415AA941}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.VisualRecognition.v3.Examples", "examples\IBM.Watson.VisualRecognition.v3.Examples\IBM.Watson.VisualRecognition.v3.Examples.csproj", "{EBED7B56-15D3-472E-A758-6452415AA941}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Cloud.SDK.Core", "..\dotnet-sdk-core\src\IBM.Cloud.SDK.Core\IBM.Cloud.SDK.Core.csproj", "{7FFB003A-15DA-40BE-B608-13A0F4771500}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Cloud.SDK.Core.Tests", "..\dotnet-sdk-core\test\IBM.Cloud.SDK.Core.Tests\IBM.Cloud.SDK.Core.Tests.csproj", "{29301B52-2930-40E3-B356-EB276FFDBA10}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -305,6 +309,14 @@ Global
 		{EBED7B56-15D3-472E-A758-6452415AA941}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBED7B56-15D3-472E-A758-6452415AA941}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBED7B56-15D3-472E-A758-6452415AA941}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FFB003A-15DA-40BE-B608-13A0F4771500}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FFB003A-15DA-40BE-B608-13A0F4771500}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FFB003A-15DA-40BE-B608-13A0F4771500}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FFB003A-15DA-40BE-B608-13A0F4771500}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29301B52-2930-40E3-B356-EB276FFDBA10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29301B52-2930-40E3-B356-EB276FFDBA10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29301B52-2930-40E3-B356-EB276FFDBA10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29301B52-2930-40E3-B356-EB276FFDBA10}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

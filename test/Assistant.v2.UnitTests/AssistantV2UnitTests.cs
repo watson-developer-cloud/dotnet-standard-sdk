@@ -15,6 +15,7 @@
 *
 */
 
+using IBM.Cloud.SDK.Core.Authentication.Icp4d;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Exceptions;
 using IBM.Watson.Assistant.v2.Model;
@@ -447,6 +448,23 @@ namespace IBM.Watson.Assistant.v2.UnitTests
             Assert.IsNotNull(result);
             client.Received().PostAsync(Arg.Any<string>());
 
+        }
+        #endregion
+
+        #region ICP4D
+        public void CreateSession_Icp4d_Success()
+        {
+            Icp4dConfig config = new Icp4dConfig(
+                url: "icp-url", 
+                username: "username", 
+                password: "password", 
+                disableSslVerification: true
+                );
+
+            AssistantService service = new AssistantService(
+                versionDate: "2019-06-19", 
+                authenticatorConfig: config
+                );
         }
         #endregion
     }

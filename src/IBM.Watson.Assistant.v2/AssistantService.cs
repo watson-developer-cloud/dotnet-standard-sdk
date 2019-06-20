@@ -25,6 +25,7 @@ using IBM.Watson.Assistant.v2.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using IBM.Cloud.SDK.Core.Authentication;
 
 namespace IBM.Watson.Assistant.v2
 {
@@ -32,6 +33,7 @@ namespace IBM.Watson.Assistant.v2
     {
         new const string SERVICE_NAME = "assistant";
         const string URL = "https://gateway.watsonplatform.net/assistant/api";
+        public string defaultEndpoint = "https://gateway.watsonplatform.net/assistant/api";
         private string _versionDate;
         public string VersionDate
         {
@@ -75,6 +77,12 @@ namespace IBM.Watson.Assistant.v2
             }
 
             _tokenManager = new TokenManager(options);
+        }
+
+        public AssistantService(string versionDate, IAuthenticatorConfig authenticatorConfig) : base(SERVICE_NAME, authenticatorConfig)
+        {
+            VersionDate = versionDate;
+            
         }
 
         public AssistantService(IClient httpClient) : base(SERVICE_NAME, URL)

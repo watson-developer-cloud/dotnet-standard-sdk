@@ -38,6 +38,7 @@ namespace IBM.Watson.SpeechToText.v1
         public new string DefaultEndpoint = "https://stream.watsonplatform.net/speech-to-text/api";
         public SpeechToTextService() : base(SERVICE_NAME) { }
         
+        [Obsolete("Please use SpeechToTextService(IAuthenticatorConfig config) instead")]
         public SpeechToTextService(string userName, string password) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(userName))
@@ -49,6 +50,7 @@ namespace IBM.Watson.SpeechToText.v1
             this.SetCredential(userName, password);
         }
         
+        [Obsolete("Please use SpeechToTextService(IAuthenticatorConfig config) instead")]
         public SpeechToTextService(TokenOptions options) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
@@ -86,6 +88,10 @@ namespace IBM.Watson.SpeechToText.v1
                 throw new ArgumentNullException(nameof(httpClient));
 
             this.Client = httpClient;
+        }
+
+        public SpeechToTextService(IAuthenticatorConfig config) : base(SERVICE_NAME, config)
+        {
         }
 
         /// <summary>

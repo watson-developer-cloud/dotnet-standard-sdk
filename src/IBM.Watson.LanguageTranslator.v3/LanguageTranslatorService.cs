@@ -45,6 +45,7 @@ namespace IBM.Watson.LanguageTranslator.v3
 
         public LanguageTranslatorService() : base(SERVICE_NAME) { }
         
+        [Obsolete("Please use LanguageTranslatorService(string versionDate, IAuthenticatorConfig config) instead")]
         public LanguageTranslatorService(string userName, string password, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(userName))
@@ -60,6 +61,7 @@ namespace IBM.Watson.LanguageTranslator.v3
             VersionDate = versionDate;
         }
         
+        [Obsolete("Please use LanguageTranslatorService(string versionDate, IAuthenticatorConfig config) instead")]
         public LanguageTranslatorService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
@@ -102,6 +104,11 @@ namespace IBM.Watson.LanguageTranslator.v3
                 throw new ArgumentNullException(nameof(httpClient));
 
             this.Client = httpClient;
+        }
+
+        public LanguageTranslatorService(string versionDate, IAuthenticatorConfig config) : base(SERVICE_NAME, config)
+        {
+            VersionDate = versionDate;
         }
 
         /// <summary>
@@ -589,6 +596,7 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// types](https://cloud.ibm.com/docs/services/language-translator?topic=language-translator-document-translator-tutorial#supported-file-formats)
         ///
         /// Maximum file size: **20 MB**.</param>
+        /// <param name="filename">The filename for file.</param>
         /// <param name="fileContentType">The content type of file. (optional)</param>
         /// <param name="modelId">The model to use for translation. `model_id` or both `source` and `target` are
         /// required. (optional)</param>
@@ -603,10 +611,9 @@ namespace IBM.Watson.LanguageTranslator.v3
             {
                 throw new ArgumentNullException("`file` is required for `TranslateDocument`");
             }
-
             if (string.IsNullOrEmpty(filename))
             {
-                throw new ArgumentNullException("filename cannot be null.");
+                throw new ArgumentNullException("`filename` is required for `TranslateDocument`");
             }
 
             if (string.IsNullOrEmpty(VersionDate))

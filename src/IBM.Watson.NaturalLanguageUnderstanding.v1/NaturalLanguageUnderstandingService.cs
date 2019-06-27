@@ -26,7 +26,6 @@ using IBM.Watson.NaturalLanguageUnderstanding.v1.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using IBM.Cloud.SDK.Core.Authentication;
 
 namespace IBM.Watson.NaturalLanguageUnderstanding.v1
 {
@@ -43,7 +42,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         }
 
         public NaturalLanguageUnderstandingService() : base(SERVICE_NAME) { }
-
+        
         [Obsolete("Please use NaturalLanguageUnderstandingService(string versionDate, IAuthenticatorConfig config) instead")]
         public NaturalLanguageUnderstandingService(string userName, string password, string versionDate) : base(SERVICE_NAME, URL)
         {
@@ -60,6 +59,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
             VersionDate = versionDate;
         }
         
+        [Obsolete("Please use NaturalLanguageUnderstandingService(string versionDate, IAuthenticatorConfig config) instead")]
         public NaturalLanguageUnderstandingService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))

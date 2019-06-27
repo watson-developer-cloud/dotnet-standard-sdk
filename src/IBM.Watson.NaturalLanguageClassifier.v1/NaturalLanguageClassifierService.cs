@@ -38,6 +38,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
         public new string DefaultEndpoint = "https://gateway.watsonplatform.net/natural-language-classifier/api";
         public NaturalLanguageClassifierService() : base(SERVICE_NAME) { }
         
+        [Obsolete("Please use NaturalLanguageClassifierService(IAuthenticatorConfig config) instead")]
         public NaturalLanguageClassifierService(string userName, string password) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(userName))
@@ -49,6 +50,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
             this.SetCredential(userName, password);
         }
         
+        [Obsolete("Please use NaturalLanguageClassifierService(IAuthenticatorConfig config) instead")]
         public NaturalLanguageClassifierService(TokenOptions options) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
@@ -86,6 +88,10 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                 throw new ArgumentNullException(nameof(httpClient));
 
             this.Client = httpClient;
+        }
+
+        public NaturalLanguageClassifierService(IAuthenticatorConfig config) : base(SERVICE_NAME, config)
+        {
         }
 
         /// <summary>

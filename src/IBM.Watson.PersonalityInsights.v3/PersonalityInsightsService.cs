@@ -1,5 +1,5 @@
 /**
-* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
+* (C) Copyright IBM Corp. 2018, 2019.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
+using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Service;
 using IBM.Cloud.SDK.Core.Util;
@@ -31,6 +32,7 @@ namespace IBM.Watson.PersonalityInsights.v3
     {
         new const string SERVICE_NAME = "personality_insights";
         const string URL = "https://gateway.watsonplatform.net/personality-insights/api";
+        public new string DefaultEndpoint = "https://gateway.watsonplatform.net/personality-insights/api";
         private string _versionDate;
         public string VersionDate
         {
@@ -73,7 +75,22 @@ namespace IBM.Watson.PersonalityInsights.v3
                 options.ServiceUrl = this.Endpoint;
             }
 
-            _tokenManager = new TokenManager(options);
+            IamConfig iamConfig = null;
+            if (!string.IsNullOrEmpty(options.IamAccessToken))
+            {
+                iamConfig = new IamConfig(
+                    userManagedAccessToken: options.IamAccessToken
+                    );
+            }
+            else
+            {
+                iamConfig = new IamConfig(
+                    apikey: options.IamApiKey,
+                    iamUrl: options.IamUrl
+                    );
+            }
+
+            SetAuthenticator(iamConfig);
         }
 
         public PersonalityInsightsService(IClient httpClient) : base(SERVICE_NAME, URL)
@@ -172,14 +189,7 @@ namespace IBM.Watson.PersonalityInsights.v3
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/profile");
 
@@ -321,14 +331,7 @@ namespace IBM.Watson.PersonalityInsights.v3
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/profile");
 

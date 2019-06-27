@@ -1,5 +1,5 @@
 /**
-* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
+* (C) Copyright IBM Corp. 2018, 2019.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
+using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Service;
 using IBM.Cloud.SDK.Core.Util;
@@ -32,6 +33,7 @@ namespace IBM.Watson.TextToSpeech.v1
     {
         new const string SERVICE_NAME = "text_to_speech";
         const string URL = "https://stream.watsonplatform.net/text-to-speech/api";
+        public new string DefaultEndpoint = "https://stream.watsonplatform.net/text-to-speech/api";
         public TextToSpeechService() : base(SERVICE_NAME) { }
         
         public TextToSpeechService(string userName, string password) : base(SERVICE_NAME, URL)
@@ -58,7 +60,22 @@ namespace IBM.Watson.TextToSpeech.v1
                 options.ServiceUrl = this.Endpoint;
             }
 
-            _tokenManager = new TokenManager(options);
+            IamConfig iamConfig = null;
+            if (!string.IsNullOrEmpty(options.IamAccessToken))
+            {
+                iamConfig = new IamConfig(
+                    userManagedAccessToken: options.IamAccessToken
+                    );
+            }
+            else
+            {
+                iamConfig = new IamConfig(
+                    apikey: options.IamApiKey,
+                    iamUrl: options.IamUrl
+                    );
+            }
+
+            SetAuthenticator(iamConfig);
         }
 
         public TextToSpeechService(IClient httpClient) : base(SERVICE_NAME, URL)
@@ -87,14 +104,7 @@ namespace IBM.Watson.TextToSpeech.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/voices");
 
@@ -145,14 +155,7 @@ namespace IBM.Watson.TextToSpeech.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/voices/{voice}");
 
@@ -285,14 +288,7 @@ namespace IBM.Watson.TextToSpeech.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/synthesize");
 
@@ -369,14 +365,7 @@ namespace IBM.Watson.TextToSpeech.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/pronunciation");
 
@@ -441,14 +430,7 @@ namespace IBM.Watson.TextToSpeech.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations");
 
@@ -513,14 +495,7 @@ namespace IBM.Watson.TextToSpeech.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations");
 
@@ -594,14 +569,7 @@ namespace IBM.Watson.TextToSpeech.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}");
 
@@ -668,14 +636,7 @@ namespace IBM.Watson.TextToSpeech.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}");
 
@@ -724,14 +685,7 @@ namespace IBM.Watson.TextToSpeech.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}");
 
@@ -801,14 +755,7 @@ namespace IBM.Watson.TextToSpeech.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words");
 
@@ -867,14 +814,7 @@ namespace IBM.Watson.TextToSpeech.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words");
 
@@ -951,14 +891,7 @@ namespace IBM.Watson.TextToSpeech.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PutAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{word}");
 
@@ -1025,14 +958,7 @@ namespace IBM.Watson.TextToSpeech.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{word}");
 
@@ -1086,14 +1012,7 @@ namespace IBM.Watson.TextToSpeech.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{word}");
 
@@ -1142,14 +1061,7 @@ namespace IBM.Watson.TextToSpeech.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/user_data");
 

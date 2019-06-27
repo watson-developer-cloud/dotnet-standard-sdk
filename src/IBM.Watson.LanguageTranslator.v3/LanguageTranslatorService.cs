@@ -1,5 +1,5 @@
 /**
-* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
+* (C) Copyright IBM Corp. 2018, 2019.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Text;
+using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Extensions;
 using IBM.Cloud.SDK.Core.Service;
@@ -34,6 +35,7 @@ namespace IBM.Watson.LanguageTranslator.v3
     {
         new const string SERVICE_NAME = "language_translator";
         const string URL = "https://gateway.watsonplatform.net/language-translator/api";
+        public new string DefaultEndpoint = "https://gateway.watsonplatform.net/language-translator/api";
         private string _versionDate;
         public string VersionDate
         {
@@ -76,7 +78,22 @@ namespace IBM.Watson.LanguageTranslator.v3
                 options.ServiceUrl = this.Endpoint;
             }
 
-            _tokenManager = new TokenManager(options);
+            IamConfig iamConfig = null;
+            if (!string.IsNullOrEmpty(options.IamAccessToken))
+            {
+                iamConfig = new IamConfig(
+                    userManagedAccessToken: options.IamAccessToken
+                    );
+            }
+            else
+            {
+                iamConfig = new IamConfig(
+                    apikey: options.IamApiKey,
+                    iamUrl: options.IamUrl
+                    );
+            }
+
+            SetAuthenticator(iamConfig);
         }
 
         public LanguageTranslatorService(IClient httpClient) : base(SERVICE_NAME, URL)
@@ -112,14 +129,7 @@ namespace IBM.Watson.LanguageTranslator.v3
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/translate");
 
@@ -184,14 +194,7 @@ namespace IBM.Watson.LanguageTranslator.v3
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/identifiable_languages");
 
@@ -240,14 +243,7 @@ namespace IBM.Watson.LanguageTranslator.v3
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/identify");
 
@@ -299,14 +295,7 @@ namespace IBM.Watson.LanguageTranslator.v3
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/models");
 
@@ -411,14 +400,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                 }
 
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/models");
 
@@ -476,14 +458,7 @@ namespace IBM.Watson.LanguageTranslator.v3
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v3/models/{modelId}");
 
@@ -534,14 +509,7 @@ namespace IBM.Watson.LanguageTranslator.v3
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/models/{modelId}");
 
@@ -584,14 +552,7 @@ namespace IBM.Watson.LanguageTranslator.v3
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/documents");
 
@@ -628,7 +589,6 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// types](https://cloud.ibm.com/docs/services/language-translator?topic=language-translator-document-translator-tutorial#supported-file-formats)
         ///
         /// Maximum file size: **20 MB**.</param>
-        /// <param name="filename">The filename for file.</param>
         /// <param name="fileContentType">The content type of file. (optional)</param>
         /// <param name="modelId">The model to use for translation. `model_id` or both `source` and `target` are
         /// required. (optional)</param>
@@ -643,9 +603,10 @@ namespace IBM.Watson.LanguageTranslator.v3
             {
                 throw new ArgumentNullException("`file` is required for `TranslateDocument`");
             }
+
             if (string.IsNullOrEmpty(filename))
             {
-                throw new ArgumentNullException("`filename` is required for `TranslateDocument`");
+                throw new ArgumentNullException("filename cannot be null.");
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -697,14 +658,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                 }
 
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/documents");
 
@@ -754,14 +708,7 @@ namespace IBM.Watson.LanguageTranslator.v3
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/documents/{documentId}");
 
@@ -810,14 +757,7 @@ namespace IBM.Watson.LanguageTranslator.v3
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v3/documents/{documentId}");
 
@@ -874,14 +814,7 @@ namespace IBM.Watson.LanguageTranslator.v3
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/documents/{documentId}/translated_document");
 

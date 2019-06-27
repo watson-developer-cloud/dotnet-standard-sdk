@@ -451,21 +451,21 @@ namespace IBM.Watson.Assistant.v2.UnitTests
         }
         #endregion
 
-        #region ICP4D
-        public void CreateSession_Icp4d_Success()
-        {
-            Icp4dConfig config = new Icp4dConfig(
-                url: "icp-url", 
-                username: "username", 
-                password: "password", 
-                disableSslVerification: true
-                );
+        //#region ICP4D
+        //public void CreateSession_Icp4d_Success()
+        //{
+        //    Icp4dConfig config = new Icp4dConfig(
+        //        url: "icp-url", 
+        //        username: "username", 
+        //        password: "password", 
+        //        disableSslVerification: true
+        //        );
 
-            AssistantService service = new AssistantService(
-                versionDate: "2019-06-19", 
-                authenticatorConfig: config
-                );
-        }
-        #endregion
+        //    AssistantService service = new AssistantService(
+        //        versionDate: "2019-06-19", 
+        //        authenticatorConfig: config
+        //        );
+        //}
+        //#endregion
     }
 }

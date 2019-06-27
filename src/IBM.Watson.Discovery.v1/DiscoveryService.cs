@@ -46,6 +46,7 @@ namespace IBM.Watson.Discovery.v1
 
         public DiscoveryService() : base(SERVICE_NAME) { }
         
+        [Obsolete("Please use DiscoveryService(string versionDate, IAuthenticatorConfig config) instead")]
         public DiscoveryService(string userName, string password, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(userName))
@@ -61,6 +62,7 @@ namespace IBM.Watson.Discovery.v1
             VersionDate = versionDate;
         }
         
+        [Obsolete("Please use DiscoveryService(string versionDate, IAuthenticatorConfig config) instead")]
         public DiscoveryService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
@@ -103,6 +105,11 @@ namespace IBM.Watson.Discovery.v1
                 throw new ArgumentNullException(nameof(httpClient));
 
             this.Client = httpClient;
+        }
+
+        public DiscoveryService(string versionDate, IAuthenticatorConfig config) : base(SERVICE_NAME, config)
+        {
+            VersionDate = versionDate;
         }
 
         /// <summary>

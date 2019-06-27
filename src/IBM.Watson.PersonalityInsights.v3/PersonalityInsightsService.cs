@@ -42,6 +42,7 @@ namespace IBM.Watson.PersonalityInsights.v3
 
         public PersonalityInsightsService() : base(SERVICE_NAME) { }
         
+        [Obsolete("Please use PersonalityInsightsService(string versionDate, IAuthenticatorConfig config) instead")]
         public PersonalityInsightsService(string userName, string password, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(userName))
@@ -57,6 +58,7 @@ namespace IBM.Watson.PersonalityInsights.v3
             VersionDate = versionDate;
         }
         
+        [Obsolete("Please use PersonalityInsightsService(string versionDate, IAuthenticatorConfig config) instead")]
         public PersonalityInsightsService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
@@ -99,6 +101,11 @@ namespace IBM.Watson.PersonalityInsights.v3
                 throw new ArgumentNullException(nameof(httpClient));
 
             this.Client = httpClient;
+        }
+
+        public PersonalityInsightsService(string versionDate, IAuthenticatorConfig config) : base(SERVICE_NAME, config)
+        {
+            VersionDate = versionDate;
         }
 
         /// <summary>

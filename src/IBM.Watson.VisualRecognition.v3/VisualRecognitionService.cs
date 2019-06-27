@@ -43,6 +43,7 @@ namespace IBM.Watson.VisualRecognition.v3
 
         public VisualRecognitionService() : base(SERVICE_NAME) { }
         
+        [Obsolete("Please use VisualRecognitionService(string versionDate, IAuthenticatorConfig config) instead")]
         public VisualRecognitionService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
@@ -85,6 +86,11 @@ namespace IBM.Watson.VisualRecognition.v3
                 throw new ArgumentNullException(nameof(httpClient));
 
             this.Client = httpClient;
+        }
+
+        public VisualRecognitionService(string versionDate, IAuthenticatorConfig config) : base(SERVICE_NAME, config)
+        {
+            VersionDate = versionDate;
         }
 
         /// <summary>

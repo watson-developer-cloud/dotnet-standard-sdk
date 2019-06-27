@@ -45,6 +45,7 @@ namespace IBM.Watson.CompareComply.v1
 
         public CompareComplyService() : base(SERVICE_NAME) { }
         
+        [Obsolete("Please use CompareComplyService(string versionDate, IAuthenticatorConfig config) instead")]
         public CompareComplyService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
@@ -87,6 +88,11 @@ namespace IBM.Watson.CompareComply.v1
                 throw new ArgumentNullException(nameof(httpClient));
 
             this.Client = httpClient;
+        }
+
+        public CompareComplyService(string versionDate, IAuthenticatorConfig config) : base(SERVICE_NAME, config)
+        {
+            VersionDate = versionDate;
         }
 
         /// <summary>

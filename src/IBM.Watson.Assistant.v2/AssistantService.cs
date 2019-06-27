@@ -26,7 +26,6 @@ using IBM.Watson.Assistant.v2.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using IBM.Cloud.SDK.Core.Authentication;
 
 namespace IBM.Watson.Assistant.v2
 {
@@ -44,6 +43,7 @@ namespace IBM.Watson.Assistant.v2
 
         public AssistantService() : base(SERVICE_NAME) { }
         
+        [Obsolete("Please use AssistantService(string versionDate, IAuthenticatorConfig config) instead")]
         public AssistantService(string userName, string password, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(userName))
@@ -59,6 +59,7 @@ namespace IBM.Watson.Assistant.v2
             VersionDate = versionDate;
         }
         
+        [Obsolete("Please use AssistantService(string versionDate, IAuthenticatorConfig config) instead")]
         public AssistantService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))

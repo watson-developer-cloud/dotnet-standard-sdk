@@ -43,6 +43,7 @@ namespace IBM.Watson.ToneAnalyzer.v3
 
         public ToneAnalyzerService() : base(SERVICE_NAME) { }
         
+        [Obsolete("Please use ToneAnalyzerService(string versionDate, IAuthenticatorConfig config) instead")]
         public ToneAnalyzerService(string userName, string password, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(userName))
@@ -58,6 +59,7 @@ namespace IBM.Watson.ToneAnalyzer.v3
             VersionDate = versionDate;
         }
         
+        [Obsolete("Please use ToneAnalyzerService(string versionDate, IAuthenticatorConfig config) instead")]
         public ToneAnalyzerService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
@@ -100,6 +102,11 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 throw new ArgumentNullException(nameof(httpClient));
 
             this.Client = httpClient;
+        }
+
+        public ToneAnalyzerService(string versionDate, IAuthenticatorConfig config) : base(SERVICE_NAME, config)
+        {
+            VersionDate = versionDate;
         }
 
         /// <summary>

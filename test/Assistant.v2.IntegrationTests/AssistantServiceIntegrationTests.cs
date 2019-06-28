@@ -23,7 +23,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
 
-namespace IBM.Watson.Assistant.v2.IntTests
+namespace IBM.Watson.Assistant.v2.IntegrationTests
 {
     [TestClass]
     public class AssistantServiceIntegrationTests

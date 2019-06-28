@@ -18,6 +18,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
+using IBM.Cloud.SDK.Core.Authentication;
 using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Service;

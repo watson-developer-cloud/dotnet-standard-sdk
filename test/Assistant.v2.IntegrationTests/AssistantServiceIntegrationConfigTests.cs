@@ -24,7 +24,7 @@ using System;
 using System.IO;
 using IBM.Cloud.SDK.Core.Authentication.Iam;
 
-namespace IBM.Watson.Assistant.v2.IntTests
+namespace IBM.Watson.Assistant.v2.IntegrationTests
 {
     [TestClass]
     public class AssistantServiceIntegrationConfigTests

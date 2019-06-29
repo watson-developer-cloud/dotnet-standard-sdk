@@ -89,6 +89,7 @@ namespace IBM.Watson.CompareComply.v1
                 throw new ArgumentNullException(nameof(httpClient));
 
             this.Client = httpClient;
+            SkipAuthentication = true;
         }
 
         public CompareComplyService(string versionDate, IAuthenticatorConfig config) : base(SERVICE_NAME, config)

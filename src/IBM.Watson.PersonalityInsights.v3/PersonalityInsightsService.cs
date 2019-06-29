@@ -102,6 +102,7 @@ namespace IBM.Watson.PersonalityInsights.v3
                 throw new ArgumentNullException(nameof(httpClient));
 
             this.Client = httpClient;
+            SkipAuthentication = true;
         }
 
         public PersonalityInsightsService(string versionDate, IAuthenticatorConfig config) : base(SERVICE_NAME, config)

@@ -105,6 +105,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                 throw new ArgumentNullException(nameof(httpClient));
 
             this.Client = httpClient;
+            SkipAuthentication = true;
         }
 
         public LanguageTranslatorService(string versionDate, IAuthenticatorConfig config) : base(SERVICE_NAME, config)

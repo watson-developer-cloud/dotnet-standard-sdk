@@ -101,8 +101,9 @@ namespace IBM.Watson.Assistant.v2
         {
             if (httpClient == null)
                 throw new ArgumentNullException(nameof(httpClient));
-
+            
             this.Client = httpClient;
+            SkipAuthentication = true;
         }
 
         public AssistantService(string versionDate, IAuthenticatorConfig config) : base(SERVICE_NAME, config)

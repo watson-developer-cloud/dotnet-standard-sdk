@@ -87,6 +87,7 @@ namespace IBM.Watson.TextToSpeech.v1
                 throw new ArgumentNullException(nameof(httpClient));
 
             this.Client = httpClient;
+            SkipAuthentication = true;
         }
 
         public TextToSpeechService(IAuthenticatorConfig config) : base(SERVICE_NAME, config)

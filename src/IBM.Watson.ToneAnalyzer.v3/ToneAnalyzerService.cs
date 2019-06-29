@@ -103,6 +103,7 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 throw new ArgumentNullException(nameof(httpClient));
 
             this.Client = httpClient;
+            SkipAuthentication = true;
         }
 
         public ToneAnalyzerService(string versionDate, IAuthenticatorConfig config) : base(SERVICE_NAME, config)

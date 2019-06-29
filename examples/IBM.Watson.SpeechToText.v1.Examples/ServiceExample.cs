@@ -17,7 +17,6 @@
 
 using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Cloud.SDK.Core.Http;
-using IBM.Cloud.SDK.Core.Util;
 using IBM.Watson.SpeechToText.v1.Model;
 using System;
 using System.Collections.Generic;

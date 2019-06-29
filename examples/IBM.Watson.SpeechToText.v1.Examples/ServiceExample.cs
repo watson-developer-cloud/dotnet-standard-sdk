@@ -15,6 +15,7 @@
 *
 */
 
+using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Util;
 using IBM.Watson.SpeechToText.v1.Model;
@@ -113,13 +114,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
         #region Models
         public void ListModels()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.ListModels();
 
@@ -128,13 +128,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void GetModel()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.GetModel(
                 modelId: "en-US_BroadbandModel"
@@ -147,13 +146,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
         #region Synchronous
         public void Recognize()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var testAudio = File.ReadAllBytes(testAudioPath);
             var result = service.Recognize(
@@ -168,13 +166,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
         #region Asynchronous
         public void RegisterCallback()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.RegisterCallback(
                 callbackUrl: "https://watson-test-resources.mybluemix.net/speech-to-text-async/secure/callback",
@@ -186,13 +183,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void UnregisterCallback()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.UnregisterCallback(
                 callbackUrl: "https://watson-test-resources.mybluemix.net/speech-to-text-async/secure/callback"
@@ -203,13 +199,13 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void CreateJob()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
+
             var testAudio = File.ReadAllBytes(testAudioPath);
 
             var result = service.CreateJob(
@@ -223,13 +219,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void CheckJobs()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.CheckJobs();
 
@@ -238,13 +233,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void CheckJob()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.CheckJob(
                 id: jobId
@@ -255,13 +249,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void DeleteJob()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.DeleteJob(
                 id: jobId
@@ -274,13 +267,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
         #region Custom Langauge Models
         public void ListLanguageModels()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.ListLanguageModels();
 
@@ -289,13 +281,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void CreateLanguageModel()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.CreateLanguageModel(
                 name: "dotnet-example-custom-model",
@@ -308,13 +299,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void GetLanguageModel()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.GetLanguageModel(
                 customizationId: customizationId
@@ -325,13 +315,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void DeleteLanguageModel()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.DeleteLanguageModel(
                 customizationId: customizationId
@@ -342,13 +331,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void TrainLanguageModel()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.TrainLanguageModel(
                 customizationId: customizationId
@@ -359,13 +347,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void ResetLanguageModel()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.ResetLanguageModel(
                 customizationId: customizationId
@@ -376,13 +363,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void UpgradeLanguageModel()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.UpgradeLanguageModel(
                 customizationId: customizationId
@@ -395,13 +381,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
         #region Custom Corpora
         public void ListCorpora()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.ListCorpora(
                 customizationId: customizationId
@@ -412,13 +397,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void AddCorpus()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             DetailedResponse<object> result = null;
             using (FileStream fs = File.OpenRead(corpusPath))
@@ -439,13 +423,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void GetCorpus()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.GetCorpus(
                 customizationId: customizationId,
@@ -457,13 +440,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void DeleteCorpus()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.DeleteCorpus(
                 customizationId: customizationId,
@@ -477,13 +459,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
         #region Custom Words
         public void ListWords()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.ListWords(
                 customizationId: customizationId
@@ -494,13 +475,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void AddWords()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var words = new List<CustomWord>()
             {
@@ -534,13 +514,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void AddWord()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var customWord = new CustomWord()
             {
@@ -570,13 +549,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void DeleteWord()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.DeleteWord(
                 customizationId: customizationId,
@@ -590,13 +568,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
         #region Custom Grammars
         public void ListGrammars()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.ListGrammars(
                 customizationId: customizationId
@@ -607,13 +584,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void AddGrammar()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.AddGrammar(
                 customizationId: customizationId,
@@ -627,13 +603,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void GetGrammar()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.GetGrammar(
                 customizationId: customizationId,
@@ -645,13 +620,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void DeleteGrammar()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.DeleteGrammar(
                 customizationId: customizationId,
@@ -665,13 +639,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
         #region Custom Acoustic Models
         public void ListAcousticModels()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.ListAcousticModels();
 
@@ -680,13 +653,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void CreateAcousticModel()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.CreateAcousticModel(
                 name: "dotnet-example-custom-acoustic-model",
@@ -699,13 +671,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void GetAcousticModel()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.GetAcousticModel(
                 customizationId: acousticCustomizationId
@@ -716,13 +687,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void DeleteAcousticModel()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.DeleteAcousticModel(
                 customizationId: customizationId
@@ -733,13 +703,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void TrainAcousticModel()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.TrainAcousticModel(
                 customizationId: acousticCustomizationId
@@ -750,13 +719,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void ResetAcousticModel()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.ResetAcousticModel(
                 customizationId: acousticCustomizationId
@@ -767,13 +735,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void UpgradeAcousticModel()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.UpgradeAcousticModel(
                 customizationId: acousticCustomizationId
@@ -786,13 +753,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
         #region Custom Audio Resources
         public void ListAudio()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.ListAudio(
                 customizationId: customizationId
@@ -803,13 +769,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void AddAudio()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.AddAudio(
                 customizationId: acousticCustomizationId,
@@ -824,13 +789,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void GetAudio()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.GetAudio(
                 customizationId: acousticCustomizationId,
@@ -842,13 +806,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
         public void DeleteAudio()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.DeleteAudio(
                 customizationId: customizationId,
@@ -862,13 +825,12 @@ namespace IBM.Watson.SpeechToText.v1.Examples
         #region User Data
         public void DeleteUserData()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            SpeechToTextService service = new SpeechToTextService(tokenOptions);
+            SpeechToTextService service = new SpeechToTextService(config);
+            service.SetEndpoint(url);
 
             var result = service.DeleteUserData(
                 customerId: "customerId"

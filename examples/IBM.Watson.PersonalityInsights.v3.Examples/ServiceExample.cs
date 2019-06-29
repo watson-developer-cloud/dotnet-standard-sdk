@@ -15,7 +15,7 @@
 *
 */
 
-using IBM.Cloud.SDK.Core.Util;
+using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Watson.PersonalityInsights.v3.Model;
 using System;
 using System.Collections.Generic;
@@ -45,13 +45,12 @@ namespace IBM.Watson.PersonalityInsights.v3.Examples
         #region Profile
         public void Profile()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            PersonalityInsightsService service = new PersonalityInsightsService(tokenOptions, versionDate);
+            PersonalityInsightsService service = new PersonalityInsightsService(versionDate, config);
+            service.SetEndpoint(url);
 
             Content content = new Content()
             {
@@ -81,13 +80,12 @@ namespace IBM.Watson.PersonalityInsights.v3.Examples
 
         public void ProfileAsCsv()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            PersonalityInsightsService service = new PersonalityInsightsService(tokenOptions, versionDate);
+            PersonalityInsightsService service = new PersonalityInsightsService(versionDate, config);
+            service.SetEndpoint(url);
 
             Content content = new Content()
             {

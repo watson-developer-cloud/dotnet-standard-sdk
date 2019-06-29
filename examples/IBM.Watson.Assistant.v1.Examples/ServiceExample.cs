@@ -15,8 +15,7 @@
 *
 */
 
-using IBM.Cloud.SDK.Core.Util;
-using IBM.Watson.Assistant.v1;
+using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Watson.Assistant.v1.Model;
 using System;
 
@@ -104,13 +103,12 @@ namespace IBM.Watson.Assistant.v1.Examples
         #region Message
         public void Message()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             MessageInput input = new MessageInput()
             {
@@ -131,13 +129,12 @@ namespace IBM.Watson.Assistant.v1.Examples
         #region Workspaces
         public void ListWorkspaces()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.ListWorkspaces();
             Console.WriteLine(result.Response);
@@ -145,13 +142,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void CreateWorkspace()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.CreateWorkspace(
                 name: "Workspace name",
@@ -165,13 +161,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void GetWorkspace()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.GetWorkspace(
                 workspaceId: workspaceId
@@ -182,13 +177,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void UpdateWorkspace()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.UpdateWorkspace(
                 workspaceId: workspaceId,
@@ -201,13 +195,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void DeleteWorkspace()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.DeleteWorkspace(
                 workspaceId: workspaceId
@@ -220,13 +213,12 @@ namespace IBM.Watson.Assistant.v1.Examples
         #region Intents
         public void ListIntents()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.ListIntents(
                 workspaceId: workspaceId
@@ -237,13 +229,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void CreateIntent()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.CreateIntent(
                 workspaceId: workspaceId,
@@ -257,13 +248,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void GetIntent()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.GetIntent(
                 workspaceId: workspaceId,
@@ -275,13 +265,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void UpdateIntent()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.UpdateIntent(
                 workspaceId: workspaceId,
@@ -296,13 +285,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void DeleteIntent()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.DeleteIntent(
                 workspaceId: workspaceId,
@@ -316,13 +304,12 @@ namespace IBM.Watson.Assistant.v1.Examples
         #region Examples
         public void ListExamples()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.ListExamples(
                 workspaceId: workspaceId,
@@ -334,13 +321,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void CreateExample()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.CreateExample(
                 workspaceId: workspaceId,
@@ -355,13 +341,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void GetExample()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.GetExample(
                 workspaceId: workspaceId,
@@ -374,13 +359,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void UpdateExample()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.UpdateExample(
                 workspaceId: workspaceId,
@@ -396,13 +380,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void DeleteExample()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.DeleteExample(
                 workspaceId: workspaceId,
@@ -417,13 +400,12 @@ namespace IBM.Watson.Assistant.v1.Examples
         #region Counterexamples
         public void ListCounterexamples()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.ListCounterexamples(
                 workspaceId: workspaceId
@@ -434,13 +416,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void CreateCounterexample()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.CreateCounterexample(
                 workspaceId: workspaceId,
@@ -454,13 +435,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void GetCounterexample()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.GetCounterexample(
                 workspaceId: workspaceId,
@@ -472,13 +452,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void UpdateCounterexample()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.UpdateCounterexample(
                 workspaceId: workspaceId,
@@ -493,13 +472,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void DeleteCounterexample()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.DeleteCounterexample(
                 workspaceId: workspaceId,
@@ -513,13 +491,12 @@ namespace IBM.Watson.Assistant.v1.Examples
         #region Entities
         public void ListEntities()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.ListEntities(
                 workspaceId: workspaceId
@@ -530,13 +507,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void CreateEntity()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.CreateEntity(
                 workspaceId: workspaceId,
@@ -550,13 +526,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void GetEntity()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.GetEntity(
                 workspaceId: workspaceId,
@@ -568,13 +543,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void UpdateEntity()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.UpdateEntity(
                 workspaceId: workspaceId,
@@ -589,13 +563,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void DeleteEntity()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.DeleteEntity(
                 workspaceId: workspaceId,
@@ -609,13 +582,12 @@ namespace IBM.Watson.Assistant.v1.Examples
         #region Mentions
         public void ListEntityMentions()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.ListMentions(
                 workspaceId: workspaceId,
@@ -629,13 +601,12 @@ namespace IBM.Watson.Assistant.v1.Examples
         #region Values
         public void ListValues()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.ListValues(
                 workspaceId: workspaceId,
@@ -647,13 +618,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void CreateValue()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.CreateValue(
                 workspaceId: workspaceId,
@@ -668,13 +638,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void GetValue()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.GetValue(
                 workspaceId: workspaceId,
@@ -687,13 +656,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void UpdateValue()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.UpdateValue(
                 workspaceId: workspaceId,
@@ -709,13 +677,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void DeleteValue()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.DeleteValue(
                 workspaceId: workspaceId,
@@ -730,13 +697,12 @@ namespace IBM.Watson.Assistant.v1.Examples
         #region Synonyms
         public void ListSynonyms()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.ListSynonyms(
                 workspaceId: workspaceId,
@@ -749,13 +715,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void CreateSynonym()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.CreateSynonym(
                 workspaceId: workspaceId,
@@ -771,13 +736,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void GetSynonym()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.GetSynonym(
                 workspaceId: workspaceId,
@@ -791,13 +755,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void UpdateSynonym()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.UpdateSynonym(
                 workspaceId: workspaceId,
@@ -814,13 +777,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void DeleteSynonyms()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.DeleteSynonym(
                 workspaceId: workspaceId,
@@ -836,13 +798,12 @@ namespace IBM.Watson.Assistant.v1.Examples
         #region Dialog Nodes
         public void ListDialogNodes()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.ListDialogNodes(
                 workspaceId: workspaceId
@@ -853,13 +814,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void CreateDialogNode()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.CreateDialogNode(
                 workspaceId: workspaceId,
@@ -873,13 +833,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void GetDialogNode()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.GetDialogNode(
                 workspaceId: workspaceId,
@@ -891,13 +850,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void UpdateDialogNode()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.UpdateDialogNode(
                 workspaceId: workspaceId,
@@ -912,13 +870,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void DeleteDialogNode()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.DeleteDialogNode(
                 workspaceId: workspaceId,
@@ -932,13 +889,12 @@ namespace IBM.Watson.Assistant.v1.Examples
         #region Logs
         public void ListLogs()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.ListLogs(
                 workspaceId: workspaceId
@@ -949,13 +905,12 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void ListAllLogs()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.ListAllLogs(
                 filter: "(language::en,request.context.metadata.deployment::deployment_1)"
@@ -968,13 +923,12 @@ namespace IBM.Watson.Assistant.v1.Examples
         #region User Data
         public void DeleteUserData()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.DeleteUserData(
                 customerId: "test-customer-id"

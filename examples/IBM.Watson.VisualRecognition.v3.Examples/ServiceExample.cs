@@ -15,8 +15,8 @@
 *
 */
 
+using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Cloud.SDK.Core.Http;
-using IBM.Cloud.SDK.Core.Util;
 using IBM.Watson.VisualRecognition.v3.Model;
 using System;
 using System.Collections.Generic;
@@ -64,13 +64,12 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
         #region General
         public void Classify()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            VisualRecognitionService service = new VisualRecognitionService(tokenOptions, versionDate);
+            VisualRecognitionService service = new VisualRecognitionService(versionDate, config);
+            service.SetEndpoint(url);
 
             DetailedResponse<ClassifiedImages> result;
             using (FileStream fs = File.OpenRead(localGiraffeFilePath))
@@ -95,13 +94,12 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
         #region Face
         public void DetectFaces()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            VisualRecognitionService service = new VisualRecognitionService(tokenOptions, versionDate);
+            VisualRecognitionService service = new VisualRecognitionService(versionDate, config);
+            service.SetEndpoint(url);
 
             DetailedResponse<DetectedFaces> result;
             using (FileStream fs = File.OpenRead(localFaceFilePath))
@@ -125,13 +123,12 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
         #region Custom
         public void ListClassifiers()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            VisualRecognitionService service = new VisualRecognitionService(tokenOptions, versionDate);
+            VisualRecognitionService service = new VisualRecognitionService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.ListClassifiers();
 
@@ -140,13 +137,12 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
 
         public void CreateClassifier()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            VisualRecognitionService service = new VisualRecognitionService(tokenOptions, versionDate);
+            VisualRecognitionService service = new VisualRecognitionService(versionDate, config);
+            service.SetEndpoint(url);
 
             DetailedResponse<Classifier> result = null;
             using (FileStream positiveExamplesFileStream = File.OpenRead(localGiraffePositiveExamplesFilePath), negativeExamplesFileStream = File.OpenRead(localNegativeExamplesFilePath))
@@ -172,13 +168,12 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
 
         public void GetClassifier()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            VisualRecognitionService service = new VisualRecognitionService(tokenOptions, versionDate);
+            VisualRecognitionService service = new VisualRecognitionService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.GetClassifier(
                     classifierId: classifierId
@@ -189,13 +184,12 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
 
         public void UpdateClassifier()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            VisualRecognitionService service = new VisualRecognitionService(tokenOptions, versionDate);
+            VisualRecognitionService service = new VisualRecognitionService(versionDate, config);
+            service.SetEndpoint(url);
 
             DetailedResponse<Classifier> result = null;
             using (FileStream positiveExamplesStream = File.OpenRead(localTurtlePositiveExamplesFilePath))
@@ -216,13 +210,12 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
 
         public void DeleteClassifier()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            VisualRecognitionService service = new VisualRecognitionService(tokenOptions, versionDate);
+            VisualRecognitionService service = new VisualRecognitionService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.DeleteClassifier(
                 classifierId: classifierId
@@ -235,13 +228,12 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
         #region Core ML
         public void GetCoreMlModel()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            VisualRecognitionService service = new VisualRecognitionService(tokenOptions, versionDate);
+            VisualRecognitionService service = new VisualRecognitionService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.GetCoreMlModel(
                     classifierId: classifierId
@@ -254,13 +246,12 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
         #region User Data
         public void DeleteUserData()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            VisualRecognitionService service = new VisualRecognitionService(tokenOptions, versionDate);
+            VisualRecognitionService service = new VisualRecognitionService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.DeleteUserData(
                 customerId: "customerId"

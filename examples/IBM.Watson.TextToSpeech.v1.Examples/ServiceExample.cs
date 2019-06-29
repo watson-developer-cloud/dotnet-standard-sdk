@@ -15,7 +15,7 @@
 *
 */
 
-using IBM.Cloud.SDK.Core.Util;
+using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Watson.TextToSpeech.v1.Model;
 using System;
 using System.Collections.Generic;
@@ -62,13 +62,12 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
         #region Voices
         public void ListVoices()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            TextToSpeechService service = new TextToSpeechService(tokenOptions);
+            TextToSpeechService service = new TextToSpeechService(config);
+            service.SetEndpoint(url);
 
             var result = service.ListVoices();
 
@@ -77,13 +76,12 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
 
         public void GetVoice()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            TextToSpeechService service = new TextToSpeechService(tokenOptions);
+            TextToSpeechService service = new TextToSpeechService(config);
+            service.SetEndpoint(url);
 
             var result = service.GetVoice("en-US_AllisonVoice");
 
@@ -94,13 +92,12 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
         #region Synthesis
         public void Synthesize()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            TextToSpeechService service = new TextToSpeechService(tokenOptions);
+            TextToSpeechService service = new TextToSpeechService(config);
+            service.SetEndpoint(url);
 
             var result = service.Synthesize(
                 text: "Hello, welcome to the Watson dotnet SDK!",
@@ -123,13 +120,12 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
         #region Pronunciation
         public void GetPronunciation()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            TextToSpeechService service = new TextToSpeechService(tokenOptions);
+            TextToSpeechService service = new TextToSpeechService(config);
+            service.SetEndpoint(url);
 
             var result = service.GetPronunciation(
                 text: "IBM",
@@ -144,13 +140,12 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
         #region Custom Models
         public void ListVoiceModels()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            TextToSpeechService service = new TextToSpeechService(tokenOptions);
+            TextToSpeechService service = new TextToSpeechService(config);
+            service.SetEndpoint(url);
 
             var result = service.ListVoiceModels();
 
@@ -159,13 +154,12 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
 
         public void CreateVoiceModel()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            TextToSpeechService service = new TextToSpeechService(tokenOptions);
+            TextToSpeechService service = new TextToSpeechService(config);
+            service.SetEndpoint(url);
 
             var result = service.CreateVoiceModel(
                 name: "dotnet-sdk-voice-model",
@@ -178,13 +172,12 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
 
         public void GetVoiceModel()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            TextToSpeechService service = new TextToSpeechService(tokenOptions);
+            TextToSpeechService service = new TextToSpeechService(config);
+            service.SetEndpoint(url);
 
             var result = service.GetVoiceModel(
                 customizationId: customizationId
@@ -195,13 +188,12 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
 
         public void UpdateVoiceModel()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            TextToSpeechService service = new TextToSpeechService(tokenOptions);
+            TextToSpeechService service = new TextToSpeechService(config);
+            service.SetEndpoint(url);
 
             var words = new List<Word>()
             {
@@ -234,13 +226,12 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
 
         public void DeleteVoiceModel()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            TextToSpeechService service = new TextToSpeechService(tokenOptions);
+            TextToSpeechService service = new TextToSpeechService(config);
+            service.SetEndpoint(url);
 
             var result = service.DeleteVoiceModel(
                 customizationId: customizationId
@@ -253,13 +244,12 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
         #region Custom Words
         private void AddWords()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            TextToSpeechService service = new TextToSpeechService(tokenOptions);
+            TextToSpeechService service = new TextToSpeechService(config);
+            service.SetEndpoint(url);
 
             var words = new List<Word>()
             {
@@ -290,13 +280,12 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
 
         private void ListWords()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            TextToSpeechService service = new TextToSpeechService(tokenOptions);
+            TextToSpeechService service = new TextToSpeechService(config);
+            service.SetEndpoint(url);
 
             var result = service.ListWords(
                 customizationId: customizationId
@@ -307,13 +296,12 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
 
         private void AddWord()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            TextToSpeechService service = new TextToSpeechService(tokenOptions);
+            TextToSpeechService service = new TextToSpeechService(config);
+            service.SetEndpoint(url);
 
             var result = service.AddWord(
                 customizationId: customizationId,
@@ -327,13 +315,12 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
 
         private void GetWord()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            TextToSpeechService service = new TextToSpeechService(tokenOptions);
+            TextToSpeechService service = new TextToSpeechService(config);
+            service.SetEndpoint(url);
 
             var result = service.GetWord(
                 customizationId: customizationId,
@@ -345,13 +332,12 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
 
         private void DeleteWord()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            TextToSpeechService service = new TextToSpeechService(tokenOptions);
+            TextToSpeechService service = new TextToSpeechService(config);
+            service.SetEndpoint(url);
 
             var result = service.DeleteWord(
                 customizationId: customizationId,
@@ -365,13 +351,12 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
         #region User Data
         public void DeleteUserData()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            TextToSpeechService service = new TextToSpeechService(tokenOptions);
+            TextToSpeechService service = new TextToSpeechService(config);
+            service.SetEndpoint(url);
 
             var result = service.DeleteUserData(
                 customerId: "customerId"

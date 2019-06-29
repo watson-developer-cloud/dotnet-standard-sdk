@@ -89,6 +89,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                 throw new ArgumentNullException(nameof(httpClient));
 
             this.Client = httpClient;
+            SkipAuthentication = true;
         }
 
         public NaturalLanguageClassifierService(IAuthenticatorConfig config) : base(SERVICE_NAME, config)

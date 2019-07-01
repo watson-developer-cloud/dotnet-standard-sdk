@@ -1,5 +1,5 @@
 /**
-* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
+* (C) Copyright IBM Corp. 2018, 2019.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Text;
+using IBM.Cloud.SDK.Core.Authentication;
+using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Extensions;
 using IBM.Cloud.SDK.Core.Service;
@@ -34,6 +36,7 @@ namespace IBM.Watson.CompareComply.v1
     {
         new const string SERVICE_NAME = "compare_comply";
         const string URL = "https://gateway.watsonplatform.net/compare-comply/api";
+        public new string DefaultEndpoint = "https://gateway.watsonplatform.net/compare-comply/api";
         private string _versionDate;
         public string VersionDate
         {
@@ -43,6 +46,7 @@ namespace IBM.Watson.CompareComply.v1
 
         public CompareComplyService() : base(SERVICE_NAME) { }
         
+        [Obsolete("Please use CompareComplyService(string versionDate, IAuthenticatorConfig config) instead")]
         public CompareComplyService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
@@ -61,7 +65,22 @@ namespace IBM.Watson.CompareComply.v1
                 options.ServiceUrl = this.Endpoint;
             }
 
-            _tokenManager = new TokenManager(options);
+            IamConfig iamConfig = null;
+            if (!string.IsNullOrEmpty(options.IamAccessToken))
+            {
+                iamConfig = new IamConfig(
+                    userManagedAccessToken: options.IamAccessToken
+                    );
+            }
+            else
+            {
+                iamConfig = new IamConfig(
+                    apikey: options.IamApiKey,
+                    iamUrl: options.IamUrl
+                    );
+            }
+
+            SetAuthenticator(iamConfig);
         }
 
         public CompareComplyService(IClient httpClient) : base(SERVICE_NAME, URL)
@@ -70,6 +89,12 @@ namespace IBM.Watson.CompareComply.v1
                 throw new ArgumentNullException(nameof(httpClient));
 
             this.Client = httpClient;
+            SkipAuthentication = true;
+        }
+
+        public CompareComplyService(string versionDate, IAuthenticatorConfig config) : base(SERVICE_NAME, config)
+        {
+            VersionDate = versionDate;
         }
 
         /// <summary>
@@ -117,10 +142,7 @@ namespace IBM.Watson.CompareComply.v1
                 }
 
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/html_conversion");
 
@@ -189,10 +211,7 @@ namespace IBM.Watson.CompareComply.v1
                 }
 
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/element_classification");
 
@@ -261,10 +280,7 @@ namespace IBM.Watson.CompareComply.v1
                 }
 
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/tables");
 
@@ -350,10 +366,7 @@ namespace IBM.Watson.CompareComply.v1
                 }
 
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/comparison");
 
@@ -417,10 +430,7 @@ namespace IBM.Watson.CompareComply.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/feedback");
 
@@ -521,10 +531,7 @@ namespace IBM.Watson.CompareComply.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/feedback");
 
@@ -641,10 +648,7 @@ namespace IBM.Watson.CompareComply.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/feedback/{feedbackId}");
 
@@ -701,10 +705,7 @@ namespace IBM.Watson.CompareComply.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+                SetAuthentication();
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/feedback/{feedbackId}");
 
@@ -851,10 +852,7 @@ namespace IBM.Watson.CompareComply.v1
                 }
 
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/batches");
 
@@ -907,10 +905,7 @@ namespace IBM.Watson.CompareComply.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/batches");
 
@@ -959,10 +954,7 @@ namespace IBM.Watson.CompareComply.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/batches/{batchId}");
 
@@ -1021,10 +1013,7 @@ namespace IBM.Watson.CompareComply.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
+                SetAuthentication();
 
                 var restRequest = client.PutAsync($"{this.Endpoint}/v1/batches/{batchId}");
 

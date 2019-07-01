@@ -1,5 +1,5 @@
 /**
-* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
+* (C) Copyright IBM Corp. 2018, 2019.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Text;
+using IBM.Cloud.SDK.Core.Authentication;
+using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Extensions;
 using IBM.Cloud.SDK.Core.Service;
@@ -34,8 +36,10 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
     {
         new const string SERVICE_NAME = "natural_language_classifier";
         const string URL = "https://gateway.watsonplatform.net/natural-language-classifier/api";
+        public new string DefaultEndpoint = "https://gateway.watsonplatform.net/natural-language-classifier/api";
         public NaturalLanguageClassifierService() : base(SERVICE_NAME) { }
         
+        [Obsolete("Please use NaturalLanguageClassifierService(IAuthenticatorConfig config) instead")]
         public NaturalLanguageClassifierService(string userName, string password) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(userName))
@@ -47,6 +51,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
             this.SetCredential(userName, password);
         }
         
+        [Obsolete("Please use NaturalLanguageClassifierService(IAuthenticatorConfig config) instead")]
         public NaturalLanguageClassifierService(TokenOptions options) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
@@ -60,7 +65,22 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                 options.ServiceUrl = this.Endpoint;
             }
 
-            _tokenManager = new TokenManager(options);
+            IamConfig iamConfig = null;
+            if (!string.IsNullOrEmpty(options.IamAccessToken))
+            {
+                iamConfig = new IamConfig(
+                    userManagedAccessToken: options.IamAccessToken
+                    );
+            }
+            else
+            {
+                iamConfig = new IamConfig(
+                    apikey: options.IamApiKey,
+                    iamUrl: options.IamUrl
+                    );
+            }
+
+            SetAuthenticator(iamConfig);
         }
 
         public NaturalLanguageClassifierService(IClient httpClient) : base(SERVICE_NAME, URL)
@@ -69,6 +89,11 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                 throw new ArgumentNullException(nameof(httpClient));
 
             this.Client = httpClient;
+            SkipAuthentication = true;
+        }
+
+        public NaturalLanguageClassifierService(IAuthenticatorConfig config) : base(SERVICE_NAME, config)
+        {
         }
 
         /// <summary>
@@ -95,14 +120,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/classifiers/{classifierId}/classify");
 
@@ -161,14 +179,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/classifiers/{classifierId}/classify_collection");
 
@@ -250,14 +261,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                 }
 
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/classifiers");
 
@@ -295,14 +299,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/classifiers");
 
@@ -344,14 +341,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/classifiers/{classifierId}");
 
@@ -391,14 +381,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/classifiers/{classifierId}");
 

@@ -27,6 +27,8 @@ using IBM.Cloud.SDK.Core.Http;
 using IBM.Watson.Assistant.v1.Model;
 using IBM.Cloud.SDK.Core.Http.Exceptions;
 using Newtonsoft.Json;
+using IBM.Cloud.SDK.Core.Authentication.BasicAuth;
+using IBM.Cloud.SDK.Core.Authentication.Iam;
 
 namespace IBM.Watson.Assistant.v1.UnitTests
 {
@@ -102,202 +104,178 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         }
         #endregion
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(Exception))]
         public void InstantiateServiceWithBadFirstCharacterInUsernameBracket()
         {
-            AssistantService service = new AssistantService("{username", "password", "versionDate");
+            BasicAuthConfig config = new BasicAuthConfig("{username", "password");
+            AssistantService service = new AssistantService("versionDate", config);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(Exception))]
         public void InstantiateServiceWithBadLastCharacterInUsernameBracket()
         {
-            AssistantService service = new AssistantService("username}", "password", "versionDate");
+            BasicAuthConfig config = new BasicAuthConfig("username}", "password");
+            AssistantService service = new AssistantService("versionDate", config);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(Exception))]
         public void InstantiateServiceWithBadFirstCharacterInUsernameDoubleQuote()
         {
-            AssistantService service = new AssistantService("\"username", "password", "versionDate");
+            BasicAuthConfig config = new BasicAuthConfig("\"username", "password");
+            AssistantService service = new AssistantService("versionDate", config);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(Exception))]
         public void InstantiateServiceWithBadLastCharacterInUsernameDoubleQuote()
         {
-            AssistantService service = new AssistantService("username\"", "password", "versionDate");
+            BasicAuthConfig config = new BasicAuthConfig("username\"", "password");
+            AssistantService service = new AssistantService("versionDate", config);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(Exception))]
         public void InstantiateServiceWithBadFirstAndLastCharacterInUsernameDoubleQuote()
         {
-            AssistantService service = new AssistantService("\"username\"", "password", "versionDate");
+            BasicAuthConfig config = new BasicAuthConfig("\"username\"", "password");
+            AssistantService service = new AssistantService("versionDate", config);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(Exception))]
         public void InstantiateServiceWithBadFirstAndLastCharacterInUsernameBracket()
         {
-            AssistantService service = new AssistantService("{username}", "password", "versionDate");
+            BasicAuthConfig config = new BasicAuthConfig("{username}", "password");
+            AssistantService service = new AssistantService("versionDate", config);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(Exception))]
         public void InstantiateServiceWithBadFirstCharacterInPasswordBracket()
         {
-            AssistantService service = new AssistantService("username", "{password", "versionDate");
+            BasicAuthConfig config = new BasicAuthConfig("username", "{password");
+            AssistantService service = new AssistantService("versionDate", config);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(Exception))]
         public void InstantiateServiceWithBadLastCharacterInPasswordBracket()
         {
-            AssistantService service = new AssistantService("username", "password}", "versionDate");
+            BasicAuthConfig config = new BasicAuthConfig("username", "password}");
+            AssistantService service = new AssistantService("versionDate", config);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(Exception))]
         public void InstantiateServiceWithBadFirstCharacterInPasswordDoubleQuote()
         {
-            AssistantService service = new AssistantService("username", "\"password", "versionDate");
+            BasicAuthConfig config = new BasicAuthConfig("username", "\"password");
+            AssistantService service = new AssistantService("versionDate", config);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(Exception))]
         public void InstantiateServiceWithBadLastCharacterInPasswordDoubleQuote()
         {
-            AssistantService service = new AssistantService("username", "password\"", "versionDate");
+            BasicAuthConfig config = new BasicAuthConfig("username", "password\"");
+            AssistantService service = new AssistantService("versionDate", config);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(Exception))]
         public void InstantiateServiceWithBadFirstAndLastCharacterInPasswordDoubleQuote()
         {
-            AssistantService service = new AssistantService("username", "\"password\"", "versionDate");
+            BasicAuthConfig config = new BasicAuthConfig("username", "\"password\"");
+            AssistantService service = new AssistantService("versionDate", config);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(Exception))]
         public void InstantiateServiceWithBadFirstAndLastCharacterInPasswordBracket()
         {
-            AssistantService service = new AssistantService("username", "{password}", "versionDate");
+            BasicAuthConfig config = new BasicAuthConfig("username", "{password}");
+            AssistantService service = new AssistantService("versionDate", config);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(Exception))]
         public void InstantiateServiceWithBadFirstCharacterInApiKeyBracket()
         {
-            TokenOptions options = new TokenOptions()
-            {
-                IamApiKey = "{apiKey"
-            };
-            AssistantService service = new AssistantService(options, "versionDate");
+            IamConfig config = new IamConfig("{apiKey");
+            AssistantService service = new AssistantService("versionDate", config);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(Exception))]
         public void InstantiateServiceWithBadLastCharacterInApiKeyBracket()
         {
-            TokenOptions options = new TokenOptions()
-            {
-                IamApiKey = "apiKey}"
-            };
-            AssistantService service = new AssistantService(options, "versionDate");
+            IamConfig config = new IamConfig("apiKey}");
+            AssistantService service = new AssistantService("versionDate", config);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(Exception))]
         public void InstantiateServiceWithBadFirstAndLastCharacterInApiKeyBracket()
         {
-            TokenOptions options = new TokenOptions()
-            {
-                IamApiKey = "{apiKey}"
-            };
-            AssistantService service = new AssistantService(options, "versionDate");
+            IamConfig config = new IamConfig("{apiKey}");
+            AssistantService service = new AssistantService("versionDate", config);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(Exception))]
         public void InstantiateServiceWithBadFirstCharacterInApiKeyDoubleQuote()
         {
-            TokenOptions options = new TokenOptions()
-            {
-                IamApiKey = "\"apiKey"
-            };
-            AssistantService service = new AssistantService(options, "versionDate");
+            IamConfig config = new IamConfig("\"apiKey");
+            AssistantService service = new AssistantService("versionDate", config);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(Exception))]
         public void InstantiateServiceWithBadLastCharacterInApiKeyDoubleQuote()
         {
-            TokenOptions options = new TokenOptions()
-            {
-                IamApiKey = "apiKey\""
-            };
-            AssistantService service = new AssistantService(options, "versionDate");
+            IamConfig config = new IamConfig("apiKey\"");
+            AssistantService service = new AssistantService("versionDate", config);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(Exception))]
         public void InstantiateServiceWithBadFirstAndLastCharacterInApiKeyDoubleQuote()
         {
-            TokenOptions options = new TokenOptions()
-            {
-                IamApiKey = "\"apiKey\""
-            };
-            AssistantService service = new AssistantService(options, "versionDate");
+            IamConfig config = new IamConfig("\"apiKey\"");
+            AssistantService service = new AssistantService("versionDate", config);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(Exception))]
         public void InstantiateServiceWithBadFirstCharacterInServiceUrlBracket()
         {
-            TokenOptions options = new TokenOptions()
-            {
-                IamApiKey = "apiKey",
-                ServiceUrl = "{serviceUrl"
-            };
-            AssistantService service = new AssistantService(options, "versionDate");
+            IamConfig config = new IamConfig("{username", "password");
+            AssistantService service = new AssistantService("versionDate", config);
+            service.SetEndpoint("{serviceUrl");
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(Exception))]
         public void InstantiateServiceWithBadLastCharacterInServiceUrlBracket()
         {
-            TokenOptions options = new TokenOptions()
-            {
-                IamApiKey = "apiKey",
-                ServiceUrl = "serviceUrl}"
-            };
-            AssistantService service = new AssistantService(options, "versionDate");
+            IamConfig config = new IamConfig("{username", "password");
+            AssistantService service = new AssistantService("versionDate", config);
+            service.SetEndpoint("serviceUrl}");
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(Exception))]
         public void InstantiateServiceWithBadFirstAndLastCharacterInServiceUrlBracket()
         {
-            TokenOptions options = new TokenOptions()
-            {
-                IamApiKey = "apiKey",
-                ServiceUrl = "{serviceUrl}"
-            };
-            AssistantService service = new AssistantService(options, "versionDate");
+            IamConfig config = new IamConfig("{username", "password");
+            AssistantService service = new AssistantService("versionDate", config);
+            service.SetEndpoint("{serviceUrl}");
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(Exception))]
         public void InstantiateServiceWithBadFirstCharacterInServiceUrlDoubleQuote()
         {
-            TokenOptions options = new TokenOptions()
-            {
-                IamApiKey = "apiKey",
-                ServiceUrl = "\"serviceUrl"
-            };
-            AssistantService service = new AssistantService(options, "versionDate");
+            IamConfig config = new IamConfig("{username", "password");
+            AssistantService service = new AssistantService("versionDate", config);
+            service.SetEndpoint("\"serviceUrl");
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(Exception))]
         public void InstantiateServiceWithBadLastCharacterInServiceUrlDoubleQuote()
         {
-            TokenOptions options = new TokenOptions()
-            {
-                IamApiKey = "apiKey",
-                ServiceUrl = "serviceUrl\""
-            };
-            AssistantService service = new AssistantService(options, "versionDate");
+            IamConfig config = new IamConfig("{username", "password");
+            AssistantService service = new AssistantService("versionDate", config);
+            service.SetEndpoint("serviceUrl\"");
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod, ExpectedException(typeof(UriFormatException))]
         public void InstantiateServiceWithBadFirstAndLastCharacterInServiceUrlDoubleQuote()
         {
-            TokenOptions options = new TokenOptions()
-            {
-                IamApiKey = "apiKey",
-                ServiceUrl = "\"serviceUrl\""
-            };
-            AssistantService service = new AssistantService(options, "versionDate");
+            IamConfig config = new IamConfig("apiKey");
+            AssistantService service = new AssistantService("versionDate", config);
+            service.SetEndpoint("\"serviceUrl\"");
         }
         #region Counter Examples
         #region Create Counter Example

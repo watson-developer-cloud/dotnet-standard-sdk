@@ -1,5 +1,5 @@
 /**
-* Copyright 2018, 2019 IBM Corp. All Rights Reserved.
+* (C) Copyright IBM Corp. 2018, 2019.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Text;
+using IBM.Cloud.SDK.Core.Authentication;
+using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Extensions;
 using IBM.Cloud.SDK.Core.Service;
@@ -34,8 +36,10 @@ namespace IBM.Watson.SpeechToText.v1
     {
         new const string SERVICE_NAME = "speech_to_text";
         const string URL = "https://stream.watsonplatform.net/speech-to-text/api";
+        public new string DefaultEndpoint = "https://stream.watsonplatform.net/speech-to-text/api";
         public SpeechToTextService() : base(SERVICE_NAME) { }
         
+        [Obsolete("Please use SpeechToTextService(IAuthenticatorConfig config) instead")]
         public SpeechToTextService(string userName, string password) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(userName))
@@ -47,6 +51,7 @@ namespace IBM.Watson.SpeechToText.v1
             this.SetCredential(userName, password);
         }
         
+        [Obsolete("Please use SpeechToTextService(IAuthenticatorConfig config) instead")]
         public SpeechToTextService(TokenOptions options) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
@@ -60,7 +65,22 @@ namespace IBM.Watson.SpeechToText.v1
                 options.ServiceUrl = this.Endpoint;
             }
 
-            _tokenManager = new TokenManager(options);
+            IamConfig iamConfig = null;
+            if (!string.IsNullOrEmpty(options.IamAccessToken))
+            {
+                iamConfig = new IamConfig(
+                    userManagedAccessToken: options.IamAccessToken
+                    );
+            }
+            else
+            {
+                iamConfig = new IamConfig(
+                    apikey: options.IamApiKey,
+                    iamUrl: options.IamUrl
+                    );
+            }
+
+            SetAuthenticator(iamConfig);
         }
 
         public SpeechToTextService(IClient httpClient) : base(SERVICE_NAME, URL)
@@ -69,6 +89,11 @@ namespace IBM.Watson.SpeechToText.v1
                 throw new ArgumentNullException(nameof(httpClient));
 
             this.Client = httpClient;
+            SkipAuthentication = true;
+        }
+
+        public SpeechToTextService(IAuthenticatorConfig config) : base(SERVICE_NAME, config)
+        {
         }
 
         /// <summary>
@@ -88,14 +113,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/models");
 
@@ -142,14 +160,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/models/{modelId}");
 
@@ -381,11 +392,27 @@ namespace IBM.Watson.SpeechToText.v1
         /// See [Numeric
         /// redaction](https://cloud.ibm.com/docs/services/speech-to-text?topic=speech-to-text-output#redaction).
         /// (optional, default to false)</param>
+        /// <param name="processingMetrics">If `true`, requests processing metrics about the service's transcription of
+        /// the input audio. The service returns processing metrics at the interval specified by the
+        /// `processing_metrics_interval` parameter. It also returns processing metrics for transcription events, for
+        /// example, for final and interim results. By default, the service returns no processing metrics. (optional,
+        /// default to false)</param>
+        /// <param name="processingMetricsInterval">Specifies the interval in real wall-clock seconds at which the
+        /// service is to return processing metrics. The parameter is ignored unless the `processing_metrics` parameter
+        /// is set to `true`.
+        ///
+        /// The parameter accepts a minimum value of 0.1 seconds. The level of precision is not restricted, so you can
+        /// specify values such as 0.25 and 0.125.
+        ///
+        /// The service does not impose a maximum value. If you want to receive processing metrics only for
+        /// transcription events instead of at periodic intervals, set the value to a large number. If the value is
+        /// larger than the duration of the audio, the service returns processing metrics only for transcription events.
+        /// (optional)</param>
         /// <param name="audioMetrics">If `true`, requests detailed information about the signal characteristics of the
         /// input audio. The service returns audio metrics with the final transcription results. By default, the service
         /// returns no audio metrics. (optional, default to false)</param>
         /// <returns><see cref="SpeechRecognitionResults" />SpeechRecognitionResults</returns>
-        public DetailedResponse<SpeechRecognitionResults> Recognize(byte[] audio, string contentType = null, string model = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, bool? audioMetrics = null)
+        public DetailedResponse<SpeechRecognitionResults> Recognize(byte[] audio, string contentType = null, string model = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, bool? processingMetrics = null, float? processingMetricsInterval = null, bool? audioMetrics = null)
         {
             if (audio == null)
             {
@@ -396,14 +423,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/recognize");
 
@@ -485,6 +505,14 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     restRequest.WithArgument("redaction", redaction);
                 }
+                if (processingMetrics != null)
+                {
+                    restRequest.WithArgument("processing_metrics", processingMetrics);
+                }
+                if (processingMetricsInterval != null)
+                {
+                    restRequest.WithArgument("processing_metrics_interval", processingMetricsInterval);
+                }
                 if (audioMetrics != null)
                 {
                     restRequest.WithArgument("audio_metrics", audioMetrics);
@@ -564,14 +592,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/register_callback");
 
@@ -626,14 +647,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/unregister_callback");
 
@@ -939,14 +953,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/recognitions");
 
@@ -1101,14 +1108,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/recognitions");
 
@@ -1162,14 +1162,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/recognitions/{id}");
 
@@ -1218,14 +1211,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/recognitions/{id}");
 
@@ -1275,14 +1261,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations");
 
@@ -1349,14 +1328,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations");
 
@@ -1408,14 +1380,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}");
 
@@ -1464,14 +1429,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}");
 
@@ -1567,14 +1525,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/train");
 
@@ -1636,14 +1587,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/reset");
 
@@ -1701,14 +1645,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/upgrade_model");
 
@@ -1756,14 +1693,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora");
 
@@ -1882,14 +1812,7 @@ namespace IBM.Watson.SpeechToText.v1
                 }
 
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora/{corpusName}");
 
@@ -1948,14 +1871,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora/{corpusName}");
 
@@ -2012,14 +1928,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}/corpora/{corpusName}");
 
@@ -2081,14 +1990,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words");
 
@@ -2190,14 +2092,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words");
 
@@ -2289,14 +2184,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PutAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{wordName}");
 
@@ -2368,14 +2256,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{wordName}");
 
@@ -2434,14 +2315,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{wordName}");
 
@@ -2489,14 +2363,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/grammars");
 
@@ -2604,14 +2471,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/customizations/{customizationId}/grammars/{grammarName}");
 
@@ -2679,14 +2539,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/customizations/{customizationId}/grammars/{grammarName}");
 
@@ -2743,14 +2596,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}/grammars/{grammarName}");
 
@@ -2801,14 +2647,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/acoustic_customizations");
 
@@ -2871,14 +2710,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/acoustic_customizations");
 
@@ -2930,14 +2762,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}");
 
@@ -2986,14 +2811,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}");
 
@@ -3087,14 +2905,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/train");
 
@@ -3152,14 +2963,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/reset");
 
@@ -3233,14 +3037,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/upgrade_model");
 
@@ -3298,14 +3095,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio");
 
@@ -3478,14 +3268,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
 
@@ -3571,14 +3354,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
 
@@ -3634,14 +3410,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
 
@@ -3691,14 +3460,7 @@ namespace IBM.Watson.SpeechToText.v1
             try
             {
                 IClient client = this.Client;
-                if (_tokenManager != null)
-                {
-                    client = this.Client.WithAuthentication(_tokenManager.GetToken());
-                }
-                if (_tokenManager == null)
-                {
-                    client = this.Client.WithAuthentication(this.UserName, this.Password);
-                }
+                SetAuthentication();
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/user_data");
 

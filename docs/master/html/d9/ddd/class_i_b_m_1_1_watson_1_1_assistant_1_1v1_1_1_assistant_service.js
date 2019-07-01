@@ -4,6 +4,7 @@ var class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service =
     [ "AssistantService", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a1e7612985575312ec7d50524710b1994", null ],
     [ "AssistantService", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a32281c044df8e7540c4926ad63a99a96", null ],
     [ "AssistantService", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#ad952f780e07afc77d910bc8b9c473384", null ],
+    [ "AssistantService", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a3d943346c5dfef4bffcd5b3777030f27", null ],
     [ "CreateCounterexample", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#aa30f8c2c178e513f37276c06195d9f1a", null ],
     [ "CreateDialogNode", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a1bd9886190fe0db39109245ec82255bb", null ],
     [ "CreateEntity", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#ac58ac568690cdfb2d4a31eba8dbf30a5", null ],
@@ -49,5 +50,6 @@ var class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service =
     [ "UpdateSynonym", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a2c19afcfc023ae394e4afbf8e5cc769e", null ],
     [ "UpdateValue", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#aec67b1bf159f9dc8d7dffd12c187d4e7", null ],
     [ "UpdateWorkspace", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#aeaf4b8122c7e60f8d393af63088d1b06", null ],
+    [ "DefaultEndpoint", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a5a5b847cb84252ae0a4d87bda3ec6ebd", null ],
     [ "VersionDate", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#ad62e2d9f190ffac1c92d61487e173c07", null ]
 ];

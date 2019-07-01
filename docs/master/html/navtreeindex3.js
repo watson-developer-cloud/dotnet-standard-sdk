@@ -1,5 +1,12 @@
 var NAVTREEINDEX3 =
 {
+"d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a6fd2f031ee8389be8768512216a842cb":[1,0,0,0,7,0,2,1],
+"d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a71d031f9c97ed46ec8cd889392a4f9cd":[1,0,0,0,7,0,2,36],
+"d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a78a46af840f45c9389eecb65134586a1":[1,0,0,0,7,0,2,4],
+"d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a7e1509ec1dac705d5b009b41d5a5836d":[1,0,0,0,7,0,2,2],
+"d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a826e33505711536f5686dad60450b3e9":[1,0,0,0,7,0,2,30],
+"d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a85096ae9617aa7066e026b2281d0d8b1":[1,0,0,0,7,0,2,32],
+"d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a87dffa5eace870ccc9008465ac490e8b":[1,0,0,0,7,0,2,28],
 "d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a8f8ca56c99db9ac754b53291812eacdb":[1,0,0,0,7,0,2,21],
 "d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a94227aade73c310ee7fc6487edd736f7":[1,0,0,0,7,0,2,9],
 "d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a9f2b988e0f7477cd4e872497e9395c84":[1,0,0,0,7,0,2,8],
@@ -16,7 +23,6 @@ var NAVTREEINDEX3 =
 "d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#ae8a7428bbed81b34a426a63623395e6d":[1,0,0,0,7,0,2,37],
 "d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#ae980f741d9dd746e2584eaf5fdd9c979":[1,0,0,0,7,0,2,25],
 "d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#aea75e291cf7c9fe6e285df87318763c3":[1,0,0,0,7,0,2,11],
-"d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#aec9951cb714776a320cef95aeb687f0f":[1,0,0,0,7,0,2,32],
 "d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#af88d10eaeb4447eac2f8746dd42a837b":[1,0,0,0,7,0,2,26],
 "d4/d10/_query_filter_type_8cs.html":[2,0,0,4,0,73],
 "d4/d13/_profile_8cs.html":[2,0,0,8,0,5],
@@ -243,11 +249,5 @@ var NAVTREEINDEX3 =
 "d5/d25/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_details_1_1_type_enum_value.html#ae642cbd5d5df866a23ab1c49120d0e34":[1,0,0,0,7,0,0,2,1,0],
 "d5/d26/_list_configurations_response_8cs.html":[2,0,0,4,0,40],
 "d5/d2a/_i_speech_to_text_service_8cs.html":[2,0,0,9,3],
-"d5/d2b/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_intent.html":[1,0,0,0,0,1,0,20],
-"d5/d2b/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_intent.html#a79d0341aab694e843c4e241f63e947c4":[1,0,0,0,0,1,0,20,1],
-"d5/d2b/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_intent.html#aa452b607799166d926223680d28b6272":[1,0,0,0,0,1,0,20,0],
-"d5/d2e/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_log_query_response_result_1_1_document_type_enum_value.html":[1,0,0,0,2,0,0,43,0],
-"d5/d2e/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_log_query_response_result_1_1_document_type_enum_value.html#a34e775e461218227f684151eda837038":[1,0,0,0,2,0,0,43,0,0],
-"d5/d2e/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_log_query_response_result_1_1_document_type_enum_value.html#ab45d7f5a1246f936af93c6a5e0a4daf0":[1,0,0,0,2,0,0,43,0,1],
-"d5/d32/_synonym_collection_8cs.html":[2,0,0,0,0,43]
+"d5/d2b/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_intent.html":[1,0,0,0,0,1,0,20]
 };

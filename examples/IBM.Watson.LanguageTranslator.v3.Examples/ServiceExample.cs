@@ -15,8 +15,8 @@
 *
 */
 
+using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Cloud.SDK.Core.Http;
-using IBM.Cloud.SDK.Core.Util;
 using IBM.Watson.LanguageTranslator.v3.Model;
 using System;
 using System.Collections.Generic;
@@ -58,13 +58,12 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
         #region Translation
         public void Translate()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            LanguageTranslatorService service = new LanguageTranslatorService(tokenOptions, versionDate);
+            LanguageTranslatorService service = new LanguageTranslatorService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.Translate(
                 text: new List<string>() { "I'm sorry, Dave. I'm afraid I can't do that." },
@@ -78,13 +77,11 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
         #region Identification
         public void ListIdentifiableLanguages()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            LanguageTranslatorService service = new LanguageTranslatorService(tokenOptions, versionDate);
+            LanguageTranslatorService service = new LanguageTranslatorService(versionDate, config);
 
             var result = service.ListIdentifiableLanguages();
 
@@ -93,13 +90,11 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
 
         public void IdentifyLanguage()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            LanguageTranslatorService service = new LanguageTranslatorService(tokenOptions, versionDate);
+            LanguageTranslatorService service = new LanguageTranslatorService(versionDate, config);
 
             var result = service.Identify(
                 text: "I'm sorry, Dave. I'm afraid I can't do that."
@@ -112,13 +107,11 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
         #region Models
         public void ListModels()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            LanguageTranslatorService service = new LanguageTranslatorService(tokenOptions, versionDate);
+            LanguageTranslatorService service = new LanguageTranslatorService(versionDate, config);
 
             var result = service.ListModels();
 
@@ -127,13 +120,11 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
 
         public void CreateModel()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            LanguageTranslatorService service = new LanguageTranslatorService(tokenOptions, versionDate);
+            LanguageTranslatorService service = new LanguageTranslatorService(versionDate, config);
 
             DetailedResponse<TranslationModel> result;
 
@@ -156,13 +147,11 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
 
         public void GetModel()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            LanguageTranslatorService service = new LanguageTranslatorService(tokenOptions, versionDate);
+            LanguageTranslatorService service = new LanguageTranslatorService(versionDate, config);
 
             var result = service.GetModel(
                 modelId: modelId
@@ -173,13 +162,11 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
 
         public void DeleteModel()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            LanguageTranslatorService service = new LanguageTranslatorService(tokenOptions, versionDate);
+            LanguageTranslatorService service = new LanguageTranslatorService(versionDate, config);
 
             var result = service.DeleteModel(
                 modelId: modelId
@@ -192,13 +179,11 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
         #region Documents
         public void ListDocuments()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            LanguageTranslatorService service = new LanguageTranslatorService(tokenOptions, versionDate);
+            LanguageTranslatorService service = new LanguageTranslatorService(versionDate, config);
 
             var result = service.ListDocuments();
 
@@ -207,13 +192,11 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
 
         public void TranslateDocument()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            LanguageTranslatorService service = new LanguageTranslatorService(tokenOptions, versionDate);
+            LanguageTranslatorService service = new LanguageTranslatorService(versionDate, config);
 
             DetailedResponse<DocumentStatus> result;
 
@@ -237,13 +220,11 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
 
         public void GetDocumentStatus()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            LanguageTranslatorService service = new LanguageTranslatorService(tokenOptions, versionDate);
+            LanguageTranslatorService service = new LanguageTranslatorService(versionDate, config);
 
             var result = service.GetDocumentStatus(
                 documentId: documentId
@@ -254,13 +235,11 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
 
         public void DeleteDocument()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            LanguageTranslatorService service = new LanguageTranslatorService(tokenOptions, versionDate);
+            LanguageTranslatorService service = new LanguageTranslatorService(versionDate, config);
 
             var result = service.DeleteDocument(
                 documentId: documentId
@@ -271,13 +250,11 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
 
         public void GetTranslatedDocument()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            LanguageTranslatorService service = new LanguageTranslatorService(tokenOptions, versionDate);
+            LanguageTranslatorService service = new LanguageTranslatorService(versionDate, config);
 
             var result = service.GetTranslatedDocument(
                 documentId: documentId

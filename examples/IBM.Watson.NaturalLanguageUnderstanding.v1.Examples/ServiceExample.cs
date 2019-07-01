@@ -15,7 +15,7 @@
 *
 */
 
-using IBM.Cloud.SDK.Core.Util;
+using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Watson.NaturalLanguageUnderstanding.v1.Model;
 using System;
 
@@ -43,13 +43,12 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Examples
         #region Analyze
         public void Analyze()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(tokenOptions, versionDate);
+            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(versionDate, config);
+            service.SetEndpoint(url);
 
             var features = new Features()
             {
@@ -81,13 +80,12 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Examples
         #region Mangage Models
         public void ListModels()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(tokenOptions, versionDate);
+            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.ListModels();
 
@@ -96,13 +94,12 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Examples
 
         public void DeleteModel()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(tokenOptions, versionDate);
+            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.DeleteModel(
                 modelId: modelId

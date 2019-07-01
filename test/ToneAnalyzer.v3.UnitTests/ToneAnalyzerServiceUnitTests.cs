@@ -165,13 +165,11 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
             client.PostAsync(Arg.Any<string>())
                   .Returns(request);
 
-            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
-                   .Returns(request);
             request.WithHeader(Arg.Any<string>(), Arg.Any<string>())
                    .Returns(request);
-            request.WithArgument(Arg.Any<string>(), Arg.Any<List<string>>())
-                   .Returns(request);
             request.WithArgument(Arg.Any<string>(), Arg.Any<bool>())
+                   .Returns(request);
+            request.WithArgument(Arg.Any<string>(), Arg.Any<List<string>>())
                    .Returns(request);
             request.WithBody<ToneInput>(Arg.Any<ToneInput>())
                    .Returns(request);
@@ -190,8 +188,8 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
 
             var analyzeTone = service.Tone(toneInput, "text/html");
 
+            //client.Received().PostAsync(Arg.Any<string>());
             Assert.IsNotNull(analyzeTone);
-            client.Received().PostAsync(Arg.Any<string>());
             Assert.IsNotNull(analyzeTone.Result.DocumentTone);
             Assert.IsNotNull(analyzeTone.Result.DocumentTone.ToneCategories);
             Assert.IsTrue(analyzeTone.Result.DocumentTone.ToneCategories.Count >= 1);

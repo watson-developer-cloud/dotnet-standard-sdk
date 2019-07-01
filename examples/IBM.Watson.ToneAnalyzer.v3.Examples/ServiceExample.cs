@@ -15,7 +15,7 @@
 *
 */
 
-using IBM.Cloud.SDK.Core.Util;
+using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Watson.ToneAnalyzer.v3.Model;
 using System;
 using System.Collections.Generic;
@@ -42,13 +42,12 @@ namespace IBM.Watson.ToneAnalyzer.v3.Examples
         #region Analyze Tone
         public void Tone()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            ToneAnalyzerService service = new ToneAnalyzerService(tokenOptions, versionDate);
+            ToneAnalyzerService service = new ToneAnalyzerService(versionDate, config);
+            service.SetEndpoint(url);
 
             ToneInput toneInput = new ToneInput()
             {
@@ -70,13 +69,12 @@ namespace IBM.Watson.ToneAnalyzer.v3.Examples
         #region Analyze Customer Engagment Tone
         public void ToneChat()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            ToneAnalyzerService service = new ToneAnalyzerService(tokenOptions, versionDate);
+            ToneAnalyzerService service = new ToneAnalyzerService(versionDate, config);
+            service.SetEndpoint(url);
 
             var utterances = new List<Utterance>()
             {

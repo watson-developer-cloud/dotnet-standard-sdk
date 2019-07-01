@@ -15,6 +15,7 @@
 *
 */
 
+using IBM.Cloud.SDK.Core.Authentication.Icp4d;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Exceptions;
 using IBM.Watson.Assistant.v2.Model;

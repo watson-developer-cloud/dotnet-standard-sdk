@@ -16,7 +16,7 @@
 */
 
 
-using IBM.Cloud.SDK.Core.Util;
+using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Watson.Assistant.v2.Model;
 using System;
 
@@ -46,13 +46,12 @@ namespace IBM.Watson.Assistant.v2.Examples
         #region Sessions
         public void CreateSession()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.CreateSession(
                 assistantId: assistantId
@@ -64,13 +63,12 @@ namespace IBM.Watson.Assistant.v2.Examples
 
         public void DeleteSession()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.DeleteSession(
                 assistantId: assistantId,
@@ -84,13 +82,12 @@ namespace IBM.Watson.Assistant.v2.Examples
         #region Message
         public void Message()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            AssistantService service = new AssistantService(tokenOptions, versionDate);
+            AssistantService service = new AssistantService(versionDate, config);
+            service.SetEndpoint(url);
 
             MessageInput input = new MessageInput()
             {

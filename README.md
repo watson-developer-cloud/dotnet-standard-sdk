@@ -47,6 +47,7 @@ Watson services are migrating to token-based Identity and Access Management (IAM
 
 - With some service instances, you authenticate to the API by using **[IAM](#iam)**.
 - In other instances, you authenticate by providing the **[username and password](#username-and-password)** for the service instance.
+- If you're using a Watson service on ICP, you'll need to authenticate in a [specific way](#icp).
 
 ### Getting credentials
 To find out which authentication to use, view the service credentials. You find the service credentials for authentication the same way for all Watson services:
@@ -70,13 +71,11 @@ You supply either an IAM service **API key** or an **access token**:
 ```cs
 void Example()
 {
-    TokenOptions iamAssistantTokenOptions = new TokenOptions()
-    {
-        IamApiKey = "<iam-apikey>",
-        ServiceUrl = "<service-endpoint>"
-    };
-
-    _assistant = new AssistantService(iamAssistantTokenOptions, "<version-date>");
+    IamConfig iamConfig = new IamConfig(
+        apikey: "<iam-apikey>"
+        );
+    service = new AssistantService("<versionDate>", iamConfig);
+    service.SetEndpoint("<service-endpoint>");
 }
 ```
 
@@ -84,12 +83,11 @@ void Example()
 ```cs
 void Example()
 {
-    TokenOptions iamAssistantTokenOptions = new TokenOptions()
-    {
-        IamAccessToken = "<iam-access-token>"
-    };
-
-    _assistant = new AssistantService(iamAssistantTokenOptions, "<version-date>");
+    IamConfig iamConfig = new IamConfig(
+        userManagedAccessToken: "<iam-access-token>"
+        );
+    service = new AssistantService("<versionDate>", iamConfig);
+    service.SetEndpoint("<service-endpoint>");
 }
 ```
 
@@ -97,9 +95,45 @@ void Example()
 ```cs
 void Example()
 {
-    _assistant = new AssistantService("<username>", "<password>", "<version-date>");
+    BasicAuthConfig basicAuthConfig = new BasicAuthConfig(
+        username: "<username>",
+        password: "<password>"
+        );
+    service = new AssistantService("<versionDate>", basicAuthConfig);
+    service.SetEndpoint("<service-endpoint>");
 }
 ```
+
+#### ICP
+Like IAM, you can pass in credentials to let the SDK manage an access token for you or directly supply an access token to do it yourself.
+
+##### Letting the SDK manage the token
+```cs
+void Example()
+{
+    Icp4dConfig icp4dConfig = new Icp4dConfig(
+        username: "<username>",
+        password: "<password>"
+        );
+    AssistantService assistant = new AssistantService("<version-date>", icp4dConfig);
+    service.SetEndpoint("<service-endpoint>");
+    var results = assistant.Message("<workspace-id>", "<message-request>");
+}
+```
+
+##### Managing the token yourself
+```cs
+void Example()
+{
+    Icp4dConfig icp4dConfig = new Icp4dConfig(
+        userManagedAccessToken: "<access-token>"    
+        );
+    AssistantService assistant = new AssistantService("<version-date>", icp4dConfig);
+    service.SetEndpoint("<service-endpoint>");
+    var results = assistant.Message("<workspace-id>", "<message-request>");
+}
+```
+Be sure to both [disable SSL verification](#self-signed-certificates) when authenticating and set the endpoint explicitly to the URL given in ICP.
 
 ### Supplying credentials
 
@@ -142,7 +176,11 @@ You can send custom request headers by adding them to the service using `.WithHe
 ```cs
 void Example()
 {
-    AssistantService assistant = new AssistantService("<username>", "<password>", "<version-date>");
+    IamConfig iamConfig = new IamConfig(
+        apikey: "<iam-apikey>"
+        );
+    AssistantService assistant = new AssistantService("<version-date>", iamConfig);
+    service.SetEndpoint("<service-endpoint>");
     assistant.WithHeader("X-Watson-Metadata", "customer_id=some-assistant-customer-id");
     var results = assistant.Message("<workspace-id>", "<message-request>");
 }
@@ -153,7 +191,11 @@ You can get the response headers, status code and the raw json response in the r
 ```cs
 void Example()
 {
-    AssistantService assistant = new AssistantService("<username>", "<password>", "<version-date>");
+    IamConfig iamConfig = new IamConfig(
+        apikey: "<iam-apikey>"
+        );
+    AssistantService assistant = new AssistantService("<version-date>", iamConfig);
+    service.SetEndpoint("<service-endpoint>");
     var results = assistant.Message("<workspace-id>", "<message-request>");
     
     var responseHeaders = results.Headers;  //  The response headers
@@ -167,8 +209,13 @@ You can disable SSL verification on calls to Watson (only do this if you really 
 ```cs
 void Example()
 {
-    AssistantService assistant = new AssistantService("<username>", "<password>", "<version-date>");
-    assistant.DisableSslVerification(true);
+    Icp4dConfig icp4dConfig = new Icp4dConfig(
+        username: "<username>",
+        password: "<password>",
+        disableSslVerification: true
+        );
+    AssistantService assistant = new AssistantService("<version-date>", icp4dConfig);
+    service.SetEndpoint("<service-endpoint>");
     var results = assistant.Message("<workspace-id>", "<message-request>");
 }
 ```

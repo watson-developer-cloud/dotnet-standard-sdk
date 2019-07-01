@@ -15,7 +15,7 @@
 *
 */
 
-using IBM.Cloud.SDK.Core.Util;
+using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Watson.CompareComply.v1.Model;
 using System;
 using System.Collections.Generic;
@@ -67,13 +67,12 @@ namespace IBM.Watson.CompareComply.v1.Examples
         #region HTML Conversion
         public void ConvertToHtml()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            CompareComplyService service = new CompareComplyService(tokenOptions, versionDate);
+            CompareComplyService service = new CompareComplyService(versionDate, config);
+            service.SetEndpoint(url);
 
             using (FileStream fs = File.OpenRead(contractAFilePath))
             {
@@ -96,13 +95,12 @@ namespace IBM.Watson.CompareComply.v1.Examples
         #region Element Classification
         public void ClassifyElements()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            CompareComplyService service = new CompareComplyService(tokenOptions, versionDate);
+            CompareComplyService service = new CompareComplyService(versionDate, config);
+            service.SetEndpoint(url);
 
             using (FileStream fs = File.OpenRead(contractAFilePath))
             {
@@ -123,13 +121,12 @@ namespace IBM.Watson.CompareComply.v1.Examples
         #region Tables
         public void ExtractTables()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            CompareComplyService service = new CompareComplyService(tokenOptions, versionDate);
+            CompareComplyService service = new CompareComplyService(versionDate, config);
+            service.SetEndpoint(url);
 
             using (FileStream fs = File.OpenRead(tableFilePath))
             {
@@ -150,13 +147,12 @@ namespace IBM.Watson.CompareComply.v1.Examples
         #region Comparision
         public void CompareDocuments()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            CompareComplyService service = new CompareComplyService(tokenOptions, versionDate);
+            CompareComplyService service = new CompareComplyService(versionDate, config);
+            service.SetEndpoint(url);
 
             using (FileStream fs0 = File.OpenRead(contractAFilePath))
             {
@@ -188,13 +184,12 @@ namespace IBM.Watson.CompareComply.v1.Examples
         #region Feedback
         public void ListFeedback()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            CompareComplyService service = new CompareComplyService(tokenOptions, versionDate);
+            CompareComplyService service = new CompareComplyService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.ListFeedback();
 
@@ -203,13 +198,12 @@ namespace IBM.Watson.CompareComply.v1.Examples
 
         public void AddFeedback()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            CompareComplyService service = new CompareComplyService(tokenOptions, versionDate);
+            CompareComplyService service = new CompareComplyService(versionDate, config);
+            service.SetEndpoint(url);
 
             #region feedbackData
             FeedbackDataInput feedbackData = new FeedbackDataInput()
@@ -322,13 +316,12 @@ namespace IBM.Watson.CompareComply.v1.Examples
 
         public void GetFeedback()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            CompareComplyService service = new CompareComplyService(tokenOptions, versionDate);
+            CompareComplyService service = new CompareComplyService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.GetFeedback(
                 feedbackId: feedbackId
@@ -339,13 +332,12 @@ namespace IBM.Watson.CompareComply.v1.Examples
 
         public void DeleteFeedback()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            CompareComplyService service = new CompareComplyService(tokenOptions, versionDate);
+            CompareComplyService service = new CompareComplyService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.DeleteFeedback(
                 feedbackId: feedbackId
@@ -358,13 +350,12 @@ namespace IBM.Watson.CompareComply.v1.Examples
         #region Batches
         public void ListBatches()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            CompareComplyService service = new CompareComplyService(tokenOptions, versionDate);
+            CompareComplyService service = new CompareComplyService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.ListBatches();
 
@@ -374,13 +365,12 @@ namespace IBM.Watson.CompareComply.v1.Examples
 
         public void CreateBatch()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            CompareComplyService service = new CompareComplyService(tokenOptions, versionDate);
+            CompareComplyService service = new CompareComplyService(versionDate, config);
+            service.SetEndpoint(url);
 
             using (FileStream fsInput = File.OpenRead(objectStorageCredentialsInputFilepath))
             {
@@ -412,13 +402,12 @@ namespace IBM.Watson.CompareComply.v1.Examples
 
         public void GetBatch()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            CompareComplyService service = new CompareComplyService(tokenOptions, versionDate);
+            CompareComplyService service = new CompareComplyService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.GetBatch(
                 batchId: batchId
@@ -429,13 +418,12 @@ namespace IBM.Watson.CompareComply.v1.Examples
 
         public void UpdateBatch()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = apikey,
-                ServiceUrl = url
-            };
+            IamConfig config = new IamConfig(
+                apikey: apikey
+                );
 
-            CompareComplyService service = new CompareComplyService(tokenOptions, versionDate);
+            CompareComplyService service = new CompareComplyService(versionDate, config);
+            service.SetEndpoint(url);
 
             var result = service.UpdateBatch(
                 batchId: batchId,

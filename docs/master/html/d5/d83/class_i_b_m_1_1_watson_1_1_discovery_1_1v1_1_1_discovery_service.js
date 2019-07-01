@@ -4,6 +4,7 @@ var class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service =
     [ "DiscoveryService", "d5/d83/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service.html#a398846d9da559d1f41a8d12f89d6acce", null ],
     [ "DiscoveryService", "d5/d83/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service.html#a827198c02aa5e3228e80b0f7e3a84903", null ],
     [ "DiscoveryService", "d5/d83/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service.html#a8e6726589d8c3ac9cebc01611b928844", null ],
+    [ "DiscoveryService", "d5/d83/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service.html#a9b833ba4050b5836ad1e0764eca50955", null ],
     [ "AddDocument", "d5/d83/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service.html#a9652484c91d85af591212ed3fe336288", null ],
     [ "AddTrainingData", "d5/d83/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service.html#a4510bf8653d778f9e9e06bdd58361a4c", null ],
     [ "CreateCollection", "d5/d83/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service.html#aab7097a81d124ff5c4f4fbbe5446f18e", null ],
@@ -68,5 +69,6 @@ var class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service =
     [ "UpdateDocument", "d5/d83/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service.html#a5bc01cef4f506ed01662859a5824273a", null ],
     [ "UpdateEnvironment", "d5/d83/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service.html#ab281ca49de3be53fc77f4c86ce4380ca", null ],
     [ "UpdateTrainingExample", "d5/d83/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service.html#aeddc9bc19ef8f69d46a0314577a6a225", null ],
+    [ "DefaultEndpoint", "d5/d83/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service.html#aa8db796e8a76bc6df6b61ef99c901b1e", null ],
     [ "VersionDate", "d5/d83/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service.html#a357e1c1458faf9aabf687545cf720489", null ]
 ];

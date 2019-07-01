@@ -1,5 +1,9 @@
 var NAVTREEINDEX1 =
 {
+"d1/d60/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_keywords_options.html#a2209cb3fa653b57fef408f6a7a6c4977":[1,0,0,0,5,0,0,23,1],
+"d1/d60/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_keywords_options.html#a5a95638d4e198430f8237742b1886b9c":[1,0,0,0,5,0,0,23,2],
+"d1/d60/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_keywords_options.html#abc33b0ce21fe33507bf316f3a11243c5":[1,0,0,0,5,0,0,23,0],
+"d1/d61/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_comparison.html":[1,0,0,0,1,0,0,7],
 "d1/d61/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_comparison.html#af8ef01ceb1ffc6f44c3cd41ee76511e6":[1,0,0,0,1,0,0,7,1],
 "d1/d6b/_identifiable_language_8cs.html":[2,0,0,5,0,3],
 "d1/d6d/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_parties_1_1_importance_enum_value.html":[1,0,0,0,1,0,0,40,0],
@@ -245,9 +249,5 @@ var NAVTREEINDEX1 =
 "d2/dfe/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#a61ccaf5202db675752f734c8ca5ab1f2":[1,0,0,0,6,0,0,4,9],
 "d2/dfe/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#aa375c208b8585a4e70ee9f1d0aa2018e":[1,0,0,0,6,0,0,4,8],
 "d2/dfe/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#acfccce4ec44bb96dbd1c403313615925":[1,0,0,0,6,0,0,4,10],
-"d2/dfe/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#af2c233058439737c30e7f42e96e12715":[1,0,0,0,6,0,0,4,6],
-"d3/d00/_query_notices_result_8cs.html":[2,0,0,4,0,75],
-"d3/d04/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_token_dict_status_response_1_1_status_enum_value.html":[1,0,0,0,2,0,0,103,0],
-"d3/d04/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_token_dict_status_response_1_1_status_enum_value.html#a16cfff0f8896b41cc3d79988dc9e6bb2":[1,0,0,0,2,0,0,103,0,0],
-"d3/d04/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_token_dict_status_response_1_1_status_enum_value.html#ae8d221900c0a5c8d49ae2d6f92e7705d":[1,0,0,0,2,0,0,103,0,1]
+"d2/dfe/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_model_1_1_content_item.html#af2c233058439737c30e7f42e96e12715":[1,0,0,0,6,0,0,4,6]
 };

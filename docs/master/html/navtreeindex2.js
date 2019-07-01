@@ -1,5 +1,9 @@
 var NAVTREEINDEX2 =
 {
+"d3/d00/_query_notices_result_8cs.html":[2,0,0,4,0,75],
+"d3/d04/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_token_dict_status_response_1_1_status_enum_value.html":[1,0,0,0,2,0,0,103,0],
+"d3/d04/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_token_dict_status_response_1_1_status_enum_value.html#a16cfff0f8896b41cc3d79988dc9e6bb2":[1,0,0,0,2,0,0,103,0,0],
+"d3/d04/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_token_dict_status_response_1_1_status_enum_value.html#ae8d221900c0a5c8d49ae2d6f92e7705d":[1,0,0,0,2,0,0,103,0,1],
 "d3/d04/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_token_dict_status_response_1_1_status_enum_value.html#afc7ada2b62107c910e90c03f10bda2fc":[1,0,0,0,2,0,0,103,0,2],
 "d3/d05/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_filter.html":[1,0,0,0,2,0,0,30],
 "d3/d05/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_filter.html#a1ef9e262677eed3df5c122071d28720b":[1,0,0,0,2,0,0,30,0],
@@ -10,11 +14,13 @@ var NAVTREEINDEX2 =
 "d3/d07/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_personality_insights_service.html":[1,0,0,0,6,0,2],
 "d3/d07/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_personality_insights_service.html#a0ec9ce79c04cde92740217168d6c0923":[1,0,0,0,6,0,2,0],
 "d3/d07/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_personality_insights_service.html#a141a5a28e0f578bdd7ef21fae8fc2752":[1,0,0,0,6,0,2,1],
-"d3/d07/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_personality_insights_service.html#a38f389da61b259d34777e30147f8f51b":[1,0,0,0,6,0,2,4],
+"d3/d07/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_personality_insights_service.html#a2faba22beaeddea938e34306a7a56553":[1,0,0,0,6,0,2,4],
+"d3/d07/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_personality_insights_service.html#a38f389da61b259d34777e30147f8f51b":[1,0,0,0,6,0,2,5],
 "d3/d07/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_personality_insights_service.html#a7d03c1ed3a3e22f19004772544d1b284":[1,0,0,0,6,0,2,2],
-"d3/d07/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_personality_insights_service.html#a9b4fed0002bcbac700040867569b37d8":[1,0,0,0,6,0,2,5],
+"d3/d07/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_personality_insights_service.html#a9b4fed0002bcbac700040867569b37d8":[1,0,0,0,6,0,2,6],
 "d3/d07/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_personality_insights_service.html#ac7cf3bdc8656e54e84ba7ab0c1ec7427":[1,0,0,0,6,0,2,3],
-"d3/d07/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_personality_insights_service.html#af4717c653b0fc9a5cdeee3dc928150e7":[1,0,0,0,6,0,2,6],
+"d3/d07/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_personality_insights_service.html#ad5cd834cda5a52c6cafb43edc91f2871":[1,0,0,0,6,0,2,7],
+"d3/d07/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_personality_insights_service.html#af4717c653b0fc9a5cdeee3dc928150e7":[1,0,0,0,6,0,2,8],
 "d3/d08/_i_b_m_8_watson_8_language_translator_8v3_2_model_2_translation_8cs.html":[2,0,0,5,0,7],
 "d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html":[1,0,0,0,0,1,2],
 "d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html#a2a140a03fc5ea08fbbb8b0764e4b1fb1":[1,0,0,0,0,1,2,1],
@@ -243,11 +249,5 @@ var NAVTREEINDEX2 =
 "d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a551fff25735f1d31e1e17c5ba8075fc2":[1,0,0,0,7,0,2,34],
 "d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a55ff26b48c66a3be23533e1c355f9bcf":[1,0,0,0,7,0,2,14],
 "d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a587c9e188ed6660026aa76057b90649d":[1,0,0,0,7,0,2,6],
-"d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a5b5a2674e00b27f7c6186e31d77ad716":[1,0,0,0,7,0,2,29],
-"d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a6fd2f031ee8389be8768512216a842cb":[1,0,0,0,7,0,2,1],
-"d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a71d031f9c97ed46ec8cd889392a4f9cd":[1,0,0,0,7,0,2,36],
-"d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a78a46af840f45c9389eecb65134586a1":[1,0,0,0,7,0,2,4],
-"d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a7e1509ec1dac705d5b009b41d5a5836d":[1,0,0,0,7,0,2,2],
-"d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a826e33505711536f5686dad60450b3e9":[1,0,0,0,7,0,2,30],
-"d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a87dffa5eace870ccc9008465ac490e8b":[1,0,0,0,7,0,2,28]
+"d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a5b5a2674e00b27f7c6186e31d77ad716":[1,0,0,0,7,0,2,29]
 };

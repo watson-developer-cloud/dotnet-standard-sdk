@@ -101,7 +101,7 @@ namespace IBM.Watson.Assistant.v2
         {
             if (httpClient == null)
                 throw new ArgumentNullException(nameof(httpClient));
-            
+
             this.Client = httpClient;
             SkipAuthentication = true;
         }

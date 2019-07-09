@@ -47,14 +47,14 @@ namespace IBM.Watson.Assistant.v2.Examples
         public void CreateSession()
         {
             IamConfig config = new IamConfig(
-                apikey: "<apikey>"
+                apikey: "{apikey}"
                 );
 
             AssistantService service = new AssistantService("2019-02-28", config);
-            service.SetEndpoint("<url>");
+            service.SetEndpoint("{url}");
 
             var result = service.CreateSession(
-                assistantId: "<assistantId>"
+                assistantId: "{assistantId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -65,15 +65,15 @@ namespace IBM.Watson.Assistant.v2.Examples
         public void DeleteSession()
         {
             IamConfig config = new IamConfig(
-                apikey: "<apikey>"
+                apikey: "{apikey}"
                 );
 
             AssistantService service = new AssistantService("2019-02-28", config);
-            service.SetEndpoint("<url>");
+            service.SetEndpoint("{url}");
 
             var result = service.DeleteSession(
-                assistantId: "<assistantId>",
-                sessionId: "<sessionId>"
+                assistantId: "{assistantId}",
+                sessionId: "{sessionId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -84,15 +84,15 @@ namespace IBM.Watson.Assistant.v2.Examples
         public void Message()
         {
             IamConfig config = new IamConfig(
-                apikey: "<apikey>"
+                apikey: "{apikey}"
                 );
 
             AssistantService service = new AssistantService("2019-02-28", config);
-            service.SetEndpoint("<url>");
+            service.SetEndpoint("{url}");
 
             var result = service.Message(
-                assistantId: "<assistantId>",
-                sessionId: "<sessionId>",
+                assistantId: "{assistantId}",
+                sessionId: "{sessionId}",
                 input: new MessageInput()
                 {
                     Text = "Hello"
@@ -107,11 +107,11 @@ namespace IBM.Watson.Assistant.v2.Examples
         public void MessageWithContext()
         {
             IamConfig config = new IamConfig(
-                apikey: "<apikey>"
+                apikey: "{apikey}"
                 );
 
             AssistantService service = new AssistantService("2019-02-28", config);
-            service.SetEndpoint("<url>");
+            service.SetEndpoint("{url}");
 
             MessageContextSkills skills = new MessageContextSkills();
             MessageContextSkill skill = new MessageContextSkill();
@@ -119,8 +119,8 @@ namespace IBM.Watson.Assistant.v2.Examples
             skills.Add("main skill", skill);
 
             var result = service.Message(
-                assistantId: "<assistantId>",
-                sessionId: "<sessionId>",
+                assistantId: "{assistantId}",
+                sessionId: "{sessionId}",
                 input: new MessageInput()
                 {
                     Text = "Hello"

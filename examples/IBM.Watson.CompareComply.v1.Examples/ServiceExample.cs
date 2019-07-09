@@ -68,21 +68,21 @@ namespace IBM.Watson.CompareComply.v1.Examples
         public void ConvertToHtml()
         {
             IamConfig config = new IamConfig(
-                apikey: "<apikey>"
+                apikey: "{apikey}"
                 );
 
             CompareComplyService service = new CompareComplyService("2018-10-15", config);
             service.SetEndpoint("{url}");
 
-            using (FileStream fs = File.OpenRead("<path-to-file>"))
+            using (FileStream fs = File.OpenRead("{path-to-file}"))
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
                     var result = service.ConvertToHtml(
                         file: ms,
-                        filename: Path.GetFileName("<path-to-file>"),
-                        fileContentType: "<file-content-type>"
+                        filename: Path.GetFileName("{path-to-file}"),
+                        fileContentType: "{file-content-type}"
                         );
 
                     Console.WriteLine(result.Response);
@@ -96,20 +96,20 @@ namespace IBM.Watson.CompareComply.v1.Examples
         public void ClassifyElements()
         {
             IamConfig config = new IamConfig(
-                apikey: "<apikey>"
+                apikey: "{apikey}"
                 );
 
             CompareComplyService service = new CompareComplyService("2018-10-15", config);
             service.SetEndpoint("{url}");
 
-            using (FileStream fs = File.OpenRead("<path-to-file>"))
+            using (FileStream fs = File.OpenRead("{path-to-file}"))
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
                     var result = service.ClassifyElements(
                         file: ms,
-                        fileContentType: "<file-content-type>"
+                        fileContentType: "{file-content-type}"
                         );
 
                     Console.WriteLine(result.Response);
@@ -122,20 +122,20 @@ namespace IBM.Watson.CompareComply.v1.Examples
         public void ExtractTables()
         {
             IamConfig config = new IamConfig(
-                apikey: "<apikey>"
+                apikey: "{apikey}"
                 );
 
             CompareComplyService service = new CompareComplyService("2018-10-15", config);
             service.SetEndpoint("{url}");
 
-            using (FileStream fs = File.OpenRead("<path-to-file>"))
+            using (FileStream fs = File.OpenRead("{path-to-file}"))
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
                     var result = service.ExtractTables(
                         file: ms,
-                        fileContentType: "<file-content-type>"
+                        fileContentType: "{file-content-type}"
                         );
 
                     Console.WriteLine(result.Response);
@@ -148,15 +148,15 @@ namespace IBM.Watson.CompareComply.v1.Examples
         public void CompareDocuments()
         {
             IamConfig config = new IamConfig(
-                apikey: "<apikey>"
+                apikey: "{apikey}"
                 );
 
             CompareComplyService service = new CompareComplyService("2018-10-15", config);
             service.SetEndpoint("{url}");
 
-            using (FileStream fs0 = File.OpenRead("<path-to-file-1>"))
+            using (FileStream fs0 = File.OpenRead("{path-to-file-1}"))
             {
-                using (FileStream fs1 = File.OpenRead("<path-to-file-2>"))
+                using (FileStream fs1 = File.OpenRead("{path-to-file-2}"))
                 {
                     using (MemoryStream ms0 = new MemoryStream())
                     {
@@ -167,10 +167,10 @@ namespace IBM.Watson.CompareComply.v1.Examples
                             var result = service.CompareDocuments(
                                 file1: ms0,
                                 file2: ms1,
-                                file1ContentType: "<file-1-content-type>",
-                                file2ContentType: "<file-2-content-type>",
-                                file1Label: "<file-1-label>",
-                                file2Label: "<file-2-label>"
+                                file1ContentType: "{file-1-content-type}",
+                                file2ContentType: "{file-2-content-type}",
+                                file1Label: "{file-1-label}",
+                                file2Label: "{file-2-label}"
                                 );
 
                             Console.WriteLine(result.Response);
@@ -185,7 +185,7 @@ namespace IBM.Watson.CompareComply.v1.Examples
         public void ListFeedback()
         {
             IamConfig config = new IamConfig(
-                apikey: "<apikey>"
+                apikey: "{apikey}"
                 );
 
             CompareComplyService service = new CompareComplyService("2018-10-15", config);
@@ -199,7 +199,7 @@ namespace IBM.Watson.CompareComply.v1.Examples
         public void AddFeedback()
         {
             IamConfig config = new IamConfig(
-                apikey: "<apikey>"
+                apikey: "{apikey}"
                 );
 
             CompareComplyService service = new CompareComplyService("2018-10-15", config);
@@ -305,8 +305,8 @@ namespace IBM.Watson.CompareComply.v1.Examples
 
             var result = service.AddFeedback(
                 feedbackData: feedbackData,
-                userId: "<user-id>",
-                comment: "<user-comment>"
+                userId: "{user-id}",
+                comment: "{user-comment}"
                 );
 
             feedbackId = result.Result.FeedbackId;
@@ -317,7 +317,7 @@ namespace IBM.Watson.CompareComply.v1.Examples
         public void GetFeedback()
         {
             IamConfig config = new IamConfig(
-                apikey: "<apikey>"
+                apikey: "{apikey}"
                 );
 
             CompareComplyService service = new CompareComplyService("2018-10-15", config);
@@ -333,14 +333,14 @@ namespace IBM.Watson.CompareComply.v1.Examples
         public void DeleteFeedback()
         {
             IamConfig config = new IamConfig(
-                apikey: "<apikey>"
+                apikey: "{apikey}"
                 );
 
             CompareComplyService service = new CompareComplyService("2018-10-15", config);
             service.SetEndpoint("{url}");
 
             var result = service.DeleteFeedback(
-                feedbackId: "<feedback-id>"
+                feedbackId: "{feedback-id}"
                 );
 
             Console.WriteLine(result.Response);
@@ -351,7 +351,7 @@ namespace IBM.Watson.CompareComply.v1.Examples
         public void ListBatches()
         {
             IamConfig config = new IamConfig(
-                apikey: "<apikey>"
+                apikey: "{apikey}"
                 );
 
             CompareComplyService service = new CompareComplyService("2018-10-15", config);
@@ -365,15 +365,15 @@ namespace IBM.Watson.CompareComply.v1.Examples
         public void CreateBatch()
         {
             IamConfig config = new IamConfig(
-                apikey: "<apikey>"
+                apikey: "{apikey}"
                 );
 
             CompareComplyService service = new CompareComplyService("2018-10-15", config);
             service.SetEndpoint("{url}");
 
-            using (FileStream fsInput = File.OpenRead("<object-storage-input-credentials-filepath>"))
+            using (FileStream fsInput = File.OpenRead("{object-storage-input-credentials-filepath}"))
             {
-                using (FileStream fsOutput = File.OpenRead("<object-storage-output-credentials-filepath>"))
+                using (FileStream fsOutput = File.OpenRead("{object-storage-output-credentials-filepath}"))
                 {
                     using (MemoryStream msInput = new MemoryStream())
                     {
@@ -402,14 +402,14 @@ namespace IBM.Watson.CompareComply.v1.Examples
         public void GetBatch()
         {
             IamConfig config = new IamConfig(
-                apikey: "<apikey>"
+                apikey: "{apikey}"
                 );
 
             CompareComplyService service = new CompareComplyService("2018-10-15", config);
             service.SetEndpoint("{url}");
 
             var result = service.GetBatch(
-                batchId: "<batch-id>"
+                batchId: "{batch-id}"
                 );
 
             Console.WriteLine(result.Response);
@@ -418,14 +418,14 @@ namespace IBM.Watson.CompareComply.v1.Examples
         public void UpdateBatch()
         {
             IamConfig config = new IamConfig(
-                apikey: "<apikey>"
+                apikey: "{apikey}"
                 );
 
             CompareComplyService service = new CompareComplyService("2018-10-15", config);
             service.SetEndpoint("{url}");
 
             var result = service.UpdateBatch(
-                batchId: "<batch-id>",
+                batchId: "{batch-id}",
                 action: "rescan"
                 );
 

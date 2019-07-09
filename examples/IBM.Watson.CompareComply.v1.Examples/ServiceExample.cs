@@ -68,21 +68,21 @@ namespace IBM.Watson.CompareComply.v1.Examples
         public void ConvertToHtml()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "<apikey>"
                 );
 
-            CompareComplyService service = new CompareComplyService(versionDate, config);
-            service.SetEndpoint(url);
+            CompareComplyService service = new CompareComplyService("2018-10-15", config);
+            service.SetEndpoint("{url}");
 
-            using (FileStream fs = File.OpenRead(contractAFilePath))
+            using (FileStream fs = File.OpenRead("<path-to-file>"))
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
                     var result = service.ConvertToHtml(
                         file: ms,
-                        filename: Path.GetFileName(contractAFilePath),
-                        fileContentType: "application/pdf"
+                        filename: Path.GetFileName("<path-to-file>"),
+                        fileContentType: "<file-content-type>"
                         );
 
                     Console.WriteLine(result.Response);
@@ -96,20 +96,20 @@ namespace IBM.Watson.CompareComply.v1.Examples
         public void ClassifyElements()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "<apikey>"
                 );
 
-            CompareComplyService service = new CompareComplyService(versionDate, config);
-            service.SetEndpoint(url);
+            CompareComplyService service = new CompareComplyService("2018-10-15", config);
+            service.SetEndpoint("{url}");
 
-            using (FileStream fs = File.OpenRead(contractAFilePath))
+            using (FileStream fs = File.OpenRead("<path-to-file>"))
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
                     var result = service.ClassifyElements(
                         file: ms,
-                        fileContentType: "application/pdf"
+                        fileContentType: "<file-content-type>"
                         );
 
                     Console.WriteLine(result.Response);
@@ -122,20 +122,20 @@ namespace IBM.Watson.CompareComply.v1.Examples
         public void ExtractTables()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "<apikey>"
                 );
 
-            CompareComplyService service = new CompareComplyService(versionDate, config);
-            service.SetEndpoint(url);
+            CompareComplyService service = new CompareComplyService("2018-10-15", config);
+            service.SetEndpoint("{url}");
 
-            using (FileStream fs = File.OpenRead(tableFilePath))
+            using (FileStream fs = File.OpenRead("<path-to-file>"))
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
                     var result = service.ExtractTables(
                         file: ms,
-                        fileContentType: "application/pdf"
+                        fileContentType: "<file-content-type>"
                         );
 
                     Console.WriteLine(result.Response);
@@ -148,15 +148,15 @@ namespace IBM.Watson.CompareComply.v1.Examples
         public void CompareDocuments()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "<apikey>"
                 );
 
-            CompareComplyService service = new CompareComplyService(versionDate, config);
-            service.SetEndpoint(url);
+            CompareComplyService service = new CompareComplyService("2018-10-15", config);
+            service.SetEndpoint("{url}");
 
-            using (FileStream fs0 = File.OpenRead(contractAFilePath))
+            using (FileStream fs0 = File.OpenRead("<path-to-file-1>"))
             {
-                using (FileStream fs1 = File.OpenRead(contractBFilePath))
+                using (FileStream fs1 = File.OpenRead("<path-to-file-2>"))
                 {
                     using (MemoryStream ms0 = new MemoryStream())
                     {
@@ -167,10 +167,10 @@ namespace IBM.Watson.CompareComply.v1.Examples
                             var result = service.CompareDocuments(
                                 file1: ms0,
                                 file2: ms1,
-                                file1ContentType: "application/pdf",
-                                file2ContentType: "application/pdf",
-                                file1Label: "Contract A",
-                                file2Label: "Contract B"
+                                file1ContentType: "<file-1-content-type>",
+                                file2ContentType: "<file-2-content-type>",
+                                file1Label: "<file-1-label>",
+                                file2Label: "<file-2-label>"
                                 );
 
                             Console.WriteLine(result.Response);
@@ -185,11 +185,11 @@ namespace IBM.Watson.CompareComply.v1.Examples
         public void ListFeedback()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "<apikey>"
                 );
 
-            CompareComplyService service = new CompareComplyService(versionDate, config);
-            service.SetEndpoint(url);
+            CompareComplyService service = new CompareComplyService("2018-10-15", config);
+            service.SetEndpoint("{url}");
 
             var result = service.ListFeedback();
 
@@ -199,11 +199,11 @@ namespace IBM.Watson.CompareComply.v1.Examples
         public void AddFeedback()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "<apikey>"
                 );
 
-            CompareComplyService service = new CompareComplyService(versionDate, config);
-            service.SetEndpoint(url);
+            CompareComplyService service = new CompareComplyService("2018-10-15", config);
+            service.SetEndpoint("{url}");
 
             #region feedbackData
             FeedbackDataInput feedbackData = new FeedbackDataInput()
@@ -305,8 +305,8 @@ namespace IBM.Watson.CompareComply.v1.Examples
 
             var result = service.AddFeedback(
                 feedbackData: feedbackData,
-                userId: "user_id_123x",
-                comment: "Test feedback comment"
+                userId: "<user-id>",
+                comment: "<user-comment>"
                 );
 
             feedbackId = result.Result.FeedbackId;
@@ -317,11 +317,11 @@ namespace IBM.Watson.CompareComply.v1.Examples
         public void GetFeedback()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "<apikey>"
                 );
 
-            CompareComplyService service = new CompareComplyService(versionDate, config);
-            service.SetEndpoint(url);
+            CompareComplyService service = new CompareComplyService("2018-10-15", config);
+            service.SetEndpoint("{url}");
 
             var result = service.GetFeedback(
                 feedbackId: feedbackId
@@ -333,14 +333,14 @@ namespace IBM.Watson.CompareComply.v1.Examples
         public void DeleteFeedback()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "<apikey>"
                 );
 
-            CompareComplyService service = new CompareComplyService(versionDate, config);
-            service.SetEndpoint(url);
+            CompareComplyService service = new CompareComplyService("2018-10-15", config);
+            service.SetEndpoint("{url}");
 
             var result = service.DeleteFeedback(
-                feedbackId: feedbackId
+                feedbackId: "<feedback-id>"
                 );
 
             Console.WriteLine(result.Response);
@@ -351,30 +351,29 @@ namespace IBM.Watson.CompareComply.v1.Examples
         public void ListBatches()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "<apikey>"
                 );
 
-            CompareComplyService service = new CompareComplyService(versionDate, config);
-            service.SetEndpoint(url);
+            CompareComplyService service = new CompareComplyService("2018-10-15", config);
+            service.SetEndpoint("{url}");
 
             var result = service.ListBatches();
 
             Console.WriteLine(result.Response);
-
         }
 
         public void CreateBatch()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "<apikey>"
                 );
 
-            CompareComplyService service = new CompareComplyService(versionDate, config);
-            service.SetEndpoint(url);
+            CompareComplyService service = new CompareComplyService("2018-10-15", config);
+            service.SetEndpoint("{url}");
 
-            using (FileStream fsInput = File.OpenRead(objectStorageCredentialsInputFilepath))
+            using (FileStream fsInput = File.OpenRead("<object-storage-input-credentials-filepath>"))
             {
-                using (FileStream fsOutput = File.OpenRead(objectStorageCredentialsOutputFilepath))
+                using (FileStream fsOutput = File.OpenRead("<object-storage-output-credentials-filepath>"))
                 {
                     using (MemoryStream msInput = new MemoryStream())
                     {
@@ -386,10 +385,10 @@ namespace IBM.Watson.CompareComply.v1.Examples
                                 function: "html_conversion",
                                 inputCredentialsFile: msInput,
                                 inputBucketLocation: "us-south",
-                                inputBucketName: "compare-comply-integration-test-bucket-input",
+                                inputBucketName: "bucket-input",
                                 outputCredentialsFile: msOutput,
                                 outputBucketLocation: "us-south",
-                                outputBucketName: "compare-comply-integration-test-bucket-output"
+                                outputBucketName: "bucket-output"
                                 );
 
                             batchId = result.Result.BatchId;
@@ -403,14 +402,14 @@ namespace IBM.Watson.CompareComply.v1.Examples
         public void GetBatch()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "<apikey>"
                 );
 
-            CompareComplyService service = new CompareComplyService(versionDate, config);
-            service.SetEndpoint(url);
+            CompareComplyService service = new CompareComplyService("2018-10-15", config);
+            service.SetEndpoint("{url}");
 
             var result = service.GetBatch(
-                batchId: batchId
+                batchId: "<batch-id>"
                 );
 
             Console.WriteLine(result.Response);
@@ -419,14 +418,14 @@ namespace IBM.Watson.CompareComply.v1.Examples
         public void UpdateBatch()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "<apikey>"
                 );
 
-            CompareComplyService service = new CompareComplyService(versionDate, config);
-            service.SetEndpoint(url);
+            CompareComplyService service = new CompareComplyService("2018-10-15", config);
+            service.SetEndpoint("{url}");
 
             var result = service.UpdateBatch(
-                batchId: batchId,
+                batchId: "<batch-id>",
                 action: "rescan"
                 );
 

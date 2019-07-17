@@ -88,7 +88,6 @@ namespace IBM.Watson.CompareComply.v1.Examples
                     Console.WriteLine(result.Response);
                 }
             }
-
         }
         #endregion
 

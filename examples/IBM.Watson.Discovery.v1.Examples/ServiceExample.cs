@@ -142,11 +142,11 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void ListEnvironments()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.ListEnvironments();
 
@@ -164,14 +164,15 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void CreateEnvironment()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.CreateEnvironment(
-                name: "My environment"
+                name: "my_environment",
+                description: "My environment"
                 );
 
             Console.WriteLine(result.Response);
@@ -180,14 +181,14 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void GetEnvironment()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.GetEnvironment(
-                environmentId: environmentId
+                environmentId: "{environmentId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -196,15 +197,16 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void UpdateEnvironment()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.UpdateEnvironment(
-                environmentId: environmentId,
-                name: "My updated environment"
+                environmentId: "{environmentId}",
+                name: "Updated name",
+                description: "Updated description"
                 );
 
             Console.WriteLine(result.Response);
@@ -213,14 +215,14 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void DeleteEnvironment()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.DeleteEnvironment(
-                environmentId: environmentId
+                environmentId: "{environmentId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -229,15 +231,15 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void ListFields()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.ListFields(
-                environmentId: environmentId,
-                collectionIds: new List<string>() { collectionId }
+                environmentId: "{environmentId}",
+                collectionIds: new List<string>() { "{collection-id1}", "{collection-id2}" }
                 );
 
             Console.WriteLine(result.Response);
@@ -248,14 +250,14 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void ListConfigurations()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.ListConfigurations(
-                environmentId: environmentId
+                environmentId: "{environmentId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -264,15 +266,16 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void CreateConfiguration()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.CreateConfiguration(
-                environmentId: environmentId,
-                name: configurationName
+                environmentId: "{environmentId}",
+                name: "{configuration-name}",
+                description: "{configuration-description}"
                 );
 
             Console.WriteLine(result.Response);
@@ -283,15 +286,15 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void GetConfiguration()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.GetConfiguration(
-                environmentId: environmentId,
-                configurationId: configurationId
+                environmentId: "{environmentId}",
+                configurationId: "{configurationId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -300,16 +303,17 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void UpdateConfiguration()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.UpdateConfiguration(
-                environmentId: environmentId,
-                configurationId: configurationId,
-                name: updatedConfigurationName
+                environmentId: "{environmentId}",
+                configurationId: "{configurationId}",
+                name: "{updated-configuration-name}",
+                description: "{updated-configuration-description}"
                 );
 
             Console.WriteLine(result.Response);
@@ -318,15 +322,15 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void DeleteConfiguration()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.DeleteConfiguration(
-                environmentId: environmentId,
-                configurationId: configurationId
+                environmentId: "{environmentId}",
+                configurationId: "{configurationId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -337,22 +341,23 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void TestConfigurationInEnvironment()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
-            using (FileStream fs = File.OpenRead(filepathToIngest))
+            using (FileStream fs = File.OpenRead("{filepath}"))
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
                     var result = service.TestConfigurationInEnvironment(
-                        environmentId: environmentId,
-                        configurationId: configurationId,
-                        file: ms, filename: "watson_beats_jeopardy.html",
-                        fileContentType: "text/html"
+                        environmentId: "{environmentId}",
+                        configurationId: "{configurationId}",
+                        file: ms, 
+                        filename: "{filename}",
+                        fileContentType: "{fileContentType}"
                         );
 
                     Console.WriteLine(result.Response);
@@ -366,14 +371,14 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void ListCollections()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.ListCollections(
-                environmentId: environmentId
+                environmentId: "{environmentId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -382,15 +387,16 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void CreateCollection()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.CreateCollection(
-                environmentId: environmentId,
-                name: collectionName
+                environmentId: "{environmentId}",
+                name: "{collectionName}",
+                description: "{collectionDescription}"
                 );
 
             Console.WriteLine(result.Response);
@@ -401,15 +407,15 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void GetCollection()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.GetCollection(
-                environmentId: environmentId,
-                collectionId: collectionId
+                environmentId: "{environmentId}",
+                collectionId: "{collectionId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -418,16 +424,17 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void UpdateCollection()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.UpdateCollection(
-                environmentId: environmentId,
-                collectionId: collectionId,
-                name: updatedCollectionName
+                environmentId: "{environmentId}",
+                collectionId: "{collectionId}",
+                name: "{updatedCollectionName}",
+                description: "{updatedCollectionDescription}"
                 );
 
             Console.WriteLine(result.Response);
@@ -436,15 +443,15 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void DeleteCollection()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.DeleteCollection(
-                environmentId: environmentId,
-                collectionId: collectionId
+                environmentId: "{environmentId}",
+                collectionId: "{collectionId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -453,15 +460,15 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void ListCollectionFields()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.ListCollectionFields(
-                environmentId: environmentId,
-                collectionId: collectionId
+                environmentId: "{environmentId}",
+                collectionId: "{collectionId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -472,15 +479,15 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void ListExpansions()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.ListExpansions(
-                environmentId: environmentId,
-                collectionId: collectionId
+                environmentId: "{environmentId}",
+                collectionId: "{collectionId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -489,11 +496,11 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void CreateExpansions()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var expansions = new List<Expansion>()
             {
@@ -511,8 +518,8 @@ namespace IBM.Watson.Discovery.v1.Examples
             };
 
             var result = service.CreateExpansions(
-                environmentId: environmentId,
-                collectionId: collectionId,
+                environmentId: "{environmentId}",
+                collectionId: "{collectionId}",
                 expansions: expansions
                 );
 
@@ -522,15 +529,15 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void DeleteExpansion()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.DeleteExpansions(
-                environmentId: environmentId,
-                collectionId: collectionId
+                environmentId: "{environmentId}",
+                collectionId: "{collectionId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -539,15 +546,15 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void GetTokenizationDictionaryStatus()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.GetTokenizationDictionaryStatus(
-                environmentId: environmentId,
-                collectionId: collectionId
+                environmentId: "{environmentId}",
+                collectionId: "{collectionId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -556,11 +563,11 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void CreateTokenizationDictionary()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var tokenizationRules = new List<TokenDictRule>()
             {
@@ -580,8 +587,8 @@ namespace IBM.Watson.Discovery.v1.Examples
             };
 
             var result = service.CreateTokenizationDictionary(
-                    environmentId: environmentId,
-                    collectionId: collectionId,
+                    environmentId: "{environmentId}",
+                    collectionId: "{collectionId}",
                     tokenizationRules: tokenizationRules
                     );
 
@@ -591,15 +598,15 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void DeleteTokenizationDictionary()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.DeleteTokenizationDictionary(
-                environmentId: environmentId,
-                collectionId: collectionId
+                environmentId: "{environmentId}",
+                collectionId: "{collectionId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -608,15 +615,15 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void GetStopwordListStatus()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.GetStopwordListStatus(
-                environmentId: environmentId,
-                collectionId: collectionId
+                environmentId: "{environmentId}",
+                collectionId: "{collectionId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -625,11 +632,11 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void CreateStopwordList()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             DetailedResponse<TokenDictStatusResponse> result;
             using (FileStream fs = File.OpenRead(stopwordFileToIngest))
@@ -638,8 +645,8 @@ namespace IBM.Watson.Discovery.v1.Examples
                 {
                     fs.CopyTo(ms);
                     result = service.CreateStopwordList(
-                        environmentId: environmentId,
-                        collectionId: collectionId, 
+                        environmentId: "{environmentId}",
+                        collectionId: "{collectionId}" ,
                         stopwordFile: ms,
                         stopwordFilename: Path.GetFileName(stopwordFileToIngest)
                         );
@@ -652,15 +659,15 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void DeleteStopwordList()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.DeleteStopwordList(
-                environmentId: environmentId,
-                collectionId: collectionId
+                environmentId: "{environmentId}",
+                collectionId: "{collectionId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -671,11 +678,11 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void AddDocument()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             DetailedResponse<DocumentAccepted> result;
             using (FileStream fs = File.OpenRead(filepathToIngest))
@@ -684,8 +691,8 @@ namespace IBM.Watson.Discovery.v1.Examples
                 {
                     fs.CopyTo(ms);
                     result = service.AddDocument(
-                    environmentId: environmentId,
-                    collectionId: collectionId,
+                    environmentId: "{environmentId}",
+                    collectionId: "{collectionId}",
                     file: ms,
                     filename: "watson_beats_jeopardy.html",
                     fileContentType: "text/html",
@@ -702,15 +709,15 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void GetDocument()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.GetDocumentStatus(
-                environmentId: environmentId,
-                collectionId: collectionId,
+                environmentId: "{environmentId}",
+                collectionId: "{collectionId}",
                 documentId: documentId
                 );
 
@@ -720,11 +727,11 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void UpdateDocument()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             DetailedResponse<DocumentAccepted> result;
             using (FileStream fs = File.OpenRead(filepathToIngest))
@@ -733,8 +740,8 @@ namespace IBM.Watson.Discovery.v1.Examples
                 {
                     fs.CopyTo(ms);
                     result = service.UpdateDocument(
-                        environmentId: environmentId,
-                        collectionId: collectionId,
+                        environmentId: "{environmentId}",
+                        collectionId: "{collectionId}",
                         documentId: documentId,
                         file: ms,
                         filename: "watson_beats_jeopardy.html",
@@ -750,15 +757,15 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void DeleteDocument()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.DeleteDocument(
-                environmentId: environmentId,
-                collectionId: collectionId,
+                environmentId: "{environmentId}",
+                collectionId: "{collectionId}",
                 documentId: documentId
                 );
 
@@ -770,15 +777,15 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void Query()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.Query(
-                environmentId: environmentId,
-                collectionId: collectionId,
+                environmentId: "{environmentId}",
+                collectionId: "{collectionId}",
                 naturalLanguageQuery: naturalLanguageQuery,
                 returnFields: "extracted_metadata.sha1"
                 );
@@ -791,15 +798,15 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void QueryNotices()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.QueryNotices(
-                environmentId: environmentId,
-                collectionId: collectionId,
+                environmentId: "{environmentId}",
+                collectionId: "{collectionId}",
                 naturalLanguageQuery: naturalLanguageQuery,
                 passages: true
                 );
@@ -810,14 +817,14 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void FederatedQuery()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.FederatedQuery(
-                environmentId: environmentId,
+                environmentId: "{environmentId}",
                 naturalLanguageQuery: naturalLanguageQuery,
                 returnFields: "extracted_metadata.sha1"
                 );
@@ -828,14 +835,14 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void FederatedQueryNotices()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.FederatedQueryNotices(
-                environmentId: environmentId,
+                environmentId: "{environmentId}",
                 naturalLanguageQuery: naturalLanguageQuery,
                 collectionIds: new List<string> { collectionId }
                 );
@@ -846,15 +853,15 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void QueryEntities()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.QueryEntities(
-                environmentId: environmentId,
-                collectionId: collectionId
+                environmentId: "{environmentId}",
+                collectionId: "{collectionId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -863,15 +870,15 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void QueryRelations()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.QueryRelations(
-                environmentId: environmentId,
-                collectionId: collectionId
+                environmentId: "{environmentId}",
+                collectionId: "{collectionId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -882,15 +889,15 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void ListTrainingData()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.ListTrainingData(
-                environmentId: environmentId,
-                collectionId: collectionId
+                environmentId: "{environmentId}",
+                collectionId: "{collectionId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -899,11 +906,11 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void AddTrainingData()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var examples = new List<TrainingExample>()
             {
@@ -916,8 +923,8 @@ namespace IBM.Watson.Discovery.v1.Examples
             };
 
             var result = service.AddTrainingData(
-                environmentId: environmentId,
-                collectionId: collectionId,
+                environmentId: "{environmentId}",
+                collectionId: "{collectionId}",
                 naturalLanguageQuery: naturalLanguageQuery,
                 filter: "filter",
                 examples: examples
@@ -930,15 +937,15 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void DeleteAllTraininData()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.DeleteAllTrainingData(
-                environmentId: environmentId,
-                collectionId: collectionId
+                environmentId: "{environmentId}",
+                collectionId: "{collectionId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -947,16 +954,16 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void GetTrainingData()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.GetTrainingData(
-                environmentId: environmentId,
-                collectionId: collectionId,
-                queryId: queryId
+                environmentId: "{environmentId}",
+                collectionId: "{collectionId}",
+                queryId: "{queryId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -965,16 +972,16 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void DeleteTrainingData()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.DeleteTrainingData(
-                environmentId: environmentId,
-                collectionId: collectionId,
-                queryId: queryId
+                environmentId: "{environmentId}",
+                collectionId: "{collectionId}",
+                queryId: "{queryId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -983,16 +990,16 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void ListTrainingExamples()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.ListTrainingExamples(
-                environmentId: environmentId,
-                collectionId: collectionId,
-                queryId: queryId
+                environmentId: "{environmentId}",
+                collectionId: "{collectionId}",
+                queryId: "{queryId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -1001,16 +1008,16 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void CreateTrainingExample()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.CreateTrainingExample(
-                environmentId: environmentId,
-                collectionId: collectionId,
-                queryId: queryId,
+                environmentId: "{environmentId}",
+                collectionId: "{collectionId}",
+                queryId: "{queryId}",
                 documentId: documentId,
                 relevance: 1
                 );
@@ -1023,17 +1030,17 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void DeleteTrainingExample()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.DeleteTrainingExample(
-                environmentId: environmentId,
-                collectionId: collectionId,
-                queryId: queryId,
-                exampleId: exampleId
+                environmentId: "{environmentId}",
+                collectionId: "{collectionId}",
+                queryId: "{queryId}",
+                exampleId: "{exampleId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -1042,17 +1049,17 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void UpdateTrainingExample()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.UpdateTrainingExample(
-                environmentId: environmentId,
-                collectionId: collectionId,
-                queryId: queryId,
-                exampleId: exampleId,
+                environmentId: "{environmentId}",
+                collectionId: "{collectionId}",
+                queryId: "{queryId}",
+                exampleId: "{exampleId}",
                 crossReference: "crossReference",
                 relevance: 1
                 );
@@ -1063,17 +1070,17 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void GetTrainingExample()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.GetTrainingExample(
-                environmentId: environmentId,
-                collectionId: collectionId,
-                queryId: queryId,
-                exampleId: exampleId
+                environmentId: "{environmentId}",
+                collectionId: "{collectionId}",
+                queryId: "{queryId}",
+                exampleId: "{exampleId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -1084,11 +1091,11 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void DeleteUserData()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.DeleteUserData(
                 customerId: "customerId"
@@ -1102,11 +1109,11 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void CreateEvent()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var data = new EventData()
             {
@@ -1127,11 +1134,11 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void QueryLog()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.QueryLog();
 
@@ -1141,11 +1148,11 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void GetMetricsQuery()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.GetMetricsQuery();
 
@@ -1155,11 +1162,11 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void GetMetricsQueryEvent()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.GetMetricsQueryEvent();
 
@@ -1169,11 +1176,11 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void GetMetricsQueryNoResult()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.GetMetricsQueryNoResults();
 
@@ -1183,11 +1190,11 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void GetMetricsQueryEventRate()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.GetMetricsEventRate();
 
@@ -1197,11 +1204,11 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void GetMetricsQueryTokenEvent()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.GetMetricsQueryTokenEvent();
 
@@ -1213,14 +1220,14 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void ListCredentials()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.ListCredentials(
-                environmentId: environmentId
+                environmentId: "{environmentId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -1229,11 +1236,11 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void CreateCredentials()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var credentialDetails = new CredentialDetails()
             {
@@ -1247,7 +1254,7 @@ namespace IBM.Watson.Discovery.v1.Examples
             };
 
             var result = service.CreateCredentials(
-                environmentId: environmentId,
+                environmentId: "{environmentId}",
                 sourceType: Credentials.SourceTypeEnumValue.BOX,
                 credentialDetails: credentialDetails
                 );
@@ -1260,14 +1267,14 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void GetCredentials()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.GetCredentials(
-                environmentId: environmentId,
+                environmentId: "{environmentId}",
                 credentialId: credentialId
                 );
 
@@ -1277,11 +1284,11 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void UpdateCredentials()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             string privateKey = "privatekey";
             var privateKeyBytes = System.Text.Encoding.UTF8.GetBytes(privateKey);
@@ -1299,7 +1306,7 @@ namespace IBM.Watson.Discovery.v1.Examples
             };
 
             var result = service.UpdateCredentials(
-                environmentId: environmentId,
+                environmentId: "{environmentId}",
                 credentialId: credentialId,
                 sourceType: Credentials.SourceTypeEnumValue.BOX,
                 credentialDetails: updatedCredentialDetails
@@ -1311,14 +1318,14 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void DeleteCredentials()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.DeleteCredentials(
-                environmentId: environmentId,
+                environmentId: "{environmentId}",
                 credentialId: credentialId
                 );
 
@@ -1330,14 +1337,14 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void ListGateways()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.ListGateways(
-                environmentId: environmentId
+                environmentId: "{environmentId}"
                 );
                 
             Console.WriteLine(result.Response);
@@ -1346,14 +1353,14 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void CreateGateway()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.CreateGateway(
-                environmentId: environmentId,
+                environmentId: "{environmentId}",
                 name: "dotnet-sdk-example-gateway"
                 );
 
@@ -1365,14 +1372,14 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void GetGateway()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.GetGateway(
-                environmentId: environmentId,
+                environmentId: "{environmentId}",
                 gatewayId: gatewayId
                 );
 
@@ -1382,14 +1389,14 @@ namespace IBM.Watson.Discovery.v1.Examples
         public void DeleteGateway()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            DiscoveryService service = new DiscoveryService(versionDate, config);
-            service.SetEndpoint(url);
+            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            service.SetEndpoint("{url}");
 
             var result = service.DeleteGateway(
-                environmentId: environmentId,
+                environmentId: "{environmentId}",
                 gatewayId: gatewayId
                 );
 

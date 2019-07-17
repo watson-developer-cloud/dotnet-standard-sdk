@@ -538,15 +538,15 @@ namespace IBM.Watson.Assistant.v1.Examples
                 {
                     new CreateValue()
                     {
-                    Value = "water"
+                        Value = "water"
                     },
                     new CreateValue()
                     {
-                    Value = "orange juice"
+                        Value = "orange juice"
                     },
                     new CreateValue()
                     {
-                    Value = "soda"
+                        Value = "soda"
                     }
                 }
                 );

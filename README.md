@@ -72,10 +72,10 @@ You supply either an IAM service **API key** or an **access token**:
 void Example()
 {
     IamConfig iamConfig = new IamConfig(
-        apikey: "<iam-apikey>"
+        Apikey: "{iam-apikey}"
         );
-    service = new AssistantService("<versionDate>", iamConfig);
-    service.SetEndpoint("<service-endpoint>");
+    service = new AssistantService("{versionDate}", iamConfig);
+    service.SetEndpoint("{service-endpoint}");
 }
 ```
 
@@ -84,10 +84,10 @@ void Example()
 void Example()
 {
     IamConfig iamConfig = new IamConfig(
-        userManagedAccessToken: "<iam-access-token>"
+        UserManagedAccessToken: "{iam-access-token}"
         );
-    service = new AssistantService("<versionDate>", iamConfig);
-    service.SetEndpoint("<service-endpoint>");
+    service = new AssistantService("{versionDate}", iamConfig);
+    service.SetEndpoint("{service-endpoint}");
 }
 ```
 
@@ -96,11 +96,11 @@ void Example()
 void Example()
 {
     BasicAuthConfig basicAuthConfig = new BasicAuthConfig(
-        username: "<username>",
-        password: "<password>"
+        Username: "{username}",
+        Password: "{password}"
         );
-    service = new AssistantService("<versionDate>", basicAuthConfig);
-    service.SetEndpoint("<service-endpoint>");
+    service = new AssistantService("{versionDate}", basicAuthConfig);
+    service.SetEndpoint("{service-endpoint}");
 }
 ```
 
@@ -112,12 +112,13 @@ Like IAM, you can pass in credentials to let the SDK manage an access token for 
 void Example()
 {
     Icp4dConfig icp4dConfig = new Icp4dConfig(
-        username: "<username>",
-        password: "<password>"
+        Username: "{username}",
+        Password: "{password}",
+        Url: "https://{icp4d_cluster_host}{:port}"
         );
-    AssistantService assistant = new AssistantService("<version-date>", icp4dConfig);
-    service.SetEndpoint("<service-endpoint>");
-    var results = assistant.Message("<workspace-id>", "<message-request>");
+    AssistantService assistant = new AssistantService("{version-date}", icp4dConfig);
+    service.SetEndpoint("{service-endpoint}");
+    var results = assistant.Message("{workspace-id}", "{message-request}");
 }
 ```
 
@@ -126,11 +127,12 @@ void Example()
 void Example()
 {
     Icp4dConfig icp4dConfig = new Icp4dConfig(
-        userManagedAccessToken: "<access-token>"    
+        UserManagedAccessToken: "{access-token}",
+        Url: "https://{icp4d_cluster_host}{:port}"
         );
-    AssistantService assistant = new AssistantService("<version-date>", icp4dConfig);
-    service.SetEndpoint("<service-endpoint>");
-    var results = assistant.Message("<workspace-id>", "<message-request>");
+    AssistantService assistant = new AssistantService("{version-date}", icp4dConfig);
+    service.SetEndpoint("{service-endpoint}");
+    var results = assistant.Message("{workspace-id}", "{message-request}");
 }
 ```
 Be sure to both [disable SSL verification](#self-signed-certificates) when authenticating and set the endpoint explicitly to the URL given in ICP.
@@ -162,27 +164,27 @@ If you're using more than one service at a time in your code and get two differe
 If you would like to configure the location/name of your credential file, you can set an environment variable called `IBM_CREDENTIALS_FILE`. **This will take precedence over the locations specified above.** Here's how you can do that:
 
 ```bash
-export IBM_CREDENTIALS_FILE="<path>"
+export IBM_CREDENTIALS_FILE="{path}"
 ```
 
-where `<path>` is something like `/home/user/Downloads/<file_name>.env`.
+where `{path}` is something like `/home/user/Downloads/{file_name}.env`.
 
 #### Manually
 
 If you'd prefer to set authentication values manually in your code, the SDK supports that as well. The way you'll do this depends on what type of credentials your service instance gives you.
 
 ## Custom Request Headers
-You can send custom request headers by adding them to the service using `.WithHeader(<key>, <value>)`.
+You can send custom request headers by adding them to the service using `.WithHeader({key}, {value})`.
 ```cs
 void Example()
 {
     IamConfig iamConfig = new IamConfig(
-        apikey: "<iam-apikey>"
+        Apikey: "{iam-apikey}"
         );
-    AssistantService assistant = new AssistantService("<version-date>", iamConfig);
-    service.SetEndpoint("<service-endpoint>");
+    AssistantService assistant = new AssistantService("{version-date}", iamConfig);
+    service.SetEndpoint("{service-endpoint}");
     assistant.WithHeader("X-Watson-Metadata", "customer_id=some-assistant-customer-id");
-    var results = assistant.Message("<workspace-id>", "<message-request>");
+    var results = assistant.Message("{workspace-id}", "{message-request}");
 }
 ```
 
@@ -192,11 +194,11 @@ You can get the response headers, status code and the raw json response in the r
 void Example()
 {
     IamConfig iamConfig = new IamConfig(
-        apikey: "<iam-apikey>"
+        Apikey: "{iam-apikey}"
         );
-    AssistantService assistant = new AssistantService("<version-date>", iamConfig);
-    service.SetEndpoint("<service-endpoint>");
-    var results = assistant.Message("<workspace-id>", "<message-request>");
+    AssistantService assistant = new AssistantService("{version-date}", iamConfig);
+    service.SetEndpoint("{service-endpoint}");
+    var results = assistant.Message("{workspace-id}", "{message-request}");
     
     var responseHeaders = results.Headers;  //  The response headers
     var responseJson = results.Response;    //  The raw response json
@@ -210,13 +212,14 @@ You can disable SSL verification on calls to Watson (only do this if you really 
 void Example()
 {
     Icp4dConfig icp4dConfig = new Icp4dConfig(
-        username: "<username>",
-        password: "<password>",
-        disableSslVerification: true
+        Username: "{username}",
+        Password: "{password}",
+        Url: "https://{icp4d_cluster_host}{:port}",
+        DisableSslVerification: true
         );
-    AssistantService assistant = new AssistantService("<version-date>", icp4dConfig);
-    service.SetEndpoint("<service-endpoint>");
-    var results = assistant.Message("<workspace-id>", "<message-request>");
+    AssistantService assistant = new AssistantService("{version-date}", icp4dConfig);
+    service.SetEndpoint("{service-endpoint}");
+    var results = assistant.Message("{workspace-id}", "{message-request}");
 }
 ```
 
@@ -234,7 +237,7 @@ Find more open source projects on the [IBM Github Page][ibm-github].
 This library is licensed under Apache 2.0. Full license text is available in [LICENSE](LICENSE).
 
 ## Contributing
-See [CONTRIBUTING.md](.github/CONTRIBUTING.md).<TODO revise coding standard>
+See [CONTRIBUTING.md](.github/CONTRIBUTING.md).
 
 ## Featured projects
 We'd love to highlight cool open-source projects that use this SDK! If you'd like to get your project added to the list, feel free to make an issue linking us to it.
@@ -255,10 +258,7 @@ We'd love to highlight cool open-source projects that use this SDK! If you'd lik
 [tone_analyzer]: https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/
 [visual_recognition]: https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/
 
-[document_conversion]: https://www.ibm.com/watson/developercloud/document-conversion/api/v1/
-[retrieve_and_rank]: https://www.ibm.com/watson/developercloud/retrieve-and-rank/api/v1/
 [natural_language_classifier]: https://www.ibm.com/watson/developercloud/natural-language-classifier/api/v1/
-[tradeoff_analytics]: https://www.ibm.com/watson/developercloud/tradeoff-analytics/api/v1/
 
 [dotnet-core-download]: https://www.microsoft.com/net/download/core
 [visual-studio-download]: https://www.visualstudio.com/vs/community/

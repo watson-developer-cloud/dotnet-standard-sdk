@@ -42,7 +42,7 @@ namespace IBM.Watson.Discovery.v1.Examples
         private string naturalLanguageQuery = "Who beat Ken Jennings in Jeopardy!";
         private string gatewayId;
         private string credentialId;
-        private string sessionToken;   
+        private string sessionToken;
         private static string configurationName;
         private static string updatedConfigurationName;
         private static string collectionName;
@@ -239,7 +239,7 @@ namespace IBM.Watson.Discovery.v1.Examples
 
             var result = service.ListFields(
                 environmentId: "{environmentId}",
-                collectionIds: new List<string>() { "{collection-id1}", "{collection-id2}" }
+                collectionIds: new List<string>() { "{collection_id1}", "{collection_id2}" }
                 );
 
             Console.WriteLine(result.Response);
@@ -274,8 +274,7 @@ namespace IBM.Watson.Discovery.v1.Examples
 
             var result = service.CreateConfiguration(
                 environmentId: "{environmentId}",
-                name: "{configuration-name}",
-                description: "{configuration-description}"
+                name: "doc-config"
                 );
 
             Console.WriteLine(result.Response);
@@ -312,8 +311,7 @@ namespace IBM.Watson.Discovery.v1.Examples
             var result = service.UpdateConfiguration(
                 environmentId: "{environmentId}",
                 configurationId: "{configurationId}",
-                name: "{updated-configuration-name}",
-                description: "{updated-configuration-description}"
+                name: "new-config"
                 );
 
             Console.WriteLine(result.Response);
@@ -347,7 +345,7 @@ namespace IBM.Watson.Discovery.v1.Examples
             DiscoveryService service = new DiscoveryService("2019-04-30", config);
             service.SetEndpoint("{url}");
 
-            using (FileStream fs = File.OpenRead("{filepath}"))
+            using (FileStream fs = File.OpenRead("{path_to_document}"))
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
@@ -355,15 +353,14 @@ namespace IBM.Watson.Discovery.v1.Examples
                     var result = service.TestConfigurationInEnvironment(
                         environmentId: "{environmentId}",
                         configurationId: "{configurationId}",
-                        file: ms, 
-                        filename: "{filename}",
-                        fileContentType: "{fileContentType}"
+                        file: ms,
+                        filename: "{test_file}",
+                        fileContentType: "{document_content_type}"
                         );
 
                     Console.WriteLine(result.Response);
                 }
             }
-
         }
         #endregion
 
@@ -395,8 +392,9 @@ namespace IBM.Watson.Discovery.v1.Examples
 
             var result = service.CreateCollection(
                 environmentId: "{environmentId}",
+                configurationId: "{configurationId}",
                 name: "{collectionName}",
-                description: "{collectionDescription}"
+                language: "{language}"
                 );
 
             Console.WriteLine(result.Response);
@@ -433,8 +431,7 @@ namespace IBM.Watson.Discovery.v1.Examples
             var result = service.UpdateCollection(
                 environmentId: "{environmentId}",
                 collectionId: "{collectionId}",
-                name: "{updatedCollectionName}",
-                description: "{updatedCollectionDescription}"
+                name: "new_name"
                 );
 
             Console.WriteLine(result.Response);
@@ -639,16 +636,16 @@ namespace IBM.Watson.Discovery.v1.Examples
             service.SetEndpoint("{url}");
 
             DetailedResponse<TokenDictStatusResponse> result;
-            using (FileStream fs = File.OpenRead(stopwordFileToIngest))
+            using (FileStream fs = File.OpenRead("{filepath}"))
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
                     result = service.CreateStopwordList(
                         environmentId: "{environmentId}",
-                        collectionId: "{collectionId}" ,
+                        collectionId: "{collectionId}",
                         stopwordFile: ms,
-                        stopwordFilename: Path.GetFileName(stopwordFileToIngest)
+                        stopwordFilename: "{filepath}"
                         );
                 }
             }
@@ -685,7 +682,7 @@ namespace IBM.Watson.Discovery.v1.Examples
             service.SetEndpoint("{url}");
 
             DetailedResponse<DocumentAccepted> result;
-            using (FileStream fs = File.OpenRead(filepathToIngest))
+            using (FileStream fs = File.OpenRead("{filePath}"))
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
@@ -694,8 +691,8 @@ namespace IBM.Watson.Discovery.v1.Examples
                     environmentId: "{environmentId}",
                     collectionId: "{collectionId}",
                     file: ms,
-                    filename: "watson_beats_jeopardy.html",
-                    fileContentType: "text/html",
+                    filename: "{fileName}",
+                    fileContentType: "{fileContentType}",
                     metadata: metadata
                     );
 
@@ -718,7 +715,7 @@ namespace IBM.Watson.Discovery.v1.Examples
             var result = service.GetDocumentStatus(
                 environmentId: "{environmentId}",
                 collectionId: "{collectionId}",
-                documentId: documentId
+                documentId: "{documentId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -734,7 +731,7 @@ namespace IBM.Watson.Discovery.v1.Examples
             service.SetEndpoint("{url}");
 
             DetailedResponse<DocumentAccepted> result;
-            using (FileStream fs = File.OpenRead(filepathToIngest))
+            using (FileStream fs = File.OpenRead("{filePath}"))
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
@@ -742,10 +739,10 @@ namespace IBM.Watson.Discovery.v1.Examples
                     result = service.UpdateDocument(
                         environmentId: "{environmentId}",
                         collectionId: "{collectionId}",
-                        documentId: documentId,
+                        documentId: "{documentId}",
                         file: ms,
-                        filename: "watson_beats_jeopardy.html",
-                        fileContentType: "text/html",
+                        filename: "{fileName}",
+                        fileContentType: "{fileContentType}",
                         metadata: metadata
                         );
                 }
@@ -766,7 +763,7 @@ namespace IBM.Watson.Discovery.v1.Examples
             var result = service.DeleteDocument(
                 environmentId: "{environmentId}",
                 collectionId: "{collectionId}",
-                documentId: documentId
+                documentId: "{documentId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -786,8 +783,10 @@ namespace IBM.Watson.Discovery.v1.Examples
             var result = service.Query(
                 environmentId: "{environmentId}",
                 collectionId: "{collectionId}",
-                naturalLanguageQuery: naturalLanguageQuery,
-                returnFields: "extracted_metadata.sha1"
+                filter: "{filter}",
+                query: "{query}",
+                aggregation: "{aggregation}",
+                returnFields: "{return_fields}"
                 );
 
             Console.WriteLine(result.Response);
@@ -807,8 +806,7 @@ namespace IBM.Watson.Discovery.v1.Examples
             var result = service.QueryNotices(
                 environmentId: "{environmentId}",
                 collectionId: "{collectionId}",
-                naturalLanguageQuery: naturalLanguageQuery,
-                passages: true
+                query: "{query}"
                 );
 
             Console.WriteLine(result.Response);
@@ -825,8 +823,8 @@ namespace IBM.Watson.Discovery.v1.Examples
 
             var result = service.FederatedQuery(
                 environmentId: "{environmentId}",
-                naturalLanguageQuery: naturalLanguageQuery,
-                returnFields: "extracted_metadata.sha1"
+                naturalLanguageQuery: "{naturalLanguageQuery}",
+                returnFields: "{returnFields}"
                 );
 
             Console.WriteLine(result.Response);
@@ -843,8 +841,8 @@ namespace IBM.Watson.Discovery.v1.Examples
 
             var result = service.FederatedQueryNotices(
                 environmentId: "{environmentId}",
-                naturalLanguageQuery: naturalLanguageQuery,
-                collectionIds: new List<string> { collectionId }
+                naturalLanguageQuery: "{naturalLanguageQuery}",
+                collectionIds: new List<string> { "{collectionId}" }
                 );
 
             Console.WriteLine(result.Response);
@@ -916,17 +914,16 @@ namespace IBM.Watson.Discovery.v1.Examples
             {
                 new TrainingExample()
                 {
-                    DocumentId = "documentId",
-                    CrossReference = "crossReference",
-                    Relevance = 1
+                    DocumentId = "{documentId}",
+                    CrossReference = "{crossReference}"
                 }
             };
 
             var result = service.AddTrainingData(
                 environmentId: "{environmentId}",
                 collectionId: "{collectionId}",
-                naturalLanguageQuery: naturalLanguageQuery,
-                filter: "filter",
+                naturalLanguageQuery: "{naturalLanguageQuery}",
+                filter: "{filter}",
                 examples: examples
                 );
             queryId = result.Result.QueryId;
@@ -1018,8 +1015,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 environmentId: "{environmentId}",
                 collectionId: "{collectionId}",
                 queryId: "{queryId}",
-                documentId: documentId,
-                relevance: 1
+                documentId: "{documentId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -1060,7 +1056,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 collectionId: "{collectionId}",
                 queryId: "{queryId}",
                 exampleId: "{exampleId}",
-                crossReference: "crossReference",
+                crossReference: "{crossReference}",
                 relevance: 1
                 );
 
@@ -1098,7 +1094,7 @@ namespace IBM.Watson.Discovery.v1.Examples
             service.SetEndpoint("{url}");
 
             var result = service.DeleteUserData(
-                customerId: "customerId"
+                customerId: "{id}"
                 );
 
             Console.WriteLine(result.Response);
@@ -1117,10 +1113,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
             var data = new EventData()
             {
-                EnvironmentId = environmentId,
-                SessionToken = sessionToken,
-                CollectionId = collectionId,
-                DocumentId = documentId
+                EnvironmentId = "{environmentId}",
+                SessionToken = "{sessionToken}",
+                CollectionId = "{collectionId}",
+                DocumentId = "{documentId}"
             };
 
             var result = service.CreateEvent(
@@ -1244,18 +1240,18 @@ namespace IBM.Watson.Discovery.v1.Examples
 
             var credentialDetails = new CredentialDetails()
             {
-                CredentialType = CredentialDetails.CredentialTypeEnumValue.OAUTH2,
-                EnterpriseId = "myEnterpriseId",
-                ClientId = "myClientId",
-                ClientSecret = "myClientSecret",
-                PublicKeyId = "myPublicIdKey",
-                Passphrase = "myPassphrase",
-                PrivateKey = "myPrivateKey"
+                CredentialType = "{credentialType}",
+                EnterpriseId = "{EnterpriseId}",
+                ClientId = "{ClientId}",
+                ClientSecret = "{ClientSecret}",
+                PublicKeyId = "{PublicKeyId}",
+                Passphrase = "{Passphrase}",
+                PrivateKey = "{PrivateKey}"
             };
 
             var result = service.CreateCredentials(
                 environmentId: "{environmentId}",
-                sourceType: Credentials.SourceTypeEnumValue.BOX,
+                sourceType: "{sourceType}",
                 credentialDetails: credentialDetails
                 );
 
@@ -1275,7 +1271,7 @@ namespace IBM.Watson.Discovery.v1.Examples
 
             var result = service.GetCredentials(
                 environmentId: "{environmentId}",
-                credentialId: credentialId
+                credentialId: "{credentialId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -1290,25 +1286,25 @@ namespace IBM.Watson.Discovery.v1.Examples
             DiscoveryService service = new DiscoveryService("2019-04-30", config);
             service.SetEndpoint("{url}");
 
-            string privateKey = "privatekey";
+            string privateKey = "{privatekey}";
             var privateKeyBytes = System.Text.Encoding.UTF8.GetBytes(privateKey);
             var base64PrivateKey = Convert.ToBase64String(privateKeyBytes);
 
             var updatedCredentialDetails = new CredentialDetails()
             {
-                CredentialType = CredentialDetails.CredentialTypeEnumValue.OAUTH2,
-                EnterpriseId = "myEnterpriseIdUpdated",
-                ClientId = "myClientIdUpdated",
-                ClientSecret = "myClientSecretUpdated",
-                PublicKeyId = "myPublicIdKeyUpdated",
-                Passphrase = "myPassphraseUpdated",
-                PrivateKey = base64PrivateKey
+                CredentialType = "{credentialType}",
+                EnterpriseId = "{EnterpriseId}",
+                ClientId = "{ClientId}",
+                ClientSecret = "{ClientSecret}",
+                PublicKeyId = "{PublicKeyId}",
+                Passphrase = "{Passphrase}",
+                PrivateKey = "{PrivateKey}"
             };
 
             var result = service.UpdateCredentials(
                 environmentId: "{environmentId}",
-                credentialId: credentialId,
-                sourceType: Credentials.SourceTypeEnumValue.BOX,
+                credentialId: "{credentialId}",
+                sourceType: "{sourceType}",
                 credentialDetails: updatedCredentialDetails
                 );
 
@@ -1326,7 +1322,7 @@ namespace IBM.Watson.Discovery.v1.Examples
 
             var result = service.DeleteCredentials(
                 environmentId: "{environmentId}",
-                credentialId: credentialId
+                credentialId: "{credentialId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -1361,7 +1357,7 @@ namespace IBM.Watson.Discovery.v1.Examples
 
             var result = service.CreateGateway(
                 environmentId: "{environmentId}",
-                name: "dotnet-sdk-example-gateway"
+                name: "gateway"
                 );
 
             Console.WriteLine(result.Response);
@@ -1380,7 +1376,7 @@ namespace IBM.Watson.Discovery.v1.Examples
 
             var result = service.GetGateway(
                 environmentId: "{environmentId}",
-                gatewayId: gatewayId
+                gatewayId: "{gatewayId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -1397,7 +1393,7 @@ namespace IBM.Watson.Discovery.v1.Examples
 
             var result = service.DeleteGateway(
                 environmentId: "{environmentId}",
-                gatewayId: gatewayId
+                gatewayId: "{gatewayId}"
                 );
 
             Console.WriteLine(result.Response);

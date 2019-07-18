@@ -59,15 +59,15 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
         public void Translate()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            LanguageTranslatorService service = new LanguageTranslatorService(versionDate, config);
+            LanguageTranslatorService service = new LanguageTranslatorService("2018-05-01", config);
             service.SetEndpoint(url);
 
             var result = service.Translate(
-                text: new List<string>() { "I'm sorry, Dave. I'm afraid I can't do that." },
-                modelId: "en-fr"
+                text: new List<string>() { "Hello" },
+                modelId: "en-es"
                 );
 
             Console.WriteLine(result.Response);
@@ -78,10 +78,10 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
         public void ListIdentifiableLanguages()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            LanguageTranslatorService service = new LanguageTranslatorService(versionDate, config);
+            LanguageTranslatorService service = new LanguageTranslatorService("2018-05-01", config);
 
             var result = service.ListIdentifiableLanguages();
 
@@ -91,13 +91,13 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
         public void IdentifyLanguage()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            LanguageTranslatorService service = new LanguageTranslatorService(versionDate, config);
+            LanguageTranslatorService service = new LanguageTranslatorService("2018-05-01", config);
 
             var result = service.Identify(
-                text: "I'm sorry, Dave. I'm afraid I can't do that."
+                text: "Language translator translates text from one language to another"
                 );
 
             Console.WriteLine(result.Response);
@@ -108,10 +108,10 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
         public void ListModels()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            LanguageTranslatorService service = new LanguageTranslatorService(versionDate, config);
+            LanguageTranslatorService service = new LanguageTranslatorService("2018-05-01", config);
 
             var result = service.ListModels();
 
@@ -121,22 +121,22 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
         public void CreateModel()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            LanguageTranslatorService service = new LanguageTranslatorService(versionDate, config);
+            LanguageTranslatorService service = new LanguageTranslatorService("2018-05-01", config);
 
             DetailedResponse<TranslationModel> result;
 
-            using (FileStream fs = File.OpenRead(glossaryPath))
+            using (FileStream fs = File.OpenRead("glossary.tmx"))
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
                     result = service.CreateModel(
-                        baseModelId: "en-fr",
+                        baseModelId: "en-es",
                         forcedGlossary: ms,
-                        name: "dotnetExampleModel"
+                        name: "custom-en-es"
                         );
                 }
             }
@@ -148,13 +148,13 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
         public void GetModel()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            LanguageTranslatorService service = new LanguageTranslatorService(versionDate, config);
+            LanguageTranslatorService service = new LanguageTranslatorService("2018-05-01", config);
 
             var result = service.GetModel(
-                modelId: modelId
+                modelId: "9f8d9c6f-2123-462f-9793-f17fdcb77cd6"
                 );
 
             Console.WriteLine(result.Response);
@@ -163,13 +163,13 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
         public void DeleteModel()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            LanguageTranslatorService service = new LanguageTranslatorService(versionDate, config);
+            LanguageTranslatorService service = new LanguageTranslatorService("2018-05-01", config);
 
             var result = service.DeleteModel(
-                modelId: modelId
+                modelId: "9f8d9c6f-2123-462f-9793-f17fdcb77cd6"
                 );
 
             Console.WriteLine(result.Response);
@@ -180,10 +180,10 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
         public void ListDocuments()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            LanguageTranslatorService service = new LanguageTranslatorService(versionDate, config);
+            LanguageTranslatorService service = new LanguageTranslatorService("2018-05-01", config);
 
             var result = service.ListDocuments();
 
@@ -193,23 +193,23 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
         public void TranslateDocument()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            LanguageTranslatorService service = new LanguageTranslatorService(versionDate, config);
+            LanguageTranslatorService service = new LanguageTranslatorService("2018-05-01", config);
 
             DetailedResponse<DocumentStatus> result;
 
-            using (FileStream fs = File.OpenRead(documentToTranslatePath))
+            using (FileStream fs = File.OpenRead("{filepath}"))
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
                     result = service.TranslateDocument(
                         file: ms,
-                        filename: Path.GetFileName(documentToTranslatePath),
-                        fileContentType: "text/plain",
-                        modelId: "en-es"
+                        filename: "{filename}",
+                        fileContentType: "{fileContentType}",
+                        modelId: "en-fr"
                         );
                 }
             }
@@ -221,13 +221,13 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
         public void GetDocumentStatus()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            LanguageTranslatorService service = new LanguageTranslatorService(versionDate, config);
+            LanguageTranslatorService service = new LanguageTranslatorService("2018-05-01", config);
 
             var result = service.GetDocumentStatus(
-                documentId: documentId
+                documentId: "{documentId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -236,13 +236,13 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
         public void DeleteDocument()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            LanguageTranslatorService service = new LanguageTranslatorService(versionDate, config);
+            LanguageTranslatorService service = new LanguageTranslatorService("2018-05-01", config);
 
             var result = service.DeleteDocument(
-                documentId: documentId
+                documentId: "{documentId}"
                 );
 
             Console.WriteLine(result.StatusCode);
@@ -251,13 +251,13 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
         public void GetTranslatedDocument()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            LanguageTranslatorService service = new LanguageTranslatorService(versionDate, config);
+            LanguageTranslatorService service = new LanguageTranslatorService("2018-05-01", config);
 
             var result = service.GetTranslatedDocument(
-                documentId: documentId
+                documentId: "{documentId}"
                 );
 
             Console.WriteLine(result.Response);

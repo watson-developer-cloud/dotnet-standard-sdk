@@ -27,7 +27,7 @@ namespace IBM.Watson.SpeechToText.v1.Model
         /// <summary>
         /// An identifier for the type of invalid resources listed in the `description` field.
         /// </summary>
-        public class WarningIdEnumValue
+        public class CodeEnumValue
         {
             /// <summary>
             /// Constant INVALID_AUDIO_FILES for invalid_audio_files
@@ -50,17 +50,17 @@ namespace IBM.Watson.SpeechToText.v1.Model
 
         /// <summary>
         /// An identifier for the type of invalid resources listed in the `description` field.
-        /// Constants for possible values can be found using TrainingWarning.WarningIdEnumValue
+        /// Constants for possible values can be found using TrainingWarning.CodeEnumValue
         /// </summary>
-        [JsonProperty("warning_id", NullValueHandling = NullValueHandling.Ignore)]
-        public string WarningId { get; set; }
+        [JsonProperty("code", NullValueHandling = NullValueHandling.Ignore)]
+        public string Code { get; set; }
         /// <summary>
         /// A warning message that lists the invalid resources that are excluded from the custom model's training. The
         /// message has the following format: `Analysis of the following {resource_type} has not completed successfully:
         /// [{resource_names}]. They will be excluded from custom {model_type} model training.`.
         /// </summary>
-        [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
-        public string Description { get; set; }
+        [JsonProperty("message", NullValueHandling = NullValueHandling.Ignore)]
+        public string Message { get; set; }
     }
 
 }

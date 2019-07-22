@@ -245,6 +245,10 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `GetEnvironment`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
             {
@@ -295,6 +299,10 @@ namespace IBM.Watson.Discovery.v1
             if (string.IsNullOrEmpty(environmentId))
             {
                 throw new ArgumentNullException("`environmentId` is required for `UpdateEnvironment`");
+            }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -360,6 +368,10 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `DeleteEnvironment`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
             {
@@ -409,6 +421,10 @@ namespace IBM.Watson.Discovery.v1
             if (string.IsNullOrEmpty(environmentId))
             {
                 throw new ArgumentNullException("`environmentId` is required for `ListFields`");
+            }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
             }
             if (collectionIds == null)
             {
@@ -487,6 +503,10 @@ namespace IBM.Watson.Discovery.v1
             if (string.IsNullOrEmpty(environmentId))
             {
                 throw new ArgumentNullException("`environmentId` is required for `CreateConfiguration`");
+            }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
             }
             if (string.IsNullOrEmpty(name))
             {
@@ -571,6 +591,10 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `ListConfigurations`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
             {
@@ -623,9 +647,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `GetConfiguration`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(configurationId))
             {
                 throw new ArgumentNullException("`configurationId` is required for `GetConfiguration`");
+            }
+            else
+            {
+                configurationId = Uri.EscapeDataString(configurationId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -698,9 +730,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `UpdateConfiguration`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(configurationId))
             {
                 throw new ArgumentNullException("`configurationId` is required for `UpdateConfiguration`");
+            }
+            else
+            {
+                configurationId = Uri.EscapeDataString(configurationId);
             }
             if (string.IsNullOrEmpty(name))
             {
@@ -788,9 +828,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `DeleteConfiguration`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(configurationId))
             {
                 throw new ArgumentNullException("`configurationId` is required for `DeleteConfiguration`");
+            }
+            else
+            {
+                configurationId = Uri.EscapeDataString(configurationId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -865,6 +913,10 @@ namespace IBM.Watson.Discovery.v1
             if (string.IsNullOrEmpty(environmentId))
             {
                 throw new ArgumentNullException("`environmentId` is required for `TestConfigurationInEnvironment`");
+            }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -947,6 +999,10 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `CreateCollection`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(name))
             {
                 throw new ArgumentNullException("`name` is required for `CreateCollection`");
@@ -1022,6 +1078,10 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `ListCollections`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
             {
@@ -1074,9 +1134,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `GetCollection`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `GetCollection`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -1127,9 +1195,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `UpdateCollection`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `UpdateCollection`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -1196,9 +1272,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `DeleteCollection`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `DeleteCollection`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -1250,9 +1334,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `ListCollectionFields`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `ListCollectionFields`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -1304,9 +1396,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `ListExpansions`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `ListExpansions`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -1361,9 +1461,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `CreateExpansions`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `CreateExpansions`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
             }
             if (expansions == null)
             {
@@ -1429,9 +1537,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `DeleteExpansions`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `DeleteExpansions`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -1482,9 +1598,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `GetTokenizationDictionaryStatus`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `GetTokenizationDictionaryStatus`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -1538,9 +1662,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `CreateTokenizationDictionary`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `CreateTokenizationDictionary`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -1601,9 +1733,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `DeleteTokenizationDictionary`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `DeleteTokenizationDictionary`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -1654,9 +1794,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `GetStopwordListStatus`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `GetStopwordListStatus`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -1710,9 +1858,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `CreateStopwordList`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `CreateStopwordList`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
             }
             if (stopwordFile == null)
             {
@@ -1785,9 +1941,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `DeleteStopwordList`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `DeleteStopwordList`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -1870,9 +2034,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `AddDocument`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `AddDocument`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -1946,13 +2118,25 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `GetDocumentStatus`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `GetDocumentStatus`");
             }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
+            }
             if (string.IsNullOrEmpty(documentId))
             {
                 throw new ArgumentNullException("`documentId` is required for `GetDocumentStatus`");
+            }
+            else
+            {
+                documentId = Uri.EscapeDataString(documentId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -2020,13 +2204,25 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `UpdateDocument`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `UpdateDocument`");
             }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
+            }
             if (string.IsNullOrEmpty(documentId))
             {
                 throw new ArgumentNullException("`documentId` is required for `UpdateDocument`");
+            }
+            else
+            {
+                documentId = Uri.EscapeDataString(documentId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -2099,13 +2295,25 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `DeleteDocument`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `DeleteDocument`");
             }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
+            }
             if (string.IsNullOrEmpty(documentId))
             {
                 throw new ArgumentNullException("`documentId` is required for `DeleteDocument`");
+            }
+            else
+            {
+                documentId = Uri.EscapeDataString(documentId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -2160,9 +2368,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `Query`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `Query`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -2350,9 +2566,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `QueryNotices`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `QueryNotices`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -2475,6 +2699,10 @@ namespace IBM.Watson.Discovery.v1
             if (string.IsNullOrEmpty(environmentId))
             {
                 throw new ArgumentNullException("`environmentId` is required for `FederatedQuery`");
+            }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -2654,6 +2882,10 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `FederatedQueryNotices`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (collectionIds == null)
             {
                 throw new ArgumentNullException("`collectionIds` is required for `FederatedQueryNotices`");
@@ -2767,9 +2999,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `QueryEntities`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `QueryEntities`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -2849,9 +3089,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `QueryRelations`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `QueryRelations`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -2931,9 +3179,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `ListTrainingData`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `ListTrainingData`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -2988,9 +3244,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `AddTrainingData`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `AddTrainingData`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -3059,9 +3323,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `DeleteAllTrainingData`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `DeleteAllTrainingData`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -3113,13 +3385,25 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `GetTrainingData`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `GetTrainingData`");
             }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
+            }
             if (string.IsNullOrEmpty(queryId))
             {
                 throw new ArgumentNullException("`queryId` is required for `GetTrainingData`");
+            }
+            else
+            {
+                queryId = Uri.EscapeDataString(queryId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -3172,13 +3456,25 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `DeleteTrainingData`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `DeleteTrainingData`");
             }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
+            }
             if (string.IsNullOrEmpty(queryId))
             {
                 throw new ArgumentNullException("`queryId` is required for `DeleteTrainingData`");
+            }
+            else
+            {
+                queryId = Uri.EscapeDataString(queryId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -3230,13 +3526,25 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `ListTrainingExamples`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `ListTrainingExamples`");
             }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
+            }
             if (string.IsNullOrEmpty(queryId))
             {
                 throw new ArgumentNullException("`queryId` is required for `ListTrainingExamples`");
+            }
+            else
+            {
+                queryId = Uri.EscapeDataString(queryId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -3290,13 +3598,25 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `CreateTrainingExample`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `CreateTrainingExample`");
             }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
+            }
             if (string.IsNullOrEmpty(queryId))
             {
                 throw new ArgumentNullException("`queryId` is required for `CreateTrainingExample`");
+            }
+            else
+            {
+                queryId = Uri.EscapeDataString(queryId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -3367,17 +3687,33 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `DeleteTrainingExample`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `DeleteTrainingExample`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
             }
             if (string.IsNullOrEmpty(queryId))
             {
                 throw new ArgumentNullException("`queryId` is required for `DeleteTrainingExample`");
             }
+            else
+            {
+                queryId = Uri.EscapeDataString(queryId);
+            }
             if (string.IsNullOrEmpty(exampleId))
             {
                 throw new ArgumentNullException("`exampleId` is required for `DeleteTrainingExample`");
+            }
+            else
+            {
+                exampleId = Uri.EscapeDataString(exampleId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -3431,17 +3767,33 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `UpdateTrainingExample`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `UpdateTrainingExample`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
             }
             if (string.IsNullOrEmpty(queryId))
             {
                 throw new ArgumentNullException("`queryId` is required for `UpdateTrainingExample`");
             }
+            else
+            {
+                queryId = Uri.EscapeDataString(queryId);
+            }
             if (string.IsNullOrEmpty(exampleId))
             {
                 throw new ArgumentNullException("`exampleId` is required for `UpdateTrainingExample`");
+            }
+            else
+            {
+                exampleId = Uri.EscapeDataString(exampleId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -3508,17 +3860,33 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `GetTrainingExample`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `GetTrainingExample`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
             }
             if (string.IsNullOrEmpty(queryId))
             {
                 throw new ArgumentNullException("`queryId` is required for `GetTrainingExample`");
             }
+            else
+            {
+                queryId = Uri.EscapeDataString(queryId);
+            }
             if (string.IsNullOrEmpty(exampleId))
             {
                 throw new ArgumentNullException("`exampleId` is required for `GetTrainingExample`");
+            }
+            else
+            {
+                exampleId = Uri.EscapeDataString(exampleId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -4071,6 +4439,10 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `ListCredentials`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
             {
@@ -4123,6 +4495,10 @@ namespace IBM.Watson.Discovery.v1
             if (string.IsNullOrEmpty(environmentId))
             {
                 throw new ArgumentNullException("`environmentId` is required for `CreateCredentials`");
+            }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -4194,9 +4570,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `GetCredentials`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(credentialId))
             {
                 throw new ArgumentNullException("`credentialId` is required for `GetCredentials`");
+            }
+            else
+            {
+                credentialId = Uri.EscapeDataString(credentialId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -4251,9 +4635,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `UpdateCredentials`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(credentialId))
             {
                 throw new ArgumentNullException("`credentialId` is required for `UpdateCredentials`");
+            }
+            else
+            {
+                credentialId = Uri.EscapeDataString(credentialId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -4322,9 +4714,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `DeleteCredentials`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(credentialId))
             {
                 throw new ArgumentNullException("`credentialId` is required for `DeleteCredentials`");
+            }
+            else
+            {
+                credentialId = Uri.EscapeDataString(credentialId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -4373,6 +4773,10 @@ namespace IBM.Watson.Discovery.v1
             if (string.IsNullOrEmpty(environmentId))
             {
                 throw new ArgumentNullException("`environmentId` is required for `ListGateways`");
+            }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -4423,6 +4827,10 @@ namespace IBM.Watson.Discovery.v1
             if (string.IsNullOrEmpty(environmentId))
             {
                 throw new ArgumentNullException("`environmentId` is required for `CreateGateway`");
+            }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -4483,9 +4891,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `GetGateway`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(gatewayId))
             {
                 throw new ArgumentNullException("`gatewayId` is required for `GetGateway`");
+            }
+            else
+            {
+                gatewayId = Uri.EscapeDataString(gatewayId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -4537,9 +4953,17 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("`environmentId` is required for `DeleteGateway`");
             }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
             if (string.IsNullOrEmpty(gatewayId))
             {
                 throw new ArgumentNullException("`gatewayId` is required for `DeleteGateway`");
+            }
+            else
+            {
+                gatewayId = Uri.EscapeDataString(gatewayId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))

@@ -36,6 +36,12 @@ namespace IBM.Watson.CompareComply.v1.Model
         /// </summary>
         [JsonProperty("leading_sentences", NullValueHandling = NullValueHandling.Ignore)]
         public List<LeadingSentence> LeadingSentences { get; set; }
+        /// <summary>
+        /// An array containing one object per paragraph, in parallel with the `section_titles` and `leading_sentences`
+        /// arrays.
+        /// </summary>
+        [JsonProperty("paragraphs", NullValueHandling = NullValueHandling.Ignore)]
+        public List<Paragraphs> Paragraphs { get; set; }
     }
 
 }

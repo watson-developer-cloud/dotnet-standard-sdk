@@ -3,6 +3,7 @@ var searchData=
   ['tableheaders_2ecs',['TableHeaders.cs',['../d5/dc4/_table_headers_8cs.html',1,'']]],
   ['tablereturn_2ecs',['TableReturn.cs',['../d8/daa/_table_return_8cs.html',1,'']]],
   ['tables_2ecs',['Tables.cs',['../d7/dba/_tables_8cs.html',1,'']]],
+  ['tabletitle_2ecs',['TableTitle.cs',['../d1/d43/_table_title_8cs.html',1,'']]],
   ['targetedemotionresults_2ecs',['TargetedEmotionResults.cs',['../de/d43/_targeted_emotion_results_8cs.html',1,'']]],
   ['targetedsentimentresults_2ecs',['TargetedSentimentResults.cs',['../d7/d2f/_targeted_sentiment_results_8cs.html',1,'']]],
   ['term_2ecs',['Term.cs',['../db/df3/_term_8cs.html',1,'']]],

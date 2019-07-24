@@ -146,6 +146,12 @@ Properties</h2></td></tr>
 <tr class="memitem:a643715040cf49894a5e2ad26188943e1"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="../../d5/d52/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_suggestion.html">DialogSuggestion</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dab/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_runtime_response_generic.html#a643715040cf49894a5e2ad26188943e1">Suggestions</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a643715040cf49894a5e2ad26188943e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">An array of objects describing the possible matching dialog nodes from which the user can choose.  <a href="#a643715040cf49894a5e2ad26188943e1">More...</a><br /></td></tr>
 <tr class="separator:a643715040cf49894a5e2ad26188943e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68775492ed44bf0d760abb85e1531649"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dab/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_runtime_response_generic.html#a68775492ed44bf0d760abb85e1531649">Header</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a68775492ed44bf0d760abb85e1531649"><td class="mdescLeft">&#160;</td><td class="mdescRight">The title or introductory text to show before the response. This text is defined in the search skill configuration.  <a href="#a68775492ed44bf0d760abb85e1531649">More...</a><br /></td></tr>
+<tr class="separator:a68775492ed44bf0d760abb85e1531649"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa47123e56d8d6e41436235e2962758f7"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="../../d1/dac/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result.html">SearchResult</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dab/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_runtime_response_generic.html#aa47123e56d8d6e41436235e2962758f7">Results</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:aa47123e56d8d6e41436235e2962758f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">An array of objects containing search results.  <a href="#aa47123e56d8d6e41436235e2962758f7">More...</a><br /></td></tr>
+<tr class="separator:aa47123e56d8d6e41436235e2962758f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="../../d7/dab/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_runtime_response_generic.html" title="DialogRuntimeResponseGeneric. ">DialogRuntimeResponseGeneric</a>. </p>
@@ -171,6 +177,30 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The description to show with the the response. </p>
+
+</div>
+</div>
+<a id="a68775492ed44bf0d760abb85e1531649"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68775492ed44bf0d760abb85e1531649">&#9670;&nbsp;</a></span>Header</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string IBM.Watson.Assistant.v2.Model.DialogRuntimeResponseGeneric.Header</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The title or introductory text to show before the response. This text is defined in the search skill configuration. </p>
 
 </div>
 </div>
@@ -268,6 +298,30 @@ Properties</h2></td></tr>
 
 <p>The type of response returned by the dialog node. The specified response type must be supported by the client application or channel. </p>
 <p><b>Note:</b> The <b>suggestion</b> response type is part of the disambiguation feature, which is only available for Premium users. Constants for possible values can be found using <a class="el" href="../../da/d8e/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_runtime_response_generic_1_1_response_type_enum_value.html" title="The type of response returned by the dialog node. The specified response type must be supported by th...">DialogRuntimeResponseGeneric.ResponseTypeEnumValue</a> </p>
+
+</div>
+</div>
+<a id="aa47123e56d8d6e41436235e2962758f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa47123e56d8d6e41436235e2962758f7">&#9670;&nbsp;</a></span>Results</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="../../d1/dac/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result.html">SearchResult</a>&gt; IBM.Watson.Assistant.v2.Model.DialogRuntimeResponseGeneric.Results</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>An array of objects containing search results. </p>
 
 </div>
 </div>

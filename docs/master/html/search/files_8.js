@@ -27,6 +27,7 @@ var searchData=
   ['indexcapacity_2ecs',['IndexCapacity.cs',['../d7/d9c/_index_capacity_8cs.html',1,'']]],
   ['intent_2ecs',['Intent.cs',['../dd/deb/_intent_8cs.html',1,'']]],
   ['intentcollection_2ecs',['IntentCollection.cs',['../d6/daf/_intent_collection_8cs.html',1,'']]],
+  ['interpretation_2ecs',['Interpretation.cs',['../d4/d5e/_interpretation_8cs.html',1,'']]],
   ['ipersonalityinsightsservice_2ecs',['IPersonalityInsightsService.cs',['../dc/d56/_i_personality_insights_service_8cs.html',1,'']]],
   ['ispeechtotextservice_2ecs',['ISpeechToTextService.cs',['../d5/d2a/_i_speech_to_text_service_8cs.html',1,'']]],
   ['itexttospeechservice_2ecs',['ITextToSpeechService.cs',['../d3/d91/_i_text_to_speech_service_8cs.html',1,'']]],

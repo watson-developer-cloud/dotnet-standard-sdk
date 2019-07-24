@@ -448,8 +448,8 @@ Public Attributes</h2></td></tr>
 <p>Add an audio resource. </p>
 <p>Adds an audio resource to a custom acoustic model. Add audio content that reflects the acoustic characteristics of the audio that you plan to transcribe. You must use credentials for the instance of the service that owns a model to add an audio resource to it. Adding audio data does not affect the custom acoustic model until you train the model for the new data by using the <b>Train a custom acoustic model</b> method.</p>
 <p>You can add individual audio files or an archive file that contains multiple audio files. Adding multiple audio files via a single archive file is significantly more efficient than adding each file individually. You can add audio resources in any format that the service supports for speech recognition.</p>
-<p>You can use this method to add any number of audio resources to a custom model by calling the method once for each audio or archive file. But the addition of one audio resource must be fully complete before you can add another. You must add a minimum of 10 minutes and a maximum of 200 hours of audio that includes speech, not just silence, to a custom acoustic model before you can train it. No audio resource, audio- or archive-type, can be larger than 100 MB. To add an audio resource that has the same name as an existing audio resource, set the <code>allow_overwrite</code> parameter to <code>true</code>; otherwise, the request fails.</p>
-<p>The method is asynchronous. It can take several seconds to complete depending on the duration of the audio and, in the case of an archive file, the total number of audio files being processed. The service returns a 201 response code if the audio is valid. It then asynchronously analyzes the contents of the audio file or files and automatically extracts information about the audio such as its length, sampling rate, and encoding. You cannot submit requests to add additional audio resources to a custom acoustic model, or to train the model, until the service's analysis of all audio files for the current request completes.</p>
+<p>You can use this method to add any number of audio resources to a custom model by calling the method once for each audio or archive file. You can add multiple different audio resources at the same time. You must add a minimum of 10 minutes and a maximum of 200 hours of audio that includes speech, not just silence, to a custom acoustic model before you can train it. No audio resource, audio- or archive-type, can be larger than 100 MB. To add an audio resource that has the same name as an existing audio resource, set the <code>allow_overwrite</code> parameter to <code>true</code>; otherwise, the request fails.</p>
+<p>The method is asynchronous. It can take several seconds to complete depending on the duration of the audio and, in the case of an archive file, the total number of audio files being processed. The service returns a 201 response code if the audio is valid. It then asynchronously analyzes the contents of the audio file or files and automatically extracts information about the audio such as its length, sampling rate, and encoding. You cannot submit requests to train or upgrade the model until the service's analysis of all audio resources for current requests completes.</p>
 <p>To determine the status of the service's analysis of the audio, use the <b>Get an audio resource</b> method to poll the status of the audio. The method accepts the customization ID of the custom model and the name of the audio resource, and it returns the status of the resource. Use a loop to check the status of the audio every few seconds until it becomes <code>ok</code>.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/services/speech-to-text?topic=speech-to-text-acoustic#addAudio">Add audio to the custom acoustic model</a>.</p>
 <h3>Content types for audio-type resources</h3>
@@ -483,17 +483,13 @@ Public Attributes</h2></td></tr>
 </ul>
 <p>Do not use the <code>Contained-Content-Type</code> header when adding an audio-type resource.</p>
 <h3>Naming restrictions for embedded audio files</h3>
-<p>The name of an audio file that is embedded within an archive-type resource must meet the following restrictions:</p><ul>
-<li>Include a maximum of 128 characters in the file name; this includes the file extension.</li>
-<li>Do not include spaces, slashes, or backslashes in the file name.</li>
-<li>Do not use the name of an audio file that has already been added to the custom model as part of an archive-type resource. </li>
-</ul>
+<p>The name of an audio file that is contained in an archive-type resource can include a maximum of 128 characters. This includes the file extension and all elements of the name (for example, slashes). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom acoustic model that is to be used for the request. You must make the request with credentials for the instance of the service that owns the custom model.</td></tr>
     <tr><td class="paramname">audioName</td><td>The name of the new audio resource for the custom acoustic model. Use a localized name that matches the language of the custom model and reflects the contents of the resource.<ul>
 <li>Include a maximum of 128 characters in the name.</li>
-<li>Do not include spaces, slashes, or backslashes in the name.</li>
+<li>Do not use characters that need to be URL-encoded. For example, do not use spaces, slashes, backslashes, colons, ampersands, double quotes, plus signs, equals signs, questions marks, and so on in the name. (The service does not prevent the use of these characters. But because they must be URL-encoded wherever used, their use is strongly discouraged.)</li>
 <li>Do not use the name of an audio resource that has already been added to the custom model.</li>
 </ul>
 </td></tr>
@@ -592,9 +588,10 @@ Public Attributes</h2></td></tr>
     <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom language model that is to be used for the request. You must make the request with credentials for the instance of the service that owns the custom model.</td></tr>
     <tr><td class="paramname">corpusName</td><td>The name of the new corpus for the custom language model. Use a localized name that matches the language of the custom model and reflects the contents of the corpus.<ul>
 <li>Include a maximum of 128 characters in the name.</li>
-<li>Do not include spaces, slashes, or backslashes in the name.</li>
+<li>Do not use characters that need to be URL-encoded. For example, do not use spaces, slashes, backslashes, colons, ampersands, double quotes, plus signs, equals signs, questions marks, and so on in the name. (The service does not prevent the use of these characters. But because they must be URL-encoded wherever used, their use is strongly discouraged.)</li>
 <li>Do not use the name of an existing corpus or grammar that is already defined for the custom model.</li>
 <li>Do not use the name <code>user</code>, which is reserved by the service to denote custom words that are added or modified by the user.</li>
+<li>Do not use the name <code>base_lm</code> or <code>default_lm</code>. Both names are reserved for future use by the service.</li>
 </ul>
 </td></tr>
     <tr><td class="paramname">corpusFile</td><td>A plain text file that contains the training data for the corpus. Encode the file in UTF-8 if it contains non-ASCII characters; the service assumes UTF-8 encoding if it encounters non-ASCII characters.</td></tr>
@@ -682,9 +679,10 @@ Public Attributes</h2></td></tr>
     <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom language model that is to be used for the request. You must make the request with credentials for the instance of the service that owns the custom model.</td></tr>
     <tr><td class="paramname">grammarName</td><td>The name of the new grammar for the custom language model. Use a localized name that matches the language of the custom model and reflects the contents of the grammar.<ul>
 <li>Include a maximum of 128 characters in the name.</li>
-<li>Do not include spaces, slashes, or backslashes in the name.</li>
+<li>Do not use characters that need to be URL-encoded. For example, do not use spaces, slashes, backslashes, colons, ampersands, double quotes, plus signs, equals signs, questions marks, and so on in the name. (The service does not prevent the use of these characters. But because they must be URL-encoded wherever used, their use is strongly discouraged.)</li>
 <li>Do not use the name of an existing grammar or corpus that is already defined for the custom model.</li>
 <li>Do not use the name <code>user</code>, which is reserved by the service to denote custom words that are added or modified by the user.</li>
+<li>Do not use the name <code>base_lm</code> or <code>default_lm</code>. Both names are reserved for future use by the service.</li>
 </ul>
 </td></tr>
     <tr><td class="paramname">grammarFile</td><td>A plain text file that contains the grammar in the format specified by the <code>Content-Type</code> header. Encode the file in UTF-8 (ASCII is a subset of UTF-8). Using any other encoding can lead to issues when compiling the grammar or to unexpected results in decoding. The service ignores an encoding that is specified in the header of the grammar.</td></tr>
@@ -1439,7 +1437,8 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Delete an audio resource. </p>
-<p>Deletes an existing audio resource from a custom acoustic model. Deleting an archive-type audio resource removes the entire archive of files; the current interface does not allow deletion of individual files from an archive resource. Removing an audio resource does not affect the custom model until you train the model on its updated data by using the <b>Train a custom acoustic model</b> method. You must use credentials for the instance of the service that owns a model to delete its audio resources.</p>
+<p>Deletes an existing audio resource from a custom acoustic model. Deleting an archive-type audio resource removes the entire archive of files. The service does not allow deletion of individual files from an archive resource.</p>
+<p>Removing an audio resource does not affect the custom model until you train the model on its updated data by using the <b>Train a custom acoustic model</b> method. You can delete an existing audio resource from a model while a different resource is being added to the model. You must use credentials for the instance of the service that owns a model to delete its audio resources.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/services/speech-to-text?topic=speech-to-text-manageAudio#deleteAudio">Deleting an audio resource from a custom acoustic model</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2327,7 +2326,7 @@ Public Attributes</h2></td></tr>
 <li><code>grammars</code> shows only OOV words that are recognized by grammars. (optional, default to all)</li>
 </ul>
 </td></tr>
-    <tr><td class="paramname">sort</td><td>Indicates the order in which the words are to be listed, <code>alphabetical</code> or by <code>count</code>. You can prepend an optional <code>+</code> or <code>-</code> to an argument to indicate whether the results are to be sorted in ascending or descending order. By default, words are sorted in ascending alphabetical order. For alphabetical ordering, the lexicographical precedence is numeric values, uppercase letters, and lowercase letters. For count ordering, values with the same count are ordered alphabetically. With the <code>curl</code> command, URL encode the <code>+</code> symbol as <code>%2B</code>. (optional, default to alphabetical)</td></tr>
+    <tr><td class="paramname">sort</td><td>Indicates the order in which the words are to be listed, <code>alphabetical</code> or by <code>count</code>. You can prepend an optional <code>+</code> or <code>-</code> to an argument to indicate whether the results are to be sorted in ascending or descending order. By default, words are sorted in ascending alphabetical order. For alphabetical ordering, the lexicographical precedence is numeric values, uppercase letters, and lowercase letters. For count ordering, values with the same count are ordered alphabetically. With the <code>curl</code> command, URL-encode the <code>+</code> symbol as <code>%2B</code>. (optional, default to alphabetical)</td></tr>
   </table>
   </dd>
 </dl>
@@ -2691,7 +2690,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Reset a custom acoustic model. </p>
-<p>Resets a custom acoustic model by removing all audio resources from the model. Resetting a custom acoustic model initializes the model to its state when it was first created. Metadata such as the name and language of the model are preserved, but the model's audio resources are removed and must be re-created. You must use credentials for the instance of the service that owns a model to reset it.</p>
+<p>Resets a custom acoustic model by removing all audio resources from the model. Resetting a custom acoustic model initializes the model to its state when it was first created. Metadata such as the name and language of the model are preserved, but the model's audio resources are removed and must be re-created. The service cannot reset a model while it is handling another request for the model. The service cannot accept subsequent requests for the model until the existing reset request completes. You must use credentials for the instance of the service that owns a model to reset it.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/services/speech-to-text?topic=speech-to-text-manageAcousticModels#resetModel-acoustic">Resetting a custom acoustic model</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2787,7 +2786,7 @@ Public Attributes</h2></td></tr>
 <p>Train a custom acoustic model. </p>
 <p>Initiates the training of a custom acoustic model with new or changed audio resources. After adding or deleting audio resources for a custom acoustic model, use this method to begin the actual training of the model on the latest audio data. The custom acoustic model does not reflect its changed data until you train it. You must use credentials for the instance of the service that owns a model to train it.</p>
 <p>The training method is asynchronous. It can take on the order of minutes or hours to complete depending on the total amount of audio data on which the custom acoustic model is being trained and the current load on the service. Typically, training a custom acoustic model takes approximately two to four times the length of its audio data. The range of time depends on the model being trained and the nature of the audio, such as whether the audio is clean or noisy. The method returns an HTTP 200 response code to indicate that the training process has begun.</p>
-<p>You can monitor the status of the training by using the <b>Get a custom acoustic model</b> method to poll the model's status. Use a loop to check the status once a minute. The method returns an <code>AcousticModel</code> object that includes <code>status</code> and <code>progress</code> fields. A status of <code>available</code> indicates that the custom model is trained and ready to use. The service cannot accept subsequent training requests, or requests to add new audio resources, until the existing request completes.</p>
+<p>You can monitor the status of the training by using the <b>Get a custom acoustic model</b> method to poll the model's status. Use a loop to check the status once a minute. The method returns an <code>AcousticModel</code> object that includes <code>status</code> and <code>progress</code> fields. A status of <code>available</code> indicates that the custom model is trained and ready to use. The service cannot train a model while it is handling another request for the model. The service cannot accept subsequent training requests, or requests to add new audio resources, until the existing training request completes.</p>
 <p>You can use the optional <code>custom_language_model_id</code> parameter to specify the GUID of a separately created custom language model that is to be used during training. Train with a custom language model if you have verbatim transcriptions of the audio files that you have added to the custom model or you have either corpora (text files) or a list of words that are relevant to the contents of the audio files. Both of the custom models must be based on the same version of the same base model for training to succeed.</p>
 <p><b>See also:</b></p><ul>
 <li><a href="https://cloud.ibm.com/docs/services/speech-to-text?topic=speech-to-text-acoustic#trainModel-acoustic">Train the custom acoustic model</a></li>
@@ -2978,7 +2977,7 @@ Public Attributes</h2></td></tr>
 
 <p>Upgrade a custom acoustic model. </p>
 <p>Initiates the upgrade of a custom acoustic model to the latest version of its base language model. The upgrade method is asynchronous. It can take on the order of minutes or hours to complete depending on the amount of data in the custom model and the current load on the service; typically, upgrade takes approximately twice the length of the total audio contained in the custom model. A custom model must be in the <code>ready</code> or <code>available</code> state to be upgraded. You must use credentials for the instance of the service that owns a model to upgrade it.</p>
-<p>The method returns an HTTP 200 response code to indicate that the upgrade process has begun successfully. You can monitor the status of the upgrade by using the <b>Get a custom acoustic model</b> method to poll the model's status. The method returns an <code>AcousticModel</code> object that includes <code>status</code> and <code>progress</code> fields. Use a loop to check the status once a minute. While it is being upgraded, the custom model has the status <code>upgrading</code>. When the upgrade is complete, the model resumes the status that it had prior to upgrade. The service cannot accept subsequent requests for the model until the upgrade completes.</p>
+<p>The method returns an HTTP 200 response code to indicate that the upgrade process has begun successfully. You can monitor the status of the upgrade by using the <b>Get a custom acoustic model</b> method to poll the model's status. The method returns an <code>AcousticModel</code> object that includes <code>status</code> and <code>progress</code> fields. Use a loop to check the status once a minute. While it is being upgraded, the custom model has the status <code>upgrading</code>. When the upgrade is complete, the model resumes the status that it had prior to upgrade. The service cannot upgrade a model while it is handling another request for the model. The service cannot accept subsequent requests for the model until the existing upgrade request completes.</p>
 <p>If the custom acoustic model was trained with a separately created custom language model, you must use the <code>custom_language_model_id</code> parameter to specify the GUID of that custom language model. The custom language model must be upgraded before the custom acoustic model can be upgraded. Omit the parameter if the custom acoustic model was not trained with a custom language model.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/services/speech-to-text?topic=speech-to-text-customUpgrade#upgradeAcoustic">Upgrading a custom acoustic model</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>

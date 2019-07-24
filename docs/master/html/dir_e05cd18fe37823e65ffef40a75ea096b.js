@@ -69,6 +69,15 @@ var dir_e05cd18fe37823e65ffef40a75ea096b =
     [ "RuntimeIntent.cs", "de/da7/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_intent_8cs.html", [
       [ "RuntimeIntent", "d5/d2b/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_intent.html", "d5/d2b/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_intent" ]
     ] ],
+    [ "SearchResult.cs", "de/d53/_search_result_8cs.html", [
+      [ "SearchResult", "d1/dac/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result.html", "d1/dac/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result" ]
+    ] ],
+    [ "SearchResultHighlight.cs", "d7/d5c/_search_result_highlight_8cs.html", [
+      [ "SearchResultHighlight", "d6/d8c/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result_highlight.html", "d6/d8c/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result_highlight" ]
+    ] ],
+    [ "SearchResultMetadata.cs", "d0/d9f/_search_result_metadata_8cs.html", [
+      [ "SearchResultMetadata", "db/d58/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result_metadata.html", "db/d58/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result_metadata" ]
+    ] ],
     [ "SessionResponse.cs", "dc/d4b/_session_response_8cs.html", [
       [ "SessionResponse", "d8/dca/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_session_response.html", "d8/dca/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_session_response" ]
     ] ]

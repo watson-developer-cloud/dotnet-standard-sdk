@@ -12,6 +12,7 @@ var class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model
     [ "Owner", "df/df8/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html#a50c8662a01d2994a55d7eb81c9872095", null ],
     [ "Progress", "df/df8/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html#ad57be5efb275549ee2525a35b4b45acd", null ],
     [ "Status", "df/df8/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html#aa1effe5e9c064e49f8644fd1ca5c6c2c", null ],
+    [ "Updated", "df/df8/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html#a47a5b8f9f74d7e58b59feec18ee49755", null ],
     [ "Versions", "df/df8/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html#a1b1fa9de3182d88198a3f06eeab2b5c2", null ],
     [ "Warnings", "df/df8/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html#adf73293ba2f9a693a4e6b8e85edc27bf", null ]
 ];

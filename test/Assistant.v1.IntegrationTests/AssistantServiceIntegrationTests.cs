@@ -31,7 +31,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
     {
         private AssistantService service;
         private static string credentials = string.Empty;
-        private static string versionDate = "2018-02-16";
+        private static string versionDate = "2019-02-28";
 
         private static string workspaceId;
         private string inputString = "Hello";
@@ -47,7 +47,7 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
         private static string createdValue = "value";
         private static string createdIntent = "intent";
         private static string createdIntentDescription = "Intent created by the .NET SDK Conversation example script.";
-        private static string createdCounterExampleText = "Example text";
+        private static string createdCounterExampleText = "Example text?";
         private static string createdSynonym = "synonym";
         private static string createdExample = "example";
         private static string dialogNodeName = "dialognode";

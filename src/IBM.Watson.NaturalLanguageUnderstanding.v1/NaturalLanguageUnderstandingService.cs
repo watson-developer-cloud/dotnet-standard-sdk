@@ -274,6 +274,10 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
             {
                 throw new ArgumentNullException("`modelId` is required for `DeleteModel`");
             }
+            else
+            {
+                modelId = Uri.EscapeDataString(modelId);
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
             {

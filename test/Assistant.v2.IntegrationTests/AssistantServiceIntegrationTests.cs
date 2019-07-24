@@ -36,7 +36,7 @@ namespace IBM.Watson.Assistant.v2.IntegrationTests
         private static string assistantId;
         private static string sessionId;
         private readonly string inputString = "Hello";
-        private readonly string versionDate = "2018-09-17";
+        private readonly string versionDate = "2019-02-28";
 
         [TestInitialize]
         public void Setup()

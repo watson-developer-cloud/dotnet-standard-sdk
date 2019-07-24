@@ -111,6 +111,10 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
             {
                 throw new ArgumentNullException("`classifierId` is required for `Classify`");
             }
+            else
+            {
+                classifierId = Uri.EscapeDataString(classifierId);
+            }
             if (string.IsNullOrEmpty(text))
             {
                 throw new ArgumentNullException("`text` is required for `Classify`");
@@ -169,6 +173,10 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
             if (string.IsNullOrEmpty(classifierId))
             {
                 throw new ArgumentNullException("`classifierId` is required for `ClassifyCollection`");
+            }
+            else
+            {
+                classifierId = Uri.EscapeDataString(classifierId);
             }
             if (collection == null)
             {
@@ -336,6 +344,10 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
             {
                 throw new ArgumentNullException("`classifierId` is required for `GetClassifier`");
             }
+            else
+            {
+                classifierId = Uri.EscapeDataString(classifierId);
+            }
             DetailedResponse<Classifier> result = null;
 
             try
@@ -375,6 +387,10 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
             if (string.IsNullOrEmpty(classifierId))
             {
                 throw new ArgumentNullException("`classifierId` is required for `DeleteClassifier`");
+            }
+            else
+            {
+                classifierId = Uri.EscapeDataString(classifierId);
             }
             DetailedResponse<object> result = null;
 

@@ -140,23 +140,28 @@ namespace IBM.Watson.TextToSpeech.v1
         /// Get a voice.
         ///
         /// Gets information about the specified voice. The information includes the name, language, gender, and other
-        /// details about the voice. Specify a customization ID to obtain information for that custom voice model of the
-        /// specified voice. To list information about all available voices, use the **List voices** method.
+        /// details about the voice. Specify a customization ID to obtain information for a custom voice model that is
+        /// defined for the language of the specified voice. To list information about all available voices, use the
+        /// **List voices** method.
         ///
         /// **See also:** [Listing a specific
         /// voice](https://cloud.ibm.com/docs/services/text-to-speech?topic=text-to-speech-voices#listVoice).
         /// </summary>
         /// <param name="voice">The voice for which information is to be returned.</param>
         /// <param name="customizationId">The customization ID (GUID) of a custom voice model for which information is
-        /// to be returned. You must make the request with service credentials created for the instance of the service
-        /// that owns the custom model. Omit the parameter to see information about the specified voice with no
-        /// customization. (optional)</param>
+        /// to be returned. You must make the request with credentials for the instance of the service that owns the
+        /// custom model. Omit the parameter to see information about the specified voice with no customization.
+        /// (optional)</param>
         /// <returns><see cref="Voice" />Voice</returns>
         public DetailedResponse<Voice> GetVoice(string voice, string customizationId = null)
         {
             if (string.IsNullOrEmpty(voice))
             {
                 throw new ArgumentNullException("`voice` is required for `GetVoice`");
+            }
+            else
+            {
+                voice = Uri.EscapeDataString(voice);
             }
             DetailedResponse<Voice> result = null;
 
@@ -275,15 +280,13 @@ namespace IBM.Watson.TextToSpeech.v1
         /// <param name="text"></param>
         /// <param name="accept">The requested format (MIME type) of the audio. You can use the `Accept` header or the
         /// `accept` parameter to specify the audio format. For more information about specifying an audio format, see
-        /// **Audio formats (accept types)** in the method description.
-        ///
-        /// Default: `audio/ogg;codecs=opus`. (optional)</param>
+        /// **Audio formats (accept types)** in the method description. (optional, default to
+        /// audio/ogg;codecs=opus)</param>
         /// <param name="voice">The voice to use for synthesis. (optional, default to en-US_MichaelVoice)</param>
         /// <param name="customizationId">The customization ID (GUID) of a custom voice model to use for the synthesis.
         /// If a custom voice model is specified, it is guaranteed to work only if it matches the language of the
-        /// indicated voice. You must make the request with service credentials created for the instance of the service
-        /// that owns the custom model. Omit the parameter to use the specified voice with no customization.
-        /// (optional)</param>
+        /// indicated voice. You must make the request with credentials for the instance of the service that owns the
+        /// custom model. Omit the parameter to use the specified voice with no customization. (optional)</param>
         /// <returns><see cref="byte[]" />byte[]</returns>
         public DetailedResponse<System.IO.MemoryStream> Synthesize(string text, string accept = null, string voice = null, string customizationId = null)
         {
@@ -358,9 +361,9 @@ namespace IBM.Watson.TextToSpeech.v1
         /// <param name="customizationId">The customization ID (GUID) of a custom voice model for which the
         /// pronunciation is to be returned. The language of a specified custom model must match the language of the
         /// specified voice. If the word is not defined in the specified custom model, the service returns the default
-        /// translation for the custom model's language. You must make the request with service credentials created for
-        /// the instance of the service that owns the custom model. Omit the parameter to see the translation for the
-        /// specified voice with no customization. (optional)</param>
+        /// translation for the custom model's language. You must make the request with credentials for the instance of
+        /// the service that owns the custom model. Omit the parameter to see the translation for the specified voice
+        /// with no customization. (optional)</param>
         /// <returns><see cref="Pronunciation" />Pronunciation</returns>
         public DetailedResponse<Pronunciation> GetPronunciation(string text, string voice = null, string format = null, string customizationId = null)
         {
@@ -492,7 +495,7 @@ namespace IBM.Watson.TextToSpeech.v1
         /// **See also:** [Querying all custom
         /// models](https://cloud.ibm.com/docs/services/text-to-speech?topic=text-to-speech-customModels#cuModelsQueryAll).
         /// </summary>
-        /// <param name="language">The language for which custom voice models that are owned by the requesting service
+        /// <param name="language">The language for which custom voice models that are owned by the requesting
         /// credentials are to be returned. Omit the parameter to see all custom voice models that are owned by the
         /// requester. (optional)</param>
         /// <returns><see cref="VoiceModels" />VoiceModels</returns>
@@ -562,7 +565,7 @@ namespace IBM.Watson.TextToSpeech.v1
         /// customization](https://cloud.ibm.com/docs/services/text-to-speech?topic=text-to-speech-customIntro#customIntro).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
-        /// request with service credentials created for the instance of the service that owns the custom model.</param>
+        /// request with credentials for the instance of the service that owns the custom model.</param>
         /// <param name="updateVoiceModel">An `UpdateVoiceModel` object that contains information that is to be updated
         /// for the custom voice model.</param>
         /// <returns><see cref="object" />object</returns>
@@ -571,6 +574,10 @@ namespace IBM.Watson.TextToSpeech.v1
             if (string.IsNullOrEmpty(customizationId))
             {
                 throw new ArgumentNullException("`customizationId` is required for `UpdateVoiceModel`");
+            }
+            else
+            {
+                customizationId = Uri.EscapeDataString(customizationId);
             }
             DetailedResponse<object> result = null;
 
@@ -631,13 +638,17 @@ namespace IBM.Watson.TextToSpeech.v1
         /// model](https://cloud.ibm.com/docs/services/text-to-speech?topic=text-to-speech-customModels#cuModelsQuery).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
-        /// request with service credentials created for the instance of the service that owns the custom model.</param>
+        /// request with credentials for the instance of the service that owns the custom model.</param>
         /// <returns><see cref="VoiceModel" />VoiceModel</returns>
         public DetailedResponse<VoiceModel> GetVoiceModel(string customizationId)
         {
             if (string.IsNullOrEmpty(customizationId))
             {
                 throw new ArgumentNullException("`customizationId` is required for `GetVoiceModel`");
+            }
+            else
+            {
+                customizationId = Uri.EscapeDataString(customizationId);
             }
             DetailedResponse<VoiceModel> result = null;
 
@@ -680,13 +691,17 @@ namespace IBM.Watson.TextToSpeech.v1
         /// model](https://cloud.ibm.com/docs/services/text-to-speech?topic=text-to-speech-customModels#cuModelsDelete).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
-        /// request with service credentials created for the instance of the service that owns the custom model.</param>
+        /// request with credentials for the instance of the service that owns the custom model.</param>
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteVoiceModel(string customizationId)
         {
             if (string.IsNullOrEmpty(customizationId))
             {
                 throw new ArgumentNullException("`customizationId` is required for `DeleteVoiceModel`");
+            }
+            else
+            {
+                customizationId = Uri.EscapeDataString(customizationId);
             }
             DetailedResponse<object> result = null;
 
@@ -745,7 +760,7 @@ namespace IBM.Watson.TextToSpeech.v1
         /// customization](https://cloud.ibm.com/docs/services/text-to-speech?topic=text-to-speech-customIntro#customIntro).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
-        /// request with service credentials created for the instance of the service that owns the custom model.</param>
+        /// request with credentials for the instance of the service that owns the custom model.</param>
         /// <param name="customWords"></param>
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> AddWords(string customizationId, List<Word> words)
@@ -753,6 +768,10 @@ namespace IBM.Watson.TextToSpeech.v1
             if (string.IsNullOrEmpty(customizationId))
             {
                 throw new ArgumentNullException("`customizationId` is required for `AddWords`");
+            }
+            else
+            {
+                customizationId = Uri.EscapeDataString(customizationId);
             }
             if (words == null)
             {
@@ -809,13 +828,17 @@ namespace IBM.Watson.TextToSpeech.v1
         /// model](https://cloud.ibm.com/docs/services/text-to-speech?topic=text-to-speech-customWords#cuWordsQueryModel).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
-        /// request with service credentials created for the instance of the service that owns the custom model.</param>
+        /// request with credentials for the instance of the service that owns the custom model.</param>
         /// <returns><see cref="Words" />Words</returns>
         public DetailedResponse<Words> ListWords(string customizationId)
         {
             if (string.IsNullOrEmpty(customizationId))
             {
                 throw new ArgumentNullException("`customizationId` is required for `ListWords`");
+            }
+            else
+            {
+                customizationId = Uri.EscapeDataString(customizationId);
             }
             DetailedResponse<Words> result = null;
 
@@ -876,7 +899,7 @@ namespace IBM.Watson.TextToSpeech.v1
         /// customization](https://cloud.ibm.com/docs/services/text-to-speech?topic=text-to-speech-customIntro#customIntro).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
-        /// request with service credentials created for the instance of the service that owns the custom model.</param>
+        /// request with credentials for the instance of the service that owns the custom model.</param>
         /// <param name="word">The word that is to be added or updated for the custom voice model.</param>
         /// <param name="translation">The translation for the word that is to be added or updated.</param>
         /// <returns><see cref="object" />object</returns>
@@ -886,9 +909,17 @@ namespace IBM.Watson.TextToSpeech.v1
             {
                 throw new ArgumentNullException("`customizationId` is required for `AddWord`");
             }
+            else
+            {
+                customizationId = Uri.EscapeDataString(customizationId);
+            }
             if (string.IsNullOrEmpty(word))
             {
                 throw new ArgumentNullException("`word` is required for `AddWord`");
+            }
+            else
+            {
+                word = Uri.EscapeDataString(word);
             }
             if (string.IsNullOrEmpty(translation))
             {
@@ -948,7 +979,7 @@ namespace IBM.Watson.TextToSpeech.v1
         /// model](https://cloud.ibm.com/docs/services/text-to-speech?topic=text-to-speech-customWords#cuWordQueryModel).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
-        /// request with service credentials created for the instance of the service that owns the custom model.</param>
+        /// request with credentials for the instance of the service that owns the custom model.</param>
         /// <param name="word">The word that is to be queried from the custom voice model.</param>
         /// <returns><see cref="Translation" />Translation</returns>
         public DetailedResponse<Translation> GetWord(string customizationId, string word)
@@ -957,9 +988,17 @@ namespace IBM.Watson.TextToSpeech.v1
             {
                 throw new ArgumentNullException("`customizationId` is required for `GetWord`");
             }
+            else
+            {
+                customizationId = Uri.EscapeDataString(customizationId);
+            }
             if (string.IsNullOrEmpty(word))
             {
                 throw new ArgumentNullException("`word` is required for `GetWord`");
+            }
+            else
+            {
+                word = Uri.EscapeDataString(word);
             }
             DetailedResponse<Translation> result = null;
 
@@ -1002,7 +1041,7 @@ namespace IBM.Watson.TextToSpeech.v1
         /// model](https://cloud.ibm.com/docs/services/text-to-speech?topic=text-to-speech-customWords#cuWordDelete).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom voice model. You must make the
-        /// request with service credentials created for the instance of the service that owns the custom model.</param>
+        /// request with credentials for the instance of the service that owns the custom model.</param>
         /// <param name="word">The word that is to be deleted from the custom voice model.</param>
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteWord(string customizationId, string word)
@@ -1011,9 +1050,17 @@ namespace IBM.Watson.TextToSpeech.v1
             {
                 throw new ArgumentNullException("`customizationId` is required for `DeleteWord`");
             }
+            else
+            {
+                customizationId = Uri.EscapeDataString(customizationId);
+            }
             if (string.IsNullOrEmpty(word))
             {
                 throw new ArgumentNullException("`word` is required for `DeleteWord`");
+            }
+            else
+            {
+                word = Uri.EscapeDataString(word);
             }
             DetailedResponse<object> result = null;
 

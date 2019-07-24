@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// A term from the request that was identified as an entity.
+    /// The entity value that was recognized in the user input.
     /// </summary>
     public class RuntimeEntity
     {
@@ -42,7 +42,7 @@ namespace IBM.Watson.Assistant.v2.Model
         [JsonProperty("value", NullValueHandling = NullValueHandling.Ignore)]
         public string Value { get; set; }
         /// <summary>
-        /// A decimal percentage that represents Watson's confidence in the entity.
+        /// A decimal percentage that represents Watson's confidence in the recognized entity.
         /// </summary>
         [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
         public float? Confidence { get; set; }

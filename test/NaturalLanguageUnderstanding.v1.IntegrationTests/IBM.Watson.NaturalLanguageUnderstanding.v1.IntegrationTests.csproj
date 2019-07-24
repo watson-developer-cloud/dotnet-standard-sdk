@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <VersionPrefix>3.2.0</VersionPrefix>
+    <VersionPrefix>3.3.0</VersionPrefix>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>IBM.Watson.NaturalLanguageUnderstanding.v1.IntTests</AssemblyName>
     <PackageId>IBM.Watson.NaturalLanguageUnderstanding.v1.IntTests</PackageId>
@@ -9,7 +9,7 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <Version>3.2.0</Version>
+    <Version>3.3.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -36,7 +36,7 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.1.8-rc" />
     <PackageReference Include="MSTest.TestFramework" Version="1.0.8-rc" />
-    <PackageReference Include="NSubstitute" Version="3.2.0" />
+    <PackageReference Include="NSubstitute" Version="3.3.0" />
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="1.0.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.0.2" />

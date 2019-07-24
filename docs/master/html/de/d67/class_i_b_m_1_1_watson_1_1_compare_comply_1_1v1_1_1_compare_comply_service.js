@@ -1,6 +1,7 @@
 var class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service =
 [
     [ "CompareComplyService", "de/d67/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service.html#ab0e09dba835f0b3519bf506b80df52c5", null ],
+    [ "CompareComplyService", "de/d67/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service.html#af77ad563863d03267c85f96199d78d33", null ],
     [ "CompareComplyService", "de/d67/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service.html#ac6f75f2623a04e92ee5d34b1b8aabeae", null ],
     [ "CompareComplyService", "de/d67/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service.html#a455a5e3c385956cfb9f091953a00fdae", null ],
     [ "CompareComplyService", "de/d67/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service.html#a31f3ed31e91929edc1e421cf3eda0bb1", null ],

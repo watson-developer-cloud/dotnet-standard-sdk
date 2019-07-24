@@ -10,6 +10,7 @@ var class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_acoustic_model
     [ "Owner", "d2/def/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_acoustic_model.html#a7a95495c5b143f671c64dc8909c29aaa", null ],
     [ "Progress", "d2/def/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_acoustic_model.html#a98e299ab08f949f8721aa82c43bab354", null ],
     [ "Status", "d2/def/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_acoustic_model.html#a94668e5392d6327df8b0010f15aedefb", null ],
+    [ "Updated", "d2/def/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_acoustic_model.html#a605cd8d0e6b8b60d454fa64d3f634fde", null ],
     [ "Versions", "d2/def/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_acoustic_model.html#ad893c976a6660a13cf434b70c4ae297b", null ],
     [ "Warnings", "d2/def/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_acoustic_model.html#a50e2f348e97aac9bc0e7d0a0eb054809", null ]
 ];

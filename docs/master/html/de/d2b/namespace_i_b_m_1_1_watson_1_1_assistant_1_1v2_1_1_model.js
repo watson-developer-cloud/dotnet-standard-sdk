@@ -21,5 +21,8 @@ var namespace_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model =
     [ "MessageResponse", "d6/db2/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_response.html", "d6/db2/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_response" ],
     [ "RuntimeEntity", "d3/d1f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_entity.html", "d3/d1f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_entity" ],
     [ "RuntimeIntent", "d5/d2b/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_intent.html", "d5/d2b/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_intent" ],
+    [ "SearchResult", "d1/dac/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result.html", "d1/dac/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result" ],
+    [ "SearchResultHighlight", "d6/d8c/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result_highlight.html", "d6/d8c/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result_highlight" ],
+    [ "SearchResultMetadata", "db/d58/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result_metadata.html", "db/d58/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result_metadata" ],
     [ "SessionResponse", "d8/dca/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_session_response.html", "d8/dca/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_session_response" ]
 ];

@@ -102,7 +102,7 @@ var dir_20a6667e7161b71ab15c63c687ebc90f =
     ] ],
     [ "TrainingWarning.cs", "d5/df1/_training_warning_8cs.html", [
       [ "TrainingWarning", "d9/d73/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_training_warning.html", "d9/d73/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_training_warning" ],
-      [ "WarningIdEnumValue", "d3/d61/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_training_warning_1_1_warning_id_enum_value.html", "d3/d61/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_training_warning_1_1_warning_id_enum_value" ]
+      [ "CodeEnumValue", "da/d2b/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_training_warning_1_1_code_enum_value.html", "da/d2b/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_training_warning_1_1_code_enum_value" ]
     ] ],
     [ "Word.cs", "dd/d61/_i_b_m_8_watson_8_speech_to_text_8v1_2_model_2_word_8cs.html", [
       [ "Word", "d3/d72/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_word.html", "d3/d72/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_word" ]

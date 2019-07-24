@@ -369,7 +369,7 @@ Public Attributes</h2></td></tr>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom voice model. You must make the request with service credentials created for the instance of the service that owns the custom model.</td></tr>
+    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom voice model. You must make the request with credentials for the instance of the service that owns the custom model.</td></tr>
     <tr><td class="paramname">word</td><td>The word that is to be added or updated for the custom voice model.</td></tr>
     <tr><td class="paramname">translation</td><td>The translation for the word that is to be added or updated.</td></tr>
   </table>
@@ -429,7 +429,7 @@ Public Attributes</h2></td></tr>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom voice model. You must make the request with service credentials created for the instance of the service that owns the custom model.</td></tr>
+    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom voice model. You must make the request with credentials for the instance of the service that owns the custom model.</td></tr>
     <tr><td class="paramname">customWords</td><td></td></tr>
   </table>
   </dd>
@@ -566,7 +566,7 @@ Public Attributes</h2></td></tr>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/services/text-to-speech?topic=text-to-speech-customModels#cuModelsDelete">Deleting a custom model</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom voice model. You must make the request with service credentials created for the instance of the service that owns the custom model.</td></tr>
+    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom voice model. You must make the request with credentials for the instance of the service that owns the custom model.</td></tr>
   </table>
   </dd>
 </dl>
@@ -616,7 +616,7 @@ Public Attributes</h2></td></tr>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/services/text-to-speech?topic=text-to-speech-customWords#cuWordDelete">Deleting a word from a custom model</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom voice model. You must make the request with service credentials created for the instance of the service that owns the custom model.</td></tr>
+    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom voice model. You must make the request with credentials for the instance of the service that owns the custom model.</td></tr>
     <tr><td class="paramname">word</td><td>The word that is to be deleted from the custom voice model.</td></tr>
   </table>
   </dd>
@@ -682,7 +682,7 @@ Public Attributes</h2></td></tr>
     <tr><td class="paramname">text</td><td>The word for which the pronunciation is requested.</td></tr>
     <tr><td class="paramname">voice</td><td>A voice that specifies the language in which the pronunciation is to be returned. All voices for the same language (for example, <code>en-US</code>) return the same translation. (optional, default to en-US_MichaelVoice)</td></tr>
     <tr><td class="paramname">format</td><td>The phoneme format in which to return the pronunciation. Omit the parameter to obtain the pronunciation in the default format. (optional, default to ipa)</td></tr>
-    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of a custom voice model for which the pronunciation is to be returned. The language of a specified custom model must match the language of the specified voice. If the word is not defined in the specified custom model, the service returns the default translation for the custom model's language. You must make the request with service credentials created for the instance of the service that owns the custom model. Omit the parameter to see the translation for the specified voice with no customization. (optional)</td></tr>
+    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of a custom voice model for which the pronunciation is to be returned. The language of a specified custom model must match the language of the specified voice. If the word is not defined in the specified custom model, the service returns the default translation for the custom model's language. You must make the request with credentials for the instance of the service that owns the custom model. Omit the parameter to see the translation for the specified voice with no customization. (optional)</td></tr>
   </table>
   </dd>
 </dl>
@@ -727,12 +727,12 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get a voice. </p>
-<p>Gets information about the specified voice. The information includes the name, language, gender, and other details about the voice. Specify a customization ID to obtain information for that custom voice model of the specified voice. To list information about all available voices, use the <b>List voices</b> method.</p>
+<p>Gets information about the specified voice. The information includes the name, language, gender, and other details about the voice. Specify a customization ID to obtain information for a custom voice model that is defined for the language of the specified voice. To list information about all available voices, use the <b>List voices</b> method.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/services/text-to-speech?topic=text-to-speech-voices#listVoice">Listing a specific voice</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">voice</td><td>The voice for which information is to be returned.</td></tr>
-    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of a custom voice model for which information is to be returned. You must make the request with service credentials created for the instance of the service that owns the custom model. Omit the parameter to see information about the specified voice with no customization. (optional)</td></tr>
+    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of a custom voice model for which information is to be returned. You must make the request with credentials for the instance of the service that owns the custom model. Omit the parameter to see information about the specified voice with no customization. (optional)</td></tr>
   </table>
   </dd>
 </dl>
@@ -772,7 +772,7 @@ Public Attributes</h2></td></tr>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/services/text-to-speech?topic=text-to-speech-customModels#cuModelsQuery">Querying a custom model</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom voice model. You must make the request with service credentials created for the instance of the service that owns the custom model.</td></tr>
+    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom voice model. You must make the request with credentials for the instance of the service that owns the custom model.</td></tr>
   </table>
   </dd>
 </dl>
@@ -822,7 +822,7 @@ Public Attributes</h2></td></tr>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/services/text-to-speech?topic=text-to-speech-customWords#cuWordQueryModel">Querying a single word from a custom model</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom voice model. You must make the request with service credentials created for the instance of the service that owns the custom model.</td></tr>
+    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom voice model. You must make the request with credentials for the instance of the service that owns the custom model.</td></tr>
     <tr><td class="paramname">word</td><td>The word that is to be queried from the custom voice model.</td></tr>
   </table>
   </dd>
@@ -863,7 +863,7 @@ Public Attributes</h2></td></tr>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/services/text-to-speech?topic=text-to-speech-customModels#cuModelsQueryAll">Querying all custom models</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">language</td><td>The language for which custom voice models that are owned by the requesting service credentials are to be returned. Omit the parameter to see all custom voice models that are owned by the requester. (optional)</td></tr>
+    <tr><td class="paramname">language</td><td>The language for which custom voice models that are owned by the requesting credentials are to be returned. Omit the parameter to see all custom voice models that are owned by the requester. (optional)</td></tr>
   </table>
   </dd>
 </dl>
@@ -935,7 +935,7 @@ Public Attributes</h2></td></tr>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/services/text-to-speech?topic=text-to-speech-customWords#cuWordsQueryModel">Querying all words from a custom model</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom voice model. You must make the request with service credentials created for the instance of the service that owns the custom model.</td></tr>
+    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom voice model. You must make the request with credentials for the instance of the service that owns the custom model.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1048,15 +1048,9 @@ arguments:"</code> followed by a list of the form <code>"{invalid_arg_1}, {inval
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">text</td><td></td></tr>
-    <tr><td class="paramname">accept</td><td>The requested format (MIME type) of the audio. You can use the <code>Accept</code> header or the <code>accept</code> parameter to specify the audio format. For more information about specifying an audio format, see <b>Audio formats (accept types)</b> in the method description.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Default: <code>audio/ogg;codecs=opus</code>. (optional)</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
+    <tr><td class="paramname">accept</td><td>The requested format (MIME type) of the audio. You can use the <code>Accept</code> header or the <code>accept</code> parameter to specify the audio format. For more information about specifying an audio format, see <b>Audio formats (accept types)</b> in the method description. (optional, default to audio/ogg;codecs=opus)</td></tr>
     <tr><td class="paramname">voice</td><td>The voice to use for synthesis. (optional, default to en-US_MichaelVoice)</td></tr>
-    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of a custom voice model to use for the synthesis. If a custom voice model is specified, it is guaranteed to work only if it matches the language of the indicated voice. You must make the request with service credentials created for the instance of the service that owns the custom model. Omit the parameter to use the specified voice with no customization. (optional)</td></tr>
+    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of a custom voice model to use for the synthesis. If a custom voice model is specified, it is guaranteed to work only if it matches the language of the indicated voice. You must make the request with credentials for the instance of the service that owns the custom model. Omit the parameter to use the specified voice with no customization. (optional)</td></tr>
   </table>
   </dd>
 </dl>
@@ -1126,7 +1120,7 @@ arguments:"</code> followed by a list of the form <code>"{invalid_arg_1}, {inval
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom voice model. You must make the request with service credentials created for the instance of the service that owns the custom model.</td></tr>
+    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom voice model. You must make the request with credentials for the instance of the service that owns the custom model.</td></tr>
     <tr><td class="paramname">updateVoiceModel</td><td>An <code>UpdateVoiceModel</code> object that contains information that is to be updated for the custom voice model.</td></tr>
   </table>
   </dd>

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['iassistantservice',['IAssistantService',['../df/d56/interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service.html',1,'IBM.Watson.Assistant.v1.IAssistantService'],['../d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html',1,'IBM.Watson.Assistant.v2.IAssistantService']]],
+  ['iassistantservice',['IAssistantService',['../d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html',1,'IBM.Watson.Assistant.v2.IAssistantService'],['../df/d56/interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service.html',1,'IBM.Watson.Assistant.v1.IAssistantService']]],
   ['icomparecomplyservice',['ICompareComplyService',['../d8/d70/interface_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_i_compare_comply_service.html',1,'IBM::Watson::CompareComply::v1']]],
   ['identifiablelanguage',['IdentifiableLanguage',['../d0/d50/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_identifiable_language.html',1,'IBM::Watson::LanguageTranslator::v3::Model']]],
   ['identifiablelanguages',['IdentifiableLanguages',['../d8/dea/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_identifiable_languages.html',1,'IBM::Watson::LanguageTranslator::v3::Model']]],
@@ -15,6 +15,7 @@ var searchData=
   ['indexcapacity',['IndexCapacity',['../d3/d91/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_index_capacity.html',1,'IBM::Watson::Discovery::v1::Model']]],
   ['intent',['Intent',['../d4/d66/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_intent.html',1,'IBM::Watson::Assistant::v1::Model']]],
   ['intentcollection',['IntentCollection',['../dd/d5f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_intent_collection.html',1,'IBM::Watson::Assistant::v1::Model']]],
+  ['interpretation',['Interpretation',['../d7/d8d/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_interpretation.html',1,'IBM::Watson::CompareComply::v1::Model']]],
   ['ipersonalityinsightsservice',['IPersonalityInsightsService',['../dd/d88/interface_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_i_personality_insights_service.html',1,'IBM::Watson::PersonalityInsights::v3']]],
   ['ispeechtotextservice',['ISpeechToTextService',['../d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html',1,'IBM::Watson::SpeechToText::v1']]],
   ['itexttospeechservice',['ITextToSpeechService',['../dd/d30/interface_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html',1,'IBM::Watson::TextToSpeech::v1']]],

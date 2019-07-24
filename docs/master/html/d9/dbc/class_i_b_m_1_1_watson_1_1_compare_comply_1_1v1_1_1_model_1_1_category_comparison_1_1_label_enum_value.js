@@ -15,6 +15,7 @@ var class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_compa
     [ "INSURANCE", "d9/dbc/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_comparison_1_1_label_enum_value.html#ab743240f107d84db6833e817ad69bfa2", null ],
     [ "INTELLECTUAL_PROPERTY", "d9/dbc/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_comparison_1_1_label_enum_value.html#a575c2826c241a0d41edd850044f2fb60", null ],
     [ "LIABILITY", "d9/dbc/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_comparison_1_1_label_enum_value.html#a3029b959870c5e31adcbdc161ace4d74", null ],
+    [ "ORDER_OF_PRECEDENCE", "d9/dbc/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_comparison_1_1_label_enum_value.html#a3bcc2bfba79f012c87d0544092a6a3d6", null ],
     [ "PAYMENT_TERMS_BILLING", "d9/dbc/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_comparison_1_1_label_enum_value.html#a856bb5be2aabed1a78c9f499c07e94b3", null ],
     [ "PRICING_TAXES", "d9/dbc/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_comparison_1_1_label_enum_value.html#a2db85bb43bab6d421f4a17f90df531f1", null ],
     [ "PRIVACY", "d9/dbc/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_comparison_1_1_label_enum_value.html#a1e5849b6f93162beace535f957cdcdcb", null ],

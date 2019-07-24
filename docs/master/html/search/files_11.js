@@ -2,6 +2,9 @@ var searchData=
 [
   ['sdustatus_2ecs',['SduStatus.cs',['../dd/dcf/_sdu_status_8cs.html',1,'']]],
   ['sdustatuscustomfields_2ecs',['SduStatusCustomFields.cs',['../d1/d4f/_sdu_status_custom_fields_8cs.html',1,'']]],
+  ['searchresult_2ecs',['SearchResult.cs',['../de/d53/_search_result_8cs.html',1,'']]],
+  ['searchresulthighlight_2ecs',['SearchResultHighlight.cs',['../d7/d5c/_search_result_highlight_8cs.html',1,'']]],
+  ['searchresultmetadata_2ecs',['SearchResultMetadata.cs',['../d0/d9f/_search_result_metadata_8cs.html',1,'']]],
   ['searchstatus_2ecs',['SearchStatus.cs',['../dc/dd8/_search_status_8cs.html',1,'']]],
   ['sectiontitle_2ecs',['SectionTitle.cs',['../df/dc8/_section_title_8cs.html',1,'']]],
   ['sectiontitles_2ecs',['SectionTitles.cs',['../d8/df3/_section_titles_8cs.html',1,'']]],

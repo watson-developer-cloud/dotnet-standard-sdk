@@ -25,22 +25,21 @@ Ensure you have the following prerequisites:
 * Install [.NET Core][dotnet-core-download].
 
 ## Installing the Watson .NET Standard SDK
-You can get the latest SDK packages through NuGet. Installation instructions can be found in the ReadMe of each package.
+This SDK provides classes and methods to access the following Watson services:
 
-* [Assistant V1](/src/IBM.WatsonDeveloperCloud.Assistant.v1)
-* [Assistant V2](/src/IBM.WatsonDeveloperCloud.Assistant.v2)
-* [Compare Comply](/src/IBM.WatsonDeveloperCloud.CompareComply.v1)
-* [Discovery](/src/IBM.WatsonDeveloperCloud.Discovery.v1)
-* [Language Translator V3](/src/IBM.WatsonDeveloperCloud.LanguageTranslator.v3)
-* [Natural Language Understanding](/src/IBM.WatsonDeveloperCloud.NaturalLanguageUnderstanding.v1)
-* [Natural Language Classifier](/src/IBM.WatsonDeveloperCloud.NaturalLanguageClassifier.v1)
-* [Personality Insights](/src/IBM.WatsonDeveloperCloud.PersonalityInsights.v3)
-* [Speech to Text](/src/IBM.WatsonDeveloperCloud.SpeechToText.v1)
-* [Text to Speech](/src/IBM.WatsonDeveloperCloud.TextToSpeech.v1)
-* [Tone Analyzer](/src/IBM.WatsonDeveloperCloud.ToneAnalyzer.v3)
-* [Visual Recognition](/src/IBM.WatsonDeveloperCloud.VisualRecognition.v3)
+* [Assistant](https://www.ibm.com/cloud/watson-assistant)
+* [Compare Comply](https://www.ibm.com/cloud/compare-and-comply)
+* [Discovery](https://www.ibm.com/watson/services/discovery)
+* [Language Translator](https://www.ibm.com/watson/services/language-translator)
+* [Natural Language Understanding](https://www.ibm.com/watson/services/natural-language-understanding)
+* [Natural Language Classifier](https://www.ibm.com/watson/services/natural-language-classifier)
+* [Personality Insights](https://www.ibm.com/watson/services/personality-insights)
+* [Speech to Text](https://www.ibm.com/watson/services/speech-to-text)
+* [Text to Speech](https://www.ibm.com/watson/services/text-to-speech)
+* [Tone Analyzer](https://www.ibm.com/watson/services/tone-analyzer)
+* [Visual Recognition](https://www.ibm.com/watson/services/visual-recognition)
 
-Or manually [here][latest_release].
+You can get the latest SDK packages through [NuGet](https://www.nuget.org) or manually [here][latest_release].
 
 ## Authentication
 Watson services are migrating to token-based Identity and Access Management (IAM) authentication.

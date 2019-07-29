@@ -25,7 +25,7 @@ Ensure you have the following prerequisites:
 * Install [.NET Core][dotnet-core-download].
 
 ## Installing the Watson .NET Standard SDK
-You can get the latest SDK packages through NuGet. Installation instructions can be found in the ReadMe of each package.
+This SDK provides classes and methods to access the following Watson services:
 
 * [Assistant](https://www.ibm.com/cloud/watson-assistant)
 * [Compare Comply](https://www.ibm.com/cloud/compare-and-comply)
@@ -39,7 +39,7 @@ You can get the latest SDK packages through NuGet. Installation instructions can
 * [Tone Analyzer](https://www.ibm.com/watson/services/tone-analyzer)
 * [Visual Recognition](https://www.ibm.com/watson/services/visual-recognition)
 
-Or manually [here][latest_release].
+You can get the latest SDK packages through [NuGet](https://www.nuget.org) or manually [here][latest_release].
 
 ## Authentication
 Watson services are migrating to token-based Identity and Access Management (IAM) authentication.

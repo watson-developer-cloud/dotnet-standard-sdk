@@ -175,8 +175,8 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
             VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
 
             var result = service.GetClassifier(
-                    classifierId: "dogs_1477088859"
-                    );
+                classifierId: "dogs_1477088859"
+                );
 
             Console.WriteLine(result.Response);
         }
@@ -236,8 +236,8 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
             VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
 
             var result = service.GetCoreMlModel(
-                    classifierId: "dogs_1477088859"
-                    );
+                classifierId: "dogs_1477088859"
+                );
 
             using (FileStream fs = File.Create("/tmp/dogs_1477088859.mlmodel"))
             {

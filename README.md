@@ -71,7 +71,7 @@ You supply either an IAM service **API key** or an **access token**:
 void Example()
 {
     IamConfig iamConfig = new IamConfig(
-        Apikey: "{iam-apikey}"
+        apikey: "{iam-apikey}"
         );
     service = new AssistantService("{versionDate}", iamConfig);
     service.SetEndpoint("{service-endpoint}");
@@ -83,7 +83,7 @@ void Example()
 void Example()
 {
     IamConfig iamConfig = new IamConfig(
-        UserManagedAccessToken: "{iam-access-token}"
+        userManagedAccessToken: "{iam-access-token}"
         );
     service = new AssistantService("{versionDate}", iamConfig);
     service.SetEndpoint("{service-endpoint}");
@@ -95,8 +95,8 @@ void Example()
 void Example()
 {
     BasicAuthConfig basicAuthConfig = new BasicAuthConfig(
-        Username: "{username}",
-        Password: "{password}"
+        username: "{username}",
+        password: "{password}"
         );
     service = new AssistantService("{versionDate}", basicAuthConfig);
     service.SetEndpoint("{service-endpoint}");
@@ -111,9 +111,9 @@ Like IAM, you can pass in credentials to let the SDK manage an access token for 
 void Example()
 {
     Icp4dConfig icp4dConfig = new Icp4dConfig(
-        Username: "{username}",
-        Password: "{password}",
-        Url: "https://{icp4d_cluster_host}{:port}"
+        username: "{username}",
+        password: "{password}",
+        url: "https://{icp4d_cluster_host}{:port}"
         );
     AssistantService assistant = new AssistantService("{version-date}", icp4dConfig);
     service.SetEndpoint("{service-endpoint}");
@@ -126,8 +126,8 @@ void Example()
 void Example()
 {
     Icp4dConfig icp4dConfig = new Icp4dConfig(
-        UserManagedAccessToken: "{access-token}",
-        Url: "https://{icp4d_cluster_host}{:port}"
+        userManagedAccessToken: "{access-token}",
+        url: "https://{icp4d_cluster_host}{:port}"
         );
     AssistantService assistant = new AssistantService("{version-date}", icp4dConfig);
     service.SetEndpoint("{service-endpoint}");
@@ -178,7 +178,7 @@ You can send custom request headers by adding them to the service using `.WithHe
 void Example()
 {
     IamConfig iamConfig = new IamConfig(
-        Apikey: "{iam-apikey}"
+        apikey: "{iam-apikey}"
         );
     AssistantService assistant = new AssistantService("{version-date}", iamConfig);
     service.SetEndpoint("{service-endpoint}");
@@ -193,7 +193,7 @@ You can get the response headers, status code and the raw json response in the r
 void Example()
 {
     IamConfig iamConfig = new IamConfig(
-        Apikey: "{iam-apikey}"
+        apikey: "{iam-apikey}"
         );
     AssistantService assistant = new AssistantService("{version-date}", iamConfig);
     service.SetEndpoint("{service-endpoint}");
@@ -211,10 +211,10 @@ You can disable SSL verification on calls to Watson (only do this if you really 
 void Example()
 {
     Icp4dConfig icp4dConfig = new Icp4dConfig(
-        Username: "{username}",
-        Password: "{password}",
-        Url: "https://{icp4d_cluster_host}{:port}",
-        DisableSslVerification: true
+        username: "{username}",
+        password: "{password}",
+        url: "https://{icp4d_cluster_host}{:port}",
+        disableSslVerification: true
         );
     AssistantService assistant = new AssistantService("{version-date}", icp4dConfig);
     service.SetEndpoint("{service-endpoint}");

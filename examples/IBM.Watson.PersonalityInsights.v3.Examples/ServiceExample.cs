@@ -75,33 +75,23 @@ namespace IBM.Watson.PersonalityInsights.v3.Examples
             PersonalityInsightsService service = new PersonalityInsightsService("2017-10-13", config);
             service.SetEndpoint("{url}");
 
-            Content content = new Content()
-            {
-                ContentItems = new List<ContentItem>()
-                {
-                    new ContentItem()
-                    {
-                        Contenttype = ContentItem.ContenttypeEnumValue.TEXT_PLAIN,
-                        Language = ContentItem.LanguageEnumValue.EN,
-                        Content = contentToProfile
-                    }
-                }
-            };
+            Content content = null;
+            content = JsonConvert.DeserializeObject<Content>(File.ReadAllText("profile.json"));
 
             var result = service.ProfileAsCsv(
                 content: content,
-                contentLanguage: "en",
-                acceptLanguage: "en",
-                rawScores: true,
-                csvHeaders: true,
+                contentType: "application/json",
                 consumptionPreferences: true,
-                contentType: "text/plain"
+                rawScores: true,
+                csvHeaders: true
                 );
 
-            StreamReader reader = new StreamReader(result.Result);
-            var text = reader.ReadToEnd();
-
-            Console.WriteLine(text);
+            using (FileStream fs = File.Create("output.csv"))
+            {
+                result.Result.WriteTo(fs);
+                fs.Close();
+                result.Result.Close();
+            }
         }
         #endregion
     }

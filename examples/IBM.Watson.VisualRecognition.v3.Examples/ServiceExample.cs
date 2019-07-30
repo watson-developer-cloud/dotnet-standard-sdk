@@ -69,7 +69,6 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
                 );
 
             VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
-            service.SetEndpoint("{url}");
 
             DetailedResponse<ClassifiedImages> result;
             using (FileStream fs = File.OpenRead("./fruitbowl.jpg"))
@@ -100,7 +99,6 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
                 );
 
             VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
-            service.SetEndpoint("{url}");
 
             DetailedResponse<DetectedFaces> result;
             using (FileStream fs = File.OpenRead("./Ginni_Rometty.jpg"))
@@ -126,7 +124,6 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
                 );
 
             VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
-            service.SetEndpoint("{url}");
 
             var result = service.ListClassifiers(
                 verbose: true
@@ -142,7 +139,6 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
                 );
 
             VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
-            service.SetEndpoint("{url}");
 
             DetailedResponse<Classifier> result = null;
             using (FileStream beagle = File.OpenRead("./beagle.zip"), goldenRetriever = File.OpenRead("./golden-retriever.zip"), husky = File.OpenRead("./husky.zip"), cats = File.OpenRead("./cats.zip"))
@@ -177,7 +173,6 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
                 );
 
             VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
-            service.SetEndpoint("{url}");
 
             var result = service.GetClassifier(
                     classifierId: "dogs_1477088859"
@@ -193,7 +188,6 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
                 );
 
             VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
-            service.SetEndpoint("{url}");
 
             DetailedResponse<Classifier> result = null;
             using (FileStream dalmatian = File.OpenRead("./dalmatian.zip"), moreCats= File.OpenRead("./more-cats.zip"))
@@ -223,7 +217,6 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
                 );
 
             VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
-            service.SetEndpoint("{url}");
 
             var result = service.DeleteClassifier(
                 classifierId: "dogs_1477088859"
@@ -241,7 +234,6 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
                 );
 
             VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
-            service.SetEndpoint("{url}");
 
             var result = service.GetCoreMlModel(
                     classifierId: "dogs_1477088859"
@@ -266,7 +258,6 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
                 );
 
             VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
-            service.SetEndpoint("{url}");
 
             var result = service.DeleteUserData(
                 customerId: "my_customer_ID"

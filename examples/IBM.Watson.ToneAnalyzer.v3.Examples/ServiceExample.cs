@@ -43,23 +43,19 @@ namespace IBM.Watson.ToneAnalyzer.v3.Examples
         public void Tone()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            ToneAnalyzerService service = new ToneAnalyzerService(versionDate, config);
-            service.SetEndpoint(url);
+            ToneAnalyzerService service = new ToneAnalyzerService("2017-09-21", config);
+            service.SetEndpoint("{url}");
 
             ToneInput toneInput = new ToneInput()
             {
-                Text = "Hello! Welcome to IBM Watson! How can I help you?"
+                Text = "Team, I know that times are tough! Product sales have been disappointing for the past three quarters. We have a competitive product, but we need to do a better job of selling it!"
             };
 
             var result = service.Tone(
-                toneInput: toneInput,
-                contentType: "text/html",
-                sentences: true,
-                contentLanguage: "en-US",
-                acceptLanguage: "en-US"
+                toneInput: toneInput
                 );
 
             Console.WriteLine(result.Response);
@@ -70,25 +66,38 @@ namespace IBM.Watson.ToneAnalyzer.v3.Examples
         public void ToneChat()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            ToneAnalyzerService service = new ToneAnalyzerService(versionDate, config);
-            service.SetEndpoint(url);
+            ToneAnalyzerService service = new ToneAnalyzerService("2017-09-21", config);
+            service.SetEndpoint("{url}");
 
             var utterances = new List<Utterance>()
             {
                 new Utterance()
                 {
-                    Text = "Hello! Welcome to IBM Watson! How can I help you?",
-                    User = "testChatUser"
+                    Text = "Hello, I'm having a problem with your product.",
+                    User = "customer"
+                },
+                new Utterance()
+                {
+                    Text = "OK, let me know what's going on, please.",
+                    User = "agent"
+                },
+                new Utterance()
+                {
+                    Text = "Well, nothing is working :(",
+                    User = "customer"
+                },
+                new Utterance()
+                {
+                    Text = "Sorry to hear that.",
+                    User = "agent"
                 }
             };
 
             var result = service.ToneChat(
-                utterances: utterances,
-                contentLanguage: "en-US",
-                acceptLanguage: "en-US"
+                utterances: utterances
                 );
 
             Console.WriteLine(result.Response);

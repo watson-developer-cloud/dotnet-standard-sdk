@@ -65,24 +65,25 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
         public void Classify()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            VisualRecognitionService service = new VisualRecognitionService(versionDate, config);
-            service.SetEndpoint(url);
+            VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
+            service.SetEndpoint("{url}");
 
             DetailedResponse<ClassifiedImages> result;
-            using (FileStream fs = File.OpenRead(localGiraffeFilePath))
+            using (FileStream fs = File.OpenRead("./fruitbowl.jpg"))
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
                     result = service.Classify(
                         imagesFile: ms,
-                        imagesFilename: Path.GetFileName(localGiraffeFilePath),
-                        imagesFileContentType: "image/jpeg",
-                        threshold: 0.5f,
-                        acceptLanguage: "en-US"
+                        threshold: 0.6f,
+                        owners: new List<string>()
+                        {
+                            "me"
+                        }
                         );
                 }
             }
@@ -95,23 +96,20 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
         public void DetectFaces()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            VisualRecognitionService service = new VisualRecognitionService(versionDate, config);
-            service.SetEndpoint(url);
+            VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
+            service.SetEndpoint("{url}");
 
             DetailedResponse<DetectedFaces> result;
-            using (FileStream fs = File.OpenRead(localFaceFilePath))
+            using (FileStream fs = File.OpenRead("./Ginni_Rometty.jpg"))
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
                     result = service.DetectFaces(
-                        imagesFile: ms,
-                        imagesFilename: Path.GetFileName(localFaceFilePath),
-                        imagesFileContentType: "image/jpeg",
-                        acceptLanguage: "en"
+                        imagesFile: ms
                         );
                 }
 
@@ -124,13 +122,15 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
         public void ListClassifiers()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            VisualRecognitionService service = new VisualRecognitionService(versionDate, config);
-            service.SetEndpoint(url);
+            VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
+            service.SetEndpoint("{url}");
 
-            var result = service.ListClassifiers();
+            var result = service.ListClassifiers(
+                verbose: true
+                );
 
             Console.WriteLine(result.Response);
         }
@@ -138,26 +138,30 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
         public void CreateClassifier()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            VisualRecognitionService service = new VisualRecognitionService(versionDate, config);
-            service.SetEndpoint(url);
+            VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
+            service.SetEndpoint("{url}");
 
             DetailedResponse<Classifier> result = null;
-            using (FileStream positiveExamplesFileStream = File.OpenRead(localGiraffePositiveExamplesFilePath), negativeExamplesFileStream = File.OpenRead(localNegativeExamplesFilePath))
+            using (FileStream beagle = File.OpenRead("./beagle.zip"), goldenRetriever = File.OpenRead("./golden-retriever.zip"), husky = File.OpenRead("./husky.zip"), cats = File.OpenRead("./cats.zip"))
             {
-                using (MemoryStream positiveExamplesMemoryStream = new MemoryStream(), negativeExamplesMemoryStream = new MemoryStream())
+                using (MemoryStream beagleMemoryStream = new MemoryStream(), goldenRetrieverMemoryStream = new MemoryStream(), huskyMemoryStream = new MemoryStream(), catsMemoryStream = new MemoryStream())
                 {
-                    positiveExamplesFileStream.CopyTo(positiveExamplesMemoryStream);
-                    negativeExamplesFileStream.CopyTo(negativeExamplesMemoryStream);
+                    beagle.CopyTo(beagleMemoryStream);
+                    goldenRetriever.CopyTo(goldenRetrieverMemoryStream);
+                    husky.CopyTo(huskyMemoryStream);
+                    cats.CopyTo(catsMemoryStream);
+
                     Dictionary<string, MemoryStream> positiveExamples = new Dictionary<string, MemoryStream>();
-                    positiveExamples.Add(giraffeClassname, positiveExamplesMemoryStream);
+                    positiveExamples.Add("beagle_positive_examples", beagleMemoryStream);
+                    positiveExamples.Add("goldenretriever_positive_examples", goldenRetrieverMemoryStream);
+                    positiveExamples.Add("husky_positive_examples", huskyMemoryStream);
                     result = service.CreateClassifier(
-                        name: createdClassifierName,
+                        name: "dogs",
                         positiveExamples: positiveExamples,
-                        negativeExamples: negativeExamplesMemoryStream,
-                        negativeExamplesFilename: Path.GetFileName(localNegativeExamplesFilePath)
+                        negativeExamples: catsMemoryStream
                         );
                 }
             }
@@ -169,14 +173,14 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
         public void GetClassifier()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            VisualRecognitionService service = new VisualRecognitionService(versionDate, config);
-            service.SetEndpoint(url);
+            VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
+            service.SetEndpoint("{url}");
 
             var result = service.GetClassifier(
-                    classifierId: classifierId
+                    classifierId: "dogs_1477088859"
                     );
 
             Console.WriteLine(result.Response);
@@ -185,22 +189,26 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
         public void UpdateClassifier()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            VisualRecognitionService service = new VisualRecognitionService(versionDate, config);
-            service.SetEndpoint(url);
+            VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
+            service.SetEndpoint("{url}");
 
             DetailedResponse<Classifier> result = null;
-            using (FileStream positiveExamplesStream = File.OpenRead(localTurtlePositiveExamplesFilePath))
+            using (FileStream dalmatian = File.OpenRead("./dalmatian.zip"), moreCats= File.OpenRead("./more-cats.zip"))
             {
-                using (MemoryStream positiveExamplesMemoryStream = new MemoryStream())
+                using (MemoryStream dalmatianMemoryStream = new MemoryStream(), moreCatsMemoryStream= new MemoryStream())
                 {
+                    dalmatian.CopyTo(dalmatianMemoryStream);
+                    moreCats.CopyTo(moreCatsMemoryStream);
+
                     Dictionary<string, MemoryStream> positiveExamples = new Dictionary<string, MemoryStream>();
-                    positiveExamples.Add(turtleClassname, positiveExamplesMemoryStream);
+                    positiveExamples.Add("dalmatian_positive_examples", dalmatianMemoryStream);
                     result = service.UpdateClassifier(
-                        classifierId: classifierId,
-                        positiveExamples: positiveExamples
+                        classifierId: "dogs_1477088859",
+                        positiveExamples: positiveExamples,
+                        negativeExamples: moreCatsMemoryStream
                         );
                 }
             }
@@ -211,14 +219,14 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
         public void DeleteClassifier()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            VisualRecognitionService service = new VisualRecognitionService(versionDate, config);
-            service.SetEndpoint(url);
+            VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
+            service.SetEndpoint("{url}");
 
             var result = service.DeleteClassifier(
-                classifierId: classifierId
+                classifierId: "dogs_1477088859"
                 );
 
             Console.WriteLine(result.StatusCode);
@@ -229,15 +237,22 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
         public void GetCoreMlModel()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            VisualRecognitionService service = new VisualRecognitionService(versionDate, config);
-            service.SetEndpoint(url);
+            VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
+            service.SetEndpoint("{url}");
 
             var result = service.GetCoreMlModel(
-                    classifierId: classifierId
+                    classifierId: "dogs_1477088859"
                     );
+
+            using (FileStream fs = File.Create("/tmp/dogs_1477088859.mlmodel"))
+            {
+                result.Result.WriteTo(fs);
+                fs.Close();
+                result.Result.Close();
+            }
 
             Console.WriteLine(result.Response);
         }
@@ -247,14 +262,14 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
         public void DeleteUserData()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            VisualRecognitionService service = new VisualRecognitionService(versionDate, config);
-            service.SetEndpoint(url);
+            VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
+            service.SetEndpoint("{url}");
 
             var result = service.DeleteUserData(
-                customerId: "customerId"
+                customerId: "my_customer_ID"
                 );
 
             Console.WriteLine(result.Response);

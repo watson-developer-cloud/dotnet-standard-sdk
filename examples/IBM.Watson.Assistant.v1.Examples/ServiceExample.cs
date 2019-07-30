@@ -900,17 +900,17 @@ namespace IBM.Watson.Assistant.v1.Examples
                 {
                     Generic = new List<DialogNodeOutputGeneric>()
                     {
-            new DialogNodeOutputGeneric()
-            {
-                ResponseType = "text",
-                Values = new List<DialogNodeOutputTextValuesElement>()
-                {
-                    new DialogNodeOutputTextValuesElement()
-                    {
-                        Text = "Hello! What can I do for you?"
-                    }
-                }
-            }
+                        new DialogNodeOutputGeneric()
+                        {
+                            ResponseType = "text",
+                            Values = new List<DialogNodeOutputTextValuesElement>()
+                            {
+                                new DialogNodeOutputTextValuesElement()
+                                {
+                                    Text = "Hello! What can I do for you?"
+                                }
+                            }
+                        }
                     }
                 }
                 );

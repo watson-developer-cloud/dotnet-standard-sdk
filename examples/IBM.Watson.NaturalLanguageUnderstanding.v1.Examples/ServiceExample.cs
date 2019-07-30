@@ -44,33 +44,30 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Examples
         public void Analyze()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(versionDate, config);
-            service.SetEndpoint(url);
+            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("2019-07-12", config);
+            service.SetEndpoint("{url}");
 
             var features = new Features()
             {
                 Keywords = new KeywordsOptions()
                 {
-                    Limit = 8,
+                    Limit = 2,
                     Sentiment = true,
                     Emotion = true
                 },
-                Categories = new CategoriesOptions()
+                Entities = new EntitiesOptions()
                 {
-                    Limit = 10
+                    Sentiment = true,
+                    Limit = 2
                 }
             };
 
             var result = service.Analyze(
                 features: features,
-                text: text,
-                clean: true,
-                fallbackToRaw: true,
-                returnAnalyzedText: true,
-                language: "en"
+                text: "IBM is an American multinational technology company headquartered in Armonk, New York, United States, with operations in over 170 countries."
                 );
 
             Console.WriteLine(result.Response);
@@ -81,11 +78,11 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Examples
         public void ListModels()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(versionDate, config);
-            service.SetEndpoint(url);
+            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("2019-07-12", config);
+            service.SetEndpoint("{url}");
 
             var result = service.ListModels();
 
@@ -95,14 +92,14 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Examples
         public void DeleteModel()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(versionDate, config);
-            service.SetEndpoint(url);
+            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("2019-07-12", config);
+            service.SetEndpoint("{url}");
 
             var result = service.DeleteModel(
-                modelId: modelId
+                modelId: "model_id"
                 );
 
             Console.WriteLine(result.Response);

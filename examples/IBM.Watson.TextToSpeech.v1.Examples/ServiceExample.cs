@@ -256,7 +256,7 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
                 new Word()
                 {
                     _Word = "IEEE",
-                    Translation = "<phoneme alphabet=ibm\" ph=\"1Y.tr1Ipxl.1i\"></phoneme>"
+                    Translation = "<phoneme alphabet=\"ibm\" ph=\"1Y.tr1Ipxl.1i\"></phoneme>"
                 }
             };
 

@@ -353,6 +353,7 @@ namespace IBM.Watson.SpeechToText.v1.Examples
                 );
 
             Console.WriteLine(result.Response);
+            // Poll for language model status.
         }
 
         public void ResetLanguageModel()
@@ -385,6 +386,7 @@ namespace IBM.Watson.SpeechToText.v1.Examples
                 );
 
             Console.WriteLine(result.Response);
+            // Poll for language model status.
         }
         #endregion
 
@@ -429,6 +431,7 @@ namespace IBM.Watson.SpeechToText.v1.Examples
             }
 
             Console.WriteLine(result.Response);
+            // Poll for language model status.
         }
 
         public void GetCorpus()
@@ -545,6 +548,7 @@ namespace IBM.Watson.SpeechToText.v1.Examples
                 );
 
             Console.WriteLine(result.Response);
+            // Poll for language model status.
         }
 
         public void GetWord()
@@ -616,6 +620,7 @@ namespace IBM.Watson.SpeechToText.v1.Examples
                 );
 
             Console.WriteLine(result.Response);
+            // Poll for language model status.
         }
 
         public void GetGrammar()
@@ -736,6 +741,7 @@ namespace IBM.Watson.SpeechToText.v1.Examples
                 );
 
             Console.WriteLine(result.Response);
+            // Poll for language model status.
         }
 
         public void ResetAcousticModel()
@@ -768,6 +774,7 @@ namespace IBM.Watson.SpeechToText.v1.Examples
                 );
 
             Console.WriteLine(result.Response);
+            // Poll for language model status.
         }
         #endregion
 
@@ -805,6 +812,7 @@ namespace IBM.Watson.SpeechToText.v1.Examples
                 );
 
             Console.WriteLine(result.Response);
+            // Poll for language model status.
         }
 
         public void GetAudio()

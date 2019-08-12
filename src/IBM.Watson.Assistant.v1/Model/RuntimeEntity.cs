@@ -38,12 +38,12 @@ namespace IBM.Watson.Assistant.v1.Model
         [JsonProperty("location", NullValueHandling = NullValueHandling.Ignore)]
         public List<long?> Location { get; set; }
         /// <summary>
-        /// The term in the input text that was recognized as an entity value.
+        /// The entity value that was recognized in the user input.
         /// </summary>
         [JsonProperty("value", NullValueHandling = NullValueHandling.Ignore)]
         public string Value { get; set; }
         /// <summary>
-        /// A decimal percentage that represents Watson's confidence in the entity.
+        /// A decimal percentage that represents Watson's confidence in the recognized entity.
         /// </summary>
         [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
         public float? Confidence { get; set; }

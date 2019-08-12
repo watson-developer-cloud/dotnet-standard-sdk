@@ -481,6 +481,10 @@ namespace IBM.Watson.VisualRecognition.v3
             {
                 throw new ArgumentNullException("`classifierId` is required for `GetClassifier`");
             }
+            else
+            {
+                classifierId = Uri.EscapeDataString(classifierId);
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
             {
@@ -556,6 +560,10 @@ namespace IBM.Watson.VisualRecognition.v3
             {
                 throw new ArgumentNullException("`classifierId` is required for `UpdateClassifier`");
             }
+            else
+            {
+                classifierId = Uri.EscapeDataString(classifierId);
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
             {
@@ -628,6 +636,10 @@ namespace IBM.Watson.VisualRecognition.v3
             {
                 throw new ArgumentNullException("`classifierId` is required for `DeleteClassifier`");
             }
+            else
+            {
+                classifierId = Uri.EscapeDataString(classifierId);
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
             {
@@ -676,6 +688,10 @@ namespace IBM.Watson.VisualRecognition.v3
             if (string.IsNullOrEmpty(classifierId))
             {
                 throw new ArgumentNullException("`classifierId` is required for `GetCoreMlModel`");
+            }
+            else
+            {
+                classifierId = Uri.EscapeDataString(classifierId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))

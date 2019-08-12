@@ -47,6 +47,22 @@ namespace IBM.Watson.CompareComply.v1
         public CompareComplyService() : base(SERVICE_NAME) { }
         
         [Obsolete("Please use CompareComplyService(string versionDate, IAuthenticatorConfig config) instead")]
+        public CompareComplyService(string userName, string password, string versionDate) : base(SERVICE_NAME, URL)
+        {
+            if (string.IsNullOrEmpty(userName))
+                throw new ArgumentNullException(nameof(userName));
+
+            if (string.IsNullOrEmpty(password))
+                throw new ArgumentNullException(nameof(password));
+
+            this.SetCredential(userName, password);
+            if (string.IsNullOrEmpty(versionDate))
+                throw new ArgumentNullException("versionDate cannot be null.");
+
+            VersionDate = versionDate;
+        }
+        
+        [Obsolete("Please use CompareComplyService(string versionDate, IAuthenticatorConfig config) instead")]
         public CompareComplyService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
         {
             if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
@@ -637,6 +653,10 @@ namespace IBM.Watson.CompareComply.v1
             {
                 throw new ArgumentNullException("`feedbackId` is required for `GetFeedback`");
             }
+            else
+            {
+                feedbackId = Uri.EscapeDataString(feedbackId);
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
             {
@@ -693,6 +713,10 @@ namespace IBM.Watson.CompareComply.v1
             if (string.IsNullOrEmpty(feedbackId))
             {
                 throw new ArgumentNullException("`feedbackId` is required for `DeleteFeedback`");
+            }
+            else
+            {
+                feedbackId = Uri.EscapeDataString(feedbackId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -943,6 +967,10 @@ namespace IBM.Watson.CompareComply.v1
             {
                 throw new ArgumentNullException("`batchId` is required for `GetBatch`");
             }
+            else
+            {
+                batchId = Uri.EscapeDataString(batchId);
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
             {
@@ -997,6 +1025,10 @@ namespace IBM.Watson.CompareComply.v1
             if (string.IsNullOrEmpty(batchId))
             {
                 throw new ArgumentNullException("`batchId` is required for `UpdateBatch`");
+            }
+            else
+            {
+                batchId = Uri.EscapeDataString(batchId);
             }
             if (string.IsNullOrEmpty(action))
             {

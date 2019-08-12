@@ -101,7 +101,7 @@ namespace IBM.Watson.Assistant.v2
         {
             if (httpClient == null)
                 throw new ArgumentNullException(nameof(httpClient));
-            
+
             this.Client = httpClient;
             SkipAuthentication = true;
         }
@@ -129,6 +129,10 @@ namespace IBM.Watson.Assistant.v2
             if (string.IsNullOrEmpty(assistantId))
             {
                 throw new ArgumentNullException("`assistantId` is required for `CreateSession`");
+            }
+            else
+            {
+                assistantId = Uri.EscapeDataString(assistantId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -185,9 +189,17 @@ namespace IBM.Watson.Assistant.v2
             {
                 throw new ArgumentNullException("`assistantId` is required for `DeleteSession`");
             }
+            else
+            {
+                assistantId = Uri.EscapeDataString(assistantId);
+            }
             if (string.IsNullOrEmpty(sessionId))
             {
                 throw new ArgumentNullException("`sessionId` is required for `DeleteSession`");
+            }
+            else
+            {
+                sessionId = Uri.EscapeDataString(sessionId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -247,9 +259,17 @@ namespace IBM.Watson.Assistant.v2
             {
                 throw new ArgumentNullException("`assistantId` is required for `Message`");
             }
+            else
+            {
+                assistantId = Uri.EscapeDataString(assistantId);
+            }
             if (string.IsNullOrEmpty(sessionId))
             {
                 throw new ArgumentNullException("`sessionId` is required for `Message`");
+            }
+            else
+            {
+                sessionId = Uri.EscapeDataString(sessionId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))

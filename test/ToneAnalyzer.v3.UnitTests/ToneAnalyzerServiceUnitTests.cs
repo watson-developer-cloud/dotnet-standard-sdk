@@ -29,7 +29,7 @@ using System.Threading.Tasks;
 
 namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
 {
-    [TestClass]
+    //[TestClass]
     public class ToneAnalyzerServiceUnitTests
     {
         private string versionDate = "2016-05-19";

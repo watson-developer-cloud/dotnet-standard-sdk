@@ -116,6 +116,11 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// Send user input to a workspace and receive a response.
         ///
+        /// **Note:** For most applications, there are significant advantages to using the v2 runtime API instead. These
+        /// advantages include ease of deployment, automatic state management, versioning, and search capabilities. For
+        /// more information, see the
+        /// [documentation](https://cloud.ibm.com/docs/services/assistant?topic=assistant-api-overview).
+        ///
         /// There is no rate limit for this operation.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
@@ -129,6 +134,10 @@ namespace IBM.Watson.Assistant.v1
             if (string.IsNullOrEmpty(workspaceId))
             {
                 throw new ArgumentNullException("`workspaceId` is required for `Message`");
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -392,6 +401,10 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `GetWorkspace`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
             {
@@ -466,6 +479,10 @@ namespace IBM.Watson.Assistant.v1
             if (string.IsNullOrEmpty(workspaceId))
             {
                 throw new ArgumentNullException("`workspaceId` is required for `UpdateWorkspace`");
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -567,6 +584,10 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `DeleteWorkspace`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
             {
@@ -628,6 +649,10 @@ namespace IBM.Watson.Assistant.v1
             if (string.IsNullOrEmpty(workspaceId))
             {
                 throw new ArgumentNullException("`workspaceId` is required for `ListIntents`");
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -708,6 +733,10 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `CreateIntent`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(intent))
             {
                 throw new ArgumentNullException("`intent` is required for `CreateIntent`");
@@ -787,9 +816,17 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `GetIntent`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(intent))
             {
                 throw new ArgumentNullException("`intent` is required for `GetIntent`");
+            }
+            else
+            {
+                intent = Uri.EscapeDataString(intent);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -861,9 +898,17 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `UpdateIntent`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(intent))
             {
                 throw new ArgumentNullException("`intent` is required for `UpdateIntent`");
+            }
+            else
+            {
+                intent = Uri.EscapeDataString(intent);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -934,9 +979,17 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `DeleteIntent`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(intent))
             {
                 throw new ArgumentNullException("`intent` is required for `DeleteIntent`");
+            }
+            else
+            {
+                intent = Uri.EscapeDataString(intent);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -997,9 +1050,17 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `ListExamples`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(intent))
             {
                 throw new ArgumentNullException("`intent` is required for `ListExamples`");
+            }
+            else
+            {
+                intent = Uri.EscapeDataString(intent);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -1077,9 +1138,17 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `CreateExample`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(intent))
             {
                 throw new ArgumentNullException("`intent` is required for `CreateExample`");
+            }
+            else
+            {
+                intent = Uri.EscapeDataString(intent);
             }
             if (string.IsNullOrEmpty(text))
             {
@@ -1153,13 +1222,25 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `GetExample`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(intent))
             {
                 throw new ArgumentNullException("`intent` is required for `GetExample`");
             }
+            else
+            {
+                intent = Uri.EscapeDataString(intent);
+            }
             if (string.IsNullOrEmpty(text))
             {
                 throw new ArgumentNullException("`text` is required for `GetExample`");
+            }
+            else
+            {
+                text = Uri.EscapeDataString(text);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -1222,13 +1303,25 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `UpdateExample`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(intent))
             {
                 throw new ArgumentNullException("`intent` is required for `UpdateExample`");
             }
+            else
+            {
+                intent = Uri.EscapeDataString(intent);
+            }
             if (string.IsNullOrEmpty(text))
             {
                 throw new ArgumentNullException("`text` is required for `UpdateExample`");
+            }
+            else
+            {
+                text = Uri.EscapeDataString(text);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -1296,13 +1389,25 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `DeleteExample`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(intent))
             {
                 throw new ArgumentNullException("`intent` is required for `DeleteExample`");
             }
+            else
+            {
+                intent = Uri.EscapeDataString(intent);
+            }
             if (string.IsNullOrEmpty(text))
             {
                 throw new ArgumentNullException("`text` is required for `DeleteExample`");
+            }
+            else
+            {
+                text = Uri.EscapeDataString(text);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -1362,6 +1467,10 @@ namespace IBM.Watson.Assistant.v1
             if (string.IsNullOrEmpty(workspaceId))
             {
                 throw new ArgumentNullException("`workspaceId` is required for `ListCounterexamples`");
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -1439,6 +1548,10 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `CreateCounterexample`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(text))
             {
                 throw new ArgumentNullException("`text` is required for `CreateCounterexample`");
@@ -1507,9 +1620,17 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `GetCounterexample`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(text))
             {
                 throw new ArgumentNullException("`text` is required for `GetCounterexample`");
+            }
+            else
+            {
+                text = Uri.EscapeDataString(text);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -1571,9 +1692,17 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `UpdateCounterexample`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(text))
             {
                 throw new ArgumentNullException("`text` is required for `UpdateCounterexample`");
+            }
+            else
+            {
+                text = Uri.EscapeDataString(text);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -1637,9 +1766,17 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `DeleteCounterexample`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(text))
             {
                 throw new ArgumentNullException("`text` is required for `DeleteCounterexample`");
+            }
+            else
+            {
+                text = Uri.EscapeDataString(text);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -1702,6 +1839,10 @@ namespace IBM.Watson.Assistant.v1
             if (string.IsNullOrEmpty(workspaceId))
             {
                 throw new ArgumentNullException("`workspaceId` is required for `ListEntities`");
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -1781,6 +1922,10 @@ namespace IBM.Watson.Assistant.v1
             if (string.IsNullOrEmpty(workspaceId))
             {
                 throw new ArgumentNullException("`workspaceId` is required for `CreateEntity`");
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
             }
             if (string.IsNullOrEmpty(entity))
             {
@@ -1869,9 +2014,17 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `GetEntity`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(entity))
             {
                 throw new ArgumentNullException("`entity` is required for `GetEntity`");
+            }
+            else
+            {
+                entity = Uri.EscapeDataString(entity);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -1942,9 +2095,17 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `UpdateEntity`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(entity))
             {
                 throw new ArgumentNullException("`entity` is required for `UpdateEntity`");
+            }
+            else
+            {
+                entity = Uri.EscapeDataString(entity);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -2023,9 +2184,17 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `DeleteEntity`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(entity))
             {
                 throw new ArgumentNullException("`entity` is required for `DeleteEntity`");
+            }
+            else
+            {
+                entity = Uri.EscapeDataString(entity);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -2084,9 +2253,17 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `ListMentions`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(entity))
             {
                 throw new ArgumentNullException("`entity` is required for `ListMentions`");
+            }
+            else
+            {
+                entity = Uri.EscapeDataString(entity);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -2158,9 +2335,17 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `ListValues`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(entity))
             {
                 throw new ArgumentNullException("`entity` is required for `ListValues`");
+            }
+            else
+            {
+                entity = Uri.EscapeDataString(entity);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -2242,9 +2427,17 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `CreateValue`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(entity))
             {
                 throw new ArgumentNullException("`entity` is required for `CreateValue`");
+            }
+            else
+            {
+                entity = Uri.EscapeDataString(entity);
             }
             if (string.IsNullOrEmpty(value))
             {
@@ -2333,13 +2526,25 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `GetValue`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(entity))
             {
                 throw new ArgumentNullException("`entity` is required for `GetValue`");
             }
+            else
+            {
+                entity = Uri.EscapeDataString(entity);
+            }
             if (string.IsNullOrEmpty(value))
             {
                 throw new ArgumentNullException("`value` is required for `GetValue`");
+            }
+            else
+            {
+                value = Uri.EscapeDataString(value);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -2412,13 +2617,25 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `UpdateValue`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(entity))
             {
                 throw new ArgumentNullException("`entity` is required for `UpdateValue`");
             }
+            else
+            {
+                entity = Uri.EscapeDataString(entity);
+            }
             if (string.IsNullOrEmpty(value))
             {
                 throw new ArgumentNullException("`value` is required for `UpdateValue`");
+            }
+            else
+            {
+                value = Uri.EscapeDataString(value);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -2498,13 +2715,25 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `DeleteValue`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(entity))
             {
                 throw new ArgumentNullException("`entity` is required for `DeleteValue`");
             }
+            else
+            {
+                entity = Uri.EscapeDataString(entity);
+            }
             if (string.IsNullOrEmpty(value))
             {
                 throw new ArgumentNullException("`value` is required for `DeleteValue`");
+            }
+            else
+            {
+                value = Uri.EscapeDataString(value);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -2566,13 +2795,25 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `ListSynonyms`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(entity))
             {
                 throw new ArgumentNullException("`entity` is required for `ListSynonyms`");
             }
+            else
+            {
+                entity = Uri.EscapeDataString(entity);
+            }
             if (string.IsNullOrEmpty(value))
             {
                 throw new ArgumentNullException("`value` is required for `ListSynonyms`");
+            }
+            else
+            {
+                value = Uri.EscapeDataString(value);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -2651,13 +2892,25 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `CreateSynonym`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(entity))
             {
                 throw new ArgumentNullException("`entity` is required for `CreateSynonym`");
             }
+            else
+            {
+                entity = Uri.EscapeDataString(entity);
+            }
             if (string.IsNullOrEmpty(value))
             {
                 throw new ArgumentNullException("`value` is required for `CreateSynonym`");
+            }
+            else
+            {
+                value = Uri.EscapeDataString(value);
             }
             if (string.IsNullOrEmpty(synonym))
             {
@@ -2728,17 +2981,33 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `GetSynonym`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(entity))
             {
                 throw new ArgumentNullException("`entity` is required for `GetSynonym`");
+            }
+            else
+            {
+                entity = Uri.EscapeDataString(entity);
             }
             if (string.IsNullOrEmpty(value))
             {
                 throw new ArgumentNullException("`value` is required for `GetSynonym`");
             }
+            else
+            {
+                value = Uri.EscapeDataString(value);
+            }
             if (string.IsNullOrEmpty(synonym))
             {
                 throw new ArgumentNullException("`synonym` is required for `GetSynonym`");
+            }
+            else
+            {
+                synonym = Uri.EscapeDataString(synonym);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -2802,17 +3071,33 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `UpdateSynonym`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(entity))
             {
                 throw new ArgumentNullException("`entity` is required for `UpdateSynonym`");
+            }
+            else
+            {
+                entity = Uri.EscapeDataString(entity);
             }
             if (string.IsNullOrEmpty(value))
             {
                 throw new ArgumentNullException("`value` is required for `UpdateSynonym`");
             }
+            else
+            {
+                value = Uri.EscapeDataString(value);
+            }
             if (string.IsNullOrEmpty(synonym))
             {
                 throw new ArgumentNullException("`synonym` is required for `UpdateSynonym`");
+            }
+            else
+            {
+                synonym = Uri.EscapeDataString(synonym);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -2877,17 +3162,33 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `DeleteSynonym`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(entity))
             {
                 throw new ArgumentNullException("`entity` is required for `DeleteSynonym`");
+            }
+            else
+            {
+                entity = Uri.EscapeDataString(entity);
             }
             if (string.IsNullOrEmpty(value))
             {
                 throw new ArgumentNullException("`value` is required for `DeleteSynonym`");
             }
+            else
+            {
+                value = Uri.EscapeDataString(value);
+            }
             if (string.IsNullOrEmpty(synonym))
             {
                 throw new ArgumentNullException("`synonym` is required for `DeleteSynonym`");
+            }
+            else
+            {
+                synonym = Uri.EscapeDataString(synonym);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -2946,6 +3247,10 @@ namespace IBM.Watson.Assistant.v1
             if (string.IsNullOrEmpty(workspaceId))
             {
                 throw new ArgumentNullException("`workspaceId` is required for `ListDialogNodes`");
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -3021,6 +3326,10 @@ namespace IBM.Watson.Assistant.v1
             if (string.IsNullOrEmpty(workspaceId))
             {
                 throw new ArgumentNullException("`workspaceId` is required for `CreateDialogNode`");
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
             }
             if (string.IsNullOrEmpty(dialogNode))
             {
@@ -3157,9 +3466,17 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `GetDialogNode`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(dialogNode))
             {
                 throw new ArgumentNullException("`dialogNode` is required for `GetDialogNode`");
+            }
+            else
+            {
+                dialogNode = Uri.EscapeDataString(dialogNode);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -3226,9 +3543,17 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `UpdateDialogNode`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(dialogNode))
             {
                 throw new ArgumentNullException("`dialogNode` is required for `UpdateDialogNode`");
+            }
+            else
+            {
+                dialogNode = Uri.EscapeDataString(dialogNode);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -3359,9 +3684,17 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("`workspaceId` is required for `DeleteDialogNode`");
             }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
             if (string.IsNullOrEmpty(dialogNode))
             {
                 throw new ArgumentNullException("`dialogNode` is required for `DeleteDialogNode`");
+            }
+            else
+            {
+                dialogNode = Uri.EscapeDataString(dialogNode);
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -3422,6 +3755,10 @@ namespace IBM.Watson.Assistant.v1
             if (string.IsNullOrEmpty(workspaceId))
             {
                 throw new ArgumentNullException("`workspaceId` is required for `ListLogs`");
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
             }
 
             if (string.IsNullOrEmpty(VersionDate))

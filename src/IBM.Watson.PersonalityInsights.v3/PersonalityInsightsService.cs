@@ -155,9 +155,7 @@ namespace IBM.Watson.PersonalityInsights.v3
         /// input](https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-input#sufficient).
         /// For JSON input, provide an object of type `Content`.</param>
         /// <param name="contentType">The type of the input. For more information, see **Content types** in the method
-        /// description.
-        ///
-        /// Default: `text/plain`. (optional)</param>
+        /// description. (optional, default to text/plain)</param>
         /// <param name="contentLanguage">The language of the input text for the request: Arabic, English, Japanese,
         /// Korean, or Spanish. Regional variants are treated as their parent language; for example, `en-US` is
         /// interpreted as `en`.
@@ -297,9 +295,7 @@ namespace IBM.Watson.PersonalityInsights.v3
         /// input](https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-input#sufficient).
         /// For JSON input, provide an object of type `Content`.</param>
         /// <param name="contentType">The type of the input. For more information, see **Content types** in the method
-        /// description.
-        ///
-        /// Default: `text/plain`. (optional)</param>
+        /// description. (optional, default to text/plain)</param>
         /// <param name="contentLanguage">The language of the input text for the request: Arabic, English, Japanese,
         /// Korean, or Spanish. Regional variants are treated as their parent language; for example, `en-US` is
         /// interpreted as `en`.

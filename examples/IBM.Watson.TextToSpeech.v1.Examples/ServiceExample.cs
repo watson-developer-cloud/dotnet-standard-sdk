@@ -63,11 +63,11 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
         public void ListVoices()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
             TextToSpeechService service = new TextToSpeechService(config);
-            service.SetEndpoint(url);
+            service.SetEndpoint("{url}");
 
             var result = service.ListVoices();
 
@@ -77,11 +77,11 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
         public void GetVoice()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
             TextToSpeechService service = new TextToSpeechService(config);
-            service.SetEndpoint(url);
+            service.SetEndpoint("{url}");
 
             var result = service.GetVoice("en-US_AllisonVoice");
 
@@ -93,27 +93,24 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
         public void Synthesize()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
             TextToSpeechService service = new TextToSpeechService(config);
-            service.SetEndpoint(url);
+            service.SetEndpoint("{url}");
 
             var result = service.Synthesize(
-                text: "Hello, welcome to the Watson dotnet SDK!",
+                text: "Hello world",
                 accept: "audio/wav",
                 voice: "en-US_AllisonVoice"
                 );
 
-            //  Save file
-            using (FileStream fs = File.Create("synthesize.wav"))
+            using (FileStream fs = File.Create("hello_world.wav"))
             {
                 result.Result.WriteTo(fs);
                 fs.Close();
                 result.Result.Close();
             }
-
-            Console.WriteLine(result.Result);
         }
         #endregion
 
@@ -121,16 +118,16 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
         public void GetPronunciation()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
             TextToSpeechService service = new TextToSpeechService(config);
-            service.SetEndpoint(url);
+            service.SetEndpoint("{url}");
 
             var result = service.GetPronunciation(
-                text: "IBM",
-                voice: "en-US_AllisonVoice",
-                format: "ipa"
+                text: "IEEE",
+                format: "ibm",
+                voice: "en-US_AllisonVoice"
                 );
 
             Console.WriteLine(result.Result);
@@ -141,11 +138,11 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
         public void ListVoiceModels()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
             TextToSpeechService service = new TextToSpeechService(config);
-            service.SetEndpoint(url);
+            service.SetEndpoint("{url}");
 
             var result = service.ListVoiceModels();
 
@@ -154,33 +151,36 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
 
         public void CreateVoiceModel()
         {
-            IamConfig config = new IamConfig(
-                apikey: apikey
-                );
+            IamConfig config = new IamConfig();
+            {
+                apikey = "{apikey}";
+            }
 
             TextToSpeechService service = new TextToSpeechService(config);
-            service.SetEndpoint(url);
+            service.SetEndpoint("{url}");
 
             var result = service.CreateVoiceModel(
-                name: "dotnet-sdk-voice-model",
+                name: "First Model",
                 language: "en-US",
-                description: "Custom voice model for .NET SDK examples.");
-            customizationId = result.Result.CustomizationId;
+                description: "First custom voice model"
+                );
 
             Console.WriteLine(result.Result);
+
+            customizationId = result.Result.CustomizationId;
         }
 
         public void GetVoiceModel()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
             TextToSpeechService service = new TextToSpeechService(config);
-            service.SetEndpoint(url);
+            service.SetEndpoint("{url}");
 
             var result = service.GetVoiceModel(
-                customizationId: customizationId
+                customizationId: "{customizationId}"
                 );
 
             Console.WriteLine(result.Result);
@@ -189,35 +189,30 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
         public void UpdateVoiceModel()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
             TextToSpeechService service = new TextToSpeechService(config);
-            service.SetEndpoint(url);
+            service.SetEndpoint("{url}");
 
             var words = new List<Word>()
             {
                 new Word()
                 {
-                    _Word = "hello",
-                    Translation = "hullo"
+                    _Word = "NCAA",
+                    Translation = "N C double A"
                 },
                 new Word()
                 {
-                    _Word = "goodbye",
-                    Translation = "gbye"
-                },
-                new Word()
-                {
-                    _Word = "hi",
-                    Translation = "ohioooo"
+                    _Word = "iPhone",
+                    Translation = "I phone"
                 }
             };
 
             var result = service.UpdateVoiceModel(
-                customizationId: customizationId,
-                name: "dotnet-sdk-voice-model-updated",
-                description: "Custom voice model for .NET SDK integration tests. Updated.",
+                customizationId: "{customizationId}",
+                name: "First Model Update",
+                description: "First custom voice model update",
                 words: words
                 );
 
@@ -227,14 +222,14 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
         public void DeleteVoiceModel()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
             TextToSpeechService service = new TextToSpeechService(config);
-            service.SetEndpoint(url);
+            service.SetEndpoint("{url}");
 
             var result = service.DeleteVoiceModel(
-                customizationId: customizationId
+                customizationId: "{customizationId}"
                 );
 
             Console.WriteLine(result.StatusCode);
@@ -245,33 +240,28 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
         private void AddWords()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
             TextToSpeechService service = new TextToSpeechService(config);
-            service.SetEndpoint(url);
+            service.SetEndpoint("{url}");
 
             var words = new List<Word>()
             {
                 new Word()
                 {
-                    _Word = "hello",
-                    Translation = "hullo"
+                    _Word = "EEE",
+                    Translation = "<phoneme alphabet=\"ibm\" ph=\"tr1Ipxl.1i\"></phoneme>"
                 },
                 new Word()
                 {
-                    _Word = "goodbye",
-                    Translation = "gbye"
-                },
-                new Word()
-                {
-                    _Word = "hi",
-                    Translation = "ohioooo"
+                    _Word = "IEEE",
+                    Translation = "<phoneme alphabet=\"ibm\" ph=\"1Y.tr1Ipxl.1i\"></phoneme>"
                 }
             };
 
             var result = service.AddWords(
-                customizationId: customizationId,
+                customizationId: "{customizationId}",
                 words: words
                 );
 
@@ -281,14 +271,14 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
         private void ListWords()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
             TextToSpeechService service = new TextToSpeechService(config);
-            service.SetEndpoint(url);
+            service.SetEndpoint("{url}");
 
             var result = service.ListWords(
-                customizationId: customizationId
+                customizationId: "{customizationId}"
                 );
 
             Console.WriteLine(result.StatusCode);
@@ -297,17 +287,16 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
         private void AddWord()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
             TextToSpeechService service = new TextToSpeechService(config);
-            service.SetEndpoint(url);
+            service.SetEndpoint("{url}");
 
             var result = service.AddWord(
-                customizationId: customizationId,
-                word: "IBM",
-                translation: "eye bee m",
-                partOfSpeech: "noun"
+                customizationId: "{customizationId}",
+                word: "ACLs",
+                translation: "ackles"
                 );
 
             Console.WriteLine(result.StatusCode);
@@ -316,15 +305,15 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
         private void GetWord()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
             TextToSpeechService service = new TextToSpeechService(config);
-            service.SetEndpoint(url);
+            service.SetEndpoint("{url}");
 
             var result = service.GetWord(
-                customizationId: customizationId,
-                word: "hello"
+                customizationId: "{customizationId}",
+                word: "ACLs"
                 );
 
             Console.WriteLine(result.StatusCode);
@@ -333,15 +322,15 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
         private void DeleteWord()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
             TextToSpeechService service = new TextToSpeechService(config);
-            service.SetEndpoint(url);
+            service.SetEndpoint("{url}");
 
             var result = service.DeleteWord(
-                customizationId: customizationId,
-                word: "hello"
+                customizationId: "{customizationId}",
+                word: "ACLs"
                 );
 
             Console.WriteLine(result.StatusCode);
@@ -352,14 +341,14 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
         public void DeleteUserData()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
             TextToSpeechService service = new TextToSpeechService(config);
-            service.SetEndpoint(url);
+            service.SetEndpoint("{url}");
 
             var result = service.DeleteUserData(
-                customerId: "customerId"
+                customerId: "customer_ID"
                 );
 
             Console.WriteLine(result.StatusCode);

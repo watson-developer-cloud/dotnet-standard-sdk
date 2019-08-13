@@ -47,32 +47,33 @@ namespace IBM.Watson.Assistant.v2.Examples
         public void CreateSession()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            AssistantService service = new AssistantService(versionDate, config);
-            service.SetEndpoint(url);
+            AssistantService service = new AssistantService("2019-02-28", config);
+            service.SetEndpoint("{url}");
 
             var result = service.CreateSession(
-                assistantId: assistantId
+                assistantId: "{assistantId}"
                 );
-            sessionId = result.Result.SessionId;
 
             Console.WriteLine(result.Response);
+
+            sessionId = result.Result.SessionId;
         }
 
         public void DeleteSession()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            AssistantService service = new AssistantService(versionDate, config);
-            service.SetEndpoint(url);
+            AssistantService service = new AssistantService("2019-02-28", config);
+            service.SetEndpoint("{url}");
 
             var result = service.DeleteSession(
-                assistantId: assistantId,
-                sessionId: sessionId
+                assistantId: "{assistantId}",
+                sessionId: "{sessionId}"
                 );
 
             Console.WriteLine(result.Response);
@@ -83,27 +84,58 @@ namespace IBM.Watson.Assistant.v2.Examples
         public void Message()
         {
             IamConfig config = new IamConfig(
-                apikey: apikey
+                apikey: "{apikey}"
                 );
 
-            AssistantService service = new AssistantService(versionDate, config);
-            service.SetEndpoint(url);
-
-            MessageInput input = new MessageInput()
-            {
-                MessageType = MessageInput.MessageTypeEnumValue.TEXT,
-                Text = inputString,
-                Options = new MessageInputOptions()
-                {
-                    ReturnContext = true,
-                    AlternateIntents = true
-                }
-            };
+            AssistantService service = new AssistantService("2019-02-28", config);
+            service.SetEndpoint("{url}");
 
             var result = service.Message(
-                assistantId: assistantId,
-                sessionId: sessionId,
-                input: input
+                assistantId: "{assistantId}",
+                sessionId: "{sessionId}",
+                input: new MessageInput()
+                {
+                    Text = "Hello"
+                }
+                );
+
+            Console.WriteLine(result.Response);
+        }
+        #endregion
+
+        #region Message with context
+        public void MessageWithContext()
+        {
+            IamConfig config = new IamConfig(
+                apikey: "{apikey}"
+                );
+
+            AssistantService service = new AssistantService("2019-02-28", config);
+            service.SetEndpoint("{url}");
+
+            MessageContextSkills skills = new MessageContextSkills();
+            MessageContextSkill skill = new MessageContextSkill();
+            skill.UserDefined.Add("account_number", "123456");
+            skills.Add("main skill", skill);
+
+            var result = service.Message(
+                assistantId: "{assistantId}",
+                sessionId: "{sessionId}",
+                input: new MessageInput()
+                {
+                    Text = "Hello"
+                },
+                context: new MessageContext()
+                {
+                    Global = new MessageContextGlobal()
+                    {
+                        System = new MessageContextGlobalSystem()
+                        {
+                            UserId = "my_user_id"
+                        }
+                    },
+                    Skills = skills
+                }
                 );
 
             Console.WriteLine(result.Response);

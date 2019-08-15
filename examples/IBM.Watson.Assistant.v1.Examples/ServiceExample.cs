@@ -104,11 +104,10 @@ namespace IBM.Watson.Assistant.v1.Examples
         #region Message
         public void Message()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.Message(
@@ -128,11 +127,10 @@ namespace IBM.Watson.Assistant.v1.Examples
         #region Workspaces
         public void ListWorkspaces()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.ListWorkspaces();
@@ -141,11 +139,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void CreateWorkspace()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.CreateWorkspace(
@@ -160,11 +157,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void GetWorkspace()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.GetWorkspace(
@@ -176,11 +172,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void UpdateWorkspace()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.UpdateWorkspace(
@@ -194,11 +189,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void DeleteWorkspace()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.DeleteWorkspace(
@@ -212,11 +206,10 @@ namespace IBM.Watson.Assistant.v1.Examples
         #region Intents
         public void ListIntents()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.ListIntents(
@@ -228,11 +221,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void CreateIntent()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.CreateIntent(
@@ -258,11 +250,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void GetIntent()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.GetIntent(
@@ -275,11 +266,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void UpdateIntent()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.UpdateIntent(
@@ -302,11 +292,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void DeleteIntent()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.DeleteIntent(
@@ -321,11 +310,10 @@ namespace IBM.Watson.Assistant.v1.Examples
         #region Examples
         public void ListExamples()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.ListExamples(
@@ -338,11 +326,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void CreateExample()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.CreateExample(
@@ -358,11 +345,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void GetExample()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.GetExample(
@@ -376,11 +362,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void UpdateExample()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.UpdateExample(
@@ -397,11 +382,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void DeleteExample()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.DeleteExample(
@@ -417,11 +401,10 @@ namespace IBM.Watson.Assistant.v1.Examples
         #region Counterexamples
         public void ListCounterexamples()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.ListCounterexamples(
@@ -433,11 +416,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void CreateCounterexample()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.CreateCounterexample(
@@ -452,11 +434,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void GetCounterexample()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.GetCounterexample(
@@ -469,11 +450,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void UpdateCounterexample()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.UpdateCounterexample(
@@ -489,11 +469,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void DeleteCounterexample()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.DeleteCounterexample(
@@ -508,11 +487,10 @@ namespace IBM.Watson.Assistant.v1.Examples
         #region Entities
         public void ListEntities()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.ListEntities(
@@ -524,11 +502,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void CreateEntity()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.CreateEntity(
@@ -558,11 +535,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void GetEntity()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.GetEntity(
@@ -575,11 +551,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void UpdateEntity()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.UpdateEntity(
@@ -595,11 +570,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void DeleteEntity()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.DeleteEntity(
@@ -614,11 +588,10 @@ namespace IBM.Watson.Assistant.v1.Examples
         #region Mentions
         public void ListEntityMentions()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.ListMentions(
@@ -633,11 +606,10 @@ namespace IBM.Watson.Assistant.v1.Examples
         #region Values
         public void ListValues()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.ListValues(
@@ -650,11 +622,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void CreateValue()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.CreateValue(
@@ -670,11 +641,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void GetValue()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.GetValue(
@@ -688,11 +658,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void UpdateValue()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.UpdateValue(
@@ -713,11 +682,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void DeleteValue()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.DeleteValue(
@@ -733,11 +701,10 @@ namespace IBM.Watson.Assistant.v1.Examples
         #region Synonyms
         public void ListSynonyms()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.ListSynonyms(
@@ -751,11 +718,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void CreateSynonym()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.CreateSynonym(
@@ -772,11 +738,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void GetSynonym()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.GetSynonym(
@@ -791,11 +756,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void UpdateSynonym()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.UpdateSynonym(
@@ -813,11 +777,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void DeleteSynonyms()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.DeleteSynonym(
@@ -834,11 +797,10 @@ namespace IBM.Watson.Assistant.v1.Examples
         #region Dialog Nodes
         public void ListDialogNodes()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.ListDialogNodes(
@@ -850,11 +812,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void CreateDialogNode()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.CreateDialogNode(
@@ -869,11 +830,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void GetDialogNode()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.GetDialogNode(
@@ -886,11 +846,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void UpdateDialogNode()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.UpdateDialogNode(
@@ -922,11 +881,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void DeleteDialogNode()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.DeleteDialogNode(
@@ -941,11 +899,10 @@ namespace IBM.Watson.Assistant.v1.Examples
         #region Logs
         public void ListLogs()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.ListLogs(
@@ -957,11 +914,10 @@ namespace IBM.Watson.Assistant.v1.Examples
 
         public void ListAllLogs()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.ListAllLogs(
@@ -975,11 +931,10 @@ namespace IBM.Watson.Assistant.v1.Examples
         #region User Data
         public void DeleteUserData()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.DeleteUserData(

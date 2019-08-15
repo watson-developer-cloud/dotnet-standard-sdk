@@ -46,11 +46,10 @@ namespace IBM.Watson.Assistant.v2.Examples
         #region Sessions
         public void CreateSession()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.CreateSession(
@@ -64,11 +63,10 @@ namespace IBM.Watson.Assistant.v2.Examples
 
         public void DeleteSession()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.DeleteSession(
@@ -83,11 +81,10 @@ namespace IBM.Watson.Assistant.v2.Examples
         #region Message
         public void Message()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.Message(
@@ -106,11 +103,10 @@ namespace IBM.Watson.Assistant.v2.Examples
         #region Message with context
         public void MessageWithContext()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", config);
+            AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetEndpoint("{url}");
 
             MessageContextSkills skills = new MessageContextSkills();

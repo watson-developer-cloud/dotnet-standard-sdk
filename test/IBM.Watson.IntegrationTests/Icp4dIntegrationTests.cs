@@ -15,14 +15,14 @@
 *
 */
 
-using IBM.Cloud.SDK.Core.Authentication.Icp4d;
+using IBM.Cloud.SDK.Core.Authentication.Cp4d;
 using IBM.Watson.NaturalLanguageUnderstanding.v1;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace IBM.Watson.IntegrationTests
 {
     //[TestClass]
-    public class Icp4dIntegrationTests
+    public class Cp4dIntegrationTests
     {
         //[TestMethod]
         public void TestIcp4d_Success()
@@ -31,8 +31,8 @@ namespace IBM.Watson.IntegrationTests
             var username = "";
             var password = "";
             var versionDate = "";
-            Icp4dConfig config = new Icp4dConfig(url: url, username: username, password: password, disableSslVerification: true);
-            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(versionDate: versionDate, config: config);
+            CloudPakForDataAuthenticator cloudPakForDataAuthenticator = new CloudPakForDataAuthenticator(url: url, username: username, password: password, disableSslVerification: true);
+            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(versionDate: versionDate, authenticator: cloudPakForDataAuthenticator);
             service.SetEndpoint("");
             var listWorkspaceResult = service.ListModels();
 

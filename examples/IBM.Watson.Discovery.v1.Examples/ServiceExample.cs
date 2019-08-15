@@ -141,11 +141,10 @@ namespace IBM.Watson.Discovery.v1.Examples
         #region Environments
         public void ListEnvironments()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.ListEnvironments();
@@ -163,11 +162,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void CreateEnvironment()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.CreateEnvironment(
@@ -180,11 +178,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void GetEnvironment()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.GetEnvironment(
@@ -196,11 +193,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void UpdateEnvironment()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.UpdateEnvironment(
@@ -214,11 +210,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void DeleteEnvironment()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.DeleteEnvironment(
@@ -230,11 +225,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void ListFields()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.ListFields(
@@ -249,11 +243,10 @@ namespace IBM.Watson.Discovery.v1.Examples
         #region Configurations
         public void ListConfigurations()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.ListConfigurations(
@@ -265,11 +258,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void CreateConfiguration()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.CreateConfiguration(
@@ -284,11 +276,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void GetConfiguration()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.GetConfiguration(
@@ -301,11 +292,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void UpdateConfiguration()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.UpdateConfiguration(
@@ -319,11 +309,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void DeleteConfiguration()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.DeleteConfiguration(
@@ -338,11 +327,10 @@ namespace IBM.Watson.Discovery.v1.Examples
         #region Test Configuration in Environment
         public void TestConfigurationInEnvironment()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             using (FileStream fs = File.OpenRead("{path_to_document}"))
@@ -367,11 +355,10 @@ namespace IBM.Watson.Discovery.v1.Examples
         #region Collections
         public void ListCollections()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.ListCollections(
@@ -383,11 +370,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void CreateCollection()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.CreateCollection(
@@ -404,11 +390,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void GetCollection()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.GetCollection(
@@ -421,11 +406,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void UpdateCollection()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.UpdateCollection(
@@ -439,11 +423,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void DeleteCollection()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.DeleteCollection(
@@ -456,11 +439,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void ListCollectionFields()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.ListCollectionFields(
@@ -475,11 +457,10 @@ namespace IBM.Watson.Discovery.v1.Examples
         #region Query Modifications
         public void ListExpansions()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.ListExpansions(
@@ -492,11 +473,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void CreateExpansions()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var expansions = new List<Expansion>()
@@ -525,11 +505,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void DeleteExpansion()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.DeleteExpansions(
@@ -542,11 +521,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void GetTokenizationDictionaryStatus()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.GetTokenizationDictionaryStatus(
@@ -559,11 +537,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void CreateTokenizationDictionary()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var tokenizationRules = new List<TokenDictRule>()
@@ -594,11 +571,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void DeleteTokenizationDictionary()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.DeleteTokenizationDictionary(
@@ -611,11 +587,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void GetStopwordListStatus()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.GetStopwordListStatus(
@@ -628,11 +603,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void CreateStopwordList()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             DetailedResponse<TokenDictStatusResponse> result;
@@ -655,11 +629,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void DeleteStopwordList()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.DeleteStopwordList(
@@ -674,11 +647,10 @@ namespace IBM.Watson.Discovery.v1.Examples
         #region Documents
         public void AddDocument()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             DetailedResponse<DocumentAccepted> result;
@@ -705,11 +677,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void GetDocument()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.GetDocumentStatus(
@@ -723,11 +694,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void UpdateDocument()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             DetailedResponse<DocumentAccepted> result;
@@ -753,11 +723,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void DeleteDocument()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.DeleteDocument(
@@ -773,11 +742,10 @@ namespace IBM.Watson.Discovery.v1.Examples
         #region Queries
         public void Query()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.Query(
@@ -796,11 +764,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void QueryNotices()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.QueryNotices(
@@ -814,11 +781,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void FederatedQuery()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.FederatedQuery(
@@ -832,11 +798,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void FederatedQueryNotices()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.FederatedQueryNotices(
@@ -850,11 +815,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void QueryEntities()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.QueryEntities(
@@ -867,11 +831,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void QueryRelations()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.QueryRelations(
@@ -886,11 +849,10 @@ namespace IBM.Watson.Discovery.v1.Examples
         #region Training Data
         public void ListTrainingData()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.ListTrainingData(
@@ -903,11 +865,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void AddTrainingData()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var examples = new List<TrainingExample>()
@@ -933,11 +894,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void DeleteAllTraininData()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.DeleteAllTrainingData(
@@ -950,11 +910,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void GetTrainingData()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.GetTrainingData(
@@ -968,11 +927,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void DeleteTrainingData()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.DeleteTrainingData(
@@ -986,11 +944,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void ListTrainingExamples()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.ListTrainingExamples(
@@ -1004,11 +961,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void CreateTrainingExample()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.CreateTrainingExample(
@@ -1025,11 +981,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void DeleteTrainingExample()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.DeleteTrainingExample(
@@ -1044,11 +999,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void UpdateTrainingExample()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.UpdateTrainingExample(
@@ -1065,11 +1019,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void GetTrainingExample()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.GetTrainingExample(
@@ -1086,11 +1039,10 @@ namespace IBM.Watson.Discovery.v1.Examples
         #region User data
         public void DeleteUserData()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.DeleteUserData(
@@ -1104,11 +1056,10 @@ namespace IBM.Watson.Discovery.v1.Examples
         #region Events and Feedback
         public void CreateEvent()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var data = new EventData()
@@ -1129,11 +1080,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void QueryLog()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.QueryLog();
@@ -1143,11 +1093,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void GetMetricsQuery()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.GetMetricsQuery();
@@ -1157,11 +1106,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void GetMetricsQueryEvent()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.GetMetricsQueryEvent();
@@ -1171,11 +1119,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void GetMetricsQueryNoResult()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.GetMetricsQueryNoResults();
@@ -1185,11 +1132,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void GetMetricsQueryEventRate()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.GetMetricsEventRate();
@@ -1199,11 +1145,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void GetMetricsQueryTokenEvent()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.GetMetricsQueryTokenEvent();
@@ -1215,11 +1160,10 @@ namespace IBM.Watson.Discovery.v1.Examples
         #region Credentials
         public void ListCredentials()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.ListCredentials(
@@ -1231,11 +1175,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void CreateCredentials()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var credentialDetails = new CredentialDetails()
@@ -1262,11 +1205,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void GetCredentials()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.GetCredentials(
@@ -1279,11 +1221,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void UpdateCredentials()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             string privateKey = "{privatekey}";
@@ -1313,11 +1254,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void DeleteCredentials()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.DeleteCredentials(
@@ -1332,11 +1272,10 @@ namespace IBM.Watson.Discovery.v1.Examples
         #region Gateway Configuration
         public void ListGateways()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.ListGateways(
@@ -1348,11 +1287,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void CreateGateway()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.CreateGateway(
@@ -1367,11 +1305,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void GetGateway()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.GetGateway(
@@ -1384,11 +1321,10 @@ namespace IBM.Watson.Discovery.v1.Examples
 
         public void DeleteGateway()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            DiscoveryService service = new DiscoveryService("2019-04-30", config);
+            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.DeleteGateway(

@@ -46,11 +46,10 @@ namespace IBM.Watson.PersonalityInsights.v3.Examples
         #region Profile
         public void Profile()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            PersonalityInsightsService service = new PersonalityInsightsService("2017-10-13", config);
+            PersonalityInsightsService service = new PersonalityInsightsService("2017-10-13", authenticator);
             service.SetEndpoint("{url}");
 
             Content content = null;
@@ -68,11 +67,10 @@ namespace IBM.Watson.PersonalityInsights.v3.Examples
 
         public void ProfileAsCsv()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            PersonalityInsightsService service = new PersonalityInsightsService("2017-10-13", config);
+            PersonalityInsightsService service = new PersonalityInsightsService("2017-10-13", authenticator);
             service.SetEndpoint("{url}");
 
             Content content = null;

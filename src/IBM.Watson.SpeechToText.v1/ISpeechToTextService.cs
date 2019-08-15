@@ -25,7 +25,7 @@ namespace IBM.Watson.SpeechToText.v1
     {
         DetailedResponse<SpeechModels> ListModels();
         DetailedResponse<SpeechModel> GetModel(string modelId);
-        DetailedResponse<SpeechRecognitionResults> Recognize(byte[] audio, string contentType = null, string model = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, bool? processingMetrics = null, float? processingMetricsInterval = null, bool? audioMetrics = null);
+        DetailedResponse<SpeechRecognitionResults> Recognize(byte[] audio, string contentType = null, string model = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, bool? audioMetrics = null);
         DetailedResponse<RegisterStatus> RegisterCallback(string callbackUrl, string userSecret = null);
         DetailedResponse<object> UnregisterCallback(string callbackUrl);
         DetailedResponse<RecognitionJob> CreateJob(byte[] audio, string contentType = null, string model = null, string callbackUrl = null, string events = null, string userToken = null, long? resultsTtl = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, bool? processingMetrics = null, float? processingMetricsInterval = null, bool? audioMetrics = null);
@@ -36,7 +36,7 @@ namespace IBM.Watson.SpeechToText.v1
         DetailedResponse<LanguageModels> ListLanguageModels(string language = null);
         DetailedResponse<LanguageModel> GetLanguageModel(string customizationId);
         DetailedResponse<object> DeleteLanguageModel(string customizationId);
-        DetailedResponse<TrainingResponse> TrainLanguageModel(string customizationId, string wordTypeToAdd = null, double? customizationWeight = null, bool? strict = null);
+        DetailedResponse<TrainingResponse> TrainLanguageModel(string customizationId, string wordTypeToAdd = null, double? customizationWeight = null);
         DetailedResponse<object> ResetLanguageModel(string customizationId);
         DetailedResponse<object> UpgradeLanguageModel(string customizationId);
         DetailedResponse<Corpora> ListCorpora(string customizationId);
@@ -56,7 +56,7 @@ namespace IBM.Watson.SpeechToText.v1
         DetailedResponse<AcousticModels> ListAcousticModels(string language = null);
         DetailedResponse<AcousticModel> GetAcousticModel(string customizationId);
         DetailedResponse<object> DeleteAcousticModel(string customizationId);
-        DetailedResponse<TrainingResponse> TrainAcousticModel(string customizationId, string customLanguageModelId = null, bool? strict = null);
+        DetailedResponse<TrainingResponse> TrainAcousticModel(string customizationId, string customLanguageModelId = null);
         DetailedResponse<object> ResetAcousticModel(string customizationId);
         DetailedResponse<object> UpgradeAcousticModel(string customizationId, string customLanguageModelId = null, bool? force = null);
         DetailedResponse<AudioResources> ListAudio(string customizationId);

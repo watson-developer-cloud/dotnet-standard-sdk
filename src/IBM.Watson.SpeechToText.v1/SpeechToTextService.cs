@@ -20,11 +20,9 @@ using System.IO;
 using System.Net.Http;
 using System.Text;
 using IBM.Cloud.SDK.Core.Authentication;
-using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Extensions;
 using IBM.Cloud.SDK.Core.Service;
-using IBM.Cloud.SDK.Core.Util;
 using IBM.Watson.SpeechToText.v1.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -34,65 +32,12 @@ namespace IBM.Watson.SpeechToText.v1
 {
     public partial class SpeechToTextService : IBMService, ISpeechToTextService
     {
-        new const string SERVICE_NAME = "speech_to_text";
-        const string URL = "https://stream.watsonplatform.net/speech-to-text/api";
-        public new string DefaultEndpoint = "https://stream.watsonplatform.net/speech-to-text/api";
-        public SpeechToTextService() : base(SERVICE_NAME) { }
-        
-        [Obsolete("Please use SpeechToTextService(IAuthenticatorConfig config) instead")]
-        public SpeechToTextService(string userName, string password) : base(SERVICE_NAME, URL)
-        {
-            if (string.IsNullOrEmpty(userName))
-                throw new ArgumentNullException(nameof(userName));
+        new const string serviceName = "speech_to_text";
+        private const string defaultEndpoint = "https://stream.watsonplatform.net/speech-to-text/api";
+        public SpeechToTextService() : base(serviceName, defaultEndpoint) { }
+        public SpeechToTextService(IClient httpClient) : base(serviceName, defaultEndpoint, httpClient) { }
 
-            if (string.IsNullOrEmpty(password))
-                throw new ArgumentNullException(nameof(password));
-
-            this.SetCredential(userName, password);
-        }
-        
-        [Obsolete("Please use SpeechToTextService(IAuthenticatorConfig config) instead")]
-        public SpeechToTextService(TokenOptions options) : base(SERVICE_NAME, URL)
-        {
-            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
-                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
-            if (!string.IsNullOrEmpty(options.ServiceUrl))
-            {
-                this.Endpoint = options.ServiceUrl;
-            }
-            else
-            {
-                options.ServiceUrl = this.Endpoint;
-            }
-
-            IamConfig iamConfig = null;
-            if (!string.IsNullOrEmpty(options.IamAccessToken))
-            {
-                iamConfig = new IamConfig(
-                    userManagedAccessToken: options.IamAccessToken
-                    );
-            }
-            else
-            {
-                iamConfig = new IamConfig(
-                    apikey: options.IamApiKey,
-                    iamUrl: options.IamUrl
-                    );
-            }
-
-            SetAuthenticator(iamConfig);
-        }
-
-        public SpeechToTextService(IClient httpClient) : base(SERVICE_NAME, URL)
-        {
-            if (httpClient == null)
-                throw new ArgumentNullException(nameof(httpClient));
-
-            this.Client = httpClient;
-            SkipAuthentication = true;
-        }
-
-        public SpeechToTextService(IAuthenticatorConfig config) : base(SERVICE_NAME, config)
+        public SpeechToTextService(Authenticator authenticator) : base(serviceName, authenticator)
         {
         }
 
@@ -396,27 +341,11 @@ namespace IBM.Watson.SpeechToText.v1
         /// See [Numeric
         /// redaction](https://cloud.ibm.com/docs/services/speech-to-text?topic=speech-to-text-output#redaction).
         /// (optional, default to false)</param>
-        /// <param name="processingMetrics">If `true`, requests processing metrics about the service's transcription of
-        /// the input audio. The service returns processing metrics at the interval specified by the
-        /// `processing_metrics_interval` parameter. It also returns processing metrics for transcription events, for
-        /// example, for final and interim results. By default, the service returns no processing metrics. (optional,
-        /// default to false)</param>
-        /// <param name="processingMetricsInterval">Specifies the interval in real wall-clock seconds at which the
-        /// service is to return processing metrics. The parameter is ignored unless the `processing_metrics` parameter
-        /// is set to `true`.
-        ///
-        /// The parameter accepts a minimum value of 0.1 seconds. The level of precision is not restricted, so you can
-        /// specify values such as 0.25 and 0.125.
-        ///
-        /// The service does not impose a maximum value. If you want to receive processing metrics only for
-        /// transcription events instead of at periodic intervals, set the value to a large number. If the value is
-        /// larger than the duration of the audio, the service returns processing metrics only for transcription events.
-        /// (optional)</param>
         /// <param name="audioMetrics">If `true`, requests detailed information about the signal characteristics of the
         /// input audio. The service returns audio metrics with the final transcription results. By default, the service
         /// returns no audio metrics. (optional, default to false)</param>
         /// <returns><see cref="SpeechRecognitionResults" />SpeechRecognitionResults</returns>
-        public DetailedResponse<SpeechRecognitionResults> Recognize(byte[] audio, string contentType = null, string model = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, bool? processingMetrics = null, float? processingMetricsInterval = null, bool? audioMetrics = null)
+        public DetailedResponse<SpeechRecognitionResults> Recognize(byte[] audio, string contentType = null, string model = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, bool? audioMetrics = null)
         {
             if (audio == null)
             {
@@ -508,14 +437,6 @@ namespace IBM.Watson.SpeechToText.v1
                 if (redaction != null)
                 {
                     restRequest.WithArgument("redaction", redaction);
-                }
-                if (processingMetrics != null)
-                {
-                    restRequest.WithArgument("processing_metrics", processingMetrics);
-                }
-                if (processingMetricsInterval != null)
-                {
-                    restRequest.WithArgument("processing_metrics_interval", processingMetricsInterval);
                 }
                 if (audioMetrics != null)
                 {
@@ -1528,13 +1449,8 @@ namespace IBM.Watson.SpeechToText.v1
         ///
         /// The value that you assign is used for all recognition requests that use the model. You can override it for
         /// any recognition request by specifying a customization weight for that request. (optional)</param>
-        /// <param name="strict">If `false`, allows training of the custom language model to proceed as long as the
-        /// model contains at least one valid resource. The method returns an array of `TrainingWarning` objects that
-        /// lists any invalid resources. By default (`true`), training of a custom language model fails (status code
-        /// 400) if the model contains one or more invalid resources (corpus files, grammar files, or custom words).
-        /// (optional, default to true)</param>
         /// <returns><see cref="TrainingResponse" />TrainingResponse</returns>
-        public DetailedResponse<TrainingResponse> TrainLanguageModel(string customizationId, string wordTypeToAdd = null, double? customizationWeight = null, bool? strict = null)
+        public DetailedResponse<TrainingResponse> TrainLanguageModel(string customizationId, string wordTypeToAdd = null, double? customizationWeight = null)
         {
             if (string.IsNullOrEmpty(customizationId))
             {
@@ -1561,10 +1477,6 @@ namespace IBM.Watson.SpeechToText.v1
                 if (customizationWeight != null)
                 {
                     restRequest.WithArgument("customization_weight", customizationWeight);
-                }
-                if (strict != null)
-                {
-                    restRequest.WithArgument("strict", strict);
                 }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("speech_to_text", "v1", "TrainLanguageModel"));
@@ -3028,12 +2940,8 @@ namespace IBM.Watson.SpeechToText.v1
         /// of the audio resources. The custom language model must be based on the same version of the same base model
         /// as the custom acoustic model. The credentials specified with the request must own both custom models.
         /// (optional)</param>
-        /// <param name="strict">If `false`, allows training of the custom acoustic model to proceed as long as the
-        /// model contains at least one valid audio resource. The method returns an array of `TrainingWarning` objects
-        /// that lists any invalid resources. By default (`true`), training of a custom acoustic model fails (status
-        /// code 400) if the model contains one or more invalid audio resources. (optional, default to true)</param>
         /// <returns><see cref="TrainingResponse" />TrainingResponse</returns>
-        public DetailedResponse<TrainingResponse> TrainAcousticModel(string customizationId, string customLanguageModelId = null, bool? strict = null)
+        public DetailedResponse<TrainingResponse> TrainAcousticModel(string customizationId, string customLanguageModelId = null)
         {
             if (string.IsNullOrEmpty(customizationId))
             {
@@ -3056,10 +2964,6 @@ namespace IBM.Watson.SpeechToText.v1
                 if (!string.IsNullOrEmpty(customLanguageModelId))
                 {
                     restRequest.WithArgument("custom_language_model_id", customLanguageModelId);
-                }
-                if (strict != null)
-                {
-                    restRequest.WithArgument("strict", strict);
                 }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("speech_to_text", "v1", "TrainAcousticModel"));

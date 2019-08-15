@@ -16,11 +16,8 @@
 */
 
 using IBM.Cloud.SDK.Core.Http;
-using IBM.Cloud.SDK.Core.Util;
 using IBM.Watson.SpeechToText.v1.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -34,8 +31,6 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
     public class SpeechToTextServiceIntegrationTest
     {
         //private const string SESSION_STATUS_INITIALIZED = "initialized";
-        private static string apikey;
-        private static string endpoint;
         private AutoResetEvent autoEvent = new AutoResetEvent(false);
         private static string credentials = string.Empty;
         private const string EN_US = "en-US_BroadbandModel";

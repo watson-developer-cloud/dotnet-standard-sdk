@@ -47,15 +47,11 @@ namespace IBM.Watson.Assistant.v2.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
-            Utility.LoadExternalCredentials();
-            var apikey = Environment.GetEnvironmentVariable("ASSISTANT_APIKEY");
-            var url = Environment.GetEnvironmentVariable("ASSISTANT_URL");
-            IamConfig iamConfig = new IamConfig(
-                apikey: apikey
-                );
-            service = new AssistantService(versionDate, iamConfig);
-            service.SetEndpoint(url);
-            assistantId = Environment.GetEnvironmentVariable("ASSISTANT_ASSISTANT_ID");
+            service = new AssistantService();
+            service.VersionDate = versionDate;
+            var creds = CredentialUtils.GetServiceProperties("assistant");
+            creds.TryGetValue("ASSISTANT_ID", out assistantId);
+            service.VersionDate = versionDate;
         }
 
         #region Sessions

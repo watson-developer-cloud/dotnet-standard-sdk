@@ -20,11 +20,9 @@ using System.IO;
 using System.Net.Http;
 using System.Text;
 using IBM.Cloud.SDK.Core.Authentication;
-using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Extensions;
 using IBM.Cloud.SDK.Core.Service;
-using IBM.Cloud.SDK.Core.Util;
 using IBM.Watson.Discovery.v1.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -35,9 +33,8 @@ namespace IBM.Watson.Discovery.v1
 {
     public partial class DiscoveryService : IBMService, IDiscoveryService
     {
-        new const string SERVICE_NAME = "discovery";
-        const string URL = "https://gateway.watsonplatform.net/discovery/api";
-        public new string DefaultEndpoint = "https://gateway.watsonplatform.net/discovery/api";
+        new const string serviceName = "discovery";
+        private const string defaultEndpoint = "https://gateway.watsonplatform.net/discovery/api";
         private string _versionDate;
         public string VersionDate
         {
@@ -45,72 +42,16 @@ namespace IBM.Watson.Discovery.v1
             set { _versionDate = value; }
         }
 
-        public DiscoveryService() : base(SERVICE_NAME) { }
-        
-        [Obsolete("Please use DiscoveryService(string versionDate, IAuthenticatorConfig config) instead")]
-        public DiscoveryService(string userName, string password, string versionDate) : base(SERVICE_NAME, URL)
+        public DiscoveryService() : base(serviceName, defaultEndpoint) { }
+        public DiscoveryService(IClient httpClient) : base(serviceName, defaultEndpoint, httpClient) { }
+
+        public DiscoveryService(string versionDate, Authenticator authenticator) : base(serviceName, authenticator)
         {
-            if (string.IsNullOrEmpty(userName))
-                throw new ArgumentNullException(nameof(userName));
-
-            if (string.IsNullOrEmpty(password))
-                throw new ArgumentNullException(nameof(password));
-
-            this.SetCredential(userName, password);
             if (string.IsNullOrEmpty(versionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
-
-            VersionDate = versionDate;
-        }
-        
-        [Obsolete("Please use DiscoveryService(string versionDate, IAuthenticatorConfig config) instead")]
-        public DiscoveryService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
-        {
-            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
-                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
-            if (string.IsNullOrEmpty(versionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            VersionDate = versionDate;
-
-            if (!string.IsNullOrEmpty(options.ServiceUrl))
-            {
-                this.Endpoint = options.ServiceUrl;
             }
-            else
-            {
-                options.ServiceUrl = this.Endpoint;
-            }
-
-            IamConfig iamConfig = null;
-            if (!string.IsNullOrEmpty(options.IamAccessToken))
-            {
-                iamConfig = new IamConfig(
-                    userManagedAccessToken: options.IamAccessToken
-                    );
-            }
-            else
-            {
-                iamConfig = new IamConfig(
-                    apikey: options.IamApiKey,
-                    iamUrl: options.IamUrl
-                    );
-            }
-
-            SetAuthenticator(iamConfig);
-        }
-
-        public DiscoveryService(IClient httpClient) : base(SERVICE_NAME, URL)
-        {
-            if (httpClient == null)
-                throw new ArgumentNullException(nameof(httpClient));
-
-            this.Client = httpClient;
-            SkipAuthentication = true;
-        }
-
-        public DiscoveryService(string versionDate, IAuthenticatorConfig config) : base(SERVICE_NAME, config)
-        {
+            
             VersionDate = versionDate;
         }
 
@@ -710,10 +651,9 @@ namespace IBM.Watson.Discovery.v1
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="configurationId">The ID of the configuration.</param>
         /// <param name="configuration">Input an object that enables you to update and customize how your data is
-        /// ingested and what enrichments are added to your data.
-        /// The **name** parameter is required and must be unique within the current **environment**. All other
-        /// properties are optional, but if they are omitted  the default values replace the current value of each
-        /// omitted property.
+        /// ingested and what enrichments are added to your data.  The **name** parameter is required and must be unique
+        /// within the current **environment**. All other properties are optional, but if they are omitted  the default
+        /// values replace the current value of each omitted property.
         ///
         /// If the input configuration contains the **configuration_id**, **created**, or **updated** properties, they
         /// are ignored and overridden by the system, and an error is not returned so that the overridden fields do not
@@ -888,16 +828,15 @@ namespace IBM.Watson.Discovery.v1
         /// <param name="configuration">The configuration to use to process the document. If this part is provided, then
         /// the provided configuration is used to process the document. If the **configuration_id** is also provided
         /// (both are present at the same time), then request is rejected. The maximum supported configuration size is 1
-        /// MB. Configuration parts larger than 1 MB are rejected.
-        /// See the `GET /configurations/{configuration_id}` operation for an example configuration. (optional)</param>
+        /// MB. Configuration parts larger than 1 MB are rejected. See the `GET /configurations/{configuration_id}`
+        /// operation for an example configuration. (optional)</param>
         /// <param name="file">The content of the document to ingest. The maximum supported file size when adding a file
         /// to a collection is 50 megabytes, the maximum supported file size when testing a confiruration is 1 megabyte.
         /// Files larger than the supported size are rejected. (optional)</param>
         /// <param name="filename">The filename for file. (optional)</param>
         /// <param name="fileContentType">The content type of file. (optional)</param>
         /// <param name="metadata">The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are
-        /// rejected.
-        /// Example:  ``` {
+        /// rejected. Example:  ``` {
         ///   "Creator": "Johnny Appleseed",
         ///   "Subject": "Apples"
         /// } ```. (optional)</param>
@@ -1448,8 +1387,7 @@ namespace IBM.Watson.Discovery.v1
         /// Create or update expansion list.
         ///
         /// Create or replace the Expansion list for this collection. The maximum number of expanded terms per
-        /// collection is `500`.
-        /// The current expansion list is replaced with the uploaded content.
+        /// collection is `500`. The current expansion list is replaced with the uploaded content.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
@@ -2022,8 +1960,7 @@ namespace IBM.Watson.Discovery.v1
         /// <param name="filename">The filename for file. (optional)</param>
         /// <param name="fileContentType">The content type of file. (optional)</param>
         /// <param name="metadata">The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are
-        /// rejected.
-        /// Example:  ``` {
+        /// rejected. Example:  ``` {
         ///   "Creator": "Johnny Appleseed",
         ///   "Subject": "Apples"
         /// } ```. (optional)</param>
@@ -2192,8 +2129,7 @@ namespace IBM.Watson.Discovery.v1
         /// <param name="filename">The filename for file. (optional)</param>
         /// <param name="fileContentType">The content type of file. (optional)</param>
         /// <param name="metadata">The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are
-        /// rejected.
-        /// Example:  ``` {
+        /// rejected. Example:  ``` {
         ///   "Creator": "Johnny Appleseed",
         ///   "Subject": "Apples"
         /// } ```. (optional)</param>

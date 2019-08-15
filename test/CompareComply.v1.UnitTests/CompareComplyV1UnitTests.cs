@@ -27,6 +27,8 @@ using System.Threading.Tasks;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Exceptions;
 using Newtonsoft.Json;
+using IBM.Cloud.SDK.Core.Authentication.Iam;
+using IBM.Cloud.SDK.Core.Authentication.Bearer;
 
 namespace IBM.Watson.CompareComply.v1.UT
 {
@@ -43,38 +45,7 @@ namespace IBM.Watson.CompareComply.v1.UT
             CompareComplyService service =
                 new CompareComplyService(null);
         }
-
-        [TestMethod, ExpectedException(typeof(NullReferenceException))]
-        public void Constructor_TokenOptions_Null()
-        {
-            CompareComplyService service =
-                new CompareComplyService(null, "2018-02-16");
-        }
-
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void Constructor_Version_Null()
-        {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = "iamApikey"
-            };
-            CompareComplyService service =
-                new CompareComplyService(tokenOptions, null);
-        }
-
-        [TestMethod]
-        public void Constructor_With_TokenOptions()
-        {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = "iamApikey"
-            };
-            CompareComplyService service =
-                new CompareComplyService(tokenOptions, "2018-02-16");
-
-            Assert.IsNotNull(service);
-        }
-
+        
         [TestMethod]
         public void Constructor()
         {
@@ -100,11 +71,8 @@ namespace IBM.Watson.CompareComply.v1.UT
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ConvertToHtml_No_File()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = "iamApikey"
-            };
-            CompareComplyService service = new CompareComplyService(tokenOptions, "versionDate");
+            IamAuthenticator authenticator = new IamAuthenticator(apikey: "apiKey");
+            CompareComplyService service = new CompareComplyService("versionDate", authenticator);
 
             service.ConvertToHtml(null, "filename");
         }
@@ -112,11 +80,8 @@ namespace IBM.Watson.CompareComply.v1.UT
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ConvertToHtml_No_FileName()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = "iamApikey"
-            };
-            CompareComplyService service = new CompareComplyService(tokenOptions, "versionDate");
+            IamAuthenticator authenticator = new IamAuthenticator(apikey: "apiKey");
+            CompareComplyService service = new CompareComplyService("versionDate", authenticator);
 
             using (MemoryStream ms = Arg.Any<MemoryStream>())
             {
@@ -127,11 +92,8 @@ namespace IBM.Watson.CompareComply.v1.UT
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ConvertToHtml_No_VersionDate()
         {
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = "iamApikey"
-            };
-            CompareComplyService service = new CompareComplyService(tokenOptions, "versionDate");
+            IamAuthenticator authenticator = new IamAuthenticator(apikey: "apiKey");
+            CompareComplyService service = new CompareComplyService("versionDate", authenticator);
             service.VersionDate = null;
 
             using (MemoryStream ms = Arg.Any<MemoryStream>())
@@ -155,12 +117,7 @@ namespace IBM.Watson.CompareComply.v1.UT
                  });
 
             CompareComplyService service = new CompareComplyService(client);
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamAccessToken = "iamAccessToken",
-                ServiceUrl = "https://www.serviceurl.com"
-            };
-            service.SetCredential(tokenOptions);
+            service.SetEndpoint("https://www.serviceurl.com");
             service.VersionDate = "2018-02-16";
 
             using (MemoryStream fs = new MemoryStream())
@@ -196,12 +153,6 @@ namespace IBM.Watson.CompareComply.v1.UT
                 .Returns(Task.FromResult(response));
 
             CompareComplyService service = new CompareComplyService(client);
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamAccessToken = "iamAccessToken",
-                ServiceUrl = "https://www.serviceurl.com"
-            };
-            service.SetCredential(tokenOptions);
             service.VersionDate = "versionDate";
 
             DetailedResponse<HTMLReturn> result = null;
@@ -251,13 +202,6 @@ namespace IBM.Watson.CompareComply.v1.UT
                 .Returns(Task.FromResult(response));
 
             CompareComplyService service = new CompareComplyService(client);
-            service.VersionDate = "versionDate";
-            TokenOptions tokenOptions = new TokenOptions()
-            {
-                IamApiKey = "iamApikey",
-                ServiceUrl = "https://www.serviceurl.com"
-            };
-            service.SetCredential(tokenOptions);
             service.VersionDate = "versionDate";
 
             DetailedResponse<TableReturn> result = null;

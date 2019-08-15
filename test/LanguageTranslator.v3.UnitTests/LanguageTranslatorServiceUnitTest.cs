@@ -53,27 +53,6 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
                 new LanguageTranslatorService(httpClient: null);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void Constructor_UserName_Null()
-        {
-            LanguageTranslatorService service =
-                new LanguageTranslatorService(null, "pass", "versionDate");
-        }
-
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void Constructor_PassWord_Null()
-        {
-            LanguageTranslatorService service =
-                new LanguageTranslatorService("username", null, "versionDate");
-        }
-
-        [TestMethod]
-        public void Constructor_With_UserName_Password()
-        {
-            LanguageTranslatorService service =
-                new LanguageTranslatorService("username", "password", "versionDate");
-        }
-
         [TestMethod]
         public void ListModels_Success()
         {

@@ -20,11 +20,9 @@ using System.IO;
 using System.Net.Http;
 using System.Text;
 using IBM.Cloud.SDK.Core.Authentication;
-using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Extensions;
 using IBM.Cloud.SDK.Core.Service;
-using IBM.Cloud.SDK.Core.Util;
 using IBM.Watson.LanguageTranslator.v3.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -34,9 +32,8 @@ namespace IBM.Watson.LanguageTranslator.v3
 {
     public partial class LanguageTranslatorService : IBMService, ILanguageTranslatorService
     {
-        new const string SERVICE_NAME = "language_translator";
-        const string URL = "https://gateway.watsonplatform.net/language-translator/api";
-        public new string DefaultEndpoint = "https://gateway.watsonplatform.net/language-translator/api";
+        new const string serviceName = "language_translator";
+        private const string defaultEndpoint = "https://gateway.watsonplatform.net/language-translator/api";
         private string _versionDate;
         public string VersionDate
         {
@@ -44,72 +41,16 @@ namespace IBM.Watson.LanguageTranslator.v3
             set { _versionDate = value; }
         }
 
-        public LanguageTranslatorService() : base(SERVICE_NAME) { }
-        
-        [Obsolete("Please use LanguageTranslatorService(string versionDate, IAuthenticatorConfig config) instead")]
-        public LanguageTranslatorService(string userName, string password, string versionDate) : base(SERVICE_NAME, URL)
+        public LanguageTranslatorService() : base(serviceName, defaultEndpoint) { }
+        public LanguageTranslatorService(IClient httpClient) : base(serviceName, defaultEndpoint, httpClient) { }
+
+        public LanguageTranslatorService(string versionDate, Authenticator authenticator) : base(serviceName, authenticator)
         {
-            if (string.IsNullOrEmpty(userName))
-                throw new ArgumentNullException(nameof(userName));
-
-            if (string.IsNullOrEmpty(password))
-                throw new ArgumentNullException(nameof(password));
-
-            this.SetCredential(userName, password);
             if (string.IsNullOrEmpty(versionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
-
-            VersionDate = versionDate;
-        }
-        
-        [Obsolete("Please use LanguageTranslatorService(string versionDate, IAuthenticatorConfig config) instead")]
-        public LanguageTranslatorService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
-        {
-            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
-                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
-            if (string.IsNullOrEmpty(versionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            VersionDate = versionDate;
-
-            if (!string.IsNullOrEmpty(options.ServiceUrl))
-            {
-                this.Endpoint = options.ServiceUrl;
             }
-            else
-            {
-                options.ServiceUrl = this.Endpoint;
-            }
-
-            IamConfig iamConfig = null;
-            if (!string.IsNullOrEmpty(options.IamAccessToken))
-            {
-                iamConfig = new IamConfig(
-                    userManagedAccessToken: options.IamAccessToken
-                    );
-            }
-            else
-            {
-                iamConfig = new IamConfig(
-                    apikey: options.IamApiKey,
-                    iamUrl: options.IamUrl
-                    );
-            }
-
-            SetAuthenticator(iamConfig);
-        }
-
-        public LanguageTranslatorService(IClient httpClient) : base(SERVICE_NAME, URL)
-        {
-            if (httpClient == null)
-                throw new ArgumentNullException(nameof(httpClient));
-
-            this.Client = httpClient;
-            SkipAuthentication = true;
-        }
-
-        public LanguageTranslatorService(string versionDate, IAuthenticatorConfig config) : base(SERVICE_NAME, config)
-        {
+            
             VersionDate = versionDate;
         }
 

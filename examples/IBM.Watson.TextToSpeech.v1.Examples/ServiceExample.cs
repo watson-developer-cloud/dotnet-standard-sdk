@@ -62,11 +62,10 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
         #region Voices
         public void ListVoices()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            TextToSpeechService service = new TextToSpeechService(config);
+            TextToSpeechService service = new TextToSpeechService(authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.ListVoices();
@@ -76,11 +75,10 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
 
         public void GetVoice()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            TextToSpeechService service = new TextToSpeechService(config);
+            TextToSpeechService service = new TextToSpeechService(authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.GetVoice("en-US_AllisonVoice");
@@ -92,11 +90,10 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
         #region Synthesis
         public void Synthesize()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            TextToSpeechService service = new TextToSpeechService(config);
+            TextToSpeechService service = new TextToSpeechService(authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.Synthesize(
@@ -117,11 +114,10 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
         #region Pronunciation
         public void GetPronunciation()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            TextToSpeechService service = new TextToSpeechService(config);
+            TextToSpeechService service = new TextToSpeechService(authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.GetPronunciation(
@@ -137,11 +133,10 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
         #region Custom Models
         public void ListVoiceModels()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            TextToSpeechService service = new TextToSpeechService(config);
+            TextToSpeechService service = new TextToSpeechService(authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.ListVoiceModels();
@@ -151,12 +146,10 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
 
         public void CreateVoiceModel()
         {
-            IamConfig config = new IamConfig();
-            {
-                apikey = "{apikey}";
-            }
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            TextToSpeechService service = new TextToSpeechService(config);
+            TextToSpeechService service = new TextToSpeechService(authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.CreateVoiceModel(
@@ -172,11 +165,10 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
 
         public void GetVoiceModel()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            TextToSpeechService service = new TextToSpeechService(config);
+            TextToSpeechService service = new TextToSpeechService(authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.GetVoiceModel(
@@ -188,11 +180,10 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
 
         public void UpdateVoiceModel()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            TextToSpeechService service = new TextToSpeechService(config);
+            TextToSpeechService service = new TextToSpeechService(authenticator);
             service.SetEndpoint("{url}");
 
             var words = new List<Word>()
@@ -221,11 +212,10 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
 
         public void DeleteVoiceModel()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            TextToSpeechService service = new TextToSpeechService(config);
+            TextToSpeechService service = new TextToSpeechService(authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.DeleteVoiceModel(
@@ -239,11 +229,10 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
         #region Custom Words
         private void AddWords()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            TextToSpeechService service = new TextToSpeechService(config);
+            TextToSpeechService service = new TextToSpeechService(authenticator);
             service.SetEndpoint("{url}");
 
             var words = new List<Word>()
@@ -270,11 +259,10 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
 
         private void ListWords()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            TextToSpeechService service = new TextToSpeechService(config);
+            TextToSpeechService service = new TextToSpeechService(authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.ListWords(
@@ -286,11 +274,10 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
 
         private void AddWord()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            TextToSpeechService service = new TextToSpeechService(config);
+            TextToSpeechService service = new TextToSpeechService(authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.AddWord(
@@ -304,11 +291,10 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
 
         private void GetWord()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            TextToSpeechService service = new TextToSpeechService(config);
+            TextToSpeechService service = new TextToSpeechService(authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.GetWord(
@@ -321,11 +307,10 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
 
         private void DeleteWord()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            TextToSpeechService service = new TextToSpeechService(config);
+            TextToSpeechService service = new TextToSpeechService(authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.DeleteWord(
@@ -340,11 +325,10 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
         #region User Data
         public void DeleteUserData()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            TextToSpeechService service = new TextToSpeechService(config);
+            TextToSpeechService service = new TextToSpeechService(authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.DeleteUserData(

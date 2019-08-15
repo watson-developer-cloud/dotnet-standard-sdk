@@ -26,6 +26,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Exceptions;
+using Newtonsoft.Json;
 
 namespace IBM.Watson.CompareComply.v1.UT
 {
@@ -33,6 +34,7 @@ namespace IBM.Watson.CompareComply.v1.UT
     public class CompareComplyV1UnitTests
     {
         public string tableFilePath = @"CompareComplyTestData/TestTable.pdf";
+        public string tableReturnJsonFilePath = @"CompareComplyTestData/table-return.json";
 
         #region Constructor
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -87,7 +89,7 @@ namespace IBM.Watson.CompareComply.v1.UT
         private IClient CreateClient()
         {
             IClient client = Substitute.For<IClient>();
-            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+            client.WithAuthentication("username", "password")
                 .Returns(client);
 
             return client;
@@ -222,6 +224,56 @@ namespace IBM.Watson.CompareComply.v1.UT
         #endregion
 
         #region Extract Tables
+        //[TestMethod]
+        public void ExtractTables_Success()
+        {
+            IClient client = CreateClient();
+
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                .Returns(request);
+
+            #region Response
+            var jsonResponse = File.ReadAllText(tableReturnJsonFilePath);
+            var response = new DetailedResponse<TableReturn>
+            {
+                Result = JsonConvert.DeserializeObject<TableReturn>(jsonResponse)
+            };
+            #endregion
+
+            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithHeader(Arg.Any<string>(), Arg.Any<string>())
+                .Returns(request);
+            request.WithBodyContent(Arg.Any<MultipartFormDataContent>())
+                .Returns(request);
+            request.As<TableReturn>()
+                .Returns(Task.FromResult(response));
+
+            CompareComplyService service = new CompareComplyService(client);
+            service.VersionDate = "versionDate";
+            TokenOptions tokenOptions = new TokenOptions()
+            {
+                IamApiKey = "iamApikey",
+                ServiceUrl = "https://www.serviceurl.com"
+            };
+            service.SetCredential(tokenOptions);
+            service.VersionDate = "versionDate";
+
+            DetailedResponse<TableReturn> result = null;
+            using (MemoryStream fs = new MemoryStream())
+            {
+                result = service.ExtractTables(fs);
+            }
+
+            Assert.IsNotNull(result);
+            client.Received().PostAsync(Arg.Any<string>());
+            Assert.IsNotNull(result.Result);
+            Assert.IsTrue(result.Result.ModelId == "model_id");
+            Assert.IsTrue(result.Result.ModelVersion == "model_version");
+            Assert.IsTrue(result.Result.Tables[0].KeyValuePairs[0].Key.Text == "text");
+            Assert.IsTrue(result.Result.Tables[0].KeyValuePairs[0].Value[0].Text == "text");
+        }
         #endregion
 
         #region Comparision

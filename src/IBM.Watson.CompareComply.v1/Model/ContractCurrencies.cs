@@ -21,12 +21,12 @@ using Newtonsoft.Json;
 namespace IBM.Watson.CompareComply.v1.Model
 {
     /// <summary>
-    /// The duration or durations of the contract.
+    /// The contract currencies that are declared in the document.
     /// </summary>
-    public class ContractTerms
+    public class ContractCurrencies
     {
         /// <summary>
-        /// The confidence level in the identification of the contract term.
+        /// The confidence level in the identification of the contract currency.
         /// </summary>
         public class ConfidenceLevelEnumValue
         {
@@ -46,28 +46,23 @@ namespace IBM.Watson.CompareComply.v1.Model
         }
 
         /// <summary>
-        /// The confidence level in the identification of the contract term.
-        /// Constants for possible values can be found using ContractTerms.ConfidenceLevelEnumValue
+        /// The confidence level in the identification of the contract currency.
+        /// Constants for possible values can be found using ContractCurrencies.ConfidenceLevelEnumValue
         /// </summary>
         [JsonProperty("confidence_level", NullValueHandling = NullValueHandling.Ignore)]
         public string ConfidenceLevel { get; set; }
         /// <summary>
-        /// The contract term (duration).
+        /// The contract currency.
         /// </summary>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
         /// <summary>
-        /// The normalized form of the contract term, which is listed as a string. This element is optional; it is
+        /// The normalized form of the contract currency, which is listed as a string in
+        /// [ISO-4217](https://www.iso.org/iso-4217-currency-codes.html) format. This element is optional; it is
         /// returned only if normalized text exists.
         /// </summary>
         [JsonProperty("text_normalized", NullValueHandling = NullValueHandling.Ignore)]
         public string TextNormalized { get; set; }
-        /// <summary>
-        /// The details of the normalized text, if applicable. This element is optional; it is returned only if
-        /// normalized text exists.
-        /// </summary>
-        [JsonProperty("interpretation", NullValueHandling = NullValueHandling.Ignore)]
-        public Interpretation Interpretation { get; set; }
         /// <summary>
         /// Hashed values that you can send to IBM to provide feedback or receive support.
         /// </summary>

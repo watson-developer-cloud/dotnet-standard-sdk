@@ -39,7 +39,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void Constructor_HttpClient_Null()
         {
             DiscoveryService service =
-                new DiscoveryService(null);
+                new DiscoveryService(httpClient: null);
         }
 
         [TestMethod]

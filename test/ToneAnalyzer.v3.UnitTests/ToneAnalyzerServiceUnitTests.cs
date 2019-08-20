@@ -39,7 +39,7 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
         public void Constructor_HttpClient_Null()
         {
             ToneAnalyzerService service =
-                new ToneAnalyzerService(null);
+                new ToneAnalyzerService(httpClient: null);
         }
 
         [TestMethod]

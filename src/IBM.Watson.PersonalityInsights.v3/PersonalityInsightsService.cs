@@ -38,7 +38,7 @@ namespace IBM.Watson.PersonalityInsights.v3
             set { _versionDate = value; }
         }
 
-        public PersonalityInsightsService() : base(serviceName, defaultEndpoint) { }
+        public PersonalityInsightsService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public PersonalityInsightsService(IClient httpClient) : base(serviceName, defaultEndpoint, httpClient) { }
 
         public PersonalityInsightsService(string versionDate, Authenticator authenticator) : base(serviceName, authenticator)

@@ -56,11 +56,9 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
-            service = new AssistantService();
-            service.VersionDate = versionDate;
+            service = new AssistantService(versionDate);
             var creds = CredentialUtils.GetServiceProperties("assistant");
             creds.TryGetValue("WORKSPACE_ID", out workspaceId);
-            service.VersionDate = versionDate;
 
 #if DELETE_DOTNET_WORKSPACES
             service.WithHeader("X-Watson-Test", "1");

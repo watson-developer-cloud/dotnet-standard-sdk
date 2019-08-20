@@ -39,7 +39,7 @@ namespace IBM.Watson.VisualRecognition.v3
             set { _versionDate = value; }
         }
 
-        public VisualRecognitionService() : base(serviceName, defaultEndpoint) { }
+        public VisualRecognitionService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public VisualRecognitionService(IClient httpClient) : base(serviceName, defaultEndpoint, httpClient) { }
 
         public VisualRecognitionService(string versionDate, Authenticator authenticator) : base(serviceName, authenticator)

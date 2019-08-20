@@ -38,8 +38,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
-            service = new NaturalLanguageUnderstandingService();
-            service.VersionDate = versionDate;
+            service = new NaturalLanguageUnderstandingService(versionDate);
         }
 
         [TestMethod]

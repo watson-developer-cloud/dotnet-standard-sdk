@@ -41,11 +41,9 @@ namespace IBM.Watson.Assistant.v2.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
-            service = new AssistantService();
-            service.VersionDate = versionDate;
+            service = new AssistantService(versionDate);
             var creds = CredentialUtils.GetServiceProperties("assistant");
             creds.TryGetValue("ASSISTANT_ID", out assistantId);
-            service.VersionDate = versionDate;
         }
 
         #region Sessions

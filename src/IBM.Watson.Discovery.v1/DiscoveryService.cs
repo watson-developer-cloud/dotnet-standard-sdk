@@ -42,7 +42,7 @@ namespace IBM.Watson.Discovery.v1
             set { _versionDate = value; }
         }
 
-        public DiscoveryService() : base(serviceName, defaultEndpoint) { }
+        public DiscoveryService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public DiscoveryService(IClient httpClient) : base(serviceName, defaultEndpoint, httpClient) { }
 
         public DiscoveryService(string versionDate, Authenticator authenticator) : base(serviceName, authenticator)

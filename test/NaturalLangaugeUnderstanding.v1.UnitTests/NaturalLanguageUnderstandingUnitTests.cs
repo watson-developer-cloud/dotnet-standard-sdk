@@ -37,7 +37,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
         public void Constructor_HttpClient_Null()
         {
             NaturalLanguageUnderstandingService service =
-                new NaturalLanguageUnderstandingService(null);
+                new NaturalLanguageUnderstandingService(httpClient: null);
         }
 
         [TestMethod]

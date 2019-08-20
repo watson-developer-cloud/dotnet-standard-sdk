@@ -40,7 +40,6 @@ namespace IBM.Watson.Assistant.v1
         }
 
         public AssistantService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
-
         public AssistantService(IClient httpClient) : base(serviceName, defaultEndpoint, httpClient) { }
 
         public AssistantService(string versionDate, Authenticator authenticator) : base(serviceName, authenticator)
@@ -49,7 +48,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("versionDate cannot be null.");
             }
-
+            
             VersionDate = versionDate;
         }
 

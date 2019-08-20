@@ -16,7 +16,6 @@
 */
 
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
 namespace IBM.Watson.CompareComply.v1.Model
 {
@@ -31,10 +30,10 @@ namespace IBM.Watson.CompareComply.v1.Model
         [JsonProperty("key", NullValueHandling = NullValueHandling.Ignore)]
         public Key Key { get; set; }
         /// <summary>
-        /// A list of values in a key-value pair.
+        /// A value in a key-value pair.
         /// </summary>
         [JsonProperty("value", NullValueHandling = NullValueHandling.Ignore)]
-        public List<Value> Value { get; set; }
+        public Value Value { get; set; }
     }
 
 }

@@ -41,8 +41,7 @@ namespace IBM.Watson.LanguageTranslator.v3.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
-            service = new LanguageTranslatorService();
-            service.VersionDate = versionDate;
+            service = new LanguageTranslatorService(versionDate);
         }
 
         [TestMethod]

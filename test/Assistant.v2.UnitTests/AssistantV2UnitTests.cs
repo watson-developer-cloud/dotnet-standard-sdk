@@ -37,7 +37,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
         public void Constructor_HttpClient_Null()
         {
             AssistantService service =
-                new AssistantService(null);
+                new AssistantService(httpClient: null);
         }
 
         [TestMethod]

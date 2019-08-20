@@ -36,31 +36,31 @@ namespace IBM.Watson.IntegrationTests
         [TestMethod]
         public void AssistantV1WithLoadedCredentials_Success()
         {
-            Assistant.v1.AssistantService service = new Assistant.v1.AssistantService();
+            Assistant.v1.AssistantService service = new Assistant.v1.AssistantService("2019-02-28");
             Assert.IsNotNull(service.GetAuthenticator());
         }
         [TestMethod]
         public void AssistantV2WithLoadedCredentials_Success()
         {
-            Assistant.v2.AssistantService service = new Assistant.v2.AssistantService();
+            Assistant.v2.AssistantService service = new Assistant.v2.AssistantService("2019-02-28");
             Assert.IsNotNull(service.GetAuthenticator());
         }
         [TestMethod]
         public void CompareComplyV1WithLoadedCredentials_Success()
         {
-            CompareComplyService service = new CompareComplyService();
+            CompareComplyService service = new CompareComplyService("2018-10-15");
             Assert.IsNotNull(service.GetAuthenticator());
         }
         [TestMethod]
         public void DiscoveryV1WithLoadedCredentials_Success()
         {
-            DiscoveryService service = new DiscoveryService();
+            DiscoveryService service = new DiscoveryService("2019-04-30");
             Assert.IsNotNull(service.GetAuthenticator());
         }
         [TestMethod]
         public void LangaugeTranslatorV3WithLoadedCredentials_Success()
         {
-            LanguageTranslatorService service = new LanguageTranslatorService();
+            LanguageTranslatorService service = new LanguageTranslatorService("2019-05-01");
             Assert.IsNotNull(service.GetAuthenticator());
         }
         [TestMethod]
@@ -72,13 +72,13 @@ namespace IBM.Watson.IntegrationTests
         [TestMethod]
         public void NaturalLanguageUnderstandingV1WithLoadedCredentials_Success()
         {
-            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService();
+            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("2019-07-12");
             Assert.IsNotNull(service.GetAuthenticator());
         }
         [TestMethod]
         public void PersonalityInsightsV3WithLoadedCredentials_Success()
         {
-            PersonalityInsightsService service = new PersonalityInsightsService();
+            PersonalityInsightsService service = new PersonalityInsightsService("2017-10-13");
             Assert.IsNotNull(service.GetAuthenticator());
         }
         [TestMethod]
@@ -96,13 +96,13 @@ namespace IBM.Watson.IntegrationTests
         [TestMethod]
         public void ToneAnalyzeV3WithLoadedCredentials_Success()
         {
-            ToneAnalyzerService service = new ToneAnalyzerService();
+            ToneAnalyzerService service = new ToneAnalyzerService("2017-09-21");
             Assert.IsNotNull(service.GetAuthenticator());
         }
         [TestMethod]
         public void VisualRecognitionV3WithLoadedCredentials_Success()
         {
-            VisualRecognitionService service = new VisualRecognitionService();
+            VisualRecognitionService service = new VisualRecognitionService("2018-03-19");
             Assert.IsNotNull(service.GetAuthenticator());
         }
     }

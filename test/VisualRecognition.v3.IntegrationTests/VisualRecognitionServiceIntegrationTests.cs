@@ -58,8 +58,7 @@ namespace IBM.Watson.VisualRecognition.v3.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
-            service = new VisualRecognitionService();
-            service.VersionDate = versionDate;
+            service = new VisualRecognitionService(versionDate);
             service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(120);
         }
         #endregion

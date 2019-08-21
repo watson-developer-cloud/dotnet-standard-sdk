@@ -31,17 +31,8 @@ var dir_1ddf9071e1bda1b1e408fcc2f4be9e1f =
     [ "ClassifyReturn.cs", "db/d80/_classify_return_8cs.html", [
       [ "ClassifyReturn", "d7/da2/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_classify_return.html", "d7/da2/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_classify_return" ]
     ] ],
-    [ "ColumnHeaderIds.cs", "df/dc3/_column_header_ids_8cs.html", [
-      [ "ColumnHeaderIds", "d7/dac/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_column_header_ids.html", "d7/dac/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_column_header_ids" ]
-    ] ],
     [ "ColumnHeaders.cs", "db/db4/_column_headers_8cs.html", [
       [ "ColumnHeaders", "d7/d0a/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_column_headers.html", "d7/d0a/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_column_headers" ]
-    ] ],
-    [ "ColumnHeaderTexts.cs", "d4/d59/_column_header_texts_8cs.html", [
-      [ "ColumnHeaderTexts", "df/d40/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_column_header_texts.html", "df/d40/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_column_header_texts" ]
-    ] ],
-    [ "ColumnHeaderTextsNormalized.cs", "d8/dd3/_column_header_texts_normalized_8cs.html", [
-      [ "ColumnHeaderTextsNormalized", "da/d0c/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_column_header_texts_normalized.html", "da/d0c/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_column_header_texts_normalized" ]
     ] ],
     [ "CompareReturn.cs", "db/d05/_compare_return_8cs.html", [
       [ "CompareReturn", "dc/d90/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_compare_return.html", "dc/d90/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_compare_return" ]
@@ -55,6 +46,10 @@ var dir_1ddf9071e1bda1b1e408fcc2f4be9e1f =
     [ "ContractAmts.cs", "d6/dda/_contract_amts_8cs.html", [
       [ "ContractAmts", "d1/d3b/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_amts.html", "d1/d3b/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_amts" ],
       [ "ConfidenceLevelEnumValue", "d4/d54/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_amts_1_1_confidence_level_enum_value.html", "d4/d54/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_amts_1_1_confidence_level_enum_value" ]
+    ] ],
+    [ "ContractCurrencies.cs", "d3/d47/_contract_currencies_8cs.html", [
+      [ "ContractCurrencies", "d9/dc1/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_currencies.html", "d9/dc1/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_currencies" ],
+      [ "ConfidenceLevelEnumValue", "de/d14/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_currencies_1_1_confidence_level_enum_value.html", "de/d14/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_currencies_1_1_confidence_level_enum_value" ]
     ] ],
     [ "ContractTerms.cs", "da/db5/_contract_terms_8cs.html", [
       [ "ContractTerms", "d1/d05/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_terms.html", "d1/d05/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_terms" ],
@@ -156,17 +151,8 @@ var dir_1ddf9071e1bda1b1e408fcc2f4be9e1f =
       [ "PaymentTerms", "d9/d29/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_payment_terms.html", "d9/d29/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_payment_terms" ],
       [ "ConfidenceLevelEnumValue", "d5/d79/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_payment_terms_1_1_confidence_level_enum_value.html", "d5/d79/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_payment_terms_1_1_confidence_level_enum_value" ]
     ] ],
-    [ "RowHeaderIds.cs", "d6/d5a/_row_header_ids_8cs.html", [
-      [ "RowHeaderIds", "d4/d09/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_row_header_ids.html", "d4/d09/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_row_header_ids" ]
-    ] ],
     [ "RowHeaders.cs", "d5/daa/_row_headers_8cs.html", [
       [ "RowHeaders", "db/ddf/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_row_headers.html", "db/ddf/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_row_headers" ]
-    ] ],
-    [ "RowHeaderTexts.cs", "d6/deb/_row_header_texts_8cs.html", [
-      [ "RowHeaderTexts", "d9/deb/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_row_header_texts.html", "d9/deb/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_row_header_texts" ]
-    ] ],
-    [ "RowHeaderTextsNormalized.cs", "d2/d72/_row_header_texts_normalized_8cs.html", [
-      [ "RowHeaderTextsNormalized", "d7/d66/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_row_header_texts_normalized.html", "d7/d66/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_row_header_texts_normalized" ]
     ] ],
     [ "SectionTitle.cs", "df/dc8/_section_title_8cs.html", [
       [ "SectionTitle", "d7/df7/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_section_title.html", "d7/df7/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_section_title" ]

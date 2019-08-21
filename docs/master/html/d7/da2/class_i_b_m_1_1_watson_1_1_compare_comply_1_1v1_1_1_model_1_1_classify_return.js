@@ -1,6 +1,7 @@
 var class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_classify_return =
 [
     [ "ContractAmounts", "d7/da2/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_classify_return.html#abc3c2ca67815141876778299f2817067", null ],
+    [ "ContractCurrencies", "d7/da2/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_classify_return.html#a31cb63483e7f5ced818322096f4ef5d7", null ],
     [ "ContractTerms", "d7/da2/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_classify_return.html#a5574552c8998b5255a4205b774848250", null ],
     [ "ContractTypes", "d7/da2/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_classify_return.html#ad50f28da4867afa11f9344e5a9998201", null ],
     [ "Document", "d7/da2/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_classify_return.html#a3776f9a4240fb7fa73da60034a7c8405", null ],

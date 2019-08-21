@@ -119,10 +119,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.ToneAnalyzer.v3.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.VisualRecognition.v3.Examples", "examples\IBM.Watson.VisualRecognition.v3.Examples\IBM.Watson.VisualRecognition.v3.Examples.csproj", "{EBED7B56-15D3-472E-A758-6452415AA941}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Cloud.SDK.Core", "..\dotnet-sdk-core\src\IBM.Cloud.SDK.Core\IBM.Cloud.SDK.Core.csproj", "{D350328C-0EEE-41A5-B7F6-9CA177BF67D8}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Cloud.SDK.Core.Tests", "..\dotnet-sdk-core\test\IBM.Cloud.SDK.Core.Tests\IBM.Cloud.SDK.Core.Tests.csproj", "{880496E4-3E92-4CE4-809D-1471284C8E93}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -309,14 +305,6 @@ Global
 		{EBED7B56-15D3-472E-A758-6452415AA941}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBED7B56-15D3-472E-A758-6452415AA941}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBED7B56-15D3-472E-A758-6452415AA941}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D350328C-0EEE-41A5-B7F6-9CA177BF67D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D350328C-0EEE-41A5-B7F6-9CA177BF67D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D350328C-0EEE-41A5-B7F6-9CA177BF67D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D350328C-0EEE-41A5-B7F6-9CA177BF67D8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{880496E4-3E92-4CE4-809D-1471284C8E93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{880496E4-3E92-4CE4-809D-1471284C8E93}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{880496E4-3E92-4CE4-809D-1471284C8E93}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{880496E4-3E92-4CE4-809D-1471284C8E93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

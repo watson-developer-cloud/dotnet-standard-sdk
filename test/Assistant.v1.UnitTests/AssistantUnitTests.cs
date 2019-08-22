@@ -26,7 +26,7 @@ using IBM.Cloud.SDK.Core.Http;
 using IBM.Watson.Assistant.v1.Model;
 using IBM.Cloud.SDK.Core.Http.Exceptions;
 using Newtonsoft.Json;
-using IBM.Cloud.SDK.Core.Authentication.Noauth;
+using IBM.Cloud.SDK.Core.Authentication.NoAuth;
 
 namespace IBM.Watson.Assistant.v1.UnitTests
 {
@@ -77,7 +77,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateCounterExample_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
 
             service.CreateCounterexample(null, "text");
         }
@@ -85,14 +85,14 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateCounterExample_No_Body()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.CreateCounterexample("workspaceId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateCounterExample_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
 
             service.CreateCounterexample("workspaceId", "text");
@@ -157,21 +157,21 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteCounterExample_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.DeleteCounterexample(null, "example");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteCounterExample_No_Example()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.DeleteCounterexample("workspaceId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteCounterExample_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.DeleteCounterexample("workspaceId", "example");
         }
@@ -228,21 +228,21 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetCounterExample_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.GetCounterexample(null, "text");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetCounterExample_No_Example()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.GetCounterexample("workspaceId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetCounterExample_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.GetCounterexample("workspaceId", "text");
         }
@@ -303,14 +303,14 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListCounterExamples_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.ListCounterexamples(null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListCounterExamples_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.ListCounterexamples("workspaceId");
         }
@@ -394,21 +394,21 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateCounterExample_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.UpdateCounterexample(null, "text", "text");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateCounterExample_No_Text()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.UpdateCounterexample("workspaceId", null, "text");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateCounterExample_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
 
             service.UpdateCounterexample("workspaceId", "text", "text");
@@ -475,21 +475,21 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateEntity_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.CreateEntity(null, "entity");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateEntity_No_Body()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.CreateEntity("workspaceId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateEntity_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
 
             service.CreateEntity("workspaceId", "entity");
@@ -564,21 +564,21 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteEntity_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.DeleteEntity(null, "entity");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteEntity_No_Example()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.DeleteEntity("workspaceId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteEntity_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.DeleteEntity("workspaceId", "entity");
         }
@@ -635,21 +635,21 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetEntity_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.GetEntity(null, "entity");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetEntity_No_Example()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.GetEntity("workspaceId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetEntity_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.GetEntity("workspaceId", "entity");
         }
@@ -714,14 +714,14 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListEntities_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.ListEntities(null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListEntities_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.ListEntities("workspaceId");
         }
@@ -845,14 +845,14 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateEntity_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.UpdateEntity(null, "entity", "newEntity");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateEntity_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.UpdateEntity("workspaceId", "text", "newEntity");
         }
@@ -933,28 +933,28 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateExample_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.CreateExample(null, "intent", "text");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateExample_No_Intent()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.CreateExample("workspaceId", null, "text");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateExample_No_Text()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.CreateExample("workspaceId", "intent", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateExample_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.CreateExample("workspaceId", "intent", "text");
         }
@@ -1020,21 +1020,21 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteExample_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.DeleteExample(null, "intent", "example");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteExample_No_Intent()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.DeleteExample("workspaceId", null, "example");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteExample_No_Example()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
 
             service.DeleteExample("workspaceId", "intent", null);
         }
@@ -1042,7 +1042,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteExample_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.DeleteExample("workspaceId", "intent", "example");
         }
@@ -1099,28 +1099,28 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetExample_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.GetExample(null, "intent", "example");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetExample_No_Intent()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.GetExample("workspaceId", null, "example");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetExample_No_Example()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.GetExample("workspaceId", "intent", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetExample_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.GetExample("workspaceId", "intent", "example");
         }
@@ -1181,21 +1181,21 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListExamples_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.ListExamples(null, "intent");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListExamples_No_Intent()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.ListExamples("workspaceId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListExamples_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.ListExamples("workspaceId", "intent");
         }
@@ -1279,28 +1279,28 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateExample_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.UpdateExample(null, "intent", "text", "text");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateExample_No_Intent()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.UpdateExample("workspaceId", null, "text", "text");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateExample_No_Text()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.UpdateExample("workspaceId", "intent", null, "text");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateExample_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.UpdateExample("workspaceId", "intent", "text", "text2");
         }
@@ -1368,21 +1368,21 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateIntent_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.CreateIntent(null, "intent");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateIntent_No_Intent()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.CreateIntent("workspaceId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateIntent_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.CreateIntent("workspaceId", "intent");
         }
@@ -1450,21 +1450,21 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteIntent_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.DeleteIntent(null, "intent");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteIntent_No_Intent()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.DeleteIntent("workspaceId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteIntent_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.DeleteIntent("workspaceId", "intent");
         }
@@ -1521,21 +1521,21 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetIntent_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.GetIntent(null, "text");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetIntent_No_Intent()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.GetIntent("workspaceId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetIntent_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.GetIntent("workspaceId", "text");
         }
@@ -1616,14 +1616,14 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListIntents_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.ListIntents(null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListIntents_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.ListIntents("workspaceId");
         }
@@ -1727,21 +1727,21 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateIntent_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.UpdateIntent(null, "text");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateIntent_No_Text()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.UpdateIntent("workspaceId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateIntent_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.UpdateIntent("workspaceId", "text");
         }
@@ -1808,14 +1808,14 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListLogs_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.ListLogs(null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListLogs_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.ListLogs("workspaceId");
         }
@@ -1905,14 +1905,14 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Message_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.Message(null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Message_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.Message("workspaceId");
         }
@@ -2034,35 +2034,35 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateSynonym_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.CreateSynonym(null, "entity", "value", "synonym");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateSynonym_No_Entity()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.CreateSynonym("workspaceId", null, "value", "synonym");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateSynonym_No_Value()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.CreateSynonym("workspaceId", "entity", null, "synonym");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateSynonym_No_Body()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.CreateSynonym("workspaceId", "entity", "value", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateSynonym_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.CreateSynonym("workspaceId", "entity", "value", "synonym");
         }
@@ -2129,35 +2129,35 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteSynonym_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.DeleteSynonym(null, "entity", "value", "synonym");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteSynonym_No_Entity()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.DeleteSynonym("workspaceId", null, "value", "synonym");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteSynonym_No_Value()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.DeleteSynonym("workspaceId", "entity", null, "synonym");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteSynonym_No_Synonym()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.DeleteSynonym("workspaceId", "entity", "value", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteSynonym_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.DeleteSynonym("workspaceId", "entity", "value", "synonym");
         }
@@ -2214,35 +2214,35 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetSynonym_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.GetSynonym(null, "entity", "value", "synonym");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetSynonym_No_Entity()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.GetSynonym("workspaceId", null, "value", "synonym");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetSynonym_No_Value()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.GetSynonym("workspaceId", "entity", null, "synonym");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetSynonym_No_Synonym()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.GetSynonym("workspaceId", "entity", "value", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetSynonym_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.GetSynonym("workspaceId", "entity", "value", "synonym");
         }
@@ -2306,28 +2306,28 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListSynonyms_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.ListSynonyms(null, "entity", "value");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListSynonyms_No_Entity()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.ListSynonyms("workspaceId", null, "value");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListSynonyms_No_Value()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.ListSynonyms("workspaceId", "entity", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListSynonyms_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.ListSynonyms("workspaceId", "entity", "value");
         }
@@ -2424,35 +2424,35 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateSynonym_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.UpdateSynonym(null, "entity", "value", "synonym");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateSynonym_No_Entity()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.UpdateSynonym("workspaceId", null, "value", "synonym");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateSynonym_No_Value()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.UpdateSynonym("workspaceId", "entity", null, "synonym");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateSynonym_No_Synonym()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.UpdateSynonym("workspaceId", "entity", "value", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateSynonym_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
 
             service.UpdateSynonym("workspaceId", "entity", "value", "synonym", "synonym2");
@@ -2521,27 +2521,27 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateValue_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.CreateValue(null, "entity", "value");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateValue_No_Entity()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.CreateValue("workspaceId", null, "value");
         }
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateValue_No_Value()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.CreateValue("workspaceId", "entity", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateValue_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.CreateValue("workspaceId", "entity", "value");
         }
@@ -2609,28 +2609,28 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteValue_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.DeleteValue(null, "entity", "value");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteValue_No_Entity()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.DeleteValue("workspaceId", null, "value");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteValue_No_Value()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.DeleteValue("workspaceId", "entity", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteValue_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.DeleteValue("workspaceId", "entity", "value");
         }
@@ -2687,28 +2687,28 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetValue_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.GetValue(null, "entity", "value");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetValue_No_Entity()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.GetValue("workspaceId", null, "value");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetValue_No_Value()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.GetValue("workspaceId", "entity", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetValue_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.GetValue("workspaceId", "entity", "value");
         }
@@ -2780,21 +2780,21 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListValues_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.ListValues(null, "entity");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListValues_No_Entity()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.ListValues("workspaceId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListValues_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.ListValues("workspaceId", "entity");
         }
@@ -2900,28 +2900,28 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateValue_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.UpdateValue(null, "entity", "value");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateValue_No_Entity()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.UpdateValue("workspaceId", null, "value");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateValue_No_Value()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.UpdateValue("workspaceId", "entity", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateValue_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
 
             service.UpdateValue("workspaceId", "entity", "value");
@@ -2993,7 +2993,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateWorkspace_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.CreateWorkspace();
         }
@@ -3068,14 +3068,14 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteWorkspace_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.DeleteWorkspace(null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteWorkspace_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.DeleteWorkspace("workspaceId");
         }
@@ -3132,14 +3132,14 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetWorkspace_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.GetWorkspace(null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void GetWorkspace_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.GetWorkspace("workspaceId");
         }
@@ -3271,7 +3271,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListWorkspaces_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
             service.ListWorkspaces();
         }
@@ -3372,14 +3372,14 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateWorkspace_No_WorkspaceId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.UpdateWorkspace(null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void UpdateWorkspace_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
 
             service.UpdateWorkspace("workspaceId");

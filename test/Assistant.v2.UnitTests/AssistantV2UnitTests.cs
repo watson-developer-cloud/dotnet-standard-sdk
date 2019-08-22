@@ -15,7 +15,7 @@
 *
 */
 
-using IBM.Cloud.SDK.Core.Authentication.Noauth;
+using IBM.Cloud.SDK.Core.Authentication.NoAuth;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Exceptions;
 using IBM.Watson.Assistant.v2.Model;
@@ -75,7 +75,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateSession_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
 
             service.CreateSession("assistantId");
@@ -84,7 +84,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateSession_No_AssistantId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.CreateSession(null);
         }
 
@@ -140,7 +140,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteSession_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
 
             service.DeleteSession("assistantId", "sessionId");
@@ -149,14 +149,14 @@ namespace IBM.Watson.Assistant.v2.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteSession_No_AssistantId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.DeleteSession(null, "sessionId");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteSession_No_SessionId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.DeleteSession("assistantId", null);
         }
 
@@ -213,7 +213,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Message_No_VersionDate()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
 
             service.Message("assistantId", "sessionId");
@@ -222,14 +222,14 @@ namespace IBM.Watson.Assistant.v2.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Message_No_AssistantId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.Message(null, "sessionId");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Message_No_SessionId()
         {
-            AssistantService service = new AssistantService("versionDate", new NoauthAuthenticator());
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.Message("assistantId", null);
         }
 

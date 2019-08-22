@@ -20,11 +20,9 @@ using System.IO;
 using System.Net.Http;
 using System.Text;
 using IBM.Cloud.SDK.Core.Authentication;
-using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Extensions;
 using IBM.Cloud.SDK.Core.Service;
-using IBM.Cloud.SDK.Core.Util;
 using IBM.Watson.CompareComply.v1.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -34,9 +32,8 @@ namespace IBM.Watson.CompareComply.v1
 {
     public partial class CompareComplyService : IBMService, ICompareComplyService
     {
-        new const string SERVICE_NAME = "compare_comply";
-        const string URL = "https://gateway.watsonplatform.net/compare-comply/api";
-        public new string DefaultEndpoint = "https://gateway.watsonplatform.net/compare-comply/api";
+        new const string serviceName = "compare_comply";
+        private const string defaultEndpoint = "https://gateway.watsonplatform.net/compare-comply/api";
         private string _versionDate;
         public string VersionDate
         {
@@ -44,72 +41,16 @@ namespace IBM.Watson.CompareComply.v1
             set { _versionDate = value; }
         }
 
-        public CompareComplyService() : base(SERVICE_NAME) { }
-        
-        [Obsolete("Please use CompareComplyService(string versionDate, IAuthenticatorConfig config) instead")]
-        public CompareComplyService(string userName, string password, string versionDate) : base(SERVICE_NAME, URL)
+        public CompareComplyService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public CompareComplyService(IClient httpClient) : base(serviceName, defaultEndpoint, httpClient) { }
+
+        public CompareComplyService(string versionDate, Authenticator authenticator) : base(serviceName, authenticator)
         {
-            if (string.IsNullOrEmpty(userName))
-                throw new ArgumentNullException(nameof(userName));
-
-            if (string.IsNullOrEmpty(password))
-                throw new ArgumentNullException(nameof(password));
-
-            this.SetCredential(userName, password);
             if (string.IsNullOrEmpty(versionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
-
-            VersionDate = versionDate;
-        }
-        
-        [Obsolete("Please use CompareComplyService(string versionDate, IAuthenticatorConfig config) instead")]
-        public CompareComplyService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
-        {
-            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
-                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
-            if (string.IsNullOrEmpty(versionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            VersionDate = versionDate;
-
-            if (!string.IsNullOrEmpty(options.ServiceUrl))
-            {
-                this.Endpoint = options.ServiceUrl;
             }
-            else
-            {
-                options.ServiceUrl = this.Endpoint;
-            }
-
-            IamConfig iamConfig = null;
-            if (!string.IsNullOrEmpty(options.IamAccessToken))
-            {
-                iamConfig = new IamConfig(
-                    userManagedAccessToken: options.IamAccessToken
-                    );
-            }
-            else
-            {
-                iamConfig = new IamConfig(
-                    apikey: options.IamApiKey,
-                    iamUrl: options.IamUrl
-                    );
-            }
-
-            SetAuthenticator(iamConfig);
-        }
-
-        public CompareComplyService(IClient httpClient) : base(SERVICE_NAME, URL)
-        {
-            if (httpClient == null)
-                throw new ArgumentNullException(nameof(httpClient));
-
-            this.Client = httpClient;
-            SkipAuthentication = true;
-        }
-
-        public CompareComplyService(string versionDate, IAuthenticatorConfig config) : base(SERVICE_NAME, config)
-        {
+            
             VersionDate = versionDate;
         }
 

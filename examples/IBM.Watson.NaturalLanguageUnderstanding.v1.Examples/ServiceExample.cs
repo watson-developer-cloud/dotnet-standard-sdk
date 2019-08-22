@@ -43,11 +43,10 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Examples
         #region Analyze
         public void Analyze()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("2019-07-12", config);
+            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("2019-07-12", authenticator);
             service.SetEndpoint("{url}");
 
             var features = new Features()
@@ -77,11 +76,10 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Examples
         #region Mangage Models
         public void ListModels()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("2019-07-12", config);
+            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("2019-07-12", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.ListModels();
@@ -91,11 +89,10 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Examples
 
         public void DeleteModel()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("2019-07-12", config);
+            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("2019-07-12", authenticator);
             service.SetEndpoint("{url}");
 
             var result = service.DeleteModel(

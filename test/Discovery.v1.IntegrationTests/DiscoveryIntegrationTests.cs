@@ -37,7 +37,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         private static string endpoint;
         private static string apikey;
         private static string credentials = string.Empty;
-        private static string version = "2019-01-15";
+        private static string versionDate = "2019-01-15";
 
         private static string environmentId;
         private static string configurationId;
@@ -65,8 +65,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
-            service = new DiscoveryService();
-            service.VersionDate = version;
+            service = new DiscoveryService(versionDate);
 
             service.WithHeader("X-Watson-Test", "1");
             var environments = service.ListEnvironments();

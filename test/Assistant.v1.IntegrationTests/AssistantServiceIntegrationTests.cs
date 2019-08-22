@@ -19,10 +19,10 @@
 //#define DELETE_DOTNET_WORKSPACES
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json.Linq;
 using System;
 using IBM.Watson.Assistant.v1.Model;
 using System.Collections.Generic;
+using IBM.Cloud.SDK.Core.Util;
 
 namespace IBM.Watson.Assistant.v1.IntegrationTests
 {
@@ -56,9 +56,9 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
-            service = new AssistantService();
-            service.VersionDate = versionDate;
-            workspaceId = Environment.GetEnvironmentVariable("ASSISTANT_WORKSPACE_ID");
+            service = new AssistantService(versionDate);
+            var creds = CredentialUtils.GetServiceProperties("assistant");
+            creds.TryGetValue("WORKSPACE_ID", out workspaceId);
 
 #if DELETE_DOTNET_WORKSPACES
             service.WithHeader("X-Watson-Test", "1");

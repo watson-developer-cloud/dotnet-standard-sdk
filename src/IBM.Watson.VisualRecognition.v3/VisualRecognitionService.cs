@@ -20,11 +20,9 @@ using System.IO;
 using System.Net.Http;
 using System.Text;
 using IBM.Cloud.SDK.Core.Authentication;
-using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Extensions;
 using IBM.Cloud.SDK.Core.Service;
-using IBM.Cloud.SDK.Core.Util;
 using IBM.Watson.VisualRecognition.v3.Model;
 using System;
 
@@ -32,9 +30,8 @@ namespace IBM.Watson.VisualRecognition.v3
 {
     public partial class VisualRecognitionService : IBMService, IVisualRecognitionService
     {
-        new const string SERVICE_NAME = "visual_recognition";
-        const string URL = "https://gateway.watsonplatform.net/visual-recognition/api";
-        public new string DefaultEndpoint = "https://gateway.watsonplatform.net/visual-recognition/api";
+        new const string serviceName = "visual_recognition";
+        private const string defaultEndpoint = "https://gateway.watsonplatform.net/visual-recognition/api";
         private string _versionDate;
         public string VersionDate
         {
@@ -42,56 +39,16 @@ namespace IBM.Watson.VisualRecognition.v3
             set { _versionDate = value; }
         }
 
-        public VisualRecognitionService() : base(SERVICE_NAME) { }
-        
-        [Obsolete("Please use VisualRecognitionService(string versionDate, IAuthenticatorConfig config) instead")]
-        public VisualRecognitionService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
+        public VisualRecognitionService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public VisualRecognitionService(IClient httpClient) : base(serviceName, defaultEndpoint, httpClient) { }
+
+        public VisualRecognitionService(string versionDate, Authenticator authenticator) : base(serviceName, authenticator)
         {
-            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
-                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
             if (string.IsNullOrEmpty(versionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
-
-            VersionDate = versionDate;
-
-            if (!string.IsNullOrEmpty(options.ServiceUrl))
-            {
-                this.Endpoint = options.ServiceUrl;
             }
-            else
-            {
-                options.ServiceUrl = this.Endpoint;
-            }
-
-            IamConfig iamConfig = null;
-            if (!string.IsNullOrEmpty(options.IamAccessToken))
-            {
-                iamConfig = new IamConfig(
-                    userManagedAccessToken: options.IamAccessToken
-                    );
-            }
-            else
-            {
-                iamConfig = new IamConfig(
-                    apikey: options.IamApiKey,
-                    iamUrl: options.IamUrl
-                    );
-            }
-
-            SetAuthenticator(iamConfig);
-        }
-
-        public VisualRecognitionService(IClient httpClient) : base(SERVICE_NAME, URL)
-        {
-            if (httpClient == null)
-                throw new ArgumentNullException(nameof(httpClient));
-
-            this.Client = httpClient;
-            SkipAuthentication = true;
-        }
-
-        public VisualRecognitionService(string versionDate, IAuthenticatorConfig config) : base(SERVICE_NAME, config)
-        {
+            
             VersionDate = versionDate;
         }
 

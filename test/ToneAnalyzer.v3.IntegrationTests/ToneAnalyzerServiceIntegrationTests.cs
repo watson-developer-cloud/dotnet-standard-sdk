@@ -42,8 +42,7 @@ namespace IBM.Watson.ToneAnalyzer.v3.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
-            service = new ToneAnalyzerService();
-            service.VersionDate = versionDate;
+            service = new ToneAnalyzerService(versionDate);
         }
 
         [TestMethod]

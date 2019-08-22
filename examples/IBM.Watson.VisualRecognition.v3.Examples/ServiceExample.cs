@@ -64,11 +64,10 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
         #region General
         public void Classify()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
+            VisualRecognitionService service = new VisualRecognitionService("2018-03-19", authenticator);
 
             DetailedResponse<ClassifiedImages> result;
             using (FileStream fs = File.OpenRead("./fruitbowl.jpg"))
@@ -94,11 +93,10 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
         #region Face
         public void DetectFaces()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
+            VisualRecognitionService service = new VisualRecognitionService("2018-03-19", authenticator);
 
             DetailedResponse<DetectedFaces> result;
             using (FileStream fs = File.OpenRead("./Ginni_Rometty.jpg"))
@@ -119,11 +117,10 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
         #region Custom
         public void ListClassifiers()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
+            VisualRecognitionService service = new VisualRecognitionService("2018-03-19", authenticator);
 
             var result = service.ListClassifiers(
                 verbose: true
@@ -134,11 +131,10 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
 
         public void CreateClassifier()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
+            VisualRecognitionService service = new VisualRecognitionService("2018-03-19", authenticator);
 
             DetailedResponse<Classifier> result = null;
             using (FileStream beagle = File.OpenRead("./beagle.zip"), goldenRetriever = File.OpenRead("./golden-retriever.zip"), husky = File.OpenRead("./husky.zip"), cats = File.OpenRead("./cats.zip"))
@@ -168,11 +164,10 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
 
         public void GetClassifier()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
+            VisualRecognitionService service = new VisualRecognitionService("2018-03-19", authenticator);
 
             var result = service.GetClassifier(
                 classifierId: "dogs_1477088859"
@@ -183,11 +178,10 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
 
         public void UpdateClassifier()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
+            VisualRecognitionService service = new VisualRecognitionService("2018-03-19", authenticator);
 
             DetailedResponse<Classifier> result = null;
             using (FileStream dalmatian = File.OpenRead("./dalmatian.zip"), moreCats= File.OpenRead("./more-cats.zip"))
@@ -212,11 +206,10 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
 
         public void DeleteClassifier()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
+            VisualRecognitionService service = new VisualRecognitionService("2018-03-19", authenticator);
 
             var result = service.DeleteClassifier(
                 classifierId: "dogs_1477088859"
@@ -229,11 +222,10 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
         #region Core ML
         public void GetCoreMlModel()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
+            VisualRecognitionService service = new VisualRecognitionService("2018-03-19", authenticator);
 
             var result = service.GetCoreMlModel(
                 classifierId: "dogs_1477088859"
@@ -253,11 +245,10 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
         #region User Data
         public void DeleteUserData()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            VisualRecognitionService service = new VisualRecognitionService("2018-03-19", config);
+            VisualRecognitionService service = new VisualRecognitionService("2018-03-19", authenticator);
 
             var result = service.DeleteUserData(
                 customerId: "my_customer_ID"

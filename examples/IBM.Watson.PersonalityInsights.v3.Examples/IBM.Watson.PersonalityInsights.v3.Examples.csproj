@@ -6,10 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="IBM.Cloud.SDK.Core" Version="0.8.0" />
+    <PackageReference Include="IBM.Cloud.SDK.Core" Version="1.0.0-rc3" />
   </ItemGroup>
 
   <ItemGroup>
+    <!-- <ProjectReference Include="..\..\..\dotnet-sdk-core\src\IBM.Cloud.SDK.Core\IBM.Cloud.SDK.Core.csproj" /> -->
     <ProjectReference Include="..\..\src\IBM.Watson.PersonalityInsights.v3\IBM.Watson.PersonalityInsights.v3.csproj" />
   </ItemGroup>
 

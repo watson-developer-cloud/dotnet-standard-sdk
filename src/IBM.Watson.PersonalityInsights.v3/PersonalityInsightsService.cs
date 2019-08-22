@@ -19,10 +19,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using IBM.Cloud.SDK.Core.Authentication;
-using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Service;
-using IBM.Cloud.SDK.Core.Util;
 using IBM.Watson.PersonalityInsights.v3.Model;
 using Newtonsoft.Json;
 using System;
@@ -31,9 +29,8 @@ namespace IBM.Watson.PersonalityInsights.v3
 {
     public partial class PersonalityInsightsService : IBMService, IPersonalityInsightsService
     {
-        new const string SERVICE_NAME = "personality_insights";
-        const string URL = "https://gateway.watsonplatform.net/personality-insights/api";
-        public new string DefaultEndpoint = "https://gateway.watsonplatform.net/personality-insights/api";
+        new const string serviceName = "personality_insights";
+        private const string defaultEndpoint = "https://gateway.watsonplatform.net/personality-insights/api";
         private string _versionDate;
         public string VersionDate
         {
@@ -41,72 +38,16 @@ namespace IBM.Watson.PersonalityInsights.v3
             set { _versionDate = value; }
         }
 
-        public PersonalityInsightsService() : base(SERVICE_NAME) { }
-        
-        [Obsolete("Please use PersonalityInsightsService(string versionDate, IAuthenticatorConfig config) instead")]
-        public PersonalityInsightsService(string userName, string password, string versionDate) : base(SERVICE_NAME, URL)
+        public PersonalityInsightsService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public PersonalityInsightsService(IClient httpClient) : base(serviceName, defaultEndpoint, httpClient) { }
+
+        public PersonalityInsightsService(string versionDate, Authenticator authenticator) : base(serviceName, authenticator)
         {
-            if (string.IsNullOrEmpty(userName))
-                throw new ArgumentNullException(nameof(userName));
-
-            if (string.IsNullOrEmpty(password))
-                throw new ArgumentNullException(nameof(password));
-
-            this.SetCredential(userName, password);
             if (string.IsNullOrEmpty(versionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
-
-            VersionDate = versionDate;
-        }
-        
-        [Obsolete("Please use PersonalityInsightsService(string versionDate, IAuthenticatorConfig config) instead")]
-        public PersonalityInsightsService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
-        {
-            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
-                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
-            if (string.IsNullOrEmpty(versionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
-            VersionDate = versionDate;
-
-            if (!string.IsNullOrEmpty(options.ServiceUrl))
-            {
-                this.Endpoint = options.ServiceUrl;
             }
-            else
-            {
-                options.ServiceUrl = this.Endpoint;
-            }
-
-            IamConfig iamConfig = null;
-            if (!string.IsNullOrEmpty(options.IamAccessToken))
-            {
-                iamConfig = new IamConfig(
-                    userManagedAccessToken: options.IamAccessToken
-                    );
-            }
-            else
-            {
-                iamConfig = new IamConfig(
-                    apikey: options.IamApiKey,
-                    iamUrl: options.IamUrl
-                    );
-            }
-
-            SetAuthenticator(iamConfig);
-        }
-
-        public PersonalityInsightsService(IClient httpClient) : base(SERVICE_NAME, URL)
-        {
-            if (httpClient == null)
-                throw new ArgumentNullException(nameof(httpClient));
-
-            this.Client = httpClient;
-            SkipAuthentication = true;
-        }
-
-        public PersonalityInsightsService(string versionDate, IAuthenticatorConfig config) : base(SERVICE_NAME, config)
-        {
+            
             VersionDate = versionDate;
         }
 

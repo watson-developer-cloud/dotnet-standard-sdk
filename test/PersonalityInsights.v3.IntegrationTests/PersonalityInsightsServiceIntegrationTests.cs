@@ -38,8 +38,7 @@ namespace IBM.Watson.PersonalityInsights.v3.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
-            service = new PersonalityInsightsService();
-            service.VersionDate = versionDate;
+            service = new PersonalityInsightsService(versionDate);
         }
 
         [TestMethod]

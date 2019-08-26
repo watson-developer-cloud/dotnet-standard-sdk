@@ -30,19 +30,14 @@ namespace IBM.Watson.Assistant.v2
 {
     public partial class AssistantService : IBMService, IAssistantService
     {
-        new const string serviceName = "assistant";
+        const string serviceName = "assistant";
         private const string defaultEndpoint = "https://gateway.watsonplatform.net/assistant/api";
-        private string _versionDate;
-        public string VersionDate
-        {
-            get { return _versionDate; }
-            set { _versionDate = value; }
-        }
+        public string VersionDate { get; set; }
 
         public AssistantService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public AssistantService(IClient httpClient) : base(serviceName, defaultEndpoint, httpClient) { }
 
-        public AssistantService(string versionDate, Authenticator authenticator) : base(serviceName, authenticator)
+        public AssistantService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
             if (string.IsNullOrEmpty(versionDate))
             {

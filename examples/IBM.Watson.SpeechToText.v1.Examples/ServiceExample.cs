@@ -515,7 +515,6 @@ namespace IBM.Watson.SpeechToText.v1.Examples
             var result = service.AddWord(
                 customizationId: "{customizationId}",
                 wordName: "NCAA",
-                word: "dotnet",
                 soundsLike: new List<string>()
                 {
                     "N. C. A. A.",

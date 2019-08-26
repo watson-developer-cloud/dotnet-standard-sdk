@@ -17,7 +17,6 @@
 
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
 namespace IBM.Watson.CompareComply.v1.Model
 {

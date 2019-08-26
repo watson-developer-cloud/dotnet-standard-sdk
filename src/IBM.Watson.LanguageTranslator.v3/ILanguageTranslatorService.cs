@@ -26,7 +26,7 @@ namespace IBM.Watson.LanguageTranslator.v3
         DetailedResponse<TranslationResult> Translate(List<string> text, string modelId = null, string source = null, string target = null);
         DetailedResponse<IdentifiableLanguages> ListIdentifiableLanguages();
         DetailedResponse<IdentifiedLanguages> Identify(string text);
-        DetailedResponse<TranslationModels> ListModels(string source = null, string target = null, bool? defaultModels = null);
+        DetailedResponse<TranslationModels> ListModels(string source = null, string target = null, bool? _default = null);
         DetailedResponse<TranslationModel> CreateModel(string baseModelId, System.IO.MemoryStream forcedGlossary = null, System.IO.MemoryStream parallelCorpus = null, string name = null);
         DetailedResponse<DeleteModelResult> DeleteModel(string modelId);
         DetailedResponse<TranslationModel> GetModel(string modelId);

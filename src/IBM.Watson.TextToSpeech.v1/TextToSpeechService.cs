@@ -30,12 +30,12 @@ namespace IBM.Watson.TextToSpeech.v1
 {
     public partial class TextToSpeechService : IBMService, ITextToSpeechService
     {
-        new const string serviceName = "text_to_speech";
+        const string serviceName = "text_to_speech";
         private const string defaultEndpoint = "https://stream.watsonplatform.net/text-to-speech/api";
         public TextToSpeechService() : this(ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public TextToSpeechService(IClient httpClient) : base(serviceName, defaultEndpoint, httpClient) { }
 
-        public TextToSpeechService(Authenticator authenticator) : base(serviceName, authenticator)
+        public TextToSpeechService(IAuthenticator authenticator) : base(serviceName, authenticator)
         {
         }
 

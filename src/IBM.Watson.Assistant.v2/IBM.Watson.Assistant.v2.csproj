@@ -30,8 +30,4 @@
         <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
     </ItemGroup>
 
-    <!--<ItemGroup>-->
-        <!--<ProjectReference Include="..\..\..\dotnet-sdk-core\src\IBM.Cloud.SDK.Core\IBM.Cloud.SDK.Core.csproj" />-->
-    <!--</ItemGroup>-->
-
 </Project>

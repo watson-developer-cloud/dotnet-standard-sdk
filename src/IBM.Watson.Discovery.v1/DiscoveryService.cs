@@ -33,19 +33,14 @@ namespace IBM.Watson.Discovery.v1
 {
     public partial class DiscoveryService : IBMService, IDiscoveryService
     {
-        new const string serviceName = "discovery";
+        const string serviceName = "discovery";
         private const string defaultEndpoint = "https://gateway.watsonplatform.net/discovery/api";
-        private string _versionDate;
-        public string VersionDate
-        {
-            get { return _versionDate; }
-            set { _versionDate = value; }
-        }
+        public string VersionDate { get; set; }
 
         public DiscoveryService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public DiscoveryService(IClient httpClient) : base(serviceName, defaultEndpoint, httpClient) { }
 
-        public DiscoveryService(string versionDate, Authenticator authenticator) : base(serviceName, authenticator)
+        public DiscoveryService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
             if (string.IsNullOrEmpty(versionDate))
             {
@@ -2295,10 +2290,10 @@ namespace IBM.Watson.Discovery.v1
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
         /// <param name="queryLong">An object that represents the query to be submitted. (optional)</param>
-        /// <param name="loggingOptOut">If `true`, queries are not stored in the Discovery **Logs** endpoint. (optional,
-        /// default to false)</param>
+        /// <param name="xWatsonLoggingOptOut">If `true`, queries are not stored in the Discovery **Logs** endpoint.
+        /// (optional, default to false)</param>
         /// <returns><see cref="QueryResponse" />QueryResponse</returns>
-        public DetailedResponse<QueryResponse> Query(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, string returnFields = null, long? offset = null, string sort = null, bool? highlight = null, string passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null, string collectionIds = null, bool? similar = null, string similarDocumentIds = null, string similarFields = null, string bias = null, bool? loggingOptOut = null)
+        public DetailedResponse<QueryResponse> Query(string environmentId, string collectionId, string collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, string _return = null, long? offset = null, string sort = null, bool? highlight = null, string passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, string similarDocumentIds = null, string similarFields = null, string bias = null, bool? xWatsonLoggingOptOut = null)
         {
             if (string.IsNullOrEmpty(environmentId))
             {
@@ -2334,13 +2329,17 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                if (loggingOptOut != null)
+                if (xWatsonLoggingOptOut != null)
                 {
-                    restRequest.WithHeader("X-Watson-Logging-Opt-Out", (bool)loggingOptOut ? "true" : "false");
+                    restRequest.WithHeader("X-Watson-Logging-Opt-Out", (bool)xWatsonLoggingOptOut ? "true" : "false");
                 }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(collectionIds))
+                {
+                    bodyObject["collection_ids"] = collectionIds;
+                }
                 if (!string.IsNullOrEmpty(filter))
                 {
                     bodyObject["filter"] = filter;
@@ -2365,9 +2364,9 @@ namespace IBM.Watson.Discovery.v1
                 {
                     bodyObject["count"] = JToken.FromObject(count);
                 }
-                if (!string.IsNullOrEmpty(returnFields))
+                if (!string.IsNullOrEmpty(_return))
                 {
-                    bodyObject["return"] = returnFields;
+                    bodyObject["return"] = _return;
                 }
                 if (offset != null)
                 {
@@ -2400,10 +2399,6 @@ namespace IBM.Watson.Discovery.v1
                 if (!string.IsNullOrEmpty(deduplicateField))
                 {
                     bodyObject["deduplicate.field"] = deduplicateField;
-                }
-                if (!string.IsNullOrEmpty(collectionIds))
-                {
-                    bodyObject["collection_ids"] = collectionIds;
                 }
                 if (similar != null)
                 {
@@ -2466,7 +2461,7 @@ namespace IBM.Watson.Discovery.v1
         /// aggregations, see the Query reference. (optional)</param>
         /// <param name="count">Number of results to return. The maximum for the **count** and **offset** values
         /// together in any one query is **10000**. (optional)</param>
-        /// <param name="returnFields">A comma-separated list of the portion of the document hierarchy to return.
+        /// <param name="_return">A comma-separated list of the portion of the document hierarchy to return.
         /// (optional)</param>
         /// <param name="offset">The number of query results to skip at the beginning. For example, if the total number
         /// of results that are returned is 10 and the offset is 8, it returns the last two results. The maximum for the
@@ -2496,7 +2491,7 @@ namespace IBM.Watson.Discovery.v1
         /// <param name="similarFields">A comma-separated list of field names that are used as a basis for comparison to
         /// identify similar documents. If not specified, the entire document is used for comparison. (optional)</param>
         /// <returns><see cref="QueryNoticesResponse" />QueryNoticesResponse</returns>
-        public DetailedResponse<QueryNoticesResponse> QueryNotices(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null)
+        public DetailedResponse<QueryNoticesResponse> QueryNotices(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, List<string> _return = null, long? offset = null, List<string> sort = null, bool? highlight = null, List<string> passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null)
         {
             if (string.IsNullOrEmpty(environmentId))
             {
@@ -2555,9 +2550,9 @@ namespace IBM.Watson.Discovery.v1
                 {
                     restRequest.WithArgument("count", count);
                 }
-                if (returnFields != null && returnFields.Count > 0)
+                if (_return != null && _return.Count > 0)
                 {
-                    restRequest.WithArgument("return", string.Join(",", returnFields.ToArray()));
+                    restRequest.WithArgument("return", string.Join(",", _return.ToArray()));
                 }
                 if (offset != null)
                 {
@@ -2627,10 +2622,10 @@ namespace IBM.Watson.Discovery.v1
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="queryLong">An object that represents the query to be submitted. (optional)</param>
-        /// <param name="loggingOptOut">If `true`, queries are not stored in the Discovery **Logs** endpoint. (optional,
-        /// default to false)</param>
+        /// <param name="xWatsonLoggingOptOut">If `true`, queries are not stored in the Discovery **Logs** endpoint.
+        /// (optional, default to false)</param>
         /// <returns><see cref="QueryResponse" />QueryResponse</returns>
-        public DetailedResponse<QueryResponse> FederatedQuery(string environmentId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, string returnFields = null, long? offset = null, string sort = null, bool? highlight = null, string passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null, string collectionIds = null, bool? similar = null, string similarDocumentIds = null, string similarFields = null, string bias = null, bool? loggingOptOut = null)
+        public DetailedResponse<QueryResponse> FederatedQuery(string environmentId, string collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, string _return = null, long? offset = null, string sort = null, bool? highlight = null, string passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, string similarDocumentIds = null, string similarFields = null, string bias = null, bool? xWatsonLoggingOptOut = null)
         {
             if (string.IsNullOrEmpty(environmentId))
             {
@@ -2658,13 +2653,17 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                if (loggingOptOut != null)
+                if (xWatsonLoggingOptOut != null)
                 {
-                    restRequest.WithHeader("X-Watson-Logging-Opt-Out", (bool)loggingOptOut ? "true" : "false");
+                    restRequest.WithHeader("X-Watson-Logging-Opt-Out", (bool)xWatsonLoggingOptOut ? "true" : "false");
                 }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(collectionIds))
+                {
+                    bodyObject["collection_ids"] = collectionIds;
+                }
                 if (!string.IsNullOrEmpty(filter))
                 {
                     bodyObject["filter"] = filter;
@@ -2689,9 +2688,9 @@ namespace IBM.Watson.Discovery.v1
                 {
                     bodyObject["count"] = JToken.FromObject(count);
                 }
-                if (!string.IsNullOrEmpty(returnFields))
+                if (!string.IsNullOrEmpty(_return))
                 {
-                    bodyObject["return"] = returnFields;
+                    bodyObject["return"] = _return;
                 }
                 if (offset != null)
                 {
@@ -2724,10 +2723,6 @@ namespace IBM.Watson.Discovery.v1
                 if (!string.IsNullOrEmpty(deduplicateField))
                 {
                     bodyObject["deduplicate.field"] = deduplicateField;
-                }
-                if (!string.IsNullOrEmpty(collectionIds))
-                {
-                    bodyObject["collection_ids"] = collectionIds;
                 }
                 if (similar != null)
                 {
@@ -2788,7 +2783,7 @@ namespace IBM.Watson.Discovery.v1
         /// aggregations, see the Query reference. (optional)</param>
         /// <param name="count">Number of results to return. The maximum for the **count** and **offset** values
         /// together in any one query is **10000**. (optional)</param>
-        /// <param name="returnFields">A comma-separated list of the portion of the document hierarchy to return.
+        /// <param name="_return">A comma-separated list of the portion of the document hierarchy to return.
         /// (optional)</param>
         /// <param name="offset">The number of query results to skip at the beginning. For example, if the total number
         /// of results that are returned is 10 and the offset is 8, it returns the last two results. The maximum for the
@@ -2812,7 +2807,7 @@ namespace IBM.Watson.Discovery.v1
         /// <param name="similarFields">A comma-separated list of field names that are used as a basis for comparison to
         /// identify similar documents. If not specified, the entire document is used for comparison. (optional)</param>
         /// <returns><see cref="QueryNoticesResponse" />QueryNoticesResponse</returns>
-        public DetailedResponse<QueryNoticesResponse> FederatedQueryNotices(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> returnFields = null, long? offset = null, List<string> sort = null, bool? highlight = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null)
+        public DetailedResponse<QueryNoticesResponse> FederatedQueryNotices(string environmentId, List<string> collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> _return = null, long? offset = null, List<string> sort = null, bool? highlight = null, string deduplicateField = null, bool? similar = null, List<string> similarDocumentIds = null, List<string> similarFields = null)
         {
             if (string.IsNullOrEmpty(environmentId))
             {
@@ -2867,9 +2862,9 @@ namespace IBM.Watson.Discovery.v1
                 {
                     restRequest.WithArgument("count", count);
                 }
-                if (returnFields != null && returnFields.Count > 0)
+                if (_return != null && _return.Count > 0)
                 {
-                    restRequest.WithArgument("return", string.Join(",", returnFields.ToArray()));
+                    restRequest.WithArgument("return", string.Join(",", _return.ToArray()));
                 }
                 if (offset != null)
                 {

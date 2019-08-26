@@ -32,19 +32,14 @@ namespace IBM.Watson.CompareComply.v1
 {
     public partial class CompareComplyService : IBMService, ICompareComplyService
     {
-        new const string serviceName = "compare_comply";
+        const string serviceName = "compare_comply";
         private const string defaultEndpoint = "https://gateway.watsonplatform.net/compare-comply/api";
-        private string _versionDate;
-        public string VersionDate
-        {
-            get { return _versionDate; }
-            set { _versionDate = value; }
-        }
+        public string VersionDate { get; set; }
 
         public CompareComplyService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public CompareComplyService(IClient httpClient) : base(serviceName, defaultEndpoint, httpClient) { }
 
-        public CompareComplyService(string versionDate, Authenticator authenticator) : base(serviceName, authenticator)
+        public CompareComplyService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
             if (string.IsNullOrEmpty(versionDate))
             {
@@ -60,22 +55,17 @@ namespace IBM.Watson.CompareComply.v1
         /// Converts a document to HTML.
         /// </summary>
         /// <param name="file">The document to convert.</param>
-        /// <param name="filename">The filename for file.</param>
         /// <param name="fileContentType">The content type of file. (optional)</param>
         /// <param name="model">The analysis model to be used by the service. For the **Element classification** and
         /// **Compare two documents** methods, the default is `contracts`. For the **Extract tables** method, the
         /// default is `tables`. These defaults apply to the standalone methods as well as to the methods' use in
         /// batch-processing requests. (optional)</param>
         /// <returns><see cref="HTMLReturn" />HTMLReturn</returns>
-        public DetailedResponse<HTMLReturn> ConvertToHtml(System.IO.MemoryStream file, string filename, string fileContentType = null, string model = null)
+        public DetailedResponse<HTMLReturn> ConvertToHtml(System.IO.MemoryStream file, string fileContentType = null, string model = null)
         {
             if (file == null)
             {
                 throw new ArgumentNullException("`file` is required for `ConvertToHtml`");
-            }
-            if (string.IsNullOrEmpty(filename))
-            {
-                throw new ArgumentNullException("`filename` is required for `ConvertToHtml`");
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -95,7 +85,7 @@ namespace IBM.Watson.CompareComply.v1
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
                     fileContent.Headers.ContentType = contentType;
-                    formData.Add(fileContent, "file", filename);
+                    formData.Add(fileContent, "file", "filename");
                 }
 
                 IClient client = this.Client;
@@ -446,9 +436,9 @@ namespace IBM.Watson.CompareComply.v1
         /// `model_id`. The only permitted value is `contracts`. (optional)</param>
         /// <param name="modelVersion">An optional string that filters the output to include only feedback with the
         /// specified `model_version`. (optional)</param>
-        /// <param name="categoryRemoved">An optional string in the form of a comma-separated list of categories. If
-        /// this is specified, the service filters the output to include only feedback that has at least one category
-        /// from the list removed. (optional)</param>
+        /// <param name="categoryRemoved">An optional string in the form of a comma-separated list of categories. If it
+        /// is specified, the service filters the output to include only feedback that has at least one category from
+        /// the list removed. (optional)</param>
         /// <param name="categoryAdded">An optional string in the form of a comma-separated list of categories. If this
         /// is specified, the service filters the output to include only feedback that has at least one category from
         /// the list added. (optional)</param>

@@ -30,19 +30,14 @@ namespace IBM.Watson.VisualRecognition.v3
 {
     public partial class VisualRecognitionService : IBMService, IVisualRecognitionService
     {
-        new const string serviceName = "visual_recognition";
+        const string serviceName = "visual_recognition";
         private const string defaultEndpoint = "https://gateway.watsonplatform.net/visual-recognition/api";
-        private string _versionDate;
-        public string VersionDate
-        {
-            get { return _versionDate; }
-            set { _versionDate = value; }
-        }
+        public string VersionDate { get; set; }
 
         public VisualRecognitionService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public VisualRecognitionService(IClient httpClient) : base(serviceName, defaultEndpoint, httpClient) { }
 
-        public VisualRecognitionService(string versionDate, Authenticator authenticator) : base(serviceName, authenticator)
+        public VisualRecognitionService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
             if (string.IsNullOrEmpty(versionDate))
             {
@@ -271,10 +266,16 @@ namespace IBM.Watson.VisualRecognition.v3
         /// Create a classifier.
         ///
         /// Train a new multi-faceted classifier on the uploaded image data. Create your custom classifier with positive
-        /// or negative examples. Include at least two sets of examples, either two positive example files or one
-        /// positive and one negative file. You can upload a maximum of 256 MB per call.
+        /// or negative example training images. Include at least two sets of examples, either two positive example
+        /// files or one positive and one negative file. You can upload a maximum of 256 MB per call.
         ///
-        /// Encode all names in UTF-8 if they contain non-ASCII characters (.zip and image file names, and classifier
+        /// **Tips when creating:**
+        ///
+        /// - If you set the **X-Watson-Learning-Opt-Out** header parameter to `true` when you create a classifier, the
+        /// example training images are not stored. Save your training images locally. For more information, see [Data
+        /// collection](#data-collection).
+        ///
+        /// - Encode all names in UTF-8 if they contain non-ASCII characters (.zip and image file names, and classifier
         /// and class names). The service assumes UTF-8 encoding if it encounters non-ASCII characters.
         /// </summary>
         /// <param name="name">The name of the new classifier. Encode special characters in UTF-8.</param>
@@ -489,9 +490,15 @@ namespace IBM.Watson.VisualRecognition.v3
         /// Encode all names in UTF-8 if they contain non-ASCII characters (.zip and image file names, and classifier
         /// and class names). The service assumes UTF-8 encoding if it encounters non-ASCII characters.
         ///
-        /// **Tip:** Don't make retraining calls on a classifier until the status is ready. When you submit retraining
-        /// requests in parallel, the last request overwrites the previous requests. The retrained property shows the
-        /// last time the classifier retraining finished.
+        /// **Tips about retraining:**
+        ///
+        /// - You can't update the classifier if the **X-Watson-Learning-Opt-Out** header parameter was set to `true`
+        /// when the classifier was created. Training images are not stored in that case. Instead, create another
+        /// classifier. For more information, see [Data collection](#data-collection).
+        ///
+        /// - Don't make retraining calls on a classifier until the status is ready. When you submit retraining requests
+        /// in parallel, the last request overwrites the previous requests. The `retrained` property shows the last time
+        /// the classifier retraining finished.
         /// </summary>
         /// <param name="classifierId">The ID of the classifier.</param>
         /// <param name="positiveExamples">A dictionary that contains the value for each classname. The value is a .zip

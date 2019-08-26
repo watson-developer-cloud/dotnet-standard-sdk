@@ -28,7 +28,7 @@ namespace IBM.Watson.VisualRecognition.v3.Model
         /// The name of the class.
         /// </summary>
         [JsonProperty("class", NullValueHandling = NullValueHandling.Ignore)]
-        public string ClassName { get; set; }
+        public string _Class { get; set; }
     }
 
 }

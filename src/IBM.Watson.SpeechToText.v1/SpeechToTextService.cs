@@ -32,12 +32,12 @@ namespace IBM.Watson.SpeechToText.v1
 {
     public partial class SpeechToTextService : IBMService, ISpeechToTextService
     {
-        new const string serviceName = "speech_to_text";
+        const string serviceName = "speech_to_text";
         private const string defaultEndpoint = "https://stream.watsonplatform.net/speech-to-text/api";
         public SpeechToTextService() : this(ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public SpeechToTextService(IClient httpClient) : base(serviceName, defaultEndpoint, httpClient) { }
 
-        public SpeechToTextService(Authenticator authenticator) : base(serviceName, authenticator)
+        public SpeechToTextService(IAuthenticator authenticator) : base(serviceName, authenticator)
         {
         }
 
@@ -309,9 +309,9 @@ namespace IBM.Watson.SpeechToText.v1
         /// `speaker_labels` to `true` forces the `timestamps` parameter to be `true`, regardless of whether you specify
         /// `false` for the parameter.
         ///
-        /// **Note:** Applies to US English, Japanese, and Spanish transcription only. To determine whether a language
-        /// model supports speaker labels, you can also use the **Get a model** method and check that the attribute
-        /// `speaker_labels` is set to `true`.
+        /// **Note:** Applies to US English, Japanese, and Spanish (both broadband and narrowband models) and UK English
+        /// (narrowband model) transcription only. To determine whether a language model supports speaker labels, you
+        /// can also use the **Get a model** method and check that the attribute `speaker_labels` is set to `true`.
         ///
         /// See [Speaker
         /// labels](https://cloud.ibm.com/docs/services/speech-to-text?topic=speech-to-text-output#speaker_labels).
@@ -815,9 +815,9 @@ namespace IBM.Watson.SpeechToText.v1
         /// `speaker_labels` to `true` forces the `timestamps` parameter to be `true`, regardless of whether you specify
         /// `false` for the parameter.
         ///
-        /// **Note:** Applies to US English, Japanese, and Spanish transcription only. To determine whether a language
-        /// model supports speaker labels, you can also use the **Get a model** method and check that the attribute
-        /// `speaker_labels` is set to `true`.
+        /// **Note:** Applies to US English, Japanese, and Spanish (both broadband and narrowband models) and UK English
+        /// (narrowband model) transcription only. To determine whether a language model supports speaker labels, you
+        /// can also use the **Get a model** method and check that the attribute `speaker_labels` is set to `true`.
         ///
         /// See [Speaker
         /// labels](https://cloud.ibm.com/docs/services/speech-to-text?topic=speech-to-text-output#speaker_labels).

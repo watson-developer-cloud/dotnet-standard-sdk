@@ -29,19 +29,14 @@ namespace IBM.Watson.PersonalityInsights.v3
 {
     public partial class PersonalityInsightsService : IBMService, IPersonalityInsightsService
     {
-        new const string serviceName = "personality_insights";
+        const string serviceName = "personality_insights";
         private const string defaultEndpoint = "https://gateway.watsonplatform.net/personality-insights/api";
-        private string _versionDate;
-        public string VersionDate
-        {
-            get { return _versionDate; }
-            set { _versionDate = value; }
-        }
+        public string VersionDate { get; set; }
 
         public PersonalityInsightsService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public PersonalityInsightsService(IClient httpClient) : base(serviceName, defaultEndpoint, httpClient) { }
 
-        public PersonalityInsightsService(string versionDate, Authenticator authenticator) : base(serviceName, authenticator)
+        public PersonalityInsightsService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
             if (string.IsNullOrEmpty(versionDate))
             {

@@ -129,7 +129,7 @@ namespace IBM.Watson.NaturalLangaugeClassifier.v1.Examples
                     trainingDataFile.CopyTo(trainingData);
                     metadataFile.CopyTo(metadata);
                     result = service.CreateClassifier(
-                        metadata: metadata,
+                        trainingMetadata: metadata,
                         trainingData: trainingData
                         );
                 }

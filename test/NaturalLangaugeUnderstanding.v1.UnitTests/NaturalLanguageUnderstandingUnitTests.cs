@@ -25,7 +25,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Exceptions;
-using IBM.Cloud.SDK.Core.Authentication.Noauth;
+using IBM.Cloud.SDK.Core.Authentication.NoAuth;
 
 namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
 {
@@ -76,7 +76,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
         public void Analyze_No_VersionDate()
         {
 
-            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("versionDate", new NoauthAuthenticator());
+            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
 
             service.Analyze(new Features());
@@ -311,14 +311,14 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteModel_No_Model_Id()
         {
-            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("versionDate", new NoauthAuthenticator());
+            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("versionDate", new NoAuthAuthenticator());
             service.DeleteModel(null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteModel_No_VersionDate()
         {
-            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("versionDate", new NoauthAuthenticator());
+            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
 
             service.DeleteModel("modelId");
@@ -383,7 +383,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ListModels_No_VersionDate()
         {
-            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("versionDate", new NoauthAuthenticator());
+            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
 
             service.ListModels();

@@ -754,7 +754,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 filter: "{filter}",
                 query: "{query}",
                 aggregation: "{aggregation}",
-                returnFields: "{return_fields}"
+                _return: "{return_fields}"
                 );
 
             Console.WriteLine(result.Response);
@@ -790,7 +790,7 @@ namespace IBM.Watson.Discovery.v1.Examples
             var result = service.FederatedQuery(
                 environmentId: "{environmentId}",
                 naturalLanguageQuery: "{naturalLanguageQuery}",
-                returnFields: "{returnFields}"
+                _return: "{returnFields}"
                 );
 
             Console.WriteLine(result.Response);

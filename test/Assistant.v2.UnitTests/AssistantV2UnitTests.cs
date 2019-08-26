@@ -266,12 +266,12 @@ namespace IBM.Watson.Assistant.v2.UnitTests
             response.Result = new MessageResponse();
             response.Result.Output = new MessageOutput()
             {
-                Generic = new List<DialogRuntimeResponseGeneric>()
+                Generic = new List<RuntimeResponseGeneric>()
                 {
-                    new DialogRuntimeResponseGeneric()
+                    new RuntimeResponseGeneric()
                     {
-                        ResponseType = DialogRuntimeResponseGeneric.ResponseTypeEnumValue.TEXT,
-                        Preference = DialogRuntimeResponseGeneric.PreferenceEnumValue.BUTTON,
+                        ResponseType = RuntimeResponseGeneric.ResponseTypeEnumValue.TEXT,
+                        Preference = RuntimeResponseGeneric.PreferenceEnumValue.BUTTON,
                         Text = "text",
                         Time = 1,
                         Typing = true,

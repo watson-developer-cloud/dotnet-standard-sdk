@@ -67,7 +67,6 @@ namespace IBM.Watson.CompareComply.v1.IntegrationTests
                     service.WithHeader("X-Watson-Test", "1");
                     var htmlConversionResult = service.ConvertToHtml(
                         file: ms,
-                        filename: Path.GetFileName(contractAFilePath),
                         fileContentType: "application/pdf",
                         model: compareComplyModel
                         );

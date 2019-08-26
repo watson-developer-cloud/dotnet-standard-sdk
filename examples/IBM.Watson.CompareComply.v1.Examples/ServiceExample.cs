@@ -80,7 +80,6 @@ namespace IBM.Watson.CompareComply.v1.Examples
                     fs.CopyTo(ms);
                     var result = service.ConvertToHtml(
                         file: ms,
-                        filename: Path.GetFileName("{path-to-file}"),
                         fileContentType: "{file-content-type}"
                         );
 

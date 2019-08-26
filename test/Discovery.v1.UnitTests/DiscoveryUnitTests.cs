@@ -852,7 +852,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                     DestinationField = "destinationField",
                     SourceField = "sourceField",
                     Overwrite = false,
-                    EnrichmentName = "enrichmentName",
+                    _Enrichment = "enrichmentName",
                     IgnoreDownstreamErrors = false,
                     Options = new EnrichmentOptions()
                     {
@@ -904,7 +904,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             Assert.IsTrue(result.Result.Configurations[0].Enrichments[0].Description == "description");
             Assert.IsTrue(result.Result.Configurations[0].Enrichments[0].SourceField == "sourceField");
             Assert.IsTrue(result.Result.Configurations[0].Enrichments[0].Overwrite == false);
-            Assert.IsTrue(result.Result.Configurations[0].Enrichments[0].EnrichmentName == "enrichmentName");
+            Assert.IsTrue(result.Result.Configurations[0].Enrichments[0]._Enrichment == "enrichmentName");
             Assert.IsTrue(result.Result.Configurations[0].Enrichments[0].IgnoreDownstreamErrors == false);
             Assert.IsNotNull(result.Result.Configurations[0].Enrichments[0].Options);
         }
@@ -999,7 +999,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                         DestinationField = "destinationField",
                         SourceField = "sourceField",
                         Overwrite = false,
-                        EnrichmentName = "enrichmentName",
+                        _Enrichment = "enrichmentName",
                         IgnoreDownstreamErrors = false,
                         Options = new EnrichmentOptions()
                         {
@@ -1230,7 +1230,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                             DestinationField = "destinationField",
                             SourceField = "sourceField",
                             Overwrite = false,
-                            EnrichmentName = "enrichmentName",
+                            _Enrichment = "enrichmentName",
                             IgnoreDownstreamErrors = false,
                             Options = new EnrichmentOptions()
                             {
@@ -1366,7 +1366,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                             DestinationField = "destinationField",
                             SourceField = "sourceField",
                             Overwrite = false,
-                            EnrichmentName = "enrichmentName",
+                            _Enrichment = "enrichmentName",
                             IgnoreDownstreamErrors = false,
                             Options = new EnrichmentOptions()
                             {
@@ -1919,8 +1919,8 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             #region Response
             var field = Substitute.For<Field>();
-            field.FieldName.Returns("field");
-            field.FieldType = Field.FieldTypeEnumValue.STRING;
+            field._Field.Returns("field");
+            field.Type = Field.TypeEnumValue.STRING;
 
             DetailedResponse<ListCollectionFieldsResponse> response = new DetailedResponse<ListCollectionFieldsResponse>()
             {
@@ -1948,8 +1948,8 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             client.Received().GetAsync(Arg.Any<string>());
             Assert.IsNotNull(result.Result.Fields);
             Assert.IsTrue(result.Result.Fields.Count > 0);
-            Assert.IsTrue(result.Result.Fields[0].FieldType == Field.FieldTypeEnumValue.STRING);
-            Assert.IsTrue(result.Result.Fields[0].FieldName == "field");
+            Assert.IsTrue(result.Result.Fields[0].Type == Field.TypeEnumValue.STRING);
+            Assert.IsTrue(result.Result.Fields[0]._Field == "field");
         }
         #endregion
         #endregion

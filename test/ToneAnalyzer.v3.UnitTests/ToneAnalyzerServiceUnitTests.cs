@@ -15,7 +15,7 @@
 *
 */
 
-using IBM.Cloud.SDK.Core.Authentication.Noauth;
+using IBM.Cloud.SDK.Core.Authentication.NoAuth;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Exceptions;
 using IBM.Watson.ToneAnalyzer.v3.Model;
@@ -262,14 +262,14 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
             };
             #endregion
 
-            ToneAnalyzerService service = new ToneAnalyzerService(versionDate, new NoauthAuthenticator());
+            ToneAnalyzerService service = new ToneAnalyzerService(versionDate, new NoAuthAuthenticator());
             var analyzeTone = service.Tone(null, "application/json");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Tone_Empty_Version()
         {
-            ToneAnalyzerService service = new ToneAnalyzerService(versionDate, new NoauthAuthenticator());
+            ToneAnalyzerService service = new ToneAnalyzerService(versionDate, new NoAuthAuthenticator());
             service.VersionDate = null;
 
             ToneInput toneInput = new ToneInput()
@@ -349,7 +349,7 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ToneChat_ToneChatInputEmpty()
         {
-            ToneAnalyzerService service = new ToneAnalyzerService(versionDate, new NoauthAuthenticator());
+            ToneAnalyzerService service = new ToneAnalyzerService(versionDate, new NoAuthAuthenticator());
             var result = service.ToneChat(null);
         }
 
@@ -392,7 +392,7 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ToneChat_Empty_Version()
         {
-            ToneAnalyzerService service = new ToneAnalyzerService(versionDate, new NoauthAuthenticator());
+            ToneAnalyzerService service = new ToneAnalyzerService(versionDate, new NoAuthAuthenticator());
             service.VersionDate = null;
 
             var utterances = new List<Utterance>()

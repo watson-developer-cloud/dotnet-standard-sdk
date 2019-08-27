@@ -3,7 +3,7 @@
     <PropertyGroup>
         <Description>IBM.Watson.Common is a library of functionality needed for SDKs generated using the IBM OpenApi SDK generator. The library has functionality specific for the generated SDK.</Description>
         <AssemblyTitle>IBM.Watson.Common</AssemblyTitle>
-        <VersionPrefix>3.5.0</VersionPrefix>
+        <VersionPrefix>3.0.1</VersionPrefix>
         <Authors>IBM Watson</Authors>
         <TargetFramework>netstandard2.0</TargetFramework>
         <AssemblyName>IBM.Watson.Common</AssemblyName>

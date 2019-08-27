@@ -17,23 +17,18 @@
 
 using Newtonsoft.Json;
 
-namespace IBM.Watson.Assistant.v1.Model
+namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// An intent identified in the user input.
+    /// Relevant text that contributed to the categorization.
     /// </summary>
-    public class RuntimeIntent
+    public class CategoriesRelevantText
     {
         /// <summary>
-        /// The name of the recognized intent.
+        /// Text from the analyzed source that supports the categorization.
         /// </summary>
-        [JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
-        public string Intent { get; set; }
-        /// <summary>
-        /// A decimal percentage that represents Watson's confidence in the intent.
-        /// </summary>
-        [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Confidence { get; set; }
+        [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
+        public string Text { get; set; }
     }
 
 }

@@ -17,23 +17,23 @@
 
 using Newtonsoft.Json;
 
-namespace IBM.Watson.Assistant.v1.Model
+namespace IBM.Watson.CompareComply.v1.Model
 {
     /// <summary>
-    /// An intent identified in the user input.
+    /// A contact.
     /// </summary>
-    public class RuntimeIntent
+    public class Contact
     {
         /// <summary>
-        /// The name of the recognized intent.
+        /// A string listing the name of the contact.
         /// </summary>
-        [JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
-        public string Intent { get; set; }
+        [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
+        public string Name { get; set; }
         /// <summary>
-        /// A decimal percentage that represents Watson's confidence in the intent.
+        /// A string listing the role of the contact.
         /// </summary>
-        [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Confidence { get; set; }
+        [JsonProperty("role", NullValueHandling = NullValueHandling.Ignore)]
+        public string Role { get; set; }
     }
 
 }

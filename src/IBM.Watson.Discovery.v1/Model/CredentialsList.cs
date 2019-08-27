@@ -15,25 +15,21 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace IBM.Watson.Assistant.v1.Model
+namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
-    /// An intent identified in the user input.
+    /// CredentialsList.
     /// </summary>
-    public class RuntimeIntent
+    public class CredentialsList
     {
         /// <summary>
-        /// The name of the recognized intent.
+        /// An array of credential definitions that were created for this instance.
         /// </summary>
-        [JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
-        public string Intent { get; set; }
-        /// <summary>
-        /// A decimal percentage that represents Watson's confidence in the intent.
-        /// </summary>
-        [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Confidence { get; set; }
+        [JsonProperty("credentials", NullValueHandling = NullValueHandling.Ignore)]
+        public List<Credentials> Credentials { get; set; }
     }
 
 }

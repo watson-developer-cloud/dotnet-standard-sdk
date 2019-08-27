@@ -22,10 +22,10 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Assistant.v1.Model
 {
     /// <summary>
-    /// An output object that includes the response to the user, the dialog nodes that were triggered, and messages from
-    /// the log.
+    /// The dialog output that will be returned from the Watson Assistant service if the user selects the corresponding
+    /// option.
     /// </summary>
-    public class OutputData : DynamicModel<object>
+    public class DialogSuggestionOutput : DynamicModel<object>
     {
         /// <summary>
         /// An array of the nodes that were triggered to create the response, in the order in which they were visited.
@@ -41,11 +41,6 @@ namespace IBM.Watson.Assistant.v1.Model
         [JsonProperty("nodes_visited_details", NullValueHandling = NullValueHandling.Ignore)]
         public List<DialogNodeVisitedDetails> NodesVisitedDetails { get; set; }
         /// <summary>
-        /// An array of up to 50 messages logged with the request.
-        /// </summary>
-        [JsonProperty("log_messages", NullValueHandling = NullValueHandling.Ignore)]
-        public List<LogMessage> LogMessages { get; set; }
-        /// <summary>
         /// An array of responses to the user.
         /// </summary>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
@@ -55,7 +50,7 @@ namespace IBM.Watson.Assistant.v1.Model
         /// supported response types.
         /// </summary>
         [JsonProperty("generic", NullValueHandling = NullValueHandling.Ignore)]
-        public List<RuntimeResponseGeneric> Generic { get; set; }
+        public List<DialogSuggestionResponseGeneric> Generic { get; set; }
     }
 
 }

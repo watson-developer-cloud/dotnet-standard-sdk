@@ -17,23 +17,23 @@
 
 using Newtonsoft.Json;
 
-namespace IBM.Watson.Assistant.v1.Model
+namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
-    /// An intent identified in the user input.
+    /// Summary of the collection usage in the environment.
     /// </summary>
-    public class RuntimeIntent
+    public class CollectionUsage
     {
         /// <summary>
-        /// The name of the recognized intent.
+        /// Number of active collections in the environment.
         /// </summary>
-        [JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
-        public string Intent { get; set; }
+        [JsonProperty("available", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual long? Available { get; private set; }
         /// <summary>
-        /// A decimal percentage that represents Watson's confidence in the intent.
+        /// Total number of collections allowed in the environment.
         /// </summary>
-        [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Confidence { get; set; }
+        [JsonProperty("maximum_allowed", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual long? MaximumAllowed { get; private set; }
     }
 
 }

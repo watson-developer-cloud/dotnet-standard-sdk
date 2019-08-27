@@ -21,16 +21,16 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Assistant.v1.Model
 {
     /// <summary>
-    /// DialogRuntimeResponseGeneric.
+    /// RuntimeResponseGeneric.
     /// </summary>
-    public class DialogRuntimeResponseGeneric
+    public class RuntimeResponseGeneric
     {
         /// <summary>
         /// The type of response returned by the dialog node. The specified response type must be supported by the
         /// client application or channel.
         ///
         /// **Note:** The **suggestion** response type is part of the disambiguation feature, which is only available
-        /// for Premium users.
+        /// for Plus and Premium users.
         /// </summary>
         public class ResponseTypeEnumValue
         {
@@ -82,14 +82,14 @@ namespace IBM.Watson.Assistant.v1.Model
         /// client application or channel.
         ///
         /// **Note:** The **suggestion** response type is part of the disambiguation feature, which is only available
-        /// for Premium users.
-        /// Constants for possible values can be found using DialogRuntimeResponseGeneric.ResponseTypeEnumValue
+        /// for Plus and Premium users.
+        /// Constants for possible values can be found using RuntimeResponseGeneric.ResponseTypeEnumValue
         /// </summary>
         [JsonProperty("response_type", NullValueHandling = NullValueHandling.Ignore)]
         public string ResponseType { get; set; }
         /// <summary>
         /// The preferred type of control to display.
-        /// Constants for possible values can be found using DialogRuntimeResponseGeneric.PreferenceEnumValue
+        /// Constants for possible values can be found using RuntimeResponseGeneric.PreferenceEnumValue
         /// </summary>
         [JsonProperty("preference", NullValueHandling = NullValueHandling.Ignore)]
         public string Preference { get; set; }

@@ -345,7 +345,6 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 workspaceId: workspaceId,
                 export: true,
                 pageLimit: 1,
-                includeCount: true,
                 sort: "-updated",
                 includeAudit: true);
 
@@ -595,7 +594,6 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 workspaceId: workspaceId,
                 export: true,
                 pageLimit: 1,
-                includeCount: true,
                 sort: "-updated",
                 includeAudit: true
                 );
@@ -669,7 +667,6 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 workspaceId: workspaceId,
                 intent: createdIntent,
                 pageLimit: 1,
-                includeCount: true,
                 sort: "-updated",
                 includeAudit: true
                 );

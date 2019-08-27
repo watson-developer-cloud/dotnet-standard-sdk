@@ -15,25 +15,21 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace IBM.Watson.Assistant.v1.Model
+namespace IBM.Watson.CompareComply.v1.Model
 {
     /// <summary>
-    /// An intent identified in the user input.
+    /// The results of a successful **List Batches** request.
     /// </summary>
-    public class RuntimeIntent
+    public class Batches
     {
         /// <summary>
-        /// The name of the recognized intent.
+        /// A list of the status of all batch requests.
         /// </summary>
-        [JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
-        public string Intent { get; set; }
-        /// <summary>
-        /// A decimal percentage that represents Watson's confidence in the intent.
-        /// </summary>
-        [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Confidence { get; set; }
+        [JsonProperty("batches", NullValueHandling = NullValueHandling.Ignore)]
+        public List<BatchStatus> _Batches { get; set; }
     }
 
 }

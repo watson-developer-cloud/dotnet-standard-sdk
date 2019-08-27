@@ -17,23 +17,18 @@
 
 using Newtonsoft.Json;
 
-namespace IBM.Watson.Assistant.v1.Model
+namespace IBM.Watson.NaturalLanguageClassifier.v1.Model
 {
     /// <summary>
-    /// An intent identified in the user input.
+    /// Request payload to classify.
     /// </summary>
-    public class RuntimeIntent
+    public class ClassifyInput
     {
         /// <summary>
-        /// The name of the recognized intent.
+        /// The submitted phrase. The maximum length is 2048 characters.
         /// </summary>
-        [JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
-        public string Intent { get; set; }
-        /// <summary>
-        /// A decimal percentage that represents Watson's confidence in the intent.
-        /// </summary>
-        [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Confidence { get; set; }
+        [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
+        public string Text { get; set; }
     }
 
 }

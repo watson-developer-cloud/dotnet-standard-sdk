@@ -3,7 +3,7 @@
     <PropertyGroup>
         <Description>IBM.Watson.NaturalLanguageClassifier.v1 wraps the Watson Natural Language Classifier service (http://www.ibm.com/watson/developercloud/natural-language-classifier.html)</Description>
         <AssemblyTitle>IBM.Watson.NaturalLanguageClassifier.v1</AssemblyTitle>
-        <VersionPrefix>3.5.0</VersionPrefix>
+        <VersionPrefix>4.0.0-rc1</VersionPrefix>
         <Authors>IBM Watson</Authors>
         <TargetFramework>netstandard2.0</TargetFramework>
         <AssemblyName>IBM.Watson.NaturalLanguageClassifier.v1</AssemblyName>
@@ -11,7 +11,7 @@
         <PackageTags>watson;cognitive;speech;vision;machine-learning;ml;ai;artificial-intelligence;.NET;.NET-Standard</PackageTags>
         <PackageIconUrl>https://watson-developer-cloud.github.io/dotnet-standard-sdk/img/Watson_Avatar_Pos_RGB.png</PackageIconUrl>
         <PackageProjectUrl>https://github.com/watson-developer-cloud/dotnet-standard-sdk</PackageProjectUrl>
-        <Version>3.5.0</Version>
+        <Version>4.0.0-rc1</Version>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

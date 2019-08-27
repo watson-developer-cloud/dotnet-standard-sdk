@@ -79,11 +79,11 @@ namespace IBM.Watson.VisualRecognition.v4
         /// <returns><see cref="AnalyzeResponse" />AnalyzeResponse</returns>
         public DetailedResponse<AnalyzeResponse> Analyze(List<string> collectionIds, List<string> features, System.IO.MemoryStream imagesFile = null, string imageUrl = null, float? threshold = null)
         {
-            if (string.IsNullOrEmpty(collectionIds))
+            if (collectionIds == null || collectionIds.Count == 0)
             {
                 throw new ArgumentNullException("`collectionIds` is required for `Analyze`");
             }
-            if (string.IsNullOrEmpty(features))
+            if (features == null || features.Count == 0)
             {
                 throw new ArgumentNullException("`features` is required for `Analyze`");
             }

@@ -2293,7 +2293,7 @@ namespace IBM.Watson.Discovery.v1
         /// <param name="xWatsonLoggingOptOut">If `true`, queries are not stored in the Discovery **Logs** endpoint.
         /// (optional, default to false)</param>
         /// <returns><see cref="QueryResponse" />QueryResponse</returns>
-        public DetailedResponse<QueryResponse> Query(string environmentId, string collectionId, string collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, string _return = null, long? offset = null, string sort = null, bool? highlight = null, string passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, string similarDocumentIds = null, string similarFields = null, string bias = null, bool? xWatsonLoggingOptOut = null)
+        public DetailedResponse<QueryResponse> Query(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, string _return = null, long? offset = null, string sort = null, bool? highlight = null, string passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null, string collectionIds = null, bool? similar = null, string similarDocumentIds = null, string similarFields = null, string bias = null, bool? xWatsonLoggingOptOut = null)
         {
             if (string.IsNullOrEmpty(environmentId))
             {
@@ -2336,10 +2336,6 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
-                if (!string.IsNullOrEmpty(collectionIds))
-                {
-                    bodyObject["collection_ids"] = collectionIds;
-                }
                 if (!string.IsNullOrEmpty(filter))
                 {
                     bodyObject["filter"] = filter;
@@ -2399,6 +2395,10 @@ namespace IBM.Watson.Discovery.v1
                 if (!string.IsNullOrEmpty(deduplicateField))
                 {
                     bodyObject["deduplicate.field"] = deduplicateField;
+                }
+                if (!string.IsNullOrEmpty(collectionIds))
+                {
+                    bodyObject["collection_ids"] = collectionIds;
                 }
                 if (similar != null)
                 {
@@ -2625,7 +2625,7 @@ namespace IBM.Watson.Discovery.v1
         /// <param name="xWatsonLoggingOptOut">If `true`, queries are not stored in the Discovery **Logs** endpoint.
         /// (optional, default to false)</param>
         /// <returns><see cref="QueryResponse" />QueryResponse</returns>
-        public DetailedResponse<QueryResponse> FederatedQuery(string environmentId, string collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, string _return = null, long? offset = null, string sort = null, bool? highlight = null, string passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, string similarDocumentIds = null, string similarFields = null, string bias = null, bool? xWatsonLoggingOptOut = null)
+        public DetailedResponse<QueryResponse> FederatedQuery(string environmentId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, string _return = null, long? offset = null, string sort = null, bool? highlight = null, string passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null, string collectionIds = null, bool? similar = null, string similarDocumentIds = null, string similarFields = null, string bias = null, bool? xWatsonLoggingOptOut = null)
         {
             if (string.IsNullOrEmpty(environmentId))
             {
@@ -2660,10 +2660,6 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
-                if (!string.IsNullOrEmpty(collectionIds))
-                {
-                    bodyObject["collection_ids"] = collectionIds;
-                }
                 if (!string.IsNullOrEmpty(filter))
                 {
                     bodyObject["filter"] = filter;
@@ -2723,6 +2719,10 @@ namespace IBM.Watson.Discovery.v1
                 if (!string.IsNullOrEmpty(deduplicateField))
                 {
                     bodyObject["deduplicate.field"] = deduplicateField;
+                }
+                if (!string.IsNullOrEmpty(collectionIds))
+                {
+                    bodyObject["collection_ids"] = collectionIds;
                 }
                 if (similar != null)
                 {

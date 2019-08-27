@@ -70,10 +70,9 @@ You supply either an IAM service **API key** or an **access token**:
 ```cs
 void Example()
 {
-    IamConfig iamConfig = new IamConfig(
-        apikey: "{iam-apikey}"
-        );
-    service = new AssistantService("{versionDate}", iamConfig);
+    IamAuthenticator authenticator = new IamAuthenticator(
+        apikey: "{apikey}");
+    var service = new AssistantService("{versionDate}", authenticator);
     service.SetEndpoint("{service-endpoint}");
 }
 ```
@@ -82,10 +81,9 @@ void Example()
 ```cs
 void Example()
 {
-    IamConfig iamConfig = new IamConfig(
-        userManagedAccessToken: "{iam-access-token}"
-        );
-    service = new AssistantService("{versionDate}", iamConfig);
+    BearerTokenAuthenticator authenticator = new BearerTokenAuthenticator(
+        bearerToken: "{bearerToken}");
+    var service = new AssistantService("{versionDate}", authenticator);
     service.SetEndpoint("{service-endpoint}");
 }
 ```
@@ -94,11 +92,10 @@ void Example()
 ```cs
 void Example()
 {
-    BasicAuthConfig basicAuthConfig = new BasicAuthConfig(
+    BasicAuthenticator authenticator = new BasicAuthenticator(
         username: "{username}",
-        password: "{password}"
-        );
-    service = new AssistantService("{versionDate}", basicAuthConfig);
+        password: "{password}");
+    var service = new AssistantService("{versionDate}", authenticator);
     service.SetEndpoint("{service-endpoint}");
 }
 ```
@@ -110,14 +107,13 @@ Like IAM, you can pass in credentials to let the SDK manage an access token for 
 ```cs
 void Example()
 {
-    Icp4dConfig icp4dConfig = new Icp4dConfig(
+    CloudPakForDataAuthenticator authenticator = new CloudPakForDataAuthenticator(
+        url: "https://{cp4d_cluster_host}{:port}",
         username: "{username}",
-        password: "{password}",
-        url: "https://{icp4d_cluster_host}{:port}"
-        );
-    AssistantService assistant = new AssistantService("{version-date}", icp4dConfig);
+        password: "{password}");
+    var service = new AssistantService("{version-date}", authenticator);
     service.SetEndpoint("{service-endpoint}");
-    var results = assistant.Message("{workspace-id}", "{message-request}");
+    var results = service.Message("{workspace-id}", "{message-request}");
 }
 ```
 
@@ -125,13 +121,11 @@ void Example()
 ```cs
 void Example()
 {
-    Icp4dConfig icp4dConfig = new Icp4dConfig(
-        userManagedAccessToken: "{access-token}",
-        url: "https://{icp4d_cluster_host}{:port}"
-        );
-    AssistantService assistant = new AssistantService("{version-date}", icp4dConfig);
+    BearerTokenAuthenticator authenticator = new BearerTokenAuthenticator(
+        bearerToken: "{bearerToken}");
+    var service = new AssistantService("{version-date}", authenticator);
     service.SetEndpoint("{service-endpoint}");
-    var results = assistant.Message("{workspace-id}", "{message-request}");
+    var results = service.Message("{workspace-id}", "{message-request}");
 }
 ```
 Be sure to both [disable SSL verification](#self-signed-certificates) when authenticating and set the endpoint explicitly to the URL given in ICP.
@@ -152,8 +146,8 @@ The file downloaded will be called `ibm-credentials.env`. This is the name the S
 As long as you set that up correctly, you don't have to worry about setting any authentication options in your code. So, for example, if you created and downloaded the credential file for your Discovery instance, you just need to do the following:
 
 ```cs
-AssistantService assistantService = new AssistantService();
-var listWorkspacesResult = assistantService.ListWorkspaces();
+AssistantService service = new AssistantService();
+var listWorkspacesResult = service.ListWorkspaces();
 ```
 
 And that's it!
@@ -177,13 +171,12 @@ You can send custom request headers by adding them to the service using `.WithHe
 ```cs
 void Example()
 {
-    IamConfig iamConfig = new IamConfig(
-        apikey: "{iam-apikey}"
-        );
-    AssistantService assistant = new AssistantService("{version-date}", iamConfig);
+    IamAuthenticator authenticator = new IamAuthenticator(
+        apikey: "{apikey}");
+    var service = new AssistantService("{version-date}", authenticator);
     service.SetEndpoint("{service-endpoint}");
-    assistant.WithHeader("X-Watson-Metadata", "customer_id=some-assistant-customer-id");
-    var results = assistant.Message("{workspace-id}", "{message-request}");
+    service.WithHeader("X-Watson-Metadata", "customer_id=some-assistant-customer-id");
+    var results = service.Message("{workspace-id}", "{message-request}");
 }
 ```
 
@@ -192,12 +185,11 @@ You can get the response headers, status code and the raw json response in the r
 ```cs
 void Example()
 {
-    IamConfig iamConfig = new IamConfig(
-        apikey: "{iam-apikey}"
-        );
-    AssistantService assistant = new AssistantService("{version-date}", iamConfig);
+    IamAuthenticator authenticator = new IamAuthenticator(
+        apikey: "{apikey}");
+    var service = new AssistantService("{version-date}", authenticator);
     service.SetEndpoint("{service-endpoint}");
-    var results = assistant.Message("{workspace-id}", "{message-request}");
+    var results = service.Message("{workspace-id}", "{message-request}");
     
     var responseHeaders = results.Headers;  //  The response headers
     var responseJson = results.Response;    //  The raw response json
@@ -210,15 +202,14 @@ You can disable SSL verification on calls to Watson (only do this if you really 
 ```cs
 void Example()
 {
-    Icp4dConfig icp4dConfig = new Icp4dConfig(
+    CloudPakForDataAuthenticator authenticator = new CloudPakForDataAuthenticator(
+        url: "https://{cp4d_cluster_host}{:port}",
         username: "{username}",
         password: "{password}",
-        url: "https://{icp4d_cluster_host}{:port}",
-        disableSslVerification: true
-        );
-    AssistantService assistant = new AssistantService("{version-date}", icp4dConfig);
+        disableSslVerification: true);
+    var service = new AssistantService("{version-date}", authenticator);
     service.SetEndpoint("{service-endpoint}");
-    var results = assistant.Message("{workspace-id}", "{message-request}");
+    var results = service.Message("{workspace-id}", "{message-request}");
 }
 ```
 

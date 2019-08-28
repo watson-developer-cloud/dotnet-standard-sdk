@@ -1,0 +1,4 @@
+var searchData=
+[
+  ['visualrecognitionservice',['VisualRecognitionService',['../dd/d5a/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a09b8bd6e33d060f87b88735d6b4538e5',1,'IBM.Watson.VisualRecognition.v3.VisualRecognitionService.VisualRecognitionService(string versionDate)'],['../dd/d5a/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#aaafd1db1d0faa8437a2189d0edf50de7',1,'IBM.Watson.VisualRecognition.v3.VisualRecognitionService.VisualRecognitionService(IClient httpClient)'],['../dd/d5a/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a3fcb755859eb32fc40bf6c2f60a34ccc',1,'IBM.Watson.VisualRecognition.v3.VisualRecognitionService.VisualRecognitionService(string versionDate, IAuthenticator authenticator)']]]
+];

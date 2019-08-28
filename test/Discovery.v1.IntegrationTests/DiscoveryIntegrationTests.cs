@@ -415,7 +415,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 environmentId: environmentId,
                 collectionId: collectionId,
                 naturalLanguageQuery: naturalLanguageQuery,
-                returnFields: "extracted_metadata.sha1"
+                _return: "extracted_metadata.sha1"
                 );
 
             service.WithHeader("X-Watson-Test", "1");
@@ -832,7 +832,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 environmentId: environmentId,
                 collectionId: collectionId,
                 naturalLanguageQuery: naturalLanguageQuery,
-                returnFields: "extracted_metadata.sha1"
+                _return: "extracted_metadata.sha1"
                 );
 
             var data = new EventData()

@@ -358,7 +358,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
                     {
                        new Translation()
                        {
-                           TranslationOutput = "text translated"
+                           _Translation = "text translated"
                        }
                     },
                     WordCount = 1,
@@ -400,7 +400,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
                     {
                        new Translation()
                        {
-                           TranslationOutput = "text translated"
+                           _Translation = "text translated"
                        }
                     }
                 }
@@ -440,7 +440,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
                     {
                        new Translation()
                        {
-                           TranslationOutput = "text translated"
+                           _Translation = "text translated"
                        }
                     }
                 }

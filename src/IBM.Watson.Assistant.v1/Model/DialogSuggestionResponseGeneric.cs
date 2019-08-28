@@ -21,16 +21,17 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Assistant.v1.Model
 {
     /// <summary>
-    /// DialogRuntimeResponseGeneric.
+    /// DialogSuggestionResponseGeneric.
     /// </summary>
-    public class DialogRuntimeResponseGeneric
+    public class DialogSuggestionResponseGeneric
     {
         /// <summary>
         /// The type of response returned by the dialog node. The specified response type must be supported by the
         /// client application or channel.
         ///
         /// **Note:** The **suggestion** response type is part of the disambiguation feature, which is only available
-        /// for Premium users.
+        /// for Plus and Premium users. The **search_skill** response type is available only for Plus and Premium users,
+        /// and is used only by the v2 runtime API.
         /// </summary>
         public class ResponseTypeEnumValue
         {
@@ -55,9 +56,9 @@ namespace IBM.Watson.Assistant.v1.Model
             /// </summary>
             public const string CONNECT_TO_AGENT = "connect_to_agent";
             /// <summary>
-            /// Constant SUGGESTION for suggestion
+            /// Constant SEARCH_SKILL for search_skill
             /// </summary>
-            public const string SUGGESTION = "suggestion";
+            public const string SEARCH_SKILL = "search_skill";
             
         }
 
@@ -82,14 +83,15 @@ namespace IBM.Watson.Assistant.v1.Model
         /// client application or channel.
         ///
         /// **Note:** The **suggestion** response type is part of the disambiguation feature, which is only available
-        /// for Premium users.
-        /// Constants for possible values can be found using DialogRuntimeResponseGeneric.ResponseTypeEnumValue
+        /// for Plus and Premium users. The **search_skill** response type is available only for Plus and Premium users,
+        /// and is used only by the v2 runtime API.
+        /// Constants for possible values can be found using DialogSuggestionResponseGeneric.ResponseTypeEnumValue
         /// </summary>
         [JsonProperty("response_type", NullValueHandling = NullValueHandling.Ignore)]
         public string ResponseType { get; set; }
         /// <summary>
         /// The preferred type of control to display.
-        /// Constants for possible values can be found using DialogRuntimeResponseGeneric.PreferenceEnumValue
+        /// Constants for possible values can be found using DialogSuggestionResponseGeneric.PreferenceEnumValue
         /// </summary>
         [JsonProperty("preference", NullValueHandling = NullValueHandling.Ignore)]
         public string Preference { get; set; }
@@ -145,14 +147,6 @@ namespace IBM.Watson.Assistant.v1.Model
         /// </summary>
         [JsonProperty("dialog_node", NullValueHandling = NullValueHandling.Ignore)]
         public string DialogNode { get; set; }
-        /// <summary>
-        /// An array of objects describing the possible matching dialog nodes from which the user can choose.
-        ///
-        /// **Note:** The **suggestions** property is part of the disambiguation feature, which is only available for
-        /// Premium users.
-        /// </summary>
-        [JsonProperty("suggestions", NullValueHandling = NullValueHandling.Ignore)]
-        public List<DialogSuggestion> Suggestions { get; set; }
     }
 
 }

@@ -21,9 +21,9 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// DialogRuntimeResponseGeneric.
+    /// RuntimeResponseGeneric.
     /// </summary>
-    public class DialogRuntimeResponseGeneric
+    public class RuntimeResponseGeneric
     {
         /// <summary>
         /// The type of response returned by the dialog node. The specified response type must be supported by the
@@ -87,13 +87,13 @@ namespace IBM.Watson.Assistant.v2.Model
         ///
         /// **Note:** The **suggestion** response type is part of the disambiguation feature, which is only available
         /// for Premium users.
-        /// Constants for possible values can be found using DialogRuntimeResponseGeneric.ResponseTypeEnumValue
+        /// Constants for possible values can be found using RuntimeResponseGeneric.ResponseTypeEnumValue
         /// </summary>
         [JsonProperty("response_type", NullValueHandling = NullValueHandling.Ignore)]
         public string ResponseType { get; set; }
         /// <summary>
         /// The preferred type of control to display.
-        /// Constants for possible values can be found using DialogRuntimeResponseGeneric.PreferenceEnumValue
+        /// Constants for possible values can be found using RuntimeResponseGeneric.PreferenceEnumValue
         /// </summary>
         [JsonProperty("preference", NullValueHandling = NullValueHandling.Ignore)]
         public string Preference { get; set; }

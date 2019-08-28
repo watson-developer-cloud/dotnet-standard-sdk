@@ -15,17 +15,18 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.CompareComply.v1.Model
 {
     /// <summary>
-    /// The contract type identified in the input document.
+    /// The contract currencies that are declared in the document.
     /// </summary>
-    public class ContractType
+    public class ContractCurrencies
     {
         /// <summary>
-        /// The confidence level in the identification of the termination date.
+        /// The confidence level in the identification of the contract currency.
         /// </summary>
         public class ConfidenceLevelEnumValue
         {
@@ -45,16 +46,28 @@ namespace IBM.Watson.CompareComply.v1.Model
         }
 
         /// <summary>
-        /// The confidence level in the identification of the termination date.
-        /// Constants for possible values can be found using ContractType.ConfidenceLevelEnumValue
+        /// The confidence level in the identification of the contract currency.
+        /// Constants for possible values can be found using ContractCurrencies.ConfidenceLevelEnumValue
         /// </summary>
         [JsonProperty("confidence_level", NullValueHandling = NullValueHandling.Ignore)]
         public string ConfidenceLevel { get; set; }
         /// <summary>
-        /// The contract type.
+        /// The contract currency.
         /// </summary>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
+        /// <summary>
+        /// The normalized form of the contract currency, which is listed as a string in
+        /// [ISO-4217](https://www.iso.org/iso-4217-currency-codes.html) format. This element is optional; it is
+        /// returned only if normalized text exists.
+        /// </summary>
+        [JsonProperty("text_normalized", NullValueHandling = NullValueHandling.Ignore)]
+        public string TextNormalized { get; set; }
+        /// <summary>
+        /// Hashed values that you can send to IBM to provide feedback or receive support.
+        /// </summary>
+        [JsonProperty("provenance_ids", NullValueHandling = NullValueHandling.Ignore)]
+        public List<string> ProvenanceIds { get; set; }
         /// <summary>
         /// The numeric location of the identified element in the document, represented with two integers labeled
         /// `begin` and `end`.

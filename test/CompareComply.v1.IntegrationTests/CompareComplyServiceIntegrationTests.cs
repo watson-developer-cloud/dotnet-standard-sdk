@@ -37,7 +37,7 @@ namespace IBM.Watson.CompareComply.v1.IntegrationTests
 
         private string contractAFilePath = @"CompareComplyTestData/contract_A.pdf";
         private string contractBFilePath = @"CompareComplyTestData/contract_B.pdf";
-        private string tableFilePath = @"CompareComplyTestData/TestTable.pdf";
+        private string tableFilePath = @"CompareComplyTestData/TestTable.png";
         private string objectStorageCredentialsInputFilepath;
         private string objectStorageCredentialsOutputFilepath;
         private string compareComplyModel = "contracts";
@@ -67,7 +67,6 @@ namespace IBM.Watson.CompareComply.v1.IntegrationTests
                     service.WithHeader("X-Watson-Test", "1");
                     var htmlConversionResult = service.ConvertToHtml(
                         file: ms,
-                        filename: Path.GetFileName(contractAFilePath),
                         fileContentType: "application/pdf",
                         model: compareComplyModel
                         );
@@ -115,12 +114,14 @@ namespace IBM.Watson.CompareComply.v1.IntegrationTests
                     service.WithHeader("X-Watson-Test", "1");
                     var extractTablesResult = service.ExtractTables(
                         file: ms,
-                        fileContentType: "application/pdf",
+                        fileContentType: "image/png",
                         model: extractTablesModel
                         );
 
                     Assert.IsNotNull(extractTablesResult);
-                    Assert.IsTrue(extractTablesResult.Result.Document.Title.Contains("Untitled spreadsheet"));
+                    Assert.IsTrue(extractTablesResult.Result.Document.Title == "no title");
+                    Assert.IsTrue(extractTablesResult.Result.ModelId == "tables");
+                    Assert.IsTrue(extractTablesResult.Result.Tables[0].BodyCells[0].RowHeaderIds[0] is string);
                 }
             }
         }

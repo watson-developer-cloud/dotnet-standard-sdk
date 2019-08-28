@@ -98,7 +98,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.IntegrationTests
                     metadataFile.CopyTo(metadata);
                     service.WithHeader("X-Watson-Test", "1");
                     createClassifierResult = service.CreateClassifier(
-                        metadata: metadata,
+                        trainingMetadata: metadata,
                         trainingData: trainingData
                         );
                 }

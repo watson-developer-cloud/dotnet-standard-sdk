@@ -28,7 +28,7 @@ namespace IBM.Watson.Assistant.v1.Model
         /// <summary>
         /// The type of action to invoke.
         /// </summary>
-        public class ActionTypeEnumValue
+        public class TypeEnumValue
         {
             /// <summary>
             /// Constant CLIENT for client
@@ -51,10 +51,10 @@ namespace IBM.Watson.Assistant.v1.Model
 
         /// <summary>
         /// The type of action to invoke.
-        /// Constants for possible values can be found using DialogNodeAction.ActionTypeEnumValue
+        /// Constants for possible values can be found using DialogNodeAction.TypeEnumValue
         /// </summary>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
-        public string ActionType { get; set; }
+        public string Type { get; set; }
         /// <summary>
         /// The name of the action.
         /// </summary>

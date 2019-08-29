@@ -75,13 +75,14 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
         [TestMethod]
         public void Collections_Success()
         {
+
             string testCollectionName = "testCollection";
             string updatedTestCollectionName = "newTestCollection";
             string testCollectionDescription = ".NET test collection";
             string updatedTestCollectionDescription = "udpdated .NET test collection";
             var createCollectionResult = service.CreateCollection(
-                name: testCollectionName, 
-                description: testCollectionDescription);
+                name: ConvertToUtf8(testCollectionName), 
+                description: ConvertToUtf8(testCollectionDescription));
 
             var collectionId = createCollectionResult.Result.CollectionId;
 
@@ -92,13 +93,13 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
 
             var updateCollectionResult = service.UpdateCollection(
                 collectionId: collectionId,
-                name: updatedTestCollectionDescription,
-                description: updatedTestCollectionDescription);
+                name: ConvertToUtf8(updatedTestCollectionName),
+                description: ConvertToUtf8(updatedTestCollectionDescription));
 
             var deleteCollectionResult = service.DeleteCollection(
                 collectionId: collectionId);
 
-            Assert.IsTrue(deleteCollectionResult.StatusCode == 20);
+            Assert.IsTrue(deleteCollectionResult.StatusCode == 200);
             Assert.IsNotNull(updateCollectionResult.Result);
             Assert.IsTrue(updateCollectionResult.Result.CollectionId == collectionId);
             Assert.IsTrue(updateCollectionResult.Result.Name == updatedTestCollectionName);
@@ -113,6 +114,15 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
             Assert.IsNotNull(createCollectionResult.Result);
             Assert.IsTrue(!string.IsNullOrEmpty(collectionId));
             Assert.IsTrue(createCollectionResult.Result.Name == testCollectionName);
+        }
+        #endregion
+
+        #region ConvertToUtf8
+        //  TODO move this to Utils
+        private static string ConvertToUtf8(string input)
+        {
+            byte[] utf8Bytes = System.Text.Encoding.UTF8.GetBytes(input);
+            return System.Text.Encoding.UTF8.GetString(utf8Bytes);
         }
         #endregion
 

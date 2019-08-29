@@ -123,6 +123,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VisualRecognitionV4", "Visu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.VisualRecognition.v4", "src\IBM.Watson.VisualRecognition.v4\IBM.Watson.VisualRecognition.v4.csproj", "{DC0B8384-A8F4-49E0-9A72-57FF4AA124C3}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.VisualRecognition.v4.IntegrationTests", "test\VisualRecognition.v4.IntegrationTests\IBM.Watson.VisualRecognition.v4.IntegrationTests.csproj", "{86FC135E-3D1E-40FE-9BE6-1B0A72ACDC20}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -313,6 +315,10 @@ Global
 		{DC0B8384-A8F4-49E0-9A72-57FF4AA124C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC0B8384-A8F4-49E0-9A72-57FF4AA124C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC0B8384-A8F4-49E0-9A72-57FF4AA124C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86FC135E-3D1E-40FE-9BE6-1B0A72ACDC20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86FC135E-3D1E-40FE-9BE6-1B0A72ACDC20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86FC135E-3D1E-40FE-9BE6-1B0A72ACDC20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86FC135E-3D1E-40FE-9BE6-1B0A72ACDC20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -363,6 +369,7 @@ Global
 		{523AE6E0-11CD-40CA-ABB1-8010E35C416D} = {C7873F44-7188-49BE-84C5-532BE4E07147}
 		{EBED7B56-15D3-472E-A758-6452415AA941} = {A1BC3262-1837-40D9-A530-DCFE679927C2}
 		{DC0B8384-A8F4-49E0-9A72-57FF4AA124C3} = {69DE0999-CABC-4108-9B49-2B902D9A318E}
+		{86FC135E-3D1E-40FE-9BE6-1B0A72ACDC20} = {69DE0999-CABC-4108-9B49-2B902D9A318E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B9D9D17B-1C17-402F-B701-DC671528690A}

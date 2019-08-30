@@ -15,8 +15,11 @@
 *
 */
 
+using IBM.Cloud.SDK.Core.Http;
+using IBM.Watson.VisualRecognition.v4.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 
@@ -81,7 +84,7 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
             string testCollectionDescription = ".NET test collection";
             string updatedTestCollectionDescription = "udpdated .NET test collection";
             var createCollectionResult = service.CreateCollection(
-                name: ConvertToUtf8(testCollectionName), 
+                name: ConvertToUtf8(testCollectionName),
                 description: ConvertToUtf8(testCollectionDescription));
 
             var collectionId = createCollectionResult.Result.CollectionId;
@@ -117,6 +120,113 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
         }
         #endregion
 
+        #region Images
+        [TestMethod]
+        public void Images_Success()
+        {
+            string testCollectionName = "testCollection";
+            string testCollectionDescription = ".NET test collection";
+
+            var createCollectionResult = service.CreateCollection(
+                name: ConvertToUtf8(testCollectionName),
+                description: ConvertToUtf8(testCollectionDescription));
+
+            var collectionId = createCollectionResult.Result.CollectionId;
+
+            DetailedResponse<ImageDetailsList> addImagesResult = null;
+            using (FileStream fs = File.OpenRead(localGiraffePositiveExamplesFilePath))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    fs.CopyTo(ms);
+                    addImagesResult = service.AddImages(
+                    collectionId: collectionId,
+                    imagesFile: ms);
+                }
+            }
+            var imageId = addImagesResult.Result.Images[0].ImageId;
+
+            var listImageResult = service.ListImages(
+                collectionId: collectionId);
+
+            var getImageResult = service.GetImageDetails(
+                collectionId: collectionId,
+                imageId: imageId);
+
+            var getJpgImageResult = service.GetJpegImage(
+                collectionId: collectionId,
+                imageId: imageId);
+
+            //  Save file
+            using (FileStream fs = File.Create("giraffe.jpg"))
+            {
+                getJpgImageResult.Result.WriteTo(fs);
+                fs.Close();
+                getJpgImageResult.Result.Close();
+            }
+
+            var deleteImageResult = service.DeleteImage(
+                collectionId: collectionId,
+                imageId: imageId);
+
+            var deleteCollectionResult = service.DeleteCollection(
+                collectionId: collectionId);
+
+            Assert.IsTrue(deleteImageResult.StatusCode == 200);
+            Assert.IsNotNull(getJpgImageResult.Result);
+            Assert.IsNotNull(getImageResult.Result);
+            Assert.IsTrue(getImageResult.Result.ImageId == imageId);
+            Assert.IsNotNull(listImageResult.Result);
+            Assert.IsNotNull(listImageResult.Result.Images);
+            Assert.IsTrue(listImageResult.Result.Images.Count > 0);
+            Assert.IsNotNull(addImagesResult.Result);
+            Assert.IsNotNull(addImagesResult.Result.Images);
+            Assert.IsTrue(addImagesResult.Result.Images.Count > 0);
+        }
+        #endregion
+
+        #region Training
+        [TestMethod]
+        public void Training_Success()
+        {
+            string testCollectionName = "testCollection";
+            string testCollectionDescription = ".NET test collection";
+
+            var createCollectionResult = service.CreateCollection(
+                name: ConvertToUtf8(testCollectionName),
+                description: ConvertToUtf8(testCollectionDescription));
+
+            var collectionId = createCollectionResult.Result.CollectionId;
+
+            DetailedResponse<ImageDetailsList> addImagesResult = null;
+            using (FileStream fs = File.OpenRead(localGiraffePositiveExamplesFilePath))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    fs.CopyTo(ms);
+                    addImagesResult = service.AddImages(
+                    collectionId: collectionId,
+                    imagesFile: ms);
+                }
+            }
+
+            List<BaseObject>
+            var addTrainingDataResult = service.AddImageTrainingData(
+                objects:);
+
+            var trainCollectionResult = service.Train(
+                collectionId: collectionId);
+
+            var deleteCollectionResult = service.DeleteCollection(
+                collectionId: collectionId);
+
+            Assert.IsTrue(trainCollectionResult.StatusCode == 202);
+            Assert.IsNotNull(trainCollectionResult.Result);
+            Assert.IsTrue(trainCollectionResult.Result.ImageCount > 0);
+            Assert.IsTrue(trainCollectionResult.Result.TrainingStatus.Objects.InProgress == true);
+        }
+        #endregion
+
         #region ConvertToUtf8
         //  TODO move this to Utils
         private static string ConvertToUtf8(string input)
@@ -125,6 +235,9 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
             return System.Text.Encoding.UTF8.GetString(utf8Bytes);
         }
         #endregion
+
+
+
 
         #region Teardown
         //[TestCleanup]

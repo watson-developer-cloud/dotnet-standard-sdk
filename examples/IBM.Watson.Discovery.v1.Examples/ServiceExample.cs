@@ -28,7 +28,7 @@ namespace IBM.Watson.Discovery.v1.Examples
     public class ServiceExample
     {
         string apikey = "{apikey}";
-        string url = "{url}";
+        string url = "{serviceUrl}";
         string versionDate = "{versionDate}";
         private string environmentId;
         private string collectionId;
@@ -145,7 +145,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.ListEnvironments();
 
@@ -166,7 +166,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.CreateEnvironment(
                 name: "my_environment",
@@ -182,7 +182,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.GetEnvironment(
                 environmentId: "{environmentId}"
@@ -197,7 +197,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.UpdateEnvironment(
                 environmentId: "{environmentId}",
@@ -214,7 +214,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.DeleteEnvironment(
                 environmentId: "{environmentId}"
@@ -229,7 +229,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.ListFields(
                 environmentId: "{environmentId}",
@@ -247,7 +247,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.ListConfigurations(
                 environmentId: "{environmentId}"
@@ -262,7 +262,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.CreateConfiguration(
                 environmentId: "{environmentId}",
@@ -280,7 +280,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.GetConfiguration(
                 environmentId: "{environmentId}",
@@ -296,7 +296,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.UpdateConfiguration(
                 environmentId: "{environmentId}",
@@ -313,7 +313,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.DeleteConfiguration(
                 environmentId: "{environmentId}",
@@ -331,7 +331,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             using (FileStream fs = File.OpenRead("{path_to_document}"))
             {
@@ -359,7 +359,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.ListCollections(
                 environmentId: "{environmentId}"
@@ -374,7 +374,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.CreateCollection(
                 environmentId: "{environmentId}",
@@ -394,7 +394,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.GetCollection(
                 environmentId: "{environmentId}",
@@ -410,7 +410,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.UpdateCollection(
                 environmentId: "{environmentId}",
@@ -427,7 +427,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.DeleteCollection(
                 environmentId: "{environmentId}",
@@ -443,7 +443,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.ListCollectionFields(
                 environmentId: "{environmentId}",
@@ -461,7 +461,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.ListExpansions(
                 environmentId: "{environmentId}",
@@ -477,7 +477,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var expansions = new List<Expansion>()
             {
@@ -509,7 +509,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.DeleteExpansions(
                 environmentId: "{environmentId}",
@@ -525,7 +525,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.GetTokenizationDictionaryStatus(
                 environmentId: "{environmentId}",
@@ -541,7 +541,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var tokenizationRules = new List<TokenDictRule>()
             {
@@ -575,7 +575,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.DeleteTokenizationDictionary(
                 environmentId: "{environmentId}",
@@ -591,7 +591,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.GetStopwordListStatus(
                 environmentId: "{environmentId}",
@@ -607,7 +607,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             DetailedResponse<TokenDictStatusResponse> result;
             using (FileStream fs = File.OpenRead("{filepath}"))
@@ -633,7 +633,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.DeleteStopwordList(
                 environmentId: "{environmentId}",
@@ -651,7 +651,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             DetailedResponse<DocumentAccepted> result;
             using (FileStream fs = File.OpenRead("{filePath}"))
@@ -681,7 +681,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.GetDocumentStatus(
                 environmentId: "{environmentId}",
@@ -698,7 +698,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             DetailedResponse<DocumentAccepted> result;
             using (FileStream fs = File.OpenRead("{filePath}"))
@@ -727,7 +727,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.DeleteDocument(
                 environmentId: "{environmentId}",
@@ -746,7 +746,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.Query(
                 environmentId: "{environmentId}",
@@ -768,7 +768,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.QueryNotices(
                 environmentId: "{environmentId}",
@@ -785,7 +785,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.FederatedQuery(
                 environmentId: "{environmentId}",
@@ -802,7 +802,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.FederatedQueryNotices(
                 environmentId: "{environmentId}",
@@ -819,7 +819,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.QueryEntities(
                 environmentId: "{environmentId}",
@@ -835,7 +835,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.QueryRelations(
                 environmentId: "{environmentId}",
@@ -853,7 +853,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.ListTrainingData(
                 environmentId: "{environmentId}",
@@ -869,7 +869,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var examples = new List<TrainingExample>()
             {
@@ -898,7 +898,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.DeleteAllTrainingData(
                 environmentId: "{environmentId}",
@@ -914,7 +914,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.GetTrainingData(
                 environmentId: "{environmentId}",
@@ -931,7 +931,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.DeleteTrainingData(
                 environmentId: "{environmentId}",
@@ -948,7 +948,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.ListTrainingExamples(
                 environmentId: "{environmentId}",
@@ -965,7 +965,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.CreateTrainingExample(
                 environmentId: "{environmentId}",
@@ -985,7 +985,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.DeleteTrainingExample(
                 environmentId: "{environmentId}",
@@ -1003,7 +1003,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.UpdateTrainingExample(
                 environmentId: "{environmentId}",
@@ -1023,7 +1023,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.GetTrainingExample(
                 environmentId: "{environmentId}",
@@ -1043,7 +1043,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.DeleteUserData(
                 customerId: "{id}"
@@ -1060,7 +1060,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var data = new EventData()
             {
@@ -1084,7 +1084,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.QueryLog();
 
@@ -1097,7 +1097,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.GetMetricsQuery();
 
@@ -1110,7 +1110,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.GetMetricsQueryEvent();
 
@@ -1123,7 +1123,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.GetMetricsQueryNoResults();
 
@@ -1136,7 +1136,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.GetMetricsEventRate();
 
@@ -1149,7 +1149,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.GetMetricsQueryTokenEvent();
 
@@ -1164,7 +1164,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.ListCredentials(
                 environmentId: "{environmentId}"
@@ -1179,7 +1179,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var credentialDetails = new CredentialDetails()
             {
@@ -1209,7 +1209,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.GetCredentials(
                 environmentId: "{environmentId}",
@@ -1225,7 +1225,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             string privateKey = "{privatekey}";
             var privateKeyBytes = System.Text.Encoding.UTF8.GetBytes(privateKey);
@@ -1258,7 +1258,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.DeleteCredentials(
                 environmentId: "{environmentId}",
@@ -1276,7 +1276,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.ListGateways(
                 environmentId: "{environmentId}"
@@ -1291,7 +1291,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.CreateGateway(
                 environmentId: "{environmentId}",
@@ -1309,7 +1309,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.GetGateway(
                 environmentId: "{environmentId}",
@@ -1325,7 +1325,7 @@ namespace IBM.Watson.Discovery.v1.Examples
                 apikey: "{apikey}");
 
             DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.DeleteGateway(
                 environmentId: "{environmentId}",

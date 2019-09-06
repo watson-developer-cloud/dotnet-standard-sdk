@@ -33,7 +33,7 @@ namespace IBM.Watson.IntegrationTests
             var versionDate = "";
             CloudPakForDataAuthenticator cloudPakForDataAuthenticator = new CloudPakForDataAuthenticator(url: url, username: username, password: password, disableSslVerification: true);
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(versionDate: versionDate, authenticator: cloudPakForDataAuthenticator);
-            service.SetEndpoint("");
+            service.SetServiceUrl("");
             var listWorkspaceResult = service.ListModels();
 
             Assert.IsNotNull(listWorkspaceResult);

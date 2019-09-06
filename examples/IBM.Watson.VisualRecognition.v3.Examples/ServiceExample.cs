@@ -27,7 +27,7 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
     public class ServiceExample
     {
         string apikey = "{apikey}";
-        string url = "{url}";
+        string url = "{serviceUrl}";
         private string versionDate = "{versionDate}";
 
         private string localGiraffeFilePath = @"VisualRecognitionTestData/giraffe_to_classify.jpg";

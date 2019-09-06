@@ -25,7 +25,7 @@ namespace IBM.Watson.Assistant.v1.Examples
     public class ServiceExample
     {
         string apikey = "{apikey}";
-        string url = "{url}";
+        string url = "{serviceUrl}";
         string versionDate = "{versionDate}";
         string workspaceId = "{workspaceId}";
         string intent;
@@ -108,7 +108,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.Message(
                 workspaceId: "{workspaceId}",
@@ -131,7 +131,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.ListWorkspaces();
             Console.WriteLine(result.Response);
@@ -143,7 +143,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.CreateWorkspace(
                 name: "API test",
@@ -161,7 +161,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.GetWorkspace(
                 workspaceId: "{workspaceId}"
@@ -176,7 +176,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.UpdateWorkspace(
                 workspaceId: "{workspaceId}",
@@ -193,7 +193,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.DeleteWorkspace(
                 workspaceId: "{workspaceId}"
@@ -210,7 +210,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.ListIntents(
                 workspaceId: "{workspaceId}"
@@ -225,7 +225,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.CreateIntent(
                 workspaceId: "{workspaceId}",
@@ -254,7 +254,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.GetIntent(
                 workspaceId: "{workspaceId}",
@@ -270,7 +270,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.UpdateIntent(
                 workspaceId: "{workspaceId}",
@@ -296,7 +296,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.DeleteIntent(
                 workspaceId: "{workspaceId}",
@@ -314,7 +314,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.ListExamples(
                 workspaceId: "{workspaceId}",
@@ -330,7 +330,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.CreateExample(
                 workspaceId: "{workspaceId}",
@@ -349,7 +349,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.GetExample(
                 workspaceId: "{workspaceId}",
@@ -366,7 +366,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.UpdateExample(
                 workspaceId: "{workspaceId}",
@@ -386,7 +386,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.DeleteExample(
                 workspaceId: "{workspaceId}",
@@ -405,7 +405,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.ListCounterexamples(
                 workspaceId: "{workspaceId}"
@@ -420,7 +420,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.CreateCounterexample(
                 workspaceId: "{workspaceId}",
@@ -438,7 +438,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.GetCounterexample(
                 workspaceId: "{workspaceId}",
@@ -454,7 +454,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.UpdateCounterexample(
                 workspaceId: "{workspaceId}",
@@ -473,7 +473,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.DeleteCounterexample(
                 workspaceId: "{workspaceId}",
@@ -491,7 +491,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.ListEntities(
                 workspaceId: "{workspaceId}"
@@ -506,7 +506,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.CreateEntity(
                 workspaceId: "{workspaceId}",
@@ -539,7 +539,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.GetEntity(
                 workspaceId: "{workspaceId}",
@@ -555,7 +555,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.UpdateEntity(
                 workspaceId: "{workspaceId}",
@@ -574,7 +574,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.DeleteEntity(
                 workspaceId: "{workspaceId}",
@@ -592,7 +592,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.ListMentions(
                 workspaceId: "{workspaceId}",
@@ -610,7 +610,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.ListValues(
                 workspaceId: "{workspaceId}",
@@ -626,7 +626,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.CreateValue(
                 workspaceId: "{workspaceId}",
@@ -645,7 +645,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.GetValue(
                 workspaceId: "{workspaceId}",
@@ -662,7 +662,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.UpdateValue(
                 workspaceId: "{workspaceId}",
@@ -686,7 +686,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.DeleteValue(
                 workspaceId: "{workspaceId}",
@@ -705,7 +705,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.ListSynonyms(
                 workspaceId: "{workspaceId}",
@@ -722,7 +722,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.CreateSynonym(
                 workspaceId: "{workspaceId}",
@@ -742,7 +742,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.GetSynonym(
                 workspaceId: "{workspaceId}",
@@ -760,7 +760,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.UpdateSynonym(
                 workspaceId: "{workspaceId}",
@@ -781,7 +781,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.DeleteSynonym(
                 workspaceId: "{workspaceId}",
@@ -801,7 +801,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.ListDialogNodes(
                 workspaceId: "{workspaceId}"
@@ -816,7 +816,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.CreateDialogNode(
                 workspaceId: "{workspaceId}",
@@ -834,7 +834,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.GetDialogNode(
                 workspaceId: "{workspaceId}",
@@ -850,7 +850,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.UpdateDialogNode(
                 workspaceId: "{workspaceId}",
@@ -885,7 +885,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.DeleteDialogNode(
                 workspaceId: "{workspaceId}",
@@ -903,7 +903,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.ListLogs(
                 workspaceId: "{workspaceId}"
@@ -918,7 +918,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.ListAllLogs(
                 filter: "language::en,request.context.metadata.deployment::testDeployment"
@@ -935,7 +935,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.DeleteUserData(
                 customerId: "{id}"

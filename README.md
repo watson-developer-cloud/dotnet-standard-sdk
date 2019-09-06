@@ -73,7 +73,7 @@ void Example()
     IamAuthenticator authenticator = new IamAuthenticator(
         apikey: "{apikey}");
     var service = new AssistantService("{versionDate}", authenticator);
-    service.SetEndpoint("{service-endpoint}");
+    service.SetServiceUrl("{serviceUrl}");
 }
 ```
 
@@ -84,7 +84,7 @@ void Example()
     BearerTokenAuthenticator authenticator = new BearerTokenAuthenticator(
         bearerToken: "{bearerToken}");
     var service = new AssistantService("{versionDate}", authenticator);
-    service.SetEndpoint("{service-endpoint}");
+    service.SetServiceUrl("{serviceUrl}");
 }
 ```
 
@@ -96,7 +96,7 @@ void Example()
         username: "{username}",
         password: "{password}");
     var service = new AssistantService("{versionDate}", authenticator);
-    service.SetEndpoint("{service-endpoint}");
+    service.SetServiceUrl("{serviceUrl}");
 }
 ```
 
@@ -112,7 +112,7 @@ void Example()
         username: "{username}",
         password: "{password}");
     var service = new AssistantService("{version-date}", authenticator);
-    service.SetEndpoint("{service-endpoint}");
+    service.SetServiceUrl("{serviceUrl}");
     var results = service.Message("{workspace-id}", "{message-request}");
 }
 ```
@@ -124,7 +124,7 @@ void Example()
     BearerTokenAuthenticator authenticator = new BearerTokenAuthenticator(
         bearerToken: "{bearerToken}");
     var service = new AssistantService("{version-date}", authenticator);
-    service.SetEndpoint("{service-endpoint}");
+    service.SetServiceUrl("{serviceUrl}");
     var results = service.Message("{workspace-id}", "{message-request}");
 }
 ```
@@ -174,7 +174,7 @@ void Example()
     IamAuthenticator authenticator = new IamAuthenticator(
         apikey: "{apikey}");
     var service = new AssistantService("{version-date}", authenticator);
-    service.SetEndpoint("{service-endpoint}");
+    service.SetServiceUrl("{serviceUrl}");
     service.WithHeader("X-Watson-Metadata", "customer_id=some-assistant-customer-id");
     var results = service.Message("{workspace-id}", "{message-request}");
 }
@@ -188,7 +188,7 @@ void Example()
     IamAuthenticator authenticator = new IamAuthenticator(
         apikey: "{apikey}");
     var service = new AssistantService("{version-date}", authenticator);
-    service.SetEndpoint("{service-endpoint}");
+    service.SetServiceUrl("{serviceUrl}");
     var results = service.Message("{workspace-id}", "{message-request}");
     
     var responseHeaders = results.Headers;  //  The response headers
@@ -208,7 +208,7 @@ void Example()
         password: "{password}",
         disableSslVerification: true);
     var service = new AssistantService("{version-date}", authenticator);
-    service.SetEndpoint("{service-endpoint}");
+    service.SetServiceUrl("{serviceUrl}");
     var results = service.Message("{workspace-id}", "{message-request}");
 }
 ```

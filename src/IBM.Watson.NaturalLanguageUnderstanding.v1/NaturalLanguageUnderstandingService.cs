@@ -35,7 +35,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         public string VersionDate { get; set; }
 
         public NaturalLanguageUnderstandingService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
-        public NaturalLanguageUnderstandingService(IClient httpClient) : base(serviceName, defaultEndpoint, httpClient) { }
+        public NaturalLanguageUnderstandingService(IClient httpClient) : base(serviceName, httpClient) { }
 
         public NaturalLanguageUnderstandingService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
         {

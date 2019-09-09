@@ -35,7 +35,7 @@ namespace IBM.Watson.SpeechToText.v1
         const string serviceName = "speech_to_text";
         private const string defaultEndpoint = "https://stream.watsonplatform.net/speech-to-text/api";
         public SpeechToTextService() : this(ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
-        public SpeechToTextService(IClient httpClient) : base(serviceName, defaultEndpoint, httpClient) { }
+        public SpeechToTextService(IClient httpClient) : base(serviceName, httpClient) { }
 
         public SpeechToTextService(IAuthenticator authenticator) : base(serviceName, authenticator)
         {

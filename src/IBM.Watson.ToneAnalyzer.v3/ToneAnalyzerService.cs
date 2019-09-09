@@ -35,7 +35,7 @@ namespace IBM.Watson.ToneAnalyzer.v3
         public string VersionDate { get; set; }
 
         public ToneAnalyzerService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
-        public ToneAnalyzerService(IClient httpClient) : base(serviceName, defaultEndpoint, httpClient) { }
+        public ToneAnalyzerService(IClient httpClient) : base(serviceName, httpClient) { }
 
         public ToneAnalyzerService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
         {

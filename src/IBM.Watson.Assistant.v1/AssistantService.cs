@@ -35,7 +35,7 @@ namespace IBM.Watson.Assistant.v1
         public string VersionDate { get; set; }
 
         public AssistantService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
-        public AssistantService(IClient httpClient) : base(serviceName, defaultEndpoint, httpClient) { }
+        public AssistantService(IClient httpClient) : base(serviceName, httpClient) { }
 
         public AssistantService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
         {

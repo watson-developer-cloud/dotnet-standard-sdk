@@ -37,7 +37,7 @@ namespace IBM.Watson.CompareComply.v1
         public string VersionDate { get; set; }
 
         public CompareComplyService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
-        public CompareComplyService(IClient httpClient) : base(serviceName, defaultEndpoint, httpClient) { }
+        public CompareComplyService(IClient httpClient) : base(serviceName, httpClient) { }
 
         public CompareComplyService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
         {

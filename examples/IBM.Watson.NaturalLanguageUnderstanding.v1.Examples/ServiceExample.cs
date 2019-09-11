@@ -24,7 +24,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Examples
     public class ServiceExample
     {
         string apikey = "{apikey}";
-        string url = "{url}";
+        string url = "{serviceUrl}";
         string versionDate = "{versionDate}";
         private string text = "Analyze various features of text content at scale. Provide text, raw HTML, or a public URL, and IBM Watson Natural Language Understanding will give you results for the features you request. The service cleans HTML content before analysis by default, so the results can ignore most advertisements and other unwanted content.";
         private string modelId;
@@ -47,7 +47,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Examples
                 apikey: "{apikey}");
 
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("2019-07-12", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var features = new Features()
             {
@@ -80,7 +80,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Examples
                 apikey: "{apikey}");
 
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("2019-07-12", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.ListModels();
 
@@ -93,7 +93,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Examples
                 apikey: "{apikey}");
 
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("2019-07-12", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.DeleteModel(
                 modelId: "model_id"

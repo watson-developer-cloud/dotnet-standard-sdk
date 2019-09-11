@@ -31,7 +31,7 @@ namespace IBM.Watson.IntegrationTests
         {
             IClient client = CreateClient();
 
-            IBMService service = Substitute.For<IBMService>("serviceName", "url", client);
+            IBMService service = Substitute.For<IBMService>("serviceName", client);
             service.WithHeader("header0", "value0");
 
             var headers = service.GetCustomRequestHeaders();
@@ -45,7 +45,7 @@ namespace IBM.Watson.IntegrationTests
         {
             IClient client = CreateClient();
 
-            IBMService service = Substitute.For<IBMService>("serviceName", "url", client);
+            IBMService service = Substitute.For<IBMService>("serviceName", client);
             service.WithHeader("header0", "value0");
 
             var headers = service.GetCustomRequestHeaders();
@@ -65,7 +65,7 @@ namespace IBM.Watson.IntegrationTests
         {
             IClient client = CreateClient();
 
-            IBMService service = Substitute.For<IBMService>("serviceName", "url", client);
+            IBMService service = Substitute.For<IBMService>("serviceName", client);
             Dictionary<string, string> customRequestHeaders = new Dictionary<string, string>();
             customRequestHeaders.Add("header0", "value0");
             customRequestHeaders.Add("header1", "value1");
@@ -85,7 +85,7 @@ namespace IBM.Watson.IntegrationTests
         {
             IClient client = CreateClient();
 
-            IBMService service = Substitute.For<IBMService>("serviceName", "url", client);
+            IBMService service = Substitute.For<IBMService>("serviceName", client);
             service.WithHeader("header0", "value0");
 
             var headers = service.GetCustomRequestHeaders();

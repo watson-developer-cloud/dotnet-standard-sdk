@@ -25,7 +25,7 @@ namespace IBM.Watson.Assistant.v2.Examples
     public class ServiceExample
     {
         string apikey = "{apikey}";
-        string url = "{url}";
+        string url = "{serviceUrl}";
         string versionDate = "{versionDate}";
         string assistantId = "{assistantId}";
         string sessionId;
@@ -50,7 +50,7 @@ namespace IBM.Watson.Assistant.v2.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.CreateSession(
                 assistantId: "{assistantId}"
@@ -67,7 +67,7 @@ namespace IBM.Watson.Assistant.v2.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.DeleteSession(
                 assistantId: "{assistantId}",
@@ -85,7 +85,7 @@ namespace IBM.Watson.Assistant.v2.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.Message(
                 assistantId: "{assistantId}",
@@ -107,7 +107,7 @@ namespace IBM.Watson.Assistant.v2.Examples
                 apikey: "{apikey}");
 
             AssistantService service = new AssistantService("2019-02-28", authenticator);
-            service.SetEndpoint("{url}");
+            service.SetServiceUrl("{serviceUrl}");
 
             MessageContextSkills skills = new MessageContextSkills();
             MessageContextSkill skill = new MessageContextSkill();

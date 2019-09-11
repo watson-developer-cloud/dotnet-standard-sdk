@@ -37,7 +37,7 @@ namespace IBM.Watson.LanguageTranslator.v3
         public string VersionDate { get; set; }
 
         public LanguageTranslatorService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
-        public LanguageTranslatorService(IClient httpClient) : base(serviceName, defaultEndpoint, httpClient) { }
+        public LanguageTranslatorService(IClient httpClient) : base(serviceName, httpClient) { }
 
         public LanguageTranslatorService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
         {

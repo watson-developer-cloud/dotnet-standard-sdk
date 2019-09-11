@@ -27,7 +27,7 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
     public class ServiceExample
     {
         string apikey = "{apikey}";
-        string url = "{url}";
+        string url = "{serviceUrl}";
         string versionDate = "{versionDate}";
         private static string glossaryPath = "LanguageTranslatorTestData/glossary.tmx";
         private static string documentToTranslatePath = "LanguageTranslatorTestData/document-to-translate.txt";
@@ -62,7 +62,7 @@ namespace IBM.Watson.LanguageTranslator.v3.Examples
                 apikey: "{apikey}");
 
             LanguageTranslatorService service = new LanguageTranslatorService("2018-05-01", authenticator);
-            service.SetEndpoint(url);
+            service.SetServiceUrl(url);
 
             var result = service.Translate(
                 text: new List<string>() { "Hello" },

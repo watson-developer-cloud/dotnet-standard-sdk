@@ -117,7 +117,7 @@ namespace IBM.Watson.CompareComply.v1.UT
                  });
 
             CompareComplyService service = new CompareComplyService(client);
-            service.SetEndpoint("https://www.serviceurl.com");
+            service.SetServiceUrl("https://www.serviceurl.com");
             service.VersionDate = "2018-02-16";
 
             using (MemoryStream fs = new MemoryStream())

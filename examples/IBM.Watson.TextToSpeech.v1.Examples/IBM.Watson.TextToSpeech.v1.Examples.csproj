@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="IBM.Cloud.SDK.Core" Version="1.0.0-rc9" />
+    <PackageReference Include="IBM.Cloud.SDK.Core" Version="1.0.0-rc91" />
   </ItemGroup>
 
   <ItemGroup>

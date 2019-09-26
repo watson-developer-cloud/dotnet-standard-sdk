@@ -60,7 +60,7 @@ namespace IBM.Watson.VisualRecognition.v4.Model
         /// Training status information for the collection.
         /// </summary>
         [JsonProperty("training_status", NullValueHandling = NullValueHandling.Ignore)]
-        public BaseCollectionTrainingStatus TrainingStatus { get; set; }
+        public virtual TrainingStatus TrainingStatus { get; private set; }
     }
 
 }

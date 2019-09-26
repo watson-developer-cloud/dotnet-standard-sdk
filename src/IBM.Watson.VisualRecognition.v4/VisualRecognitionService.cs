@@ -22,6 +22,7 @@ using System.Text;
 using IBM.Cloud.SDK.Core.Authentication;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Extensions;
+using IBM.Cloud.SDK.Core.Model;
 using IBM.Cloud.SDK.Core.Service;
 using IBM.Watson.VisualRecognition.v4.Model;
 using Newtonsoft.Json;
@@ -33,11 +34,11 @@ namespace IBM.Watson.VisualRecognition.v4
     public partial class VisualRecognitionService : IBMService, IVisualRecognitionService
     {
         const string serviceName = "visual_recognition";
-        private const string defaultEndpoint = "https://gateway.watsonplatform.net/visual-recognition/api";
+        private const string defaultServiceUrl = "https://gateway.watsonplatform.net/visual-recognition/api";
         public string VersionDate { get; set; }
 
         public VisualRecognitionService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
-        public VisualRecognitionService(IClient httpClient) : base(serviceName, defaultEndpoint, httpClient) { }
+        public VisualRecognitionService(IClient httpClient) : base(serviceName, httpClient) { }
 
         public VisualRecognitionService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
@@ -47,6 +48,11 @@ namespace IBM.Watson.VisualRecognition.v4
             }
             
             VersionDate = versionDate;
+
+            if (string.IsNullOrEmpty(ServiceUrl))
+            {
+                SetServiceUrl(defaultServiceUrl);
+            }
         }
 
         /// <summary>
@@ -58,18 +64,17 @@ namespace IBM.Watson.VisualRecognition.v4
         /// Encode the image and .zip file names in UTF-8 if they contain non-ASCII characters. The service assumes
         /// UTF-8 encoding if it encounters non-ASCII characters.
         /// </summary>
-        /// <param name="collectionIds">The IDs of the collections to analyze.</param>
-        /// <param name="features">The features to analyze.</param>
-        /// <param name="imagesFile">An image file (.jpg or .png) or .zip file with images.
+        /// <param name="collectionIds">The IDs of the collections to analyze. Separate multiple values with
+        /// commas.</param>
+        /// <param name="features">The features to analyze. Separate multiple values with commas.</param>
+        /// <param name="imagesFile">An array of image files (.jpg or .png) or .zip files with images.
         /// - Include a maximum of 20 images in a request.
         /// - Limit the .zip file to 100 MB.
-        /// - You can provide multiple separate image files by including this form field multiple times.
         /// - Limit each image file to 10 MB.
         ///
         /// You can also include an image with the **image_url** parameter. (optional)</param>
-        /// <param name="imageUrl">The URL of an image (.jpg or .png).
-        /// - You can provide multiple separate image URLs by including this form field multiple times. Include a
-        /// maximum of 20 images in a request.
+        /// <param name="imageUrl">An array of URLs of image files (.jpg or .png).
+        /// - Include a maximum of 20 images in a request.
         /// - Limit each image file to 10 MB.
         /// - Minimum width and height is 30 pixels, but the service tends to perform better with images that are at
         /// least 300 x 300 pixels. Maximum is 5400 pixels for either height or width.
@@ -77,13 +82,13 @@ namespace IBM.Watson.VisualRecognition.v4
         /// You can also include images with the **images_file** parameter. (optional)</param>
         /// <param name="threshold">The minimum score a feature must have to be returned. (optional)</param>
         /// <returns><see cref="AnalyzeResponse" />AnalyzeResponse</returns>
-        public DetailedResponse<AnalyzeResponse> Analyze(List<string> collectionIds, List<string> features, System.IO.MemoryStream imagesFile = null, string imageUrl = null, float? threshold = null)
+        public DetailedResponse<AnalyzeResponse> Analyze(string collectionIds, string features, List<FileWithMetadata> imagesFile = null, List<string> imageUrl = null, float? threshold = null)
         {
-            if (collectionIds == null || collectionIds.Count == 0)
+            if (string.IsNullOrEmpty(collectionIds))
             {
                 throw new ArgumentNullException("`collectionIds` is required for `Analyze`");
             }
-            if (features == null || features.Count == 0)
+            if (string.IsNullOrEmpty(features))
             {
                 throw new ArgumentNullException("`features` is required for `Analyze`");
             }
@@ -101,32 +106,38 @@ namespace IBM.Watson.VisualRecognition.v4
 
                 if (collectionIds != null)
                 {
-                    var collectionIdsContent = new StringContent(string.Join(", ", collectionIds.ToArray()), Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                    var collectionIdsContent = new StringContent(collectionIds, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
                     collectionIdsContent.Headers.ContentType = null;
                     formData.Add(collectionIdsContent, "collection_ids");
                 }
 
                 if (features != null)
                 {
-                    var featuresContent = new StringContent(string.Join(", ", features.ToArray()), Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                    var featuresContent = new StringContent(features, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
                     featuresContent.Headers.ContentType = null;
                     formData.Add(featuresContent, "features");
                 }
 
                 if (imagesFile != null)
                 {
-                    var imagesFileContent = new ByteArrayContent(imagesFile.ToArray());
-                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
-                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
-                    imagesFileContent.Headers.ContentType = contentType;
-                    formData.Add(imagesFileContent, "images_file", "filename");
+                    foreach (FileWithMetadata item in imagesFile)
+                    {
+                        var imagesFileContent = new ByteArrayContent(item.Data.ToArray());
+                        System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+                        System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(item.ContentType, out contentType);
+                        imagesFileContent.Headers.ContentType = contentType;
+                        formData.Add(imagesFileContent, "images_file", item.Filename);
+                    }
                 }
 
                 if (imageUrl != null)
                 {
-                    var imageUrlContent = new StringContent(imageUrl, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    imageUrlContent.Headers.ContentType = null;
-                    formData.Add(imageUrlContent, "image_url");
+                    foreach (string item in imageUrl)
+                    {
+                        var imageUrlContent = new StringContent(item, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                        imageUrlContent.Headers.ContentType = null;
+                        formData.Add(imageUrlContent, "image_url");
+                    }
                 }
 
                 if (threshold != null)
@@ -462,18 +473,14 @@ namespace IBM.Watson.VisualRecognition.v4
         /// UTF-8 encoding if it encounters non-ASCII characters.
         /// </summary>
         /// <param name="collectionId">The identifier of the collection.</param>
-        /// <param name="imagesFile">An image file (.jpg or .png) or .zip file with images.
-        /// - You can provide multiple separate image files by including this form field multiple times.
-        /// - Limit each image file to 10 MB.
-        /// - Include a maximum of 100 images in a request.
+        /// <param name="imagesFile">An array of image files (.jpg or .png) or .zip files with images.
+        /// - Include a maximum of 20 images in a request.
         /// - Limit the .zip file to 100 MB.
-        /// -Minimum width and height is 30 pixels, but the service tends to perform better with images that are at
-        /// least 300 x 300 pixels. Maximum is 5400 pixels for either height or width.
+        /// - Limit each image file to 10 MB.
         ///
         /// You can also include an image with the **image_url** parameter. (optional)</param>
-        /// <param name="imageUrl">The URL of an image (.jpg or .png).
-        /// - You can provide multiple separate image URLs by including this form field multiple times. Include a
-        /// maximum of 20 images in a request.
+        /// <param name="imageUrl">The array of URLs of image files (.jpg or .png).
+        /// - Include a maximum of 20 images in a request.
         /// - Limit each image file to 10 MB.
         /// - Minimum width and height is 30 pixels, but the service tends to perform better with images that are at
         /// least 300 x 300 pixels. Maximum is 5400 pixels for either height or width.
@@ -485,7 +492,7 @@ namespace IBM.Watson.VisualRecognition.v4
         /// The `object` property can contain alphanumeric, underscore, hyphen, space, and dot characters. It cannot
         /// begin with the reserved prefix `sys-` and must be no longer than 32 characters. (optional)</param>
         /// <returns><see cref="ImageDetailsList" />ImageDetailsList</returns>
-        public DetailedResponse<ImageDetailsList> AddImages(string collectionId, System.IO.MemoryStream imagesFile = null, string imageUrl = null, string trainingData = null)
+        public DetailedResponse<ImageDetailsList> AddImages(string collectionId, List<FileWithMetadata> imagesFile = null, List<string> imageUrl = null, string trainingData = null)
         {
             if (string.IsNullOrEmpty(collectionId))
             {
@@ -509,18 +516,24 @@ namespace IBM.Watson.VisualRecognition.v4
 
                 if (imagesFile != null)
                 {
-                    var imagesFileContent = new ByteArrayContent(imagesFile.ToArray());
-                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
-                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
-                    imagesFileContent.Headers.ContentType = contentType;
-                    formData.Add(imagesFileContent, "images_file", "filename");
+                    foreach (FileWithMetadata item in imagesFile)
+                    {
+                        var imagesFileContent = new ByteArrayContent(item.Data.ToArray());
+                        System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+                        System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(item.ContentType, out contentType);
+                        imagesFileContent.Headers.ContentType = contentType;
+                        formData.Add(imagesFileContent, "images_file", item.Filename);
+                    }
                 }
 
                 if (imageUrl != null)
                 {
-                    var imageUrlContent = new StringContent(imageUrl, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    imageUrlContent.Headers.ContentType = null;
-                    formData.Add(imageUrlContent, "image_url");
+                    foreach (string item in imageUrl)
+                    {
+                        var imageUrlContent = new StringContent(item, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                        imageUrlContent.Headers.ContentType = null;
+                        formData.Add(imageUrlContent, "image_url");
+                    }
                 }
 
                 if (trainingData != null)

@@ -16,7 +16,7 @@
 */
 
 using System.Collections.Generic;
-using IBM.Cloud.SDK.Core.Model
+using IBM.Cloud.SDK.Core.Model;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Watson.VisualRecognition.v4.Model;
 

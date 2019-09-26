@@ -70,7 +70,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
         #endregion
 
         #region Analysis
-        [TestMethod]
+        //[TestMethod]
         public void Analysis()
         {
             IClient client = CreateClient();
@@ -116,7 +116,8 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
                                                 {
                                                     Top = 0,
                                                     Left = 1,
-                                                    Width
+                                                    Width = 2,
+                                                    Height = 3
                                                 }
                                             }
                                         }

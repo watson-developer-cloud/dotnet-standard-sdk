@@ -16,6 +16,8 @@
 */
 
 using IBM.Cloud.SDK.Core.Http;
+using IBM.Cloud.SDK.Core.Model;
+using IBM.Cloud.SDK.Core.Util;
 using IBM.Watson.VisualRecognition.v4.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -35,6 +37,8 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
         private string giraffeClassname = "giraffe";
         private string versionDate = "2019-02-11";
         private string dotnetCollectionId = "d31d6534-3458-40c4-b6de-2185a5f3cbe4";
+        private string dogImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/American_Eskimo_Dog.jpg/1280px-American_Eskimo_Dog.jpg";
+        private string catImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Felis_silvestris_catus_lying_on_rice_straw.jpg/1280px-Felis_silvestris_catus_lying_on_rice_straw.jpg";
 
         #region Setup
         [TestInitialize]
@@ -50,17 +54,26 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
         public void Analyze_Success()
         {
             DetailedResponse<AnalyzeResponse> analyzeResult = null;
+            List<FileWithMetadata> imagesFile = new List<FileWithMetadata>();
+
             using (FileStream fs = File.OpenRead(localGiraffeFilePath))
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
+                    FileWithMetadata fileWithMetadata = new FileWithMetadata()
+                    {
+                        Data = ms,
+                        ContentType = "image/jpeg",
+                        Filename = Path.GetFileName(localGiraffeFilePath)
+                    };
+                    imagesFile.Add(fileWithMetadata);
 
                     service.WithHeader("X-Watson-Test", "1");
                     analyzeResult = service.Analyze(
-                        collectionIds: new List<string>() { dotnetCollectionId },
-                        features: new List<string>() { "objects" },
-                        imagesFile: ms);
+                        collectionIds: dotnetCollectionId,
+                        features: "objects",
+                        imagesFile: imagesFile);
                 }
             }
 
@@ -78,21 +91,21 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
             string updatedTestCollectionName = "newTestCollection";
             string testCollectionDescription = ".NET test collection";
             string updatedTestCollectionDescription = "udpdated .NET test collection";
+            var listCollectionResult = service.ListCollections();
+
             var createCollectionResult = service.CreateCollection(
-                name: ConvertToUtf8(testCollectionName),
-                description: ConvertToUtf8(testCollectionDescription));
+                name: Utility.ConvertToUtf8(testCollectionName),
+                description: Utility.ConvertToUtf8(testCollectionDescription));
 
             var collectionId = createCollectionResult.Result.CollectionId;
-
-            var listCollectionResult = service.ListCollections();
 
             var getCollectionResult = service.GetCollection(
                 collectionId: collectionId);
 
             var updateCollectionResult = service.UpdateCollection(
                 collectionId: collectionId,
-                name: ConvertToUtf8(updatedTestCollectionName),
-                description: ConvertToUtf8(updatedTestCollectionDescription));
+                name: Utility.ConvertToUtf8(updatedTestCollectionName),
+                description: Utility.ConvertToUtf8(updatedTestCollectionDescription));
 
             var deleteCollectionResult = service.DeleteCollection(
                 collectionId: collectionId);
@@ -123,23 +136,38 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
             string testCollectionDescription = ".NET test collection";
 
             var createCollectionResult = service.CreateCollection(
-                name: ConvertToUtf8(testCollectionName),
-                description: ConvertToUtf8(testCollectionDescription));
+                name: Utility.ConvertToUtf8(testCollectionName),
+                description: Utility.ConvertToUtf8(testCollectionDescription));
 
             var collectionId = createCollectionResult.Result.CollectionId;
 
             DetailedResponse<ImageDetailsList> addImagesResult = null;
+            List<FileWithMetadata> imagesFile = new List<FileWithMetadata>();
+
             using (FileStream fs = File.OpenRead(localGiraffePositiveExamplesFilePath))
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
+
+                    FileWithMetadata fileWithMetadata = new FileWithMetadata()
+                    {
+                        Data = ms,
+                        ContentType = "application/zip",
+                        Filename = Path.GetFileName(localGiraffePositiveExamplesFilePath)
+                    };
+                    imagesFile.Add(fileWithMetadata);
+
                     addImagesResult = service.AddImages(
-                    collectionId: collectionId,
-                    imagesFile: ms);
+                        collectionId: collectionId,
+                        imagesFile: imagesFile);
                 }
             }
             var imageId = addImagesResult.Result.Images[0].ImageId;
+
+            var addImageViaUrlResult = service.AddImages(
+                collectionId: collectionId,
+                imageUrl: new List<string>() { dogImageUrl, catImageUrl });
 
             var listImageResult = service.ListImages(
                 collectionId: collectionId);
@@ -188,20 +216,31 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
             string testCollectionDescription = ".NET test collection";
 
             var createCollectionResult = service.CreateCollection(
-                name: ConvertToUtf8(testCollectionName),
-                description: ConvertToUtf8(testCollectionDescription));
+                name: Utility.ConvertToUtf8(testCollectionName),
+                description: Utility.ConvertToUtf8(testCollectionDescription));
 
             var collectionId = createCollectionResult.Result.CollectionId;
 
             DetailedResponse<ImageDetailsList> addImagesResult = null;
+            List<FileWithMetadata> imagesFile = new List<FileWithMetadata>();
+
             using (FileStream fs = File.OpenRead(localGiraffePositiveExamplesFilePath))
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
+
+                    FileWithMetadata fileWithMetadata = new FileWithMetadata()
+                    {
+                        Data = ms,
+                        ContentType = "application/zip",
+                        Filename = Path.GetFileName(localGiraffePositiveExamplesFilePath)
+                    };
+                    imagesFile.Add(fileWithMetadata);
+
                     addImagesResult = service.AddImages(
-                    collectionId: collectionId,
-                    imagesFile: ms);
+                        collectionId: collectionId,
+                        imagesFile: imagesFile);
                 }
             }
 
@@ -254,15 +293,6 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
                 customerId: "my_customer_ID");
 
             Assert.IsTrue(deleteLabeledDataResult.StatusCode == 202);
-        }
-        #endregion
-
-        //  TODO move this to Utils
-        #region ConvertToUtf8
-        private static string ConvertToUtf8(string input)
-        {
-            byte[] utf8Bytes = System.Text.Encoding.UTF8.GetBytes(input);
-            return System.Text.Encoding.UTF8.GetString(utf8Bytes);
         }
         #endregion
     }

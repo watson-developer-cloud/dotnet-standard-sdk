@@ -34,9 +34,12 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
         private static string credentials = string.Empty;
         private string localGiraffeFilePath = @"VisualRecognitionTestData/giraffe_to_classify.jpg";
         private string localGiraffePositiveExamplesFilePath = @"VisualRecognitionTestData/giraffe_positive_examples.zip";
+        private string localTurtleFilePath = @"VisualRecognitionTestData/turtle_to_classify.jpg";
         private string giraffeClassname = "giraffe";
+        private string turtleClassname = "turtle";
         private string versionDate = "2019-02-11";
-        private string dotnetCollectionId = "d31d6534-3458-40c4-b6de-2185a5f3cbe4";
+        private string giraffeCollectionId = "d31d6534-3458-40c4-b6de-2185a5f3cbe4";
+        private string turtleCollectionId = "760c8625-a456-4b73-b71d-d1619a6daf84";
         private string dogImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/American_Eskimo_Dog.jpg/1280px-American_Eskimo_Dog.jpg";
         private string catImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Felis_silvestris_catus_lying_on_rice_straw.jpg/1280px-Felis_silvestris_catus_lying_on_rice_straw.jpg";
 
@@ -56,11 +59,12 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
             DetailedResponse<AnalyzeResponse> analyzeResult = null;
             List<FileWithMetadata> imagesFile = new List<FileWithMetadata>();
 
-            using (FileStream fs = File.OpenRead(localGiraffeFilePath))
+            using (FileStream fs = File.OpenRead(localGiraffeFilePath), fs2 = File.OpenRead(localTurtleFilePath))
             {
-                using (MemoryStream ms = new MemoryStream())
+                using (MemoryStream ms = new MemoryStream(), ms2 = new MemoryStream())
                 {
                     fs.CopyTo(ms);
+                    fs2.CopyTo(ms2);
                     FileWithMetadata fileWithMetadata = new FileWithMetadata()
                     {
                         Data = ms,
@@ -69,16 +73,27 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
                     };
                     imagesFile.Add(fileWithMetadata);
 
+                    FileWithMetadata fileWithMetadata2 = new FileWithMetadata()
+                    {
+                        Data = ms2,
+                        ContentType = "image/jpeg",
+                        Filename = Path.GetFileName(localTurtleFilePath)
+                    };
+                    imagesFile.Add(fileWithMetadata2);
+
                     service.WithHeader("X-Watson-Test", "1");
                     analyzeResult = service.Analyze(
-                        collectionIds: dotnetCollectionId,
+                        collectionIds: giraffeCollectionId + "," + turtleCollectionId,
                         features: "objects",
                         imagesFile: imagesFile);
                 }
             }
 
             Assert.IsNotNull(analyzeResult.Result);
-            Assert.IsTrue(analyzeResult.Result.Images[0].Objects.Collections[0].Objects[0]._Object == giraffeClassname);
+            Assert.IsTrue(analyzeResult.Result.Images[0].Objects.Collections[0].Objects[0]._Object == turtleClassname);
+            Assert.IsTrue(analyzeResult.Result.Images.Count == 2);
+            Assert.IsTrue(analyzeResult.Result.Images[0].Source.Filename == Path.GetFileName(localGiraffeFilePath));
+            Assert.IsTrue(analyzeResult.Result.Images[1].Source.Filename == Path.GetFileName(localTurtleFilePath));
         }
         #endregion
 

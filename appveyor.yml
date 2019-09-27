@@ -133,6 +133,8 @@ after_build:
 
     Copy-Item C:\projects\dotnet-standard-sdk\test\VisualRecognition.v3.IntegrationTests\VisualRecognitionTestData C:\projects\dotnet-standard-sdk\VisualRecognitionTestData
 
+    Copy-Item C:\projects\dotnet-standard-sdk\test\VisualRecognition.v4.IntegrationTests\VisualRecognitionTestData C:\projects\dotnet-standard-sdk\VisualRecognitionTestData
+
     Copy-Item C:\projects\dotnet-standard-sdk\test\SpeechToText.v1.IntegrationTests\SpeechToTextTestData C:\projects\dotnet-standard-sdk\SpeechToTextTestData
 
     Copy-Item C:\projects\dotnet-standard-sdk\test\Discovery.v1.IntegrationTests\DiscoveryTestData C:\projects\dotnet-standard-sdk\DiscoveryTestData
@@ -269,6 +271,8 @@ test_script:
 
         dotnet pack .\src\IBM.Watson.VisualRecognition.v3\IBM.Watson.VisualRecognition.v3.csproj --configuration Release
 
+        dotnet pack .\src\IBM.Watson.VisualRecognition.v4\IBM.Watson.VisualRecognition.v4.csproj --configuration Release
+
     }
 
 
@@ -293,6 +297,8 @@ artifacts:
   name: IBM.Watson.ToneAnalyzer.v3
 - path: '\src\IBM.Watson.VisualRecognition.v3\bin\$(configuration)\*.nupkg'
   name: IBM.Watson.VisualRecognition.v3
+- path: '\src\IBM.Watson.VisualRecognition.v4\bin\$(configuration)\*.nupkg'
+  name: IBM.Watson.VisualRecognition.v4
 - path: '\src\IBM.Watson.NaturalLanguageUnderstanding.v1\bin\$(configuration)\*.nupkg'
   name: IBM.Watson.NaturalLanguageUnderstanding.v1
 - path: '\src\IBM.Watson.NaturalLanguageClassifier.v1\bin\$(configuration)\*.nupkg'

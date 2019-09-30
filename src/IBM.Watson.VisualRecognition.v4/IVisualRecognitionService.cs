@@ -24,7 +24,7 @@ namespace IBM.Watson.VisualRecognition.v4
 {
     public partial interface IVisualRecognitionService
     {
-        DetailedResponse<AnalyzeResponse> Analyze(string collectionIds, string features, List<FileWithMetadata> imagesFile = null, List<string> imageUrl = null, float? threshold = null);
+        DetailedResponse<AnalyzeResponse> Analyze(List<string> collectionIds, List<string> features, List<FileWithMetadata> imagesFile = null, List<string> imageUrl = null, float? threshold = null);
         DetailedResponse<Collection> CreateCollection(string name = null, string description = null);
         DetailedResponse<CollectionsList> ListCollections();
         DetailedResponse<Collection> GetCollection(string collectionId);

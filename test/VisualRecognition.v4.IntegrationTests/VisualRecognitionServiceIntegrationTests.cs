@@ -84,8 +84,8 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
 
                     service.WithHeader("X-Watson-Test", "1");
                     analyzeResult = service.Analyze(
-                        collectionIds: giraffeCollectionId + "," + turtleCollectionId,
-                        features: "objects",
+                        collectionIds: new List<string>() { giraffeCollectionId, turtleCollectionId },
+                        features: new List<string>() { "objects" },
                         imagesFile: imagesFile);
                 }
             }
@@ -300,7 +300,7 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
             Assert.IsTrue(addTrainingDataResult.Result.Objects[0]._Object == objectName);
         }
         #endregion
-        
+
         #region Delete labeled data
         [TestMethod]
         public void DeleteUserData()

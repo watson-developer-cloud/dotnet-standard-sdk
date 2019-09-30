@@ -82,13 +82,13 @@ namespace IBM.Watson.VisualRecognition.v4
         /// You can also include images with the **images_file** parameter. (optional)</param>
         /// <param name="threshold">The minimum score a feature must have to be returned. (optional)</param>
         /// <returns><see cref="AnalyzeResponse" />AnalyzeResponse</returns>
-        public DetailedResponse<AnalyzeResponse> Analyze(string collectionIds, string features, List<FileWithMetadata> imagesFile = null, List<string> imageUrl = null, float? threshold = null)
+        public DetailedResponse<AnalyzeResponse> Analyze(List<string> collectionIds, List<string> features, List<FileWithMetadata> imagesFile = null, List<string> imageUrl = null, float? threshold = null)
         {
-            if (string.IsNullOrEmpty(collectionIds))
+            if (collectionIds == null || collectionIds.Count == 0)
             {
                 throw new ArgumentNullException("`collectionIds` is required for `Analyze`");
             }
-            if (string.IsNullOrEmpty(features))
+            if (features == null || features.Count == 0)
             {
                 throw new ArgumentNullException("`features` is required for `Analyze`");
             }
@@ -106,14 +106,14 @@ namespace IBM.Watson.VisualRecognition.v4
 
                 if (collectionIds != null)
                 {
-                    var collectionIdsContent = new StringContent(collectionIds, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                    var collectionIdsContent = new StringContent(string.Join(",", collectionIds.ToArray()), Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
                     collectionIdsContent.Headers.ContentType = null;
                     formData.Add(collectionIdsContent, "collection_ids");
                 }
 
                 if (features != null)
                 {
-                    var featuresContent = new StringContent(features, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                    var featuresContent = new StringContent(string.Join(",", features.ToArray()), Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
                     featuresContent.Headers.ContentType = null;
                     formData.Add(featuresContent, "features");
                 }

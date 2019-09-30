@@ -47,7 +47,7 @@ namespace IBM.Watson.VisualRecognition.v4.Examples
             ServiceExample example = new ServiceExample();
 
             example.Analyze();
-            
+
 
             Console.WriteLine("Examples complete. Press any key to close the application.");
             Console.ReadKey();
@@ -78,8 +78,8 @@ namespace IBM.Watson.VisualRecognition.v4.Examples
                     imagesFile.Add(fileWithMetadata);
 
                     result = service.Analyze(
-                        collectionIds: "{collectionId}",
-                        features: "objects",
+                        collectionIds: new List<string>() { "{collectionId}" },
+                        features: new List<string>() { "objects" },
                         imagesFile: imagesFile);
 
                     Console.WriteLine(result.Response);

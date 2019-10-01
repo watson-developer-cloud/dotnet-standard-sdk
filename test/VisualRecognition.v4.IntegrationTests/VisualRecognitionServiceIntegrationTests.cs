@@ -263,9 +263,9 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
             var imageId = addImagesResult.Result.Images[0].ImageId;
 
             var objectName = giraffeClassname;
-            List<BaseObject> objects = new List<BaseObject>()
+            List<TrainingDataObject> objects = new List<TrainingDataObject>()
             {
-                new BaseObject()
+                new TrainingDataObject()
                 {
                     _Object = objectName,
                     Location = new Location()

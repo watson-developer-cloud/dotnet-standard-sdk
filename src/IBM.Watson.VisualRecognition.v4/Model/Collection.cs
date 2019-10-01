@@ -36,7 +36,7 @@ namespace IBM.Watson.VisualRecognition.v4.Model
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
-        /// The descripion of the collection.
+        /// The description of the collection.
         /// </summary>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }

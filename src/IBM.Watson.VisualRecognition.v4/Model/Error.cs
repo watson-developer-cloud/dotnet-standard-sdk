@@ -69,7 +69,7 @@ namespace IBM.Watson.VisualRecognition.v4.Model
         [JsonProperty("more_info", NullValueHandling = NullValueHandling.Ignore)]
         public string MoreInfo { get; set; }
         /// <summary>
-        /// Details about the specfic area of the problem.
+        /// Details about the specific area of the problem.
         /// </summary>
         [JsonProperty("target", NullValueHandling = NullValueHandling.Ignore)]
         public ErrorTarget Target { get; set; }

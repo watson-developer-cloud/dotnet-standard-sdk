@@ -64,9 +64,8 @@ namespace IBM.Watson.VisualRecognition.v4
         /// Encode the image and .zip file names in UTF-8 if they contain non-ASCII characters. The service assumes
         /// UTF-8 encoding if it encounters non-ASCII characters.
         /// </summary>
-        /// <param name="collectionIds">The IDs of the collections to analyze. Separate multiple values with
-        /// commas.</param>
-        /// <param name="features">The features to analyze. Separate multiple values with commas.</param>
+        /// <param name="collectionIds">The IDs of the collections to analyze.</param>
+        /// <param name="features">The features to analyze.</param>
         /// <param name="imagesFile">An array of image files (.jpg or .png) or .zip files with images.
         /// - Include a maximum of 20 images in a request.
         /// - Limit the .zip file to 100 MB.
@@ -873,7 +872,7 @@ namespace IBM.Watson.VisualRecognition.v4
         /// <param name="imageId">The identifier of the image.</param>
         /// <param name="trainingData">Training data. Elements in the request replace the existing elements.</param>
         /// <returns><see cref="TrainingDataObjects" />TrainingDataObjects</returns>
-        public DetailedResponse<TrainingDataObjects> AddImageTrainingData(string collectionId, string imageId, List<BaseObject> objects = null)
+        public DetailedResponse<TrainingDataObjects> AddImageTrainingData(string collectionId, string imageId, List<TrainingDataObject> objects = null)
         {
             if (string.IsNullOrEmpty(collectionId))
             {

@@ -29,7 +29,7 @@ namespace IBM.Watson.VisualRecognition.v4.Model
         /// The collections in this service instance.
         /// </summary>
         [JsonProperty("collections", NullValueHandling = NullValueHandling.Ignore)]
-        public List<BaseCollection> Collections { get; set; }
+        public List<Collection> Collections { get; set; }
     }
 
 }

@@ -20,7 +20,7 @@ using Newtonsoft.Json;
 namespace IBM.Watson.VisualRecognition.v4.Model
 {
     /// <summary>
-    /// Details about the specfic area of the problem.
+    /// Details about the specific area of the problem.
     /// </summary>
     public class ErrorTarget
     {

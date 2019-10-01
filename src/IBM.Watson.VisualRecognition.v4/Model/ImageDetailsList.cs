@@ -34,7 +34,7 @@ namespace IBM.Watson.VisualRecognition.v4.Model
         /// Information about what might cause less than optimal output.
         /// </summary>
         [JsonProperty("warnings", NullValueHandling = NullValueHandling.Ignore)]
-        public List<BaseError> Warnings { get; set; }
+        public List<Warning> Warnings { get; set; }
         /// <summary>
         /// A unique identifier of the request. Included only when an error or warning is returned.
         /// </summary>

@@ -3,7 +3,7 @@
     <PropertyGroup>
         <Description>IBM.Watson.SpeechToText.v1 wraps the Watson Speech To Text service (http://www.ibm.com/watson/developercloud/speech-to-text.html)</Description>
         <AssemblyTitle>IBM.Watson.SpeechToText.v1</AssemblyTitle>
-        <VersionPrefix>4.0.0-rc1</VersionPrefix>
+        <VersionPrefix>3.5.0</VersionPrefix>
         <Authors>IBM Watson</Authors>
         <TargetFramework>netstandard2.0</TargetFramework>
         <AssemblyName>IBM.Watson.SpeechToText.v1</AssemblyName>
@@ -11,7 +11,7 @@
         <PackageTags>watson;cognitive;speech;vision;machine-learning;ml;ai;artificial-intelligence;.NET;.NET-Standard</PackageTags>
         <PackageIconUrl>https://watson-developer-cloud.github.io/dotnet-standard-sdk/img/Watson_Avatar_Pos_RGB.png</PackageIconUrl>
         <PackageProjectUrl>https://github.com/watson-developer-cloud/dotnet-standard-sdk</PackageProjectUrl>
-        <Version>4.0.0-rc1</Version>
+        <Version>3.5.0</Version>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -25,8 +25,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="IBM.Cloud.SDK.Core" Version="1.0.0-rc91" />
-        <PackageReference Include="IBM.Watson.Common" Version="4.0.0-rc1" />
+        <PackageReference Include="IBM.Cloud.SDK.Core" Version="1.0.0" />
+        <PackageReference Include="IBM.Watson.Common" Version="4.0.0" />
         <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
     </ItemGroup>
 

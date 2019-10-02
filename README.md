@@ -6,7 +6,7 @@
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![Documentation](https://img.shields.io/badge/documentation-API-blue.svg)][dotnet-standard-sdk-documentation]
 
-The .Net SDK uses [Watson][wdc] services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.
+The .NET Standard SDK uses [Watson][wdc] services, a collection of REST APIs that use cognitive computing to solve complex problems.
 
 ## Table of Contents
 * [Before you begin](#before-you-begin)
@@ -140,13 +140,13 @@ With a credential file, you just need to put the file in the right place and the
 
 The file downloaded will be called `ibm-credentials.env`. This is the name the SDK will search for and **must** be preserved unless you want to configure the file path (more on that later). The SDK will look for your `ibm-credentials.env` file in the following places (in order):
 
-- Your system's home directory
 - The top-level directory of the project you're using the SDK in
+- Your system's home directory
 
 As long as you set that up correctly, you don't have to worry about setting any authentication options in your code. So, for example, if you created and downloaded the credential file for your Discovery instance, you just need to do the following:
 
 ```cs
-AssistantService service = new AssistantService();
+AssistantService service = new AssistantService("{version-date}");
 var listWorkspacesResult = service.ListWorkspaces();
 ```
 

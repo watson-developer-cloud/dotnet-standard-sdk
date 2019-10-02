@@ -24,7 +24,6 @@ namespace IBM.Watson.VisualRecognition.v3
     public partial interface IVisualRecognitionService
     {
         DetailedResponse<ClassifiedImages> Classify(System.IO.MemoryStream imagesFile = null, string imagesFilename = null, string imagesFileContentType = null, string url = null, float? threshold = null, List<string> owners = null, List<string> classifierIds = null, string acceptLanguage = null);
-        DetailedResponse<DetectedFaces> DetectFaces(System.IO.MemoryStream imagesFile = null, string imagesFilename = null, string imagesFileContentType = null, string url = null, string acceptLanguage = null);
         DetailedResponse<Classifier> CreateClassifier(string name, Dictionary<string, System.IO.MemoryStream> positiveExamples, System.IO.MemoryStream negativeExamples = null, string negativeExamplesFilename = null);
         DetailedResponse<Classifiers> ListClassifiers(bool? verbose = null);
         DetailedResponse<Classifier> GetClassifier(string classifierId);

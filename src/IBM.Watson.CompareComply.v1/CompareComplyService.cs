@@ -33,7 +33,7 @@ namespace IBM.Watson.CompareComply.v1
     public partial class CompareComplyService : IBMService, ICompareComplyService
     {
         const string serviceName = "compare_comply";
-        private const string defaultEndpoint = "https://gateway.watsonplatform.net/compare-comply/api";
+        private const string defaultServiceUrl = "https://gateway.watsonplatform.net/compare-comply/api";
         public string VersionDate { get; set; }
 
         public CompareComplyService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
@@ -47,6 +47,11 @@ namespace IBM.Watson.CompareComply.v1
             }
             
             VersionDate = versionDate;
+
+            if (string.IsNullOrEmpty(ServiceUrl))
+            {
+                SetServiceUrl(defaultServiceUrl);
+            }
         }
 
         /// <summary>

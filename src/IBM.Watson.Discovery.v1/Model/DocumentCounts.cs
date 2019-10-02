@@ -20,7 +20,7 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
-    /// DocumentCounts.
+    /// Object containing collection document count information.
     /// </summary>
     public class DocumentCounts
     {

@@ -186,12 +186,16 @@ void Example()
 * `returnFields` was renamed to `_return` in the `QueryNotices()` method
 * `loggingOptOut` was renamed to `xWatsonLoggingOptOut` in the `FederatedQuery()` method
 * `collectionIds` is now required in the `FederatedQuery()` method
+* `collectionIds` changed position in the `FederatedQuery()` method
 * `returnFields` was renamed to `_return` in the `FederatedQuery()` method
 * `returnFields` was renamed to `_return` in the `FederatedQueryNotices()` method
 * `EnrichmentName` was renamed to `_Enrichment` in the `Enrichment` model
 * `FieldTypeEnumValue` was renamed to `TypeEnumValue` in the `Field` model
 * `FieldType` was renamed to `Type` in the `Field` model
 * `FieldName` was renamed to `_Field` in the `Field` model
+* `TestConfigurationInEnvironment()` method was removed
+* `QueryEntities()` method was removed
+* `QueryRelations()` method was removed
 
 ##### Language Translator v3
 
@@ -213,7 +217,7 @@ void Example()
 
 ##### Visual Recognition v3
 
-* Detect faces was removed
+* `DetectFaces()` method was removed
 * `ClassName` was renamed to `_Class` in the `ClassResult` model
 * `ClassName` was renamed to `_Class` in the `ModelClass` model
 

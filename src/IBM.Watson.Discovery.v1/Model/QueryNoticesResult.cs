@@ -22,7 +22,7 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
-    /// QueryNoticesResult.
+    /// Query result object.
     /// </summary>
     public class QueryNoticesResult : DynamicModel<object>
     {

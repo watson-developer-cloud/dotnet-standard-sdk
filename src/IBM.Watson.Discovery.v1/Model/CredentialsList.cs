@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
-    /// CredentialsList.
+    /// Object containing array of credential definitions.
     /// </summary>
     public class CredentialsList
     {

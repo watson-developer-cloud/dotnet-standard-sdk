@@ -22,7 +22,7 @@ namespace IBM.Watson.VisualRecognition.v4.Model
     /// <summary>
     /// Details about a problem.
     /// </summary>
-    public class BaseError
+    public class Warning
     {
         /// <summary>
         /// Identifier of the problem.
@@ -54,7 +54,7 @@ namespace IBM.Watson.VisualRecognition.v4.Model
 
         /// <summary>
         /// Identifier of the problem.
-        /// Constants for possible values can be found using BaseError.CodeEnumValue
+        /// Constants for possible values can be found using Warning.CodeEnumValue
         /// </summary>
         [JsonProperty("code", NullValueHandling = NullValueHandling.Ignore)]
         public string Code { get; set; }

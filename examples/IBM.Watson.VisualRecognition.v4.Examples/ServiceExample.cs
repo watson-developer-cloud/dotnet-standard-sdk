@@ -280,9 +280,9 @@ namespace IBM.Watson.VisualRecognition.v4.Examples
 
             VisualRecognitionService service = new VisualRecognitionService("2019-02-11", authenticator);
 
-            List<BaseObject> objects = new List<BaseObject>()
+            List<TrainingDataObject> objects = new List<TrainingDataObject>()
             {
-                new BaseObject()
+                new TrainingDataObject()
                 {
                     _Object = "2018-Fit",
                     Location = new Location()

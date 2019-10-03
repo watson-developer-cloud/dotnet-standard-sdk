@@ -61,10 +61,10 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         [TestMethod]
         public void TestSpellingSuggestions()
         {
-            var queryResult = service.Query(environmentId: environmentId, collectionId: collectionId, spellingSuggestions: true);
+            var queryResult = service.Query(environmentId: environmentId, collectionId: collectionId, naturalLanguageQuery: "cluod", spellingSuggestions: true);
 
             Assert.IsNotNull(queryResult.Result);
-
+            Assert.IsNotNull(queryResult.Result.SuggestedQuery);
         }
     }
 }

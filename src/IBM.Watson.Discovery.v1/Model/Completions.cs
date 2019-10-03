@@ -21,15 +21,15 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
-    /// QueryRelationsArgument.
+    /// An object containing an array of autocompletion suggestions.
     /// </summary>
-    public class QueryRelationsArgument
+    public class Completions
     {
         /// <summary>
-        /// Array of query entities.
+        /// Array of autcomplete suggestion based on the provided prefix.
         /// </summary>
-        [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
-        public List<QueryEntitiesEntity> Entities { get; set; }
+        [JsonProperty("completions", NullValueHandling = NullValueHandling.Ignore)]
+        public List<string> _Completions { get; set; }
     }
 
 }

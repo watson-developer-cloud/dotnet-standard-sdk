@@ -67,8 +67,6 @@ namespace IBM.Watson.Discovery.v1.Examples
             example.GetConfiguration();
             example.UpdateConfiguration();
 
-            example.TestConfigurationInEnvironment();
-
             example.ListCollections();
             example.CreateCollection();
             example.GetCollection();
@@ -91,8 +89,6 @@ namespace IBM.Watson.Discovery.v1.Examples
             example.QueryNotices();
             example.FederatedQuery();
             example.FederatedQueryNotices();
-            example.QueryEntities();
-            example.QueryRelations();
 
             example.ListTrainingData();
             example.AddTrainingData();
@@ -321,34 +317,6 @@ namespace IBM.Watson.Discovery.v1.Examples
                 );
 
             Console.WriteLine(result.Response);
-        }
-        #endregion
-
-        #region Test Configuration in Environment
-        public void TestConfigurationInEnvironment()
-        {
-            IamAuthenticator authenticator = new IamAuthenticator(
-                apikey: "{apikey}");
-
-            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetServiceUrl("{serviceUrl}");
-
-            using (FileStream fs = File.OpenRead("{path_to_document}"))
-            {
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    fs.CopyTo(ms);
-                    var result = service.TestConfigurationInEnvironment(
-                        environmentId: "{environmentId}",
-                        configurationId: "{configurationId}",
-                        file: ms,
-                        filename: "{test_file}",
-                        fileContentType: "{document_content_type}"
-                        );
-
-                    Console.WriteLine(result.Response);
-                }
-            }
         }
         #endregion
 
@@ -789,6 +757,7 @@ namespace IBM.Watson.Discovery.v1.Examples
 
             var result = service.FederatedQuery(
                 environmentId: "{environmentId}",
+                collectionIds: "{collectionIds}",
                 naturalLanguageQuery: "{naturalLanguageQuery}",
                 _return: "{returnFields}"
                 );
@@ -808,38 +777,6 @@ namespace IBM.Watson.Discovery.v1.Examples
                 environmentId: "{environmentId}",
                 naturalLanguageQuery: "{naturalLanguageQuery}",
                 collectionIds: new List<string> { "{collectionId}" }
-                );
-
-            Console.WriteLine(result.Response);
-        }
-
-        public void QueryEntities()
-        {
-            IamAuthenticator authenticator = new IamAuthenticator(
-                apikey: "{apikey}");
-
-            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetServiceUrl("{serviceUrl}");
-
-            var result = service.QueryEntities(
-                environmentId: "{environmentId}",
-                collectionId: "{collectionId}"
-                );
-
-            Console.WriteLine(result.Response);
-        }
-
-        public void QueryRelations()
-        {
-            IamAuthenticator authenticator = new IamAuthenticator(
-                apikey: "{apikey}");
-
-            DiscoveryService service = new DiscoveryService("2019-04-30", authenticator);
-            service.SetServiceUrl("{serviceUrl}");
-
-            var result = service.QueryRelations(
-                environmentId: "{environmentId}",
-                collectionId: "{collectionId}"
                 );
 
             Console.WriteLine(result.Response);

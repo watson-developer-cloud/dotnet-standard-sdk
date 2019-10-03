@@ -31,7 +31,7 @@ namespace IBM.Watson.Discovery.v1.Model
         [JsonProperty("field", NullValueHandling = NullValueHandling.Ignore)]
         public string Field { get; set; }
         /// <summary>
-        /// Gets or Sets Count
+        /// The number of terms identified.
         /// </summary>
         [JsonProperty("count", NullValueHandling = NullValueHandling.Ignore)]
         public long? Count { get; set; }

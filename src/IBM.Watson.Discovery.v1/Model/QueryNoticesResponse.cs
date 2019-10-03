@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
-    /// QueryNoticesResponse.
+    /// Object containing notice query results.
     /// </summary>
     public class QueryNoticesResponse
     {

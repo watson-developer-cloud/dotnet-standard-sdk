@@ -45,7 +45,6 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
             ServiceExample example = new ServiceExample();
 
             example.Classify();
-            example.DetectFaces();
 
             example.ListClassifiers();
             example.CreateClassifier();
@@ -86,30 +85,6 @@ namespace IBM.Watson.VisualRecognition.v3.Examples
                 }
             }
 
-            Console.WriteLine(result.Response);
-        }
-        #endregion
-
-        #region Face
-        public void DetectFaces()
-        {
-            IamAuthenticator authenticator = new IamAuthenticator(
-                apikey: "{apikey}");
-
-            VisualRecognitionService service = new VisualRecognitionService("2018-03-19", authenticator);
-
-            DetailedResponse<DetectedFaces> result;
-            using (FileStream fs = File.OpenRead("./Ginni_Rometty.jpg"))
-            {
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    fs.CopyTo(ms);
-                    result = service.DetectFaces(
-                        imagesFile: ms
-                        );
-                }
-
-            }
             Console.WriteLine(result.Response);
         }
         #endregion

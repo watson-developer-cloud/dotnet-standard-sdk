@@ -237,45 +237,6 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         }
         #endregion
 
-        #region Preview Environment
-        [TestMethod]
-        public void PreviewEnvironment()
-        {
-            service.WithHeader("X-Watson-Test", "1");
-            var createConfigurationResults = service.CreateConfiguration(
-                environmentId: environmentId,
-                name: createdConfigurationName,
-                description: createdConfigurationDescription
-                );
-
-            configurationId = createConfigurationResults.Result.ConfigurationId;
-
-            using (FileStream fs = File.OpenRead(filepathToIngest))
-            {
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    fs.CopyTo(ms);
-                    service.WithHeader("X-Watson-Test", "1");
-                    var testConfigurationInEnvironmentResult = service.TestConfigurationInEnvironment(
-                        environmentId: environmentId,
-                        configurationId: configurationId,
-                        file: ms, filename: "watson_beats_jeopardy.html",
-                        fileContentType: "text/html"
-                        );
-
-                    service.WithHeader("X-Watson-Test", "1");
-                    var deleteConfigurationResults = service.DeleteConfiguration(
-                        environmentId: environmentId,
-                        configurationId: configurationId
-                        );
-
-                    Assert.IsNotNull(testConfigurationInEnvironmentResult.Result);
-                    Assert.IsNotNull(testConfigurationInEnvironmentResult.Result.Status);
-                }
-            }
-        }
-        #endregion
-
         #region Documents
         [TestMethod]
         public void TestDocuments_Success()

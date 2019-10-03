@@ -64,18 +64,26 @@ namespace IBM.Watson.VisualRecognition.v4.Examples
 
             DetailedResponse<AnalyzeResponse> result = null;
             List<FileWithMetadata> imagesFile = new List<FileWithMetadata>();
-            using (FileStream fs = File.OpenRead("./fruitbowl.jpg"))
+            using (FileStream hondaFilestream = File.OpenRead("./honda.jpg"), diceFilestream = File.OpenRead("./dice.png"))
             {
-                using (MemoryStream ms = new MemoryStream())
+                using (MemoryStream hondaMemoryStream = new MemoryStream(), diceMemoryStream = new MemoryStream())
                 {
-                    fs.CopyTo(ms);
-                    FileWithMetadata fileWithMetadata = new FileWithMetadata()
+                    hondaFilestream.CopyTo(hondaMemoryStream);
+                    diceFilestream.CopyTo(diceMemoryStream);
+                    FileWithMetadata hondaFile = new FileWithMetadata()
                     {
-                        Data = ms,
+                        Data = hondaMemoryStream,
                         ContentType = "image/jpeg",
-                        Filename = "fruitbowl.jpg"
+                        Filename = "honda.jpg"
                     };
-                    imagesFile.Add(fileWithMetadata);
+                    FileWithMetadata diceFile = new FileWithMetadata()
+                    {
+                        Data = diceMemoryStream,
+                        ContentType = "image/png",
+                        Filename = "dice.png"
+                    };
+                    imagesFile.Add(hondaFile);
+                    imagesFile.Add(diceFile);
 
                     result = service.Analyze(
                         collectionIds: new List<string>() { "{collectionId}" },

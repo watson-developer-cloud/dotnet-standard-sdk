@@ -2815,13 +2815,13 @@ namespace IBM.Watson.Discovery.v1
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
+        /// <param name="prefix">The prefix to use for autocompletion. For example, the prefix `Ho` could autocomplete
+        /// to `Hot`, `Housing`, or `How do I upgrade`. Possible completions are.</param>
         /// <param name="field">The field in the result documents that autocompletion suggestions are identified from.
         /// (optional)</param>
-        /// <param name="prefix">The prefix to use for autocompletion. For example, the prefix `Ho` could autocomplete
-        /// to `Hot`, `Housing`, or `How do I upgrade`. Possible completions are. (optional)</param>
         /// <param name="count">The number of autocompletion suggestions to return. (optional)</param>
         /// <returns><see cref="Completions" />Completions</returns>
-        public DetailedResponse<Completions> GetAutocompletion(string environmentId, string collectionId, string field = null, string prefix = null, long? count = null)
+        public DetailedResponse<Completions> GetAutocompletion(string environmentId, string collectionId, string prefix, string field = null, long? count = null)
         {
             if (string.IsNullOrEmpty(environmentId))
             {
@@ -2838,6 +2838,10 @@ namespace IBM.Watson.Discovery.v1
             else
             {
                 collectionId = Uri.EscapeDataString(collectionId);
+            }
+            if (string.IsNullOrEmpty(prefix))
+            {
+                throw new ArgumentNullException("`prefix` is required for `GetAutocompletion`");
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -2856,13 +2860,13 @@ namespace IBM.Watson.Discovery.v1
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
-                if (!string.IsNullOrEmpty(field))
-                {
-                    restRequest.WithArgument("field", field);
-                }
                 if (!string.IsNullOrEmpty(prefix))
                 {
                     restRequest.WithArgument("prefix", prefix);
+                }
+                if (!string.IsNullOrEmpty(field))
+                {
+                    restRequest.WithArgument("field", field);
                 }
                 if (count != null)
                 {

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <VersionPrefix>4.0.0-rc1</VersionPrefix>
+    <VersionPrefix>3.5.0</VersionPrefix>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>IBM.Watson.CompareComply.v1.UT</AssemblyName>
     <PackageId>IBM.Watson.CompareComply.v1.UT</PackageId>
@@ -9,7 +9,7 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <Version>4.0.0-rc1</Version>
+    <Version>3.5.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="IBM.Cloud.SDK.Core" Version="1.0.0-rc91" />
+    <PackageReference Include="IBM.Cloud.SDK.Core" Version="1.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.1.8-rc" />
     <PackageReference Include="MSTest.TestFramework" Version="1.0.8-rc" />

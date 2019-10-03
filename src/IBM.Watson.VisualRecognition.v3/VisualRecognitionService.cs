@@ -31,7 +31,7 @@ namespace IBM.Watson.VisualRecognition.v3
     public partial class VisualRecognitionService : IBMService, IVisualRecognitionService
     {
         const string serviceName = "visual_recognition";
-        private const string defaultEndpoint = "https://gateway.watsonplatform.net/visual-recognition/api";
+        private const string defaultServiceUrl = "https://gateway.watsonplatform.net/visual-recognition/api";
         public string VersionDate { get; set; }
 
         public VisualRecognitionService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
@@ -45,6 +45,11 @@ namespace IBM.Watson.VisualRecognition.v3
             }
             
             VersionDate = versionDate;
+
+            if (string.IsNullOrEmpty(ServiceUrl))
+            {
+                SetServiceUrl(defaultServiceUrl);
+            }
         }
 
         /// <summary>
@@ -158,101 +163,6 @@ namespace IBM.Watson.VisualRecognition.v3
                 if (result == null)
                 {
                     result = new DetailedResponse<ClassifiedImages>();
-                }
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-        /// <summary>
-        /// Detect faces in images.
-        ///
-        /// **Important:** On April 2, 2018, the identity information in the response to calls to the Face model was
-        /// removed. The identity information refers to the `name` of the person, `score`, and `type_hierarchy`
-        /// knowledge graph. For details about the enhanced Face model, see the [Release
-        /// notes](https://cloud.ibm.com/docs/services/visual-recognition?topic=visual-recognition-release-notes#2april2018).
-        ///
-        /// Analyze and get data about faces in images. Responses can include estimated age and gender. This feature
-        /// uses a built-in model, so no training is necessary. The **Detect faces** method does not support general
-        /// biometric facial recognition.
-        ///
-        /// Supported image formats include .gif, .jpg, .png, and .tif. The maximum image size is 10 MB. The minimum
-        /// recommended pixel density is 32X32 pixels, but the service tends to perform better with images that are at
-        /// least 224 x 224 pixels.
-        /// </summary>
-        /// <param name="imagesFile">An image file (gif, .jpg, .png, .tif.) or .zip file with images. Limit the .zip
-        /// file to 100 MB. You can include a maximum of 15 images in a request.
-        ///
-        /// Encode the image and .zip file names in UTF-8 if they contain non-ASCII characters. The service assumes
-        /// UTF-8 encoding if it encounters non-ASCII characters.
-        ///
-        /// You can also include an image with the **url** parameter. (optional)</param>
-        /// <param name="imagesFilename">The filename for imagesFile. (optional)</param>
-        /// <param name="imagesFileContentType">The content type of imagesFile. (optional)</param>
-        /// <param name="url">The URL of an image to analyze. Must be in .gif, .jpg, .png, or .tif format. The minimum
-        /// recommended pixel density is 32X32 pixels, but the service tends to perform better with images that are at
-        /// least 224 x 224 pixels. The maximum image size is 10 MB. Redirects are followed, so you can use a shortened
-        /// URL.
-        ///
-        /// You can also include images with the **images_file** parameter. (optional)</param>
-        /// <param name="acceptLanguage">The desired language of parts of the response. See the response for details.
-        /// (optional, default to en)</param>
-        /// <returns><see cref="DetectedFaces" />DetectedFaces</returns>
-        public DetailedResponse<DetectedFaces> DetectFaces(System.IO.MemoryStream imagesFile = null, string imagesFilename = null, string imagesFileContentType = null, string url = null, string acceptLanguage = null)
-        {
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
-            DetailedResponse<DetectedFaces> result = null;
-
-            try
-            {
-                var formData = new MultipartFormDataContent();
-
-                if (imagesFile != null)
-                {
-                    var imagesFileContent = new ByteArrayContent(imagesFile.ToArray());
-                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
-                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(imagesFileContentType, out contentType);
-                    imagesFileContent.Headers.ContentType = contentType;
-                    formData.Add(imagesFileContent, "images_file", imagesFilename);
-                }
-
-                if (url != null)
-                {
-                    var urlContent = new StringContent(url, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    urlContent.Headers.ContentType = null;
-                    formData.Add(urlContent, "url");
-                }
-
-                IClient client = this.Client;
-                SetAuthentication();
-
-                var restRequest = client.PostAsync($"{this.Endpoint}/v3/detect_faces");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-
-                if (!string.IsNullOrEmpty(acceptLanguage))
-                {
-                    restRequest.WithHeader("Accept-Language", acceptLanguage);
-                }
-                restRequest.WithBodyContent(formData);
-
-                restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v3", "DetectFaces"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
-
-                result = restRequest.As<DetectedFaces>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<DetectedFaces>();
                 }
             }
             catch (AggregateException ae)

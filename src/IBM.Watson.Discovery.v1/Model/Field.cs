@@ -20,7 +20,7 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
-    /// Field.
+    /// Object containing field details.
     /// </summary>
     public class Field
     {

@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
-    /// AggregationResult.
+    /// Aggregation results for the specified query.
     /// </summary>
     public class AggregationResult
     {

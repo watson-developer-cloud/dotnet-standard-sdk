@@ -33,12 +33,17 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
     public partial class NaturalLanguageClassifierService : IBMService, INaturalLanguageClassifierService
     {
         const string serviceName = "natural_language_classifier";
-        private const string defaultEndpoint = "https://gateway.watsonplatform.net/natural-language-classifier/api";
+        private const string defaultServiceUrl = "https://gateway.watsonplatform.net/natural-language-classifier/api";
         public NaturalLanguageClassifierService() : this(ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public NaturalLanguageClassifierService(IClient httpClient) : base(serviceName, httpClient) { }
 
         public NaturalLanguageClassifierService(IAuthenticator authenticator) : base(serviceName, authenticator)
         {
+
+            if (string.IsNullOrEmpty(ServiceUrl))
+            {
+                SetServiceUrl(defaultServiceUrl);
+            }
         }
 
         /// <summary>

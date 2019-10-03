@@ -34,7 +34,7 @@ namespace IBM.Watson.Discovery.v1
     public partial class DiscoveryService : IBMService, IDiscoveryService
     {
         const string serviceName = "discovery";
-        private const string defaultEndpoint = "https://gateway.watsonplatform.net/discovery/api";
+        private const string defaultServiceUrl = "https://gateway.watsonplatform.net/discovery/api";
         public string VersionDate { get; set; }
 
         public DiscoveryService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
@@ -48,6 +48,11 @@ namespace IBM.Watson.Discovery.v1
             }
             
             VersionDate = versionDate;
+
+            if (string.IsNullOrEmpty(ServiceUrl))
+            {
+                SetServiceUrl(defaultServiceUrl);
+            }
         }
 
         /// <summary>
@@ -801,117 +806,6 @@ namespace IBM.Watson.Discovery.v1
                 if (result == null)
                 {
                     result = new DetailedResponse<DeleteConfigurationResponse>();
-                }
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-        /// <summary>
-        /// Test configuration.
-        ///
-        /// **Deprecated** This method is no longer supported and is scheduled to be removed from service on July 31st
-        /// 2019.
-        ///
-        ///  Runs a sample document through the default or your configuration and returns diagnostic information
-        /// designed to help you understand how the document was processed. The document is not added to the index.
-        /// </summary>
-        /// <param name="environmentId">The ID of the environment.</param>
-        /// <param name="configuration">The configuration to use to process the document. If this part is provided, then
-        /// the provided configuration is used to process the document. If the **configuration_id** is also provided
-        /// (both are present at the same time), then request is rejected. The maximum supported configuration size is 1
-        /// MB. Configuration parts larger than 1 MB are rejected. See the `GET /configurations/{configuration_id}`
-        /// operation for an example configuration. (optional)</param>
-        /// <param name="file">The content of the document to ingest. The maximum supported file size when adding a file
-        /// to a collection is 50 megabytes, the maximum supported file size when testing a confiruration is 1 megabyte.
-        /// Files larger than the supported size are rejected. (optional)</param>
-        /// <param name="filename">The filename for file. (optional)</param>
-        /// <param name="fileContentType">The content type of file. (optional)</param>
-        /// <param name="metadata">The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are
-        /// rejected. Example:  ``` {
-        ///   "Creator": "Johnny Appleseed",
-        ///   "Subject": "Apples"
-        /// } ```. (optional)</param>
-        /// <param name="step">Specify to only run the input document through the given step instead of running the
-        /// input document through the entire ingestion workflow. Valid values are `convert`, `enrich`, and `normalize`.
-        /// (optional)</param>
-        /// <param name="configurationId">The ID of the configuration to use to process the document. If the
-        /// **configuration** form part is also provided (both are present at the same time), then the request will be
-        /// rejected. (optional)</param>
-        /// <returns><see cref="TestDocument" />TestDocument</returns>
-        public DetailedResponse<TestDocument> TestConfigurationInEnvironment(string environmentId, string configuration = null, System.IO.MemoryStream file = null, string filename = null, string fileContentType = null, string metadata = null, string step = null, string configurationId = null)
-        {
-            if (string.IsNullOrEmpty(environmentId))
-            {
-                throw new ArgumentNullException("`environmentId` is required for `TestConfigurationInEnvironment`");
-            }
-            else
-            {
-                environmentId = Uri.EscapeDataString(environmentId);
-            }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
-            DetailedResponse<TestDocument> result = null;
-
-            try
-            {
-                var formData = new MultipartFormDataContent();
-
-                if (configuration != null)
-                {
-                    var configurationContent = new StringContent(configuration, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    configurationContent.Headers.ContentType = null;
-                    formData.Add(configurationContent, "configuration");
-                }
-
-                if (file != null)
-                {
-                    var fileContent = new ByteArrayContent(file.ToArray());
-                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
-                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
-                    fileContent.Headers.ContentType = contentType;
-                    formData.Add(fileContent, "file", filename);
-                }
-
-                if (metadata != null)
-                {
-                    var metadataContent = new StringContent(metadata, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    metadataContent.Headers.ContentType = null;
-                    formData.Add(metadataContent, "metadata");
-                }
-
-                IClient client = this.Client;
-                SetAuthentication();
-
-                var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/preview");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (!string.IsNullOrEmpty(step))
-                {
-                    restRequest.WithArgument("step", step);
-                }
-                if (!string.IsNullOrEmpty(configurationId))
-                {
-                    restRequest.WithArgument("configuration_id", configurationId);
-                }
-                restRequest.WithBodyContent(formData);
-
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "TestConfigurationInEnvironment"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
-
-                result = restRequest.As<TestDocument>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<TestDocument>();
                 }
             }
             catch (AggregateException ae)
@@ -2293,7 +2187,7 @@ namespace IBM.Watson.Discovery.v1
         /// <param name="xWatsonLoggingOptOut">If `true`, queries are not stored in the Discovery **Logs** endpoint.
         /// (optional, default to false)</param>
         /// <returns><see cref="QueryResponse" />QueryResponse</returns>
-        public DetailedResponse<QueryResponse> Query(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, string _return = null, long? offset = null, string sort = null, bool? highlight = null, string passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null, string collectionIds = null, bool? similar = null, string similarDocumentIds = null, string similarFields = null, string bias = null, bool? xWatsonLoggingOptOut = null)
+        public DetailedResponse<QueryResponse> Query(string environmentId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, string _return = null, long? offset = null, string sort = null, bool? highlight = null, string passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, string similarDocumentIds = null, string similarFields = null, string bias = null, bool? spellingSuggestions = null, bool? xWatsonLoggingOptOut = null)
         {
             if (string.IsNullOrEmpty(environmentId))
             {
@@ -2396,10 +2290,6 @@ namespace IBM.Watson.Discovery.v1
                 {
                     bodyObject["deduplicate.field"] = deduplicateField;
                 }
-                if (!string.IsNullOrEmpty(collectionIds))
-                {
-                    bodyObject["collection_ids"] = collectionIds;
-                }
                 if (similar != null)
                 {
                     bodyObject["similar"] = JToken.FromObject(similar);
@@ -2415,6 +2305,10 @@ namespace IBM.Watson.Discovery.v1
                 if (!string.IsNullOrEmpty(bias))
                 {
                     bodyObject["bias"] = bias;
+                }
+                if (spellingSuggestions != null)
+                {
+                    bodyObject["spelling_suggestions"] = JToken.FromObject(spellingSuggestions);
                 }
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
@@ -2621,11 +2515,11 @@ namespace IBM.Watson.Discovery.v1
         /// documentation](https://cloud.ibm.com/docs/services/discovery?topic=discovery-query-concepts#query-concepts).
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
-        /// <param name="queryLong">An object that represents the query to be submitted. (optional)</param>
+        /// <param name="queryLong"> (optional)</param>
         /// <param name="xWatsonLoggingOptOut">If `true`, queries are not stored in the Discovery **Logs** endpoint.
         /// (optional, default to false)</param>
         /// <returns><see cref="QueryResponse" />QueryResponse</returns>
-        public DetailedResponse<QueryResponse> FederatedQuery(string environmentId, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, string _return = null, long? offset = null, string sort = null, bool? highlight = null, string passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null, string collectionIds = null, bool? similar = null, string similarDocumentIds = null, string similarFields = null, string bias = null, bool? xWatsonLoggingOptOut = null)
+        public DetailedResponse<QueryResponse> FederatedQuery(string environmentId, string collectionIds, string filter = null, string query = null, string naturalLanguageQuery = null, bool? passages = null, string aggregation = null, long? count = null, string _return = null, long? offset = null, string sort = null, bool? highlight = null, string passagesFields = null, long? passagesCount = null, long? passagesCharacters = null, bool? deduplicate = null, string deduplicateField = null, bool? similar = null, string similarDocumentIds = null, string similarFields = null, string bias = null, bool? xWatsonLoggingOptOut = null)
         {
             if (string.IsNullOrEmpty(environmentId))
             {
@@ -2660,6 +2554,10 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(collectionIds))
+                {
+                    bodyObject["collection_ids"] = collectionIds;
+                }
                 if (!string.IsNullOrEmpty(filter))
                 {
                     bodyObject["filter"] = filter;
@@ -2719,10 +2617,6 @@ namespace IBM.Watson.Discovery.v1
                 if (!string.IsNullOrEmpty(deduplicateField))
                 {
                     bodyObject["deduplicate.field"] = deduplicateField;
-                }
-                if (!string.IsNullOrEmpty(collectionIds))
-                {
-                    bodyObject["collection_ids"] = collectionIds;
                 }
                 if (similar != null)
                 {
@@ -2914,21 +2808,24 @@ namespace IBM.Watson.Discovery.v1
         }
 
         /// <summary>
-        /// Knowledge Graph entity query.
+        /// Get Autocomplete Suggestions.
         ///
-        /// See the [Knowledge Graph documentation](https://cloud.ibm.com/docs/services/discovery?topic=discovery-kg#kg)
-        /// for more details.
+        /// Returns completion query suggestions for the specified prefix.  /n/n **Important:** this method is only
+        /// valid when using the Cloud Pak version of Discovery.
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
-        /// <param name="entityQuery">An object specifying the entities to query, which functions to perform, and any
-        /// additional constraints.</param>
-        /// <returns><see cref="QueryEntitiesResponse" />QueryEntitiesResponse</returns>
-        public DetailedResponse<QueryEntitiesResponse> QueryEntities(string environmentId, string collectionId, string feature = null, QueryEntitiesEntity entity = null, QueryEntitiesContext context = null, long? count = null, long? evidenceCount = null)
+        /// <param name="field">The field in the result documents that autocompletion suggestions are identified from.
+        /// (optional)</param>
+        /// <param name="prefix">The prefix to use for autocompletion. For example, the prefix `Ho` could autocomplete
+        /// to `Hot`, `Housing`, or `How do I upgrade`. Possible completions are. (optional)</param>
+        /// <param name="count">The number of autocompletion suggestions to return. (optional)</param>
+        /// <returns><see cref="Completions" />Completions</returns>
+        public DetailedResponse<Completions> GetAutocompletion(string environmentId, string collectionId, string field = null, string prefix = null, long? count = null)
         {
             if (string.IsNullOrEmpty(environmentId))
             {
-                throw new ArgumentNullException("`environmentId` is required for `QueryEntities`");
+                throw new ArgumentNullException("`environmentId` is required for `GetAutocompletion`");
             }
             else
             {
@@ -2936,7 +2833,7 @@ namespace IBM.Watson.Discovery.v1
             }
             if (string.IsNullOrEmpty(collectionId))
             {
-                throw new ArgumentNullException("`collectionId` is required for `QueryEntities`");
+                throw new ArgumentNullException("`collectionId` is required for `GetAutocompletion`");
             }
             else
             {
@@ -2948,145 +2845,38 @@ namespace IBM.Watson.Discovery.v1
                 throw new ArgumentNullException("versionDate cannot be null.");
             }
 
-            DetailedResponse<QueryEntitiesResponse> result = null;
+            DetailedResponse<Completions> result = null;
 
             try
             {
                 IClient client = this.Client;
                 SetAuthentication();
 
-                var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/query_entities");
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/autocompletion");
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
-                restRequest.WithHeader("Content-Type", "application/json");
-
-                JObject bodyObject = new JObject();
-                if (!string.IsNullOrEmpty(feature))
+                if (!string.IsNullOrEmpty(field))
                 {
-                    bodyObject["feature"] = feature;
+                    restRequest.WithArgument("field", field);
                 }
-                if (entity != null)
+                if (!string.IsNullOrEmpty(prefix))
                 {
-                    bodyObject["entity"] = JToken.FromObject(entity);
-                }
-                if (context != null)
-                {
-                    bodyObject["context"] = JToken.FromObject(context);
+                    restRequest.WithArgument("prefix", prefix);
                 }
                 if (count != null)
                 {
-                    bodyObject["count"] = JToken.FromObject(count);
+                    restRequest.WithArgument("count", count);
                 }
-                if (evidenceCount != null)
-                {
-                    bodyObject["evidence_count"] = JToken.FromObject(evidenceCount);
-                }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
-                restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "QueryEntities"));
+                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "GetAutocompletion"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
-                result = restRequest.As<QueryEntitiesResponse>().Result;
+                result = restRequest.As<Completions>().Result;
                 if (result == null)
                 {
-                    result = new DetailedResponse<QueryEntitiesResponse>();
-                }
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Knowledge Graph relationship query.
-        ///
-        /// See the [Knowledge Graph documentation](https://cloud.ibm.com/docs/services/discovery?topic=discovery-kg#kg)
-        /// for more details.
-        /// </summary>
-        /// <param name="environmentId">The ID of the environment.</param>
-        /// <param name="collectionId">The ID of the collection.</param>
-        /// <param name="relationshipQuery">An object that describes the relationships to be queried and any query
-        /// constraints (such as filters).</param>
-        /// <returns><see cref="QueryRelationsResponse" />QueryRelationsResponse</returns>
-        public DetailedResponse<QueryRelationsResponse> QueryRelations(string environmentId, string collectionId, List<QueryRelationsEntity> entities = null, QueryEntitiesContext context = null, string sort = null, QueryRelationsFilter filter = null, long? count = null, long? evidenceCount = null)
-        {
-            if (string.IsNullOrEmpty(environmentId))
-            {
-                throw new ArgumentNullException("`environmentId` is required for `QueryRelations`");
-            }
-            else
-            {
-                environmentId = Uri.EscapeDataString(environmentId);
-            }
-            if (string.IsNullOrEmpty(collectionId))
-            {
-                throw new ArgumentNullException("`collectionId` is required for `QueryRelations`");
-            }
-            else
-            {
-                collectionId = Uri.EscapeDataString(collectionId);
-            }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
-            DetailedResponse<QueryRelationsResponse> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                SetAuthentication();
-
-                var restRequest = client.PostAsync($"{this.Endpoint}/v1/environments/{environmentId}/collections/{collectionId}/query_relations");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                restRequest.WithHeader("Content-Type", "application/json");
-
-                JObject bodyObject = new JObject();
-                if (entities != null && entities.Count > 0)
-                {
-                    bodyObject["entities"] = JToken.FromObject(entities);
-                }
-                if (context != null)
-                {
-                    bodyObject["context"] = JToken.FromObject(context);
-                }
-                if (!string.IsNullOrEmpty(sort))
-                {
-                    bodyObject["sort"] = sort;
-                }
-                if (filter != null)
-                {
-                    bodyObject["filter"] = JToken.FromObject(filter);
-                }
-                if (count != null)
-                {
-                    bodyObject["count"] = JToken.FromObject(count);
-                }
-                if (evidenceCount != null)
-                {
-                    bodyObject["evidence_count"] = JToken.FromObject(evidenceCount);
-                }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
-                restRequest.WithBodyContent(httpContent);
-
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "QueryRelations"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
-
-                result = restRequest.As<QueryRelationsResponse>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<QueryRelationsResponse>();
+                    result = new DetailedResponse<Completions>();
                 }
             }
             catch (AggregateException ae)

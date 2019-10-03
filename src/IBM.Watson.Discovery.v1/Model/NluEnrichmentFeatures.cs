@@ -20,7 +20,7 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
-    /// NluEnrichmentFeatures.
+    /// Object containing Natural Language Understanding features to be used.
     /// </summary>
     public class NluEnrichmentFeatures
     {

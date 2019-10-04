@@ -8,7 +8,13 @@ var searchData=
   ['identifiedlanguages',['IdentifiedLanguages',['../d2/dca/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_identified_languages.html',1,'IBM::Watson::LanguageTranslator::v3::Model']]],
   ['idiscoveryservice',['IDiscoveryService',['../dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html',1,'IBM::Watson::Discovery::v1']]],
   ['ilanguagetranslatorservice',['ILanguageTranslatorService',['../d5/dcd/interface_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_i_language_translator_service.html',1,'IBM::Watson::LanguageTranslator::v3']]],
-  ['imagewithfaces',['ImageWithFaces',['../df/d92/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_model_1_1_image_with_faces.html',1,'IBM::Watson::VisualRecognition::v3::Model']]],
+  ['image',['Image',['../d2/d42/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_image.html',1,'IBM::Watson::VisualRecognition::v4::Model']]],
+  ['imagedetails',['ImageDetails',['../d5/db8/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_image_details.html',1,'IBM::Watson::VisualRecognition::v4::Model']]],
+  ['imagedetailslist',['ImageDetailsList',['../d9/d9e/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_image_details_list.html',1,'IBM::Watson::VisualRecognition::v4::Model']]],
+  ['imagedimensions',['ImageDimensions',['../dc/d8d/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_image_dimensions.html',1,'IBM::Watson::VisualRecognition::v4::Model']]],
+  ['imagesource',['ImageSource',['../dd/df7/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_image_source.html',1,'IBM::Watson::VisualRecognition::v4::Model']]],
+  ['imagesummary',['ImageSummary',['../d2/dca/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_image_summary.html',1,'IBM::Watson::VisualRecognition::v4::Model']]],
+  ['imagesummarylist',['ImageSummaryList',['../d1/d7a/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_image_summary_list.html',1,'IBM::Watson::VisualRecognition::v4::Model']]],
   ['importanceenumvalue',['ImportanceEnumValue',['../d1/d6d/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_parties_1_1_importance_enum_value.html',1,'IBM::Watson::CompareComply::v1::Model::Parties']]],
   ['inaturallanguageclassifierservice',['INaturalLanguageClassifierService',['../df/d18/interface_i_b_m_1_1_watson_1_1_natural_language_classifier_1_1v1_1_1_i_natural_language_classifier_service.html',1,'IBM::Watson::NaturalLanguageClassifier::v1']]],
   ['inaturallanguageunderstandingservice',['INaturalLanguageUnderstandingService',['../d6/d09/interface_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_i_natural_language_understanding_service.html',1,'IBM::Watson::NaturalLanguageUnderstanding::v1']]],
@@ -20,5 +26,5 @@ var searchData=
   ['ispeechtotextservice',['ISpeechToTextService',['../d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html',1,'IBM::Watson::SpeechToText::v1']]],
   ['itexttospeechservice',['ITextToSpeechService',['../dd/d30/interface_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html',1,'IBM::Watson::TextToSpeech::v1']]],
   ['itoneanalyzerservice',['IToneAnalyzerService',['../d2/d46/interface_i_b_m_1_1_watson_1_1_tone_analyzer_1_1v3_1_1_i_tone_analyzer_service.html',1,'IBM::Watson::ToneAnalyzer::v3']]],
-  ['ivisualrecognitionservice',['IVisualRecognitionService',['../d5/d5f/interface_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html',1,'IBM::Watson::VisualRecognition::v3']]]
+  ['ivisualrecognitionservice',['IVisualRecognitionService',['../d2/d37/interface_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_i_visual_recognition_service.html',1,'IBM.Watson.VisualRecognition.v4.IVisualRecognitionService'],['../d5/d5f/interface_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html',1,'IBM.Watson.VisualRecognition.v3.IVisualRecognitionService']]]
 ];

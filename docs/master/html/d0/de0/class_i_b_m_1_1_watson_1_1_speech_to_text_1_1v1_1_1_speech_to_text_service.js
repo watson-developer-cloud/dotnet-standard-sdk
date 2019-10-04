@@ -1,10 +1,8 @@
 var class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service =
 [
     [ "SpeechToTextService", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a3da86c5055a6cf85c34a94f459d4f784", null ],
-    [ "SpeechToTextService", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a42ec47661b7f948fead7f3167d477c28", null ],
-    [ "SpeechToTextService", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a507c00849af1405ccb47235be9c080f4", null ],
     [ "SpeechToTextService", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#abbdfacf680992e1fea35c331555a64f8", null ],
-    [ "SpeechToTextService", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a4212dc8390944267e32235d02d0bf23a", null ],
+    [ "SpeechToTextService", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a31fd2b9a3b161176164104ca67d644e9", null ],
     [ "AddAudio", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a3e32f9c8efaa197badc3306c485e23ac", null ],
     [ "AddCorpus", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#ac58aae2ca6569b8933bdc24b987e1eae", null ],
     [ "AddGrammar", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a3d6942f18f7fcf24541c9fe83509440a", null ],
@@ -37,14 +35,13 @@ var class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service =
     [ "ListLanguageModels", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a8a4d6b1ea5727936faa7cc21b7441cc4", null ],
     [ "ListModels", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a56c4952b167f2ec29c6da452bcbe6ec5", null ],
     [ "ListWords", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a96c6118c68e909b0147cf56cf5d2579e", null ],
-    [ "Recognize", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#ab5e803f5369bb829806e63ee00f9d5f0", null ],
+    [ "Recognize", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#ab5d48d63f5e79bc61935911de075efa0", null ],
     [ "RegisterCallback", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a2eccc4ef165fd09c5cf57ec7f767307f", null ],
     [ "ResetAcousticModel", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#aa73f7c2c564fb47a325b69cfaaea9f50", null ],
     [ "ResetLanguageModel", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a5820913b7a6130238d274900e649b3d7", null ],
-    [ "TrainAcousticModel", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a6da141fee2f7d0c386c2d70b0eb3205b", null ],
-    [ "TrainLanguageModel", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#acca9d44cef62a2d2ccba3cba7bef59ca", null ],
+    [ "TrainAcousticModel", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a6ac015fe94a6e7174e0e9c2f8b2a9f2d", null ],
+    [ "TrainLanguageModel", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a847a73bb861cec605983c092b9df1e7b", null ],
     [ "UnregisterCallback", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#acad5608e56d2dffe3a44e2fbfdddc6b6", null ],
     [ "UpgradeAcousticModel", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a793d3e77757922cd3df1a57ce10fe584", null ],
-    [ "UpgradeLanguageModel", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a1fe7dbb50d1888f0e71ef98a306303b1", null ],
-    [ "DefaultEndpoint", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a602f38e18b3cfe5ed8a096114f4cb734", null ]
+    [ "UpgradeLanguageModel", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a1fe7dbb50d1888f0e71ef98a306303b1", null ]
 ];

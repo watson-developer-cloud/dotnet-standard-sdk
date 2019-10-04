@@ -7,7 +7,7 @@ var searchData=
   ['deleteenvironmentresponse_2ecs',['DeleteEnvironmentResponse.cs',['../dd/daa/_delete_environment_response_8cs.html',1,'']]],
   ['deletemodelresult_2ecs',['DeleteModelResult.cs',['../dd/d70/_delete_model_result_8cs.html',1,'']]],
   ['deletemodelresults_2ecs',['DeleteModelResults.cs',['../d5/dbc/_delete_model_results_8cs.html',1,'']]],
-  ['detectedfaces_2ecs',['DetectedFaces.cs',['../d0/db2/_detected_faces_8cs.html',1,'']]],
+  ['detectedobjects_2ecs',['DetectedObjects.cs',['../d8/d7f/_detected_objects_8cs.html',1,'']]],
   ['dialoglogmessage_2ecs',['DialogLogMessage.cs',['../d4/df7/_dialog_log_message_8cs.html',1,'']]],
   ['dialognode_2ecs',['DialogNode.cs',['../dc/da6/_dialog_node_8cs.html',1,'']]],
   ['dialognodeaction_2ecs',['DialogNodeAction.cs',['../d6/d7a/_i_b_m_8_watson_8_assistant_8v1_2_model_2_dialog_node_action_8cs.html',1,'(Global Namespace)'],['../de/d47/_i_b_m_8_watson_8_assistant_8v2_2_model_2_dialog_node_action_8cs.html',1,'(Global Namespace)']]],
@@ -21,8 +21,9 @@ var searchData=
   ['dialognodeoutputtextvalueselement_2ecs',['DialogNodeOutputTextValuesElement.cs',['../d6/d6e/_dialog_node_output_text_values_element_8cs.html',1,'']]],
   ['dialognodesvisited_2ecs',['DialogNodesVisited.cs',['../d0/d16/_dialog_nodes_visited_8cs.html',1,'']]],
   ['dialognodevisiteddetails_2ecs',['DialogNodeVisitedDetails.cs',['../de/d26/_dialog_node_visited_details_8cs.html',1,'']]],
-  ['dialogruntimeresponsegeneric_2ecs',['DialogRuntimeResponseGeneric.cs',['../db/da5/_i_b_m_8_watson_8_assistant_8v1_2_model_2_dialog_runtime_response_generic_8cs.html',1,'(Global Namespace)'],['../d7/da3/_i_b_m_8_watson_8_assistant_8v2_2_model_2_dialog_runtime_response_generic_8cs.html',1,'(Global Namespace)']]],
   ['dialogsuggestion_2ecs',['DialogSuggestion.cs',['../d4/d22/_i_b_m_8_watson_8_assistant_8v1_2_model_2_dialog_suggestion_8cs.html',1,'(Global Namespace)'],['../dc/d11/_i_b_m_8_watson_8_assistant_8v2_2_model_2_dialog_suggestion_8cs.html',1,'(Global Namespace)']]],
+  ['dialogsuggestionoutput_2ecs',['DialogSuggestionOutput.cs',['../d1/d67/_dialog_suggestion_output_8cs.html',1,'']]],
+  ['dialogsuggestionresponsegeneric_2ecs',['DialogSuggestionResponseGeneric.cs',['../d3/d84/_dialog_suggestion_response_generic_8cs.html',1,'']]],
   ['dialogsuggestionvalue_2ecs',['DialogSuggestionValue.cs',['../d9/d21/_i_b_m_8_watson_8_assistant_8v1_2_model_2_dialog_suggestion_value_8cs.html',1,'(Global Namespace)'],['../df/dda/_i_b_m_8_watson_8_assistant_8v2_2_model_2_dialog_suggestion_value_8cs.html',1,'(Global Namespace)']]],
   ['disambiguationresult_2ecs',['DisambiguationResult.cs',['../d0/d5e/_disambiguation_result_8cs.html',1,'']]],
   ['discoveryservice_2ecs',['DiscoveryService.cs',['../d2/dfa/_discovery_service_8cs.html',1,'']]],
@@ -37,6 +38,5 @@ var searchData=
   ['documentemotionresults_2ecs',['DocumentEmotionResults.cs',['../d5/ddf/_document_emotion_results_8cs.html',1,'']]],
   ['documentlist_2ecs',['DocumentList.cs',['../d5/d9c/_document_list_8cs.html',1,'']]],
   ['documentsentimentresults_2ecs',['DocumentSentimentResults.cs',['../de/d57/_document_sentiment_results_8cs.html',1,'']]],
-  ['documentsnapshot_2ecs',['DocumentSnapshot.cs',['../d0/d4b/_document_snapshot_8cs.html',1,'']]],
   ['documentstatus_2ecs',['DocumentStatus.cs',['../dc/dec/_i_b_m_8_watson_8_discovery_8v1_2_model_2_document_status_8cs.html',1,'(Global Namespace)'],['../df/d0a/_i_b_m_8_watson_8_language_translator_8v3_2_model_2_document_status_8cs.html',1,'(Global Namespace)']]]
 ];

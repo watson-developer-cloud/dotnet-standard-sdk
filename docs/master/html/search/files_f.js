@@ -1,21 +1,9 @@
 var searchData=
 [
   ['queryaggregation_2ecs',['QueryAggregation.cs',['../de/d5b/_query_aggregation_8cs.html',1,'']]],
-  ['queryentitiescontext_2ecs',['QueryEntitiesContext.cs',['../d1/da7/_query_entities_context_8cs.html',1,'']]],
-  ['queryentitiesentity_2ecs',['QueryEntitiesEntity.cs',['../da/d89/_query_entities_entity_8cs.html',1,'']]],
-  ['queryentitiesresponse_2ecs',['QueryEntitiesResponse.cs',['../dd/d30/_query_entities_response_8cs.html',1,'']]],
-  ['queryentitiesresponseitem_2ecs',['QueryEntitiesResponseItem.cs',['../d2/d1e/_query_entities_response_item_8cs.html',1,'']]],
-  ['queryevidence_2ecs',['QueryEvidence.cs',['../d5/dd4/_query_evidence_8cs.html',1,'']]],
-  ['queryevidenceentity_2ecs',['QueryEvidenceEntity.cs',['../db/d0b/_query_evidence_entity_8cs.html',1,'']]],
-  ['queryfiltertype_2ecs',['QueryFilterType.cs',['../d4/d10/_query_filter_type_8cs.html',1,'']]],
   ['querynoticesresponse_2ecs',['QueryNoticesResponse.cs',['../dd/d45/_query_notices_response_8cs.html',1,'']]],
   ['querynoticesresult_2ecs',['QueryNoticesResult.cs',['../d3/d00/_query_notices_result_8cs.html',1,'']]],
   ['querypassages_2ecs',['QueryPassages.cs',['../d2/d23/_query_passages_8cs.html',1,'']]],
-  ['queryrelationsargument_2ecs',['QueryRelationsArgument.cs',['../d6/d64/_query_relations_argument_8cs.html',1,'']]],
-  ['queryrelationsentity_2ecs',['QueryRelationsEntity.cs',['../df/d47/_query_relations_entity_8cs.html',1,'']]],
-  ['queryrelationsfilter_2ecs',['QueryRelationsFilter.cs',['../d0/dce/_query_relations_filter_8cs.html',1,'']]],
-  ['queryrelationsrelationship_2ecs',['QueryRelationsRelationship.cs',['../dd/d01/_query_relations_relationship_8cs.html',1,'']]],
-  ['queryrelationsresponse_2ecs',['QueryRelationsResponse.cs',['../de/da9/_query_relations_response_8cs.html',1,'']]],
   ['queryresponse_2ecs',['QueryResponse.cs',['../da/d51/_query_response_8cs.html',1,'']]],
   ['queryresult_2ecs',['QueryResult.cs',['../dd/d99/_query_result_8cs.html',1,'']]],
   ['queryresultmetadata_2ecs',['QueryResultMetadata.cs',['../d8/dfa/_query_result_metadata_8cs.html',1,'']]]

@@ -108,8 +108,6 @@ Inheritance diagram for IBM.Watson.VisualRecognition.v3.IVisualRecognitionServic
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ae7237ba78426642300d3d992c69ebc12"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../dc/d81/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_model_1_1_classified_images.html">ClassifiedImages</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d5f/interface_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#ae7237ba78426642300d3d992c69ebc12">Classify</a> (System.IO.MemoryStream imagesFile=null, string imagesFilename=null, string imagesFileContentType=null, string url=null, float? threshold=null, List&lt; string &gt; owners=null, List&lt; string &gt; classifierIds=null, string acceptLanguage=null)</td></tr>
 <tr class="separator:ae7237ba78426642300d3d992c69ebc12"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2bd5a3d74829e86b4868c90839f5401d"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d2/db0/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_model_1_1_detected_faces.html">DetectedFaces</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d5f/interface_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a2bd5a3d74829e86b4868c90839f5401d">DetectFaces</a> (System.IO.MemoryStream imagesFile=null, string imagesFilename=null, string imagesFileContentType=null, string url=null, string acceptLanguage=null)</td></tr>
-<tr class="separator:a2bd5a3d74829e86b4868c90839f5401d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c402a0e5c97a5f7dc0e3ad343552e57"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d2/de4/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier.html">Classifier</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d5f/interface_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a7c402a0e5c97a5f7dc0e3ad343552e57">CreateClassifier</a> (string name, Dictionary&lt; string, System.IO.MemoryStream &gt; positiveExamples, System.IO.MemoryStream negativeExamples=null, string negativeExamplesFilename=null)</td></tr>
 <tr class="separator:a7c402a0e5c97a5f7dc0e3ad343552e57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c7bcee1c7e92d767d81882466793c99"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d3/ddf/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifiers.html">Classifiers</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d5f/interface_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html#a4c7bcee1c7e92d767d81882466793c99">ListClassifiers</a> (bool? verbose=null)</td></tr>
@@ -274,54 +272,6 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a2bd5a3d74829e86b4868c90839f5401d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2bd5a3d74829e86b4868c90839f5401d">&#9670;&nbsp;</a></span>DetectFaces()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">DetailedResponse&lt;<a class="el" href="../../d2/db0/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_model_1_1_detected_faces.html">DetectedFaces</a>&gt; IBM.Watson.VisualRecognition.v3.IVisualRecognitionService.DetectFaces </td>
-          <td>(</td>
-          <td class="paramtype">System.IO.MemoryStream&#160;</td>
-          <td class="paramname"><em>imagesFile</em> = <code>null</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>imagesFilename</em> = <code>null</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>imagesFileContentType</em> = <code>null</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>url</em> = <code>null</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>acceptLanguage</em> = <code>null</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="../../dd/d5a/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_visual_recognition_service.html#a53bce0be13e8efb8fa6c52e6a0b8869e">IBM.Watson.VisualRecognition.v3.VisualRecognitionService</a>.</p>
-
-</div>
-</div>
 <a id="a356d66f661f9c01a77bb8cc3fff4a7b6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a356d66f661f9c01a77bb8cc3fff4a7b6">&#9670;&nbsp;</a></span>GetClassifier()</h2>
 
@@ -425,7 +375,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this interface was generated from the following file:<ul>
-<li>src/IBM.Watson.VisualRecognition.v3/<a class="el" href="../../d3/dfd/_i_visual_recognition_service_8cs.html">IVisualRecognitionService.cs</a></li>
+<li>src/IBM.Watson.VisualRecognition.v3/<a class="el" href="../../d2/dec/_i_b_m_8_watson_8_visual_recognition_8v3_2_i_visual_recognition_service_8cs.html">IVisualRecognitionService.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

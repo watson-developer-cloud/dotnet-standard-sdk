@@ -12,5 +12,6 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "IBM.Watson.SpeechToText.v1", "dir_2ddbaf9a3f5827f9b10628ede543bfd0.html", "dir_2ddbaf9a3f5827f9b10628ede543bfd0" ],
     [ "IBM.Watson.TextToSpeech.v1", "dir_f2c14b3741e0c17357904161a6c0bd69.html", "dir_f2c14b3741e0c17357904161a6c0bd69" ],
     [ "IBM.Watson.ToneAnalyzer.v3", "dir_7abb1d5e0bbcb4d57a36a8d2d1513c37.html", "dir_7abb1d5e0bbcb4d57a36a8d2d1513c37" ],
-    [ "IBM.Watson.VisualRecognition.v3", "dir_97cd801d8eeb79c064d9edaa6764e286.html", "dir_97cd801d8eeb79c064d9edaa6764e286" ]
+    [ "IBM.Watson.VisualRecognition.v3", "dir_97cd801d8eeb79c064d9edaa6764e286.html", "dir_97cd801d8eeb79c064d9edaa6764e286" ],
+    [ "IBM.Watson.VisualRecognition.v4", "dir_52a60923e1d91f46a5dbcd81e944fb86.html", "dir_52a60923e1d91f46a5dbcd81e944fb86" ]
 ];

@@ -13,7 +13,7 @@ var searchData=
   ['listconfigurationsresponse',['ListConfigurationsResponse',['../d7/d4c/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_list_configurations_response.html',1,'IBM::Watson::Discovery::v1::Model']]],
   ['listenvironmentsresponse',['ListEnvironmentsResponse',['../d8/da2/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_list_environments_response.html',1,'IBM::Watson::Discovery::v1::Model']]],
   ['listmodelsresults',['ListModelsResults',['../d8/d5a/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_list_models_results.html',1,'IBM::Watson::NaturalLanguageUnderstanding::v1::Model']]],
-  ['location',['Location',['../d5/d9a/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_location.html',1,'IBM::Watson::CompareComply::v1::Model']]],
+  ['location',['Location',['../df/d1a/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_location.html',1,'IBM.Watson.VisualRecognition.v4.Model.Location'],['../d5/d9a/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_location.html',1,'IBM.Watson.CompareComply.v1.Model.Location']]],
   ['log',['Log',['../db/df4/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_log.html',1,'IBM::Watson::Assistant::v1::Model']]],
   ['logcollection',['LogCollection',['../d6/d16/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_log_collection.html',1,'IBM::Watson::Assistant::v1::Model']]],
   ['logmessage',['LogMessage',['../d6/de8/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_log_message.html',1,'IBM::Watson::Assistant::v1::Model']]],

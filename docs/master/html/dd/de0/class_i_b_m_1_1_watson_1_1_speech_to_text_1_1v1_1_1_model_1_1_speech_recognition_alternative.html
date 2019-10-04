@@ -107,10 +107,10 @@ Properties</h2></td></tr>
 <tr class="memdesc:a95737685c7961a7f07db962130e47dab"><td class="mdescLeft">&#160;</td><td class="mdescRight">A score that indicates the service's confidence in the transcript in the range of 0.0 to 1.0. A confidence score is returned only for the best alternative and only with results marked as final.  <a href="#a95737685c7961a7f07db962130e47dab">More...</a><br /></td></tr>
 <tr class="separator:a95737685c7961a7f07db962130e47dab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad46a8bd6ac3c17cb80fbc35038dcdaac"><td class="memItemLeft" align="right" valign="top">List&lt; List&lt; string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_alternative.html#ad46a8bd6ac3c17cb80fbc35038dcdaac">Timestamps</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:ad46a8bd6ac3c17cb80fbc35038dcdaac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time alignments for each word from the transcript as a list of lists. Each inner list consists of three elements: the word followed by its start and end time in seconds, for example: <code>[[\"hello\\",0.0,1.2],[\"world\\",1.2,2.5]]</code>. Timestamps are returned only for the best alternative.  <a href="#ad46a8bd6ac3c17cb80fbc35038dcdaac">More...</a><br /></td></tr>
+<tr class="memdesc:ad46a8bd6ac3c17cb80fbc35038dcdaac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time alignments for each word from the transcript as a list of lists. Each inner list consists of three elements: the word followed by its start and end time in seconds, for example: <code>[["hello",0.0,1.2],["world",1.2,2.5]]</code>. Timestamps are returned only for the best alternative.  <a href="#ad46a8bd6ac3c17cb80fbc35038dcdaac">More...</a><br /></td></tr>
 <tr class="separator:ad46a8bd6ac3c17cb80fbc35038dcdaac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d49804cef62f5c0e957d6abad2e583a"><td class="memItemLeft" align="right" valign="top">List&lt; List&lt; string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_alternative.html#a0d49804cef62f5c0e957d6abad2e583a">WordConfidence</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a0d49804cef62f5c0e957d6abad2e583a"><td class="mdescLeft">&#160;</td><td class="mdescRight">A confidence score for each word of the transcript as a list of lists. Each inner list consists of two elements: the word and its confidence score in the range of 0.0 to 1.0, for example: <code>[[\"hello\\",0.95],[\"world\\",0.866]]</code>. Confidence scores are returned only for the best alternative and only with results marked as final.  <a href="#a0d49804cef62f5c0e957d6abad2e583a">More...</a><br /></td></tr>
+<tr class="memdesc:a0d49804cef62f5c0e957d6abad2e583a"><td class="mdescLeft">&#160;</td><td class="mdescRight">A confidence score for each word of the transcript as a list of lists. Each inner list consists of two elements: the word and its confidence score in the range of 0.0 to 1.0, for example: <code>[["hello",0.95],["world",0.866]]</code>. Confidence scores are returned only for the best alternative and only with results marked as final.  <a href="#a0d49804cef62f5c0e957d6abad2e583a">More...</a><br /></td></tr>
 <tr class="separator:a0d49804cef62f5c0e957d6abad2e583a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -160,7 +160,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Time alignments for each word from the transcript as a list of lists. Each inner list consists of three elements: the word followed by its start and end time in seconds, for example: <code>[[\"hello\\",0.0,1.2],[\"world\\",1.2,2.5]]</code>. Timestamps are returned only for the best alternative. </p>
+<p>Time alignments for each word from the transcript as a list of lists. Each inner list consists of three elements: the word followed by its start and end time in seconds, for example: <code>[["hello",0.0,1.2],["world",1.2,2.5]]</code>. Timestamps are returned only for the best alternative. </p>
 
 </div>
 </div>
@@ -208,7 +208,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>A confidence score for each word of the transcript as a list of lists. Each inner list consists of two elements: the word and its confidence score in the range of 0.0 to 1.0, for example: <code>[[\"hello\\",0.95],[\"world\\",0.866]]</code>. Confidence scores are returned only for the best alternative and only with results marked as final. </p>
+<p>A confidence score for each word of the transcript as a list of lists. Each inner list consists of two elements: the word and its confidence score in the range of 0.0 to 1.0, for example: <code>[["hello",0.95],["world",0.866]]</code>. Confidence scores are returned only for the best alternative and only with results marked as final. </p>
 
 </div>
 </div>

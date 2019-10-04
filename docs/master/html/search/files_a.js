@@ -10,7 +10,7 @@ var searchData=
   ['listconfigurationsresponse_2ecs',['ListConfigurationsResponse.cs',['../d5/d26/_list_configurations_response_8cs.html',1,'']]],
   ['listenvironmentsresponse_2ecs',['ListEnvironmentsResponse.cs',['../db/db0/_list_environments_response_8cs.html',1,'']]],
   ['listmodelsresults_2ecs',['ListModelsResults.cs',['../d7/d0c/_list_models_results_8cs.html',1,'']]],
-  ['location_2ecs',['Location.cs',['../d9/d8f/_location_8cs.html',1,'']]],
+  ['location_2ecs',['Location.cs',['../dc/d1e/_i_b_m_8_watson_8_compare_comply_8v1_2_model_2_location_8cs.html',1,'(Global Namespace)'],['../df/dc0/_i_b_m_8_watson_8_visual_recognition_8v4_2_model_2_location_8cs.html',1,'(Global Namespace)']]],
   ['log_2ecs',['Log.cs',['../d5/d20/_log_8cs.html',1,'']]],
   ['logcollection_2ecs',['LogCollection.cs',['../d3/d50/_log_collection_8cs.html',1,'']]],
   ['logmessage_2ecs',['LogMessage.cs',['../df/d26/_log_message_8cs.html',1,'']]],

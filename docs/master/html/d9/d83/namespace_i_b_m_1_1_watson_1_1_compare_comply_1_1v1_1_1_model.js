@@ -16,7 +16,6 @@ var namespace_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model =
     [ "ContractAmts", "d1/d3b/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_amts.html", "d1/d3b/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_amts" ],
     [ "ContractCurrencies", "d9/dc1/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_currencies.html", "d9/dc1/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_currencies" ],
     [ "ContractTerms", "d1/d05/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_terms.html", "d1/d05/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_terms" ],
-    [ "ContractType", "d6/d68/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_type.html", "d6/d68/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_type" ],
     [ "ContractTypes", "d7/d63/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_types.html", "d7/d63/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_types" ],
     [ "DocCounts", "de/dff/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_doc_counts.html", "de/dff/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_doc_counts" ],
     [ "DocInfo", "db/de7/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_doc_info.html", "db/de7/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_doc_info" ],

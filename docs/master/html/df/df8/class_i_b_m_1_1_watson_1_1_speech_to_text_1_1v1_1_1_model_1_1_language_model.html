@@ -123,7 +123,7 @@ Properties</h2></td></tr>
 <tr class="memdesc:aee7cd20041f1a20fabff5243ef7a1617"><td class="mdescLeft">&#160;</td><td class="mdescRight">The language identifier of the custom language model (for example, <code>en-US</code>).  <a href="#aee7cd20041f1a20fabff5243ef7a1617">More...</a><br /></td></tr>
 <tr class="separator:aee7cd20041f1a20fabff5243ef7a1617"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e391bd009e11c1de77be17274dd1c9c"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/df8/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html#a3e391bd009e11c1de77be17274dd1c9c">Dialect</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a3e391bd009e11c1de77be17274dd1c9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The dialect of the language for the custom language model. By default, the dialect matches the language of the base model; for example, <code>en-US</code> for either of the US English language models. For Spanish models, the field indicates the dialect for which the model was created:  <a href="#a3e391bd009e11c1de77be17274dd1c9c">More...</a><br /></td></tr>
+<tr class="memdesc:a3e391bd009e11c1de77be17274dd1c9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The dialect of the language for the custom language model. For non-Spanish models, the field matches the language of the base model; for example, <code>en-US</code> for either of the US English language models. For Spanish models, the field indicates the dialect for which the model was created:  <a href="#a3e391bd009e11c1de77be17274dd1c9c">More...</a><br /></td></tr>
 <tr class="separator:a3e391bd009e11c1de77be17274dd1c9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b1fa9de3182d88198a3f06eeab2b5c2"><td class="memItemLeft" align="right" valign="top">List&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/df8/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html#a1b1fa9de3182d88198a3f06eeab2b5c2">Versions</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a1b1fa9de3182d88198a3f06eeab2b5c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of the available versions of the custom language model. Each element of the array indicates a version of the base model with which the custom model can be used. Multiple versions exist only if the custom model has been upgraded; otherwise, only a single version is shown.  <a href="#a1b1fa9de3182d88198a3f06eeab2b5c2">More...</a><br /></td></tr>
@@ -269,12 +269,13 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The dialect of the language for the custom language model. By default, the dialect matches the language of the base model; for example, <code>en-US</code> for either of the US English language models. For Spanish models, the field indicates the dialect for which the model was created: </p>
+<p>The dialect of the language for the custom language model. For non-Spanish models, the field matches the language of the base model; for example, <code>en-US</code> for either of the US English language models. For Spanish models, the field indicates the dialect for which the model was created: </p>
 <ul>
-<li><code>es-ES</code> for Castilian Spanish (the default)</li>
-<li><code>es-LA</code> for Latin American Spanish</li>
-<li><code>es-US</code> for North American (Mexican) Spanish. </li>
+<li><code>es-ES</code> for Castilian Spanish (<code>es-ES</code> models)</li>
+<li><code>es-LA</code> for Latin American Spanish (<code>es-AR</code>, <code>es-CL</code>, <code>es-CO</code>, and <code>es-PE</code> models)</li>
+<li><code>es-US</code> for Mexican (North American) Spanish (<code>es-MX</code> models)</li>
 </ul>
+<p>Dialect values are case-insensitive. </p>
 
 </div>
 </div>

@@ -9,7 +9,7 @@ var dir_e05cd18fe37823e65ffef40a75ea096b =
     ] ],
     [ "DialogNodeAction.cs", "de/d47/_i_b_m_8_watson_8_assistant_8v2_2_model_2_dialog_node_action_8cs.html", [
       [ "DialogNodeAction", "d6/dd1/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_node_action.html", "d6/dd1/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_node_action" ],
-      [ "ActionTypeEnumValue", "df/db3/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_node_action_1_1_action_type_enum_value.html", "df/db3/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_node_action_1_1_action_type_enum_value" ]
+      [ "TypeEnumValue", "d7/ddc/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_node_action_1_1_type_enum_value.html", "d7/ddc/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_node_action_1_1_type_enum_value" ]
     ] ],
     [ "DialogNodeOutputOptionsElement.cs", "d2/de7/_i_b_m_8_watson_8_assistant_8v2_2_model_2_dialog_node_output_options_element_8cs.html", [
       [ "DialogNodeOutputOptionsElement", "df/da8/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_node_output_options_element.html", "df/da8/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_node_output_options_element" ]
@@ -19,11 +19,6 @@ var dir_e05cd18fe37823e65ffef40a75ea096b =
     ] ],
     [ "DialogNodesVisited.cs", "d0/d16/_dialog_nodes_visited_8cs.html", [
       [ "DialogNodesVisited", "df/d78/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_nodes_visited.html", "df/d78/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_nodes_visited" ]
-    ] ],
-    [ "DialogRuntimeResponseGeneric.cs", "d7/da3/_i_b_m_8_watson_8_assistant_8v2_2_model_2_dialog_runtime_response_generic_8cs.html", [
-      [ "DialogRuntimeResponseGeneric", "d7/dab/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_runtime_response_generic.html", "d7/dab/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_runtime_response_generic" ],
-      [ "ResponseTypeEnumValue", "da/d8e/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_runtime_response_generic_1_1_response_type_enum_value.html", "da/d8e/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_runtime_response_generic_1_1_response_type_enum_value" ],
-      [ "PreferenceEnumValue", "d6/d98/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_runtime_response_generic_1_1_preference_enum_value.html", "d6/d98/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_runtime_response_generic_1_1_preference_enum_value" ]
     ] ],
     [ "DialogSuggestion.cs", "dc/d11/_i_b_m_8_watson_8_assistant_8v2_2_model_2_dialog_suggestion_8cs.html", [
       [ "DialogSuggestion", "d5/d52/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_suggestion.html", "d5/d52/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_suggestion" ]
@@ -68,6 +63,11 @@ var dir_e05cd18fe37823e65ffef40a75ea096b =
     ] ],
     [ "RuntimeIntent.cs", "de/da7/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_intent_8cs.html", [
       [ "RuntimeIntent", "d5/d2b/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_intent.html", "d5/d2b/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_intent" ]
+    ] ],
+    [ "RuntimeResponseGeneric.cs", "dd/dc7/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_response_generic_8cs.html", [
+      [ "RuntimeResponseGeneric", "d0/d59/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic.html", "d0/d59/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic" ],
+      [ "ResponseTypeEnumValue", "df/d88/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_1_1_response_type_enum_value.html", "df/d88/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_1_1_response_type_enum_value" ],
+      [ "PreferenceEnumValue", "d8/da2/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_1_1_preference_enum_value.html", "d8/da2/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_1_1_preference_enum_value" ]
     ] ],
     [ "SearchResult.cs", "de/d53/_search_result_8cs.html", [
       [ "SearchResult", "d1/dac/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result.html", "d1/dac/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result" ]

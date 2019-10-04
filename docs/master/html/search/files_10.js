@@ -10,5 +10,6 @@ var searchData=
   ['retrievaldetails_2ecs',['RetrievalDetails.cs',['../de/d0f/_retrieval_details_8cs.html',1,'']]],
   ['rowheaders_2ecs',['RowHeaders.cs',['../d5/daa/_row_headers_8cs.html',1,'']]],
   ['runtimeentity_2ecs',['RuntimeEntity.cs',['../d9/df0/_i_b_m_8_watson_8_assistant_8v1_2_model_2_runtime_entity_8cs.html',1,'(Global Namespace)'],['../dc/db3/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_entity_8cs.html',1,'(Global Namespace)']]],
-  ['runtimeintent_2ecs',['RuntimeIntent.cs',['../df/df3/_i_b_m_8_watson_8_assistant_8v1_2_model_2_runtime_intent_8cs.html',1,'(Global Namespace)'],['../de/da7/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_intent_8cs.html',1,'(Global Namespace)']]]
+  ['runtimeintent_2ecs',['RuntimeIntent.cs',['../df/df3/_i_b_m_8_watson_8_assistant_8v1_2_model_2_runtime_intent_8cs.html',1,'(Global Namespace)'],['../de/da7/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_intent_8cs.html',1,'(Global Namespace)']]],
+  ['runtimeresponsegeneric_2ecs',['RuntimeResponseGeneric.cs',['../d8/dee/_i_b_m_8_watson_8_assistant_8v1_2_model_2_runtime_response_generic_8cs.html',1,'(Global Namespace)'],['../dd/dc7/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_response_generic_8cs.html',1,'(Global Namespace)']]]
 ];

@@ -55,10 +55,6 @@ var dir_1ddf9071e1bda1b1e408fcc2f4be9e1f =
       [ "ContractTerms", "d1/d05/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_terms.html", "d1/d05/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_terms" ],
       [ "ConfidenceLevelEnumValue", "d9/dc6/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_terms_1_1_confidence_level_enum_value.html", "d9/dc6/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_terms_1_1_confidence_level_enum_value" ]
     ] ],
-    [ "ContractType.cs", "dd/d9a/_contract_type_8cs.html", [
-      [ "ContractType", "d6/d68/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_type.html", "d6/d68/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_type" ],
-      [ "ConfidenceLevelEnumValue", "da/d7a/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_type_1_1_confidence_level_enum_value.html", "da/d7a/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_type_1_1_confidence_level_enum_value" ]
-    ] ],
     [ "ContractTypes.cs", "dd/d5c/_contract_types_8cs.html", [
       [ "ContractTypes", "d7/d63/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_types.html", "d7/d63/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_types" ],
       [ "ConfidenceLevelEnumValue", "d7/dc9/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_types_1_1_confidence_level_enum_value.html", "d7/dc9/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contract_types_1_1_confidence_level_enum_value" ]
@@ -124,7 +120,7 @@ var dir_1ddf9071e1bda1b1e408fcc2f4be9e1f =
     [ "LeadingSentence.cs", "d9/d21/_leading_sentence_8cs.html", [
       [ "LeadingSentence", "d4/db4/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_leading_sentence.html", "d4/db4/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_leading_sentence" ]
     ] ],
-    [ "Location.cs", "d9/d8f/_location_8cs.html", [
+    [ "Location.cs", "dc/d1e/_i_b_m_8_watson_8_compare_comply_8v1_2_model_2_location_8cs.html", [
       [ "Location", "d5/d9a/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_location.html", "d5/d9a/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_location" ]
     ] ],
     [ "Mention.cs", "dc/d29/_i_b_m_8_watson_8_compare_comply_8v1_2_model_2_mention_8cs.html", [

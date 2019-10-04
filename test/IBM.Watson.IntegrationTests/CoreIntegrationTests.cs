@@ -24,7 +24,6 @@ using IBM.Watson.PersonalityInsights.v3;
 using IBM.Watson.SpeechToText.v1;
 using IBM.Watson.TextToSpeech.v1;
 using IBM.Watson.ToneAnalyzer.v3;
-using IBM.Cloud.SDK.Core.Util;
 using IBM.Watson.VisualRecognition.v3;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -35,118 +34,76 @@ namespace IBM.Watson.IntegrationTests
     public class ExternalCredentialsIntegrationTests
     {
         [TestMethod]
-        public void GetCredentialsPaths_Success()
-        {
-            var credentialsPaths = Utility.GetCredentialsPaths();
-
-            Assert.IsNotNull(credentialsPaths);
-            Assert.IsTrue(credentialsPaths.Count > 0);
-        }
-
-        [TestMethod]
-        public void LoadCredentials_Success()
-        {
-            int envVariableCount = Environment.GetEnvironmentVariables().Count;
-            int newEnvVariableCount = envVariableCount;
-            foreach (string path in Utility.GetCredentialsPaths())
-            {
-                if (Utility.LoadEnvFile(path))
-                {
-                    newEnvVariableCount = Environment.GetEnvironmentVariables().Count;
-                    break;
-                }
-                else
-                {
-                    Assert.Fail();
-                }
-
-                Assert.IsTrue(newEnvVariableCount > envVariableCount);
-            }
-        }
-
-        [TestMethod]
         public void AssistantV1WithLoadedCredentials_Success()
         {
-            Assistant.v1.AssistantService service = new Assistant.v1.AssistantService();
-            Assert.IsTrue(!string.IsNullOrEmpty(service.ApiKey));
-            Assert.IsTrue(!string.IsNullOrEmpty(service.Url));
+            Assistant.v1.AssistantService service = new Assistant.v1.AssistantService("2019-02-28");
+            Assert.IsNotNull(service.GetAuthenticator());
         }
         [TestMethod]
         public void AssistantV2WithLoadedCredentials_Success()
         {
-            Assistant.v2.AssistantService service = new Assistant.v2.AssistantService();
-            Assert.IsTrue(!string.IsNullOrEmpty(service.ApiKey));
-            Assert.IsTrue(!string.IsNullOrEmpty(service.Url));
+            Assistant.v2.AssistantService service = new Assistant.v2.AssistantService("2019-02-28");
+            Assert.IsNotNull(service.GetAuthenticator());
         }
         [TestMethod]
         public void CompareComplyV1WithLoadedCredentials_Success()
         {
-            CompareComplyService service = new CompareComplyService();
-            Assert.IsTrue(!string.IsNullOrEmpty(service.ApiKey));
-            Assert.IsTrue(!string.IsNullOrEmpty(service.Url));
+            CompareComplyService service = new CompareComplyService("2018-10-15");
+            Assert.IsNotNull(service.GetAuthenticator());
         }
         [TestMethod]
         public void DiscoveryV1WithLoadedCredentials_Success()
         {
-            DiscoveryService service = new DiscoveryService();
-            Assert.IsTrue(!string.IsNullOrEmpty(service.ApiKey));
-            Assert.IsTrue(!string.IsNullOrEmpty(service.Url));
+            DiscoveryService service = new DiscoveryService("2019-04-30");
+            Assert.IsNotNull(service.GetAuthenticator());
         }
         [TestMethod]
         public void LangaugeTranslatorV3WithLoadedCredentials_Success()
         {
-            LanguageTranslatorService service = new LanguageTranslatorService();
-            Assert.IsTrue(!string.IsNullOrEmpty(service.ApiKey));
-            Assert.IsTrue(!string.IsNullOrEmpty(service.Url));
+            LanguageTranslatorService service = new LanguageTranslatorService("2019-05-01");
+            Assert.IsNotNull(service.GetAuthenticator());
         }
         [TestMethod]
         public void NaturalLanguageClassifierV1WithLoadedCredentials_Success()
         {
             NaturalLanguageClassifierService service = new NaturalLanguageClassifierService();
-            Assert.IsTrue(!string.IsNullOrEmpty(service.ApiKey));
-            Assert.IsTrue(!string.IsNullOrEmpty(service.Url));
+            Assert.IsNotNull(service.GetAuthenticator());
         }
         [TestMethod]
         public void NaturalLanguageUnderstandingV1WithLoadedCredentials_Success()
         {
-            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService();
-            Assert.IsTrue(!string.IsNullOrEmpty(service.ApiKey));
-            Assert.IsTrue(!string.IsNullOrEmpty(service.Url));
+            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("2019-07-12");
+            Assert.IsNotNull(service.GetAuthenticator());
         }
         [TestMethod]
         public void PersonalityInsightsV3WithLoadedCredentials_Success()
         {
-            PersonalityInsightsService service = new PersonalityInsightsService();
-            Assert.IsTrue(!string.IsNullOrEmpty(service.ApiKey));
-            Assert.IsTrue(!string.IsNullOrEmpty(service.Url));
+            PersonalityInsightsService service = new PersonalityInsightsService("2017-10-13");
+            Assert.IsNotNull(service.GetAuthenticator());
         }
         [TestMethod]
         public void SpeechToTextV1WithLoadedCredentials_Success()
         {
             SpeechToTextService service = new SpeechToTextService();
-            Assert.IsTrue(!string.IsNullOrEmpty(service.ApiKey));
-            Assert.IsTrue(!string.IsNullOrEmpty(service.Url));
+            Assert.IsNotNull(service.GetAuthenticator());
         }
         [TestMethod]
         public void TextToSpeechV1WithLoadedCredentials_Success()
         {
             TextToSpeechService service = new TextToSpeechService();
-            Assert.IsTrue(!string.IsNullOrEmpty(service.ApiKey));
-            Assert.IsTrue(!string.IsNullOrEmpty(service.Url));
+            Assert.IsNotNull(service.GetAuthenticator());
         }
         [TestMethod]
         public void ToneAnalyzeV3WithLoadedCredentials_Success()
         {
-            ToneAnalyzerService service = new ToneAnalyzerService();
-            Assert.IsTrue(!string.IsNullOrEmpty(service.ApiKey));
-            Assert.IsTrue(!string.IsNullOrEmpty(service.Url));
+            ToneAnalyzerService service = new ToneAnalyzerService("2017-09-21");
+            Assert.IsNotNull(service.GetAuthenticator());
         }
         [TestMethod]
         public void VisualRecognitionV3WithLoadedCredentials_Success()
         {
-            VisualRecognitionService service = new VisualRecognitionService();
-            Assert.IsTrue(!string.IsNullOrEmpty(service.ApiKey));
-            Assert.IsTrue(!string.IsNullOrEmpty(service.Url));
+            VisualRecognitionService service = new VisualRecognitionService("2018-03-19");
+            Assert.IsNotNull(service.GetAuthenticator());
         }
     }
 }

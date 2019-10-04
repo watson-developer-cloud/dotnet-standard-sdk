@@ -20,11 +20,9 @@ using System.IO;
 using System.Net.Http;
 using System.Text;
 using IBM.Cloud.SDK.Core.Authentication;
-using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Extensions;
 using IBM.Cloud.SDK.Core.Service;
-using IBM.Cloud.SDK.Core.Util;
 using IBM.Watson.NaturalLanguageClassifier.v1.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -34,66 +32,18 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
 {
     public partial class NaturalLanguageClassifierService : IBMService, INaturalLanguageClassifierService
     {
-        new const string SERVICE_NAME = "natural_language_classifier";
-        const string URL = "https://gateway.watsonplatform.net/natural-language-classifier/api";
-        public new string DefaultEndpoint = "https://gateway.watsonplatform.net/natural-language-classifier/api";
-        public NaturalLanguageClassifierService() : base(SERVICE_NAME) { }
-        
-        [Obsolete("Please use NaturalLanguageClassifierService(IAuthenticatorConfig config) instead")]
-        public NaturalLanguageClassifierService(string userName, string password) : base(SERVICE_NAME, URL)
+        const string serviceName = "natural_language_classifier";
+        private const string defaultServiceUrl = "https://gateway.watsonplatform.net/natural-language-classifier/api";
+        public NaturalLanguageClassifierService() : this(ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public NaturalLanguageClassifierService(IClient httpClient) : base(serviceName, httpClient) { }
+
+        public NaturalLanguageClassifierService(IAuthenticator authenticator) : base(serviceName, authenticator)
         {
-            if (string.IsNullOrEmpty(userName))
-                throw new ArgumentNullException(nameof(userName));
 
-            if (string.IsNullOrEmpty(password))
-                throw new ArgumentNullException(nameof(password));
-
-            this.SetCredential(userName, password);
-        }
-        
-        [Obsolete("Please use NaturalLanguageClassifierService(IAuthenticatorConfig config) instead")]
-        public NaturalLanguageClassifierService(TokenOptions options) : base(SERVICE_NAME, URL)
-        {
-            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
-                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
-            if (!string.IsNullOrEmpty(options.ServiceUrl))
+            if (string.IsNullOrEmpty(ServiceUrl))
             {
-                this.Endpoint = options.ServiceUrl;
+                SetServiceUrl(defaultServiceUrl);
             }
-            else
-            {
-                options.ServiceUrl = this.Endpoint;
-            }
-
-            IamConfig iamConfig = null;
-            if (!string.IsNullOrEmpty(options.IamAccessToken))
-            {
-                iamConfig = new IamConfig(
-                    userManagedAccessToken: options.IamAccessToken
-                    );
-            }
-            else
-            {
-                iamConfig = new IamConfig(
-                    apikey: options.IamApiKey,
-                    iamUrl: options.IamUrl
-                    );
-            }
-
-            SetAuthenticator(iamConfig);
-        }
-
-        public NaturalLanguageClassifierService(IClient httpClient) : base(SERVICE_NAME, URL)
-        {
-            if (httpClient == null)
-                throw new ArgumentNullException(nameof(httpClient));
-
-            this.Client = httpClient;
-            SkipAuthentication = true;
-        }
-
-        public NaturalLanguageClassifierService(IAuthenticatorConfig config) : base(SERVICE_NAME, config)
-        {
         }
 
         /// <summary>
@@ -224,9 +174,9 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
         ///
         /// Sends data to create and train a classifier and returns information about the new classifier.
         /// </summary>
-        /// <param name="metadata">Metadata in JSON format. The metadata identifies the language of the data, and an
-        /// optional name to identify the classifier. Specify the language with the 2-letter primary language code as
-        /// assigned in ISO standard 639.
+        /// <param name="trainingMetadata">Metadata in JSON format. The metadata identifies the language of the data,
+        /// and an optional name to identify the classifier. Specify the language with the 2-letter primary language
+        /// code as assigned in ISO standard 639.
         ///
         /// Supported languages are English (`en`), Arabic (`ar`), French (`fr`), German, (`de`), Italian (`it`),
         /// Japanese (`ja`), Korean (`ko`), Brazilian Portuguese (`pt`), and Spanish (`es`).</param>
@@ -234,11 +184,11 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
         /// data can include up to 3,000 classes and 20,000 records. For details, see [Data
         /// preparation](https://cloud.ibm.com/docs/services/natural-language-classifier?topic=natural-language-classifier-using-your-data).</param>
         /// <returns><see cref="Classifier" />Classifier</returns>
-        public DetailedResponse<Classifier> CreateClassifier(System.IO.MemoryStream metadata, System.IO.MemoryStream trainingData)
+        public DetailedResponse<Classifier> CreateClassifier(System.IO.MemoryStream trainingMetadata, System.IO.MemoryStream trainingData)
         {
-            if (metadata == null)
+            if (trainingMetadata == null)
             {
-                throw new ArgumentNullException("`metadata` is required for `CreateClassifier`");
+                throw new ArgumentNullException("`trainingMetadata` is required for `CreateClassifier`");
             }
             if (trainingData == null)
             {
@@ -250,13 +200,13 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
             {
                 var formData = new MultipartFormDataContent();
 
-                if (metadata != null)
+                if (trainingMetadata != null)
                 {
-                    var metadataContent = new ByteArrayContent(metadata.ToArray());
+                    var trainingMetadataContent = new ByteArrayContent(trainingMetadata.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/json", out contentType);
-                    metadataContent.Headers.ContentType = contentType;
-                    formData.Add(metadataContent, "training_metadata", "filename");
+                    trainingMetadataContent.Headers.ContentType = contentType;
+                    formData.Add(trainingMetadataContent, "training_metadata", "filename");
                 }
 
                 if (trainingData != null)

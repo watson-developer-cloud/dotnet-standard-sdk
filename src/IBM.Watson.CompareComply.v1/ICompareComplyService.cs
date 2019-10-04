@@ -23,7 +23,7 @@ namespace IBM.Watson.CompareComply.v1
 {
     public partial interface ICompareComplyService
     {
-        DetailedResponse<HTMLReturn> ConvertToHtml(System.IO.MemoryStream file, string filename, string fileContentType = null, string model = null);
+        DetailedResponse<HTMLReturn> ConvertToHtml(System.IO.MemoryStream file, string fileContentType = null, string model = null);
         DetailedResponse<ClassifyReturn> ClassifyElements(System.IO.MemoryStream file, string fileContentType = null, string model = null);
         DetailedResponse<TableReturn> ExtractTables(System.IO.MemoryStream file, string fileContentType = null, string model = null);
         DetailedResponse<CompareReturn> CompareDocuments(System.IO.MemoryStream file1, System.IO.MemoryStream file2, string file1ContentType = null, string file2ContentType = null, string file1Label = null, string file2Label = null, string model = null);

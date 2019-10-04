@@ -28,7 +28,7 @@ namespace IBM.Watson.NaturalLangaugeClassifier.v1.Examples
     public class ServiceExample
     {
         string apikey = "{apikey}";
-        string url = "{url}";
+        string url = "{serviceUrl}";
         string classifierId;
         private string classifierDataFilePath = @"NaturalLanguageClassifierTestData/weather-data.csv";
         private string metadataDataFilePath = @"NaturalLanguageClassifierTestData/metadata.json";
@@ -51,12 +51,11 @@ namespace IBM.Watson.NaturalLangaugeClassifier.v1.Examples
         #region Classify Text
         public void Classify()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            NaturalLanguageClassifierService service = new NaturalLanguageClassifierService(config);
-            service.SetEndpoint("{url}");
+            NaturalLanguageClassifierService service = new NaturalLanguageClassifierService(authenticator);
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.Classify(
                     classifierId: "10D41B-nlc-1",
@@ -68,12 +67,11 @@ namespace IBM.Watson.NaturalLangaugeClassifier.v1.Examples
 
         public void ClassifyCollection()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            NaturalLanguageClassifierService service = new NaturalLanguageClassifierService(config);
-            service.SetEndpoint("{url}");
+            NaturalLanguageClassifierService service = new NaturalLanguageClassifierService(authenticator);
+            service.SetServiceUrl("{serviceUrl}");
 
             var collection = new List<ClassifyInput>()
             {
@@ -99,12 +97,11 @@ namespace IBM.Watson.NaturalLangaugeClassifier.v1.Examples
         #region Manage Classifiers
         public void ListClassifiers()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            NaturalLanguageClassifierService service = new NaturalLanguageClassifierService(config);
-            service.SetEndpoint("{url}");
+            NaturalLanguageClassifierService service = new NaturalLanguageClassifierService(authenticator);
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.ListClassifiers();
 
@@ -118,12 +115,11 @@ namespace IBM.Watson.NaturalLangaugeClassifier.v1.Examples
 
         public void CreateClassifier()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            NaturalLanguageClassifierService service = new NaturalLanguageClassifierService(config);
-            service.SetEndpoint("{url}");
+            NaturalLanguageClassifierService service = new NaturalLanguageClassifierService(authenticator);
+            service.SetServiceUrl("{serviceUrl}");
 
             DetailedResponse<Classifier> result = null;
             using (FileStream trainingDataFile = File.OpenRead("./train.csv"), metadataFile = File.OpenRead("./metadata.json"))
@@ -133,7 +129,7 @@ namespace IBM.Watson.NaturalLangaugeClassifier.v1.Examples
                     trainingDataFile.CopyTo(trainingData);
                     metadataFile.CopyTo(metadata);
                     result = service.CreateClassifier(
-                        metadata: metadata,
+                        trainingMetadata: metadata,
                         trainingData: trainingData
                         );
                 }
@@ -146,12 +142,11 @@ namespace IBM.Watson.NaturalLangaugeClassifier.v1.Examples
 
         public void GetClassifier()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            NaturalLanguageClassifierService service = new NaturalLanguageClassifierService(config);
-            service.SetEndpoint("{url}");
+            NaturalLanguageClassifierService service = new NaturalLanguageClassifierService(authenticator);
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.GetClassifier(
                 classifierId: "10D41B-nlc-1"
@@ -162,12 +157,11 @@ namespace IBM.Watson.NaturalLangaugeClassifier.v1.Examples
 
         public void DeleteClassifier()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            NaturalLanguageClassifierService service = new NaturalLanguageClassifierService(config);
-            service.SetEndpoint("{url}");
+            NaturalLanguageClassifierService service = new NaturalLanguageClassifierService(authenticator);
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.DeleteClassifier(
                     classifierId: "10D41B-nlc-1"

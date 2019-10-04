@@ -20,11 +20,9 @@ using System.IO;
 using System.Net.Http;
 using System.Text;
 using IBM.Cloud.SDK.Core.Authentication;
-using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Extensions;
 using IBM.Cloud.SDK.Core.Service;
-using IBM.Cloud.SDK.Core.Util;
 using IBM.Watson.CompareComply.v1.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -34,83 +32,26 @@ namespace IBM.Watson.CompareComply.v1
 {
     public partial class CompareComplyService : IBMService, ICompareComplyService
     {
-        new const string SERVICE_NAME = "compare_comply";
-        const string URL = "https://gateway.watsonplatform.net/compare-comply/api";
-        public new string DefaultEndpoint = "https://gateway.watsonplatform.net/compare-comply/api";
-        private string _versionDate;
-        public string VersionDate
+        const string serviceName = "compare_comply";
+        private const string defaultServiceUrl = "https://gateway.watsonplatform.net/compare-comply/api";
+        public string VersionDate { get; set; }
+
+        public CompareComplyService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public CompareComplyService(IClient httpClient) : base(serviceName, httpClient) { }
+
+        public CompareComplyService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
-            get { return _versionDate; }
-            set { _versionDate = value; }
-        }
-
-        public CompareComplyService() : base(SERVICE_NAME) { }
-        
-        [Obsolete("Please use CompareComplyService(string versionDate, IAuthenticatorConfig config) instead")]
-        public CompareComplyService(string userName, string password, string versionDate) : base(SERVICE_NAME, URL)
-        {
-            if (string.IsNullOrEmpty(userName))
-                throw new ArgumentNullException(nameof(userName));
-
-            if (string.IsNullOrEmpty(password))
-                throw new ArgumentNullException(nameof(password));
-
-            this.SetCredential(userName, password);
             if (string.IsNullOrEmpty(versionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
-
-            VersionDate = versionDate;
-        }
-        
-        [Obsolete("Please use CompareComplyService(string versionDate, IAuthenticatorConfig config) instead")]
-        public CompareComplyService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
-        {
-            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
-                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
-            if (string.IsNullOrEmpty(versionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
+            }
+            
             VersionDate = versionDate;
 
-            if (!string.IsNullOrEmpty(options.ServiceUrl))
+            if (string.IsNullOrEmpty(ServiceUrl))
             {
-                this.Endpoint = options.ServiceUrl;
+                SetServiceUrl(defaultServiceUrl);
             }
-            else
-            {
-                options.ServiceUrl = this.Endpoint;
-            }
-
-            IamConfig iamConfig = null;
-            if (!string.IsNullOrEmpty(options.IamAccessToken))
-            {
-                iamConfig = new IamConfig(
-                    userManagedAccessToken: options.IamAccessToken
-                    );
-            }
-            else
-            {
-                iamConfig = new IamConfig(
-                    apikey: options.IamApiKey,
-                    iamUrl: options.IamUrl
-                    );
-            }
-
-            SetAuthenticator(iamConfig);
-        }
-
-        public CompareComplyService(IClient httpClient) : base(SERVICE_NAME, URL)
-        {
-            if (httpClient == null)
-                throw new ArgumentNullException(nameof(httpClient));
-
-            this.Client = httpClient;
-            SkipAuthentication = true;
-        }
-
-        public CompareComplyService(string versionDate, IAuthenticatorConfig config) : base(SERVICE_NAME, config)
-        {
-            VersionDate = versionDate;
         }
 
         /// <summary>
@@ -119,22 +60,17 @@ namespace IBM.Watson.CompareComply.v1
         /// Converts a document to HTML.
         /// </summary>
         /// <param name="file">The document to convert.</param>
-        /// <param name="filename">The filename for file.</param>
         /// <param name="fileContentType">The content type of file. (optional)</param>
         /// <param name="model">The analysis model to be used by the service. For the **Element classification** and
         /// **Compare two documents** methods, the default is `contracts`. For the **Extract tables** method, the
         /// default is `tables`. These defaults apply to the standalone methods as well as to the methods' use in
         /// batch-processing requests. (optional)</param>
         /// <returns><see cref="HTMLReturn" />HTMLReturn</returns>
-        public DetailedResponse<HTMLReturn> ConvertToHtml(System.IO.MemoryStream file, string filename, string fileContentType = null, string model = null)
+        public DetailedResponse<HTMLReturn> ConvertToHtml(System.IO.MemoryStream file, string fileContentType = null, string model = null)
         {
             if (file == null)
             {
                 throw new ArgumentNullException("`file` is required for `ConvertToHtml`");
-            }
-            if (string.IsNullOrEmpty(filename))
-            {
-                throw new ArgumentNullException("`filename` is required for `ConvertToHtml`");
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -154,7 +90,7 @@ namespace IBM.Watson.CompareComply.v1
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
                     fileContent.Headers.ContentType = contentType;
-                    formData.Add(fileContent, "file", filename);
+                    formData.Add(fileContent, "file", "filename");
                 }
 
                 IClient client = this.Client;

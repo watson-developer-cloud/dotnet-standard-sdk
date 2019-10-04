@@ -37,7 +37,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         private static string endpoint;
         private static string apikey;
         private static string credentials = string.Empty;
-        private static string version = "2019-01-15";
+        private static string versionDate = "2019-01-15";
 
         private static string environmentId;
         private static string configurationId;
@@ -65,8 +65,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
-            service = new DiscoveryService();
-            service.VersionDate = version;
+            service = new DiscoveryService(versionDate);
 
             service.WithHeader("X-Watson-Test", "1");
             var environments = service.ListEnvironments();
@@ -238,45 +237,6 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         }
         #endregion
 
-        #region Preview Environment
-        [TestMethod]
-        public void PreviewEnvironment()
-        {
-            service.WithHeader("X-Watson-Test", "1");
-            var createConfigurationResults = service.CreateConfiguration(
-                environmentId: environmentId,
-                name: createdConfigurationName,
-                description: createdConfigurationDescription
-                );
-
-            configurationId = createConfigurationResults.Result.ConfigurationId;
-
-            using (FileStream fs = File.OpenRead(filepathToIngest))
-            {
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    fs.CopyTo(ms);
-                    service.WithHeader("X-Watson-Test", "1");
-                    var testConfigurationInEnvironmentResult = service.TestConfigurationInEnvironment(
-                        environmentId: environmentId,
-                        configurationId: configurationId,
-                        file: ms, filename: "watson_beats_jeopardy.html",
-                        fileContentType: "text/html"
-                        );
-
-                    service.WithHeader("X-Watson-Test", "1");
-                    var deleteConfigurationResults = service.DeleteConfiguration(
-                        environmentId: environmentId,
-                        configurationId: configurationId
-                        );
-
-                    Assert.IsNotNull(testConfigurationInEnvironmentResult.Result);
-                    Assert.IsNotNull(testConfigurationInEnvironmentResult.Result.Status);
-                }
-            }
-        }
-        #endregion
-
         #region Documents
         [TestMethod]
         public void TestDocuments_Success()
@@ -416,7 +376,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 environmentId: environmentId,
                 collectionId: collectionId,
                 naturalLanguageQuery: naturalLanguageQuery,
-                returnFields: "extracted_metadata.sha1"
+                _return: "extracted_metadata.sha1"
                 );
 
             service.WithHeader("X-Watson-Test", "1");
@@ -833,7 +793,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 environmentId: environmentId,
                 collectionId: collectionId,
                 naturalLanguageQuery: naturalLanguageQuery,
-                returnFields: "extracted_metadata.sha1"
+                _return: "extracted_metadata.sha1"
                 );
 
             var data = new EventData()

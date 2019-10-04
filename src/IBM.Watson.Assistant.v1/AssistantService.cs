@@ -19,10 +19,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using IBM.Cloud.SDK.Core.Authentication;
-using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Service;
-using IBM.Cloud.SDK.Core.Util;
 using IBM.Watson.Assistant.v1.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -32,83 +30,26 @@ namespace IBM.Watson.Assistant.v1
 {
     public partial class AssistantService : IBMService, IAssistantService
     {
-        new const string SERVICE_NAME = "assistant";
-        const string URL = "https://gateway.watsonplatform.net/assistant/api";
-        public new string DefaultEndpoint = "https://gateway.watsonplatform.net/assistant/api";
-        private string _versionDate;
-        public string VersionDate
+        const string serviceName = "assistant";
+        private const string defaultServiceUrl = "https://gateway.watsonplatform.net/assistant/api";
+        public string VersionDate { get; set; }
+
+        public AssistantService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public AssistantService(IClient httpClient) : base(serviceName, httpClient) { }
+
+        public AssistantService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
-            get { return _versionDate; }
-            set { _versionDate = value; }
-        }
-
-        public AssistantService() : base(SERVICE_NAME) { }
-        
-        [Obsolete("Please use AssistantService(string versionDate, IAuthenticatorConfig config) instead")]
-        public AssistantService(string userName, string password, string versionDate) : base(SERVICE_NAME, URL)
-        {
-            if (string.IsNullOrEmpty(userName))
-                throw new ArgumentNullException(nameof(userName));
-
-            if (string.IsNullOrEmpty(password))
-                throw new ArgumentNullException(nameof(password));
-
-            this.SetCredential(userName, password);
             if (string.IsNullOrEmpty(versionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
-
-            VersionDate = versionDate;
-        }
-        
-        [Obsolete("Please use AssistantService(string versionDate, IAuthenticatorConfig config) instead")]
-        public AssistantService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
-        {
-            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
-                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
-            if (string.IsNullOrEmpty(versionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
+            }
+            
             VersionDate = versionDate;
 
-            if (!string.IsNullOrEmpty(options.ServiceUrl))
+            if (string.IsNullOrEmpty(ServiceUrl))
             {
-                this.Endpoint = options.ServiceUrl;
+                SetServiceUrl(defaultServiceUrl);
             }
-            else
-            {
-                options.ServiceUrl = this.Endpoint;
-            }
-
-            IamConfig iamConfig = null;
-            if (!string.IsNullOrEmpty(options.IamAccessToken))
-            {
-                iamConfig = new IamConfig(
-                    userManagedAccessToken: options.IamAccessToken
-                    );
-            }
-            else
-            {
-                iamConfig = new IamConfig(
-                    apikey: options.IamApiKey,
-                    iamUrl: options.IamUrl
-                    );
-            }
-
-            SetAuthenticator(iamConfig);
-        }
-
-        public AssistantService(IClient httpClient) : base(SERVICE_NAME, URL)
-        {
-            if (httpClient == null)
-                throw new ArgumentNullException(nameof(httpClient));
-
-            this.Client = httpClient;
-            SkipAuthentication = true;
-        }
-
-        public AssistantService(string versionDate, IAuthenticatorConfig config) : base(SERVICE_NAME, config)
-        {
-            VersionDate = versionDate;
         }
 
         /// <summary>
@@ -116,15 +57,15 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// Send user input to a workspace and receive a response.
         ///
-        /// **Note:** For most applications, there are significant advantages to using the v2 runtime API instead. These
-        /// advantages include ease of deployment, automatic state management, versioning, and search capabilities. For
-        /// more information, see the
+        /// **Important:** This method has been superseded by the new v2 runtime API. The v2 API offers significant
+        /// advantages, including ease of deployment, automatic state management, versioning, and search capabilities.
+        /// For more information, see the
         /// [documentation](https://cloud.ibm.com/docs/services/assistant?topic=assistant-api-overview).
         ///
         /// There is no rate limit for this operation.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="request">The message to be sent. This includes the user's input, along with optional intents,
+        /// <param name="body">The message to be sent. This includes the user's input, along with optional intents,
         /// entities, and context from the last response. (optional)</param>
         /// <param name="nodesVisitedDetails">Whether to include additional diagnostic information about the dialog
         /// nodes that were visited during processing of the message. (optional, default to false)</param>
@@ -215,15 +156,13 @@ namespace IBM.Watson.Assistant.v1
         /// This operation is limited to 500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
-        /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
-        /// default to false)</param>
         /// <param name="sort">The attribute by which returned workspaces will be sorted. To reverse the sort order,
         /// prefix the value with a minus sign (`-`). (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="WorkspaceCollection" />WorkspaceCollection</returns>
-        public DetailedResponse<WorkspaceCollection> ListWorkspaces(long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
+        public DetailedResponse<WorkspaceCollection> ListWorkspaces(long? pageLimit = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -245,10 +184,6 @@ namespace IBM.Watson.Assistant.v1
                 if (pageLimit != null)
                 {
                     restRequest.WithArgument("page_limit", pageLimit);
-                }
-                if (includeCount != null)
-                {
-                    restRequest.WithArgument("include_count", includeCount);
                 }
                 if (!string.IsNullOrEmpty(sort))
                 {
@@ -289,7 +224,7 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// This operation is limited to 30 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
-        /// <param name="properties">The content of the new workspace.
+        /// <param name="body">The content of the new workspace.
         ///
         /// The maximum size for this data is 50MB. If you need to import a larger workspace, consider importing the
         /// workspace without intents and entities and then adding them separately. (optional)</param>
@@ -462,7 +397,7 @@ namespace IBM.Watson.Assistant.v1
         /// This operation is limited to 30 request per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="properties">Valid data defining the new and updated workspace content.
+        /// <param name="body">Valid data defining the new and updated workspace content.
         ///
         /// The maximum size for this data is 50MB. If you need to import a larger amount of workspace data, consider
         /// importing components such as intents and entities using separate operations. (optional)</param>
@@ -636,15 +571,13 @@ namespace IBM.Watson.Assistant.v1
         /// returned data includes only information about the element itself. If **export**=`true`, all content,
         /// including subelements, is included. (optional, default to false)</param>
         /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
-        /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
-        /// default to false)</param>
         /// <param name="sort">The attribute by which returned intents will be sorted. To reverse the sort order, prefix
         /// the value with a minus sign (`-`). (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="IntentCollection" />IntentCollection</returns>
-        public DetailedResponse<IntentCollection> ListIntents(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
+        public DetailedResponse<IntentCollection> ListIntents(string workspaceId, bool? export = null, long? pageLimit = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -678,10 +611,6 @@ namespace IBM.Watson.Assistant.v1
                 if (pageLimit != null)
                 {
                     restRequest.WithArgument("page_limit", pageLimit);
-                }
-                if (includeCount != null)
-                {
-                    restRequest.WithArgument("include_count", includeCount);
                 }
                 if (!string.IsNullOrEmpty(sort))
                 {
@@ -1036,15 +965,13 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="intent">The intent name.</param>
         /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
-        /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
-        /// default to false)</param>
         /// <param name="sort">The attribute by which returned examples will be sorted. To reverse the sort order,
         /// prefix the value with a minus sign (`-`). (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="ExampleCollection" />ExampleCollection</returns>
-        public DetailedResponse<ExampleCollection> ListExamples(string workspaceId, string intent, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
+        public DetailedResponse<ExampleCollection> ListExamples(string workspaceId, string intent, long? pageLimit = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -1082,10 +1009,6 @@ namespace IBM.Watson.Assistant.v1
                 if (pageLimit != null)
                 {
                     restRequest.WithArgument("page_limit", pageLimit);
-                }
-                if (includeCount != null)
-                {
-                    restRequest.WithArgument("include_count", includeCount);
                 }
                 if (!string.IsNullOrEmpty(sort))
                 {
@@ -1454,15 +1377,13 @@ namespace IBM.Watson.Assistant.v1
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
-        /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
-        /// default to false)</param>
         /// <param name="sort">The attribute by which returned counterexamples will be sorted. To reverse the sort
         /// order, prefix the value with a minus sign (`-`). (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="CounterexampleCollection" />CounterexampleCollection</returns>
-        public DetailedResponse<CounterexampleCollection> ListCounterexamples(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
+        public DetailedResponse<CounterexampleCollection> ListCounterexamples(string workspaceId, long? pageLimit = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -1492,10 +1413,6 @@ namespace IBM.Watson.Assistant.v1
                 if (pageLimit != null)
                 {
                     restRequest.WithArgument("page_limit", pageLimit);
-                }
-                if (includeCount != null)
-                {
-                    restRequest.WithArgument("include_count", includeCount);
                 }
                 if (!string.IsNullOrEmpty(sort))
                 {
@@ -1826,15 +1743,13 @@ namespace IBM.Watson.Assistant.v1
         /// returned data includes only information about the element itself. If **export**=`true`, all content,
         /// including subelements, is included. (optional, default to false)</param>
         /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
-        /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
-        /// default to false)</param>
         /// <param name="sort">The attribute by which returned entities will be sorted. To reverse the sort order,
         /// prefix the value with a minus sign (`-`). (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="EntityCollection" />EntityCollection</returns>
-        public DetailedResponse<EntityCollection> ListEntities(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
+        public DetailedResponse<EntityCollection> ListEntities(string workspaceId, bool? export = null, long? pageLimit = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -1868,10 +1783,6 @@ namespace IBM.Watson.Assistant.v1
                 if (pageLimit != null)
                 {
                     restRequest.WithArgument("page_limit", pageLimit);
-                }
-                if (includeCount != null)
-                {
-                    restRequest.WithArgument("include_count", includeCount);
                 }
                 if (!string.IsNullOrEmpty(sort))
                 {
@@ -1915,7 +1826,7 @@ namespace IBM.Watson.Assistant.v1
         /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="properties">The content of the new entity.</param>
+        /// <param name="body">The content of the new entity.</param>
         /// <returns><see cref="Entity" />Entity</returns>
         public DetailedResponse<Entity> CreateEntity(string workspaceId, string entity, string description = null, Dictionary<string, object> metadata = null, bool? fuzzyMatch = null, List<CreateValue> values = null)
         {
@@ -2083,11 +1994,11 @@ namespace IBM.Watson.Assistant.v1
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
-        /// <param name="properties">The updated content of the entity. Any elements included in the new data will
-        /// completely replace the equivalent existing elements, including all subelements. (Previously existing
-        /// subelements are not retained unless they are also included in the new data.) For example, if you update the
-        /// values for an entity, the previously existing values are discarded and replaced with the new values
-        /// specified in the update.</param>
+        /// <param name="body">The updated content of the entity. Any elements included in the new data will completely
+        /// replace the equivalent existing elements, including all subelements. (Previously existing subelements are
+        /// not retained unless they are also included in the new data.) For example, if you update the values for an
+        /// entity, the previously existing values are discarded and replaced with the new values specified in the
+        /// update.</param>
         /// <returns><see cref="Entity" />Entity</returns>
         public DetailedResponse<Entity> UpdateEntity(string workspaceId, string entity, string newEntity = null, string newDescription = null, Dictionary<string, object> newMetadata = null, bool? newFuzzyMatch = null, List<CreateValue> newValues = null)
         {
@@ -2321,15 +2232,13 @@ namespace IBM.Watson.Assistant.v1
         /// returned data includes only information about the element itself. If **export**=`true`, all content,
         /// including subelements, is included. (optional, default to false)</param>
         /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
-        /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
-        /// default to false)</param>
         /// <param name="sort">The attribute by which returned entity values will be sorted. To reverse the sort order,
         /// prefix the value with a minus sign (`-`). (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="ValueCollection" />ValueCollection</returns>
-        public DetailedResponse<ValueCollection> ListValues(string workspaceId, string entity, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
+        public DetailedResponse<ValueCollection> ListValues(string workspaceId, string entity, bool? export = null, long? pageLimit = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -2371,10 +2280,6 @@ namespace IBM.Watson.Assistant.v1
                 if (pageLimit != null)
                 {
                     restRequest.WithArgument("page_limit", pageLimit);
-                }
-                if (includeCount != null)
-                {
-                    restRequest.WithArgument("include_count", includeCount);
                 }
                 if (!string.IsNullOrEmpty(sort))
                 {
@@ -2419,9 +2324,9 @@ namespace IBM.Watson.Assistant.v1
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
-        /// <param name="properties">The new entity value.</param>
+        /// <param name="body">The new entity value.</param>
         /// <returns><see cref="Value" />Value</returns>
-        public DetailedResponse<Value> CreateValue(string workspaceId, string entity, string value, Dictionary<string, object> metadata = null, string valueType = null, List<string> synonyms = null, List<string> patterns = null)
+        public DetailedResponse<Value> CreateValue(string workspaceId, string entity, string value, Dictionary<string, object> metadata = null, string type = null, List<string> synonyms = null, List<string> patterns = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -2471,9 +2376,9 @@ namespace IBM.Watson.Assistant.v1
                 {
                     bodyObject["metadata"] = JToken.FromObject(metadata);
                 }
-                if (!string.IsNullOrEmpty(valueType))
+                if (!string.IsNullOrEmpty(type))
                 {
-                    bodyObject["type"] = valueType;
+                    bodyObject["type"] = type;
                 }
                 if (synonyms != null && synonyms.Count > 0)
                 {
@@ -2604,14 +2509,14 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
         /// <param name="value">The text of the entity value.</param>
-        /// <param name="properties">The updated content of the entity value.
+        /// <param name="body">The updated content of the entity value.
         ///
         /// Any elements included in the new data will completely replace the equivalent existing elements, including
         /// all subelements. (Previously existing subelements are not retained unless they are also included in the new
         /// data.) For example, if you update the synonyms for an entity value, the previously existing synonyms are
         /// discarded and replaced with the new synonyms specified in the update.</param>
         /// <returns><see cref="Value" />Value</returns>
-        public DetailedResponse<Value> UpdateValue(string workspaceId, string entity, string value, string newValue = null, Dictionary<string, object> newMetadata = null, string newValueType = null, List<string> newSynonyms = null, List<string> newPatterns = null)
+        public DetailedResponse<Value> UpdateValue(string workspaceId, string entity, string value, string newValue = null, Dictionary<string, object> newMetadata = null, string newType = null, List<string> newSynonyms = null, List<string> newPatterns = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -2665,9 +2570,9 @@ namespace IBM.Watson.Assistant.v1
                 {
                     bodyObject["metadata"] = JToken.FromObject(newMetadata);
                 }
-                if (!string.IsNullOrEmpty(newValueType))
+                if (!string.IsNullOrEmpty(newType))
                 {
-                    bodyObject["type"] = newValueType;
+                    bodyObject["type"] = newType;
                 }
                 if (newSynonyms != null && newSynonyms.Count > 0)
                 {
@@ -2781,15 +2686,13 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="entity">The name of the entity.</param>
         /// <param name="value">The text of the entity value.</param>
         /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
-        /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
-        /// default to false)</param>
         /// <param name="sort">The attribute by which returned entity value synonyms will be sorted. To reverse the sort
         /// order, prefix the value with a minus sign (`-`). (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="SynonymCollection" />SynonymCollection</returns>
-        public DetailedResponse<SynonymCollection> ListSynonyms(string workspaceId, string entity, string value, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
+        public DetailedResponse<SynonymCollection> ListSynonyms(string workspaceId, string entity, string value, long? pageLimit = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -2835,10 +2738,6 @@ namespace IBM.Watson.Assistant.v1
                 if (pageLimit != null)
                 {
                     restRequest.WithArgument("page_limit", pageLimit);
-                }
-                if (includeCount != null)
-                {
-                    restRequest.WithArgument("include_count", includeCount);
                 }
                 if (!string.IsNullOrEmpty(sort))
                 {
@@ -3234,15 +3133,13 @@ namespace IBM.Watson.Assistant.v1
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
-        /// <param name="includeCount">Whether to include information about the number of records returned. (optional,
-        /// default to false)</param>
         /// <param name="sort">The attribute by which returned dialog nodes will be sorted. To reverse the sort order,
         /// prefix the value with a minus sign (`-`). (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="DialogNodeCollection" />DialogNodeCollection</returns>
-        public DetailedResponse<DialogNodeCollection> ListDialogNodes(string workspaceId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
+        public DetailedResponse<DialogNodeCollection> ListDialogNodes(string workspaceId, long? pageLimit = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -3272,10 +3169,6 @@ namespace IBM.Watson.Assistant.v1
                 if (pageLimit != null)
                 {
                     restRequest.WithArgument("page_limit", pageLimit);
-                }
-                if (includeCount != null)
-                {
-                    restRequest.WithArgument("include_count", includeCount);
                 }
                 if (!string.IsNullOrEmpty(sort))
                 {
@@ -3319,9 +3212,9 @@ namespace IBM.Watson.Assistant.v1
         /// This operation is limited to 500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="properties">A CreateDialogNode object defining the content of the new dialog node.</param>
+        /// <param name="body">A CreateDialogNode object defining the content of the new dialog node.</param>
         /// <returns><see cref="DialogNode" />DialogNode</returns>
-        public DetailedResponse<DialogNode> CreateDialogNode(string workspaceId, string dialogNode, string description = null, string conditions = null, string parent = null, string previousSibling = null, DialogNodeOutput output = null, Dictionary<string, object> context = null, Dictionary<string, object> metadata = null, DialogNodeNextStep nextStep = null, string title = null, string nodeType = null, string eventName = null, string variable = null, List<DialogNodeAction> actions = null, string digressIn = null, string digressOut = null, string digressOutSlots = null, string userLabel = null)
+        public DetailedResponse<DialogNode> CreateDialogNode(string workspaceId, string dialogNode, string description = null, string conditions = null, string parent = null, string previousSibling = null, DialogNodeOutput output = null, Dictionary<string, object> context = null, Dictionary<string, object> metadata = null, DialogNodeNextStep nextStep = null, string title = null, string type = null, string eventName = null, string variable = null, List<DialogNodeAction> actions = null, string digressIn = null, string digressOut = null, string digressOutSlots = null, string userLabel = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -3395,9 +3288,9 @@ namespace IBM.Watson.Assistant.v1
                 {
                     bodyObject["title"] = title;
                 }
-                if (!string.IsNullOrEmpty(nodeType))
+                if (!string.IsNullOrEmpty(type))
                 {
-                    bodyObject["type"] = nodeType;
+                    bodyObject["type"] = type;
                 }
                 if (!string.IsNullOrEmpty(eventName))
                 {
@@ -3530,14 +3423,14 @@ namespace IBM.Watson.Assistant.v1
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="dialogNode">The dialog node ID (for example, `get_order`).</param>
-        /// <param name="properties">The updated content of the dialog node.
+        /// <param name="body">The updated content of the dialog node.
         ///
         /// Any elements included in the new data will completely replace the equivalent existing elements, including
         /// all subelements. (Previously existing subelements are not retained unless they are also included in the new
         /// data.) For example, if you update the actions for a dialog node, the previously existing actions are
         /// discarded and replaced with the new actions specified in the update.</param>
         /// <returns><see cref="DialogNode" />DialogNode</returns>
-        public DetailedResponse<DialogNode> UpdateDialogNode(string workspaceId, string dialogNode, string newDialogNode = null, string newDescription = null, string newConditions = null, string newParent = null, string newPreviousSibling = null, DialogNodeOutput newOutput = null, Dictionary<string, object> newContext = null, Dictionary<string, object> newMetadata = null, DialogNodeNextStep newNextStep = null, string newTitle = null, string newNodeType = null, string newEventName = null, string newVariable = null, List<DialogNodeAction> newActions = null, string newDigressIn = null, string newDigressOut = null, string newDigressOutSlots = null, string newUserLabel = null)
+        public DetailedResponse<DialogNode> UpdateDialogNode(string workspaceId, string dialogNode, string newDialogNode = null, string newDescription = null, string newConditions = null, string newParent = null, string newPreviousSibling = null, DialogNodeOutput newOutput = null, Dictionary<string, object> newContext = null, Dictionary<string, object> newMetadata = null, DialogNodeNextStep newNextStep = null, string newTitle = null, string newType = null, string newEventName = null, string newVariable = null, List<DialogNodeAction> newActions = null, string newDigressIn = null, string newDigressOut = null, string newDigressOutSlots = null, string newUserLabel = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -3615,9 +3508,9 @@ namespace IBM.Watson.Assistant.v1
                 {
                     bodyObject["title"] = newTitle;
                 }
-                if (!string.IsNullOrEmpty(newNodeType))
+                if (!string.IsNullOrEmpty(newType))
                 {
-                    bodyObject["type"] = newNodeType;
+                    bodyObject["type"] = newType;
                 }
                 if (!string.IsNullOrEmpty(newEventName))
                 {
@@ -3741,8 +3634,7 @@ namespace IBM.Watson.Assistant.v1
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="sort">How to sort the returned log events. You can sort by **request_timestamp**. To reverse
-        /// the sort order, prefix the parameter value with a minus sign (`-`). (optional, default to
-        /// request_timestamp)</param>
+        /// the sort order, prefix the parameter value with a minus sign (`-`). (optional)</param>
         /// <param name="filter">A cacheable parameter that limits the results to those matching the specified filter.
         /// For more information, see the
         /// [documentation](https://cloud.ibm.com/docs/services/assistant?topic=assistant-filter-reference#filter-reference).
@@ -3825,8 +3717,7 @@ namespace IBM.Watson.Assistant.v1
         /// or `request.context.metadata.deployment`. For more information, see the
         /// [documentation](https://cloud.ibm.com/docs/services/assistant?topic=assistant-filter-reference#filter-reference).</param>
         /// <param name="sort">How to sort the returned log events. You can sort by **request_timestamp**. To reverse
-        /// the sort order, prefix the parameter value with a minus sign (`-`). (optional, default to
-        /// request_timestamp)</param>
+        /// the sort order, prefix the parameter value with a minus sign (`-`). (optional)</param>
         /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <returns><see cref="LogCollection" />LogCollection</returns>

@@ -20,7 +20,7 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
-    /// DeleteDocumentResponse.
+    /// Information returned when a document is deleted.
     /// </summary>
     public class DeleteDocumentResponse
     {

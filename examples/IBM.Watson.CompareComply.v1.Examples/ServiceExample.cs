@@ -26,7 +26,7 @@ namespace IBM.Watson.CompareComply.v1.Examples
     public class ServiceExample
     {
         string apikey = "{apikey}";
-        string url = "{url}";
+        string url = "{serviceUrl}";
         string versionDate = "{versionDate}";
         private string contractAFilePath = @"CompareComplyTestData/contract_A.pdf";
         private string contractBFilePath = @"CompareComplyTestData/contract_B.pdf";
@@ -67,12 +67,11 @@ namespace IBM.Watson.CompareComply.v1.Examples
         #region HTML Conversion
         public void ConvertToHtml()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            CompareComplyService service = new CompareComplyService("2018-10-15", config);
-            service.SetEndpoint("{url}");
+            CompareComplyService service = new CompareComplyService("2018-10-15", authenticator);
+            service.SetServiceUrl("{serviceUrl}");
 
             using (FileStream fs = File.OpenRead("{path-to-file}"))
             {
@@ -81,7 +80,6 @@ namespace IBM.Watson.CompareComply.v1.Examples
                     fs.CopyTo(ms);
                     var result = service.ConvertToHtml(
                         file: ms,
-                        filename: Path.GetFileName("{path-to-file}"),
                         fileContentType: "{file-content-type}"
                         );
 
@@ -94,12 +92,11 @@ namespace IBM.Watson.CompareComply.v1.Examples
         #region Element Classification
         public void ClassifyElements()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            CompareComplyService service = new CompareComplyService("2018-10-15", config);
-            service.SetEndpoint("{url}");
+            CompareComplyService service = new CompareComplyService("2018-10-15", authenticator);
+            service.SetServiceUrl("{serviceUrl}");
 
             using (FileStream fs = File.OpenRead("{path-to-file}"))
             {
@@ -120,12 +117,11 @@ namespace IBM.Watson.CompareComply.v1.Examples
         #region Tables
         public void ExtractTables()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            CompareComplyService service = new CompareComplyService("2018-10-15", config);
-            service.SetEndpoint("{url}");
+            CompareComplyService service = new CompareComplyService("2018-10-15", authenticator);
+            service.SetServiceUrl("{serviceUrl}");
 
             using (FileStream fs = File.OpenRead("{path-to-file}"))
             {
@@ -146,12 +142,11 @@ namespace IBM.Watson.CompareComply.v1.Examples
         #region Comparision
         public void CompareDocuments()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            CompareComplyService service = new CompareComplyService("2018-10-15", config);
-            service.SetEndpoint("{url}");
+            CompareComplyService service = new CompareComplyService("2018-10-15", authenticator);
+            service.SetServiceUrl("{serviceUrl}");
 
             using (FileStream fs0 = File.OpenRead("{path-to-file-1}"))
             {
@@ -183,12 +178,11 @@ namespace IBM.Watson.CompareComply.v1.Examples
         #region Feedback
         public void ListFeedback()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            CompareComplyService service = new CompareComplyService("2018-10-15", config);
-            service.SetEndpoint("{url}");
+            CompareComplyService service = new CompareComplyService("2018-10-15", authenticator);
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.ListFeedback();
 
@@ -197,12 +191,11 @@ namespace IBM.Watson.CompareComply.v1.Examples
 
         public void AddFeedback()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            CompareComplyService service = new CompareComplyService("2018-10-15", config);
-            service.SetEndpoint("{url}");
+            CompareComplyService service = new CompareComplyService("2018-10-15", authenticator);
+            service.SetServiceUrl("{serviceUrl}");
 
             #region feedbackData
             FeedbackDataInput feedbackData = new FeedbackDataInput()
@@ -315,12 +308,11 @@ namespace IBM.Watson.CompareComply.v1.Examples
 
         public void GetFeedback()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            CompareComplyService service = new CompareComplyService("2018-10-15", config);
-            service.SetEndpoint("{url}");
+            CompareComplyService service = new CompareComplyService("2018-10-15", authenticator);
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.GetFeedback(
                 feedbackId: feedbackId
@@ -331,12 +323,11 @@ namespace IBM.Watson.CompareComply.v1.Examples
 
         public void DeleteFeedback()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            CompareComplyService service = new CompareComplyService("2018-10-15", config);
-            service.SetEndpoint("{url}");
+            CompareComplyService service = new CompareComplyService("2018-10-15", authenticator);
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.DeleteFeedback(
                 feedbackId: "{feedback-id}"
@@ -349,12 +340,11 @@ namespace IBM.Watson.CompareComply.v1.Examples
         #region Batches
         public void ListBatches()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            CompareComplyService service = new CompareComplyService("2018-10-15", config);
-            service.SetEndpoint("{url}");
+            CompareComplyService service = new CompareComplyService("2018-10-15", authenticator);
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.ListBatches();
 
@@ -363,12 +353,11 @@ namespace IBM.Watson.CompareComply.v1.Examples
 
         public void CreateBatch()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            CompareComplyService service = new CompareComplyService("2018-10-15", config);
-            service.SetEndpoint("{url}");
+            CompareComplyService service = new CompareComplyService("2018-10-15", authenticator);
+            service.SetServiceUrl("{serviceUrl}");
 
             using (FileStream fsInput = File.OpenRead("{object-storage-input-credentials-filepath}"))
             {
@@ -400,12 +389,11 @@ namespace IBM.Watson.CompareComply.v1.Examples
 
         public void GetBatch()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            CompareComplyService service = new CompareComplyService("2018-10-15", config);
-            service.SetEndpoint("{url}");
+            CompareComplyService service = new CompareComplyService("2018-10-15", authenticator);
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.GetBatch(
                 batchId: "{batch-id}"
@@ -416,12 +404,11 @@ namespace IBM.Watson.CompareComply.v1.Examples
 
         public void UpdateBatch()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            CompareComplyService service = new CompareComplyService("2018-10-15", config);
-            service.SetEndpoint("{url}");
+            CompareComplyService service = new CompareComplyService("2018-10-15", authenticator);
+            service.SetServiceUrl("{serviceUrl}");
 
             var result = service.UpdateBatch(
                 batchId: "{batch-id}",

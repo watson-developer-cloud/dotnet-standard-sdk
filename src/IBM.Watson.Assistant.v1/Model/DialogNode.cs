@@ -29,7 +29,7 @@ namespace IBM.Watson.Assistant.v1.Model
         /// <summary>
         /// How the dialog node is processed.
         /// </summary>
-        public class NodeTypeEnumValue
+        public class TypeEnumValue
         {
             /// <summary>
             /// Constant STANDARD for standard
@@ -164,10 +164,10 @@ namespace IBM.Watson.Assistant.v1.Model
 
         /// <summary>
         /// How the dialog node is processed.
-        /// Constants for possible values can be found using DialogNode.NodeTypeEnumValue
+        /// Constants for possible values can be found using DialogNode.TypeEnumValue
         /// </summary>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
-        public string NodeType { get; set; }
+        public string Type { get; set; }
         /// <summary>
         /// How an `event_handler` node is processed.
         /// Constants for possible values can be found using DialogNode.EventNameEnumValue

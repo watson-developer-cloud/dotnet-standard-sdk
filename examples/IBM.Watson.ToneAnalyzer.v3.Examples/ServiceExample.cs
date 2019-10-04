@@ -25,7 +25,7 @@ namespace IBM.Watson.ToneAnalyzer.v3.Examples
     public class ServiceExample
     {
         string apikey = "{apikey}";
-        string url = "{url}";
+        string url = "{serviceUrl}";
         private string versionDate = "{versionDate}";
 
         static void Main(string[] args)
@@ -42,12 +42,11 @@ namespace IBM.Watson.ToneAnalyzer.v3.Examples
         #region Analyze Tone
         public void Tone()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            ToneAnalyzerService service = new ToneAnalyzerService("2017-09-21", config);
-            service.SetEndpoint("{url}");
+            ToneAnalyzerService service = new ToneAnalyzerService("2017-09-21", authenticator);
+            service.SetServiceUrl("{serviceUrl}");
 
             ToneInput toneInput = new ToneInput()
             {
@@ -65,12 +64,11 @@ namespace IBM.Watson.ToneAnalyzer.v3.Examples
         #region Analyze Customer Engagment Tone
         public void ToneChat()
         {
-            IamConfig config = new IamConfig(
-                apikey: "{apikey}"
-                );
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
 
-            ToneAnalyzerService service = new ToneAnalyzerService("2017-09-21", config);
-            service.SetEndpoint("{url}");
+            ToneAnalyzerService service = new ToneAnalyzerService("2017-09-21", authenticator);
+            service.SetServiceUrl("{serviceUrl}");
 
             var utterances = new List<Utterance>()
             {

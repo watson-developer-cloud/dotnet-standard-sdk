@@ -58,8 +58,7 @@ namespace IBM.Watson.VisualRecognition.v3.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
-            service = new VisualRecognitionService();
-            service.VersionDate = versionDate;
+            service = new VisualRecognitionService(versionDate);
             service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(120);
         }
         #endregion
@@ -171,78 +170,6 @@ namespace IBM.Watson.VisualRecognition.v3.IntegrationTests
             Assert.IsNotNull(result.Result);
             Assert.IsNotNull(result.Result.Images);
             Assert.IsTrue(result.Result.Images.Count > 0);
-        }
-        #endregion
-
-        #region Face
-        [TestMethod]
-        public void DetectFaces_Success()
-        {
-            using (FileStream fs = File.OpenRead(localFaceFilePath))
-            {
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    fs.CopyTo(ms);
-                    service.WithHeader("X-Watson-Test", "1");
-                    var result = service.DetectFaces(
-                        imagesFile: ms,
-                        imagesFilename: Path.GetFileName(localFaceFilePath),
-                        imagesFileContentType: "image/jpeg",
-                        acceptLanguage: "en"
-                        );
-
-                    Assert.IsNotNull(result.Result);
-                    Assert.IsNotNull(result.Result.Images);
-                    Assert.IsTrue(result.Result.Images.Count > 0);
-                }
-            }
-        }
-
-        [TestMethod]
-        public void DetectFacesSpanish_Success()
-        {
-            using (FileStream fs = File.OpenRead(localFaceFilePath))
-            {
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    fs.CopyTo(ms);
-                    service.WithHeader("X-Watson-Test", "1");
-                    var result = service.DetectFaces(
-                        imagesFile: ms,
-                        imagesFilename: Path.GetFileName(localFaceFilePath),
-                        imagesFileContentType: "image/jpeg",
-                        acceptLanguage: "es"
-                        );
-
-                    Assert.IsNotNull(result.Result);
-                    Assert.IsNotNull(result.Result.Images);
-                    Assert.IsTrue(result.Result.Images[0].Faces[0].Gender.GenderLabel == "macho");
-                    Assert.IsTrue(result.Result.Images.Count > 0);
-                }
-            }
-        }
-
-        [TestMethod]
-        public void DetectFacesURL_Success()
-        {
-            using (FileStream fs = File.OpenRead(localFaceFilePath))
-            {
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    fs.CopyTo(ms);
-                    service.WithHeader("X-Watson-Test", "1");
-                    var result = service.DetectFaces(
-                        url: faceUrl,
-                        imagesFile: ms,
-                        imagesFilename: Path.GetFileName(localFaceFilePath),
-                        imagesFileContentType: "image/jpg"
-                        );
-                    Assert.IsNotNull(result.Result);
-                    Assert.IsNotNull(result.Result.Images);
-                    Assert.IsTrue(result.Result.Images.Count > 0);
-                }
-            }
-
         }
         #endregion
 

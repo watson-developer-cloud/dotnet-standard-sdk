@@ -19,10 +19,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using IBM.Cloud.SDK.Core.Authentication;
-using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Service;
-using IBM.Cloud.SDK.Core.Util;
 using IBM.Watson.NaturalLanguageUnderstanding.v1.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -32,83 +30,26 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
 {
     public partial class NaturalLanguageUnderstandingService : IBMService, INaturalLanguageUnderstandingService
     {
-        new const string SERVICE_NAME = "natural_language_understanding";
-        const string URL = "https://gateway.watsonplatform.net/natural-language-understanding/api";
-        public new string DefaultEndpoint = "https://gateway.watsonplatform.net/natural-language-understanding/api";
-        private string _versionDate;
-        public string VersionDate
+        const string serviceName = "natural_language_understanding";
+        private const string defaultServiceUrl = "https://gateway.watsonplatform.net/natural-language-understanding/api";
+        public string VersionDate { get; set; }
+
+        public NaturalLanguageUnderstandingService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public NaturalLanguageUnderstandingService(IClient httpClient) : base(serviceName, httpClient) { }
+
+        public NaturalLanguageUnderstandingService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
-            get { return _versionDate; }
-            set { _versionDate = value; }
-        }
-
-        public NaturalLanguageUnderstandingService() : base(SERVICE_NAME) { }
-        
-        [Obsolete("Please use NaturalLanguageUnderstandingService(string versionDate, IAuthenticatorConfig config) instead")]
-        public NaturalLanguageUnderstandingService(string userName, string password, string versionDate) : base(SERVICE_NAME, URL)
-        {
-            if (string.IsNullOrEmpty(userName))
-                throw new ArgumentNullException(nameof(userName));
-
-            if (string.IsNullOrEmpty(password))
-                throw new ArgumentNullException(nameof(password));
-
-            this.SetCredential(userName, password);
             if (string.IsNullOrEmpty(versionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
-
-            VersionDate = versionDate;
-        }
-        
-        [Obsolete("Please use NaturalLanguageUnderstandingService(string versionDate, IAuthenticatorConfig config) instead")]
-        public NaturalLanguageUnderstandingService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
-        {
-            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
-                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
-            if (string.IsNullOrEmpty(versionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
+            }
+            
             VersionDate = versionDate;
 
-            if (!string.IsNullOrEmpty(options.ServiceUrl))
+            if (string.IsNullOrEmpty(ServiceUrl))
             {
-                this.Endpoint = options.ServiceUrl;
+                SetServiceUrl(defaultServiceUrl);
             }
-            else
-            {
-                options.ServiceUrl = this.Endpoint;
-            }
-
-            IamConfig iamConfig = null;
-            if (!string.IsNullOrEmpty(options.IamAccessToken))
-            {
-                iamConfig = new IamConfig(
-                    userManagedAccessToken: options.IamAccessToken
-                    );
-            }
-            else
-            {
-                iamConfig = new IamConfig(
-                    apikey: options.IamApiKey,
-                    iamUrl: options.IamUrl
-                    );
-            }
-
-            SetAuthenticator(iamConfig);
-        }
-
-        public NaturalLanguageUnderstandingService(IClient httpClient) : base(SERVICE_NAME, URL)
-        {
-            if (httpClient == null)
-                throw new ArgumentNullException(nameof(httpClient));
-
-            this.Client = httpClient;
-            SkipAuthentication = true;
-        }
-
-        public NaturalLanguageUnderstandingService(string versionDate, IAuthenticatorConfig config) : base(SERVICE_NAME, config)
-        {
-            VersionDate = versionDate;
         }
 
         /// <summary>

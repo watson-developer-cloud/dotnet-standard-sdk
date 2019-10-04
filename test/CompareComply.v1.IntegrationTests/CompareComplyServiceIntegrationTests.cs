@@ -46,8 +46,7 @@ namespace IBM.Watson.CompareComply.v1.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
-            service = new CompareComplyService();
-            service.VersionDate = versionDate;
+            service = new CompareComplyService(versionDate);
 
             var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.Parent.Parent.FullName;
             string credentialsFilepath = parentDirectory + Path.DirectorySeparatorChar + "sdk-credentials" + Path.DirectorySeparatorChar + "credentials.json";
@@ -68,7 +67,6 @@ namespace IBM.Watson.CompareComply.v1.IntegrationTests
                     service.WithHeader("X-Watson-Test", "1");
                     var htmlConversionResult = service.ConvertToHtml(
                         file: ms,
-                        filename: Path.GetFileName(contractAFilePath),
                         fileContentType: "application/pdf",
                         model: compareComplyModel
                         );

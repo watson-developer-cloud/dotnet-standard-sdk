@@ -20,11 +20,9 @@ using System.IO;
 using System.Net.Http;
 using System.Text;
 using IBM.Cloud.SDK.Core.Authentication;
-using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Extensions;
 using IBM.Cloud.SDK.Core.Service;
-using IBM.Cloud.SDK.Core.Util;
 using IBM.Watson.VisualRecognition.v3.Model;
 using System;
 
@@ -32,67 +30,26 @@ namespace IBM.Watson.VisualRecognition.v3
 {
     public partial class VisualRecognitionService : IBMService, IVisualRecognitionService
     {
-        new const string SERVICE_NAME = "visual_recognition";
-        const string URL = "https://gateway.watsonplatform.net/visual-recognition/api";
-        public new string DefaultEndpoint = "https://gateway.watsonplatform.net/visual-recognition/api";
-        private string _versionDate;
-        public string VersionDate
-        {
-            get { return _versionDate; }
-            set { _versionDate = value; }
-        }
+        const string serviceName = "visual_recognition";
+        private const string defaultServiceUrl = "https://gateway.watsonplatform.net/visual-recognition/api";
+        public string VersionDate { get; set; }
 
-        public VisualRecognitionService() : base(SERVICE_NAME) { }
-        
-        [Obsolete("Please use VisualRecognitionService(string versionDate, IAuthenticatorConfig config) instead")]
-        public VisualRecognitionService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
+        public VisualRecognitionService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public VisualRecognitionService(IClient httpClient) : base(serviceName, httpClient) { }
+
+        public VisualRecognitionService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
-            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
-                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
             if (string.IsNullOrEmpty(versionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
-
+            }
+            
             VersionDate = versionDate;
 
-            if (!string.IsNullOrEmpty(options.ServiceUrl))
+            if (string.IsNullOrEmpty(ServiceUrl))
             {
-                this.Endpoint = options.ServiceUrl;
+                SetServiceUrl(defaultServiceUrl);
             }
-            else
-            {
-                options.ServiceUrl = this.Endpoint;
-            }
-
-            IamConfig iamConfig = null;
-            if (!string.IsNullOrEmpty(options.IamAccessToken))
-            {
-                iamConfig = new IamConfig(
-                    userManagedAccessToken: options.IamAccessToken
-                    );
-            }
-            else
-            {
-                iamConfig = new IamConfig(
-                    apikey: options.IamApiKey,
-                    iamUrl: options.IamUrl
-                    );
-            }
-
-            SetAuthenticator(iamConfig);
-        }
-
-        public VisualRecognitionService(IClient httpClient) : base(SERVICE_NAME, URL)
-        {
-            if (httpClient == null)
-                throw new ArgumentNullException(nameof(httpClient));
-
-            this.Client = httpClient;
-            SkipAuthentication = true;
-        }
-
-        public VisualRecognitionService(string versionDate, IAuthenticatorConfig config) : base(SERVICE_NAME, config)
-        {
-            VersionDate = versionDate;
         }
 
         /// <summary>
@@ -216,108 +173,19 @@ namespace IBM.Watson.VisualRecognition.v3
             return result;
         }
         /// <summary>
-        /// Detect faces in images.
-        ///
-        /// **Important:** On April 2, 2018, the identity information in the response to calls to the Face model was
-        /// removed. The identity information refers to the `name` of the person, `score`, and `type_hierarchy`
-        /// knowledge graph. For details about the enhanced Face model, see the [Release
-        /// notes](https://cloud.ibm.com/docs/services/visual-recognition?topic=visual-recognition-release-notes#2april2018).
-        ///
-        /// Analyze and get data about faces in images. Responses can include estimated age and gender. This feature
-        /// uses a built-in model, so no training is necessary. The **Detect faces** method does not support general
-        /// biometric facial recognition.
-        ///
-        /// Supported image formats include .gif, .jpg, .png, and .tif. The maximum image size is 10 MB. The minimum
-        /// recommended pixel density is 32X32 pixels, but the service tends to perform better with images that are at
-        /// least 224 x 224 pixels.
-        /// </summary>
-        /// <param name="imagesFile">An image file (gif, .jpg, .png, .tif.) or .zip file with images. Limit the .zip
-        /// file to 100 MB. You can include a maximum of 15 images in a request.
-        ///
-        /// Encode the image and .zip file names in UTF-8 if they contain non-ASCII characters. The service assumes
-        /// UTF-8 encoding if it encounters non-ASCII characters.
-        ///
-        /// You can also include an image with the **url** parameter. (optional)</param>
-        /// <param name="imagesFilename">The filename for imagesFile. (optional)</param>
-        /// <param name="imagesFileContentType">The content type of imagesFile. (optional)</param>
-        /// <param name="url">The URL of an image to analyze. Must be in .gif, .jpg, .png, or .tif format. The minimum
-        /// recommended pixel density is 32X32 pixels, but the service tends to perform better with images that are at
-        /// least 224 x 224 pixels. The maximum image size is 10 MB. Redirects are followed, so you can use a shortened
-        /// URL.
-        ///
-        /// You can also include images with the **images_file** parameter. (optional)</param>
-        /// <param name="acceptLanguage">The desired language of parts of the response. See the response for details.
-        /// (optional, default to en)</param>
-        /// <returns><see cref="DetectedFaces" />DetectedFaces</returns>
-        public DetailedResponse<DetectedFaces> DetectFaces(System.IO.MemoryStream imagesFile = null, string imagesFilename = null, string imagesFileContentType = null, string url = null, string acceptLanguage = null)
-        {
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
-            DetailedResponse<DetectedFaces> result = null;
-
-            try
-            {
-                var formData = new MultipartFormDataContent();
-
-                if (imagesFile != null)
-                {
-                    var imagesFileContent = new ByteArrayContent(imagesFile.ToArray());
-                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
-                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(imagesFileContentType, out contentType);
-                    imagesFileContent.Headers.ContentType = contentType;
-                    formData.Add(imagesFileContent, "images_file", imagesFilename);
-                }
-
-                if (url != null)
-                {
-                    var urlContent = new StringContent(url, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    urlContent.Headers.ContentType = null;
-                    formData.Add(urlContent, "url");
-                }
-
-                IClient client = this.Client;
-                SetAuthentication();
-
-                var restRequest = client.PostAsync($"{this.Endpoint}/v3/detect_faces");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-
-                if (!string.IsNullOrEmpty(acceptLanguage))
-                {
-                    restRequest.WithHeader("Accept-Language", acceptLanguage);
-                }
-                restRequest.WithBodyContent(formData);
-
-                restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v3", "DetectFaces"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
-
-                result = restRequest.As<DetectedFaces>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<DetectedFaces>();
-                }
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-        /// <summary>
         /// Create a classifier.
         ///
         /// Train a new multi-faceted classifier on the uploaded image data. Create your custom classifier with positive
-        /// or negative examples. Include at least two sets of examples, either two positive example files or one
-        /// positive and one negative file. You can upload a maximum of 256 MB per call.
+        /// or negative example training images. Include at least two sets of examples, either two positive example
+        /// files or one positive and one negative file. You can upload a maximum of 256 MB per call.
         ///
-        /// Encode all names in UTF-8 if they contain non-ASCII characters (.zip and image file names, and classifier
+        /// **Tips when creating:**
+        ///
+        /// - If you set the **X-Watson-Learning-Opt-Out** header parameter to `true` when you create a classifier, the
+        /// example training images are not stored. Save your training images locally. For more information, see [Data
+        /// collection](#data-collection).
+        ///
+        /// - Encode all names in UTF-8 if they contain non-ASCII characters (.zip and image file names, and classifier
         /// and class names). The service assumes UTF-8 encoding if it encounters non-ASCII characters.
         /// </summary>
         /// <param name="name">The name of the new classifier. Encode special characters in UTF-8.</param>
@@ -532,9 +400,15 @@ namespace IBM.Watson.VisualRecognition.v3
         /// Encode all names in UTF-8 if they contain non-ASCII characters (.zip and image file names, and classifier
         /// and class names). The service assumes UTF-8 encoding if it encounters non-ASCII characters.
         ///
-        /// **Tip:** Don't make retraining calls on a classifier until the status is ready. When you submit retraining
-        /// requests in parallel, the last request overwrites the previous requests. The retrained property shows the
-        /// last time the classifier retraining finished.
+        /// **Tips about retraining:**
+        ///
+        /// - You can't update the classifier if the **X-Watson-Learning-Opt-Out** header parameter was set to `true`
+        /// when the classifier was created. Training images are not stored in that case. Instead, create another
+        /// classifier. For more information, see [Data collection](#data-collection).
+        ///
+        /// - Don't make retraining calls on a classifier until the status is ready. When you submit retraining requests
+        /// in parallel, the last request overwrites the previous requests. The `retrained` property shows the last time
+        /// the classifier retraining finished.
         /// </summary>
         /// <param name="classifierId">The ID of the classifier.</param>
         /// <param name="positiveExamples">A dictionary that contains the value for each classname. The value is a .zip

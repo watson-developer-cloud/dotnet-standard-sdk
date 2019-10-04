@@ -81,7 +81,7 @@ namespace IBM.Watson.Discovery.v1.Model
         [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public string Language { get; set; }
         /// <summary>
-        /// Gets or Sets Features
+        /// Object containing Natural Language Understanding features to be used.
         /// </summary>
         [JsonProperty("features", NullValueHandling = NullValueHandling.Ignore)]
         public NluEnrichmentFeatures Features { get; set; }

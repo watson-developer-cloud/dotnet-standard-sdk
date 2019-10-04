@@ -25,7 +25,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
     {
         DetailedResponse<Classification> Classify(string classifierId, string text);
         DetailedResponse<ClassificationCollection> ClassifyCollection(string classifierId, List<ClassifyInput> collection);
-        DetailedResponse<Classifier> CreateClassifier(System.IO.MemoryStream metadata, System.IO.MemoryStream trainingData);
+        DetailedResponse<Classifier> CreateClassifier(System.IO.MemoryStream trainingMetadata, System.IO.MemoryStream trainingData);
         DetailedResponse<ClassifierList> ListClassifiers();
         DetailedResponse<Classifier> GetClassifier(string classifierId);
         DetailedResponse<object> DeleteClassifier(string classifierId);

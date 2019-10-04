@@ -63,6 +63,11 @@ namespace IBM.Watson.Discovery.v1.Model
         /// </summary>
         [JsonProperty("retrieval_details", NullValueHandling = NullValueHandling.Ignore)]
         public RetrievalDetails RetrievalDetails { get; set; }
+        /// <summary>
+        /// The suggestions for a misspelled natural language query.
+        /// </summary>
+        [JsonProperty("suggested_query", NullValueHandling = NullValueHandling.Ignore)]
+        public string SuggestedQuery { get; set; }
     }
 
 }

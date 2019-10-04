@@ -15,7 +15,7 @@
 *
 */
 
-using IBM.Cloud.SDK.Core.Authentication.Icp4d;
+using IBM.Cloud.SDK.Core.Authentication.NoAuth;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Exceptions;
 using IBM.Watson.Assistant.v2.Model;
@@ -37,7 +37,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
         public void Constructor_HttpClient_Null()
         {
             AssistantService service =
-                new AssistantService(null);
+                new AssistantService(httpClient: null);
         }
 
         [TestMethod]
@@ -45,36 +45,6 @@ namespace IBM.Watson.Assistant.v2.UnitTests
         {
             AssistantService service =
                 new AssistantService(CreateClient());
-
-            Assert.IsNotNull(service);
-        }
-
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void Constructor_UserName_Null()
-        {
-            AssistantService service =
-                new AssistantService(null, "password", "2018-02-16");
-        }
-
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void Constructor_Password_Null()
-        {
-            AssistantService service =
-                new AssistantService("username", null, "2018-02-16");
-        }
-
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void Constructor_Version_Null()
-        {
-            AssistantService service =
-                new AssistantService("username", "password", null);
-        }
-
-        [TestMethod]
-        public void Constructor_With_UserName_Password()
-        {
-            AssistantService service =
-                new AssistantService("username", "password", "2018-02-16");
 
             Assert.IsNotNull(service);
         }
@@ -105,7 +75,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateSession_No_VersionDate()
         {
-            AssistantService service = new AssistantService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
 
             service.CreateSession("assistantId");
@@ -114,7 +84,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CreateSession_No_AssistantId()
         {
-            AssistantService service = new AssistantService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.CreateSession(null);
         }
 
@@ -170,7 +140,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteSession_No_VersionDate()
         {
-            AssistantService service = new AssistantService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
 
             service.DeleteSession("assistantId", "sessionId");
@@ -179,14 +149,14 @@ namespace IBM.Watson.Assistant.v2.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteSession_No_AssistantId()
         {
-            AssistantService service = new AssistantService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.DeleteSession(null, "sessionId");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void DeleteSession_No_SessionId()
         {
-            AssistantService service = new AssistantService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.DeleteSession("assistantId", null);
         }
 
@@ -243,7 +213,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Message_No_VersionDate()
         {
-            AssistantService service = new AssistantService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.VersionDate = null;
 
             service.Message("assistantId", "sessionId");
@@ -252,14 +222,14 @@ namespace IBM.Watson.Assistant.v2.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Message_No_AssistantId()
         {
-            AssistantService service = new AssistantService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.Message(null, "sessionId");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Message_No_SessionId()
         {
-            AssistantService service = new AssistantService("username", "password", "versionDate");
+            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
             service.Message("assistantId", null);
         }
 
@@ -296,12 +266,12 @@ namespace IBM.Watson.Assistant.v2.UnitTests
             response.Result = new MessageResponse();
             response.Result.Output = new MessageOutput()
             {
-                Generic = new List<DialogRuntimeResponseGeneric>()
+                Generic = new List<RuntimeResponseGeneric>()
                 {
-                    new DialogRuntimeResponseGeneric()
+                    new RuntimeResponseGeneric()
                     {
-                        ResponseType = DialogRuntimeResponseGeneric.ResponseTypeEnumValue.TEXT,
-                        Preference = DialogRuntimeResponseGeneric.PreferenceEnumValue.BUTTON,
+                        ResponseType = RuntimeResponseGeneric.ResponseTypeEnumValue.TEXT,
+                        Preference = RuntimeResponseGeneric.PreferenceEnumValue.BUTTON,
                         Text = "text",
                         Time = 1,
                         Typing = true,

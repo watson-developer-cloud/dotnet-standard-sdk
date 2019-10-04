@@ -6,7 +6,7 @@
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![Documentation](https://img.shields.io/badge/documentation-API-blue.svg)][dotnet-standard-sdk-documentation]
 
-The .Net SDK uses [Watson][wdc] services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.
+The .NET Standard SDK uses [Watson][wdc] services, a collection of REST APIs that use cognitive computing to solve complex problems.
 
 ## Table of Contents
 * [Before you begin](#before-you-begin)
@@ -70,11 +70,10 @@ You supply either an IAM service **API key** or an **access token**:
 ```cs
 void Example()
 {
-    IamConfig iamConfig = new IamConfig(
-        apikey: "{iam-apikey}"
-        );
-    service = new AssistantService("{versionDate}", iamConfig);
-    service.SetEndpoint("{service-endpoint}");
+    IamAuthenticator authenticator = new IamAuthenticator(
+        apikey: "{apikey}");
+    var service = new AssistantService("{versionDate}", authenticator);
+    service.SetServiceUrl("{serviceUrl}");
 }
 ```
 
@@ -82,11 +81,10 @@ void Example()
 ```cs
 void Example()
 {
-    IamConfig iamConfig = new IamConfig(
-        userManagedAccessToken: "{iam-access-token}"
-        );
-    service = new AssistantService("{versionDate}", iamConfig);
-    service.SetEndpoint("{service-endpoint}");
+    BearerTokenAuthenticator authenticator = new BearerTokenAuthenticator(
+        bearerToken: "{bearerToken}");
+    var service = new AssistantService("{versionDate}", authenticator);
+    service.SetServiceUrl("{serviceUrl}");
 }
 ```
 
@@ -94,12 +92,11 @@ void Example()
 ```cs
 void Example()
 {
-    BasicAuthConfig basicAuthConfig = new BasicAuthConfig(
+    BasicAuthenticator authenticator = new BasicAuthenticator(
         username: "{username}",
-        password: "{password}"
-        );
-    service = new AssistantService("{versionDate}", basicAuthConfig);
-    service.SetEndpoint("{service-endpoint}");
+        password: "{password}");
+    var service = new AssistantService("{versionDate}", authenticator);
+    service.SetServiceUrl("{serviceUrl}");
 }
 ```
 
@@ -110,14 +107,13 @@ Like IAM, you can pass in credentials to let the SDK manage an access token for 
 ```cs
 void Example()
 {
-    Icp4dConfig icp4dConfig = new Icp4dConfig(
+    CloudPakForDataAuthenticator authenticator = new CloudPakForDataAuthenticator(
+        url: "https://{cp4d_cluster_host}{:port}",
         username: "{username}",
-        password: "{password}",
-        url: "https://{icp4d_cluster_host}{:port}"
-        );
-    AssistantService assistant = new AssistantService("{version-date}", icp4dConfig);
-    service.SetEndpoint("{service-endpoint}");
-    var results = assistant.Message("{workspace-id}", "{message-request}");
+        password: "{password}");
+    var service = new AssistantService("{version-date}", authenticator);
+    service.SetServiceUrl("{serviceUrl}");
+    var results = service.Message("{workspace-id}", "{message-request}");
 }
 ```
 
@@ -125,13 +121,11 @@ void Example()
 ```cs
 void Example()
 {
-    Icp4dConfig icp4dConfig = new Icp4dConfig(
-        userManagedAccessToken: "{access-token}",
-        url: "https://{icp4d_cluster_host}{:port}"
-        );
-    AssistantService assistant = new AssistantService("{version-date}", icp4dConfig);
-    service.SetEndpoint("{service-endpoint}");
-    var results = assistant.Message("{workspace-id}", "{message-request}");
+    BearerTokenAuthenticator authenticator = new BearerTokenAuthenticator(
+        bearerToken: "{bearerToken}");
+    var service = new AssistantService("{version-date}", authenticator);
+    service.SetServiceUrl("{serviceUrl}");
+    var results = service.Message("{workspace-id}", "{message-request}");
 }
 ```
 Be sure to both [disable SSL verification](#self-signed-certificates) when authenticating and set the endpoint explicitly to the URL given in ICP.
@@ -146,14 +140,14 @@ With a credential file, you just need to put the file in the right place and the
 
 The file downloaded will be called `ibm-credentials.env`. This is the name the SDK will search for and **must** be preserved unless you want to configure the file path (more on that later). The SDK will look for your `ibm-credentials.env` file in the following places (in order):
 
-- Your system's home directory
 - The top-level directory of the project you're using the SDK in
+- Your system's home directory
 
 As long as you set that up correctly, you don't have to worry about setting any authentication options in your code. So, for example, if you created and downloaded the credential file for your Discovery instance, you just need to do the following:
 
 ```cs
-AssistantService assistantService = new AssistantService();
-var listWorkspacesResult = assistantService.ListWorkspaces();
+AssistantService service = new AssistantService("{version-date}");
+var listWorkspacesResult = service.ListWorkspaces();
 ```
 
 And that's it!
@@ -177,13 +171,12 @@ You can send custom request headers by adding them to the service using `.WithHe
 ```cs
 void Example()
 {
-    IamConfig iamConfig = new IamConfig(
-        apikey: "{iam-apikey}"
-        );
-    AssistantService assistant = new AssistantService("{version-date}", iamConfig);
-    service.SetEndpoint("{service-endpoint}");
-    assistant.WithHeader("X-Watson-Metadata", "customer_id=some-assistant-customer-id");
-    var results = assistant.Message("{workspace-id}", "{message-request}");
+    IamAuthenticator authenticator = new IamAuthenticator(
+        apikey: "{apikey}");
+    var service = new AssistantService("{version-date}", authenticator);
+    service.SetServiceUrl("{serviceUrl}");
+    service.WithHeader("X-Watson-Metadata", "customer_id=some-assistant-customer-id");
+    var results = service.Message("{workspace-id}", "{message-request}");
 }
 ```
 
@@ -192,12 +185,11 @@ You can get the response headers, status code and the raw json response in the r
 ```cs
 void Example()
 {
-    IamConfig iamConfig = new IamConfig(
-        apikey: "{iam-apikey}"
-        );
-    AssistantService assistant = new AssistantService("{version-date}", iamConfig);
-    service.SetEndpoint("{service-endpoint}");
-    var results = assistant.Message("{workspace-id}", "{message-request}");
+    IamAuthenticator authenticator = new IamAuthenticator(
+        apikey: "{apikey}");
+    var service = new AssistantService("{version-date}", authenticator);
+    service.SetServiceUrl("{serviceUrl}");
+    var results = service.Message("{workspace-id}", "{message-request}");
     
     var responseHeaders = results.Headers;  //  The response headers
     var responseJson = results.Response;    //  The raw response json
@@ -210,15 +202,14 @@ You can disable SSL verification on calls to Watson (only do this if you really 
 ```cs
 void Example()
 {
-    Icp4dConfig icp4dConfig = new Icp4dConfig(
+    CloudPakForDataAuthenticator authenticator = new CloudPakForDataAuthenticator(
+        url: "https://{cp4d_cluster_host}{:port}",
         username: "{username}",
         password: "{password}",
-        url: "https://{icp4d_cluster_host}{:port}",
-        disableSslVerification: true
-        );
-    AssistantService assistant = new AssistantService("{version-date}", icp4dConfig);
-    service.SetEndpoint("{service-endpoint}");
-    var results = assistant.Message("{workspace-id}", "{message-request}");
+        disableSslVerification: true);
+    var service = new AssistantService("{version-date}", authenticator);
+    service.SetServiceUrl("{serviceUrl}");
+    var results = service.Message("{workspace-id}", "{message-request}");
 }
 ```
 

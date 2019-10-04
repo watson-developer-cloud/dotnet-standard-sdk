@@ -25,8 +25,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="IBM.Cloud.SDK.Core" Version="0.8.0" />
-        <PackageReference Include="IBM.Watson.Common" Version="3.0.1" />
+        <PackageReference Include="IBM.Cloud.SDK.Core" Version="1.0.0" />
+        <PackageReference Include="IBM.Watson.Common" Version="4.0.0" />
         <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
     </ItemGroup>
 

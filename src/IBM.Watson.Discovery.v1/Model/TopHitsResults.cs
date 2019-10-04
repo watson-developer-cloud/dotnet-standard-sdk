@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
-    /// TopHitsResults.
+    /// Top hit information for this query.
     /// </summary>
     public class TopHitsResults
     {

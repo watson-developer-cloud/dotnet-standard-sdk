@@ -15,6 +15,7 @@
 *
 */
 
+using IBM.Cloud.SDK.Core.Authentication.NoAuth;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Exceptions;
 using IBM.Watson.ToneAnalyzer.v3.Model;
@@ -38,37 +39,7 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
         public void Constructor_HttpClient_Null()
         {
             ToneAnalyzerService service =
-                new ToneAnalyzerService(null);
-        }
-
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void Constructor_UserName_Null()
-        {
-            ToneAnalyzerService service =
-                new ToneAnalyzerService(null, "password", versionDate);
-        }
-
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void Constructor_Password_Null()
-        {
-            ToneAnalyzerService service =
-                new ToneAnalyzerService("username", null, versionDate);
-        }
-
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void Constructor_Version_Null()
-        {
-            ToneAnalyzerService service =
-                new ToneAnalyzerService("username", "password", null);
-        }
-
-        [TestMethod]
-        public void Constructor_With_UserName_Password()
-        {
-            ToneAnalyzerService service =
-                new ToneAnalyzerService("username", "password", versionDate);
-
-            Assert.IsNotNull(service);
+                new ToneAnalyzerService(httpClient: null);
         }
 
         [TestMethod]
@@ -178,8 +149,6 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
 
             ToneAnalyzerService service = new ToneAnalyzerService(client);
             service.VersionDate = "2016-05-19";
-            service.UserName = "username";
-            service.Password = "password";
 
             ToneInput toneInput = new ToneInput()
             {
@@ -188,7 +157,6 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
 
             var analyzeTone = service.Tone(toneInput, "text/html");
 
-            //client.Received().PostAsync(Arg.Any<string>());
             Assert.IsNotNull(analyzeTone);
             Assert.IsNotNull(analyzeTone.Result.DocumentTone);
             Assert.IsNotNull(analyzeTone.Result.DocumentTone.ToneCategories);
@@ -294,14 +262,14 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
             };
             #endregion
 
-            ToneAnalyzerService service = new ToneAnalyzerService("username", "password", versionDate);
+            ToneAnalyzerService service = new ToneAnalyzerService(versionDate, new NoAuthAuthenticator());
             var analyzeTone = service.Tone(null, "application/json");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Tone_Empty_Version()
         {
-            ToneAnalyzerService service = new ToneAnalyzerService("username", "password", versionDate);
+            ToneAnalyzerService service = new ToneAnalyzerService(versionDate, new NoAuthAuthenticator());
             service.VersionDate = null;
 
             ToneInput toneInput = new ToneInput()
@@ -381,7 +349,7 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ToneChat_ToneChatInputEmpty()
         {
-            ToneAnalyzerService service = new ToneAnalyzerService("username", "password", versionDate);
+            ToneAnalyzerService service = new ToneAnalyzerService(versionDate, new NoAuthAuthenticator());
             var result = service.ToneChat(null);
         }
 
@@ -424,7 +392,7 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void ToneChat_Empty_Version()
         {
-            ToneAnalyzerService service = new ToneAnalyzerService("username", "password", versionDate);
+            ToneAnalyzerService service = new ToneAnalyzerService(versionDate, new NoAuthAuthenticator());
             service.VersionDate = null;
 
             var utterances = new List<Utterance>()

@@ -28,6 +28,19 @@ namespace IBM.Watson.Assistant.v1.Model
     public class OutputData : DynamicModel<object>
     {
         /// <summary>
+        /// An array of the nodes that were triggered to create the response, in the order in which they were visited.
+        /// This information is useful for debugging and for tracing the path taken through the node tree.
+        /// </summary>
+        [JsonProperty("nodes_visited", NullValueHandling = NullValueHandling.Ignore)]
+        public List<string> NodesVisited { get; set; }
+        /// <summary>
+        /// An array of objects containing detailed diagnostic information about the nodes that were triggered during
+        /// processing of the input message. Included only if **nodes_visited_details** is set to `true` in the message
+        /// request.
+        /// </summary>
+        [JsonProperty("nodes_visited_details", NullValueHandling = NullValueHandling.Ignore)]
+        public List<DialogNodeVisitedDetails> NodesVisitedDetails { get; set; }
+        /// <summary>
         /// An array of up to 50 messages logged with the request.
         /// </summary>
         [JsonProperty("log_messages", NullValueHandling = NullValueHandling.Ignore)]
@@ -42,20 +55,7 @@ namespace IBM.Watson.Assistant.v1.Model
         /// supported response types.
         /// </summary>
         [JsonProperty("generic", NullValueHandling = NullValueHandling.Ignore)]
-        public List<DialogRuntimeResponseGeneric> Generic { get; set; }
-        /// <summary>
-        /// An array of the nodes that were triggered to create the response, in the order in which they were visited.
-        /// This information is useful for debugging and for tracing the path taken through the node tree.
-        /// </summary>
-        [JsonProperty("nodes_visited", NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> NodesVisited { get; set; }
-        /// <summary>
-        /// An array of objects containing detailed diagnostic information about the nodes that were triggered during
-        /// processing of the input message. Included only if **nodes_visited_details** is set to `true` in the message
-        /// request.
-        /// </summary>
-        [JsonProperty("nodes_visited_details", NullValueHandling = NullValueHandling.Ignore)]
-        public List<DialogNodeVisitedDetails> NodesVisitedDetails { get; set; }
+        public List<RuntimeResponseGeneric> Generic { get; set; }
     }
 
 }

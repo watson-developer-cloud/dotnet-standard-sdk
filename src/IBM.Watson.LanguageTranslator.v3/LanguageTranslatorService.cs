@@ -20,11 +20,9 @@ using System.IO;
 using System.Net.Http;
 using System.Text;
 using IBM.Cloud.SDK.Core.Authentication;
-using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Http.Extensions;
 using IBM.Cloud.SDK.Core.Service;
-using IBM.Cloud.SDK.Core.Util;
 using IBM.Watson.LanguageTranslator.v3.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -34,83 +32,26 @@ namespace IBM.Watson.LanguageTranslator.v3
 {
     public partial class LanguageTranslatorService : IBMService, ILanguageTranslatorService
     {
-        new const string SERVICE_NAME = "language_translator";
-        const string URL = "https://gateway.watsonplatform.net/language-translator/api";
-        public new string DefaultEndpoint = "https://gateway.watsonplatform.net/language-translator/api";
-        private string _versionDate;
-        public string VersionDate
+        const string serviceName = "language_translator";
+        private const string defaultServiceUrl = "https://gateway.watsonplatform.net/language-translator/api";
+        public string VersionDate { get; set; }
+
+        public LanguageTranslatorService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public LanguageTranslatorService(IClient httpClient) : base(serviceName, httpClient) { }
+
+        public LanguageTranslatorService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
-            get { return _versionDate; }
-            set { _versionDate = value; }
-        }
-
-        public LanguageTranslatorService() : base(SERVICE_NAME) { }
-        
-        [Obsolete("Please use LanguageTranslatorService(string versionDate, IAuthenticatorConfig config) instead")]
-        public LanguageTranslatorService(string userName, string password, string versionDate) : base(SERVICE_NAME, URL)
-        {
-            if (string.IsNullOrEmpty(userName))
-                throw new ArgumentNullException(nameof(userName));
-
-            if (string.IsNullOrEmpty(password))
-                throw new ArgumentNullException(nameof(password));
-
-            this.SetCredential(userName, password);
             if (string.IsNullOrEmpty(versionDate))
+            {
                 throw new ArgumentNullException("versionDate cannot be null.");
-
-            VersionDate = versionDate;
-        }
-        
-        [Obsolete("Please use LanguageTranslatorService(string versionDate, IAuthenticatorConfig config) instead")]
-        public LanguageTranslatorService(TokenOptions options, string versionDate) : base(SERVICE_NAME, URL)
-        {
-            if (string.IsNullOrEmpty(options.IamApiKey) && string.IsNullOrEmpty(options.IamAccessToken))
-                throw new ArgumentNullException(nameof(options.IamAccessToken) + ", " + nameof(options.IamApiKey));
-            if (string.IsNullOrEmpty(versionDate))
-                throw new ArgumentNullException("versionDate cannot be null.");
-
+            }
+            
             VersionDate = versionDate;
 
-            if (!string.IsNullOrEmpty(options.ServiceUrl))
+            if (string.IsNullOrEmpty(ServiceUrl))
             {
-                this.Endpoint = options.ServiceUrl;
+                SetServiceUrl(defaultServiceUrl);
             }
-            else
-            {
-                options.ServiceUrl = this.Endpoint;
-            }
-
-            IamConfig iamConfig = null;
-            if (!string.IsNullOrEmpty(options.IamAccessToken))
-            {
-                iamConfig = new IamConfig(
-                    userManagedAccessToken: options.IamAccessToken
-                    );
-            }
-            else
-            {
-                iamConfig = new IamConfig(
-                    apikey: options.IamApiKey,
-                    iamUrl: options.IamUrl
-                    );
-            }
-
-            SetAuthenticator(iamConfig);
-        }
-
-        public LanguageTranslatorService(IClient httpClient) : base(SERVICE_NAME, URL)
-        {
-            if (httpClient == null)
-                throw new ArgumentNullException(nameof(httpClient));
-
-            this.Client = httpClient;
-            SkipAuthentication = true;
-        }
-
-        public LanguageTranslatorService(string versionDate, IAuthenticatorConfig config) : base(SERVICE_NAME, config)
-        {
-            VersionDate = versionDate;
         }
 
         /// <summary>
@@ -286,12 +227,12 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// </summary>
         /// <param name="source">Specify a language code to filter results by source language. (optional)</param>
         /// <param name="target">Specify a language code to filter results by target language. (optional)</param>
-        /// <param name="defaultModels">If the default parameter isn't specified, the service will return all models
-        /// (default and non-default) for each language pair. To return only default models, set this to `true`. To
-        /// return only non-default models, set this to `false`. There is exactly one default model per language pair,
-        /// the IBM provided base model. (optional)</param>
+        /// <param name="_default">If the default parameter isn't specified, the service will return all models (default
+        /// and non-default) for each language pair. To return only default models, set this to `true`. To return only
+        /// non-default models, set this to `false`. There is exactly one default model per language pair, the IBM
+        /// provided base model. (optional)</param>
         /// <returns><see cref="TranslationModels" />TranslationModels</returns>
-        public DetailedResponse<TranslationModels> ListModels(string source = null, string target = null, bool? defaultModels = null)
+        public DetailedResponse<TranslationModels> ListModels(string source = null, string target = null, bool? _default = null)
         {
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -318,9 +259,9 @@ namespace IBM.Watson.LanguageTranslator.v3
                 {
                     restRequest.WithArgument("target", target);
                 }
-                if (defaultModels != null)
+                if (_default != null)
                 {
-                    restRequest.WithArgument("default", defaultModels);
+                    restRequest.WithArgument("default", _default);
                 }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "ListModels"));

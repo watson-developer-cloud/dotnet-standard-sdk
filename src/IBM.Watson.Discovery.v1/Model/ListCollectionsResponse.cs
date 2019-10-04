@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
-    /// ListCollectionsResponse.
+    /// Response object containing an array of collection details.
     /// </summary>
     public class ListCollectionsResponse
     {

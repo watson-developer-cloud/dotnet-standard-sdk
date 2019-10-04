@@ -20,7 +20,7 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
-    /// QueryPassages.
+    /// A passage query result.
     /// </summary>
     public class QueryPassages
     {

@@ -19,7 +19,7 @@ $reportGenerator = '.\packages\ReportGenerator.2.4.5.0\tools\ReportGenerator.exe
 
 New-Item -path . -name coverage -itemtype directory
 
-Copy-Item .\test\VisualRecognition.v3.IntegrationTests\VisualRecognitionTestData .\VisualRecognitionTestData -recurse
+Copy-Item .\test\VisualRecognition.v4.IntegrationTests\VisualRecognitionTestData .\VisualRecognitionTestData -recurse
 Copy-Item .\test\SpeechToText.v1.IntegrationTests\SpeechToTextTestData .\SpeechToTextTestData -recurse
 Copy-Item .\test\Discovery.v1.IntegrationTests\DiscoveryTestData .\DiscoveryTestData -recurse
 Copy-Item .\test\CompareComply.v1.IntegrationTests\CompareComplyTestData .\CompareComplyTestData -recurse
@@ -28,9 +28,12 @@ Copy-Item .\test\NaturalLanguageClassifier.v1.IntegrationTests\NaturalLanguageCl
 
 ForEach ($folder in (Get-ChildItem -Path .\test -Directory)) 
 {
-    $targetArgs = '-targetargs: test ' + $folder.FullName + ' -c Release -f netcoreapp2.0'
-    $filter = '-filter:+[IBM.Watson*]*-[*Tests*]*-[*Example*]*'
-    & $openCover '-target:C:\\Program Files\\dotnet\\dotnet.exe' $targetArgs '-register:user' $filter '-oldStyle' '-mergeoutput' '-hideskipped:File' '-searchdirs:$testdir\\bin\\release\\netcoreapp2.0' '-output:coverage\\coverage.xml'
+    if(-Not ($folder.fullName -contains 'unit'))
+    {
+        $targetArgs = '-targetargs: test ' + $folder.FullName + ' -c Release -f netcoreapp2.0'
+        $filter = '-filter:+[IBM.Watson*]*-[*Tests*]*-[*Example*]*'
+        & $openCover '-target:C:\\Program Files\\dotnet\\dotnet.exe' $targetArgs '-register:user' $filter '-oldStyle' '-mergeoutput' '-hideskipped:File' '-searchdirs:$testdir\\bin\\release\\netcoreapp2.0' '-output:coverage\\coverage.xml'
+    }
 }
 
 & $reportGenerator -reports:coverage\coverage.xml -targetdir:coverage -verbosity:Error

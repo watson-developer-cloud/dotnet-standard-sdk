@@ -105,16 +105,22 @@ namespace IBM.Watson.VisualRecognition.v4
 
                 if (collectionIds != null)
                 {
-                    var collectionIdsContent = new StringContent(string.Join(",", collectionIds.ToArray()), Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    collectionIdsContent.Headers.ContentType = null;
-                    formData.Add(collectionIdsContent, "collection_ids");
+                    foreach (string item in collectionIds)
+                    {
+                        var collectionIdsContent = new StringContent(item, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                        collectionIdsContent.Headers.ContentType = null;
+                        formData.Add(collectionIdsContent, "collection_ids");
+                    }
                 }
 
                 if (features != null)
                 {
-                    var featuresContent = new StringContent(string.Join(",", features.ToArray()), Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    featuresContent.Headers.ContentType = null;
-                    formData.Add(featuresContent, "features");
+                    foreach (string item in features)
+                    {
+                        var featuresContent = new StringContent(item, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                        featuresContent.Headers.ContentType = null;
+                        formData.Add(featuresContent, "features");
+                    }
                 }
 
                 if (imagesFile != null)

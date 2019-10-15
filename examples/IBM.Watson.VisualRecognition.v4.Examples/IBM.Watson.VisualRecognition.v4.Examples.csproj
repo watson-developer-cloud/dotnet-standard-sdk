@@ -6,7 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\dotnet-sdk-core\src\IBM.Cloud.SDK.Core\IBM.Cloud.SDK.Core.csproj" />
+    <PackageReference Include="IBM.Cloud.SDK.Core" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\src\IBM.Watson.VisualRecognition.v4\IBM.Watson.VisualRecognition.v4.csproj" />
   </ItemGroup>
 

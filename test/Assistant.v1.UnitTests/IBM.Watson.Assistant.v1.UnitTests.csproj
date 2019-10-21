@@ -29,7 +29,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="IBM.Cloud.SDK.Core" Version="1.0.1" />
+    <PackageReference Include="coverlet.msbuild" Version="2.7.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="dotnet-reportgenerator-cli" Version="4.3.1" />
+    <PackageReference Include="IBM.Cloud.SDK.Core" Version="1.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.1.8-rc" />
     <PackageReference Include="MSTest.TestFramework" Version="1.0.8-rc" />

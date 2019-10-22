@@ -108,15 +108,6 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             var collectionIds = new List<string>() { "collectionIds0", "collectionIds1" };
             var features = new List<string>() { "features0", "features1" };
-            var imagesFile = new List<FileWithMetadata>()
-            {
-                new FileWithMetadata()
-                {
-                    Filename = "filename",
-                    ContentType = "contentType",
-                    Data = new System.IO.MemoryStream()
-                }
-            };
             var imageUrl = new List<string>() { "imageUrl0", "imageUrl1" };
             float? threshold = 0.5f;
 
@@ -252,17 +243,9 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
             service.VersionDate = versionDate;
-
+            var imagesFile = Model.FileWithMetadata;
             var collectionId = "collectionId";
-            var imagesFile = new List<FileWithMetadata>()
-            {
-                new FileWithMetadata()
-                {
-                    Filename = "filename",
-                    ContentType = "contentType",
-                    Data = new System.IO.MemoryStream()
-                }
-            };
+            
             var imageUrl = new List<string>() { "imageUrl0", "imageUrl1" };
             var trainingData = "trainingData";
 

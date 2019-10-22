@@ -30,6 +30,7 @@ using IBM.Cloud.SDK.Core.Http.Exceptions;
 using IBM.Cloud.SDK.Core.Authentication.NoAuth;
 using IBM.Watson.VisualRecognition.v4.Model;
 using IBM.Cloud.SDK.Core.Model;
+using System.Net;
 
 namespace IBM.Watson.VisualRecognition.v4.UnitTests
 {
@@ -199,16 +200,6 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             var result = service.UpdateCollection(collectionId: collectionId, name: name, description: description);
 
-            JObject bodyObject = new JObject();
-            if (!string.IsNullOrEmpty(name))
-            {
-                bodyObject["name"] = JToken.FromObject(name);
-            }
-            if (!string.IsNullOrEmpty(description))
-            {
-                bodyObject["description"] = JToken.FromObject(description);
-            }
-            var json = JsonConvert.SerializeObject(bodyObject);
             request.Received().WithArgument("version", versionDate);
             request.Received().WithBodyContent(Arg.Is<StringContent>(x => x.ReadAsStringAsync().Result.Equals(json)));
             client.Received().PostAsync($"{service.ServiceUrl}/v4/collections/{collectionId}");
@@ -243,10 +234,10 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
             service.VersionDate = versionDate;
-            var imagesFile = Model.FileWithMetadata;
+
             var collectionId = "collectionId";
-            
-            var imageUrl = new List<string>() { "imageUrl0", "imageUrl1" };
+            var imagesFile = Model.FileWithMetadata;
+            var imageUrl = new List<string>(){ "imageUrl0", "imageUrl1" };
             var trainingData = "trainingData";
 
             var result = service.AddImages(collectionId: collectionId, imagesFile: imagesFile, imageUrl: imageUrl, trainingData: trainingData);

@@ -4,13 +4,25 @@ if [ -d "coverage" ]; then
     rm -rf coverage
 fi
 
-dotnet test test/VisualRecognition.v4.UnitTests --logger:trx --results-directory ../../coverage \
+dotnet test test/Assistant.v1.UnitTests --logger:trx --results-directory ../../coverage \
     "/p:CollectCoverage=true" \
     "/p:CoverletOutputFormat=\"json,cobertura\"" \
     "/p:MergeWith=../../coverage/coverage.json" \
     "/p:CoverletOutput=../../coverage/"
 
-dotnet test test/Assistant.v1.UnitTests --logger:trx --results-directory ../../coverage \
+dotnet test test/Assistant.v2.UnitTests --logger:trx --results-directory ../../coverage \
+    "/p:CollectCoverage=true" \
+    "/p:CoverletOutputFormat=\"json,cobertura\"" \
+    "/p:MergeWith=../../coverage/coverage.json" \
+    "/p:CoverletOutput=../../coverage/"
+
+dotnet test test/VisualRecognition.v3.UnitTests --logger:trx --results-directory ../../coverage \
+    "/p:CollectCoverage=true" \
+    "/p:CoverletOutputFormat=\"json,cobertura\"" \
+    "/p:MergeWith=../../coverage/coverage.json" \
+    "/p:CoverletOutput=../../coverage/"
+
+dotnet test test/VisualRecognition.v4.UnitTests --logger:trx --results-directory ../../coverage \
     "/p:CollectCoverage=true" \
     "/p:CoverletOutputFormat=\"json,cobertura\"" \
     "/p:MergeWith=../../coverage/coverage.json" \

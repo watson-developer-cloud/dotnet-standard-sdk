@@ -29,396 +29,396 @@ using System.Threading.Tasks;
 
 namespace IBM.Watson.Assistant.v2.UnitTests
 {
-    [TestClass]
-    public class AssistantV2UnitTests
-    {
-        #region Constructor
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void Constructor_HttpClient_Null()
-        {
-            AssistantService service =
-                new AssistantService(httpClient: null);
-        }
+    //[TestClass]
+    //public class AssistantV2UnitTests
+    //{
+    //    #region Constructor
+    //    [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+    //    public void Constructor_HttpClient_Null()
+    //    {
+    //        AssistantService service =
+    //            new AssistantService(httpClient: null);
+    //    }
 
-        [TestMethod]
-        public void Constructor_HttpClient()
-        {
-            AssistantService service =
-                new AssistantService(CreateClient());
+    //    [TestMethod]
+    //    public void Constructor_HttpClient()
+    //    {
+    //        AssistantService service =
+    //            new AssistantService(CreateClient());
 
-            Assert.IsNotNull(service);
-        }
+    //        Assert.IsNotNull(service);
+    //    }
 
-        [TestMethod]
-        public void Constructor()
-        {
-            AssistantService service =
-                new AssistantService(new IBMHttpClient());
+    //    [TestMethod]
+    //    public void Constructor()
+    //    {
+    //        AssistantService service =
+    //            new AssistantService(new IBMHttpClient());
 
-            Assert.IsNotNull(service);
-        }
-        #endregion
+    //        Assert.IsNotNull(service);
+    //    }
+    //    #endregion
 
-        #region Create Client
-        private IClient CreateClient()
-        {
-            IClient client = Substitute.For<IClient>();
+    //    #region Create Client
+    //    private IClient CreateClient()
+    //    {
+    //        IClient client = Substitute.For<IClient>();
 
-            client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
-                .Returns(client);
+    //        client.WithAuthentication(Arg.Any<string>(), Arg.Any<string>())
+    //            .Returns(client);
 
-            return client;
-        }
-        #endregion
+    //        return client;
+    //    }
+    //    #endregion
 
-        #region Sessions
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void CreateSession_No_VersionDate()
-        {
-            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+    //    #region Sessions
+    //    [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+    //    public void CreateSession_No_VersionDate()
+    //    {
+    //        AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
+    //        service.VersionDate = null;
 
-            service.CreateSession("assistantId");
-        }
+    //        service.CreateSession("assistantId");
+    //    }
 
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void CreateSession_No_AssistantId()
-        {
-            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.CreateSession(null);
-        }
+    //    [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+    //    public void CreateSession_No_AssistantId()
+    //    {
+    //        AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
+    //        service.CreateSession(null);
+    //    }
 
-        [TestMethod, ExpectedException(typeof(AggregateException))]
-        public void CreateSession_Catch_Exception()
-        {
-            IClient client = CreateClient();
+    //    [TestMethod, ExpectedException(typeof(AggregateException))]
+    //    public void CreateSession_Catch_Exception()
+    //    {
+    //        IClient client = CreateClient();
 
-            IRequest request = Substitute.For<IRequest>();
-            client.PostAsync(Arg.Any<string>())
-                .Returns(x =>
-                {
-                    throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
-                                                                               Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
-                                                                               string.Empty));
-                });
+    //        IRequest request = Substitute.For<IRequest>();
+    //        client.PostAsync(Arg.Any<string>())
+    //            .Returns(x =>
+    //            {
+    //                throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+    //                                                                           Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+    //                                                                           string.Empty));
+    //            });
 
-            AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
-            service.CreateSession("assistantId");
-        }
+    //        AssistantService service = new AssistantService(client);
+    //        service.VersionDate = "versionDate";
+    //        service.CreateSession("assistantId");
+    //    }
 
-        [TestMethod]
-        public void CreateSession_Success()
-        {
-            IClient client = CreateClient();
+    //    [TestMethod]
+    //    public void CreateSession_Success()
+    //    {
+    //        IClient client = CreateClient();
 
-            IRequest request = Substitute.For<IRequest>();
-            client.PostAsync(Arg.Any<string>())
-                .Returns(request);
+    //        IRequest request = Substitute.For<IRequest>();
+    //        client.PostAsync(Arg.Any<string>())
+    //            .Returns(request);
 
-            #region Response
-            var response = Substitute.For<DetailedResponse<SessionResponse>>();
-            response.Result = new SessionResponse();
-            response.Result.SessionId = "sessionId";
-            #endregion
+    //        #region Response
+    //        var response = Substitute.For<DetailedResponse<SessionResponse>>();
+    //        response.Result = new SessionResponse();
+    //        response.Result.SessionId = "sessionId";
+    //        #endregion
 
-            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
-                .Returns(request);
-            request.As<SessionResponse>()
-                .Returns(Task.FromResult(response));
+    //        request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+    //            .Returns(request);
+    //        request.As<SessionResponse>()
+    //            .Returns(Task.FromResult(response));
 
-            AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+    //        AssistantService service = new AssistantService(client);
+    //        service.VersionDate = "versionDate";
 
-            var result = service.CreateSession("assistantId");
+    //        var result = service.CreateSession("assistantId");
 
-            Assert.IsNotNull(result);
-            client.Received().PostAsync(Arg.Any<string>());
-            Assert.IsNotNull(result.Result.SessionId);
-        }
+    //        Assert.IsNotNull(result);
+    //        client.Received().PostAsync(Arg.Any<string>());
+    //        Assert.IsNotNull(result.Result.SessionId);
+    //    }
 
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void DeleteSession_No_VersionDate()
-        {
-            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+    //    [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+    //    public void DeleteSession_No_VersionDate()
+    //    {
+    //        AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
+    //        service.VersionDate = null;
 
-            service.DeleteSession("assistantId", "sessionId");
-        }
+    //        service.DeleteSession("assistantId", "sessionId");
+    //    }
 
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void DeleteSession_No_AssistantId()
-        {
-            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.DeleteSession(null, "sessionId");
-        }
+    //    [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+    //    public void DeleteSession_No_AssistantId()
+    //    {
+    //        AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
+    //        service.DeleteSession(null, "sessionId");
+    //    }
 
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void DeleteSession_No_SessionId()
-        {
-            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.DeleteSession("assistantId", null);
-        }
+    //    [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+    //    public void DeleteSession_No_SessionId()
+    //    {
+    //        AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
+    //        service.DeleteSession("assistantId", null);
+    //    }
 
-        [TestMethod, ExpectedException(typeof(AggregateException))]
-        public void DeleteSession_Catch_Exception()
-        {
-            IClient client = CreateClient();
+    //    [TestMethod, ExpectedException(typeof(AggregateException))]
+    //    public void DeleteSession_Catch_Exception()
+    //    {
+    //        IClient client = CreateClient();
 
-            IRequest request = Substitute.For<IRequest>();
-            client.DeleteAsync(Arg.Any<string>())
-                .Returns(x =>
-                {
-                    throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
-                                                                               Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
-                                                                               string.Empty));
-                });
+    //        IRequest request = Substitute.For<IRequest>();
+    //        client.DeleteAsync(Arg.Any<string>())
+    //            .Returns(x =>
+    //            {
+    //                throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+    //                                                                           Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+    //                                                                           string.Empty));
+    //            });
 
-            AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
-            service.DeleteSession("assistantId", "sessionId");
-        }
+    //        AssistantService service = new AssistantService(client);
+    //        service.VersionDate = "versionDate";
+    //        service.DeleteSession("assistantId", "sessionId");
+    //    }
 
-        [TestMethod]
-        public void DeleteSession_Success()
-        {
-            IClient client = CreateClient();
+    //    [TestMethod]
+    //    public void DeleteSession_Success()
+    //    {
+    //        IClient client = CreateClient();
 
-            IRequest request = Substitute.For<IRequest>();
-            client.DeleteAsync(Arg.Any<string>())
-                .Returns(request);
+    //        IRequest request = Substitute.For<IRequest>();
+    //        client.DeleteAsync(Arg.Any<string>())
+    //            .Returns(request);
 
-            #region Response
-            var response = Substitute.For<DetailedResponse<object>>();
-            #endregion
+    //        #region Response
+    //        var response = Substitute.For<DetailedResponse<object>>();
+    //        #endregion
 
-            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
-                .Returns(request);
-            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
-                .Returns(request);
-            request.As<object>()
-                .Returns(Task.FromResult(response));
+    //        request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+    //            .Returns(request);
+    //        request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+    //            .Returns(request);
+    //        request.As<object>()
+    //            .Returns(Task.FromResult(response));
 
-            AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+    //        AssistantService service = new AssistantService(client);
+    //        service.VersionDate = "versionDate";
 
-            var result = service.DeleteSession("assistantId", "sessionId");
+    //        var result = service.DeleteSession("assistantId", "sessionId");
 
-            Assert.IsNotNull(result);
-            client.Received().DeleteAsync(Arg.Any<string>());
-        }
-        #endregion
+    //        Assert.IsNotNull(result);
+    //        client.Received().DeleteAsync(Arg.Any<string>());
+    //    }
+    //    #endregion
 
-        #region Message
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void Message_No_VersionDate()
-        {
-            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+    //    #region Message
+    //    [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+    //    public void Message_No_VersionDate()
+    //    {
+    //        AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
+    //        service.VersionDate = null;
 
-            service.Message("assistantId", "sessionId");
-        }
+    //        service.Message("assistantId", "sessionId");
+    //    }
 
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void Message_No_AssistantId()
-        {
-            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.Message(null, "sessionId");
-        }
+    //    [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+    //    public void Message_No_AssistantId()
+    //    {
+    //        AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
+    //        service.Message(null, "sessionId");
+    //    }
 
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void Message_No_SessionId()
-        {
-            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.Message("assistantId", null);
-        }
+    //    [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+    //    public void Message_No_SessionId()
+    //    {
+    //        AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
+    //        service.Message("assistantId", null);
+    //    }
 
-        [TestMethod, ExpectedException(typeof(AggregateException))]
-        public void Message_Catch_Exception()
-        {
-            IClient client = CreateClient();
+    //    [TestMethod, ExpectedException(typeof(AggregateException))]
+    //    public void Message_Catch_Exception()
+    //    {
+    //        IClient client = CreateClient();
 
-            IRequest request = Substitute.For<IRequest>();
-            client.PostAsync(Arg.Any<string>())
-                .Returns(x =>
-                {
-                    throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
-                                                                               Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
-                                                                               string.Empty));
-                });
+    //        IRequest request = Substitute.For<IRequest>();
+    //        client.PostAsync(Arg.Any<string>())
+    //            .Returns(x =>
+    //            {
+    //                throw new AggregateException(new ServiceResponseException(Substitute.For<IResponse>(),
+    //                                                                           Substitute.For<HttpResponseMessage>(HttpStatusCode.BadRequest),
+    //                                                                           string.Empty));
+    //            });
 
-            AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
-            service.Message("assistantId", "sessionId");
-        }
+    //        AssistantService service = new AssistantService(client);
+    //        service.VersionDate = "versionDate";
+    //        service.Message("assistantId", "sessionId");
+    //    }
 
-        [TestMethod]
-        public void Message_Success()
-        {
-            IClient client = CreateClient();
+    //    [TestMethod]
+    //    public void Message_Success()
+    //    {
+    //        IClient client = CreateClient();
 
-            IRequest request = Substitute.For<IRequest>();
-            client.PostAsync(Arg.Any<string>())
-                .Returns(request);
+    //        IRequest request = Substitute.For<IRequest>();
+    //        client.PostAsync(Arg.Any<string>())
+    //            .Returns(request);
 
-            #region Response
-            var response = Substitute.For<DetailedResponse<MessageResponse>>();
-            response.Result = new MessageResponse();
-            response.Result.Output = new MessageOutput()
-            {
-                Generic = new List<RuntimeResponseGeneric>()
-                {
-                    new RuntimeResponseGeneric()
-                    {
-                        ResponseType = RuntimeResponseGeneric.ResponseTypeEnumValue.TEXT,
-                        Preference = RuntimeResponseGeneric.PreferenceEnumValue.BUTTON,
-                        Text = "text",
-                        Time = 1,
-                        Typing = true,
-                        Source = "source",
-                        Title = "title",
-                        Description = "description",
-                        Options = new List<DialogNodeOutputOptionsElement>()
-                        {
-                            new DialogNodeOutputOptionsElement()
-                            {
-                                Label = "label",
-                                Value = new DialogNodeOutputOptionsElementValue()
-                                {
-                                    Input = new MessageInput()
-                                    {
-                                        MessageType = MessageInput.MessageTypeEnumValue.TEXT,
-                                        Text = "text",
-                                        Options = new MessageInputOptions()
-                                        {
-                                            Debug = false,
-                                            Restart = false,
-                                            AlternateIntents = false,
-                                            ReturnContext = false
-                                        },
-                                        Intents = new List<RuntimeIntent>()
-                                        {
-                                            new RuntimeIntent()
-                                            {
-                                                Intent = "intent",
-                                                Confidence = 0.5
-                                            }
-                                        },
-                                        Entities = new List<RuntimeEntity>()
-                                        {
-                                            new RuntimeEntity()
-                                            {
-                                                Entity = "entity",
-                                                Location = new List<long?>()
-                                                {
-                                                    1
-                                                },
-                                                Value = "value",
-                                                Confidence = 0.5f,
-                                                Groups = new List<CaptureGroup>()
-                                                {
-                                                    new CaptureGroup()
-                                                    {
-                                                        Group = "group",
-                                                        Location = new List<long?>()
-                                                        {
-                                                            1
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        },
-                                        SuggestionId = "suggestionid"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                Intents = new List<RuntimeIntent>()
-                {
-                    new RuntimeIntent()
-                    {
-                        Intent = "intent",
-                        Confidence = 0.5
-                    }
-                },
-                Entities = new List<RuntimeEntity>()
-                {
-                    new RuntimeEntity()
-                    {
-                        Entity = "entity",
-                        Location = new List<long?>()
-                        {
-                            1
-                        },
-                        Value = "value",
-                        Confidence = 0.5f,
-                        Groups = new List<CaptureGroup>()
-                        {
-                            new CaptureGroup()
-                            {
-                                Group = "group",
-                                Location = new List<long?>()
-                                {
-                                    1
-                                }
-                            }
-                        }
-                    }
-                },
-                Actions = new List<DialogNodeAction>()
-                {
-                    new DialogNodeAction()
-                },
-                Debug = new MessageOutputDebug()
-                {
-                    BranchExitedReason = MessageOutputDebug.BranchExitedReasonEnumValue.COMPLETED,
-                    NodesVisited = new List<DialogNodesVisited>()
-                    {
-                        new DialogNodesVisited()
-                    },
-                    LogMessages = new List<DialogLogMessage>()
-                    {
-                        new DialogLogMessage()
-                    },
-                    BranchExited = true
-                }
-            };
-            response.Result.Context = new MessageContext()
-            {
-                Global = new MessageContextGlobal()
-                {
-                    System = new MessageContextGlobalSystem()
-                    {
-                        Timezone = "CST",
-                        UserId = "watson",
-                        TurnCount = 2
-                    }
-                },
-                Skills = new MessageContextSkills()
-                {
+    //        #region Response
+    //        var response = Substitute.For<DetailedResponse<MessageResponse>>();
+    //        response.Result = new MessageResponse();
+    //        response.Result.Output = new MessageOutput()
+    //        {
+    //            Generic = new List<RuntimeResponseGeneric>()
+    //            {
+    //                new RuntimeResponseGeneric()
+    //                {
+    //                    ResponseType = RuntimeResponseGeneric.ResponseTypeEnumValue.TEXT,
+    //                    Preference = RuntimeResponseGeneric.PreferenceEnumValue.BUTTON,
+    //                    Text = "text",
+    //                    Time = 1,
+    //                    Typing = true,
+    //                    Source = "source",
+    //                    Title = "title",
+    //                    Description = "description",
+    //                    Options = new List<DialogNodeOutputOptionsElement>()
+    //                    {
+    //                        new DialogNodeOutputOptionsElement()
+    //                        {
+    //                            Label = "label",
+    //                            Value = new DialogNodeOutputOptionsElementValue()
+    //                            {
+    //                                Input = new MessageInput()
+    //                                {
+    //                                    MessageType = MessageInput.MessageTypeEnumValue.TEXT,
+    //                                    Text = "text",
+    //                                    Options = new MessageInputOptions()
+    //                                    {
+    //                                        Debug = false,
+    //                                        Restart = false,
+    //                                        AlternateIntents = false,
+    //                                        ReturnContext = false
+    //                                    },
+    //                                    Intents = new List<RuntimeIntent>()
+    //                                    {
+    //                                        new RuntimeIntent()
+    //                                        {
+    //                                            Intent = "intent",
+    //                                            Confidence = 0.5
+    //                                        }
+    //                                    },
+    //                                    Entities = new List<RuntimeEntity>()
+    //                                    {
+    //                                        new RuntimeEntity()
+    //                                        {
+    //                                            Entity = "entity",
+    //                                            Location = new List<long?>()
+    //                                            {
+    //                                                1
+    //                                            },
+    //                                            Value = "value",
+    //                                            Confidence = 0.5f,
+    //                                            Groups = new List<CaptureGroup>()
+    //                                            {
+    //                                                new CaptureGroup()
+    //                                                {
+    //                                                    Group = "group",
+    //                                                    Location = new List<long?>()
+    //                                                    {
+    //                                                        1
+    //                                                    }
+    //                                                }
+    //                                            }
+    //                                        }
+    //                                    },
+    //                                    SuggestionId = "suggestionid"
+    //                                }
+    //                            }
+    //                        }
+    //                    }
+    //                }
+    //            },
+    //            Intents = new List<RuntimeIntent>()
+    //            {
+    //                new RuntimeIntent()
+    //                {
+    //                    Intent = "intent",
+    //                    Confidence = 0.5
+    //                }
+    //            },
+    //            Entities = new List<RuntimeEntity>()
+    //            {
+    //                new RuntimeEntity()
+    //                {
+    //                    Entity = "entity",
+    //                    Location = new List<long?>()
+    //                    {
+    //                        1
+    //                    },
+    //                    Value = "value",
+    //                    Confidence = 0.5f,
+    //                    Groups = new List<CaptureGroup>()
+    //                    {
+    //                        new CaptureGroup()
+    //                        {
+    //                            Group = "group",
+    //                            Location = new List<long?>()
+    //                            {
+    //                                1
+    //                            }
+    //                        }
+    //                    }
+    //                }
+    //            },
+    //            Actions = new List<DialogNodeAction>()
+    //            {
+    //                new DialogNodeAction()
+    //            },
+    //            Debug = new MessageOutputDebug()
+    //            {
+    //                BranchExitedReason = MessageOutputDebug.BranchExitedReasonEnumValue.COMPLETED,
+    //                NodesVisited = new List<DialogNodesVisited>()
+    //                {
+    //                    new DialogNodesVisited()
+    //                },
+    //                LogMessages = new List<DialogLogMessage>()
+    //                {
+    //                    new DialogLogMessage()
+    //                },
+    //                BranchExited = true
+    //            }
+    //        };
+    //        response.Result.Context = new MessageContext()
+    //        {
+    //            Global = new MessageContextGlobal()
+    //            {
+    //                System = new MessageContextGlobalSystem()
+    //                {
+    //                    Timezone = "CST",
+    //                    UserId = "watson",
+    //                    TurnCount = 2
+    //                }
+    //            },
+    //            Skills = new MessageContextSkills()
+    //            {
 
-                }
-            };
-            #endregion
+    //            }
+    //        };
+    //        #endregion
 
-            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
-                .Returns(request);
-            request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
-                .Returns(request);
-            request.As<MessageResponse>()
-                .Returns(Task.FromResult(response));
+    //        request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+    //            .Returns(request);
+    //        request.WithArgument(Arg.Any<string>(), Arg.Any<string>())
+    //            .Returns(request);
+    //        request.As<MessageResponse>()
+    //            .Returns(Task.FromResult(response));
 
-            AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+    //        AssistantService service = new AssistantService(client);
+    //        service.VersionDate = "versionDate";
 
-            var result = service.Message("assistantId", "sessionId");
+    //        var result = service.Message("assistantId", "sessionId");
 
-            Assert.IsNotNull(result);
-            client.Received().PostAsync(Arg.Any<string>());
+    //        Assert.IsNotNull(result);
+    //        client.Received().PostAsync(Arg.Any<string>());
 
-        }
-        #endregion
-    }
+    //    }
+    //    #endregion
+    //}
 }

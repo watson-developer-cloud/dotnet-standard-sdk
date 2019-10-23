@@ -130,6 +130,10 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             var name = "name";
             var description = "description";
+            var result = service.CreateCollection(
+                name: name,
+                description: description
+                );
 
             var result = service.CreateCollection(name: name, description: description);
 
@@ -236,7 +240,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
             service.VersionDate = versionDate;
 
             var collectionId = "collectionId";
-            var imagesFile = Model.FileWithMetadata;
+            var imagesFile = new List<FileWithMetadata>();
             var imageUrl = new List<string>(){ "imageUrl0", "imageUrl1" };
             var trainingData = "trainingData";
 
@@ -359,6 +363,11 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
             var collectionId = "collectionId";
             var imageId = "imageId";
             var objects = new List<TrainingDataObject>();
+            var result = service.AddImageTrainingData(
+                collectionId: collectionId,
+                imageId: imageId,
+                objects: objects
+                );
 
             var result = service.AddImageTrainingData(collectionId: collectionId, imageId: imageId, objects: objects);
 

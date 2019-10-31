@@ -147,8 +147,6 @@ namespace IBM.Watson.Assistant.v2.UnitTests
 
             var assistantId = "assistantId";
             var sessionId = "sessionId";
-            var input = new MessageInput();
-            var context = new MessageContext();
 
             var result = service.Message(assistantId: assistantId, sessionId: sessionId, input: input, context: context);
 

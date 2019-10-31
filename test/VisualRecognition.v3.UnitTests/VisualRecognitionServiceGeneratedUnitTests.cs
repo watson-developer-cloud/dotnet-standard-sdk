@@ -118,6 +118,7 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
             var result = service.Classify(imagesFile: imagesFile, imagesFilename: imagesFilename, imagesFileContentType: imagesFileContentType, url: url, threshold: threshold, owners: owners, classifierIds: classifierIds, acceptLanguage: acceptLanguage);
 
             request.Received().WithArgument("version", versionDate);
+
         }
         [TestMethod]
         public void CreateClassifier_Success()
@@ -140,6 +141,7 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
             var result = service.CreateClassifier(name: name, positiveExamples: positiveExamples, negativeExamples: negativeExamples, negativeExamplesFilename: negativeExamplesFilename);
 
             request.Received().WithArgument("version", versionDate);
+
         }
         [TestMethod]
         public void ListClassifiers_Success()
@@ -200,6 +202,7 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
 
             request.Received().WithArgument("version", versionDate);
             client.Received().PostAsync($"{service.ServiceUrl}/v3/classifiers/{classifierId}");
+
         }
         [TestMethod]
         public void DeleteClassifier_Success()

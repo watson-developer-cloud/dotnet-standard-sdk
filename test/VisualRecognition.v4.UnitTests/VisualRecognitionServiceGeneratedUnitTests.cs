@@ -199,6 +199,8 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
             service.VersionDate = versionDate;
 
             var collectionId = "collectionId";
+            var name = "name";
+            var description = "description";
 
             var result = service.UpdateCollection(collectionId: collectionId, name: name, description: description);
 
@@ -212,7 +214,6 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
                 bodyObject["description"] = JToken.FromObject(description);
             }
             var json = JsonConvert.SerializeObject(bodyObject);
-
             request.Received().WithArgument("version", versionDate);
             request.Received().WithBodyContent(Arg.Is<StringContent>(x => x.ReadAsStringAsync().Result.Equals(json)));
             client.Received().PostAsync($"{service.ServiceUrl}/v4/collections/{collectionId}");
@@ -249,12 +250,17 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
             service.VersionDate = versionDate;
 
             var collectionId = "collectionId";
-            var imagesFile = new FileWithMetadata();
-                var imagesFile = new List<FileWithMetadata>();
+            var imagesFile = new List<FileWithMetadata>()
+            {
+                new FileWithMetadata()
+                {
+                    Filename = "filename",
+                    ContentType = "contentType",
+                    Data = new System.IO.MemoryStream()
+                }
+            };
             var imageUrl = new List<string>() { "imageUrl0", "imageUrl1" };
-                var imageUrl = new List<string>();
             var trainingData = "trainingData";
-                var trainingData = new string();
 
             var result = service.AddImages(collectionId: collectionId, imagesFile: imagesFile, imageUrl: imageUrl, trainingData: trainingData);
 

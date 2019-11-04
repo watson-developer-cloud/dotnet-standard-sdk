@@ -107,6 +107,12 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             service.VersionDate = versionDate;
 
             var workspaceId = "workspaceId";
+            var input = new MessageInput();
+            var intents = new List<RuntimeIntent>();
+            var entities = new List<RuntimeEntity>();
+            var alternateIntents = false;
+            var context = new Context();
+            var output = new OutputData();
             var nodesVisitedDetails = false;
 
             var result = service.Message(workspaceId: workspaceId, input: input, intents: intents, entities: entities, alternateIntents: alternateIntents, context: context, output: output, nodesVisitedDetails: nodesVisitedDetails);
@@ -300,6 +306,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             service.VersionDate = versionDate;
 
             var workspaceId = "workspaceId";
+            var intent = "intent";
+            var description = "description";
+            var examples = new List<Example>();
 
             var result = service.CreateIntent(workspaceId: workspaceId, intent: intent, description: description, examples: examples);
 
@@ -357,6 +366,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var workspaceId = "workspaceId";
             var intent = "intent";
+            var newIntent = "newIntent";
+            var newDescription = "newDescription";
+            var newExamples = new List<Example>();
 
             var result = service.UpdateIntent(workspaceId: workspaceId, intent: intent, newIntent: newIntent, newDescription: newDescription, newExamples: newExamples);
 
@@ -436,6 +448,8 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var workspaceId = "workspaceId";
             var intent = "intent";
+            var text = "text";
+            var mentions = new List<Mention>();
 
             var result = service.CreateExample(workspaceId: workspaceId, intent: intent, text: text, mentions: mentions);
 
@@ -490,6 +504,8 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var workspaceId = "workspaceId";
             var intent = "intent";
             var text = "text";
+            var newText = "newText";
+            var newMentions = new List<Mention>();
 
             var result = service.UpdateExample(workspaceId: workspaceId, intent: intent, text: text, newText: newText, newMentions: newMentions);
 
@@ -564,6 +580,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             service.VersionDate = versionDate;
 
             var workspaceId = "workspaceId";
+            var text = "text";
 
             var result = service.CreateCounterexample(workspaceId: workspaceId, text: text);
 
@@ -612,6 +629,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var workspaceId = "workspaceId";
             var text = "text";
+            var newText = "newText";
 
             var result = service.UpdateCounterexample(workspaceId: workspaceId, text: text, newText: newText);
 
@@ -1032,6 +1050,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var workspaceId = "workspaceId";
             var entity = "entity";
             var value = "value";
+            var synonym = "synonym";
 
             var result = service.CreateSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym);
 
@@ -1084,6 +1103,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var entity = "entity";
             var value = "value";
             var synonym = "synonym";
+            var newSynonym = "newSynonym";
 
             var result = service.UpdateSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym, newSynonym: newSynonym);
 

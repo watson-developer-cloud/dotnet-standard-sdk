@@ -57,7 +57,6 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
             System.Environment.SetEnvironmentVariable("TEXT_TO_SPEECH_APIKEY", "apikey");
             TextToSpeechService service = Substitute.For<TextToSpeechService>();
             Assert.IsNotNull(service);
-            System.Environment.SetEnvironmentVariable("TEXT_TO_SPEECH_APIKEY", apikey);
         }
 
         [TestMethod]
@@ -102,6 +101,7 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
             var result = service.ListVoices();
 
         }
+
         [TestMethod]
         public void GetVoice_Success()
         {
@@ -119,6 +119,7 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
 
             client.Received().GetAsync($"{service.ServiceUrl}/v1/voices/{voice}");
         }
+
         [TestMethod]
         public void Synthesize_Success()
         {
@@ -129,7 +130,6 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
 
             TextToSpeechService service = new TextToSpeechService(client);
 
-            var text = "text";
             var accept = "accept";
             var voice = "voice";
             var customizationId = "customizationId";
@@ -142,8 +142,10 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
                 bodyObject["text"] = JToken.FromObject(text);
             }
             var json = JsonConvert.SerializeObject(bodyObject);
+
             request.Received().WithBodyContent(Arg.Is<StringContent>(x => x.ReadAsStringAsync().Result.Equals(json)));
         }
+
         [TestMethod]
         public void GetPronunciation_Success()
         {
@@ -162,6 +164,7 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
             var result = service.GetPronunciation(text: text, voice: voice, format: format, customizationId: customizationId);
 
         }
+
         [TestMethod]
         public void CreateVoiceModel_Success()
         {
@@ -172,9 +175,6 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
 
             TextToSpeechService service = new TextToSpeechService(client);
 
-            var name = "name";
-            var language = "language";
-            var description = "description";
 
             var result = service.CreateVoiceModel(name: name, language: language, description: description);
 
@@ -192,8 +192,10 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
                 bodyObject["description"] = JToken.FromObject(description);
             }
             var json = JsonConvert.SerializeObject(bodyObject);
+
             request.Received().WithBodyContent(Arg.Is<StringContent>(x => x.ReadAsStringAsync().Result.Equals(json)));
         }
+
         [TestMethod]
         public void ListVoiceModels_Success()
         {
@@ -209,6 +211,7 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
             var result = service.ListVoiceModels(language: language);
 
         }
+
         [TestMethod]
         public void UpdateVoiceModel_Success()
         {
@@ -220,9 +223,6 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
             TextToSpeechService service = new TextToSpeechService(client);
 
             var customizationId = "customizationId";
-            var name = "name";
-            var description = "description";
-            var words = new List<Word>();
 
             var result = service.UpdateVoiceModel(customizationId: customizationId, name: name, description: description, words: words);
 
@@ -240,9 +240,11 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
                 bodyObject["words"] = JToken.FromObject(words);
             }
             var json = JsonConvert.SerializeObject(bodyObject);
+
             request.Received().WithBodyContent(Arg.Is<StringContent>(x => x.ReadAsStringAsync().Result.Equals(json)));
             client.Received().PostAsync($"{service.ServiceUrl}/v1/customizations/{customizationId}");
         }
+
         [TestMethod]
         public void GetVoiceModel_Success()
         {
@@ -259,6 +261,7 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
 
             client.Received().GetAsync($"{service.ServiceUrl}/v1/customizations/{customizationId}");
         }
+
         [TestMethod]
         public void DeleteVoiceModel_Success()
         {
@@ -275,6 +278,7 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
 
             client.Received().DeleteAsync($"{service.ServiceUrl}/v1/customizations/{customizationId}");
         }
+
         [TestMethod]
         public void AddWords_Success()
         {
@@ -286,7 +290,6 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
             TextToSpeechService service = new TextToSpeechService(client);
 
             var customizationId = "customizationId";
-            var words = new List<Word>();
 
             var result = service.AddWords(customizationId: customizationId, words: words);
 
@@ -296,9 +299,11 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
                 bodyObject["words"] = JToken.FromObject(words);
             }
             var json = JsonConvert.SerializeObject(bodyObject);
+
             request.Received().WithBodyContent(Arg.Is<StringContent>(x => x.ReadAsStringAsync().Result.Equals(json)));
             client.Received().PostAsync($"{service.ServiceUrl}/v1/customizations/{customizationId}/words");
         }
+
         [TestMethod]
         public void ListWords_Success()
         {
@@ -315,6 +320,7 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
 
             client.Received().GetAsync($"{service.ServiceUrl}/v1/customizations/{customizationId}/words");
         }
+
         [TestMethod]
         public void AddWord_Success()
         {
@@ -327,8 +333,6 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
 
             var customizationId = "customizationId";
             var word = "word";
-            var translation = "translation";
-            var partOfSpeech = "partOfSpeech";
 
             var result = service.AddWord(customizationId: customizationId, word: word, translation: translation, partOfSpeech: partOfSpeech);
 
@@ -342,9 +346,11 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
                 bodyObject["part_of_speech"] = JToken.FromObject(partOfSpeech);
             }
             var json = JsonConvert.SerializeObject(bodyObject);
+
             request.Received().WithBodyContent(Arg.Is<StringContent>(x => x.ReadAsStringAsync().Result.Equals(json)));
             client.Received().PutAsync($"{service.ServiceUrl}/v1/customizations/{customizationId}/words/{word}");
         }
+
         [TestMethod]
         public void GetWord_Success()
         {
@@ -362,6 +368,7 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
 
             client.Received().GetAsync($"{service.ServiceUrl}/v1/customizations/{customizationId}/words/{word}");
         }
+
         [TestMethod]
         public void DeleteWord_Success()
         {
@@ -379,6 +386,7 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
 
             client.Received().DeleteAsync($"{service.ServiceUrl}/v1/customizations/{customizationId}/words/{word}");
         }
+
         [TestMethod]
         public void DeleteUserData_Success()
         {
@@ -394,5 +402,6 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
             var result = service.DeleteUserData(customerId: customerId);
 
         }
+
     }
 }

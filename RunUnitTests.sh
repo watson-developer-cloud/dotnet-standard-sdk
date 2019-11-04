@@ -16,6 +16,60 @@ dotnet test test/Assistant.v2.UnitTests --logger:trx --results-directory ../../c
     "/p:MergeWith=../../coverage/coverage.json" \
     "/p:CoverletOutput=../../coverage/"
 
+dotnet test test/CompareComply.v1.UnitTests --logger:trx --results-directory ../../coverage \
+    "/p:CollectCoverage=true" \
+    "/p:CoverletOutputFormat=\"json,cobertura\"" \
+    "/p:MergeWith=../../coverage/coverage.json" \
+    "/p:CoverletOutput=../../coverage/"
+
+dotnet test test/Discovery.v1.UnitTests --logger:trx --results-directory ../../coverage \
+    "/p:CollectCoverage=true" \
+    "/p:CoverletOutputFormat=\"json,cobertura\"" \
+    "/p:MergeWith=../../coverage/coverage.json" \
+    "/p:CoverletOutput=../../coverage/"
+
+dotnet test test/LanguageTranslator.v3.UnitTests --logger:trx --results-directory ../../coverage \
+    "/p:CollectCoverage=true" \
+    "/p:CoverletOutputFormat=\"json,cobertura\"" \
+    "/p:MergeWith=../../coverage/coverage.json" \
+    "/p:CoverletOutput=../../coverage/"
+
+dotnet test test/NaturalLanguageClassifier.v1.UnitTests --logger:trx --results-directory ../../coverage \
+    "/p:CollectCoverage=true" \
+    "/p:CoverletOutputFormat=\"json,cobertura\"" \
+    "/p:MergeWith=../../coverage/coverage.json" \
+    "/p:CoverletOutput=../../coverage/"
+
+dotnet test test/NaturalLanguageUnderstanding.v1.UnitTests --logger:trx --results-directory ../../coverage \
+    "/p:CollectCoverage=true" \
+    "/p:CoverletOutputFormat=\"json,cobertura\"" \
+    "/p:MergeWith=../../coverage/coverage.json" \
+    "/p:CoverletOutput=../../coverage/"
+
+dotnet test test/PersonalityInsights.v3.UnitTests --logger:trx --results-directory ../../coverage \
+    "/p:CollectCoverage=true" \
+    "/p:CoverletOutputFormat=\"json,cobertura\"" \
+    "/p:MergeWith=../../coverage/coverage.json" \
+    "/p:CoverletOutput=../../coverage/"
+
+dotnet test test/SpeechToText.v1.UnitTests --logger:trx --results-directory ../../coverage \
+    "/p:CollectCoverage=true" \
+    "/p:CoverletOutputFormat=\"json,cobertura\"" \
+    "/p:MergeWith=../../coverage/coverage.json" \
+    "/p:CoverletOutput=../../coverage/"
+
+dotnet test test/TextToSpeech.v1.UnitTests --logger:trx --results-directory ../../coverage \
+    "/p:CollectCoverage=true" \
+    "/p:CoverletOutputFormat=\"json,cobertura\"" \
+    "/p:MergeWith=../../coverage/coverage.json" \
+    "/p:CoverletOutput=../../coverage/"
+
+dotnet test test/ToneAnalyzer.v3.UnitTests --logger:trx --results-directory ../../coverage \
+    "/p:CollectCoverage=true" \
+    "/p:CoverletOutputFormat=\"json,cobertura\"" \
+    "/p:MergeWith=../../coverage/coverage.json" \
+    "/p:CoverletOutput=../../coverage/"
+
 dotnet test test/VisualRecognition.v3.UnitTests --logger:trx --results-directory ../../coverage \
     "/p:CollectCoverage=true" \
     "/p:CoverletOutputFormat=\"json,cobertura\"" \

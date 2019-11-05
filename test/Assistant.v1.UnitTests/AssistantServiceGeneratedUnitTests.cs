@@ -1349,4 +1349,5 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             request.Received().WithArgument("version", versionDate);
         }
     }
+    }
 }

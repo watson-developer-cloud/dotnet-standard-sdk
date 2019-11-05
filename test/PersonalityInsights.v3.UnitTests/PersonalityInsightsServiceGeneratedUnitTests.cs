@@ -149,4 +149,5 @@ namespace IBM.Watson.PersonalityInsights.v3.UnitTests
             request.Received().WithBodyContent(Arg.Is<StringContent>(x => x.ReadAsStringAsync().Result.Equals(json)));
         }
     }
+    }
 }

@@ -261,4 +261,5 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
             request.Received().WithArgument("version", versionDate);
         }
     }
+    }
 }

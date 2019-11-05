@@ -133,6 +133,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v2/assistants/{assistantId}/sessions/{sessionId}");
         }
+
         [TestMethod]
         public void Message_Success()
         {

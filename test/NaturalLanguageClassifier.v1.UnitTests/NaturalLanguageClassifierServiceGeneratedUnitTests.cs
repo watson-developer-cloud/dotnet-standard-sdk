@@ -199,4 +199,5 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
             client.Received().DeleteAsync($"{service.ServiceUrl}/v1/classifiers/{classifierId}");
         }
     }
+    }
 }

@@ -438,4 +438,5 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
             request.Received().WithArgument("version", versionDate);
         }
     }
+    }
 }

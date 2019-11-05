@@ -192,4 +192,5 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
             client.Received().DeleteAsync($"{service.ServiceUrl}/v1/models/{modelId}");
         }
     }
+    }
 }

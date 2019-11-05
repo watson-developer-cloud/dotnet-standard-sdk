@@ -879,4 +879,5 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
         }
     }
+    }
 }

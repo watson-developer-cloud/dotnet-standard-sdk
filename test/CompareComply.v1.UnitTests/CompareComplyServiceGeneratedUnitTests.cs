@@ -368,4 +368,13 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
             client.Received().PutAsync($"{service.ServiceUrl}/v1/batches/{batchId}");
         }
     }
+
+    [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+    public void UpdateBatch_NoAction()
+    {
+        CompareComplyService service = new CompareComplyService("versionDate", new NoAuthAuthenticator());
+        string action = null;
+        var result = service.UpdateBatch(batchId: batchId, action: action, model: model);
+    }
+    }
 }

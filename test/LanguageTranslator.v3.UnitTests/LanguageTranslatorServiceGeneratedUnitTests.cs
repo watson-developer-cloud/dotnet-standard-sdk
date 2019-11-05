@@ -349,4 +349,5 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
             client.Received().GetAsync($"{service.ServiceUrl}/v3/documents/{documentId}/translated_document");
         }
     }
+    }
 }

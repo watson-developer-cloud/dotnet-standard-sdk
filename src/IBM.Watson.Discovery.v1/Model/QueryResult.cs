@@ -46,11 +46,6 @@ namespace IBM.Watson.Discovery.v1.Model
         /// </summary>
         [JsonProperty("result_metadata", NullValueHandling = NullValueHandling.Ignore)]
         public QueryResultMetadata ResultMetadata { get; set; }
-        /// <summary>
-        /// Automatically extracted result title.
-        /// </summary>
-        [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
-        public string Title { get; set; }
     }
 
 }

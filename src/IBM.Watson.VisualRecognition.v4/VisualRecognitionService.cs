@@ -105,16 +105,22 @@ namespace IBM.Watson.VisualRecognition.v4
 
                 if (collectionIds != null)
                 {
-                    var collectionIdsContent = new StringContent(string.Join(",", collectionIds.ToArray()), Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    collectionIdsContent.Headers.ContentType = null;
-                    formData.Add(collectionIdsContent, "collection_ids");
+                    foreach (string item in collectionIds)
+                    {
+                        var collectionIdsContent = new StringContent(item, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                        collectionIdsContent.Headers.ContentType = null;
+                        formData.Add(collectionIdsContent, "collection_ids");
+                    }
                 }
 
                 if (features != null)
                 {
-                    var featuresContent = new StringContent(string.Join(",", features.ToArray()), Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    featuresContent.Headers.ContentType = null;
-                    formData.Add(featuresContent, "features");
+                    foreach (string item in features)
+                    {
+                        var featuresContent = new StringContent(item, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                        featuresContent.Headers.ContentType = null;
+                        formData.Add(featuresContent, "features");
+                    }
                 }
 
                 if (imagesFile != null)
@@ -745,7 +751,9 @@ namespace IBM.Watson.VisualRecognition.v4
         /// </summary>
         /// <param name="collectionId">The identifier of the collection.</param>
         /// <param name="imageId">The identifier of the image.</param>
-        /// <param name="size">Specify the image size. (optional, default to full)</param>
+        /// <param name="size">The image size. Specify `thumbnail` to return a version that maintains the original
+        /// aspect ratio but is no larger than 200 pixels in the larger dimension. For example, an original 800 x 1000
+        /// image is resized to 160 x 200 pixels. (optional, default to full)</param>
         /// <returns><see cref="byte[]" />byte[]</returns>
         public DetailedResponse<System.IO.MemoryStream> GetJpegImage(string collectionId, string imageId, string size = null)
         {
@@ -925,6 +933,64 @@ namespace IBM.Watson.VisualRecognition.v4
                 if (result == null)
                 {
                     result = new DetailedResponse<TrainingDataObjects>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get training usage.
+        ///
+        /// Information about the completed training events. You can use this information to determine how close you are
+        /// to the training limits for the month.
+        /// </summary>
+        /// <param name="startTime">The earliest day to include training events. Specify dates in YYYY-MM-DD format. If
+        /// empty or not specified, the earliest training event is included. (optional)</param>
+        /// <param name="endTime">The most recent day to include training events. Specify dates in YYYY-MM-DD format.
+        /// All events for the day are included. If empty or not specified, the current day is used. Specify the same
+        /// value as `start_time` to request events for a single day. (optional)</param>
+        /// <returns><see cref="TrainingEvents" />TrainingEvents</returns>
+        public DetailedResponse<TrainingEvents> GetTrainingUsage(string startTime = null, string endTime = null)
+        {
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<TrainingEvents> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v4/training_usage");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(startTime))
+                {
+                    restRequest.WithArgument("start_time", startTime);
+                }
+                if (!string.IsNullOrEmpty(endTime))
+                {
+                    restRequest.WithArgument("end_time", endTime);
+                }
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v4", "GetTrainingUsage"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<TrainingEvents>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<TrainingEvents>();
                 }
             }
             catch (AggregateException ae)

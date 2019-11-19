@@ -288,11 +288,11 @@ namespace IBM.Watson.VisualRecognition.v3.IntegrationTests
             autoEvent.WaitOne();
 
             service.WithHeader("X-Watson-Test", "1");
-            var deleteClassifierResult = service.DeleteClassifier(
-                classifierId: createdClassifierId
-                );
+            //var deleteClassifierResult = service.DeleteClassifier(
+            //    classifierId: createdClassifierId
+            //    );
 
-            Assert.IsNotNull(deleteClassifierResult.Result);
+            //Assert.IsNotNull(deleteClassifierResult.Result);
             Assert.IsNotNull(getCoreMlModelResult.Result);
             Assert.IsNotNull(updateClassifierResult.Result);
             Assert.IsTrue(updateClassifierResult.Result.ClassifierId == createdClassifierId);

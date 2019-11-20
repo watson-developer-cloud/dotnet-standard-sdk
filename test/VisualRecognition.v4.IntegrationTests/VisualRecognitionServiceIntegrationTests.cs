@@ -195,7 +195,9 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
 
             var getJpgImageResult = service.GetJpegImage(
                 collectionId: collectionId,
-                imageId: imageId);
+                imageId: imageId, 
+                size: "thumbnail"
+                );
 
             //  Save file
             using (FileStream fs = File.Create("giraffe.jpg"))
@@ -301,6 +303,32 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
             Assert.IsTrue(addTrainingDataResult.Result.Objects[0]._Object == objectName);
         }
         #endregion
+
+        #region Training Usage
+        [TestMethod]
+        public void GetTrainingUsage()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var startTime = "2019-11-18";
+            var endTime = "2019-11-20";
+            var getTrainingUsageResult = service.GetTrainingUsage(
+                startTime: startTime, 
+                endTime: endTime
+                );
+
+            Assert.IsNotNull(getTrainingUsageResult.Result);
+            Assert.IsTrue(getTrainingUsageResult.Result.StartTime.Value.Year == 2019);
+            Assert.IsTrue(getTrainingUsageResult.Result.StartTime.Value.Month == 11);
+            Assert.IsTrue(getTrainingUsageResult.Result.StartTime.Value.Day == 18);
+            Assert.IsTrue(getTrainingUsageResult.Result.EndTime.Value.Year == 2019);
+            Assert.IsTrue(getTrainingUsageResult.Result.EndTime.Value.Month == 11);
+            Assert.IsTrue(getTrainingUsageResult.Result.EndTime.Value.Day == 20);
+            Assert.IsTrue(getTrainingUsageResult.Result.TrainedImages > 0);
+            Assert.IsTrue(getTrainingUsageResult.Result.Events.Count > 0);
+            Assert.IsTrue(getTrainingUsageResult.Result.Events[0].CollectionId == collectionId);
+        }
+        #endregion
+
 
         #region Delete labeled data
         [TestMethod]

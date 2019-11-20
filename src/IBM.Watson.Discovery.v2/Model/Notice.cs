@@ -71,6 +71,11 @@ namespace IBM.Watson.Discovery.v2.Model
         [JsonProperty("document_id", NullValueHandling = NullValueHandling.Ignore)]
         public virtual string DocumentId { get; private set; }
         /// <summary>
+        /// Unique identifier of the collection.
+        /// </summary>
+        [JsonProperty("collection_id", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual string CollectionId { get; private set; }
+        /// <summary>
         /// Unique identifier of the query used for relevance training.
         /// </summary>
         [JsonProperty("query_id", NullValueHandling = NullValueHandling.Ignore)]

@@ -33,13 +33,8 @@ namespace IBM.Watson.Discovery.v2.Model
         /// <summary>
         /// Array of document results that match the query.
         /// </summary>
-        [JsonProperty("results", NullValueHandling = NullValueHandling.Ignore)]
-        public List<QueryNoticesResult> Results { get; set; }
-        /// <summary>
-        /// Array of aggregation results that match the query.
-        /// </summary>
-        [JsonProperty("aggregations", NullValueHandling = NullValueHandling.Ignore)]
-        public List<QueryAggregation> Aggregations { get; set; }
+        [JsonProperty("notices", NullValueHandling = NullValueHandling.Ignore)]
+        public List<Notice> Notices { get; set; }
     }
 
 }

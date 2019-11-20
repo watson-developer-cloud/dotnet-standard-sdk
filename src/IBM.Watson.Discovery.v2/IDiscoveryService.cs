@@ -25,8 +25,8 @@ namespace IBM.Watson.Discovery.v2
     {
         DetailedResponse<ListCollectionsResponse> ListCollections(string projectId);
         DetailedResponse<QueryResponse> Query(string projectId, List<string> collectionIds = null, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> _return = null, long? offset = null, string sort = null, bool? highlight = null, bool? spellingSuggestions = null, QueryLargeTableResults tableResults = null, QueryLargeSuggestedRefinements suggestedRefinements = null, QueryLargePassages passages = null);
-        DetailedResponse<Completions> GetAutocompletion(string projectId, List<string> collectionIds = null, string field = null, string prefix = null, long? count = null);
-        DetailedResponse<QueryNoticesResponse> QueryNotices(string projectId, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> _return = null, long? offset = null, List<string> sort = null, bool? highlight = null, bool? spellingSuggestions = null);
+        DetailedResponse<Completions> GetAutocompletion(string projectId, string prefix, List<string> collectionIds = null, string field = null, long? count = null);
+        DetailedResponse<QueryNoticesResponse> QueryNotices(string projectId, string filter = null, string query = null, string naturalLanguageQuery = null, long? count = null, long? offset = null);
         DetailedResponse<ListFieldsResponse> ListFields(string projectId, List<string> collectionIds = null);
         DetailedResponse<ComponentSettingsResponse> GetComponentSettings(string projectId);
         DetailedResponse<DocumentAccepted> AddDocument(string projectId, string collectionId, System.IO.MemoryStream file = null, string filename = null, string fileContentType = null, string metadata = null, bool? xWatsonDiscoveryForce = null);
@@ -36,6 +36,6 @@ namespace IBM.Watson.Discovery.v2
         DetailedResponse<object> DeleteTrainingQueries(string projectId);
         DetailedResponse<TrainingQuery> CreateTrainingQuery(string projectId, string naturalLanguageQuery = null, string filter = null, List<TrainingExample> examples = null);
         DetailedResponse<TrainingQuery> GetTrainingQuery(string projectId, string queryId);
-        DetailedResponse<TrainingExample> UpdateTrainingQuery(string projectId, string queryId, string naturalLanguageQuery = null, string filter = null, List<TrainingExample> examples = null);
+        DetailedResponse<TrainingQuery> UpdateTrainingQuery(string projectId, string queryId, string naturalLanguageQuery = null, string filter = null, List<TrainingExample> examples = null);
     }
 }

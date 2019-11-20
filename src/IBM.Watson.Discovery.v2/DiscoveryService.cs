@@ -225,15 +225,15 @@ namespace IBM.Watson.Discovery.v2
         /// </summary>
         /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
         /// Discovery administrative tooling.</param>
+        /// <param name="prefix">The prefix to use for autocompletion. For example, the prefix `Ho` could autocomplete
+        /// to `Hot`, `Housing`, or `How do I upgrade`. Possible completions are.</param>
         /// <param name="collectionIds">Comma separated list of the collection IDs. If this parameter is not specified,
         /// all collections in the project are used. (optional)</param>
         /// <param name="field">The field in the result documents that autocompletion suggestions are identified from.
         /// (optional)</param>
-        /// <param name="prefix">The prefix to use for autocompletion. For example, the prefix `Ho` could autocomplete
-        /// to `Hot`, `Housing`, or `How do I upgrade`. Possible completions are. (optional)</param>
         /// <param name="count">The number of autocompletion suggestions to return. (optional)</param>
         /// <returns><see cref="Completions" />Completions</returns>
-        public DetailedResponse<Completions> GetAutocompletion(string projectId, List<string> collectionIds = null, string field = null, string prefix = null, long? count = null)
+        public DetailedResponse<Completions> GetAutocompletion(string projectId, string prefix, List<string> collectionIds = null, string field = null, long? count = null)
         {
             if (string.IsNullOrEmpty(projectId))
             {
@@ -242,6 +242,10 @@ namespace IBM.Watson.Discovery.v2
             else
             {
                 projectId = Uri.EscapeDataString(projectId);
+            }
+            if (string.IsNullOrEmpty(prefix))
+            {
+                throw new ArgumentNullException("`prefix` is required for `GetAutocompletion`");
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -260,6 +264,10 @@ namespace IBM.Watson.Discovery.v2
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(prefix))
+                {
+                    restRequest.WithArgument("prefix", prefix);
+                }
                 if (collectionIds != null && collectionIds.Count > 0)
                 {
                     restRequest.WithArgument("collection_ids", string.Join(",", collectionIds.ToArray()));
@@ -267,10 +275,6 @@ namespace IBM.Watson.Discovery.v2
                 if (!string.IsNullOrEmpty(field))
                 {
                     restRequest.WithArgument("field", field);
-                }
-                if (!string.IsNullOrEmpty(prefix))
-                {
-                    restRequest.WithArgument("prefix", prefix);
                 }
                 if (count != null)
                 {
@@ -310,27 +314,13 @@ namespace IBM.Watson.Discovery.v2
         /// text, but with the most relevant documents listed first. (optional)</param>
         /// <param name="naturalLanguageQuery">A natural language query that returns relevant documents by utilizing
         /// training data and natural language understanding. (optional)</param>
-        /// <param name="aggregation">An aggregation search that returns an exact answer by combining query search with
-        /// filters. Useful for applications to build lists, tables, and time series. For a full list of possible
-        /// aggregations, see the Query reference. (optional)</param>
         /// <param name="count">Number of results to return. The maximum for the **count** and **offset** values
         /// together in any one query is **10000**. (optional)</param>
-        /// <param name="_return">A comma-separated list of the portion of the document hierarchy to return.
-        /// (optional)</param>
         /// <param name="offset">The number of query results to skip at the beginning. For example, if the total number
         /// of results that are returned is 10 and the offset is 8, it returns the last two results. The maximum for the
         /// **count** and **offset** values together in any one query is **10000**. (optional)</param>
-        /// <param name="sort">A comma-separated list of fields in the document to sort on. You can optionally specify a
-        /// sort direction by prefixing the field with `-` for descending or `+` for ascending. Ascending is the default
-        /// sort direction if no prefix is specified. (optional)</param>
-        /// <param name="highlight">When true, a highlight field is returned for each result which contains the fields
-        /// which match the query with `<em></em>` tags around the matching query terms. (optional, default to
-        /// false)</param>
-        /// <param name="spellingSuggestions">When `true` and the **natural_language_query** parameter is used, the
-        /// **natural_language_query** parameter is spell checked. The most likely correction is returned in the
-        /// **suggested_query** field of the response (if one exists). (optional, default to false)</param>
         /// <returns><see cref="QueryNoticesResponse" />QueryNoticesResponse</returns>
-        public DetailedResponse<QueryNoticesResponse> QueryNotices(string projectId, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> _return = null, long? offset = null, List<string> sort = null, bool? highlight = null, bool? spellingSuggestions = null)
+        public DetailedResponse<QueryNoticesResponse> QueryNotices(string projectId, string filter = null, string query = null, string naturalLanguageQuery = null, long? count = null, long? offset = null)
         {
             if (string.IsNullOrEmpty(projectId))
             {
@@ -369,33 +359,13 @@ namespace IBM.Watson.Discovery.v2
                 {
                     restRequest.WithArgument("natural_language_query", naturalLanguageQuery);
                 }
-                if (!string.IsNullOrEmpty(aggregation))
-                {
-                    restRequest.WithArgument("aggregation", aggregation);
-                }
                 if (count != null)
                 {
                     restRequest.WithArgument("count", count);
                 }
-                if (_return != null && _return.Count > 0)
-                {
-                    restRequest.WithArgument("return", string.Join(",", _return.ToArray()));
-                }
                 if (offset != null)
                 {
                     restRequest.WithArgument("offset", offset);
-                }
-                if (sort != null && sort.Count > 0)
-                {
-                    restRequest.WithArgument("sort", string.Join(",", sort.ToArray()));
-                }
-                if (highlight != null)
-                {
-                    restRequest.WithArgument("highlight", highlight);
-                }
-                if (spellingSuggestions != null)
-                {
-                    restRequest.WithArgument("spelling_suggestions", spellingSuggestions);
                 }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "QueryNotices"));
@@ -1105,8 +1075,8 @@ namespace IBM.Watson.Discovery.v2
         /// Discovery administrative tooling.</param>
         /// <param name="queryId">The ID of the query used for training.</param>
         /// <param name="body">The body of the example that is to be added to the specified query.</param>
-        /// <returns><see cref="TrainingExample" />TrainingExample</returns>
-        public DetailedResponse<TrainingExample> UpdateTrainingQuery(string projectId, string queryId, string naturalLanguageQuery = null, string filter = null, List<TrainingExample> examples = null)
+        /// <returns><see cref="TrainingQuery" />TrainingQuery</returns>
+        public DetailedResponse<TrainingQuery> UpdateTrainingQuery(string projectId, string queryId, string naturalLanguageQuery = null, string filter = null, List<TrainingExample> examples = null)
         {
             if (string.IsNullOrEmpty(projectId))
             {
@@ -1130,7 +1100,7 @@ namespace IBM.Watson.Discovery.v2
                 throw new ArgumentNullException("versionDate cannot be null.");
             }
 
-            DetailedResponse<TrainingExample> result = null;
+            DetailedResponse<TrainingQuery> result = null;
 
             try
             {
@@ -1163,10 +1133,10 @@ namespace IBM.Watson.Discovery.v2
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
-                result = restRequest.As<TrainingExample>().Result;
+                result = restRequest.As<TrainingQuery>().Result;
                 if (result == null)
                 {
-                    result = new DetailedResponse<TrainingExample>();
+                    result = new DetailedResponse<TrainingQuery>();
                 }
             }
             catch (AggregateException ae)

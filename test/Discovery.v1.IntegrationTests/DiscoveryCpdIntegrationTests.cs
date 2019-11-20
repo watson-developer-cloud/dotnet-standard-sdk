@@ -20,7 +20,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace IBM.Watson.Discovery.v1.IntegrationTests
 {
-    [TestClass]
+    //[TestClass] //  CPD only
     public class DiscoveryCpdIntegrationTests
     {
         private DiscoveryService service;
@@ -48,7 +48,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             collectionId = listCollectionsResult.Result.Collections[0].CollectionId;
         }
 
-        //[TestMethod]  //  CPD only
+        [TestMethod]
         public void TestAutocompletion()
         {
             var autoCompletionResult = service.GetAutocompletion(environmentId: environmentId, collectionId: collectionId, prefix: "ho");
@@ -58,7 +58,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             Assert.IsNotNull(autoCompletionResult.Result._Completions[0]);
         }
 
-        //[TestMethod]  //  CPD only
+        [TestMethod]
         public void TestSpellingSuggestions()
         {
             var queryResult = service.Query(environmentId: environmentId, collectionId: collectionId, naturalLanguageQuery: "cluod", spellingSuggestions: true);

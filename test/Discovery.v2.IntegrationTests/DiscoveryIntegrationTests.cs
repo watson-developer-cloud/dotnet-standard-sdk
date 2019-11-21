@@ -15,25 +15,35 @@
 *
 */
 
+using IBM.Cloud.SDK.Core.Authentication;
+using IBM.Cloud.SDK.Core.Authentication.Bearer;
+using IBM.Cloud.SDK.Core.Http;
 using IBM.Watson.Discovery.v2.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.IO;
 
 namespace IBM.Watson.Discovery.v2.IntegrationTests
 {
-    [TestClass]
+    //[TestClass]
     public class DiscoveryIntegrationTests
     {
         private DiscoveryService service;
         private string versionDate = "2019-11-20";
+        private string filepathToIngest = @"DiscoveryTestData\watson_beats_jeopardy.html";
+        private string metadata = "{\"Creator\": \".NET SDK Test\",\"Subject\": \"Discovery service\"}";
+        private string bearerToken = "";
+        private string serviceUrl = "";
         private string projectId = "";
-        private string collectionId;
-        private string queryId;
+        private string collectionId = "";
 
         [TestInitialize]
         public void Setup()
         {
-            service = new DiscoveryService(versionDate);
+            Authenticator discoveryAuthenticator = new BearerTokenAuthenticator(bearerToken: bearerToken);
+            service = new DiscoveryService(versionDate: versionDate, authenticator: discoveryAuthenticator);
+            service.SetServiceUrl(serviceUrl: serviceUrl);
+            service.DisableSslVerification(true);
         }
 
         #region Collections
@@ -56,15 +66,13 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
         [TestMethod]
         public void TestQuery()
         {
-            service.WithHeader("X-Watson-Test", "1");
-            string filter = "";
-            string query = "text:IBM";
-            string naturalLanguageQuery = "";
-            string aggregation = "";
+            string filter = "entities.text:IBM";
+            string query = "relations.action.lemmatized:acquire";
+            string aggregation = "filter(enriched_text.concepts.text:cloud computing)";
             long count = 5;
-            List<string> _return = new List<string>() { "" };
+            List<string> _return = new List<string>() { "title", "url" };
             long offset = 1;
-            string sort = "";
+            string sort = "sort=enriched_text.sentiment.document.score";
             bool highlight = true;
             bool spellingSuggestions = true;
             QueryLargeTableResults tableResults = new QueryLargeTableResults()
@@ -84,17 +92,20 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
                 MaxPerDocument = 3,
                 Fields = new List<string>()
                 {
-                    ""
+                    "text",
+                    "abstract",
+                    "conclusion"
                 },
                 Count = 3,
                 Characters = 100
             };
+
+            service.WithHeader("X-Watson-Test", "1");
             var queryResult = service.Query(
                 projectId: projectId,
                 collectionIds: new List<string>() { collectionId },
                 filter: filter,
                 query: query,
-                naturalLanguageQuery: naturalLanguageQuery,
                 aggregation: aggregation,
                 count: count,
                 _return: _return,
@@ -108,24 +119,99 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
                 );
 
             Assert.IsNotNull(queryResult.Result);
+            Assert.IsTrue(queryResult.Result.Aggregations[0].Type == "filter");
+            Assert.IsTrue((queryResult.Result.Aggregations[0] as QueryFilterAggregation).Match == "enriched_text.concepts.text:cloud computing");
+        }
+
+        [TestMethod]
+        public void TestNaturalLanguageQuery()
+        {
+            string filter = "entities.text:IBM";
+            string naturalLanguageQuery = "What is IBM's stock price?";
+
+            service.WithHeader("X-Watson-Test", "1");
+            var queryResult = service.Query(
+                projectId: projectId,
+                collectionIds: new List<string>() { collectionId },
+                filter: filter,
+                naturalLanguageQuery: naturalLanguageQuery
+                );
+
+            Assert.IsNotNull(queryResult.Result);
+            Assert.IsNotNull(queryResult.Result.Aggregations[0]);
+            Assert.IsTrue((queryResult.Result.Aggregations[0] as QueryTermAggregation).Field == "enriched_text.entities.text");
+            Assert.IsTrue((queryResult.Result.Aggregations[0] as QueryTermAggregation).Type == "term");
         }
 
         [TestMethod]
         public void TestGetAutocompletion()
         {
-            Assert.Fail();
+            service.WithHeader("X-Watson-Test", "1");
+            var getAutocompletionResult = service.GetAutocompletion(
+                projectId: projectId,
+                prefix: "ha"
+                );
+
+            Assert.IsNotNull(getAutocompletionResult.Result);
+            Assert.IsNotNull(getAutocompletionResult.Result._Completions);
+            Assert.IsTrue(getAutocompletionResult.Result._Completions.Count > 0);
         }
 
         [TestMethod]
         public void TestQueryNotices()
         {
-            Assert.Fail();
+            service.WithHeader("X-Watson-Test", "1");
+            var queryNoticesResult0 = service.QueryNotices(
+                projectId: projectId
+                );
+
+            Assert.IsNotNull(queryNoticesResult0.Result);
+            Assert.IsNotNull(queryNoticesResult0.Result.MatchingResults);
+            Assert.IsNotNull(queryNoticesResult0.Result.Notices);
+
+            string filter = "entities.text:IBM";
+            string query = "relations.action.lemmatized:acquire";
+
+            service.WithHeader("X-Watson-Test", "1");
+            var queryNoticesResult1 = service.QueryNotices(
+                projectId: projectId,
+                filter: filter,
+                query: query,
+                count: 3,
+                offset: 1
+                );
+
+            Assert.IsNotNull(queryNoticesResult1.Result);
+            Assert.IsNotNull(queryNoticesResult1.Result.MatchingResults);
+            Assert.IsNotNull(queryNoticesResult1.Result.Notices);
+
+            string naturalLanguageQuery = "What is IBM's stock price?";
+
+            service.WithHeader("X-Watson-Test", "1");
+            var queryNoticesResult2 = service.QueryNotices(
+                projectId: projectId,
+                filter: filter,
+                naturalLanguageQuery: naturalLanguageQuery,
+                count: 3,
+                offset: 1
+                );
+
+            Assert.IsNotNull(queryNoticesResult2.Result);
+            Assert.IsNotNull(queryNoticesResult2.Result.MatchingResults);
+            Assert.IsNotNull(queryNoticesResult2.Result.Notices);
         }
 
         [TestMethod]
         public void TestListFields()
         {
-            Assert.Fail();
+            service.WithHeader("X-Watson-Test", "1");
+            var listFieldsResult = service.ListFields(
+                projectId: projectId
+                );
+
+            Assert.IsNotNull(listFieldsResult.Result);
+            Assert.IsNotNull(listFieldsResult.Result.Fields);
+            Assert.IsTrue(listFieldsResult.Result.Fields.Count > 0);
         }
         #endregion
 
@@ -133,53 +219,178 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
         [TestMethod]
         public void TestGetComponentSettings()
         {
-            Assert.Fail();
+            service.WithHeader("X-Watson-Test", "1");
+            var getComponentSettingsResult = service.GetComponentSettings(
+                projectId: projectId
+                );
+
+            Assert.IsNotNull(getComponentSettingsResult.Result);
+            Assert.IsNotNull(getComponentSettingsResult.Result.ResultsPerPage);
+            Assert.IsNotNull(getComponentSettingsResult.Result.FieldsShown);
+            Assert.IsNotNull(getComponentSettingsResult.Result.Aggregations);
+            Assert.IsNotNull(getComponentSettingsResult.Result.Autocomplete);
         }
         #endregion
 
         #region Documents
         [TestMethod]
-        public void TestAddDocument()
+        public void TestAddDeleteDocument()
         {
-            Assert.Fail();
-        }
+            DetailedResponse<DocumentAccepted> addDocumentResult = null;
+            using (FileStream fs = File.OpenRead(filepathToIngest))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    fs.CopyTo(ms);
 
-        [TestMethod]
-        public void TestDeleteDocument()
-        {
-            Assert.Fail();
+                    service.WithHeader("X-Watson-Test", "1");
+                    addDocumentResult = service.AddDocument(
+                        projectId: projectId,
+                        collectionId: collectionId,
+                        file: ms,
+                        filename: "watson_beats_jeopardy.html",
+                        fileContentType: "text/html",
+                        metadata: metadata,
+                        xWatsonDiscoveryForce: false
+                        );
+                }
+            }
+
+            Assert.IsNotNull(addDocumentResult.Result);
+            Assert.IsNotNull(addDocumentResult.Result.DocumentId);
+            Assert.IsNotNull(addDocumentResult.Result.Status);
+
+            var documentId = addDocumentResult.Result.DocumentId;
+
+            service.WithHeader("X-Watson-Test", "1");
+            var deleteDocumentResult = service.DeleteDocument(
+                projectId: projectId,
+                collectionId: collectionId,
+                documentId: documentId,
+                xWatsonDiscoveryForce: false
+                );
+
+            Assert.IsNotNull(deleteDocumentResult.Result);
+            Assert.IsNotNull(deleteDocumentResult.Result.DocumentId);
+            Assert.IsNotNull(deleteDocumentResult.Result.Status);
         }
         #endregion
 
         #region Training Data
         [TestMethod]
-        public void TestListTrainingQueries()
+        public void TestTrainingQueries()
         {
-            Assert.Fail();
-        }
+            DetailedResponse<DocumentAccepted> addDocumentResult = null;
+            using (FileStream fs = File.OpenRead(filepathToIngest))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    fs.CopyTo(ms);
 
-        [TestMethod]
-        public void TestDeleteTrainingQueries()
-        {
-            Assert.Fail();
-        }
+                    service.WithHeader("X-Watson-Test", "1");
+                    addDocumentResult = service.AddDocument(
+                        projectId: projectId,
+                        collectionId: collectionId,
+                        file: ms,
+                        filename: "watson_beats_jeopardy.html",
+                        fileContentType: "text/html",
+                        metadata: metadata,
+                        xWatsonDiscoveryForce: false
+                        );
+                }
+            }
 
-        [TestMethod]
-        public void TestCreateTrainingQuery()
-        {
-            Assert.Fail();
-        }
+            var documentId = addDocumentResult.Result.DocumentId;
 
-        [TestMethod]
-        public void TestGetTrainingQuery()
-        {
-            Assert.Fail();
-        }
+            service.WithHeader("X-Watson-Test", "1");
+            var listTrainingQueriesResult = service.ListTrainingQueries(
+                projectId: projectId
+                );
 
-        [TestMethod]
-        public void TestUpdateTrainingQuery()
-        {
-            Assert.Fail();
+            Assert.IsNotNull(listTrainingQueriesResult.Result);
+            Assert.IsNotNull(listTrainingQueriesResult.Result.Queries);
+
+            var naturalLanguageQuery = "What is IBM's stock price?";
+            var filters = "entities.text:IBM";
+            var examples = new List<TrainingExample>()
+            {
+                new TrainingExample()
+                {
+                    DocumentId = documentId,
+                    CollectionId = collectionId,
+                    Relevance = 1
+
+                }
+            };
+
+            service.WithHeader("X-Watson-Test", "1");
+            var createTrainingQueryResult = service.CreateTrainingQuery(
+                projectId: projectId,
+                naturalLanguageQuery: naturalLanguageQuery,
+                filter: filters,
+                examples: examples
+                );
+
+            var queryId = createTrainingQueryResult.Result.QueryId;
+            Assert.IsNotNull(createTrainingQueryResult.Result);
+            Assert.IsNotNull(createTrainingQueryResult.Result.QueryId);
+            Assert.IsNotNull(createTrainingQueryResult.Result.Created);
+            Assert.IsNotNull(createTrainingQueryResult.Result.Updated);
+            Assert.IsNotNull(createTrainingQueryResult.Result.NaturalLanguageQuery);
+            Assert.IsNotNull(createTrainingQueryResult.Result.Examples);
+            Assert.IsTrue(createTrainingQueryResult.Result.NaturalLanguageQuery == naturalLanguageQuery);
+
+            service.WithHeader("X-Watson-Test", "1");
+            var getTrainingQueryResult = service.GetTrainingQuery(
+                projectId: projectId,
+                queryId: queryId
+                );
+
+            Assert.IsNotNull(getTrainingQueryResult.Result);
+            Assert.IsTrue(getTrainingQueryResult.Result.QueryId == queryId);
+            Assert.IsTrue(getTrainingQueryResult.Result.NaturalLanguageQuery == naturalLanguageQuery);
+
+            var updatedNaturalLanguageQuery = "Who did Watson beat on Jeopardy?";
+            var updatedFilter = "entities.text:Jeopardy";
+            var updatedExamples = new List<TrainingExample>()
+            {
+                new TrainingExample()
+                {
+                    DocumentId = documentId,
+                    CollectionId = collectionId,
+                    Relevance = 2
+
+                }
+            };
+
+            service.WithHeader("X-Watson-Test", "1");
+            var updateTrainingQueryResult = service.UpdateTrainingQuery(
+                projectId: projectId,
+                queryId: queryId,
+                naturalLanguageQuery: updatedNaturalLanguageQuery,
+                filter: updatedFilter,
+                examples: updatedExamples
+                );
+
+            queryId = updateTrainingQueryResult.Result.QueryId;
+
+            Assert.IsTrue(updateTrainingQueryResult.Result.QueryId == queryId);
+            Assert.IsTrue(updateTrainingQueryResult.Result.NaturalLanguageQuery == updatedNaturalLanguageQuery);
+
+            service.WithHeader("X-Watson-Test", "1");
+            var deleteTrainingQueryResult = service.DeleteTrainingQueries(
+                projectId: projectId
+                );
+
+            Assert.IsTrue(deleteTrainingQueryResult.StatusCode == 204);
+
+            service.WithHeader("X-Watson-Test", "1");
+            var deleteDocumentResult = service.DeleteDocument(
+                projectId: projectId,
+                collectionId: collectionId,
+                documentId: documentId,
+                xWatsonDiscoveryForce: false
+                );
         }
         #endregion
     }

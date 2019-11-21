@@ -940,7 +940,7 @@ namespace IBM.Watson.Discovery.v2
         /// Discovery administrative tooling.</param>
         /// <param name="trainingQuery">An object that represents the query to be submitted. (optional)</param>
         /// <returns><see cref="TrainingQuery" />TrainingQuery</returns>
-        public DetailedResponse<TrainingQuery> CreateTrainingQuery(string projectId, string naturalLanguageQuery = null, string filter = null, List<TrainingExample> examples = null)
+        public DetailedResponse<TrainingQuery> CreateTrainingQuery(string projectId, string naturalLanguageQuery, List<TrainingExample> examples, string filter = null)
         {
             if (string.IsNullOrEmpty(projectId))
             {
@@ -974,13 +974,13 @@ namespace IBM.Watson.Discovery.v2
                 {
                     bodyObject["natural_language_query"] = naturalLanguageQuery;
                 }
-                if (!string.IsNullOrEmpty(filter))
-                {
-                    bodyObject["filter"] = filter;
-                }
                 if (examples != null && examples.Count > 0)
                 {
                     bodyObject["examples"] = JToken.FromObject(examples);
+                }
+                if (!string.IsNullOrEmpty(filter))
+                {
+                    bodyObject["filter"] = filter;
                 }
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
@@ -1076,7 +1076,7 @@ namespace IBM.Watson.Discovery.v2
         /// <param name="queryId">The ID of the query used for training.</param>
         /// <param name="body">The body of the example that is to be added to the specified query.</param>
         /// <returns><see cref="TrainingQuery" />TrainingQuery</returns>
-        public DetailedResponse<TrainingQuery> UpdateTrainingQuery(string projectId, string queryId, string naturalLanguageQuery = null, string filter = null, List<TrainingExample> examples = null)
+        public DetailedResponse<TrainingQuery> UpdateTrainingQuery(string projectId, string queryId, string naturalLanguageQuery, List<TrainingExample> examples, string filter = null)
         {
             if (string.IsNullOrEmpty(projectId))
             {
@@ -1093,6 +1093,14 @@ namespace IBM.Watson.Discovery.v2
             else
             {
                 queryId = Uri.EscapeDataString(queryId);
+            }
+            if (string.IsNullOrEmpty(naturalLanguageQuery))
+            {
+                throw new ArgumentNullException("`naturalLanguageQuery` is required for `UpdateTrainingQuery`");
+            }
+            if (examples == null)
+            {
+                throw new ArgumentNullException("`examples` is required for `UpdateTrainingQuery`");
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -1118,13 +1126,13 @@ namespace IBM.Watson.Discovery.v2
                 {
                     bodyObject["natural_language_query"] = naturalLanguageQuery;
                 }
-                if (!string.IsNullOrEmpty(filter))
-                {
-                    bodyObject["filter"] = filter;
-                }
                 if (examples != null && examples.Count > 0)
                 {
                     bodyObject["examples"] = JToken.FromObject(examples);
+                }
+                if (!string.IsNullOrEmpty(filter))
+                {
+                    bodyObject["filter"] = filter;
                 }
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);

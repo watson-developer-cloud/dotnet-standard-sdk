@@ -34,8 +34,8 @@ namespace IBM.Watson.Discovery.v2
         DetailedResponse<DeleteDocumentResponse> DeleteDocument(string projectId, string collectionId, string documentId, bool? xWatsonDiscoveryForce = null);
         DetailedResponse<TrainingQuerySet> ListTrainingQueries(string projectId);
         DetailedResponse<object> DeleteTrainingQueries(string projectId);
-        DetailedResponse<TrainingQuery> CreateTrainingQuery(string projectId, string naturalLanguageQuery = null, string filter = null, List<TrainingExample> examples = null);
+        DetailedResponse<TrainingQuery> CreateTrainingQuery(string projectId, string naturalLanguageQuery, List<TrainingExample> examples, string filter = null);
         DetailedResponse<TrainingQuery> GetTrainingQuery(string projectId, string queryId);
-        DetailedResponse<TrainingQuery> UpdateTrainingQuery(string projectId, string queryId, string naturalLanguageQuery = null, string filter = null, List<TrainingExample> examples = null);
+        DetailedResponse<TrainingQuery> UpdateTrainingQuery(string projectId, string queryId, string naturalLanguageQuery, List<TrainingExample> examples, string filter = null);
     }
 }

@@ -213,6 +213,9 @@ void Example()
 }
 ```
 
+## Discovery V2
+Discovery v2 is only available on Cloud Pak for Data.
+
 ## Documentation
 Click [here][dotnet-standard-sdk-documentation] for documentation by release and branch.
 

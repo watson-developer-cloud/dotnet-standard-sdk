@@ -3,8 +3,8 @@
   <PropertyGroup>
     <VersionPrefix>4.0.0</VersionPrefix>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <AssemblyName>IBM.Watson.CompareComply.v1.IT</AssemblyName>
-    <PackageId>IBM.Watson.CompareComply.v1.IT</PackageId>
+    <AssemblyName>IBM.Watson.CompareComply.v1.IntegrationTests</AssemblyName>
+    <PackageId>IBM.Watson.CompareComply.v1.IntegrationTests</PackageId>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>

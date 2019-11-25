@@ -47,7 +47,10 @@ install:
 
 before_build:
 - ps: >-
-    git clone https://$env:CREDENTIALS_GITHUB_TOKEN@github.ibm.com/germanatt/sdk-credentials.git C:\projects\sdk-credentials
+    if($env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null)
+    {
+      git clone https://$env:CREDENTIALS_GITHUB_TOKEN@github.ibm.com/germanatt/sdk-credentials.git C:\projects\sdk-credentials
+    }
 
     dotnet restore
 

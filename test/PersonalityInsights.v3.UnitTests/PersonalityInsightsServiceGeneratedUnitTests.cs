@@ -53,8 +53,11 @@ namespace IBM.Watson.PersonalityInsights.v3.UnitTests
         [TestMethod]
         public void ConstructorExternalConfig()
         {
+            var apikey = System.Environment.GetEnvironmentVariable("PERSONALITY_INSIGHTS_APIKEY");
+            System.Environment.SetEnvironmentVariable("PERSONALITY_INSIGHTS_APIKEY", "apikey");
             PersonalityInsightsService service = Substitute.For<PersonalityInsightsService>("versionDate");
             Assert.IsNotNull(service);
+            System.Environment.SetEnvironmentVariable("PERSONALITY_INSIGHTS_APIKEY", apikey);
         }
 
         [TestMethod]
@@ -80,11 +83,14 @@ namespace IBM.Watson.PersonalityInsights.v3.UnitTests
         [TestMethod]
         public void ConstructorNoUrl()
         {
-            var url = System.Environment.GetEnvironmentVariable("PERSONALITY_INSIGHTS_SERVICE_URL");
-            System.Environment.SetEnvironmentVariable("PERSONALITY_INSIGHTS_SERVICE_URL", null);
+            var apikey = System.Environment.GetEnvironmentVariable("PERSONALITY_INSIGHTS_APIKEY");
+            System.Environment.SetEnvironmentVariable("PERSONALITY_INSIGHTS_APIKEY", "apikey");
+            var url = System.Environment.GetEnvironmentVariable("PERSONALITY_INSIGHTS_URL");
+            System.Environment.SetEnvironmentVariable("PERSONALITY_INSIGHTS_URL", null);
             PersonalityInsightsService service = Substitute.For<PersonalityInsightsService>("versionDate");
             Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/personality-insights/api");
-            System.Environment.SetEnvironmentVariable("PERSONALITY_INSIGHTS_SERVICE_URL", url);
+            System.Environment.SetEnvironmentVariable("PERSONALITY_INSIGHTS_URL", url);
+            System.Environment.SetEnvironmentVariable("PERSONALITY_INSIGHTS_APIKEY", apikey);
         }
         #endregion
 

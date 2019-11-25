@@ -53,8 +53,11 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
         [TestMethod]
         public void ConstructorExternalConfig()
         {
+            var apikey = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_APIKEY");
+            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_APIKEY", "apikey");
             NaturalLanguageClassifierService service = Substitute.For<NaturalLanguageClassifierService>();
             Assert.IsNotNull(service);
+            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_APIKEY", apikey);
         }
 
         [TestMethod]
@@ -74,11 +77,14 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
         [TestMethod]
         public void ConstructorNoUrl()
         {
-            var url = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_SERVICE_URL");
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_SERVICE_URL", null);
+            var apikey = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_APIKEY");
+            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_APIKEY", "apikey");
+            var url = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_URL");
+            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_URL", null);
             NaturalLanguageClassifierService service = Substitute.For<NaturalLanguageClassifierService>();
             Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/natural-language-classifier/api");
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_SERVICE_URL", url);
+            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_URL", url);
+            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_APIKEY", apikey);
         }
         #endregion
 

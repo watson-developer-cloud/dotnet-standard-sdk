@@ -53,8 +53,11 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
         [TestMethod]
         public void ConstructorExternalConfig()
         {
+            var apikey = System.Environment.GetEnvironmentVariable("TONE_ANALYZER_APIKEY");
+            System.Environment.SetEnvironmentVariable("TONE_ANALYZER_APIKEY", "apikey");
             ToneAnalyzerService service = Substitute.For<ToneAnalyzerService>("versionDate");
             Assert.IsNotNull(service);
+            System.Environment.SetEnvironmentVariable("TONE_ANALYZER_APIKEY", apikey);
         }
 
         [TestMethod]
@@ -80,11 +83,14 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
         [TestMethod]
         public void ConstructorNoUrl()
         {
-            var url = System.Environment.GetEnvironmentVariable("TONE_ANALYZER_SERVICE_URL");
-            System.Environment.SetEnvironmentVariable("TONE_ANALYZER_SERVICE_URL", null);
+            var apikey = System.Environment.GetEnvironmentVariable("TONE_ANALYZER_APIKEY");
+            System.Environment.SetEnvironmentVariable("TONE_ANALYZER_APIKEY", "apikey");
+            var url = System.Environment.GetEnvironmentVariable("TONE_ANALYZER_URL");
+            System.Environment.SetEnvironmentVariable("TONE_ANALYZER_URL", null);
             ToneAnalyzerService service = Substitute.For<ToneAnalyzerService>("versionDate");
             Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/tone-analyzer/api");
-            System.Environment.SetEnvironmentVariable("TONE_ANALYZER_SERVICE_URL", url);
+            System.Environment.SetEnvironmentVariable("TONE_ANALYZER_URL", url);
+            System.Environment.SetEnvironmentVariable("TONE_ANALYZER_APIKEY", apikey);
         }
         #endregion
 

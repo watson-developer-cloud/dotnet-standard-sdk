@@ -53,8 +53,11 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod]
         public void ConstructorExternalConfig()
         {
+            var apikey = System.Environment.GetEnvironmentVariable("ASSISTANT_APIKEY");
+            System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", "apikey");
             AssistantService service = Substitute.For<AssistantService>("versionDate");
             Assert.IsNotNull(service);
+            System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", apikey);
         }
 
         [TestMethod]
@@ -80,11 +83,14 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod]
         public void ConstructorNoUrl()
         {
+            var apikey = System.Environment.GetEnvironmentVariable("ASSISTANT_APIKEY");
+            System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", "apikey");
             var url = System.Environment.GetEnvironmentVariable("ASSISTANT_SERVICE_URL");
             System.Environment.SetEnvironmentVariable("ASSISTANT_SERVICE_URL", null);
             AssistantService service = Substitute.For<AssistantService>("versionDate");
             Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/assistant/api");
             System.Environment.SetEnvironmentVariable("ASSISTANT_SERVICE_URL", url);
+            System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", apikey);
         }
         #endregion
 

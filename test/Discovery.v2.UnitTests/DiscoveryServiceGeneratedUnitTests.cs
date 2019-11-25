@@ -53,8 +53,11 @@ namespace IBM.Watson.Discovery.v2.UnitTests
         [TestMethod]
         public void ConstructorExternalConfig()
         {
+            var apikey = System.Environment.GetEnvironmentVariable("DISCOVERY_APIKEY");
+            System.Environment.SetEnvironmentVariable("DISCOVERY_APIKEY", "apikey");
             DiscoveryService service = Substitute.For<DiscoveryService>("versionDate");
             Assert.IsNotNull(service);
+            System.Environment.SetEnvironmentVariable("DISCOVERY_APIKEY", apikey);
         }
 
         [TestMethod]

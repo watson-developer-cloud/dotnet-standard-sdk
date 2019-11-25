@@ -53,8 +53,11 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
         [TestMethod]
         public void ConstructorExternalConfig()
         {
+            var apikey = System.Environment.GetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY");
+            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY", "apikey");
             VisualRecognitionService service = Substitute.For<VisualRecognitionService>("versionDate");
             Assert.IsNotNull(service);
+            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY", apikey);
         }
 
         [TestMethod]
@@ -80,11 +83,14 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
         [TestMethod]
         public void ConstructorNoUrl()
         {
-            var url = System.Environment.GetEnvironmentVariable("VISUAL_RECOGNITION_SERVICE_URL");
-            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_SERVICE_URL", null);
+            var apikey = System.Environment.GetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY");
+            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY", "apikey");
+            var url = System.Environment.GetEnvironmentVariable("VISUAL_RECOGNITION_URL");
+            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_URL", null);
             VisualRecognitionService service = Substitute.For<VisualRecognitionService>("versionDate");
             Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/visual-recognition/api");
-            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_SERVICE_URL", url);
+            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_URL", url);
+            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY", apikey);
         }
         #endregion
 

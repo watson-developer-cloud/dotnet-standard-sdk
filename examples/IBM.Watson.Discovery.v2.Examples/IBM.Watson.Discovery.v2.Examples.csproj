@@ -8,12 +8,6 @@
   <ItemGroup>
     <PackageReference Include="IBM.Cloud.SDK.Core" Version="1.0.1" />
   </ItemGroup>
-
-  <ItemGroup>
-    <None Update=".\DiscoveryTestData\**\*;appsettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
   
   <ItemGroup>
     <ProjectReference Include="..\..\src\IBM.Watson.Discovery.v2\IBM.Watson.Discovery.v2.csproj" />

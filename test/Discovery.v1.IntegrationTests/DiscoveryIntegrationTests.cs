@@ -406,6 +406,51 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         }
         #endregion
 
+        #region Query Aggregation
+        [TestMethod]
+        public void TestQueryAggregation()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var queryResultTimeslice = service.Query(
+                environmentId: "system",
+                collectionId: "news-en",
+                naturalLanguageQuery: naturalLanguageQuery,
+                aggregation: "timeslice(product.sales,2day,anomaly:true)"
+                );
+
+            Assert.IsNotNull(queryResultTimeslice.Result);
+            Assert.IsNotNull(queryResultTimeslice.Result.Aggregations);
+            Assert.IsTrue((queryResultTimeslice.Result.Aggregations[0] as Timeslice).Field == "product.sales");
+            Assert.IsTrue((queryResultTimeslice.Result.Aggregations[0] as Timeslice).Interval == "2d");
+            Assert.IsTrue((queryResultTimeslice.Result.Aggregations[0] as Timeslice).Anomaly == true);
+
+            service.WithHeader("X-Watson-Test", "1");
+            var queryResultTerm = service.Query(
+                environmentId: "system",
+                collectionId: "news-en",
+                naturalLanguageQuery: naturalLanguageQuery,
+                aggregation: "term(enriched_text.concepts.text,count:10)"
+                );
+
+            Assert.IsNotNull(queryResultTerm.Result);
+            Assert.IsNotNull(queryResultTerm.Result.Aggregations);
+            Assert.IsTrue((queryResultTerm.Result.Aggregations[0] as Term).Field == "enriched_text.concepts.text");
+            Assert.IsTrue((queryResultTerm.Result.Aggregations[0] as Term).Count == 10);
+
+            service.WithHeader("X-Watson-Test", "1");
+            var queryResultFilter = service.Query(
+                environmentId: "system",
+                collectionId: "news-en",
+                naturalLanguageQuery: naturalLanguageQuery,
+                aggregation: "filter(enriched_text.concepts.text:\"cloud computing\")"
+                );
+
+            Assert.IsNotNull(queryResultFilter.Result);
+            Assert.IsNotNull(queryResultFilter.Result.Aggregations);
+            Assert.IsTrue((queryResultFilter.Result.Aggregations[0] as Filter).Match == "enriched_text.concepts.text:\"cloud computing\"");
+        }
+        #endregion
+
         #region Notices
         [TestMethod]
         public void TestGetNotices()

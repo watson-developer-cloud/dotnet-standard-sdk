@@ -20,7 +20,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace IBM.Watson.Discovery.v1.IntegrationTests
 {
-    [TestClass]
+    //[TestClass] //  CPD only
     public class DiscoveryCpdIntegrationTests
     {
         private DiscoveryService service;

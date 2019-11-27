@@ -39,8 +39,7 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
         private string giraffeClassname = "giraffe";
         private string turtleClassname = "turtle";
         private string versionDate = "2019-02-11";
-        private string giraffeCollectionId = "d31d6534-3458-40c4-b6de-2185a5f3cbe4";
-        private string turtleCollectionId = "760c8625-a456-4b73-b71d-d1619a6daf84";
+        private string collectionId;
         private string dogImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/American_Eskimo_Dog.jpg/1280px-American_Eskimo_Dog.jpg";
         private string catImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Felis_silvestris_catus_lying_on_rice_straw.jpg/1280px-Felis_silvestris_catus_lying_on_rice_straw.jpg";
 
@@ -49,6 +48,8 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
         public void Setup()
         {
             service = new VisualRecognitionService(versionDate);
+            var creds = CredentialUtils.GetServiceProperties("visual_recognition");
+            creds.TryGetValue("COLLECTION_ID", out collectionId);
             service.Client.BaseClient.Timeout = TimeSpan.FromMinutes(120);
         }
         #endregion
@@ -84,14 +85,14 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
 
                     service.WithHeader("X-Watson-Test", "1");
                     analyzeResult = service.Analyze(
-                        collectionIds: new List<string>() { giraffeCollectionId, turtleCollectionId },
+                        collectionIds: new List<string>() { collectionId },
                         features: new List<string>() { "objects" },
                         imagesFile: imagesFile);
                 }
             }
 
             Assert.IsNotNull(analyzeResult.Result);
-            Assert.IsTrue(analyzeResult.Result.Images[0].Objects.Collections[0].Objects[0]._Object == turtleClassname);
+            Assert.IsTrue(analyzeResult.Result.Images[0].Objects.Collections[0].Objects[0]._Object == giraffeClassname);
             Assert.IsTrue(analyzeResult.Result.Images.Count == 2);
             Assert.IsTrue(analyzeResult.Result.Images[0].Source.Filename == Path.GetFileName(localGiraffeFilePath));
             Assert.IsTrue(analyzeResult.Result.Images[1].Source.Filename == Path.GetFileName(localTurtleFilePath));
@@ -194,7 +195,9 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
 
             var getJpgImageResult = service.GetJpegImage(
                 collectionId: collectionId,
-                imageId: imageId);
+                imageId: imageId, 
+                size: "thumbnail"
+                );
 
             //  Save file
             using (FileStream fs = File.Create("giraffe.jpg"))
@@ -300,6 +303,32 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
             Assert.IsTrue(addTrainingDataResult.Result.Objects[0]._Object == objectName);
         }
         #endregion
+
+        #region Training Usage
+        [TestMethod]
+        public void GetTrainingUsage()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var startTime = "2019-11-18";
+            var endTime = "2019-11-20";
+            var getTrainingUsageResult = service.GetTrainingUsage(
+                startTime: startTime, 
+                endTime: endTime
+                );
+
+            Assert.IsNotNull(getTrainingUsageResult.Result);
+            Assert.IsTrue(getTrainingUsageResult.Result.StartTime.Value.Year == 2019);
+            Assert.IsTrue(getTrainingUsageResult.Result.StartTime.Value.Month == 11);
+            Assert.IsTrue(getTrainingUsageResult.Result.StartTime.Value.Day == 18);
+            Assert.IsTrue(getTrainingUsageResult.Result.EndTime.Value.Year == 2019);
+            Assert.IsTrue(getTrainingUsageResult.Result.EndTime.Value.Month == 11);
+            Assert.IsTrue(getTrainingUsageResult.Result.EndTime.Value.Day == 20);
+            Assert.IsTrue(getTrainingUsageResult.Result.TrainedImages > 0);
+            Assert.IsTrue(getTrainingUsageResult.Result.Events.Count > 0);
+            Assert.IsTrue(getTrainingUsageResult.Result.Events[0].CollectionId == collectionId);
+        }
+        #endregion
+
 
         #region Delete labeled data
         [TestMethod]

@@ -19,6 +19,8 @@ var namespace_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model =
     [ "ObjectTrainingStatus", "d3/dd8/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_object_training_status.html", "d3/dd8/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_object_training_status" ],
     [ "TrainingDataObject", "d0/df1/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_training_data_object.html", "d0/df1/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_training_data_object" ],
     [ "TrainingDataObjects", "dc/da8/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_training_data_objects.html", "dc/da8/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_training_data_objects" ],
+    [ "TrainingEvent", "d9/dd0/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_training_event.html", "d9/dd0/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_training_event" ],
+    [ "TrainingEvents", "dd/def/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_training_events.html", "dd/def/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_training_events" ],
     [ "TrainingStatus", "db/d29/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_training_status.html", "db/d29/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_training_status" ],
     [ "Warning", "d3/d03/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_warning.html", "d3/d03/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_warning" ]
 ];

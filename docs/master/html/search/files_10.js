@@ -7,7 +7,7 @@ var searchData=
   ['relationentity_2ecs',['RelationEntity.cs',['../d6/d55/_relation_entity_8cs.html',1,'']]],
   ['relationsoptions_2ecs',['RelationsOptions.cs',['../d1/dd5/_relations_options_8cs.html',1,'']]],
   ['relationsresult_2ecs',['RelationsResult.cs',['../dc/dad/_relations_result_8cs.html',1,'']]],
-  ['retrievaldetails_2ecs',['RetrievalDetails.cs',['../de/d0f/_retrieval_details_8cs.html',1,'']]],
+  ['retrievaldetails_2ecs',['RetrievalDetails.cs',['../d4/d2d/_i_b_m_8_watson_8_discovery_8v1_2_model_2_retrieval_details_8cs.html',1,'(Global Namespace)'],['../d6/d5b/_i_b_m_8_watson_8_discovery_8v2_2_model_2_retrieval_details_8cs.html',1,'(Global Namespace)']]],
   ['rowheaders_2ecs',['RowHeaders.cs',['../d5/daa/_row_headers_8cs.html',1,'']]],
   ['runtimeentity_2ecs',['RuntimeEntity.cs',['../d9/df0/_i_b_m_8_watson_8_assistant_8v1_2_model_2_runtime_entity_8cs.html',1,'(Global Namespace)'],['../dc/db3/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_entity_8cs.html',1,'(Global Namespace)']]],
   ['runtimeintent_2ecs',['RuntimeIntent.cs',['../df/df3/_i_b_m_8_watson_8_assistant_8v1_2_model_2_runtime_intent_8cs.html',1,'(Global Namespace)'],['../de/da7/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_intent_8cs.html',1,'(Global Namespace)']]],

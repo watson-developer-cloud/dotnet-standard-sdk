@@ -60,6 +60,14 @@ var dir_c947c98380fc538e38f9573b367e72d4 =
     [ "TrainingDataObjects.cs", "d0/dbd/_training_data_objects_8cs.html", [
       [ "TrainingDataObjects", "dc/da8/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_training_data_objects.html", "dc/da8/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_training_data_objects" ]
     ] ],
+    [ "TrainingEvent.cs", "d5/d88/_training_event_8cs.html", [
+      [ "TrainingEvent", "d9/dd0/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_training_event.html", "d9/dd0/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_training_event" ],
+      [ "TypeEnumValue", "dd/d3d/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_training_event_1_1_type_enum_value.html", "dd/d3d/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_training_event_1_1_type_enum_value" ],
+      [ "StatusEnumValue", "d9/de2/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_training_event_1_1_status_enum_value.html", "d9/de2/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_training_event_1_1_status_enum_value" ]
+    ] ],
+    [ "TrainingEvents.cs", "dd/db6/_training_events_8cs.html", [
+      [ "TrainingEvents", "dd/def/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_training_events.html", "dd/def/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_training_events" ]
+    ] ],
     [ "TrainingStatus.cs", "d0/d64/_i_b_m_8_watson_8_visual_recognition_8v4_2_model_2_training_status_8cs.html", [
       [ "TrainingStatus", "db/d29/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_training_status.html", "db/d29/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_training_status" ]
     ] ],

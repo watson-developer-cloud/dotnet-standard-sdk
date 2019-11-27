@@ -5,6 +5,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "IBM.Watson.Common", "dir_61463868f4b2d5297fe945f054c46d5b.html", "dir_61463868f4b2d5297fe945f054c46d5b" ],
     [ "IBM.Watson.CompareComply.v1", "dir_cd8d64fa67f8b8256d9d8a2ff223ea1b.html", "dir_cd8d64fa67f8b8256d9d8a2ff223ea1b" ],
     [ "IBM.Watson.Discovery.v1", "dir_22b0b6a4ebc3597351815b939258aff5.html", "dir_22b0b6a4ebc3597351815b939258aff5" ],
+    [ "IBM.Watson.Discovery.v2", "dir_a33e886f798987c8ac83f5396ac1662f.html", "dir_a33e886f798987c8ac83f5396ac1662f" ],
     [ "IBM.Watson.LanguageTranslator.v3", "dir_41940d531c009a4f671a22d7ad3ead3b.html", "dir_41940d531c009a4f671a22d7ad3ead3b" ],
     [ "IBM.Watson.NaturalLanguageClassifier.v1", "dir_fb151dda3516ea028dbae08e53482f5c.html", "dir_fb151dda3516ea028dbae08e53482f5c" ],
     [ "IBM.Watson.NaturalLanguageUnderstanding.v1", "dir_2e077644e3aa306c98001c021615090d.html", "dir_2e077644e3aa306c98001c021615090d" ],

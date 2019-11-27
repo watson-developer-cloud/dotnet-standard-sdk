@@ -9,6 +9,5 @@ var class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_notices_resul
     [ "Metadata", "df/dca/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_notices_result.html#a30efde61aac4cd190997ab1b6a115e86", null ],
     [ "Notices", "df/dca/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_notices_result.html#a3a035ee97404f7051b250d62ac63fe7b", null ],
     [ "ResultMetadata", "df/dca/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_notices_result.html#a589fb5f51a3d5f6552e2dd431faa5dac", null ],
-    [ "Sha1", "df/dca/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_notices_result.html#a65efba71f17f316137d97f0131499816", null ],
-    [ "Title", "df/dca/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_notices_result.html#af6b3bd3f5503cbd9ce3750050a69f801", null ]
+    [ "Sha1", "df/dca/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_notices_result.html#a65efba71f17f316137d97f0131499816", null ]
 ];

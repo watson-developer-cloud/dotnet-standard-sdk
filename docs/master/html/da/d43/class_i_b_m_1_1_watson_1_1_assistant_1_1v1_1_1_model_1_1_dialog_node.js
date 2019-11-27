@@ -15,6 +15,7 @@ var class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node =
     [ "DigressOut", "da/d43/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#aaa235c1bfff8ab8588f9978c214bdfce", null ],
     [ "DigressOutSlots", "da/d43/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#af6379f54397247132af99e31c46f572b", null ],
     [ "Disabled", "da/d43/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a7c9733b96b7a9a74bbb21204f0ab7c1a", null ],
+    [ "DisambiguationOptOut", "da/d43/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a69b4d5361459bf2cbafa37e1856fe78b", null ],
     [ "EventName", "da/d43/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a9fc94ea2055bced3891d5f9ed55ae7e1", null ],
     [ "Metadata", "da/d43/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a7540e34e1931335d0e3583f9fadc34df", null ],
     [ "NextStep", "da/d43/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html#a025587724dd88e1facfef20231b69bb2", null ],

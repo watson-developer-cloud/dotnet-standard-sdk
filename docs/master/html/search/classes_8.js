@@ -6,7 +6,7 @@ var searchData=
   ['identifiablelanguages',['IdentifiableLanguages',['../d8/dea/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_identifiable_languages.html',1,'IBM::Watson::LanguageTranslator::v3::Model']]],
   ['identifiedlanguage',['IdentifiedLanguage',['../df/d42/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_identified_language.html',1,'IBM::Watson::LanguageTranslator::v3::Model']]],
   ['identifiedlanguages',['IdentifiedLanguages',['../d2/dca/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_identified_languages.html',1,'IBM::Watson::LanguageTranslator::v3::Model']]],
-  ['idiscoveryservice',['IDiscoveryService',['../dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html',1,'IBM::Watson::Discovery::v1']]],
+  ['idiscoveryservice',['IDiscoveryService',['../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html',1,'IBM.Watson.Discovery.v2.IDiscoveryService'],['../dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html',1,'IBM.Watson.Discovery.v1.IDiscoveryService']]],
   ['ilanguagetranslatorservice',['ILanguageTranslatorService',['../d5/dcd/interface_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_i_language_translator_service.html',1,'IBM::Watson::LanguageTranslator::v3']]],
   ['image',['Image',['../d2/d42/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_image.html',1,'IBM::Watson::VisualRecognition::v4::Model']]],
   ['imagedetails',['ImageDetails',['../d5/db8/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_image_details.html',1,'IBM::Watson::VisualRecognition::v4::Model']]],
@@ -26,5 +26,5 @@ var searchData=
   ['ispeechtotextservice',['ISpeechToTextService',['../d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html',1,'IBM::Watson::SpeechToText::v1']]],
   ['itexttospeechservice',['ITextToSpeechService',['../dd/d30/interface_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html',1,'IBM::Watson::TextToSpeech::v1']]],
   ['itoneanalyzerservice',['IToneAnalyzerService',['../d2/d46/interface_i_b_m_1_1_watson_1_1_tone_analyzer_1_1v3_1_1_i_tone_analyzer_service.html',1,'IBM::Watson::ToneAnalyzer::v3']]],
-  ['ivisualrecognitionservice',['IVisualRecognitionService',['../d2/d37/interface_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_i_visual_recognition_service.html',1,'IBM.Watson.VisualRecognition.v4.IVisualRecognitionService'],['../d5/d5f/interface_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html',1,'IBM.Watson.VisualRecognition.v3.IVisualRecognitionService']]]
+  ['ivisualrecognitionservice',['IVisualRecognitionService',['../d5/d5f/interface_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_i_visual_recognition_service.html',1,'IBM.Watson.VisualRecognition.v3.IVisualRecognitionService'],['../d2/d37/interface_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_i_visual_recognition_service.html',1,'IBM.Watson.VisualRecognition.v4.IVisualRecognitionService']]]
 ];

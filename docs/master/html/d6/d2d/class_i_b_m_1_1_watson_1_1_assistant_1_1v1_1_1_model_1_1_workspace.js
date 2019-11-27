@@ -14,5 +14,6 @@ var class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace =
     [ "Status", "d6/d2d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace.html#a3a74a5b79535c8b65e50d41382941188", null ],
     [ "SystemSettings", "d6/d2d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace.html#a92cd639a8056aee65e05ac1e2c23a85f", null ],
     [ "Updated", "d6/d2d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace.html#ad5d914a4f630bd9c3a8704f3d5e77d89", null ],
+    [ "Webhooks", "d6/d2d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace.html#a6541a0b6d12f29801f1493797dd9038d", null ],
     [ "WorkspaceId", "d6/d2d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace.html#a6b9c638c898fe2585e08e3fa2d4013a9", null ]
 ];

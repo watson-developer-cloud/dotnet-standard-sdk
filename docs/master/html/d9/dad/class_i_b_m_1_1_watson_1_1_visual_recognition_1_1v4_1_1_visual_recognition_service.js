@@ -13,6 +13,7 @@ var class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_visual_recognition_s
     [ "GetCollection", "d9/dad/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_visual_recognition_service.html#a4251cb8640afb139e904e5d215d47f8d", null ],
     [ "GetImageDetails", "d9/dad/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_visual_recognition_service.html#ab9a953046694f67d9bd10c539e9ea2d5", null ],
     [ "GetJpegImage", "d9/dad/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_visual_recognition_service.html#aad8efad9a3eaafa7386b0d45e0cd1498", null ],
+    [ "GetTrainingUsage", "d9/dad/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_visual_recognition_service.html#a62adbe2d54336555b57c801b1fc36f87", null ],
     [ "ListCollections", "d9/dad/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_visual_recognition_service.html#a7de0943e265621028b85bfc1355b7b36", null ],
     [ "ListImages", "d9/dad/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_visual_recognition_service.html#a6d5411be8a8c63a1d467098dc0406b67", null ],
     [ "Train", "d9/dad/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_visual_recognition_service.html#a493335d8fa523f74e81e596857f23223", null ],

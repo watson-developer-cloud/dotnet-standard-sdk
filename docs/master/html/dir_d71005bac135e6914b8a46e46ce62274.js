@@ -1,0 +1,4 @@
+var dir_d71005bac135e6914b8a46e46ce62274 =
+[
+    [ "netstandard2.0", "dir_f995af15ed4802c22152787587e7a294.html", "dir_f995af15ed4802c22152787587e7a294" ]
+];

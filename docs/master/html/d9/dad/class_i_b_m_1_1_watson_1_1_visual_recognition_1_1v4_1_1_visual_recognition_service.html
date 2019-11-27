@@ -152,6 +152,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5f90394b7aa4cd1a064d1f9288f65978"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../dc/da8/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_training_data_objects.html">TrainingDataObjects</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dad/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_visual_recognition_service.html#a5f90394b7aa4cd1a064d1f9288f65978">AddImageTrainingData</a> (string collectionId, string imageId, List&lt; <a class="el" href="../../d0/df1/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_training_data_object.html">TrainingDataObject</a> &gt; objects=null)</td></tr>
 <tr class="memdesc:a5f90394b7aa4cd1a064d1f9288f65978"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add training data to an image.  <a href="#a5f90394b7aa4cd1a064d1f9288f65978">More...</a><br /></td></tr>
 <tr class="separator:a5f90394b7aa4cd1a064d1f9288f65978"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62adbe2d54336555b57c801b1fc36f87"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../dd/def/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_training_events.html">TrainingEvents</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dad/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_visual_recognition_service.html#a62adbe2d54336555b57c801b1fc36f87">GetTrainingUsage</a> (string startTime=null, string endTime=null)</td></tr>
+<tr class="memdesc:a62adbe2d54336555b57c801b1fc36f87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get training usage.  <a href="#a62adbe2d54336555b57c801b1fc36f87">More...</a><br /></td></tr>
+<tr class="separator:a62adbe2d54336555b57c801b1fc36f87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5329ac8f1eaddc7fae8e2af757540770"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dad/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_visual_recognition_service.html#a5329ac8f1eaddc7fae8e2af757540770">DeleteUserData</a> (string customerId)</td></tr>
 <tr class="memdesc:a5329ac8f1eaddc7fae8e2af757540770"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete labeled data.  <a href="#a5329ac8f1eaddc7fae8e2af757540770">More...</a><br /></td></tr>
 <tr class="separator:a5329ac8f1eaddc7fae8e2af757540770"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -801,13 +804,62 @@ Properties</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">collectionId</td><td>The identifier of the collection.</td></tr>
     <tr><td class="paramname">imageId</td><td>The identifier of the image.</td></tr>
-    <tr><td class="paramname">size</td><td>Specify the image size. (optional, default to full)</td></tr>
+    <tr><td class="paramname">size</td><td>The image size. Specify <code>thumbnail</code> to return a version that maintains the original aspect ratio but is no larger than 200 pixels in the larger dimension. For example, an original 800 x 1000 image is resized to 160 x 200 pixels. (optional, default to full)</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>byte[]byte[]</dd></dl>
 
 <p>Implements <a class="el" href="../../d2/d37/interface_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_i_visual_recognition_service.html#a2d55d4117312881dd25c9fc7f63f79e5">IBM.Watson.VisualRecognition.v4.IVisualRecognitionService</a>.</p>
+
+</div>
+</div>
+<a id="a62adbe2d54336555b57c801b1fc36f87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62adbe2d54336555b57c801b1fc36f87">&#9670;&nbsp;</a></span>GetTrainingUsage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../dd/def/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_training_events.html">TrainingEvents</a>&gt; IBM.Watson.VisualRecognition.v4.VisualRecognitionService.GetTrainingUsage </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>startTime</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>endTime</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get training usage. </p>
+<p>Information about the completed training events. You can use this information to determine how close you are to the training limits for the month. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">startTime</td><td>The earliest day to include training events. Specify dates in YYYY-MM-DD format. If empty or not specified, the earliest training event is included. (optional)</td></tr>
+    <tr><td class="paramname">endTime</td><td>The most recent day to include training events. Specify dates in YYYY-MM-DD format. All events for the day are included. If empty or not specified, the current day is used. Specify the same value as <code>start_time</code> to request events for a single day. (optional)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TrainingEventsTrainingEvents</dd></dl>
+
+<p>Implements <a class="el" href="../../d2/d37/interface_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_i_visual_recognition_service.html#a9dec3a035fe1259ed1bfb65607be4862">IBM.Watson.VisualRecognition.v4.IVisualRecognitionService</a>.</p>
 
 </div>
 </div>

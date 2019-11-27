@@ -286,11 +286,51 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
             var ListWorkspacesResult = service.ListWorkspaces();
 
             service.WithHeader("X-Watson-Test", "1");
+            var metadata = new Dictionary<string, object>();
+            metadata.Add("name", "Watson");
+            var systemSettings = new WorkspaceSystemSettings()
+            {
+                Tooling = new WorkspaceSystemSettingsTooling()
+                {
+                    StoreGenericResponses = false
+                },
+                Disambiguation = new WorkspaceSystemSettingsDisambiguation()
+                {
+                    Sensitivity = WorkspaceSystemSettingsDisambiguation.SensitivityEnumValue.AUTO,
+                    Prompt = "Hello, welcome to watson",
+                    NoneOfTheAbovePrompt = "None of the above",
+                    Enabled = true,
+                    Randomize = true, 
+                    MaxSuggestions = 5
+                },
+                OffTopic = new WorkspaceSystemSettingsOffTopic()
+                {
+                    Enabled = true
+                }
+            };
+            var webhooks = new List<Webhook>()
+            {
+                new Webhook()
+                {
+                    Url = "http://www.cloud.ibm.com",
+                    Name = "IBM Cloud",
+                    Headers = new List<WebhookHeader>()
+                    {
+                        new WebhookHeader(){
+                            Name = "testWebhookHeaderName",
+                            Value = "testWebhookHeaderValue"
+                        }
+                    }
+                }
+            };
             var createWorkspaceResult = service.CreateWorkspace(
                 name: createdWorkspaceName,
                 description: createdWorkspaceDescription,
-                language: createdWorkspaceLanguage,
-                learningOptOut: true
+                language: createdWorkspaceLanguage, 
+                metadata: metadata, 
+                learningOptOut: false, 
+                systemSettings: systemSettings, 
+                webhooks: webhooks
                 );
 
             var workspaceId = createWorkspaceResult.Result.WorkspaceId;
@@ -303,12 +343,52 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 );
 
             service.WithHeader("X-Watson-Test", "1");
+            var updatedMetadata = new Dictionary<string, object>();
+            updatedMetadata.Add("name", "Watson-updated");
+            var updatedSystemSettings = new WorkspaceSystemSettings()
+            {
+                Tooling = new WorkspaceSystemSettingsTooling()
+                {
+                    StoreGenericResponses = true
+                },
+                Disambiguation = new WorkspaceSystemSettingsDisambiguation()
+                {
+                    Sensitivity = WorkspaceSystemSettingsDisambiguation.SensitivityEnumValue.AUTO,
+                    Prompt = "Hello, welcome to Watson",
+                    NoneOfTheAbovePrompt = "I didn't understand",
+                    Enabled = true,
+                    Randomize = true,
+                    MaxSuggestions = 3
+                },
+                OffTopic = new WorkspaceSystemSettingsOffTopic()
+                {
+                    Enabled = false
+                }
+            };
+            var updatedWebhooks = new List<Webhook>()
+            {
+                new Webhook()
+                {
+                    Url = "http://www.cloud.ibm.com/apidocs",
+                    Name = "IBM Cloud Docs",
+                    Headers = new List<WebhookHeader>()
+                    {
+                        new WebhookHeader(){
+                            Name = "testWebhookHeaderName-updated",
+                            Value = "testWebhookHeaderValue-updated"
+                        }
+                    }
+                }
+            };
             var updateWorkspaceResult = service.UpdateWorkspace(
                 workspaceId: workspaceId,
                 name: createdWorkspaceName + "-updated",
                 description: createdWorkspaceDescription + "-updated",
                 language: createdWorkspaceLanguage,
-                learningOptOut: true
+                learningOptOut: true,
+                metadata: updatedMetadata,
+                systemSettings: updatedSystemSettings,
+                webhooks: updatedWebhooks
                 );
 
             service.WithHeader("X-Watson-Test", "1");
@@ -316,12 +396,40 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 workspaceId: workspaceId);
 
             Assert.IsNotNull(createWorkspaceResult);
-            Assert.IsFalse(string.IsNullOrEmpty(workspaceId));
+            Assert.IsNotNull(workspaceId);
+            Assert.IsNotNull(createWorkspaceResult.Result.Metadata);
+            Assert.IsNotNull(createWorkspaceResult.Result.Metadata["name"].ToString() == "Watson");
+            Assert.IsNotNull(createWorkspaceResult.Result.SystemSettings.Tooling.StoreGenericResponses == false);
+            Assert.IsNotNull(createWorkspaceResult.Result.SystemSettings.Disambiguation.Sensitivity == WorkspaceSystemSettingsDisambiguation.SensitivityEnumValue.AUTO);
+            Assert.IsNotNull(createWorkspaceResult.Result.SystemSettings.Disambiguation.Prompt == "Hello, welcome to watson");
+            Assert.IsNotNull(createWorkspaceResult.Result.SystemSettings.Disambiguation.NoneOfTheAbovePrompt == "None of the above");
+            Assert.IsNotNull(createWorkspaceResult.Result.SystemSettings.Disambiguation.Enabled == true);
+            Assert.IsNotNull(createWorkspaceResult.Result.SystemSettings.Disambiguation.Randomize == true);
+            Assert.IsNotNull(createWorkspaceResult.Result.SystemSettings.Disambiguation.MaxSuggestions == 5);
+            Assert.IsNotNull(createWorkspaceResult.Result.SystemSettings.OffTopic.Enabled == true);
+            Assert.IsTrue(createWorkspaceResult.Result.Webhooks[0].Name == "IBM Cloud");
+            Assert.IsNotNull(createWorkspaceResult.Result.Webhooks[0].Headers);
+            Assert.IsTrue(createWorkspaceResult.Result.Webhooks[0].Headers[0].Name == "testWebhookHeaderName");
+            Assert.IsTrue(createWorkspaceResult.Result.Webhooks[0].Headers[0].Value == "testWebhookHeaderValue");
             Assert.IsNotNull(getWorkspaceResult);
             Assert.IsNotNull(updateWorkspaceResult);
-            Assert.IsFalse(string.IsNullOrEmpty(workspaceId));
+            Assert.IsNotNull(workspaceId);
             Assert.IsTrue(updateWorkspaceResult.Result.Name == createdWorkspaceName + "-updated");
             Assert.IsTrue(updateWorkspaceResult.Result.Description == createdWorkspaceDescription + "-updated");
+            Assert.IsNotNull(updateWorkspaceResult.Result.Metadata);
+            Assert.IsNotNull(updateWorkspaceResult.Result.Metadata["name"].ToString() == "Watson-updated");
+            Assert.IsNotNull(updateWorkspaceResult.Result.SystemSettings.Tooling.StoreGenericResponses == true);
+            Assert.IsNotNull(updateWorkspaceResult.Result.SystemSettings.Disambiguation.Sensitivity == WorkspaceSystemSettingsDisambiguation.SensitivityEnumValue.AUTO);
+            Assert.IsNotNull(updateWorkspaceResult.Result.SystemSettings.Disambiguation.Prompt == "Hello, welcome to Watson");
+            Assert.IsNotNull(updateWorkspaceResult.Result.SystemSettings.Disambiguation.NoneOfTheAbovePrompt == "I didn't understand");
+            Assert.IsNotNull(updateWorkspaceResult.Result.SystemSettings.Disambiguation.Enabled == true);
+            Assert.IsNotNull(updateWorkspaceResult.Result.SystemSettings.Disambiguation.Randomize == true);
+            Assert.IsNotNull(updateWorkspaceResult.Result.SystemSettings.Disambiguation.MaxSuggestions == 3);
+            Assert.IsNotNull(updateWorkspaceResult.Result.SystemSettings.OffTopic.Enabled == false);
+            Assert.IsTrue(updateWorkspaceResult.Result.Webhooks[0].Name == "IBM Cloud Docs");
+            Assert.IsNotNull(updateWorkspaceResult.Result.Webhooks[0].Headers);
+            Assert.IsTrue(updateWorkspaceResult.Result.Webhooks[0].Headers[0].Name == "testWebhookHeaderName-updated");
+            Assert.IsTrue(updateWorkspaceResult.Result.Webhooks[0].Headers[0].Value == "testWebhookHeaderValue-updated");
             Assert.IsNotNull(ListWorkspacesResult);
             Assert.IsNotNull(deleteWorkspaceResult);
         }
@@ -745,7 +853,8 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
             var createDialogNodeResult = service.CreateDialogNode(
                 workspaceId: workspaceId,
                 dialogNode: dialogNodeName,
-                description: dialogNodeDesc
+                description: dialogNodeDesc,
+                disambiguationOptOut: true
                 );
 
             service.WithHeader("X-Watson-Test", "1");
@@ -762,7 +871,8 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 workspaceId: workspaceId,
                 dialogNode: dialogNodeName,
                 newDialogNode: updatedDialogNodeName,
-                newDescription: updatedDialogNodeDescription
+                newDescription: updatedDialogNodeDescription,
+                newDisambiguationOptOut: true
                 );
 
             service.WithHeader("X-Watson-Test", "1");
@@ -779,12 +889,14 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
             Assert.IsNotNull(createDialogNodeResult);
             Assert.IsTrue(createDialogNodeResult.Result._DialogNode == dialogNodeName);
             Assert.IsTrue(createDialogNodeResult.Result.Description == dialogNodeDesc);
+            Assert.IsTrue(createDialogNodeResult.Result.DisambiguationOptOut == true);
             Assert.IsNotNull(getDialogNodeResult);
             Assert.IsTrue(getDialogNodeResult.Result._DialogNode == dialogNodeName);
             Assert.IsTrue(getDialogNodeResult.Result.Description == dialogNodeDesc);
             Assert.IsNotNull(updateDialogNodeResult);
             Assert.IsTrue(updateDialogNodeResult.Result._DialogNode == updatedDialogNodeName);
             Assert.IsTrue(updateDialogNodeResult.Result.Description == updatedDialogNodeDescription);
+            Assert.IsTrue(updateDialogNodeResult.Result.DisambiguationOptOut == true);
             Assert.IsNotNull(deleteDialogNodeResult);
         }
         #endregion

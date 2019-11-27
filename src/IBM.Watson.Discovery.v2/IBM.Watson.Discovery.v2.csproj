@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <Description>IBM.Watson.Discovery.v2 wraps the Watson Discovery service (http://www.ibm.com/watson/developercloud/discovery.html)</Description>
+        <AssemblyTitle>IBM.Watson.Discovery.v2</AssemblyTitle>
+        <VersionPrefix>4.0.0</VersionPrefix>
+        <Authors>IBM Watson</Authors>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <AssemblyName>IBM.Watson.Discovery.v2</AssemblyName>
+        <PackageId>IBM.Watson.Discovery.v2</PackageId>
+        <PackageTags>watson;cognitive;speech;vision;machine-learning;ml;ai;artificial-intelligence;.NET;.NET-Standard</PackageTags>
+        <PackageIconUrl>https://watson-developer-cloud.github.io/dotnet-standard-sdk/img/Watson_Avatar_Pos_RGB.png</PackageIconUrl>
+        <PackageProjectUrl>https://github.com/watson-developer-cloud/dotnet-standard-sdk</PackageProjectUrl>
+        <Version>4.0.0</Version>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <DebugType>full</DebugType>
+        <DebugSymbols>true</DebugSymbols>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <DebugType>full</DebugType>
+        <DebugSymbols>true</DebugSymbols>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="IBM.Cloud.SDK.Core" Version="1.0.1" />
+        <PackageReference Include="IBM.Watson.Common" Version="4.1.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+        <PackageReference Include="JsonSubTypes" Version="1.6.0" />
+    </ItemGroup>
+
+</Project>

@@ -255,6 +255,8 @@ test_script:
 
         dotnet pack .\src\IBM.Watson.Discovery.v1\IBM.Watson.Discovery.v1.csproj --configuration Release
 
+        dotnet pack .\src\IBM.Watson.Discovery.v1\IBM.Watson.Discovery.v2.csproj --configuration Release
+
         dotnet pack .\src\IBM.Watson.LanguageTranslator.v3\IBM.Watson.LanguageTranslator.v3.csproj --configuration Release
 
         dotnet pack .\src\IBM.Watson.NaturalLanguageClassifier.v1\IBM.Watson.NaturalLanguageClassifier.v1.csproj --configuration Release
@@ -285,6 +287,8 @@ artifacts:
   name: IBM.Watson.CompareComply.v1
 - path: '\src\IBM.Watson.Discovery.v1\bin\$(configuration)\*.nupkg'
   name: IBM.Watson.Discovery.v1
+- path: '\src\IBM.Watson.Discovery.v2\bin\$(configuration)\*.nupkg'
+  name: IBM.Watson.Discovery.v2
 - path: '\src\IBM.Watson.LanguageTranslator.v3\bin\$(configuration)\*.nupkg'
   name: IBM.Watson.LanguageTranslator.v3
 - path: '\src\IBM.Watson.PersonalityInsights.v3\bin\$(configuration)\*.nupkg'

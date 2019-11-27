@@ -312,6 +312,22 @@ namespace IBM.Watson.VisualRecognition.v4.Examples
 
             Console.WriteLine(result.Response);
         }
+
+        public void GetTrainingUsage()
+        {
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}"
+                );
+
+            VisualRecognitionService service = new VisualRecognitionService("2019-02-11", authenticator);
+
+            var result = service.GetTrainingUsage(
+                startTime: "2019-01-01",
+                endTime: "2019-01-31"
+                );
+
+            Console.WriteLine(result.Response);
+        }
         #endregion
 
         #region User Data

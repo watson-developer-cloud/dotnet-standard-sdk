@@ -229,7 +229,7 @@ namespace IBM.Watson.Assistant.v1
         /// The maximum size for this data is 50MB. If you need to import a larger workspace, consider importing the
         /// workspace without intents and entities and then adding them separately. (optional)</param>
         /// <returns><see cref="Workspace" />Workspace</returns>
-        public DetailedResponse<Workspace> CreateWorkspace(string name = null, string description = null, string language = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null)
+        public DetailedResponse<Workspace> CreateWorkspace(string name = null, string description = null, string language = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null, List<Webhook> webhooks = null)
         {
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -290,6 +290,10 @@ namespace IBM.Watson.Assistant.v1
                 if (counterexamples != null && counterexamples.Count > 0)
                 {
                     bodyObject["counterexamples"] = JToken.FromObject(counterexamples);
+                }
+                if (webhooks != null && webhooks.Count > 0)
+                {
+                    bodyObject["webhooks"] = JToken.FromObject(webhooks);
                 }
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
@@ -409,7 +413,7 @@ namespace IBM.Watson.Assistant.v1
         /// If **append**=`true`, existing elements are preserved, and the new elements are added. If any elements in
         /// the new data collide with existing elements, the update request fails. (optional, default to false)</param>
         /// <returns><see cref="Workspace" />Workspace</returns>
-        public DetailedResponse<Workspace> UpdateWorkspace(string workspaceId, string name = null, string description = null, string language = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null, bool? append = null)
+        public DetailedResponse<Workspace> UpdateWorkspace(string workspaceId, string name = null, string description = null, string language = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null, bool? append = null, List<Webhook> webhooks = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -482,6 +486,10 @@ namespace IBM.Watson.Assistant.v1
                 if (counterexamples != null && counterexamples.Count > 0)
                 {
                     bodyObject["counterexamples"] = JToken.FromObject(counterexamples);
+                }
+                if (webhooks != null && webhooks.Count > 0)
+                {
+                    bodyObject["webhooks"] = JToken.FromObject(webhooks);
                 }
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
@@ -3214,7 +3222,7 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="body">A CreateDialogNode object defining the content of the new dialog node.</param>
         /// <returns><see cref="DialogNode" />DialogNode</returns>
-        public DetailedResponse<DialogNode> CreateDialogNode(string workspaceId, string dialogNode, string description = null, string conditions = null, string parent = null, string previousSibling = null, DialogNodeOutput output = null, Dictionary<string, object> context = null, Dictionary<string, object> metadata = null, DialogNodeNextStep nextStep = null, string title = null, string type = null, string eventName = null, string variable = null, List<DialogNodeAction> actions = null, string digressIn = null, string digressOut = null, string digressOutSlots = null, string userLabel = null)
+        public DetailedResponse<DialogNode> CreateDialogNode(string workspaceId, string dialogNode, string description = null, string conditions = null, string parent = null, string previousSibling = null, DialogNodeOutput output = null, Dictionary<string, object> context = null, Dictionary<string, object> metadata = null, DialogNodeNextStep nextStep = null, string title = null, string type = null, string eventName = null, string variable = null, List<DialogNodeAction> actions = null, string digressIn = null, string digressOut = null, string digressOutSlots = null, string userLabel = null, bool? disambiguationOptOut = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -3319,6 +3327,10 @@ namespace IBM.Watson.Assistant.v1
                 if (!string.IsNullOrEmpty(userLabel))
                 {
                     bodyObject["user_label"] = userLabel;
+                }
+                if (disambiguationOptOut != null)
+                {
+                    bodyObject["disambiguation_opt_out"] = JToken.FromObject(disambiguationOptOut);
                 }
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
@@ -3430,7 +3442,7 @@ namespace IBM.Watson.Assistant.v1
         /// data.) For example, if you update the actions for a dialog node, the previously existing actions are
         /// discarded and replaced with the new actions specified in the update.</param>
         /// <returns><see cref="DialogNode" />DialogNode</returns>
-        public DetailedResponse<DialogNode> UpdateDialogNode(string workspaceId, string dialogNode, string newDialogNode = null, string newDescription = null, string newConditions = null, string newParent = null, string newPreviousSibling = null, DialogNodeOutput newOutput = null, Dictionary<string, object> newContext = null, Dictionary<string, object> newMetadata = null, DialogNodeNextStep newNextStep = null, string newTitle = null, string newType = null, string newEventName = null, string newVariable = null, List<DialogNodeAction> newActions = null, string newDigressIn = null, string newDigressOut = null, string newDigressOutSlots = null, string newUserLabel = null)
+        public DetailedResponse<DialogNode> UpdateDialogNode(string workspaceId, string dialogNode, string newDialogNode = null, string newDescription = null, string newConditions = null, string newParent = null, string newPreviousSibling = null, DialogNodeOutput newOutput = null, Dictionary<string, object> newContext = null, Dictionary<string, object> newMetadata = null, DialogNodeNextStep newNextStep = null, string newTitle = null, string newType = null, string newEventName = null, string newVariable = null, List<DialogNodeAction> newActions = null, string newDigressIn = null, string newDigressOut = null, string newDigressOutSlots = null, string newUserLabel = null, bool? newDisambiguationOptOut = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -3539,6 +3551,10 @@ namespace IBM.Watson.Assistant.v1
                 if (!string.IsNullOrEmpty(newUserLabel))
                 {
                     bodyObject["user_label"] = newUserLabel;
+                }
+                if (newDisambiguationOptOut != null)
+                {
+                    bodyObject["disambiguation_opt_out"] = JToken.FromObject(newDisambiguationOptOut);
                 }
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
@@ -3713,8 +3729,9 @@ namespace IBM.Watson.Assistant.v1
         /// specified, the limit is 120 requests per minute. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="filter">A cacheable parameter that limits the results to those matching the specified filter.
-        /// You must specify a filter query that includes a value for `language`, as well as a value for `workspace_id`
-        /// or `request.context.metadata.deployment`. For more information, see the
+        /// You must specify a filter query that includes a value for `language`, as well as a value for
+        /// `request.context.system.assistant_id`, `workspace_id`, or `request.context.metadata.deployment`. For more
+        /// information, see the
         /// [documentation](https://cloud.ibm.com/docs/services/assistant?topic=assistant-filter-reference#filter-reference).</param>
         /// <param name="sort">How to sort the returned log events. You can sort by **request_timestamp**. To reverse
         /// the sort order, prefix the parameter value with a minus sign (`-`). (optional)</param>

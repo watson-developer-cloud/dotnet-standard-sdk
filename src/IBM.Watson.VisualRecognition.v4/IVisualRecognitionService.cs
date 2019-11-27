@@ -37,6 +37,7 @@ namespace IBM.Watson.VisualRecognition.v4
         DetailedResponse<System.IO.MemoryStream> GetJpegImage(string collectionId, string imageId, string size = null);
         DetailedResponse<Collection> Train(string collectionId);
         DetailedResponse<TrainingDataObjects> AddImageTrainingData(string collectionId, string imageId, List<TrainingDataObject> objects = null);
+        DetailedResponse<TrainingEvents> GetTrainingUsage(string startTime = null, string endTime = null);
         DetailedResponse<object> DeleteUserData(string customerId);
     }
 }

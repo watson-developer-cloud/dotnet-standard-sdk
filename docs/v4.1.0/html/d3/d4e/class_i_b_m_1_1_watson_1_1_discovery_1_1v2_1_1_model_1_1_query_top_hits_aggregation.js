@@ -1,0 +1,5 @@
+var class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_top_hits_aggregation =
+[
+    [ "Hits", "d3/d4e/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_top_hits_aggregation.html#a8694c01d29bbb3da98ced257da4ea177", null ],
+    [ "Size", "d3/d4e/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_top_hits_aggregation.html#a48d9977b0b0d85dda96d164390a12594", null ]
+];

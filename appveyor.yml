@@ -255,7 +255,7 @@ test_script:
 
         dotnet pack .\src\IBM.Watson.Discovery.v1\IBM.Watson.Discovery.v1.csproj --configuration Release
 
-        dotnet pack .\src\IBM.Watson.Discovery.v1\IBM.Watson.Discovery.v2.csproj --configuration Release
+        dotnet pack .\src\IBM.Watson.Discovery.v2\IBM.Watson.Discovery.v2.csproj --configuration Release
 
         dotnet pack .\src\IBM.Watson.LanguageTranslator.v3\IBM.Watson.LanguageTranslator.v3.csproj --configuration Release
 

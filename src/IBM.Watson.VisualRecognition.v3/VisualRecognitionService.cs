@@ -30,14 +30,14 @@ namespace IBM.Watson.VisualRecognition.v3
 {
     public partial class VisualRecognitionService : IBMService, IVisualRecognitionService
     {
-        const string serviceName = "visual_recognition";
+        const string defaultServiceName = "visual_recognition";
         private const string defaultServiceUrl = "https://gateway.watsonplatform.net/visual-recognition/api";
         public string VersionDate { get; set; }
 
-        public VisualRecognitionService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
-        public VisualRecognitionService(IClient httpClient) : base(serviceName, httpClient) { }
+        public VisualRecognitionService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public VisualRecognitionService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public VisualRecognitionService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
+        public VisualRecognitionService(string versionDate, IAuthenticator authenticator) : base(defaultServiceName, authenticator)
         {
             if (string.IsNullOrEmpty(versionDate))
             {

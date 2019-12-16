@@ -32,13 +32,13 @@ namespace IBM.Watson.SpeechToText.v1
 {
     public partial class SpeechToTextService : IBMService, ISpeechToTextService
     {
-        const string serviceName = "speech_to_text";
+        const string defaultServiceName = "speech_to_text";
         private const string defaultServiceUrl = "https://stream.watsonplatform.net/speech-to-text/api";
 
-        public SpeechToTextService() : this(ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
-        public SpeechToTextService(IClient httpClient) : base(serviceName, httpClient) { }
+        public SpeechToTextService() : this(ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public SpeechToTextService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public SpeechToTextService(IAuthenticator authenticator) : base(serviceName, authenticator)
+        public SpeechToTextService(IAuthenticator authenticator) : base(defaultServiceName, authenticator)
         {
 
             if (string.IsNullOrEmpty(ServiceUrl))

@@ -15,21 +15,6 @@
 *
 */
 
-using NSubstitute;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using IBM.Cloud.SDK.Core.Http;
-using IBM.Cloud.SDK.Core.Http.Exceptions;
-using IBM.Cloud.SDK.Core.Authentication.NoAuth;
-using IBM.Watson.Assistant.v2.Model;
-using IBM.Cloud.SDK.Core.Model;
 
 namespace IBM.Watson.Assistant.v2.UnitTests
 {
@@ -53,11 +38,8 @@ namespace IBM.Watson.Assistant.v2.UnitTests
         [TestMethod]
         public void ConstructorExternalConfig()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("ASSISTANT_APIKEY");
-            System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", "apikey");
             AssistantService service = Substitute.For<AssistantService>("versionDate");
             Assert.IsNotNull(service);
-            System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", apikey);
         }
 
         [TestMethod]
@@ -83,14 +65,11 @@ namespace IBM.Watson.Assistant.v2.UnitTests
         [TestMethod]
         public void ConstructorNoUrl()
         {
-            var url = System.Environment.GetEnvironmentVariable("ASSISTANT_URL");
-            var apikey = System.Environment.GetEnvironmentVariable("ASSISTANT_APIKEY");
-            System.Environment.SetEnvironmentVariable("ASSISTANT_URL", null);
-            System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", "apikey");
+            var url = System.Environment.GetEnvironmentVariable("ASSISTANT_SERVICE_URL");
+            System.Environment.SetEnvironmentVariable("ASSISTANT_SERVICE_URL", null);
             AssistantService service = Substitute.For<AssistantService>("versionDate");
             Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/assistant/api");
-            System.Environment.SetEnvironmentVariable("ASSISTANT_URL", url);
-            System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", apikey);
+            System.Environment.SetEnvironmentVariable("ASSISTANT_SERVICE_URL", url);
         }
         #endregion
 
@@ -108,7 +87,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
 
             var assistantId = "assistantId";
 
-            var result = service.CreateSession(assistantId: assistantId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().PostAsync($"{service.ServiceUrl}/v2/assistants/{assistantId}/sessions");
@@ -128,12 +107,11 @@ namespace IBM.Watson.Assistant.v2.UnitTests
             var assistantId = "assistantId";
             var sessionId = "sessionId";
 
-            var result = service.DeleteSession(assistantId: assistantId, sessionId: sessionId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v2/assistants/{assistantId}/sessions/{sessionId}");
         }
-
         [TestMethod]
         public void Message_Success()
         {
@@ -151,7 +129,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
             var input = new MessageInput();
             var context = new MessageContext();
 
-            var result = service.Message(assistantId: assistantId, sessionId: sessionId, input: input, context: context);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (input != null)

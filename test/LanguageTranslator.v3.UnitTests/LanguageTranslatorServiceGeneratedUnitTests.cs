@@ -15,21 +15,6 @@
 *
 */
 
-using NSubstitute;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using IBM.Cloud.SDK.Core.Http;
-using IBM.Cloud.SDK.Core.Http.Exceptions;
-using IBM.Cloud.SDK.Core.Authentication.NoAuth;
-using IBM.Watson.LanguageTranslator.v3.Model;
-using IBM.Cloud.SDK.Core.Model;
 
 namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 {
@@ -53,11 +38,8 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
         [TestMethod]
         public void ConstructorExternalConfig()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("LANGUAGE_TRANSLATOR_APIKEY");
-            System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_APIKEY", "apikey");
             LanguageTranslatorService service = Substitute.For<LanguageTranslatorService>("versionDate");
             Assert.IsNotNull(service);
-            System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_APIKEY", apikey);
         }
 
         [TestMethod]
@@ -83,14 +65,11 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
         [TestMethod]
         public void ConstructorNoUrl()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("LANGUAGE_TRANSLATOR_APIKEY");
-            System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_APIKEY", "apikey");
-            var url = System.Environment.GetEnvironmentVariable("LANGUAGE_TRANSLATOR_URL");
-            System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_URL", null);
+            var url = System.Environment.GetEnvironmentVariable("LANGUAGE_TRANSLATOR_SERVICE_URL");
+            System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_SERVICE_URL", null);
             LanguageTranslatorService service = Substitute.For<LanguageTranslatorService>("versionDate");
             Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/language-translator/api");
-            System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_URL", url);
-            System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_APIKEY", apikey);
+            System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_SERVICE_URL", url);
         }
         #endregion
 
@@ -111,7 +90,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
             var source = "source";
             var target = "target";
 
-            var result = service.Translate(text: text, modelId: modelId, source: source, target: target);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (text != null && text.Count > 0)
@@ -147,7 +126,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
             service.VersionDate = versionDate;
 
 
-            var result = service.ListIdentifiableLanguages();
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
         }
@@ -165,7 +144,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             var text = "text";
 
-            var result = service.Identify(text: text);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             request.Received().WithBodyContent(Arg.Is<StringContent>(x => x.ReadAsStringAsync().Result.Equals(text)));
@@ -186,7 +165,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
             var target = "target";
             var _default = false;
 
-            var result = service.ListModels(source: source, target: target, _default: _default);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
         }
@@ -207,7 +186,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
             var parallelCorpus = new MemoryStream();
             var name = "name";
 
-            var result = service.CreateModel(baseModelId: baseModelId, forcedGlossary: forcedGlossary, parallelCorpus: parallelCorpus, name: name);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
         }
@@ -225,7 +204,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             var modelId = "modelId";
 
-            var result = service.DeleteModel(modelId: modelId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v3/models/{modelId}");
@@ -244,7 +223,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             var modelId = "modelId";
 
-            var result = service.GetModel(modelId: modelId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v3/models/{modelId}");
@@ -262,7 +241,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
             service.VersionDate = versionDate;
 
 
-            var result = service.ListDocuments();
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
         }
@@ -286,7 +265,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
             var target = "target";
             var documentId = "documentId";
 
-            var result = service.TranslateDocument(file: file, filename: filename, fileContentType: fileContentType, modelId: modelId, source: source, target: target, documentId: documentId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
         }
@@ -304,7 +283,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             var documentId = "documentId";
 
-            var result = service.GetDocumentStatus(documentId: documentId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v3/documents/{documentId}");
@@ -323,7 +302,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             var documentId = "documentId";
 
-            var result = service.DeleteDocument(documentId: documentId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v3/documents/{documentId}");
@@ -343,11 +322,10 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
             var documentId = "documentId";
             var accept = "accept";
 
-            var result = service.GetTranslatedDocument(documentId: documentId, accept: accept);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v3/documents/{documentId}/translated_document");
         }
-    }
     }
 }

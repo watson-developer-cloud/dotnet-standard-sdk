@@ -71,8 +71,33 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// detects the
         /// language](https://cloud.ibm.com/docs/services/natural-language-understanding?topic=natural-language-understanding-detectable-languages).
         /// </summary>
-        /// <param name="parameters">An object containing request parameters. The `features` object and one of the
-        /// `text`, `html`, or `url` attributes are required.</param>
+        /// <param name="features">Specific features to analyze the document for.</param>
+        /// <param name="text">The plain text to analyze. One of the `text`, `html`, or `url` parameters is required.
+        /// (optional)</param>
+        /// <param name="html">The HTML file to analyze. One of the `text`, `html`, or `url` parameters is required.
+        /// (optional)</param>
+        /// <param name="url">The webpage to analyze. One of the `text`, `html`, or `url` parameters is required.
+        /// (optional)</param>
+        /// <param name="clean">Set this to `false` to disable webpage cleaning. To learn more about webpage cleaning,
+        /// see the [Analyzing
+        /// webpages](https://cloud.ibm.com/docs/services/natural-language-understanding?topic=natural-language-understanding-analyzing-webpages)
+        /// documentation. (optional, default to true)</param>
+        /// <param name="xpath">An [XPath
+        /// query](https://cloud.ibm.com/docs/services/natural-language-understanding?topic=natural-language-understanding-analyzing-webpages#xpath)
+        /// to perform on `html` or `url` input. Results of the query will be appended to the cleaned webpage text
+        /// before it is analyzed. To analyze only the results of the XPath query, set the `clean` parameter to `false`.
+        /// (optional)</param>
+        /// <param name="fallbackToRaw">Whether to use raw HTML content if text cleaning fails. (optional, default to
+        /// true)</param>
+        /// <param name="returnAnalyzedText">Whether or not to return the analyzed text. (optional, default to
+        /// false)</param>
+        /// <param name="language">ISO 639-1 code that specifies the language of your text. This overrides automatic
+        /// language detection. Language support differs depending on the features you include in your analysis. See
+        /// [Language
+        /// support](https://cloud.ibm.com/docs/services/natural-language-understanding?topic=natural-language-understanding-language-support)
+        /// for more information. (optional)</param>
+        /// <param name="limitTextCharacters">Sets the maximum number of characters that are processed by the service.
+        /// (optional)</param>
         /// <returns><see cref="AnalysisResults" />AnalysisResults</returns>
         public DetailedResponse<AnalysisResults> Analyze(Features features, string text = null, string html = null, string url = null, bool? clean = null, string xpath = null, bool? fallbackToRaw = null, bool? returnAnalyzedText = null, string language = null, long? limitTextCharacters = null)
         {

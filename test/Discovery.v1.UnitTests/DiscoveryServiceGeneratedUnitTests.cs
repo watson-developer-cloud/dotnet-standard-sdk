@@ -15,22 +15,6 @@
 *
 */
 
-using NSubstitute;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using IBM.Cloud.SDK.Core.Http;
-using IBM.Cloud.SDK.Core.Http.Exceptions;
-using IBM.Cloud.SDK.Core.Authentication.NoAuth;
-using IBM.Watson.Discovery.v1.Model;
-using IBM.Cloud.SDK.Core.Model;
-using Environment = IBM.Watson.Discovery.v1.Model.Environment;
 
 namespace IBM.Watson.Discovery.v1.UnitTests
 {
@@ -54,11 +38,8 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         [TestMethod]
         public void ConstructorExternalConfig()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("DISCOVERY_APIKEY");
-            System.Environment.SetEnvironmentVariable("DISCOVERY_APIKEY", "apikey");
             DiscoveryService service = Substitute.For<DiscoveryService>("versionDate");
             Assert.IsNotNull(service);
-            System.Environment.SetEnvironmentVariable("DISCOVERY_APIKEY", apikey);
         }
 
         [TestMethod]
@@ -84,13 +65,11 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         [TestMethod]
         public void ConstructorNoUrl()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("DISCOVERY_APIKEY");
-            System.Environment.SetEnvironmentVariable("DISCOVERY_APIKEY", "apikey");
-            var url = System.Environment.GetEnvironmentVariable("DISCOVERY_URL");
-            System.Environment.SetEnvironmentVariable("DISCOVERY_URL", null);
+            var url = System.Environment.GetEnvironmentVariable("DISCOVERY_SERVICE_URL");
+            System.Environment.SetEnvironmentVariable("DISCOVERY_SERVICE_URL", null);
             DiscoveryService service = Substitute.For<DiscoveryService>("versionDate");
             Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/discovery/api");
-            System.Environment.SetEnvironmentVariable("DISCOVERY_APIKEY", apikey);
+            System.Environment.SetEnvironmentVariable("DISCOVERY_SERVICE_URL", url);
         }
         #endregion
 
@@ -110,7 +89,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var description = "description";
             var size = "size";
 
-            var result = service.CreateEnvironment(name: name, description: description, size: size);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(name))
@@ -143,7 +122,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             var name = "name";
 
-            var result = service.ListEnvironments(name: name);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
         }
@@ -161,7 +140,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             var environmentId = "environmentId";
 
-            var result = service.GetEnvironment(environmentId: environmentId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/environments/{environmentId}");
@@ -183,7 +162,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var description = "description";
             var size = "size";
 
-            var result = service.UpdateEnvironment(environmentId: environmentId, name: name, description: description, size: size);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(name))
@@ -217,7 +196,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             var environmentId = "environmentId";
 
-            var result = service.DeleteEnvironment(environmentId: environmentId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v1/environments/{environmentId}");
@@ -237,7 +216,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var environmentId = "environmentId";
             var collectionIds = new List<string>() { "collectionIds0", "collectionIds1" };
 
-            var result = service.ListFields(environmentId: environmentId, collectionIds: collectionIds);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/fields");
@@ -262,7 +241,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var normalizations = new List<NormalizationOperation>();
             var source = new Source();
 
-            var result = service.CreateConfiguration(environmentId: environmentId, name: name, description: description, conversions: conversions, enrichments: enrichments, normalizations: normalizations, source: source);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(name))
@@ -309,7 +288,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var environmentId = "environmentId";
             var name = "name";
 
-            var result = service.ListConfigurations(environmentId: environmentId, name: name);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/configurations");
@@ -329,7 +308,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var environmentId = "environmentId";
             var configurationId = "configurationId";
 
-            var result = service.GetConfiguration(environmentId: environmentId, configurationId: configurationId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/configurations/{configurationId}");
@@ -355,7 +334,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var normalizations = new List<NormalizationOperation>();
             var source = new Source();
 
-            var result = service.UpdateConfiguration(environmentId: environmentId, configurationId: configurationId, name: name, description: description, conversions: conversions, enrichments: enrichments, normalizations: normalizations, source: source);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(name))
@@ -402,7 +381,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var environmentId = "environmentId";
             var configurationId = "configurationId";
 
-            var result = service.DeleteConfiguration(environmentId: environmentId, configurationId: configurationId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/configurations/{configurationId}");
@@ -425,7 +404,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var configurationId = "configurationId";
             var language = "language";
 
-            var result = service.CreateCollection(environmentId: environmentId, name: name, description: description, configurationId: configurationId, language: language);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(name))
@@ -464,7 +443,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var environmentId = "environmentId";
             var name = "name";
 
-            var result = service.ListCollections(environmentId: environmentId, name: name);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/collections");
@@ -484,7 +463,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var environmentId = "environmentId";
             var collectionId = "collectionId";
 
-            var result = service.GetCollection(environmentId: environmentId, collectionId: collectionId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/collections/{collectionId}");
@@ -507,7 +486,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var description = "description";
             var configurationId = "configurationId";
 
-            var result = service.UpdateCollection(environmentId: environmentId, collectionId: collectionId, name: name, description: description, configurationId: configurationId);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(name))
@@ -542,7 +521,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var environmentId = "environmentId";
             var collectionId = "collectionId";
 
-            var result = service.DeleteCollection(environmentId: environmentId, collectionId: collectionId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/collections/{collectionId}");
@@ -562,7 +541,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var environmentId = "environmentId";
             var collectionId = "collectionId";
 
-            var result = service.ListCollectionFields(environmentId: environmentId, collectionId: collectionId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/collections/{collectionId}/fields");
@@ -582,7 +561,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var environmentId = "environmentId";
             var collectionId = "collectionId";
 
-            var result = service.ListExpansions(environmentId: environmentId, collectionId: collectionId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/collections/{collectionId}/expansions");
@@ -603,7 +582,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var collectionId = "collectionId";
             var expansions = new List<Expansion>();
 
-            var result = service.CreateExpansions(environmentId: environmentId, collectionId: collectionId, expansions: expansions);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (expansions != null && expansions.Count > 0)
@@ -630,7 +609,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var environmentId = "environmentId";
             var collectionId = "collectionId";
 
-            var result = service.DeleteExpansions(environmentId: environmentId, collectionId: collectionId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/collections/{collectionId}/expansions");
@@ -650,7 +629,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var environmentId = "environmentId";
             var collectionId = "collectionId";
 
-            var result = service.GetTokenizationDictionaryStatus(environmentId: environmentId, collectionId: collectionId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/collections/{collectionId}/word_lists/tokenization_dictionary");
@@ -671,7 +650,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var collectionId = "collectionId";
             var tokenizationRules = new List<TokenDictRule>();
 
-            var result = service.CreateTokenizationDictionary(environmentId: environmentId, collectionId: collectionId, tokenizationRules: tokenizationRules);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (tokenizationRules != null && tokenizationRules.Count > 0)
@@ -698,7 +677,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var environmentId = "environmentId";
             var collectionId = "collectionId";
 
-            var result = service.DeleteTokenizationDictionary(environmentId: environmentId, collectionId: collectionId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/collections/{collectionId}/word_lists/tokenization_dictionary");
@@ -718,7 +697,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var environmentId = "environmentId";
             var collectionId = "collectionId";
 
-            var result = service.GetStopwordListStatus(environmentId: environmentId, collectionId: collectionId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/collections/{collectionId}/word_lists/stopwords");
@@ -740,7 +719,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var stopwordFile = new MemoryStream();
             var stopwordFilename = "stopwordFilename";
 
-            var result = service.CreateStopwordList(environmentId: environmentId, collectionId: collectionId, stopwordFile: stopwordFile, stopwordFilename: stopwordFilename);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().PostAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/collections/{collectionId}/word_lists/stopwords");
@@ -760,7 +739,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var environmentId = "environmentId";
             var collectionId = "collectionId";
 
-            var result = service.DeleteStopwordList(environmentId: environmentId, collectionId: collectionId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/collections/{collectionId}/word_lists/stopwords");
@@ -784,7 +763,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var fileContentType = "fileContentType";
             var metadata = "metadata";
 
-            var result = service.AddDocument(environmentId: environmentId, collectionId: collectionId, file: file, filename: filename, fileContentType: fileContentType, metadata: metadata);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().PostAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/collections/{collectionId}/documents");
@@ -805,7 +784,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var collectionId = "collectionId";
             var documentId = "documentId";
 
-            var result = service.GetDocumentStatus(environmentId: environmentId, collectionId: collectionId, documentId: documentId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/collections/{collectionId}/documents/{documentId}");
@@ -830,7 +809,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var fileContentType = "fileContentType";
             var metadata = "metadata";
 
-            var result = service.UpdateDocument(environmentId: environmentId, collectionId: collectionId, documentId: documentId, file: file, filename: filename, fileContentType: fileContentType, metadata: metadata);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().PostAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/collections/{collectionId}/documents/{documentId}");
@@ -851,7 +830,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var collectionId = "collectionId";
             var documentId = "documentId";
 
-            var result = service.DeleteDocument(environmentId: environmentId, collectionId: collectionId, documentId: documentId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/collections/{collectionId}/documents/{documentId}");
@@ -892,7 +871,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var spellingSuggestions = false;
             var xWatsonLoggingOptOut = false;
 
-            var result = service.Query(environmentId: environmentId, collectionId: collectionId, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery, passages: passages, aggregation: aggregation, count: count, _return: _return, offset: offset, sort: sort, highlight: highlight, passagesFields: passagesFields, passagesCount: passagesCount, passagesCharacters: passagesCharacters, deduplicate: deduplicate, deduplicateField: deduplicateField, similar: similar, similarDocumentIds: similarDocumentIds, similarFields: similarFields, bias: bias, spellingSuggestions: spellingSuggestions, xWatsonLoggingOptOut: xWatsonLoggingOptOut);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(filter))
@@ -997,7 +976,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var similarDocumentIds = new List<string>() { "similarDocumentIds0", "similarDocumentIds1" };
             var similarFields = new List<string>() { "similarFields0", "similarFields1" };
 
-            var result = service.QueryNotices(environmentId: environmentId, collectionId: collectionId, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery, passages: passages, aggregation: aggregation, count: count, _return: _return, offset: offset, sort: sort, highlight: highlight, passagesFields: passagesFields, passagesCount: passagesCount, passagesCharacters: passagesCharacters, deduplicateField: deduplicateField, similar: similar, similarDocumentIds: similarDocumentIds, similarFields: similarFields);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/collections/{collectionId}/notices");
@@ -1037,7 +1016,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var bias = "bias";
             var xWatsonLoggingOptOut = false;
 
-            var result = service.FederatedQuery(environmentId: environmentId, collectionIds: collectionIds, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery, passages: passages, aggregation: aggregation, count: count, _return: _return, offset: offset, sort: sort, highlight: highlight, passagesFields: passagesFields, passagesCount: passagesCount, passagesCharacters: passagesCharacters, deduplicate: deduplicate, deduplicateField: deduplicateField, similar: similar, similarDocumentIds: similarDocumentIds, similarFields: similarFields, bias: bias, xWatsonLoggingOptOut: xWatsonLoggingOptOut);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(collectionIds))
@@ -1141,7 +1120,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var similarDocumentIds = new List<string>() { "similarDocumentIds0", "similarDocumentIds1" };
             var similarFields = new List<string>() { "similarFields0", "similarFields1" };
 
-            var result = service.FederatedQueryNotices(environmentId: environmentId, collectionIds: collectionIds, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery, aggregation: aggregation, count: count, _return: _return, offset: offset, sort: sort, highlight: highlight, deduplicateField: deduplicateField, similar: similar, similarDocumentIds: similarDocumentIds, similarFields: similarFields);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/notices");
@@ -1164,7 +1143,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var field = "field";
             long? count = 1;
 
-            var result = service.GetAutocompletion(environmentId: environmentId, collectionId: collectionId, prefix: prefix, field: field, count: count);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/collections/{collectionId}/autocompletion");
@@ -1184,7 +1163,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var environmentId = "environmentId";
             var collectionId = "collectionId";
 
-            var result = service.ListTrainingData(environmentId: environmentId, collectionId: collectionId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/collections/{collectionId}/training_data");
@@ -1207,7 +1186,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var filter = "filter";
             var examples = new List<TrainingExample>();
 
-            var result = service.AddTrainingData(environmentId: environmentId, collectionId: collectionId, naturalLanguageQuery: naturalLanguageQuery, filter: filter, examples: examples);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(naturalLanguageQuery))
@@ -1242,7 +1221,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var environmentId = "environmentId";
             var collectionId = "collectionId";
 
-            var result = service.DeleteAllTrainingData(environmentId: environmentId, collectionId: collectionId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/collections/{collectionId}/training_data");
@@ -1263,7 +1242,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var collectionId = "collectionId";
             var queryId = "queryId";
 
-            var result = service.GetTrainingData(environmentId: environmentId, collectionId: collectionId, queryId: queryId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}");
@@ -1284,7 +1263,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var collectionId = "collectionId";
             var queryId = "queryId";
 
-            var result = service.DeleteTrainingData(environmentId: environmentId, collectionId: collectionId, queryId: queryId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}");
@@ -1305,7 +1284,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var collectionId = "collectionId";
             var queryId = "queryId";
 
-            var result = service.ListTrainingExamples(environmentId: environmentId, collectionId: collectionId, queryId: queryId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples");
@@ -1329,7 +1308,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var crossReference = "crossReference";
             var relevance = 1;
 
-            var result = service.CreateTrainingExample(environmentId: environmentId, collectionId: collectionId, queryId: queryId, documentId: documentId, crossReference: crossReference, relevance: relevance);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(documentId))
@@ -1366,7 +1345,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var queryId = "queryId";
             var exampleId = "exampleId";
 
-            var result = service.DeleteTrainingExample(environmentId: environmentId, collectionId: collectionId, queryId: queryId, exampleId: exampleId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples/{exampleId}");
@@ -1390,7 +1369,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var crossReference = "crossReference";
             var relevance = 1;
 
-            var result = service.UpdateTrainingExample(environmentId: environmentId, collectionId: collectionId, queryId: queryId, exampleId: exampleId, crossReference: crossReference, relevance: relevance);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(crossReference))
@@ -1423,7 +1402,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var queryId = "queryId";
             var exampleId = "exampleId";
 
-            var result = service.GetTrainingExample(environmentId: environmentId, collectionId: collectionId, queryId: queryId, exampleId: exampleId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/collections/{collectionId}/training_data/{queryId}/examples/{exampleId}");
@@ -1442,7 +1421,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             var customerId = "customerId";
 
-            var result = service.DeleteUserData(customerId: customerId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
         }
@@ -1461,7 +1440,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var type = "type";
             var data = new EventData();
 
-            var result = service.CreateEvent(type: type, data: data);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(type))
@@ -1494,7 +1473,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             long? offset = 1;
             var sort = new List<string>() { "sort0", "sort1" };
 
-            var result = service.QueryLog(filter: filter, query: query, count: count, offset: offset, sort: sort);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
         }
@@ -1514,7 +1493,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             DateTime? endTime = DateTime.MaxValue;
             var resultType = "resultType";
 
-            var result = service.GetMetricsQuery(startTime: startTime, endTime: endTime, resultType: resultType);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
         }
@@ -1534,7 +1513,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             DateTime? endTime = DateTime.MaxValue;
             var resultType = "resultType";
 
-            var result = service.GetMetricsQueryEvent(startTime: startTime, endTime: endTime, resultType: resultType);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
         }
@@ -1554,7 +1533,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             DateTime? endTime = DateTime.MaxValue;
             var resultType = "resultType";
 
-            var result = service.GetMetricsQueryNoResults(startTime: startTime, endTime: endTime, resultType: resultType);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
         }
@@ -1574,7 +1553,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             DateTime? endTime = DateTime.MaxValue;
             var resultType = "resultType";
 
-            var result = service.GetMetricsEventRate(startTime: startTime, endTime: endTime, resultType: resultType);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
         }
@@ -1592,7 +1571,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             long? count = 1;
 
-            var result = service.GetMetricsQueryTokenEvent(count: count);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
         }
@@ -1610,7 +1589,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             var environmentId = "environmentId";
 
-            var result = service.ListCredentials(environmentId: environmentId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/credentials");
@@ -1632,7 +1611,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var credentialDetails = new CredentialDetails();
             var status = "status";
 
-            var result = service.CreateCredentials(environmentId: environmentId, sourceType: sourceType, credentialDetails: credentialDetails, status: status);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(sourceType))
@@ -1667,7 +1646,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var environmentId = "environmentId";
             var credentialId = "credentialId";
 
-            var result = service.GetCredentials(environmentId: environmentId, credentialId: credentialId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/credentials/{credentialId}");
@@ -1690,7 +1669,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var credentialDetails = new CredentialDetails();
             var status = "status";
 
-            var result = service.UpdateCredentials(environmentId: environmentId, credentialId: credentialId, sourceType: sourceType, credentialDetails: credentialDetails, status: status);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(sourceType))
@@ -1725,7 +1704,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var environmentId = "environmentId";
             var credentialId = "credentialId";
 
-            var result = service.DeleteCredentials(environmentId: environmentId, credentialId: credentialId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/credentials/{credentialId}");
@@ -1744,7 +1723,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             var environmentId = "environmentId";
 
-            var result = service.ListGateways(environmentId: environmentId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/gateways");
@@ -1764,7 +1743,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var environmentId = "environmentId";
             var name = "name";
 
-            var result = service.CreateGateway(environmentId: environmentId, name: name);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(name))
@@ -1791,7 +1770,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var environmentId = "environmentId";
             var gatewayId = "gatewayId";
 
-            var result = service.GetGateway(environmentId: environmentId, gatewayId: gatewayId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/gateways/{gatewayId}");
@@ -1811,7 +1790,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var environmentId = "environmentId";
             var gatewayId = "gatewayId";
 
-            var result = service.DeleteGateway(environmentId: environmentId, gatewayId: gatewayId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v1/environments/{environmentId}/gateways/{gatewayId}");

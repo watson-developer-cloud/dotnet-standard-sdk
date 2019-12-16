@@ -15,21 +15,6 @@
 *
 */
 
-using NSubstitute;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using IBM.Cloud.SDK.Core.Http;
-using IBM.Cloud.SDK.Core.Http.Exceptions;
-using IBM.Cloud.SDK.Core.Authentication.NoAuth;
-using IBM.Watson.NaturalLanguageUnderstanding.v1.Model;
-using IBM.Cloud.SDK.Core.Model;
 
 namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
 {
@@ -53,11 +38,8 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
         [TestMethod]
         public void ConstructorExternalConfig()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_APIKEY");
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_APIKEY", "apikey");
             NaturalLanguageUnderstandingService service = Substitute.For<NaturalLanguageUnderstandingService>("versionDate");
             Assert.IsNotNull(service);
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_APIKEY", apikey);
         }
 
         [TestMethod]
@@ -83,14 +65,11 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
         [TestMethod]
         public void ConstructorNoUrl()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_APIKEY");
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_APIKEY", "apikey");
-            var url = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_URL");
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_URL", null);
+            var url = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_SERVICE_URL");
+            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_SERVICE_URL", null);
             NaturalLanguageUnderstandingService service = Substitute.For<NaturalLanguageUnderstandingService>("versionDate");
             Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/natural-language-understanding/api");
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_URL", url);
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_APIKEY", apikey);
+            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_SERVICE_URL", url);
         }
         #endregion
 
@@ -117,7 +96,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
             var language = "language";
             var limitTextCharacters = 1;
 
-            var result = service.Analyze(features: features, text: text, html: html, url: url, clean: clean, xpath: xpath, fallbackToRaw: fallbackToRaw, returnAnalyzedText: returnAnalyzedText, language: language, limitTextCharacters: limitTextCharacters);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (features != null)
@@ -168,7 +147,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
             service.VersionDate = versionDate;
 
 
-            var result = service.ListModels();
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
         }
@@ -186,11 +165,10 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
 
             var modelId = "modelId";
 
-            var result = service.DeleteModel(modelId: modelId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v1/models/{modelId}");
         }
-    }
     }
 }

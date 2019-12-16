@@ -15,21 +15,6 @@
 *
 */
 
-using NSubstitute;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using IBM.Cloud.SDK.Core.Http;
-using IBM.Cloud.SDK.Core.Http.Exceptions;
-using IBM.Cloud.SDK.Core.Authentication.NoAuth;
-using IBM.Watson.PersonalityInsights.v3.Model;
-using IBM.Cloud.SDK.Core.Model;
 
 namespace IBM.Watson.PersonalityInsights.v3.UnitTests
 {
@@ -53,11 +38,8 @@ namespace IBM.Watson.PersonalityInsights.v3.UnitTests
         [TestMethod]
         public void ConstructorExternalConfig()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("PERSONALITY_INSIGHTS_APIKEY");
-            System.Environment.SetEnvironmentVariable("PERSONALITY_INSIGHTS_APIKEY", "apikey");
             PersonalityInsightsService service = Substitute.For<PersonalityInsightsService>("versionDate");
             Assert.IsNotNull(service);
-            System.Environment.SetEnvironmentVariable("PERSONALITY_INSIGHTS_APIKEY", apikey);
         }
 
         [TestMethod]
@@ -83,14 +65,11 @@ namespace IBM.Watson.PersonalityInsights.v3.UnitTests
         [TestMethod]
         public void ConstructorNoUrl()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("PERSONALITY_INSIGHTS_APIKEY");
-            System.Environment.SetEnvironmentVariable("PERSONALITY_INSIGHTS_APIKEY", "apikey");
-            var url = System.Environment.GetEnvironmentVariable("PERSONALITY_INSIGHTS_URL");
-            System.Environment.SetEnvironmentVariable("PERSONALITY_INSIGHTS_URL", null);
+            var url = System.Environment.GetEnvironmentVariable("PERSONALITY_INSIGHTS_SERVICE_URL");
+            System.Environment.SetEnvironmentVariable("PERSONALITY_INSIGHTS_SERVICE_URL", null);
             PersonalityInsightsService service = Substitute.For<PersonalityInsightsService>("versionDate");
             Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/personality-insights/api");
-            System.Environment.SetEnvironmentVariable("PERSONALITY_INSIGHTS_URL", url);
-            System.Environment.SetEnvironmentVariable("PERSONALITY_INSIGHTS_APIKEY", apikey);
+            System.Environment.SetEnvironmentVariable("PERSONALITY_INSIGHTS_SERVICE_URL", url);
         }
         #endregion
 
@@ -114,7 +93,7 @@ namespace IBM.Watson.PersonalityInsights.v3.UnitTests
             var csvHeaders = false;
             var consumptionPreferences = false;
 
-            var result = service.Profile(content: content, contentType: contentType, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage, rawScores: rawScores, csvHeaders: csvHeaders, consumptionPreferences: consumptionPreferences);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             var json = JsonConvert.SerializeObject(bodyObject);
@@ -141,13 +120,12 @@ namespace IBM.Watson.PersonalityInsights.v3.UnitTests
             var csvHeaders = false;
             var consumptionPreferences = false;
 
-            var result = service.ProfileAsCsv(content: content, contentType: contentType, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage, rawScores: rawScores, csvHeaders: csvHeaders, consumptionPreferences: consumptionPreferences);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             var json = JsonConvert.SerializeObject(bodyObject);
             request.Received().WithArgument("version", versionDate);
             request.Received().WithBodyContent(Arg.Is<StringContent>(x => x.ReadAsStringAsync().Result.Equals(json)));
         }
-    }
     }
 }

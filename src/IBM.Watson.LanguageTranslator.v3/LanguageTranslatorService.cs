@@ -59,8 +59,12 @@ namespace IBM.Watson.LanguageTranslator.v3
         ///
         /// Translates the input text from the source language to the target language.
         /// </summary>
-        /// <param name="request">The translate request containing the text, and either a model ID or source and target
-        /// language pair.</param>
+        /// <param name="text">Input text in UTF-8 encoding. Multiple entries will result in multiple translations in
+        /// the response.</param>
+        /// <param name="modelId">A globally unique string that identifies the underlying model that is used for
+        /// translation. (optional)</param>
+        /// <param name="source">Translation source language code. (optional)</param>
+        /// <param name="target">Translation target language code. (optional)</param>
         /// <returns><see cref="TranslationResult" />TranslationResult</returns>
         public DetailedResponse<TranslationResult> Translate(List<string> text, string modelId = null, string source = null, string target = null)
         {
@@ -643,6 +647,101 @@ namespace IBM.Watson.LanguageTranslator.v3
         }
 
         /// <summary>
+        /// The content type of file.
+        /// </summary>
+        public class TranslateDocumentFileContentTypeEnumValue
+        {
+            /// <summary>
+            /// Constant APPLICATION_POWERPOINT for application/powerpoint
+            /// </summary>
+            public const string APPLICATION_POWERPOINT = "application/powerpoint";
+            /// <summary>
+            /// Constant APPLICATION_MSPOWERPOINT for application/mspowerpoint
+            /// </summary>
+            public const string APPLICATION_MSPOWERPOINT = "application/mspowerpoint";
+            /// <summary>
+            /// Constant APPLICATION_X_RTF for application/x-rtf
+            /// </summary>
+            public const string APPLICATION_X_RTF = "application/x-rtf";
+            /// <summary>
+            /// Constant APPLICATION_JSON for application/json
+            /// </summary>
+            public const string APPLICATION_JSON = "application/json";
+            /// <summary>
+            /// Constant APPLICATION_XML for application/xml
+            /// </summary>
+            public const string APPLICATION_XML = "application/xml";
+            /// <summary>
+            /// Constant APPLICATION_VND_MS_EXCEL for application/vnd.ms-excel
+            /// </summary>
+            public const string APPLICATION_VND_MS_EXCEL = "application/vnd.ms-excel";
+            /// <summary>
+            /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_SPREADSHEETML_SHEET for application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+            /// </summary>
+            public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_SPREADSHEETML_SHEET = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            /// <summary>
+            /// Constant APPLICATION_VND_MS_POWERPOINT for application/vnd.ms-powerpoint
+            /// </summary>
+            public const string APPLICATION_VND_MS_POWERPOINT = "application/vnd.ms-powerpoint";
+            /// <summary>
+            /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_PRESENTATIONML_PRESENTATION for application/vnd.openxmlformats-officedocument.presentationml.presentation
+            /// </summary>
+            public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_PRESENTATIONML_PRESENTATION = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
+            /// <summary>
+            /// Constant APPLICATION_MSWORD for application/msword
+            /// </summary>
+            public const string APPLICATION_MSWORD = "application/msword";
+            /// <summary>
+            /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
+            /// </summary>
+            public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+            /// <summary>
+            /// Constant APPLICATION_VND_OASIS_OPENDOCUMENT_SPREADSHEET for application/vnd.oasis.opendocument.spreadsheet
+            /// </summary>
+            public const string APPLICATION_VND_OASIS_OPENDOCUMENT_SPREADSHEET = "application/vnd.oasis.opendocument.spreadsheet";
+            /// <summary>
+            /// Constant APPLICATION_VND_OASIS_OPENDOCUMENT_PRESENTATION for application/vnd.oasis.opendocument.presentation
+            /// </summary>
+            public const string APPLICATION_VND_OASIS_OPENDOCUMENT_PRESENTATION = "application/vnd.oasis.opendocument.presentation";
+            /// <summary>
+            /// Constant APPLICATION_VND_OASIS_OPENDOCUMENT_TEXT for application/vnd.oasis.opendocument.text
+            /// </summary>
+            public const string APPLICATION_VND_OASIS_OPENDOCUMENT_TEXT = "application/vnd.oasis.opendocument.text";
+            /// <summary>
+            /// Constant APPLICATION_PDF for application/pdf
+            /// </summary>
+            public const string APPLICATION_PDF = "application/pdf";
+            /// <summary>
+            /// Constant APPLICATION_RTF for application/rtf
+            /// </summary>
+            public const string APPLICATION_RTF = "application/rtf";
+            /// <summary>
+            /// Constant TEXT_HTML for text/html
+            /// </summary>
+            public const string TEXT_HTML = "text/html";
+            /// <summary>
+            /// Constant TEXT_JSON for text/json
+            /// </summary>
+            public const string TEXT_JSON = "text/json";
+            /// <summary>
+            /// Constant TEXT_PLAIN for text/plain
+            /// </summary>
+            public const string TEXT_PLAIN = "text/plain";
+            /// <summary>
+            /// Constant TEXT_RICHTEXT for text/richtext
+            /// </summary>
+            public const string TEXT_RICHTEXT = "text/richtext";
+            /// <summary>
+            /// Constant TEXT_RTF for text/rtf
+            /// </summary>
+            public const string TEXT_RTF = "text/rtf";
+            /// <summary>
+            /// Constant TEXT_XML for text/xml
+            /// </summary>
+            public const string TEXT_XML = "text/xml";
+            
+        }
+        /// <summary>
         /// Get document status.
         ///
         /// Gets the translation status of a document.
@@ -808,6 +907,109 @@ namespace IBM.Watson.LanguageTranslator.v3
             }
 
             return result;
+        }
+        /// <summary>
+        /// The type of the response: application/powerpoint, application/mspowerpoint, application/x-rtf,
+        /// application/json, application/xml, application/vnd.ms-excel,
+        /// application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-powerpoint,
+        /// application/vnd.openxmlformats-officedocument.presentationml.presentation, application/msword,
+        /// application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+        /// application/vnd.oasis.opendocument.spreadsheet, application/vnd.oasis.opendocument.presentation,
+        /// application/vnd.oasis.opendocument.text, application/pdf, application/rtf, text/html, text/json, text/plain,
+        /// text/richtext, text/rtf, or text/xml. A character encoding can be specified by including a `charset`
+        /// parameter. For example, 'text/html;charset=utf-8'.
+        /// </summary>
+        public class GetTranslatedDocumentAcceptEnumValue
+        {
+            /// <summary>
+            /// Constant APPLICATION_POWERPOINT for application/powerpoint
+            /// </summary>
+            public const string APPLICATION_POWERPOINT = "application/powerpoint";
+            /// <summary>
+            /// Constant APPLICATION_MSPOWERPOINT for application/mspowerpoint
+            /// </summary>
+            public const string APPLICATION_MSPOWERPOINT = "application/mspowerpoint";
+            /// <summary>
+            /// Constant APPLICATION_X_RTF for application/x-rtf
+            /// </summary>
+            public const string APPLICATION_X_RTF = "application/x-rtf";
+            /// <summary>
+            /// Constant APPLICATION_JSON for application/json
+            /// </summary>
+            public const string APPLICATION_JSON = "application/json";
+            /// <summary>
+            /// Constant APPLICATION_XML for application/xml
+            /// </summary>
+            public const string APPLICATION_XML = "application/xml";
+            /// <summary>
+            /// Constant APPLICATION_VND_MS_EXCEL for application/vnd.ms-excel
+            /// </summary>
+            public const string APPLICATION_VND_MS_EXCEL = "application/vnd.ms-excel";
+            /// <summary>
+            /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_SPREADSHEETML_SHEET for application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+            /// </summary>
+            public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_SPREADSHEETML_SHEET = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            /// <summary>
+            /// Constant APPLICATION_VND_MS_POWERPOINT for application/vnd.ms-powerpoint
+            /// </summary>
+            public const string APPLICATION_VND_MS_POWERPOINT = "application/vnd.ms-powerpoint";
+            /// <summary>
+            /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_PRESENTATIONML_PRESENTATION for application/vnd.openxmlformats-officedocument.presentationml.presentation
+            /// </summary>
+            public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_PRESENTATIONML_PRESENTATION = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
+            /// <summary>
+            /// Constant APPLICATION_MSWORD for application/msword
+            /// </summary>
+            public const string APPLICATION_MSWORD = "application/msword";
+            /// <summary>
+            /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
+            /// </summary>
+            public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+            /// <summary>
+            /// Constant APPLICATION_VND_OASIS_OPENDOCUMENT_SPREADSHEET for application/vnd.oasis.opendocument.spreadsheet
+            /// </summary>
+            public const string APPLICATION_VND_OASIS_OPENDOCUMENT_SPREADSHEET = "application/vnd.oasis.opendocument.spreadsheet";
+            /// <summary>
+            /// Constant APPLICATION_VND_OASIS_OPENDOCUMENT_PRESENTATION for application/vnd.oasis.opendocument.presentation
+            /// </summary>
+            public const string APPLICATION_VND_OASIS_OPENDOCUMENT_PRESENTATION = "application/vnd.oasis.opendocument.presentation";
+            /// <summary>
+            /// Constant APPLICATION_VND_OASIS_OPENDOCUMENT_TEXT for application/vnd.oasis.opendocument.text
+            /// </summary>
+            public const string APPLICATION_VND_OASIS_OPENDOCUMENT_TEXT = "application/vnd.oasis.opendocument.text";
+            /// <summary>
+            /// Constant APPLICATION_PDF for application/pdf
+            /// </summary>
+            public const string APPLICATION_PDF = "application/pdf";
+            /// <summary>
+            /// Constant APPLICATION_RTF for application/rtf
+            /// </summary>
+            public const string APPLICATION_RTF = "application/rtf";
+            /// <summary>
+            /// Constant TEXT_HTML for text/html
+            /// </summary>
+            public const string TEXT_HTML = "text/html";
+            /// <summary>
+            /// Constant TEXT_JSON for text/json
+            /// </summary>
+            public const string TEXT_JSON = "text/json";
+            /// <summary>
+            /// Constant TEXT_PLAIN for text/plain
+            /// </summary>
+            public const string TEXT_PLAIN = "text/plain";
+            /// <summary>
+            /// Constant TEXT_RICHTEXT for text/richtext
+            /// </summary>
+            public const string TEXT_RICHTEXT = "text/richtext";
+            /// <summary>
+            /// Constant TEXT_RTF for text/rtf
+            /// </summary>
+            public const string TEXT_RTF = "text/rtf";
+            /// <summary>
+            /// Constant TEXT_XML for text/xml
+            /// </summary>
+            public const string TEXT_XML = "text/xml";
+            
         }
     }
 }

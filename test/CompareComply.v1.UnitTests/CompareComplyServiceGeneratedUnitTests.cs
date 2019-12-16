@@ -15,21 +15,6 @@
 *
 */
 
-using NSubstitute;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using IBM.Cloud.SDK.Core.Http;
-using IBM.Cloud.SDK.Core.Http.Exceptions;
-using IBM.Cloud.SDK.Core.Authentication.NoAuth;
-using IBM.Watson.CompareComply.v1.Model;
-using IBM.Cloud.SDK.Core.Model;
 
 namespace IBM.Watson.CompareComply.v1.UnitTests
 {
@@ -53,11 +38,8 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
         [TestMethod]
         public void ConstructorExternalConfig()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("COMPARE_COMPLY_APIKEY");
-            System.Environment.SetEnvironmentVariable("COMPARE_COMPLY_APIKEY", "apikey");
             CompareComplyService service = Substitute.For<CompareComplyService>("versionDate");
             Assert.IsNotNull(service);
-            System.Environment.SetEnvironmentVariable("COMPARE_COMPLY_APIKEY", apikey);
         }
 
         [TestMethod]
@@ -83,13 +65,11 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
         [TestMethod]
         public void ConstructorNoUrl()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("COMPARE_COMPLY_APIKEY");
-            System.Environment.SetEnvironmentVariable("COMPARE_COMPLY_APIKEY", "apikey");
-            var url = System.Environment.GetEnvironmentVariable("COMPARE_COMPLY_URL");
-            System.Environment.SetEnvironmentVariable("COMPARE_COMPLY_URL", null);
+            var url = System.Environment.GetEnvironmentVariable("COMPARE_COMPLY_SERVICE_URL");
+            System.Environment.SetEnvironmentVariable("COMPARE_COMPLY_SERVICE_URL", null);
             CompareComplyService service = Substitute.For<CompareComplyService>("versionDate");
             Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/compare-comply/api");
-            System.Environment.SetEnvironmentVariable("COMPARE_COMPLY_URL", url);
+            System.Environment.SetEnvironmentVariable("COMPARE_COMPLY_SERVICE_URL", url);
         }
         #endregion
 
@@ -109,7 +89,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
             var fileContentType = "fileContentType";
             var model = "model";
 
-            var result = service.ConvertToHtml(file: file, fileContentType: fileContentType, model: model);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
         }
@@ -129,7 +109,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
             var fileContentType = "fileContentType";
             var model = "model";
 
-            var result = service.ClassifyElements(file: file, fileContentType: fileContentType, model: model);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
         }
@@ -149,7 +129,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
             var fileContentType = "fileContentType";
             var model = "model";
 
-            var result = service.ExtractTables(file: file, fileContentType: fileContentType, model: model);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
         }
@@ -173,7 +153,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
             var file2Label = "file2Label";
             var model = "model";
 
-            var result = service.CompareDocuments(file1: file1, file2: file2, file1ContentType: file1ContentType, file2ContentType: file2ContentType, file1Label: file1Label, file2Label: file2Label, model: model);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
         }
@@ -193,7 +173,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
             var userId = "userId";
             var comment = "comment";
 
-            var result = service.AddFeedback(feedbackData: feedbackData, userId: userId, comment: comment);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (feedbackData != null)
@@ -241,7 +221,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
             var sort = "sort";
             var includeTotal = false;
 
-            var result = service.ListFeedback(feedbackType: feedbackType, before: before, after: after, documentTitle: documentTitle, modelId: modelId, modelVersion: modelVersion, categoryRemoved: categoryRemoved, categoryAdded: categoryAdded, categoryNotChanged: categoryNotChanged, typeRemoved: typeRemoved, typeAdded: typeAdded, typeNotChanged: typeNotChanged, pageLimit: pageLimit, cursor: cursor, sort: sort, includeTotal: includeTotal);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
         }
@@ -260,7 +240,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
             var feedbackId = "feedbackId";
             var model = "model";
 
-            var result = service.GetFeedback(feedbackId: feedbackId, model: model);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/feedback/{feedbackId}");
@@ -280,7 +260,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
             var feedbackId = "feedbackId";
             var model = "model";
 
-            var result = service.DeleteFeedback(feedbackId: feedbackId, model: model);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v1/feedback/{feedbackId}");
@@ -306,7 +286,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
             var outputBucketName = "outputBucketName";
             var model = "model";
 
-            var result = service.CreateBatch(function: function, inputCredentialsFile: inputCredentialsFile, inputBucketLocation: inputBucketLocation, inputBucketName: inputBucketName, outputCredentialsFile: outputCredentialsFile, outputBucketLocation: outputBucketLocation, outputBucketName: outputBucketName, model: model);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
         }
@@ -323,7 +303,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
             service.VersionDate = versionDate;
 
 
-            var result = service.ListBatches();
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
         }
@@ -341,7 +321,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
 
             var batchId = "batchId";
 
-            var result = service.GetBatch(batchId: batchId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/batches/{batchId}");
@@ -362,19 +342,10 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
             var action = "action";
             var model = "model";
 
-            var result = service.UpdateBatch(batchId: batchId, action: action, model: model);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().PutAsync($"{service.ServiceUrl}/v1/batches/{batchId}");
         }
-    }
-
-    [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-    public void UpdateBatch_NoAction()
-    {
-        CompareComplyService service = new CompareComplyService("versionDate", new NoAuthAuthenticator());
-        string action = null;
-        var result = service.UpdateBatch(batchId: batchId, action: action, model: model);
-    }
     }
 }

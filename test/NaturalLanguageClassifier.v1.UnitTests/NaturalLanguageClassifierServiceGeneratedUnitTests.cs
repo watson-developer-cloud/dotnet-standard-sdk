@@ -15,21 +15,6 @@
 *
 */
 
-using NSubstitute;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using IBM.Cloud.SDK.Core.Http;
-using IBM.Cloud.SDK.Core.Http.Exceptions;
-using IBM.Cloud.SDK.Core.Authentication.NoAuth;
-using IBM.Watson.NaturalLanguageClassifier.v1.Model;
-using IBM.Cloud.SDK.Core.Model;
 
 namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
 {
@@ -53,11 +38,8 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
         [TestMethod]
         public void ConstructorExternalConfig()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_APIKEY");
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_APIKEY", "apikey");
             NaturalLanguageClassifierService service = Substitute.For<NaturalLanguageClassifierService>();
             Assert.IsNotNull(service);
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_APIKEY", apikey);
         }
 
         [TestMethod]
@@ -77,14 +59,11 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
         [TestMethod]
         public void ConstructorNoUrl()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_APIKEY");
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_APIKEY", "apikey");
-            var url = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_URL");
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_URL", null);
+            var url = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_SERVICE_URL");
+            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_SERVICE_URL", null);
             NaturalLanguageClassifierService service = Substitute.For<NaturalLanguageClassifierService>();
             Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/natural-language-classifier/api");
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_URL", url);
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_APIKEY", apikey);
+            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_SERVICE_URL", url);
         }
         #endregion
 
@@ -101,7 +80,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
             var classifierId = "classifierId";
             var text = "text";
 
-            var result = service.Classify(classifierId: classifierId, text: text);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(text))
@@ -125,7 +104,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
             var classifierId = "classifierId";
             var collection = new List<ClassifyInput>();
 
-            var result = service.ClassifyCollection(classifierId: classifierId, collection: collection);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (collection != null && collection.Count > 0)
@@ -149,7 +128,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
             var trainingMetadata = new MemoryStream();
             var trainingData = new MemoryStream();
 
-            var result = service.CreateClassifier(trainingMetadata: trainingMetadata, trainingData: trainingData);
+            var result = service.;
 
         }
         [TestMethod]
@@ -163,7 +142,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
             NaturalLanguageClassifierService service = new NaturalLanguageClassifierService(client);
 
 
-            var result = service.ListClassifiers();
+            var result = service.;
 
         }
         [TestMethod]
@@ -178,7 +157,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
 
             var classifierId = "classifierId";
 
-            var result = service.GetClassifier(classifierId: classifierId);
+            var result = service.;
 
             client.Received().GetAsync($"{service.ServiceUrl}/v1/classifiers/{classifierId}");
         }
@@ -194,10 +173,9 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
 
             var classifierId = "classifierId";
 
-            var result = service.DeleteClassifier(classifierId: classifierId);
+            var result = service.;
 
             client.Received().DeleteAsync($"{service.ServiceUrl}/v1/classifiers/{classifierId}");
         }
-    }
     }
 }

@@ -195,8 +195,10 @@ namespace IBM.Watson.Assistant.v2
         ///
         /// **Note:** Currently, the v2 API does not support creating assistants.</param>
         /// <param name="sessionId">Unique identifier of the session.</param>
-        /// <param name="request">The message to be sent. This includes the user's input, along with optional content
-        /// such as intents and entities. (optional)</param>
+        /// <param name="input">An input object that includes the input text. (optional)</param>
+        /// <param name="context">State information for the conversation. The context is stored by the assistant on a
+        /// per-session basis. You can use this property to set or modify context variables, which can also be accessed
+        /// by dialog nodes. (optional)</param>
         /// <returns><see cref="MessageResponse" />MessageResponse</returns>
         public DetailedResponse<MessageResponse> Message(string assistantId, string sessionId, MessageInput input = null, MessageContext context = null)
         {

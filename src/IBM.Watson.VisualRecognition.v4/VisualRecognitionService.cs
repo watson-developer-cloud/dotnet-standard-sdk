@@ -179,6 +179,17 @@ namespace IBM.Watson.VisualRecognition.v4
             return result;
         }
         /// <summary>
+        /// The features to analyze.
+        /// </summary>
+        public class AnalyzeFeaturesEnumValue
+        {
+            /// <summary>
+            /// Constant OBJECTS for objects
+            /// </summary>
+            public const string OBJECTS = "objects";
+            
+        }
+        /// <summary>
         /// Create a collection.
         ///
         /// Create a collection that can be used to store images.
@@ -189,7 +200,9 @@ namespace IBM.Watson.VisualRecognition.v4
         /// Encode the name and description in UTF-8 if they contain non-ASCII characters. The service assumes UTF-8
         /// encoding if it encounters non-ASCII characters.
         /// </summary>
-        /// <param name="collectionInfo">The new collection.</param>
+        /// <param name="name">The name of the collection. The name can contain alphanumeric, underscore, hyphen, and
+        /// dot characters. It cannot begin with the reserved prefix `sys-`. (optional)</param>
+        /// <param name="description">The description of the collection. (optional)</param>
         /// <returns><see cref="Collection" />Collection</returns>
         public DetailedResponse<Collection> CreateCollection(string name = null, string description = null)
         {
@@ -348,7 +361,9 @@ namespace IBM.Watson.VisualRecognition.v4
         /// encoding if it encounters non-ASCII characters.
         /// </summary>
         /// <param name="collectionId">The identifier of the collection.</param>
-        /// <param name="collectionInfo">The updated collection. (optional)</param>
+        /// <param name="name">The name of the collection. The name can contain alphanumeric, underscore, hyphen, and
+        /// dot characters. It cannot begin with the reserved prefix `sys-`. (optional)</param>
+        /// <param name="description">The description of the collection. (optional)</param>
         /// <returns><see cref="Collection" />Collection</returns>
         public DetailedResponse<Collection> UpdateCollection(string collectionId, string name = null, string description = null)
         {
@@ -810,6 +825,23 @@ namespace IBM.Watson.VisualRecognition.v4
             return result;
         }
         /// <summary>
+        /// The image size. Specify `thumbnail` to return a version that maintains the original aspect ratio but is no
+        /// larger than 200 pixels in the larger dimension. For example, an original 800 x 1000 image is resized to 160
+        /// x 200 pixels.
+        /// </summary>
+        public class GetJpegImageSizeEnumValue
+        {
+            /// <summary>
+            /// Constant FULL for full
+            /// </summary>
+            public const string FULL = "full";
+            /// <summary>
+            /// Constant THUMBNAIL for thumbnail
+            /// </summary>
+            public const string THUMBNAIL = "thumbnail";
+            
+        }
+        /// <summary>
         /// Train a collection.
         ///
         /// Start training on images in a collection. The collection must have enough training data and untrained data
@@ -878,7 +910,7 @@ namespace IBM.Watson.VisualRecognition.v4
         /// </summary>
         /// <param name="collectionId">The identifier of the collection.</param>
         /// <param name="imageId">The identifier of the image.</param>
-        /// <param name="trainingData">Training data. Elements in the request replace the existing elements.</param>
+        /// <param name="objects">Training data for specific objects. (optional)</param>
         /// <returns><see cref="TrainingDataObjects" />TrainingDataObjects</returns>
         public DetailedResponse<TrainingDataObjects> AddImageTrainingData(string collectionId, string imageId, List<TrainingDataObject> objects = null)
         {

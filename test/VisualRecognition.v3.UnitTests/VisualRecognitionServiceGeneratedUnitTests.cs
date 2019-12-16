@@ -15,21 +15,6 @@
 *
 */
 
-using NSubstitute;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using IBM.Cloud.SDK.Core.Http;
-using IBM.Cloud.SDK.Core.Http.Exceptions;
-using IBM.Cloud.SDK.Core.Authentication.NoAuth;
-using IBM.Watson.VisualRecognition.v3.Model;
-using IBM.Cloud.SDK.Core.Model;
 
 namespace IBM.Watson.VisualRecognition.v3.UnitTests
 {
@@ -53,11 +38,8 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
         [TestMethod]
         public void ConstructorExternalConfig()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY");
-            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY", "apikey");
             VisualRecognitionService service = Substitute.For<VisualRecognitionService>("versionDate");
             Assert.IsNotNull(service);
-            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY", apikey);
         }
 
         [TestMethod]
@@ -83,14 +65,11 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
         [TestMethod]
         public void ConstructorNoUrl()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY");
-            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY", "apikey");
-            var url = System.Environment.GetEnvironmentVariable("VISUAL_RECOGNITION_URL");
-            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_URL", null);
+            var url = System.Environment.GetEnvironmentVariable("VISUAL_RECOGNITION_SERVICE_URL");
+            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_SERVICE_URL", null);
             VisualRecognitionService service = Substitute.For<VisualRecognitionService>("versionDate");
             Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/visual-recognition/api");
-            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_URL", url);
-            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY", apikey);
+            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_SERVICE_URL", url);
         }
         #endregion
 
@@ -115,10 +94,9 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
             var classifierIds = new List<string>() { "classifierIds0", "classifierIds1" };
             var acceptLanguage = "acceptLanguage";
 
-            var result = service.Classify(imagesFile: imagesFile, imagesFilename: imagesFilename, imagesFileContentType: imagesFileContentType, url: url, threshold: threshold, owners: owners, classifierIds: classifierIds, acceptLanguage: acceptLanguage);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
-
         }
         [TestMethod]
         public void CreateClassifier_Success()
@@ -138,10 +116,9 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
             var negativeExamples = new MemoryStream();
             var negativeExamplesFilename = "negativeExamplesFilename";
 
-            var result = service.CreateClassifier(name: name, positiveExamples: positiveExamples, negativeExamples: negativeExamples, negativeExamplesFilename: negativeExamplesFilename);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
-
         }
         [TestMethod]
         public void ListClassifiers_Success()
@@ -157,7 +134,7 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
 
             var verbose = false;
 
-            var result = service.ListClassifiers(verbose: verbose);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
         }
@@ -175,7 +152,7 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
 
             var classifierId = "classifierId";
 
-            var result = service.GetClassifier(classifierId: classifierId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v3/classifiers/{classifierId}");
@@ -198,11 +175,10 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
             var negativeExamples = new MemoryStream();
             var negativeExamplesFilename = "negativeExamplesFilename";
 
-            var result = service.UpdateClassifier(classifierId: classifierId, positiveExamples: positiveExamples, negativeExamples: negativeExamples, negativeExamplesFilename: negativeExamplesFilename);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().PostAsync($"{service.ServiceUrl}/v3/classifiers/{classifierId}");
-
         }
         [TestMethod]
         public void DeleteClassifier_Success()
@@ -218,7 +194,7 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
 
             var classifierId = "classifierId";
 
-            var result = service.DeleteClassifier(classifierId: classifierId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v3/classifiers/{classifierId}");
@@ -237,7 +213,7 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
 
             var classifierId = "classifierId";
 
-            var result = service.GetCoreMlModel(classifierId: classifierId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v3/classifiers/{classifierId}/core_ml_model");
@@ -256,10 +232,9 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
 
             var customerId = "customerId";
 
-            var result = service.DeleteUserData(customerId: customerId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
         }
-    }
     }
 }

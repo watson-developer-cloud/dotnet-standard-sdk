@@ -15,21 +15,6 @@
 *
 */
 
-using NSubstitute;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using IBM.Cloud.SDK.Core.Http;
-using IBM.Cloud.SDK.Core.Http.Exceptions;
-using IBM.Cloud.SDK.Core.Authentication.NoAuth;
-using IBM.Watson.ToneAnalyzer.v3.Model;
-using IBM.Cloud.SDK.Core.Model;
 
 namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
 {
@@ -53,11 +38,8 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
         [TestMethod]
         public void ConstructorExternalConfig()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("TONE_ANALYZER_APIKEY");
-            System.Environment.SetEnvironmentVariable("TONE_ANALYZER_APIKEY", "apikey");
             ToneAnalyzerService service = Substitute.For<ToneAnalyzerService>("versionDate");
             Assert.IsNotNull(service);
-            System.Environment.SetEnvironmentVariable("TONE_ANALYZER_APIKEY", apikey);
         }
 
         [TestMethod]
@@ -83,14 +65,11 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
         [TestMethod]
         public void ConstructorNoUrl()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("TONE_ANALYZER_APIKEY");
-            System.Environment.SetEnvironmentVariable("TONE_ANALYZER_APIKEY", "apikey");
-            var url = System.Environment.GetEnvironmentVariable("TONE_ANALYZER_URL");
-            System.Environment.SetEnvironmentVariable("TONE_ANALYZER_URL", null);
+            var url = System.Environment.GetEnvironmentVariable("TONE_ANALYZER_SERVICE_URL");
+            System.Environment.SetEnvironmentVariable("TONE_ANALYZER_SERVICE_URL", null);
             ToneAnalyzerService service = Substitute.For<ToneAnalyzerService>("versionDate");
             Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/tone-analyzer/api");
-            System.Environment.SetEnvironmentVariable("TONE_ANALYZER_URL", url);
-            System.Environment.SetEnvironmentVariable("TONE_ANALYZER_APIKEY", apikey);
+            System.Environment.SetEnvironmentVariable("TONE_ANALYZER_SERVICE_URL", url);
         }
         #endregion
 
@@ -113,7 +92,7 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
             var contentLanguage = "contentLanguage";
             var acceptLanguage = "acceptLanguage";
 
-            var result = service.Tone(toneInput: toneInput, contentType: contentType, sentences: sentences, tones: tones, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             var json = JsonConvert.SerializeObject(bodyObject);
@@ -136,7 +115,7 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
             var contentLanguage = "contentLanguage";
             var acceptLanguage = "acceptLanguage";
 
-            var result = service.ToneChat(utterances: utterances, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (utterances != null && utterances.Count > 0)

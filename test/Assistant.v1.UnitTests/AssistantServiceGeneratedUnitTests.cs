@@ -15,21 +15,6 @@
 *
 */
 
-using NSubstitute;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using IBM.Cloud.SDK.Core.Http;
-using IBM.Cloud.SDK.Core.Http.Exceptions;
-using IBM.Cloud.SDK.Core.Authentication.NoAuth;
-using IBM.Watson.Assistant.v1.Model;
-using IBM.Cloud.SDK.Core.Model;
 
 namespace IBM.Watson.Assistant.v1.UnitTests
 {
@@ -53,11 +38,8 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod]
         public void ConstructorExternalConfig()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("ASSISTANT_APIKEY");
-            System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", "apikey");
             AssistantService service = Substitute.For<AssistantService>("versionDate");
             Assert.IsNotNull(service);
-            System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", apikey);
         }
 
         [TestMethod]
@@ -83,14 +65,11 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod]
         public void ConstructorNoUrl()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("ASSISTANT_APIKEY");
-            System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", "apikey");
             var url = System.Environment.GetEnvironmentVariable("ASSISTANT_SERVICE_URL");
             System.Environment.SetEnvironmentVariable("ASSISTANT_SERVICE_URL", null);
             AssistantService service = Substitute.For<AssistantService>("versionDate");
             Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/assistant/api");
             System.Environment.SetEnvironmentVariable("ASSISTANT_SERVICE_URL", url);
-            System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", apikey);
         }
         #endregion
 
@@ -115,7 +94,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var output = new OutputData();
             var nodesVisitedDetails = false;
 
-            var result = service.Message(workspaceId: workspaceId, input: input, intents: intents, entities: entities, alternateIntents: alternateIntents, context: context, output: output, nodesVisitedDetails: nodesVisitedDetails);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (input != null)
@@ -161,7 +140,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var cursor = "cursor";
             var includeAudit = false;
 
-            var result = service.ListWorkspaces(pageLimit: pageLimit, sort: sort, cursor: cursor, includeAudit: includeAudit);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
         }
@@ -190,8 +169,51 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var counterexamples = new List<Counterexample>();
             var webhooks = new List<Webhook>();
 
-            var result = service.CreateWorkspace(name: name, description: description, language: language, metadata: metadata, learningOptOut: learningOptOut, systemSettings: systemSettings, intents: intents, entities: entities, dialogNodes: dialogNodes, counterexamples: counterexamples, webhooks: webhooks);
+            var result = service.;
 
+            JObject bodyObject = new JObject();
+            if (!string.IsNullOrEmpty(name))
+            {
+                bodyObject["name"] = JToken.FromObject(name);
+            }
+            if (!string.IsNullOrEmpty(description))
+            {
+                bodyObject["description"] = JToken.FromObject(description);
+            }
+            if (!string.IsNullOrEmpty(language))
+            {
+                bodyObject["language"] = JToken.FromObject(language);
+            }
+            if (metadata != null)
+            {
+                bodyObject["metadata"] = JToken.FromObject(metadata);
+            }
+            bodyObject["learning_opt_out"] = JToken.FromObject(learningOptOut);
+            if (systemSettings != null)
+            {
+                bodyObject["system_settings"] = JToken.FromObject(systemSettings);
+            }
+            if (intents != null && intents.Count > 0)
+            {
+                bodyObject["intents"] = JToken.FromObject(intents);
+            }
+            if (entities != null && entities.Count > 0)
+            {
+                bodyObject["entities"] = JToken.FromObject(entities);
+            }
+            if (dialogNodes != null && dialogNodes.Count > 0)
+            {
+                bodyObject["dialog_nodes"] = JToken.FromObject(dialogNodes);
+            }
+            if (counterexamples != null && counterexamples.Count > 0)
+            {
+                bodyObject["counterexamples"] = JToken.FromObject(counterexamples);
+            }
+            if (webhooks != null && webhooks.Count > 0)
+            {
+                bodyObject["webhooks"] = JToken.FromObject(webhooks);
+            }
+            var json = JsonConvert.SerializeObject(bodyObject);
             request.Received().WithArgument("version", versionDate);
             request.Received().WithBodyContent(Arg.Is<StringContent>(x => x.ReadAsStringAsync().Result.Equals(json)));
         }
@@ -212,7 +234,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var includeAudit = false;
             var sort = "sort";
 
-            var result = service.GetWorkspace(workspaceId: workspaceId, export: export, includeAudit: includeAudit, sort: sort);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/workspaces/{workspaceId}");
@@ -244,8 +266,51 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var webhooks = new List<Webhook>();
             var append = false;
 
-            var result = service.UpdateWorkspace(workspaceId: workspaceId, name: name, description: description, language: language, metadata: metadata, learningOptOut: learningOptOut, systemSettings: systemSettings, intents: intents, entities: entities, dialogNodes: dialogNodes, counterexamples: counterexamples, webhooks: webhooks, append: append);
+            var result = service.;
 
+            JObject bodyObject = new JObject();
+            if (!string.IsNullOrEmpty(name))
+            {
+                bodyObject["name"] = JToken.FromObject(name);
+            }
+            if (!string.IsNullOrEmpty(description))
+            {
+                bodyObject["description"] = JToken.FromObject(description);
+            }
+            if (!string.IsNullOrEmpty(language))
+            {
+                bodyObject["language"] = JToken.FromObject(language);
+            }
+            if (metadata != null)
+            {
+                bodyObject["metadata"] = JToken.FromObject(metadata);
+            }
+            bodyObject["learning_opt_out"] = JToken.FromObject(learningOptOut);
+            if (systemSettings != null)
+            {
+                bodyObject["system_settings"] = JToken.FromObject(systemSettings);
+            }
+            if (intents != null && intents.Count > 0)
+            {
+                bodyObject["intents"] = JToken.FromObject(intents);
+            }
+            if (entities != null && entities.Count > 0)
+            {
+                bodyObject["entities"] = JToken.FromObject(entities);
+            }
+            if (dialogNodes != null && dialogNodes.Count > 0)
+            {
+                bodyObject["dialog_nodes"] = JToken.FromObject(dialogNodes);
+            }
+            if (counterexamples != null && counterexamples.Count > 0)
+            {
+                bodyObject["counterexamples"] = JToken.FromObject(counterexamples);
+            }
+            if (webhooks != null && webhooks.Count > 0)
+            {
+                bodyObject["webhooks"] = JToken.FromObject(webhooks);
+            }
+            var json = JsonConvert.SerializeObject(bodyObject);
             request.Received().WithArgument("version", versionDate);
             request.Received().WithBodyContent(Arg.Is<StringContent>(x => x.ReadAsStringAsync().Result.Equals(json)));
             client.Received().PostAsync($"{service.ServiceUrl}/v1/workspaces/{workspaceId}");
@@ -264,7 +329,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var workspaceId = "workspaceId";
 
-            var result = service.DeleteWorkspace(workspaceId: workspaceId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v1/workspaces/{workspaceId}");
@@ -288,7 +353,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var cursor = "cursor";
             var includeAudit = false;
 
-            var result = service.ListIntents(workspaceId: workspaceId, export: export, pageLimit: pageLimit, sort: sort, cursor: cursor, includeAudit: includeAudit);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/workspaces/{workspaceId}/intents");
@@ -310,7 +375,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var description = "description";
             var examples = new List<Example>();
 
-            var result = service.CreateIntent(workspaceId: workspaceId, intent: intent, description: description, examples: examples);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(intent))
@@ -347,7 +412,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var export = false;
             var includeAudit = false;
 
-            var result = service.GetIntent(workspaceId: workspaceId, intent: intent, export: export, includeAudit: includeAudit);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/workspaces/{workspaceId}/intents/{intent}");
@@ -370,7 +435,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var newDescription = "newDescription";
             var newExamples = new List<Example>();
 
-            var result = service.UpdateIntent(workspaceId: workspaceId, intent: intent, newIntent: newIntent, newDescription: newDescription, newExamples: newExamples);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(newIntent))
@@ -405,7 +470,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var workspaceId = "workspaceId";
             var intent = "intent";
 
-            var result = service.DeleteIntent(workspaceId: workspaceId, intent: intent);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v1/workspaces/{workspaceId}/intents/{intent}");
@@ -429,7 +494,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var cursor = "cursor";
             var includeAudit = false;
 
-            var result = service.ListExamples(workspaceId: workspaceId, intent: intent, pageLimit: pageLimit, sort: sort, cursor: cursor, includeAudit: includeAudit);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/workspaces/{workspaceId}/intents/{intent}/examples");
@@ -451,7 +516,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var text = "text";
             var mentions = new List<Mention>();
 
-            var result = service.CreateExample(workspaceId: workspaceId, intent: intent, text: text, mentions: mentions);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(text))
@@ -484,7 +549,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var text = "text";
             var includeAudit = false;
 
-            var result = service.GetExample(workspaceId: workspaceId, intent: intent, text: text, includeAudit: includeAudit);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
@@ -507,7 +572,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var newText = "newText";
             var newMentions = new List<Mention>();
 
-            var result = service.UpdateExample(workspaceId: workspaceId, intent: intent, text: text, newText: newText, newMentions: newMentions);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(newText))
@@ -539,7 +604,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var intent = "intent";
             var text = "text";
 
-            var result = service.DeleteExample(workspaceId: workspaceId, intent: intent, text: text);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
@@ -562,7 +627,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var cursor = "cursor";
             var includeAudit = false;
 
-            var result = service.ListCounterexamples(workspaceId: workspaceId, pageLimit: pageLimit, sort: sort, cursor: cursor, includeAudit: includeAudit);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/workspaces/{workspaceId}/counterexamples");
@@ -582,7 +647,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var workspaceId = "workspaceId";
             var text = "text";
 
-            var result = service.CreateCounterexample(workspaceId: workspaceId, text: text);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(text))
@@ -610,7 +675,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var text = "text";
             var includeAudit = false;
 
-            var result = service.GetCounterexample(workspaceId: workspaceId, text: text, includeAudit: includeAudit);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/workspaces/{workspaceId}/counterexamples/{text}");
@@ -631,7 +696,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var text = "text";
             var newText = "newText";
 
-            var result = service.UpdateCounterexample(workspaceId: workspaceId, text: text, newText: newText);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(newText))
@@ -658,7 +723,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var workspaceId = "workspaceId";
             var text = "text";
 
-            var result = service.DeleteCounterexample(workspaceId: workspaceId, text: text);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v1/workspaces/{workspaceId}/counterexamples/{text}");
@@ -682,7 +747,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var cursor = "cursor";
             var includeAudit = false;
 
-            var result = service.ListEntities(workspaceId: workspaceId, export: export, pageLimit: pageLimit, sort: sort, cursor: cursor, includeAudit: includeAudit);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/workspaces/{workspaceId}/entities");
@@ -707,7 +772,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var fuzzyMatch = false;
             var values = new List<CreateValue>();
 
-            var result = service.CreateEntity(workspaceId: workspaceId, entity: entity, description: description, metadata: metadata, fuzzyMatch: fuzzyMatch, values: values);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(entity))
@@ -749,7 +814,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var export = false;
             var includeAudit = false;
 
-            var result = service.GetEntity(workspaceId: workspaceId, entity: entity, export: export, includeAudit: includeAudit);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/workspaces/{workspaceId}/entities/{entity}");
@@ -775,7 +840,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var newFuzzyMatch = false;
             var newValues = new List<CreateValue>();
 
-            var result = service.UpdateEntity(workspaceId: workspaceId, entity: entity, newEntity: newEntity, newDescription: newDescription, newMetadata: newMetadata, newFuzzyMatch: newFuzzyMatch, newValues: newValues);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(newEntity))
@@ -815,7 +880,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var workspaceId = "workspaceId";
             var entity = "entity";
 
-            var result = service.DeleteEntity(workspaceId: workspaceId, entity: entity);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v1/workspaces/{workspaceId}/entities/{entity}");
@@ -837,7 +902,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var export = false;
             var includeAudit = false;
 
-            var result = service.ListMentions(workspaceId: workspaceId, entity: entity, export: export, includeAudit: includeAudit);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/workspaces/{workspaceId}/entities/{entity}/mentions");
@@ -862,7 +927,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var cursor = "cursor";
             var includeAudit = false;
 
-            var result = service.ListValues(workspaceId: workspaceId, entity: entity, export: export, pageLimit: pageLimit, sort: sort, cursor: cursor, includeAudit: includeAudit);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/workspaces/{workspaceId}/entities/{entity}/values");
@@ -888,7 +953,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var synonyms = new List<string>();
             var patterns = new List<string>();
 
-            var result = service.CreateValue(workspaceId: workspaceId, entity: entity, value: value, metadata: metadata, type: type, synonyms: synonyms, patterns: patterns);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(value))
@@ -934,7 +999,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var export = false;
             var includeAudit = false;
 
-            var result = service.GetValue(workspaceId: workspaceId, entity: entity, value: value, export: export, includeAudit: includeAudit);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
@@ -961,7 +1026,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var newSynonyms = new List<string>();
             var newPatterns = new List<string>();
 
-            var result = service.UpdateValue(workspaceId: workspaceId, entity: entity, value: value, newValue: newValue, newMetadata: newMetadata, newType: newType, newSynonyms: newSynonyms, newPatterns: newPatterns);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(newValue))
@@ -1005,7 +1070,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var entity = "entity";
             var value = "value";
 
-            var result = service.DeleteValue(workspaceId: workspaceId, entity: entity, value: value);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
@@ -1030,7 +1095,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var cursor = "cursor";
             var includeAudit = false;
 
-            var result = service.ListSynonyms(workspaceId: workspaceId, entity: entity, value: value, pageLimit: pageLimit, sort: sort, cursor: cursor, includeAudit: includeAudit);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms");
@@ -1052,7 +1117,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var value = "value";
             var synonym = "synonym";
 
-            var result = service.CreateSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(synonym))
@@ -1082,7 +1147,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var synonym = "synonym";
             var includeAudit = false;
 
-            var result = service.GetSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym, includeAudit: includeAudit);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
@@ -1105,7 +1170,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var synonym = "synonym";
             var newSynonym = "newSynonym";
 
-            var result = service.UpdateSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym, newSynonym: newSynonym);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(newSynonym))
@@ -1134,7 +1199,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var value = "value";
             var synonym = "synonym";
 
-            var result = service.DeleteSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
@@ -1157,7 +1222,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var cursor = "cursor";
             var includeAudit = false;
 
-            var result = service.ListDialogNodes(workspaceId: workspaceId, pageLimit: pageLimit, sort: sort, cursor: cursor, includeAudit: includeAudit);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/workspaces/{workspaceId}/dialog_nodes");
@@ -1197,8 +1262,83 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var userLabel = "userLabel";
             var disambiguationOptOut = false;
 
-            var result = service.CreateDialogNode(workspaceId: workspaceId, dialogNode: dialogNode, description: description, conditions: conditions, parent: parent, previousSibling: previousSibling, output: output, context: context, metadata: metadata, nextStep: nextStep, title: title, type: type, eventName: eventName, variable: variable, actions: actions, digressIn: digressIn, digressOut: digressOut, digressOutSlots: digressOutSlots, userLabel: userLabel, disambiguationOptOut: disambiguationOptOut);
+            var result = service.;
 
+            JObject bodyObject = new JObject();
+            if (!string.IsNullOrEmpty(dialogNode))
+            {
+                bodyObject["dialog_node"] = JToken.FromObject(dialogNode);
+            }
+            if (!string.IsNullOrEmpty(description))
+            {
+                bodyObject["description"] = JToken.FromObject(description);
+            }
+            if (!string.IsNullOrEmpty(conditions))
+            {
+                bodyObject["conditions"] = JToken.FromObject(conditions);
+            }
+            if (!string.IsNullOrEmpty(parent))
+            {
+                bodyObject["parent"] = JToken.FromObject(parent);
+            }
+            if (!string.IsNullOrEmpty(previousSibling))
+            {
+                bodyObject["previous_sibling"] = JToken.FromObject(previousSibling);
+            }
+            if (output != null)
+            {
+                bodyObject["output"] = JToken.FromObject(output);
+            }
+            if (context != null)
+            {
+                bodyObject["context"] = JToken.FromObject(context);
+            }
+            if (metadata != null)
+            {
+                bodyObject["metadata"] = JToken.FromObject(metadata);
+            }
+            if (nextStep != null)
+            {
+                bodyObject["next_step"] = JToken.FromObject(nextStep);
+            }
+            if (!string.IsNullOrEmpty(title))
+            {
+                bodyObject["title"] = JToken.FromObject(title);
+            }
+            if (!string.IsNullOrEmpty(type))
+            {
+                bodyObject["type"] = JToken.FromObject(type);
+            }
+            if (!string.IsNullOrEmpty(eventName))
+            {
+                bodyObject["event_name"] = JToken.FromObject(eventName);
+            }
+            if (!string.IsNullOrEmpty(variable))
+            {
+                bodyObject["variable"] = JToken.FromObject(variable);
+            }
+            if (actions != null && actions.Count > 0)
+            {
+                bodyObject["actions"] = JToken.FromObject(actions);
+            }
+            if (!string.IsNullOrEmpty(digressIn))
+            {
+                bodyObject["digress_in"] = JToken.FromObject(digressIn);
+            }
+            if (!string.IsNullOrEmpty(digressOut))
+            {
+                bodyObject["digress_out"] = JToken.FromObject(digressOut);
+            }
+            if (!string.IsNullOrEmpty(digressOutSlots))
+            {
+                bodyObject["digress_out_slots"] = JToken.FromObject(digressOutSlots);
+            }
+            if (!string.IsNullOrEmpty(userLabel))
+            {
+                bodyObject["user_label"] = JToken.FromObject(userLabel);
+            }
+            bodyObject["disambiguation_opt_out"] = JToken.FromObject(disambiguationOptOut);
+            var json = JsonConvert.SerializeObject(bodyObject);
             request.Received().WithArgument("version", versionDate);
             request.Received().WithBodyContent(Arg.Is<StringContent>(x => x.ReadAsStringAsync().Result.Equals(json)));
             client.Received().PostAsync($"{service.ServiceUrl}/v1/workspaces/{workspaceId}/dialog_nodes");
@@ -1219,7 +1359,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var dialogNode = "dialogNode";
             var includeAudit = false;
 
-            var result = service.GetDialogNode(workspaceId: workspaceId, dialogNode: dialogNode, includeAudit: includeAudit);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
@@ -1260,8 +1400,83 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var newUserLabel = "newUserLabel";
             var newDisambiguationOptOut = false;
 
-            var result = service.UpdateDialogNode(workspaceId: workspaceId, dialogNode: dialogNode, newDialogNode: newDialogNode, newDescription: newDescription, newConditions: newConditions, newParent: newParent, newPreviousSibling: newPreviousSibling, newOutput: newOutput, newContext: newContext, newMetadata: newMetadata, newNextStep: newNextStep, newTitle: newTitle, newType: newType, newEventName: newEventName, newVariable: newVariable, newActions: newActions, newDigressIn: newDigressIn, newDigressOut: newDigressOut, newDigressOutSlots: newDigressOutSlots, newUserLabel: newUserLabel, newDisambiguationOptOut: newDisambiguationOptOut);
+            var result = service.;
 
+            JObject bodyObject = new JObject();
+            if (!string.IsNullOrEmpty(newDialogNode))
+            {
+                bodyObject["dialog_node"] = JToken.FromObject(newDialogNode);
+            }
+            if (!string.IsNullOrEmpty(newDescription))
+            {
+                bodyObject["description"] = JToken.FromObject(newDescription);
+            }
+            if (!string.IsNullOrEmpty(newConditions))
+            {
+                bodyObject["conditions"] = JToken.FromObject(newConditions);
+            }
+            if (!string.IsNullOrEmpty(newParent))
+            {
+                bodyObject["parent"] = JToken.FromObject(newParent);
+            }
+            if (!string.IsNullOrEmpty(newPreviousSibling))
+            {
+                bodyObject["previous_sibling"] = JToken.FromObject(newPreviousSibling);
+            }
+            if (newOutput != null)
+            {
+                bodyObject["output"] = JToken.FromObject(newOutput);
+            }
+            if (newContext != null)
+            {
+                bodyObject["context"] = JToken.FromObject(newContext);
+            }
+            if (newMetadata != null)
+            {
+                bodyObject["metadata"] = JToken.FromObject(newMetadata);
+            }
+            if (newNextStep != null)
+            {
+                bodyObject["next_step"] = JToken.FromObject(newNextStep);
+            }
+            if (!string.IsNullOrEmpty(newTitle))
+            {
+                bodyObject["title"] = JToken.FromObject(newTitle);
+            }
+            if (!string.IsNullOrEmpty(newType))
+            {
+                bodyObject["type"] = JToken.FromObject(newType);
+            }
+            if (!string.IsNullOrEmpty(newEventName))
+            {
+                bodyObject["event_name"] = JToken.FromObject(newEventName);
+            }
+            if (!string.IsNullOrEmpty(newVariable))
+            {
+                bodyObject["variable"] = JToken.FromObject(newVariable);
+            }
+            if (newActions != null && newActions.Count > 0)
+            {
+                bodyObject["actions"] = JToken.FromObject(newActions);
+            }
+            if (!string.IsNullOrEmpty(newDigressIn))
+            {
+                bodyObject["digress_in"] = JToken.FromObject(newDigressIn);
+            }
+            if (!string.IsNullOrEmpty(newDigressOut))
+            {
+                bodyObject["digress_out"] = JToken.FromObject(newDigressOut);
+            }
+            if (!string.IsNullOrEmpty(newDigressOutSlots))
+            {
+                bodyObject["digress_out_slots"] = JToken.FromObject(newDigressOutSlots);
+            }
+            if (!string.IsNullOrEmpty(newUserLabel))
+            {
+                bodyObject["user_label"] = JToken.FromObject(newUserLabel);
+            }
+            bodyObject["disambiguation_opt_out"] = JToken.FromObject(newDisambiguationOptOut);
+            var json = JsonConvert.SerializeObject(bodyObject);
             request.Received().WithArgument("version", versionDate);
             request.Received().WithBodyContent(Arg.Is<StringContent>(x => x.ReadAsStringAsync().Result.Equals(json)));
             client.Received().PostAsync($"{service.ServiceUrl}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
@@ -1281,7 +1496,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var workspaceId = "workspaceId";
             var dialogNode = "dialogNode";
 
-            var result = service.DeleteDialogNode(workspaceId: workspaceId, dialogNode: dialogNode);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
@@ -1304,7 +1519,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             long? pageLimit = 1;
             var cursor = "cursor";
 
-            var result = service.ListLogs(workspaceId: workspaceId, sort: sort, filter: filter, pageLimit: pageLimit, cursor: cursor);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v1/workspaces/{workspaceId}/logs");
@@ -1326,7 +1541,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             long? pageLimit = 1;
             var cursor = "cursor";
 
-            var result = service.ListAllLogs(filter: filter, sort: sort, pageLimit: pageLimit, cursor: cursor);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
         }
@@ -1344,10 +1559,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var customerId = "customerId";
 
-            var result = service.DeleteUserData(customerId: customerId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
         }
-    }
     }
 }

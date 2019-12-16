@@ -15,21 +15,6 @@
 *
 */
 
-using NSubstitute;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using IBM.Cloud.SDK.Core.Http;
-using IBM.Cloud.SDK.Core.Http.Exceptions;
-using IBM.Cloud.SDK.Core.Authentication.NoAuth;
-using IBM.Watson.Discovery.v2.Model;
-using IBM.Cloud.SDK.Core.Model;
 
 namespace IBM.Watson.Discovery.v2.UnitTests
 {
@@ -53,11 +38,8 @@ namespace IBM.Watson.Discovery.v2.UnitTests
         [TestMethod]
         public void ConstructorExternalConfig()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("DISCOVERY_APIKEY");
-            System.Environment.SetEnvironmentVariable("DISCOVERY_APIKEY", "apikey");
             DiscoveryService service = Substitute.For<DiscoveryService>("versionDate");
             Assert.IsNotNull(service);
-            System.Environment.SetEnvironmentVariable("DISCOVERY_APIKEY", apikey);
         }
 
         [TestMethod]
@@ -79,6 +61,16 @@ namespace IBM.Watson.Discovery.v2.UnitTests
         {
             DiscoveryService service = new DiscoveryService(null, new NoAuthAuthenticator());
         }
+
+        [TestMethod]
+        public void ConstructorNoUrl()
+        {
+            var url = System.Environment.GetEnvironmentVariable("DISCOVERY_SERVICE_URL");
+            System.Environment.SetEnvironmentVariable("DISCOVERY_SERVICE_URL", null);
+            DiscoveryService service = Substitute.For<DiscoveryService>("versionDate");
+            Assert.IsTrue(service.ServiceUrl == "");
+            System.Environment.SetEnvironmentVariable("DISCOVERY_SERVICE_URL", url);
+        }
         #endregion
 
         [TestMethod]
@@ -95,7 +87,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             var projectId = "projectId";
 
-            var result = service.ListCollections(projectId: projectId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v2/projects/{projectId}/collections");
@@ -128,7 +120,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
             var suggestedRefinements = new QueryLargeSuggestedRefinements();
             var passages = new QueryLargePassages();
 
-            var result = service.Query(projectId: projectId, collectionIds: collectionIds, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery, aggregation: aggregation, count: count, _return: _return, offset: offset, sort: sort, highlight: highlight, spellingSuggestions: spellingSuggestions, tableResults: tableResults, suggestedRefinements: suggestedRefinements, passages: passages);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (collectionIds != null && collectionIds.Count > 0)
@@ -204,7 +196,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
             var field = "field";
             long? count = 1;
 
-            var result = service.GetAutocompletion(projectId: projectId, prefix: prefix, collectionIds: collectionIds, field: field, count: count);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v2/projects/{projectId}/autocompletion");
@@ -228,7 +220,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
             long? count = 1;
             long? offset = 1;
 
-            var result = service.QueryNotices(projectId: projectId, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery, count: count, offset: offset);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v2/projects/{projectId}/notices");
@@ -248,7 +240,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
             var projectId = "projectId";
             var collectionIds = new List<string>() { "collectionIds0", "collectionIds1" };
 
-            var result = service.ListFields(projectId: projectId, collectionIds: collectionIds);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v2/projects/{projectId}/fields");
@@ -267,7 +259,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             var projectId = "projectId";
 
-            var result = service.GetComponentSettings(projectId: projectId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v2/projects/{projectId}/component_settings");
@@ -292,7 +284,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
             var metadata = "metadata";
             var xWatsonDiscoveryForce = false;
 
-            var result = service.AddDocument(projectId: projectId, collectionId: collectionId, file: file, filename: filename, fileContentType: fileContentType, metadata: metadata, xWatsonDiscoveryForce: xWatsonDiscoveryForce);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().PostAsync($"{service.ServiceUrl}/v2/projects/{projectId}/collections/{collectionId}/documents");
@@ -318,7 +310,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
             var metadata = "metadata";
             var xWatsonDiscoveryForce = false;
 
-            var result = service.UpdateDocument(projectId: projectId, collectionId: collectionId, documentId: documentId, file: file, filename: filename, fileContentType: fileContentType, metadata: metadata, xWatsonDiscoveryForce: xWatsonDiscoveryForce);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().PostAsync($"{service.ServiceUrl}/v2/projects/{projectId}/collections/{collectionId}/documents/{documentId}");
@@ -340,7 +332,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
             var documentId = "documentId";
             var xWatsonDiscoveryForce = false;
 
-            var result = service.DeleteDocument(projectId: projectId, collectionId: collectionId, documentId: documentId, xWatsonDiscoveryForce: xWatsonDiscoveryForce);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v2/projects/{projectId}/collections/{collectionId}/documents/{documentId}");
@@ -359,7 +351,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             var projectId = "projectId";
 
-            var result = service.ListTrainingQueries(projectId: projectId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v2/projects/{projectId}/training_data/queries");
@@ -378,7 +370,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             var projectId = "projectId";
 
-            var result = service.DeleteTrainingQueries(projectId: projectId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().DeleteAsync($"{service.ServiceUrl}/v2/projects/{projectId}/training_data/queries");
@@ -397,23 +389,23 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             var projectId = "projectId";
             var naturalLanguageQuery = "naturalLanguageQuery";
-            var filter = "filter";
             var examples = new List<TrainingExample>();
+            var filter = "filter";
 
-            var result = service.CreateTrainingQuery(projectId: projectId, naturalLanguageQuery: naturalLanguageQuery, filter: filter, examples: examples);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(naturalLanguageQuery))
             {
                 bodyObject["natural_language_query"] = JToken.FromObject(naturalLanguageQuery);
             }
-            if (!string.IsNullOrEmpty(filter))
-            {
-                bodyObject["filter"] = JToken.FromObject(filter);
-            }
             if (examples != null && examples.Count > 0)
             {
                 bodyObject["examples"] = JToken.FromObject(examples);
+            }
+            if (!string.IsNullOrEmpty(filter))
+            {
+                bodyObject["filter"] = JToken.FromObject(filter);
             }
             var json = JsonConvert.SerializeObject(bodyObject);
             request.Received().WithArgument("version", versionDate);
@@ -435,7 +427,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
             var projectId = "projectId";
             var queryId = "queryId";
 
-            var result = service.GetTrainingQuery(projectId: projectId, queryId: queryId);
+            var result = service.;
 
             request.Received().WithArgument("version", versionDate);
             client.Received().GetAsync($"{service.ServiceUrl}/v2/projects/{projectId}/training_data/queries/{queryId}");
@@ -455,23 +447,23 @@ namespace IBM.Watson.Discovery.v2.UnitTests
             var projectId = "projectId";
             var queryId = "queryId";
             var naturalLanguageQuery = "naturalLanguageQuery";
-            var filter = "filter";
             var examples = new List<TrainingExample>();
+            var filter = "filter";
 
-            var result = service.UpdateTrainingQuery(projectId: projectId, queryId: queryId, naturalLanguageQuery: naturalLanguageQuery, filter: filter, examples: examples);
+            var result = service.;
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(naturalLanguageQuery))
             {
                 bodyObject["natural_language_query"] = JToken.FromObject(naturalLanguageQuery);
             }
-            if (!string.IsNullOrEmpty(filter))
-            {
-                bodyObject["filter"] = JToken.FromObject(filter);
-            }
             if (examples != null && examples.Count > 0)
             {
                 bodyObject["examples"] = JToken.FromObject(examples);
+            }
+            if (!string.IsNullOrEmpty(filter))
+            {
+                bodyObject["filter"] = JToken.FromObject(filter);
             }
             var json = JsonConvert.SerializeObject(bodyObject);
             request.Received().WithArgument("version", versionDate);

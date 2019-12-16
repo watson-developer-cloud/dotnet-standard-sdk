@@ -54,7 +54,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
         /// classify text.
         /// </summary>
         /// <param name="classifierId">Classifier ID to use.</param>
-        /// <param name="body">Phrase to classify.</param>
+        /// <param name="text">The submitted phrase. The maximum length is 2048 characters.</param>
         /// <returns><see cref="Classification" />Classification</returns>
         public DetailedResponse<Classification> Classify(string classifierId, string text)
         {
@@ -117,7 +117,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
         /// Note that classifying Japanese texts is a beta feature.
         /// </summary>
         /// <param name="classifierId">Classifier ID to use.</param>
-        /// <param name="body">Phrase to classify. You can submit up to 30 text phrases in a request.</param>
+        /// <param name="collection">The submitted phrases.</param>
         /// <returns><see cref="ClassificationCollection" />ClassificationCollection</returns>
         public DetailedResponse<ClassificationCollection> ClassifyCollection(string classifierId, List<ClassifyInput> collection)
         {

@@ -164,6 +164,123 @@ namespace IBM.Watson.ToneAnalyzer.v3
         }
 
         /// <summary>
+        /// The type of the input. A character encoding can be specified by including a `charset` parameter. For
+        /// example, 'text/plain;charset=utf-8'.
+        /// </summary>
+        public class ToneContentTypeEnumValue
+        {
+            /// <summary>
+            /// Constant APPLICATION_JSON for application/json
+            /// </summary>
+            public const string APPLICATION_JSON = "application/json";
+            /// <summary>
+            /// Constant TEXT_PLAIN for text/plain
+            /// </summary>
+            public const string TEXT_PLAIN = "text/plain";
+            /// <summary>
+            /// Constant TEXT_HTML for text/html
+            /// </summary>
+            public const string TEXT_HTML = "text/html";
+            
+        }
+        /// <summary>
+        /// **`2017-09-21`:** Deprecated. The service continues to accept the parameter for backward-compatibility, but
+        /// the parameter no longer affects the response.
+        ///
+        /// **`2016-05-19`:** A comma-separated list of tones for which the service is to return its analysis of the
+        /// input; the indicated tones apply both to the full document and to individual sentences of the document. You
+        /// can specify one or more of the valid values. Omit the parameter to request results for all three tones.
+        /// </summary>
+        public class ToneTonesEnumValue
+        {
+            /// <summary>
+            /// Constant EMOTION for emotion
+            /// </summary>
+            public const ;
+            /// <summary>
+            /// Constant LANGUAGE for language
+            /// </summary>
+            public const ;
+            /// <summary>
+            /// Constant SOCIAL for social
+            /// </summary>
+            public const ;
+            
+        }
+        /// <summary>
+        /// The language of the input text for the request: English or French. Regional variants are treated as their
+        /// parent language; for example, `en-US` is interpreted as `en`. The input content must match the specified
+        /// language. Do not submit content that contains both languages. You can use different languages for
+        /// **Content-Language** and **Accept-Language**.
+        /// * **`2017-09-21`:** Accepts `en` or `fr`.
+        /// * **`2016-05-19`:** Accepts only `en`.
+        /// </summary>
+        public class ToneContentLanguageEnumValue
+        {
+            /// <summary>
+            /// Constant EN for en
+            /// </summary>
+            public const string EN = "en";
+            /// <summary>
+            /// Constant FR for fr
+            /// </summary>
+            public const string FR = "fr";
+            
+        }
+        /// <summary>
+        /// The desired language of the response. For two-character arguments, regional variants are treated as their
+        /// parent language; for example, `en-US` is interpreted as `en`. You can use different languages for
+        /// **Content-Language** and **Accept-Language**.
+        /// </summary>
+        public class ToneAcceptLanguageEnumValue
+        {
+            /// <summary>
+            /// Constant AR for ar
+            /// </summary>
+            public const string AR = "ar";
+            /// <summary>
+            /// Constant DE for de
+            /// </summary>
+            public const string DE = "de";
+            /// <summary>
+            /// Constant EN for en
+            /// </summary>
+            public const string EN = "en";
+            /// <summary>
+            /// Constant ES for es
+            /// </summary>
+            public const string ES = "es";
+            /// <summary>
+            /// Constant FR for fr
+            /// </summary>
+            public const string FR = "fr";
+            /// <summary>
+            /// Constant IT for it
+            /// </summary>
+            public const string IT = "it";
+            /// <summary>
+            /// Constant JA for ja
+            /// </summary>
+            public const string JA = "ja";
+            /// <summary>
+            /// Constant KO for ko
+            /// </summary>
+            public const string KO = "ko";
+            /// <summary>
+            /// Constant PT_BR for pt-br
+            /// </summary>
+            public const string PT_BR = "pt-br";
+            /// <summary>
+            /// Constant ZH_CN for zh-cn
+            /// </summary>
+            public const string ZH_CN = "zh-cn";
+            /// <summary>
+            /// Constant ZH_TW for zh-tw
+            /// </summary>
+            public const string ZH_TW = "zh-tw";
+            
+        }
+        /// <summary>
         /// Analyze customer-engagement tone.
         ///
         /// Use the customer-engagement endpoint to analyze the tone of customer service and customer support
@@ -179,7 +296,8 @@ namespace IBM.Watson.ToneAnalyzer.v3
         /// **See also:** [Using the customer-engagement
         /// endpoint](https://cloud.ibm.com/docs/services/tone-analyzer?topic=tone-analyzer-utco#utco).
         /// </summary>
-        /// <param name="utterances">An object that contains the content to be analyzed.</param>
+        /// <param name="utterances">An array of `Utterance` objects that provides the input content that the service is
+        /// to analyze.</param>
         /// <param name="contentLanguage">The language of the input text for the request: English or French. Regional
         /// variants are treated as their parent language; for example, `en-US` is interpreted as `en`. The input
         /// content must match the specified language. Do not submit content that contains both languages. You can use
@@ -249,6 +367,79 @@ namespace IBM.Watson.ToneAnalyzer.v3
             }
 
             return result;
+        }
+        /// <summary>
+        /// The language of the input text for the request: English or French. Regional variants are treated as their
+        /// parent language; for example, `en-US` is interpreted as `en`. The input content must match the specified
+        /// language. Do not submit content that contains both languages. You can use different languages for
+        /// **Content-Language** and **Accept-Language**.
+        /// * **`2017-09-21`:** Accepts `en` or `fr`.
+        /// * **`2016-05-19`:** Accepts only `en`.
+        /// </summary>
+        public class ToneChatContentLanguageEnumValue
+        {
+            /// <summary>
+            /// Constant EN for en
+            /// </summary>
+            public const string EN = "en";
+            /// <summary>
+            /// Constant FR for fr
+            /// </summary>
+            public const string FR = "fr";
+            
+        }
+        /// <summary>
+        /// The desired language of the response. For two-character arguments, regional variants are treated as their
+        /// parent language; for example, `en-US` is interpreted as `en`. You can use different languages for
+        /// **Content-Language** and **Accept-Language**.
+        /// </summary>
+        public class ToneChatAcceptLanguageEnumValue
+        {
+            /// <summary>
+            /// Constant AR for ar
+            /// </summary>
+            public const string AR = "ar";
+            /// <summary>
+            /// Constant DE for de
+            /// </summary>
+            public const string DE = "de";
+            /// <summary>
+            /// Constant EN for en
+            /// </summary>
+            public const string EN = "en";
+            /// <summary>
+            /// Constant ES for es
+            /// </summary>
+            public const string ES = "es";
+            /// <summary>
+            /// Constant FR for fr
+            /// </summary>
+            public const string FR = "fr";
+            /// <summary>
+            /// Constant IT for it
+            /// </summary>
+            public const string IT = "it";
+            /// <summary>
+            /// Constant JA for ja
+            /// </summary>
+            public const string JA = "ja";
+            /// <summary>
+            /// Constant KO for ko
+            /// </summary>
+            public const string KO = "ko";
+            /// <summary>
+            /// Constant PT_BR for pt-br
+            /// </summary>
+            public const string PT_BR = "pt-br";
+            /// <summary>
+            /// Constant ZH_CN for zh-cn
+            /// </summary>
+            public const string ZH_CN = "zh-cn";
+            /// <summary>
+            /// Constant ZH_TW for zh-tw
+            /// </summary>
+            public const string ZH_TW = "zh-tw";
+            
         }
     }
 }

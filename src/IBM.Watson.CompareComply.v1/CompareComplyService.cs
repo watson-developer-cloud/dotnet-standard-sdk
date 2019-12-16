@@ -124,6 +124,66 @@ namespace IBM.Watson.CompareComply.v1
             return result;
         }
         /// <summary>
+        /// The content type of file.
+        /// </summary>
+        public class ConvertToHtmlFileContentTypeEnumValue
+        {
+            /// <summary>
+            /// Constant APPLICATION_PDF for application/pdf
+            /// </summary>
+            public const string APPLICATION_PDF = "application/pdf";
+            /// <summary>
+            /// Constant APPLICATION_MSWORD for application/msword
+            /// </summary>
+            public const string APPLICATION_MSWORD = "application/msword";
+            /// <summary>
+            /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
+            /// </summary>
+            public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+            /// <summary>
+            /// Constant IMAGE_BMP for image/bmp
+            /// </summary>
+            public const string IMAGE_BMP = "image/bmp";
+            /// <summary>
+            /// Constant IMAGE_GIF for image/gif
+            /// </summary>
+            public const string IMAGE_GIF = "image/gif";
+            /// <summary>
+            /// Constant IMAGE_JPEG for image/jpeg
+            /// </summary>
+            public const string IMAGE_JPEG = "image/jpeg";
+            /// <summary>
+            /// Constant IMAGE_PNG for image/png
+            /// </summary>
+            public const string IMAGE_PNG = "image/png";
+            /// <summary>
+            /// Constant IMAGE_TIFF for image/tiff
+            /// </summary>
+            public const string IMAGE_TIFF = "image/tiff";
+            /// <summary>
+            /// Constant TEXT_PLAIN for text/plain
+            /// </summary>
+            public const string TEXT_PLAIN = "text/plain";
+            
+        }
+        /// <summary>
+        /// The analysis model to be used by the service. For the **Element classification** and **Compare two
+        /// documents** methods, the default is `contracts`. For the **Extract tables** method, the default is `tables`.
+        /// These defaults apply to the standalone methods as well as to the methods' use in batch-processing requests.
+        /// </summary>
+        public class ConvertToHtmlModelEnumValue
+        {
+            /// <summary>
+            /// Constant CONTRACTS for contracts
+            /// </summary>
+            public const string CONTRACTS = "contracts";
+            /// <summary>
+            /// Constant TABLES for tables
+            /// </summary>
+            public const string TABLES = "tables";
+            
+        }
+        /// <summary>
         /// Classify the elements of a document.
         ///
         /// Analyzes the structural and semantic elements of a document.
@@ -193,6 +253,62 @@ namespace IBM.Watson.CompareComply.v1
             return result;
         }
         /// <summary>
+        /// The content type of file.
+        /// </summary>
+        public class ClassifyElementsFileContentTypeEnumValue
+        {
+            /// <summary>
+            /// Constant APPLICATION_PDF for application/pdf
+            /// </summary>
+            public const string APPLICATION_PDF = "application/pdf";
+            /// <summary>
+            /// Constant APPLICATION_MSWORD for application/msword
+            /// </summary>
+            public const string APPLICATION_MSWORD = "application/msword";
+            /// <summary>
+            /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
+            /// </summary>
+            public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+            /// <summary>
+            /// Constant IMAGE_BMP for image/bmp
+            /// </summary>
+            public const string IMAGE_BMP = "image/bmp";
+            /// <summary>
+            /// Constant IMAGE_GIF for image/gif
+            /// </summary>
+            public const string IMAGE_GIF = "image/gif";
+            /// <summary>
+            /// Constant IMAGE_JPEG for image/jpeg
+            /// </summary>
+            public const string IMAGE_JPEG = "image/jpeg";
+            /// <summary>
+            /// Constant IMAGE_PNG for image/png
+            /// </summary>
+            public const string IMAGE_PNG = "image/png";
+            /// <summary>
+            /// Constant IMAGE_TIFF for image/tiff
+            /// </summary>
+            public const string IMAGE_TIFF = "image/tiff";
+            
+        }
+        /// <summary>
+        /// The analysis model to be used by the service. For the **Element classification** and **Compare two
+        /// documents** methods, the default is `contracts`. For the **Extract tables** method, the default is `tables`.
+        /// These defaults apply to the standalone methods as well as to the methods' use in batch-processing requests.
+        /// </summary>
+        public class ClassifyElementsModelEnumValue
+        {
+            /// <summary>
+            /// Constant CONTRACTS for contracts
+            /// </summary>
+            public const string CONTRACTS = "contracts";
+            /// <summary>
+            /// Constant TABLES for tables
+            /// </summary>
+            public const string TABLES = "tables";
+            
+        }
+        /// <summary>
         /// Extract a document's tables.
         ///
         /// Analyzes the tables in a document.
@@ -260,6 +376,66 @@ namespace IBM.Watson.CompareComply.v1
             }
 
             return result;
+        }
+        /// <summary>
+        /// The content type of file.
+        /// </summary>
+        public class ExtractTablesFileContentTypeEnumValue
+        {
+            /// <summary>
+            /// Constant APPLICATION_PDF for application/pdf
+            /// </summary>
+            public const string APPLICATION_PDF = "application/pdf";
+            /// <summary>
+            /// Constant APPLICATION_MSWORD for application/msword
+            /// </summary>
+            public const string APPLICATION_MSWORD = "application/msword";
+            /// <summary>
+            /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
+            /// </summary>
+            public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+            /// <summary>
+            /// Constant IMAGE_BMP for image/bmp
+            /// </summary>
+            public const string IMAGE_BMP = "image/bmp";
+            /// <summary>
+            /// Constant IMAGE_GIF for image/gif
+            /// </summary>
+            public const string IMAGE_GIF = "image/gif";
+            /// <summary>
+            /// Constant IMAGE_JPEG for image/jpeg
+            /// </summary>
+            public const string IMAGE_JPEG = "image/jpeg";
+            /// <summary>
+            /// Constant IMAGE_PNG for image/png
+            /// </summary>
+            public const string IMAGE_PNG = "image/png";
+            /// <summary>
+            /// Constant IMAGE_TIFF for image/tiff
+            /// </summary>
+            public const string IMAGE_TIFF = "image/tiff";
+            /// <summary>
+            /// Constant TEXT_PLAIN for text/plain
+            /// </summary>
+            public const string TEXT_PLAIN = "text/plain";
+            
+        }
+        /// <summary>
+        /// The analysis model to be used by the service. For the **Element classification** and **Compare two
+        /// documents** methods, the default is `contracts`. For the **Extract tables** method, the default is `tables`.
+        /// These defaults apply to the standalone methods as well as to the methods' use in batch-processing requests.
+        /// </summary>
+        public class ExtractTablesModelEnumValue
+        {
+            /// <summary>
+            /// Constant CONTRACTS for contracts
+            /// </summary>
+            public const string CONTRACTS = "contracts";
+            /// <summary>
+            /// Constant TABLES for tables
+            /// </summary>
+            public const string TABLES = "tables";
+            
         }
         /// <summary>
         /// Compare two documents.
@@ -356,6 +532,109 @@ namespace IBM.Watson.CompareComply.v1
             return result;
         }
         /// <summary>
+        /// The content type of file1.
+        /// </summary>
+        public class CompareDocumentsFile1ContentTypeEnumValue
+        {
+            /// <summary>
+            /// Constant APPLICATION_PDF for application/pdf
+            /// </summary>
+            public const string APPLICATION_PDF = "application/pdf";
+            /// <summary>
+            /// Constant APPLICATION_JSON for application/json
+            /// </summary>
+            public const string APPLICATION_JSON = "application/json";
+            /// <summary>
+            /// Constant APPLICATION_MSWORD for application/msword
+            /// </summary>
+            public const string APPLICATION_MSWORD = "application/msword";
+            /// <summary>
+            /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
+            /// </summary>
+            public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+            /// <summary>
+            /// Constant IMAGE_BMP for image/bmp
+            /// </summary>
+            public const string IMAGE_BMP = "image/bmp";
+            /// <summary>
+            /// Constant IMAGE_GIF for image/gif
+            /// </summary>
+            public const string IMAGE_GIF = "image/gif";
+            /// <summary>
+            /// Constant IMAGE_JPEG for image/jpeg
+            /// </summary>
+            public const string IMAGE_JPEG = "image/jpeg";
+            /// <summary>
+            /// Constant IMAGE_PNG for image/png
+            /// </summary>
+            public const string IMAGE_PNG = "image/png";
+            /// <summary>
+            /// Constant IMAGE_TIFF for image/tiff
+            /// </summary>
+            public const string IMAGE_TIFF = "image/tiff";
+            
+        }
+        /// <summary>
+        /// The content type of file2.
+        /// </summary>
+        public class CompareDocumentsFile2ContentTypeEnumValue
+        {
+            /// <summary>
+            /// Constant APPLICATION_PDF for application/pdf
+            /// </summary>
+            public const string APPLICATION_PDF = "application/pdf";
+            /// <summary>
+            /// Constant APPLICATION_JSON for application/json
+            /// </summary>
+            public const string APPLICATION_JSON = "application/json";
+            /// <summary>
+            /// Constant APPLICATION_MSWORD for application/msword
+            /// </summary>
+            public const string APPLICATION_MSWORD = "application/msword";
+            /// <summary>
+            /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
+            /// </summary>
+            public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+            /// <summary>
+            /// Constant IMAGE_BMP for image/bmp
+            /// </summary>
+            public const string IMAGE_BMP = "image/bmp";
+            /// <summary>
+            /// Constant IMAGE_GIF for image/gif
+            /// </summary>
+            public const string IMAGE_GIF = "image/gif";
+            /// <summary>
+            /// Constant IMAGE_JPEG for image/jpeg
+            /// </summary>
+            public const string IMAGE_JPEG = "image/jpeg";
+            /// <summary>
+            /// Constant IMAGE_PNG for image/png
+            /// </summary>
+            public const string IMAGE_PNG = "image/png";
+            /// <summary>
+            /// Constant IMAGE_TIFF for image/tiff
+            /// </summary>
+            public const string IMAGE_TIFF = "image/tiff";
+            
+        }
+        /// <summary>
+        /// The analysis model to be used by the service. For the **Element classification** and **Compare two
+        /// documents** methods, the default is `contracts`. For the **Extract tables** method, the default is `tables`.
+        /// These defaults apply to the standalone methods as well as to the methods' use in batch-processing requests.
+        /// </summary>
+        public class CompareDocumentsModelEnumValue
+        {
+            /// <summary>
+            /// Constant CONTRACTS for contracts
+            /// </summary>
+            public const string CONTRACTS = "contracts";
+            /// <summary>
+            /// Constant TABLES for tables
+            /// </summary>
+            public const string TABLES = "tables";
+            
+        }
+        /// <summary>
         /// Add feedback.
         ///
         /// Adds feedback in the form of _labels_ from a subject-matter expert (SME) to a governing document.
@@ -363,7 +642,9 @@ namespace IBM.Watson.CompareComply.v1
         /// incorporated at a later date. Instead, submitted feedback is used to suggest future updates to the training
         /// model.
         /// </summary>
-        /// <param name="feedbackData">An object that defines the feedback to be submitted.</param>
+        /// <param name="feedbackData">Feedback data for submission.</param>
+        /// <param name="userId">An optional string identifying the user. (optional)</param>
+        /// <param name="comment">An optional comment on or description of the feedback. (optional)</param>
         /// <returns><see cref="FeedbackReturn" />FeedbackReturn</returns>
         public DetailedResponse<FeedbackReturn> AddFeedback(FeedbackDataInput feedbackData, string userId = null, string comment = null)
         {
@@ -634,6 +915,23 @@ namespace IBM.Watson.CompareComply.v1
         }
 
         /// <summary>
+        /// The analysis model to be used by the service. For the **Element classification** and **Compare two
+        /// documents** methods, the default is `contracts`. For the **Extract tables** method, the default is `tables`.
+        /// These defaults apply to the standalone methods as well as to the methods' use in batch-processing requests.
+        /// </summary>
+        public class GetFeedbackModelEnumValue
+        {
+            /// <summary>
+            /// Constant CONTRACTS for contracts
+            /// </summary>
+            public const string CONTRACTS = "contracts";
+            /// <summary>
+            /// Constant TABLES for tables
+            /// </summary>
+            public const string TABLES = "tables";
+            
+        }
+        /// <summary>
         /// Delete a specified feedback entry.
         ///
         /// Deletes a feedback entry with a specified `feedback_id`.
@@ -692,6 +990,23 @@ namespace IBM.Watson.CompareComply.v1
             }
 
             return result;
+        }
+        /// <summary>
+        /// The analysis model to be used by the service. For the **Element classification** and **Compare two
+        /// documents** methods, the default is `contracts`. For the **Extract tables** method, the default is `tables`.
+        /// These defaults apply to the standalone methods as well as to the methods' use in batch-processing requests.
+        /// </summary>
+        public class DeleteFeedbackModelEnumValue
+        {
+            /// <summary>
+            /// Constant CONTRACTS for contracts
+            /// </summary>
+            public const string CONTRACTS = "contracts";
+            /// <summary>
+            /// Constant TABLES for tables
+            /// </summary>
+            public const string TABLES = "tables";
+            
         }
         /// <summary>
         /// Submit a batch-processing request.
@@ -846,6 +1161,42 @@ namespace IBM.Watson.CompareComply.v1
             return result;
         }
 
+        /// <summary>
+        /// The Compare and Comply method to run across the submitted input documents.
+        /// </summary>
+        public class CreateBatchFunctionEnumValue
+        {
+            /// <summary>
+            /// Constant HTML_CONVERSION for html_conversion
+            /// </summary>
+            public const string HTML_CONVERSION = "html_conversion";
+            /// <summary>
+            /// Constant ELEMENT_CLASSIFICATION for element_classification
+            /// </summary>
+            public const string ELEMENT_CLASSIFICATION = "element_classification";
+            /// <summary>
+            /// Constant TABLES for tables
+            /// </summary>
+            public const string TABLES = "tables";
+            
+        }
+        /// <summary>
+        /// The analysis model to be used by the service. For the **Element classification** and **Compare two
+        /// documents** methods, the default is `contracts`. For the **Extract tables** method, the default is `tables`.
+        /// These defaults apply to the standalone methods as well as to the methods' use in batch-processing requests.
+        /// </summary>
+        public class CreateBatchModelEnumValue
+        {
+            /// <summary>
+            /// Constant CONTRACTS for contracts
+            /// </summary>
+            public const string CONTRACTS = "contracts";
+            /// <summary>
+            /// Constant TABLES for tables
+            /// </summary>
+            public const string TABLES = "tables";
+            
+        }
         /// <summary>
         /// List submitted batch-processing jobs.
         ///
@@ -1012,6 +1363,38 @@ namespace IBM.Watson.CompareComply.v1
             }
 
             return result;
+        }
+        /// <summary>
+        /// The action you want to perform on the specified batch-processing job.
+        /// </summary>
+        public class UpdateBatchActionEnumValue
+        {
+            /// <summary>
+            /// Constant RESCAN for rescan
+            /// </summary>
+            public const string RESCAN = "rescan";
+            /// <summary>
+            /// Constant CANCEL for cancel
+            /// </summary>
+            public const string CANCEL = "cancel";
+            
+        }
+        /// <summary>
+        /// The analysis model to be used by the service. For the **Element classification** and **Compare two
+        /// documents** methods, the default is `contracts`. For the **Extract tables** method, the default is `tables`.
+        /// These defaults apply to the standalone methods as well as to the methods' use in batch-processing requests.
+        /// </summary>
+        public class UpdateBatchModelEnumValue
+        {
+            /// <summary>
+            /// Constant CONTRACTS for contracts
+            /// </summary>
+            public const string CONTRACTS = "contracts";
+            /// <summary>
+            /// Constant TABLES for tables
+            /// </summary>
+            public const string TABLES = "tables";
+            
         }
     }
 }

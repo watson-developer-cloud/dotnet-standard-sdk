@@ -109,7 +109,37 @@ namespace IBM.Watson.Discovery.v2
         /// </summary>
         /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
         /// Discovery administrative tooling.</param>
-        /// <param name="queryLong">An object that represents the query to be submitted. (optional)</param>
+        /// <param name="collectionIds">A comma-separated list of collection IDs to be queried against.
+        /// (optional)</param>
+        /// <param name="filter">A cacheable query that excludes documents that don't mention the query content. Filter
+        /// searches are better for metadata-type searches and for assessing the concepts in the data set.
+        /// (optional)</param>
+        /// <param name="query">A query search returns all documents in your data set with full enrichments and full
+        /// text, but with the most relevant documents listed first. Use a query search when you want to find the most
+        /// relevant search results. (optional)</param>
+        /// <param name="naturalLanguageQuery">A natural language query that returns relevant documents by utilizing
+        /// training data and natural language understanding. (optional)</param>
+        /// <param name="aggregation">An aggregation search that returns an exact answer by combining query search with
+        /// filters. Useful for applications to build lists, tables, and time series. For a full list of possible
+        /// aggregations, see the Query reference. (optional)</param>
+        /// <param name="count">Number of results to return. (optional)</param>
+        /// <param name="_return">A list of the fields in the document hierarchy to return. If this parameter not
+        /// specified, then all top-level fields are returned. (optional)</param>
+        /// <param name="offset">The number of query results to skip at the beginning. For example, if the total number
+        /// of results that are returned is 10 and the offset is 8, it returns the last two results. (optional)</param>
+        /// <param name="sort">A comma-separated list of fields in the document to sort on. You can optionally specify a
+        /// sort direction by prefixing the field with `-` for descending or `+` for ascending. Ascending is the default
+        /// sort direction if no prefix is specified. This parameter cannot be used in the same query as the **bias**
+        /// parameter. (optional)</param>
+        /// <param name="highlight">When `true`, a highlight field is returned for each result which contains the fields
+        /// which match the query with `<em></em>` tags around the matching query terms. (optional, default to
+        /// false)</param>
+        /// <param name="spellingSuggestions">When `true` and the **natural_language_query** parameter is used, the
+        /// **natural_language_query** parameter is spell checked. The most likely correction is returned in the
+        /// **suggested_query** field of the response (if one exists). (optional, default to false)</param>
+        /// <param name="tableResults">Configuration for table retrieval. (optional)</param>
+        /// <param name="suggestedRefinements">Configuration for suggested refinements. (optional)</param>
+        /// <param name="passages">Configuration for passage retrieval. (optional)</param>
         /// <returns><see cref="QueryResponse" />QueryResponse</returns>
         public DetailedResponse<QueryResponse> Query(string projectId, List<string> collectionIds = null, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> _return = null, long? offset = null, string sort = null, bool? highlight = null, bool? spellingSuggestions = null, QueryLargeTableResults tableResults = null, QueryLargeSuggestedRefinements suggestedRefinements = null, QueryLargePassages passages = null)
         {
@@ -624,6 +654,37 @@ namespace IBM.Watson.Discovery.v2
         }
 
         /// <summary>
+        /// The content type of file.
+        /// </summary>
+        public class AddDocumentFileContentTypeEnumValue
+        {
+            /// <summary>
+            /// Constant APPLICATION_JSON for application/json
+            /// </summary>
+            public const string APPLICATION_JSON = "application/json";
+            /// <summary>
+            /// Constant APPLICATION_MSWORD for application/msword
+            /// </summary>
+            public const string APPLICATION_MSWORD = "application/msword";
+            /// <summary>
+            /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
+            /// </summary>
+            public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+            /// <summary>
+            /// Constant APPLICATION_PDF for application/pdf
+            /// </summary>
+            public const string APPLICATION_PDF = "application/pdf";
+            /// <summary>
+            /// Constant TEXT_HTML for text/html
+            /// </summary>
+            public const string TEXT_HTML = "text/html";
+            /// <summary>
+            /// Constant APPLICATION_XHTML_XML for application/xhtml+xml
+            /// </summary>
+            public const string APPLICATION_XHTML_XML = "application/xhtml+xml";
+            
+        }
+        /// <summary>
         /// Update a document.
         ///
         /// Replace an existing document or add a document with a specified **document_id**. Starts ingesting a document
@@ -741,6 +802,37 @@ namespace IBM.Watson.Discovery.v2
             return result;
         }
 
+        /// <summary>
+        /// The content type of file.
+        /// </summary>
+        public class UpdateDocumentFileContentTypeEnumValue
+        {
+            /// <summary>
+            /// Constant APPLICATION_JSON for application/json
+            /// </summary>
+            public const string APPLICATION_JSON = "application/json";
+            /// <summary>
+            /// Constant APPLICATION_MSWORD for application/msword
+            /// </summary>
+            public const string APPLICATION_MSWORD = "application/msword";
+            /// <summary>
+            /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
+            /// </summary>
+            public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+            /// <summary>
+            /// Constant APPLICATION_PDF for application/pdf
+            /// </summary>
+            public const string APPLICATION_PDF = "application/pdf";
+            /// <summary>
+            /// Constant TEXT_HTML for text/html
+            /// </summary>
+            public const string TEXT_HTML = "text/html";
+            /// <summary>
+            /// Constant APPLICATION_XHTML_XML for application/xhtml+xml
+            /// </summary>
+            public const string APPLICATION_XHTML_XML = "application/xhtml+xml";
+            
+        }
         /// <summary>
         /// Delete a document.
         ///
@@ -938,7 +1030,10 @@ namespace IBM.Watson.Discovery.v2
         /// </summary>
         /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
         /// Discovery administrative tooling.</param>
-        /// <param name="trainingQuery">An object that represents the query to be submitted.</param>
+        /// <param name="naturalLanguageQuery">The natural text query for the training query. (optional)</param>
+        /// <param name="examples">Array of training examples. (optional)</param>
+        /// <param name="filter">The filter used on the collection before the **natural_language_query** is applied.
+        /// (optional)</param>
         /// <returns><see cref="TrainingQuery" />TrainingQuery</returns>
         public DetailedResponse<TrainingQuery> CreateTrainingQuery(string projectId, string naturalLanguageQuery, List<TrainingExample> examples, string filter = null)
         {
@@ -1082,7 +1177,10 @@ namespace IBM.Watson.Discovery.v2
         /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
         /// Discovery administrative tooling.</param>
         /// <param name="queryId">The ID of the query used for training.</param>
-        /// <param name="body">The body of the example that is to be added to the specified query.</param>
+        /// <param name="naturalLanguageQuery">The natural text query for the training query.</param>
+        /// <param name="examples">Array of training examples.</param>
+        /// <param name="filter">The filter used on the collection before the **natural_language_query** is applied.
+        /// (optional)</param>
         /// <returns><see cref="TrainingQuery" />TrainingQuery</returns>
         public DetailedResponse<TrainingQuery> UpdateTrainingQuery(string projectId, string queryId, string naturalLanguageQuery, List<TrainingExample> examples, string filter = null)
         {

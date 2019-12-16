@@ -30,14 +30,14 @@ namespace IBM.Watson.ToneAnalyzer.v3
 {
     public partial class ToneAnalyzerService : IBMService, IToneAnalyzerService
     {
-        const string serviceName = "tone_analyzer";
+        const string defaultServiceName = "tone_analyzer";
         private const string defaultServiceUrl = "https://gateway.watsonplatform.net/tone-analyzer/api";
         public string VersionDate { get; set; }
 
-        public ToneAnalyzerService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
-        public ToneAnalyzerService(IClient httpClient) : base(serviceName, httpClient) { }
+        public ToneAnalyzerService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public ToneAnalyzerService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public ToneAnalyzerService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
+        public ToneAnalyzerService(string versionDate, IAuthenticator authenticator) : base(defaultServiceName, authenticator)
         {
             if (string.IsNullOrEmpty(versionDate))
             {

@@ -33,14 +33,14 @@ namespace IBM.Watson.Discovery.v1
 {
     public partial class DiscoveryService : IBMService, IDiscoveryService
     {
-        const string serviceName = "discovery";
+        const string defaultServiceName = "discovery";
         private const string defaultServiceUrl = "https://gateway.watsonplatform.net/discovery/api";
         public string VersionDate { get; set; }
 
-        public DiscoveryService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
-        public DiscoveryService(IClient httpClient) : base(serviceName, httpClient) { }
+        public DiscoveryService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public DiscoveryService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public DiscoveryService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
+        public DiscoveryService(string versionDate, IAuthenticator authenticator) : base(defaultServiceName, authenticator)
         {
             if (string.IsNullOrEmpty(versionDate))
             {
@@ -3889,11 +3889,11 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithHeader("Accept", "application/json");
                 if (startTime != null)
                 {
-                    restRequest.WithArgument("start_time", startTime);
+                    restRequest.WithArgument("start_time", startTime?.ToString("yyyy-MM-ddTHH:mm:ssZ"));
                 }
                 if (endTime != null)
                 {
-                    restRequest.WithArgument("end_time", endTime);
+                    restRequest.WithArgument("end_time", endTime?.ToString("yyyy-MM-ddTHH:mm:ssZ"));
                 }
                 if (!string.IsNullOrEmpty(resultType))
                 {
@@ -3952,11 +3952,11 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithHeader("Accept", "application/json");
                 if (startTime != null)
                 {
-                    restRequest.WithArgument("start_time", startTime);
+                    restRequest.WithArgument("start_time", startTime?.ToString("yyyy-MM-ddTHH:mm:ssZ"));
                 }
                 if (endTime != null)
                 {
-                    restRequest.WithArgument("end_time", endTime);
+                    restRequest.WithArgument("end_time", endTime?.ToString("yyyy-MM-ddTHH:mm:ssZ"));
                 }
                 if (!string.IsNullOrEmpty(resultType))
                 {
@@ -4014,11 +4014,11 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithHeader("Accept", "application/json");
                 if (startTime != null)
                 {
-                    restRequest.WithArgument("start_time", startTime);
+                    restRequest.WithArgument("start_time", startTime?.ToString("yyyy-MM-ddTHH:mm:ssZ"));
                 }
                 if (endTime != null)
                 {
-                    restRequest.WithArgument("end_time", endTime);
+                    restRequest.WithArgument("end_time", endTime?.ToString("yyyy-MM-ddTHH:mm:ssZ"));
                 }
                 if (!string.IsNullOrEmpty(resultType))
                 {
@@ -4077,11 +4077,11 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithHeader("Accept", "application/json");
                 if (startTime != null)
                 {
-                    restRequest.WithArgument("start_time", startTime);
+                    restRequest.WithArgument("start_time", startTime?.ToString("yyyy-MM-ddTHH:mm:ssZ"));
                 }
                 if (endTime != null)
                 {
-                    restRequest.WithArgument("end_time", endTime);
+                    restRequest.WithArgument("end_time", endTime?.ToString("yyyy-MM-ddTHH:mm:ssZ"));
                 }
                 if (!string.IsNullOrEmpty(resultType))
                 {

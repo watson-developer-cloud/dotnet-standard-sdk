@@ -32,14 +32,14 @@ namespace IBM.Watson.LanguageTranslator.v3
 {
     public partial class LanguageTranslatorService : IBMService, ILanguageTranslatorService
     {
-        const string serviceName = "language_translator";
+        const string defaultServiceName = "language_translator";
         private const string defaultServiceUrl = "https://gateway.watsonplatform.net/language-translator/api";
         public string VersionDate { get; set; }
 
-        public LanguageTranslatorService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
-        public LanguageTranslatorService(IClient httpClient) : base(serviceName, httpClient) { }
+        public LanguageTranslatorService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public LanguageTranslatorService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public LanguageTranslatorService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
+        public LanguageTranslatorService(string versionDate, IAuthenticator authenticator) : base(defaultServiceName, authenticator)
         {
             if (string.IsNullOrEmpty(versionDate))
             {

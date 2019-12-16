@@ -30,14 +30,14 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
 {
     public partial class NaturalLanguageUnderstandingService : IBMService, INaturalLanguageUnderstandingService
     {
-        const string serviceName = "natural_language_understanding";
+        const string defaultServiceName = "natural-language-understanding";
         private const string defaultServiceUrl = "https://gateway.watsonplatform.net/natural-language-understanding/api";
         public string VersionDate { get; set; }
 
-        public NaturalLanguageUnderstandingService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
-        public NaturalLanguageUnderstandingService(IClient httpClient) : base(serviceName, httpClient) { }
+        public NaturalLanguageUnderstandingService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public NaturalLanguageUnderstandingService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public NaturalLanguageUnderstandingService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
+        public NaturalLanguageUnderstandingService(string versionDate, IAuthenticator authenticator) : base(defaultServiceName, authenticator)
         {
             if (string.IsNullOrEmpty(versionDate))
             {

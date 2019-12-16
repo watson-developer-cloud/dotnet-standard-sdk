@@ -32,13 +32,13 @@ namespace IBM.Watson.Discovery.v2
 {
     public partial class DiscoveryService : IBMService, IDiscoveryService
     {
-        const string serviceName = "discovery";
+        const string defaultServiceName = "discovery";
         public string VersionDate { get; set; }
 
-        public DiscoveryService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
-        public DiscoveryService(IClient httpClient) : base(serviceName, httpClient) { }
+        public DiscoveryService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public DiscoveryService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public DiscoveryService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
+        public DiscoveryService(string versionDate, IAuthenticator authenticator) : base(defaultServiceName, authenticator)
         {
             if (string.IsNullOrEmpty(versionDate))
             {

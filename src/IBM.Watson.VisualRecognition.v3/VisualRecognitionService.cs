@@ -172,56 +172,63 @@ namespace IBM.Watson.VisualRecognition.v3
 
             return result;
         }
+
         /// <summary>
-        /// The desired language of parts of the response. See the response for details.
+        /// Enum values for Classify.
         /// </summary>
-        public class ClassifyAcceptLanguageEnumValue
+        public class ClassifyEnums
         {
             /// <summary>
-            /// Constant EN for en
+            /// The desired language of parts of the response. See the response for details.
             /// </summary>
-            public const string EN = "en";
-            /// <summary>
-            /// Constant AR for ar
-            /// </summary>
-            public const string AR = "ar";
-            /// <summary>
-            /// Constant DE for de
-            /// </summary>
-            public const string DE = "de";
-            /// <summary>
-            /// Constant ES for es
-            /// </summary>
-            public const string ES = "es";
-            /// <summary>
-            /// Constant FR for fr
-            /// </summary>
-            public const string FR = "fr";
-            /// <summary>
-            /// Constant IT for it
-            /// </summary>
-            public const string IT = "it";
-            /// <summary>
-            /// Constant JA for ja
-            /// </summary>
-            public const string JA = "ja";
-            /// <summary>
-            /// Constant KO for ko
-            /// </summary>
-            public const string KO = "ko";
-            /// <summary>
-            /// Constant PT_BR for pt-br
-            /// </summary>
-            public const string PT_BR = "pt-br";
-            /// <summary>
-            /// Constant ZH_CN for zh-cn
-            /// </summary>
-            public const string ZH_CN = "zh-cn";
-            /// <summary>
-            /// Constant ZH_TW for zh-tw
-            /// </summary>
-            public const string ZH_TW = "zh-tw";
-            
+            public class AcceptLanguageValue
+            {
+                /// <summary>
+                /// Constant EN for en
+                /// </summary>
+                public const string EN = "en";
+                /// <summary>
+                /// Constant AR for ar
+                /// </summary>
+                public const string AR = "ar";
+                /// <summary>
+                /// Constant DE for de
+                /// </summary>
+                public const string DE = "de";
+                /// <summary>
+                /// Constant ES for es
+                /// </summary>
+                public const string ES = "es";
+                /// <summary>
+                /// Constant FR for fr
+                /// </summary>
+                public const string FR = "fr";
+                /// <summary>
+                /// Constant IT for it
+                /// </summary>
+                public const string IT = "it";
+                /// <summary>
+                /// Constant JA for ja
+                /// </summary>
+                public const string JA = "ja";
+                /// <summary>
+                /// Constant KO for ko
+                /// </summary>
+                public const string KO = "ko";
+                /// <summary>
+                /// Constant PT_BR for pt-br
+                /// </summary>
+                public const string PT_BR = "pt-br";
+                /// <summary>
+                /// Constant ZH_CN for zh-cn
+                /// </summary>
+                public const string ZH_CN = "zh-cn";
+                /// <summary>
+                /// Constant ZH_TW for zh-tw
+                /// </summary>
+                public const string ZH_TW = "zh-tw";
+                
+            }
         }
         /// <summary>
         /// Create a classifier.

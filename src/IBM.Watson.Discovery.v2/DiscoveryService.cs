@@ -654,36 +654,43 @@ namespace IBM.Watson.Discovery.v2
         }
 
         /// <summary>
-        /// The content type of file.
+        /// Enum values for AddDocument.
         /// </summary>
-        public class AddDocumentFileContentTypeEnumValue
+        public class AddDocumentEnums
         {
             /// <summary>
-            /// Constant APPLICATION_JSON for application/json
+            /// The content type of file.
             /// </summary>
-            public const string APPLICATION_JSON = "application/json";
-            /// <summary>
-            /// Constant APPLICATION_MSWORD for application/msword
-            /// </summary>
-            public const string APPLICATION_MSWORD = "application/msword";
-            /// <summary>
-            /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
-            /// </summary>
-            public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-            /// <summary>
-            /// Constant APPLICATION_PDF for application/pdf
-            /// </summary>
-            public const string APPLICATION_PDF = "application/pdf";
-            /// <summary>
-            /// Constant TEXT_HTML for text/html
-            /// </summary>
-            public const string TEXT_HTML = "text/html";
-            /// <summary>
-            /// Constant APPLICATION_XHTML_XML for application/xhtml+xml
-            /// </summary>
-            public const string APPLICATION_XHTML_XML = "application/xhtml+xml";
-            
+            public class FileContentTypeValue
+            {
+                /// <summary>
+                /// Constant APPLICATION_JSON for application/json
+                /// </summary>
+                public const string APPLICATION_JSON = "application/json";
+                /// <summary>
+                /// Constant APPLICATION_MSWORD for application/msword
+                /// </summary>
+                public const string APPLICATION_MSWORD = "application/msword";
+                /// <summary>
+                /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
+                /// </summary>
+                public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                /// <summary>
+                /// Constant APPLICATION_PDF for application/pdf
+                /// </summary>
+                public const string APPLICATION_PDF = "application/pdf";
+                /// <summary>
+                /// Constant TEXT_HTML for text/html
+                /// </summary>
+                public const string TEXT_HTML = "text/html";
+                /// <summary>
+                /// Constant APPLICATION_XHTML_XML for application/xhtml+xml
+                /// </summary>
+                public const string APPLICATION_XHTML_XML = "application/xhtml+xml";
+                
+            }
         }
+
         /// <summary>
         /// Update a document.
         ///
@@ -803,36 +810,43 @@ namespace IBM.Watson.Discovery.v2
         }
 
         /// <summary>
-        /// The content type of file.
+        /// Enum values for UpdateDocument.
         /// </summary>
-        public class UpdateDocumentFileContentTypeEnumValue
+        public class UpdateDocumentEnums
         {
             /// <summary>
-            /// Constant APPLICATION_JSON for application/json
+            /// The content type of file.
             /// </summary>
-            public const string APPLICATION_JSON = "application/json";
-            /// <summary>
-            /// Constant APPLICATION_MSWORD for application/msword
-            /// </summary>
-            public const string APPLICATION_MSWORD = "application/msword";
-            /// <summary>
-            /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
-            /// </summary>
-            public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-            /// <summary>
-            /// Constant APPLICATION_PDF for application/pdf
-            /// </summary>
-            public const string APPLICATION_PDF = "application/pdf";
-            /// <summary>
-            /// Constant TEXT_HTML for text/html
-            /// </summary>
-            public const string TEXT_HTML = "text/html";
-            /// <summary>
-            /// Constant APPLICATION_XHTML_XML for application/xhtml+xml
-            /// </summary>
-            public const string APPLICATION_XHTML_XML = "application/xhtml+xml";
-            
+            public class FileContentTypeValue
+            {
+                /// <summary>
+                /// Constant APPLICATION_JSON for application/json
+                /// </summary>
+                public const string APPLICATION_JSON = "application/json";
+                /// <summary>
+                /// Constant APPLICATION_MSWORD for application/msword
+                /// </summary>
+                public const string APPLICATION_MSWORD = "application/msword";
+                /// <summary>
+                /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
+                /// </summary>
+                public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                /// <summary>
+                /// Constant APPLICATION_PDF for application/pdf
+                /// </summary>
+                public const string APPLICATION_PDF = "application/pdf";
+                /// <summary>
+                /// Constant TEXT_HTML for text/html
+                /// </summary>
+                public const string TEXT_HTML = "text/html";
+                /// <summary>
+                /// Constant APPLICATION_XHTML_XML for application/xhtml+xml
+                /// </summary>
+                public const string APPLICATION_XHTML_XML = "application/xhtml+xml";
+                
+            }
         }
+
         /// <summary>
         /// Delete a document.
         ///
@@ -1030,8 +1044,8 @@ namespace IBM.Watson.Discovery.v2
         /// </summary>
         /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
         /// Discovery administrative tooling.</param>
-        /// <param name="naturalLanguageQuery">The natural text query for the training query. (optional)</param>
-        /// <param name="examples">Array of training examples. (optional)</param>
+        /// <param name="naturalLanguageQuery">The natural text query for the training query.</param>
+        /// <param name="examples">Array of training examples.</param>
         /// <param name="filter">The filter used on the collection before the **natural_language_query** is applied.
         /// (optional)</param>
         /// <returns><see cref="TrainingQuery" />TrainingQuery</returns>

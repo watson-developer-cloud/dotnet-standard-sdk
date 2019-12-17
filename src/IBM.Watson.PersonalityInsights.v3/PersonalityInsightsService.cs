@@ -192,112 +192,120 @@ namespace IBM.Watson.PersonalityInsights.v3
         }
 
         /// <summary>
-        /// The type of the input. For more information, see **Content types** in the method description.
+        /// Enum values for Profile.
         /// </summary>
-        public class ProfileContentTypeEnumValue
+        public class ProfileEnums
         {
             /// <summary>
-            /// Constant APPLICATION_JSON for application/json
+            /// The type of the input. For more information, see **Content types** in the method description.
             /// </summary>
-            public const string APPLICATION_JSON = "application/json";
+            public class ContentTypeValue
+            {
+                /// <summary>
+                /// Constant APPLICATION_JSON for application/json
+                /// </summary>
+                public const string APPLICATION_JSON = "application/json";
+                /// <summary>
+                /// Constant TEXT_HTML for text/html
+                /// </summary>
+                public const string TEXT_HTML = "text/html";
+                /// <summary>
+                /// Constant TEXT_PLAIN for text/plain
+                /// </summary>
+                public const string TEXT_PLAIN = "text/plain";
+                
+            }
             /// <summary>
-            /// Constant TEXT_HTML for text/html
+            /// The language of the input text for the request: Arabic, English, Japanese, Korean, or Spanish. Regional
+            /// variants are treated as their parent language; for example, `en-US` is interpreted as `en`.
+            ///
+            /// The effect of the **Content-Language** parameter depends on the **Content-Type** parameter. When
+            /// **Content-Type** is `text/plain` or `text/html`, **Content-Language** is the only way to specify the
+            /// language. When **Content-Type** is `application/json`, **Content-Language** overrides a language
+            /// specified with the `language` parameter of a `ContentItem` object, and content items that specify a
+            /// different language are ignored; omit this parameter to base the language on the specification of the
+            /// content items. You can specify any combination of languages for **Content-Language** and
+            /// **Accept-Language**.
             /// </summary>
-            public const string TEXT_HTML = "text/html";
+            public class ContentLanguageValue
+            {
+                /// <summary>
+                /// Constant AR for ar
+                /// </summary>
+                public const string AR = "ar";
+                /// <summary>
+                /// Constant EN for en
+                /// </summary>
+                public const string EN = "en";
+                /// <summary>
+                /// Constant ES for es
+                /// </summary>
+                public const string ES = "es";
+                /// <summary>
+                /// Constant JA for ja
+                /// </summary>
+                public const string JA = "ja";
+                /// <summary>
+                /// Constant KO for ko
+                /// </summary>
+                public const string KO = "ko";
+                
+            }
             /// <summary>
-            /// Constant TEXT_PLAIN for text/plain
+            /// The desired language of the response. For two-character arguments, regional variants are treated as
+            /// their parent language; for example, `en-US` is interpreted as `en`. You can specify any combination of
+            /// languages for the input and response content.
             /// </summary>
-            public const string TEXT_PLAIN = "text/plain";
-            
+            public class AcceptLanguageValue
+            {
+                /// <summary>
+                /// Constant AR for ar
+                /// </summary>
+                public const string AR = "ar";
+                /// <summary>
+                /// Constant DE for de
+                /// </summary>
+                public const string DE = "de";
+                /// <summary>
+                /// Constant EN for en
+                /// </summary>
+                public const string EN = "en";
+                /// <summary>
+                /// Constant ES for es
+                /// </summary>
+                public const string ES = "es";
+                /// <summary>
+                /// Constant FR for fr
+                /// </summary>
+                public const string FR = "fr";
+                /// <summary>
+                /// Constant IT for it
+                /// </summary>
+                public const string IT = "it";
+                /// <summary>
+                /// Constant JA for ja
+                /// </summary>
+                public const string JA = "ja";
+                /// <summary>
+                /// Constant KO for ko
+                /// </summary>
+                public const string KO = "ko";
+                /// <summary>
+                /// Constant PT_BR for pt-br
+                /// </summary>
+                public const string PT_BR = "pt-br";
+                /// <summary>
+                /// Constant ZH_CN for zh-cn
+                /// </summary>
+                public const string ZH_CN = "zh-cn";
+                /// <summary>
+                /// Constant ZH_TW for zh-tw
+                /// </summary>
+                public const string ZH_TW = "zh-tw";
+                
+            }
         }
-        /// <summary>
-        /// The language of the input text for the request: Arabic, English, Japanese, Korean, or Spanish. Regional
-        /// variants are treated as their parent language; for example, `en-US` is interpreted as `en`.
-        ///
-        /// The effect of the **Content-Language** parameter depends on the **Content-Type** parameter. When
-        /// **Content-Type** is `text/plain` or `text/html`, **Content-Language** is the only way to specify the
-        /// language. When **Content-Type** is `application/json`, **Content-Language** overrides a language specified
-        /// with the `language` parameter of a `ContentItem` object, and content items that specify a different language
-        /// are ignored; omit this parameter to base the language on the specification of the content items. You can
-        /// specify any combination of languages for **Content-Language** and **Accept-Language**.
-        /// </summary>
-        public class ProfileContentLanguageEnumValue
-        {
-            /// <summary>
-            /// Constant AR for ar
-            /// </summary>
-            public const string AR = "ar";
-            /// <summary>
-            /// Constant EN for en
-            /// </summary>
-            public const string EN = "en";
-            /// <summary>
-            /// Constant ES for es
-            /// </summary>
-            public const string ES = "es";
-            /// <summary>
-            /// Constant JA for ja
-            /// </summary>
-            public const string JA = "ja";
-            /// <summary>
-            /// Constant KO for ko
-            /// </summary>
-            public const string KO = "ko";
-            
-        }
-        /// <summary>
-        /// The desired language of the response. For two-character arguments, regional variants are treated as their
-        /// parent language; for example, `en-US` is interpreted as `en`. You can specify any combination of languages
-        /// for the input and response content.
-        /// </summary>
-        public class ProfileAcceptLanguageEnumValue
-        {
-            /// <summary>
-            /// Constant AR for ar
-            /// </summary>
-            public const string AR = "ar";
-            /// <summary>
-            /// Constant DE for de
-            /// </summary>
-            public const string DE = "de";
-            /// <summary>
-            /// Constant EN for en
-            /// </summary>
-            public const string EN = "en";
-            /// <summary>
-            /// Constant ES for es
-            /// </summary>
-            public const string ES = "es";
-            /// <summary>
-            /// Constant FR for fr
-            /// </summary>
-            public const string FR = "fr";
-            /// <summary>
-            /// Constant IT for it
-            /// </summary>
-            public const string IT = "it";
-            /// <summary>
-            /// Constant JA for ja
-            /// </summary>
-            public const string JA = "ja";
-            /// <summary>
-            /// Constant KO for ko
-            /// </summary>
-            public const string KO = "ko";
-            /// <summary>
-            /// Constant PT_BR for pt-br
-            /// </summary>
-            public const string PT_BR = "pt-br";
-            /// <summary>
-            /// Constant ZH_CN for zh-cn
-            /// </summary>
-            public const string ZH_CN = "zh-cn";
-            /// <summary>
-            /// Constant ZH_TW for zh-tw
-            /// </summary>
-            public const string ZH_TW = "zh-tw";
-            
-        }
+
         /// <summary>
         /// Get profile as csv.
         ///
@@ -434,112 +442,120 @@ namespace IBM.Watson.PersonalityInsights.v3
 
             return result;
         }
+
         /// <summary>
-        /// The type of the input. For more information, see **Content types** in the method description.
+        /// Enum values for ProfileAsCsv.
         /// </summary>
-        public class ProfileAsCsvContentTypeEnumValue
+        public class ProfileAsCsvEnums
         {
             /// <summary>
-            /// Constant APPLICATION_JSON for application/json
+            /// The type of the input. For more information, see **Content types** in the method description.
             /// </summary>
-            public const string APPLICATION_JSON = "application/json";
+            public class ContentTypeValue
+            {
+                /// <summary>
+                /// Constant APPLICATION_JSON for application/json
+                /// </summary>
+                public const string APPLICATION_JSON = "application/json";
+                /// <summary>
+                /// Constant TEXT_HTML for text/html
+                /// </summary>
+                public const string TEXT_HTML = "text/html";
+                /// <summary>
+                /// Constant TEXT_PLAIN for text/plain
+                /// </summary>
+                public const string TEXT_PLAIN = "text/plain";
+                
+            }
             /// <summary>
-            /// Constant TEXT_HTML for text/html
+            /// The language of the input text for the request: Arabic, English, Japanese, Korean, or Spanish. Regional
+            /// variants are treated as their parent language; for example, `en-US` is interpreted as `en`.
+            ///
+            /// The effect of the **Content-Language** parameter depends on the **Content-Type** parameter. When
+            /// **Content-Type** is `text/plain` or `text/html`, **Content-Language** is the only way to specify the
+            /// language. When **Content-Type** is `application/json`, **Content-Language** overrides a language
+            /// specified with the `language` parameter of a `ContentItem` object, and content items that specify a
+            /// different language are ignored; omit this parameter to base the language on the specification of the
+            /// content items. You can specify any combination of languages for **Content-Language** and
+            /// **Accept-Language**.
             /// </summary>
-            public const string TEXT_HTML = "text/html";
+            public class ContentLanguageValue
+            {
+                /// <summary>
+                /// Constant AR for ar
+                /// </summary>
+                public const string AR = "ar";
+                /// <summary>
+                /// Constant EN for en
+                /// </summary>
+                public const string EN = "en";
+                /// <summary>
+                /// Constant ES for es
+                /// </summary>
+                public const string ES = "es";
+                /// <summary>
+                /// Constant JA for ja
+                /// </summary>
+                public const string JA = "ja";
+                /// <summary>
+                /// Constant KO for ko
+                /// </summary>
+                public const string KO = "ko";
+                
+            }
             /// <summary>
-            /// Constant TEXT_PLAIN for text/plain
+            /// The desired language of the response. For two-character arguments, regional variants are treated as
+            /// their parent language; for example, `en-US` is interpreted as `en`. You can specify any combination of
+            /// languages for the input and response content.
             /// </summary>
-            public const string TEXT_PLAIN = "text/plain";
-            
-        }
-        /// <summary>
-        /// The language of the input text for the request: Arabic, English, Japanese, Korean, or Spanish. Regional
-        /// variants are treated as their parent language; for example, `en-US` is interpreted as `en`.
-        ///
-        /// The effect of the **Content-Language** parameter depends on the **Content-Type** parameter. When
-        /// **Content-Type** is `text/plain` or `text/html`, **Content-Language** is the only way to specify the
-        /// language. When **Content-Type** is `application/json`, **Content-Language** overrides a language specified
-        /// with the `language` parameter of a `ContentItem` object, and content items that specify a different language
-        /// are ignored; omit this parameter to base the language on the specification of the content items. You can
-        /// specify any combination of languages for **Content-Language** and **Accept-Language**.
-        /// </summary>
-        public class ProfileAsCsvContentLanguageEnumValue
-        {
-            /// <summary>
-            /// Constant AR for ar
-            /// </summary>
-            public const string AR = "ar";
-            /// <summary>
-            /// Constant EN for en
-            /// </summary>
-            public const string EN = "en";
-            /// <summary>
-            /// Constant ES for es
-            /// </summary>
-            public const string ES = "es";
-            /// <summary>
-            /// Constant JA for ja
-            /// </summary>
-            public const string JA = "ja";
-            /// <summary>
-            /// Constant KO for ko
-            /// </summary>
-            public const string KO = "ko";
-            
-        }
-        /// <summary>
-        /// The desired language of the response. For two-character arguments, regional variants are treated as their
-        /// parent language; for example, `en-US` is interpreted as `en`. You can specify any combination of languages
-        /// for the input and response content.
-        /// </summary>
-        public class ProfileAsCsvAcceptLanguageEnumValue
-        {
-            /// <summary>
-            /// Constant AR for ar
-            /// </summary>
-            public const string AR = "ar";
-            /// <summary>
-            /// Constant DE for de
-            /// </summary>
-            public const string DE = "de";
-            /// <summary>
-            /// Constant EN for en
-            /// </summary>
-            public const string EN = "en";
-            /// <summary>
-            /// Constant ES for es
-            /// </summary>
-            public const string ES = "es";
-            /// <summary>
-            /// Constant FR for fr
-            /// </summary>
-            public const string FR = "fr";
-            /// <summary>
-            /// Constant IT for it
-            /// </summary>
-            public const string IT = "it";
-            /// <summary>
-            /// Constant JA for ja
-            /// </summary>
-            public const string JA = "ja";
-            /// <summary>
-            /// Constant KO for ko
-            /// </summary>
-            public const string KO = "ko";
-            /// <summary>
-            /// Constant PT_BR for pt-br
-            /// </summary>
-            public const string PT_BR = "pt-br";
-            /// <summary>
-            /// Constant ZH_CN for zh-cn
-            /// </summary>
-            public const string ZH_CN = "zh-cn";
-            /// <summary>
-            /// Constant ZH_TW for zh-tw
-            /// </summary>
-            public const string ZH_TW = "zh-tw";
-            
+            public class AcceptLanguageValue
+            {
+                /// <summary>
+                /// Constant AR for ar
+                /// </summary>
+                public const string AR = "ar";
+                /// <summary>
+                /// Constant DE for de
+                /// </summary>
+                public const string DE = "de";
+                /// <summary>
+                /// Constant EN for en
+                /// </summary>
+                public const string EN = "en";
+                /// <summary>
+                /// Constant ES for es
+                /// </summary>
+                public const string ES = "es";
+                /// <summary>
+                /// Constant FR for fr
+                /// </summary>
+                public const string FR = "fr";
+                /// <summary>
+                /// Constant IT for it
+                /// </summary>
+                public const string IT = "it";
+                /// <summary>
+                /// Constant JA for ja
+                /// </summary>
+                public const string JA = "ja";
+                /// <summary>
+                /// Constant KO for ko
+                /// </summary>
+                public const string KO = "ko";
+                /// <summary>
+                /// Constant PT_BR for pt-br
+                /// </summary>
+                public const string PT_BR = "pt-br";
+                /// <summary>
+                /// Constant ZH_CN for zh-cn
+                /// </summary>
+                public const string ZH_CN = "zh-cn";
+                /// <summary>
+                /// Constant ZH_TW for zh-tw
+                /// </summary>
+                public const string ZH_TW = "zh-tw";
+                
+            }
         }
     }
 }

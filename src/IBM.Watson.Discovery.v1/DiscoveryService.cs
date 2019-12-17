@@ -1945,36 +1945,43 @@ namespace IBM.Watson.Discovery.v1
         }
 
         /// <summary>
-        /// The content type of file.
+        /// Enum values for AddDocument.
         /// </summary>
-        public class AddDocumentFileContentTypeEnumValue
+        public class AddDocumentEnums
         {
             /// <summary>
-            /// Constant APPLICATION_JSON for application/json
+            /// The content type of file.
             /// </summary>
-            public const string APPLICATION_JSON = "application/json";
-            /// <summary>
-            /// Constant APPLICATION_MSWORD for application/msword
-            /// </summary>
-            public const string APPLICATION_MSWORD = "application/msword";
-            /// <summary>
-            /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
-            /// </summary>
-            public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-            /// <summary>
-            /// Constant APPLICATION_PDF for application/pdf
-            /// </summary>
-            public const string APPLICATION_PDF = "application/pdf";
-            /// <summary>
-            /// Constant TEXT_HTML for text/html
-            /// </summary>
-            public const string TEXT_HTML = "text/html";
-            /// <summary>
-            /// Constant APPLICATION_XHTML_XML for application/xhtml+xml
-            /// </summary>
-            public const string APPLICATION_XHTML_XML = "application/xhtml+xml";
-            
+            public class FileContentTypeValue
+            {
+                /// <summary>
+                /// Constant APPLICATION_JSON for application/json
+                /// </summary>
+                public const string APPLICATION_JSON = "application/json";
+                /// <summary>
+                /// Constant APPLICATION_MSWORD for application/msword
+                /// </summary>
+                public const string APPLICATION_MSWORD = "application/msword";
+                /// <summary>
+                /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
+                /// </summary>
+                public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                /// <summary>
+                /// Constant APPLICATION_PDF for application/pdf
+                /// </summary>
+                public const string APPLICATION_PDF = "application/pdf";
+                /// <summary>
+                /// Constant TEXT_HTML for text/html
+                /// </summary>
+                public const string TEXT_HTML = "text/html";
+                /// <summary>
+                /// Constant APPLICATION_XHTML_XML for application/xhtml+xml
+                /// </summary>
+                public const string APPLICATION_XHTML_XML = "application/xhtml+xml";
+                
+            }
         }
+
         /// <summary>
         /// Get document details.
         ///
@@ -2153,36 +2160,43 @@ namespace IBM.Watson.Discovery.v1
         }
 
         /// <summary>
-        /// The content type of file.
+        /// Enum values for UpdateDocument.
         /// </summary>
-        public class UpdateDocumentFileContentTypeEnumValue
+        public class UpdateDocumentEnums
         {
             /// <summary>
-            /// Constant APPLICATION_JSON for application/json
+            /// The content type of file.
             /// </summary>
-            public const string APPLICATION_JSON = "application/json";
-            /// <summary>
-            /// Constant APPLICATION_MSWORD for application/msword
-            /// </summary>
-            public const string APPLICATION_MSWORD = "application/msword";
-            /// <summary>
-            /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
-            /// </summary>
-            public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-            /// <summary>
-            /// Constant APPLICATION_PDF for application/pdf
-            /// </summary>
-            public const string APPLICATION_PDF = "application/pdf";
-            /// <summary>
-            /// Constant TEXT_HTML for text/html
-            /// </summary>
-            public const string TEXT_HTML = "text/html";
-            /// <summary>
-            /// Constant APPLICATION_XHTML_XML for application/xhtml+xml
-            /// </summary>
-            public const string APPLICATION_XHTML_XML = "application/xhtml+xml";
-            
+            public class FileContentTypeValue
+            {
+                /// <summary>
+                /// Constant APPLICATION_JSON for application/json
+                /// </summary>
+                public const string APPLICATION_JSON = "application/json";
+                /// <summary>
+                /// Constant APPLICATION_MSWORD for application/msword
+                /// </summary>
+                public const string APPLICATION_MSWORD = "application/msword";
+                /// <summary>
+                /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
+                /// </summary>
+                public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                /// <summary>
+                /// Constant APPLICATION_PDF for application/pdf
+                /// </summary>
+                public const string APPLICATION_PDF = "application/pdf";
+                /// <summary>
+                /// Constant TEXT_HTML for text/html
+                /// </summary>
+                public const string TEXT_HTML = "text/html";
+                /// <summary>
+                /// Constant APPLICATION_XHTML_XML for application/xhtml+xml
+                /// </summary>
+                public const string APPLICATION_XHTML_XML = "application/xhtml+xml";
+                
+            }
         }
+
         /// <summary>
         /// Delete a document.
         ///
@@ -4057,16 +4071,23 @@ namespace IBM.Watson.Discovery.v1
         }
 
         /// <summary>
-        /// The type of result to consider when calculating the metric.
+        /// Enum values for GetMetricsQuery.
         /// </summary>
-        public class GetMetricsQueryResultTypeEnumValue
+        public class GetMetricsQueryEnums
         {
             /// <summary>
-            /// Constant DOCUMENT for document
+            /// The type of result to consider when calculating the metric.
             /// </summary>
-            public const string DOCUMENT = "document";
-            
+            public class ResultTypeValue
+            {
+                /// <summary>
+                /// Constant DOCUMENT for document
+                /// </summary>
+                public const string DOCUMENT = "document";
+                
+            }
         }
+
         /// <summary>
         /// Number of queries with an event over time.
         ///
@@ -4131,16 +4152,23 @@ namespace IBM.Watson.Discovery.v1
         }
 
         /// <summary>
-        /// The type of result to consider when calculating the metric.
+        /// Enum values for GetMetricsQueryEvent.
         /// </summary>
-        public class GetMetricsQueryEventResultTypeEnumValue
+        public class GetMetricsQueryEventEnums
         {
             /// <summary>
-            /// Constant DOCUMENT for document
+            /// The type of result to consider when calculating the metric.
             /// </summary>
-            public const string DOCUMENT = "document";
-            
+            public class ResultTypeValue
+            {
+                /// <summary>
+                /// Constant DOCUMENT for document
+                /// </summary>
+                public const string DOCUMENT = "document";
+                
+            }
         }
+
         /// <summary>
         /// Number of queries with no search results over time.
         ///
@@ -4204,16 +4232,23 @@ namespace IBM.Watson.Discovery.v1
         }
 
         /// <summary>
-        /// The type of result to consider when calculating the metric.
+        /// Enum values for GetMetricsQueryNoResults.
         /// </summary>
-        public class GetMetricsQueryNoResultsResultTypeEnumValue
+        public class GetMetricsQueryNoResultsEnums
         {
             /// <summary>
-            /// Constant DOCUMENT for document
+            /// The type of result to consider when calculating the metric.
             /// </summary>
-            public const string DOCUMENT = "document";
-            
+            public class ResultTypeValue
+            {
+                /// <summary>
+                /// Constant DOCUMENT for document
+                /// </summary>
+                public const string DOCUMENT = "document";
+                
+            }
         }
+
         /// <summary>
         /// Percentage of queries with an associated event.
         ///
@@ -4278,16 +4313,23 @@ namespace IBM.Watson.Discovery.v1
         }
 
         /// <summary>
-        /// The type of result to consider when calculating the metric.
+        /// Enum values for GetMetricsEventRate.
         /// </summary>
-        public class GetMetricsEventRateResultTypeEnumValue
+        public class GetMetricsEventRateEnums
         {
             /// <summary>
-            /// Constant DOCUMENT for document
+            /// The type of result to consider when calculating the metric.
             /// </summary>
-            public const string DOCUMENT = "document";
-            
+            public class ResultTypeValue
+            {
+                /// <summary>
+                /// Constant DOCUMENT for document
+                /// </summary>
+                public const string DOCUMENT = "document";
+                
+            }
         }
+
         /// <summary>
         /// Most frequent query tokens with an event.
         ///

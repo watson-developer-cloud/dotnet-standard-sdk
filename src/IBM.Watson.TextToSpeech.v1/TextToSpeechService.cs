@@ -146,124 +146,131 @@ namespace IBM.Watson.TextToSpeech.v1
 
             return result;
         }
+
         /// <summary>
-        /// The voice for which information is to be returned.
+        /// Enum values for GetVoice.
         /// </summary>
-        public class GetVoiceVoiceEnumValue
+        public class GetVoiceEnums
         {
             /// <summary>
-            /// Constant DE_DE_BIRGITVOICE for de-DE_BirgitVoice
+            /// The voice for which information is to be returned.
             /// </summary>
-            public const string DE_DE_BIRGITVOICE = "de-DE_BirgitVoice";
-            /// <summary>
-            /// Constant DE_DE_BIRGITV3VOICE for de-DE_BirgitV3Voice
-            /// </summary>
-            public const string DE_DE_BIRGITV3VOICE = "de-DE_BirgitV3Voice";
-            /// <summary>
-            /// Constant DE_DE_DIETERVOICE for de-DE_DieterVoice
-            /// </summary>
-            public const string DE_DE_DIETERVOICE = "de-DE_DieterVoice";
-            /// <summary>
-            /// Constant DE_DE_DIETERV3VOICE for de-DE_DieterV3Voice
-            /// </summary>
-            public const string DE_DE_DIETERV3VOICE = "de-DE_DieterV3Voice";
-            /// <summary>
-            /// Constant EN_GB_KATEVOICE for en-GB_KateVoice
-            /// </summary>
-            public const string EN_GB_KATEVOICE = "en-GB_KateVoice";
-            /// <summary>
-            /// Constant EN_GB_KATEV3VOICE for en-GB_KateV3Voice
-            /// </summary>
-            public const string EN_GB_KATEV3VOICE = "en-GB_KateV3Voice";
-            /// <summary>
-            /// Constant EN_US_ALLISONVOICE for en-US_AllisonVoice
-            /// </summary>
-            public const string EN_US_ALLISONVOICE = "en-US_AllisonVoice";
-            /// <summary>
-            /// Constant EN_US_ALLISONV3VOICE for en-US_AllisonV3Voice
-            /// </summary>
-            public const string EN_US_ALLISONV3VOICE = "en-US_AllisonV3Voice";
-            /// <summary>
-            /// Constant EN_US_LISAVOICE for en-US_LisaVoice
-            /// </summary>
-            public const string EN_US_LISAVOICE = "en-US_LisaVoice";
-            /// <summary>
-            /// Constant EN_US_LISAV3VOICE for en-US_LisaV3Voice
-            /// </summary>
-            public const string EN_US_LISAV3VOICE = "en-US_LisaV3Voice";
-            /// <summary>
-            /// Constant EN_US_MICHAELVOICE for en-US_MichaelVoice
-            /// </summary>
-            public const string EN_US_MICHAELVOICE = "en-US_MichaelVoice";
-            /// <summary>
-            /// Constant EN_US_MICHAELV3VOICE for en-US_MichaelV3Voice
-            /// </summary>
-            public const string EN_US_MICHAELV3VOICE = "en-US_MichaelV3Voice";
-            /// <summary>
-            /// Constant ES_ES_ENRIQUEVOICE for es-ES_EnriqueVoice
-            /// </summary>
-            public const string ES_ES_ENRIQUEVOICE = "es-ES_EnriqueVoice";
-            /// <summary>
-            /// Constant ES_ES_ENRIQUEV3VOICE for es-ES_EnriqueV3Voice
-            /// </summary>
-            public const string ES_ES_ENRIQUEV3VOICE = "es-ES_EnriqueV3Voice";
-            /// <summary>
-            /// Constant ES_ES_LAURAVOICE for es-ES_LauraVoice
-            /// </summary>
-            public const string ES_ES_LAURAVOICE = "es-ES_LauraVoice";
-            /// <summary>
-            /// Constant ES_ES_LAURAV3VOICE for es-ES_LauraV3Voice
-            /// </summary>
-            public const string ES_ES_LAURAV3VOICE = "es-ES_LauraV3Voice";
-            /// <summary>
-            /// Constant ES_LA_SOFIAVOICE for es-LA_SofiaVoice
-            /// </summary>
-            public const string ES_LA_SOFIAVOICE = "es-LA_SofiaVoice";
-            /// <summary>
-            /// Constant ES_LA_SOFIAV3VOICE for es-LA_SofiaV3Voice
-            /// </summary>
-            public const string ES_LA_SOFIAV3VOICE = "es-LA_SofiaV3Voice";
-            /// <summary>
-            /// Constant ES_US_SOFIAVOICE for es-US_SofiaVoice
-            /// </summary>
-            public const string ES_US_SOFIAVOICE = "es-US_SofiaVoice";
-            /// <summary>
-            /// Constant ES_US_SOFIAV3VOICE for es-US_SofiaV3Voice
-            /// </summary>
-            public const string ES_US_SOFIAV3VOICE = "es-US_SofiaV3Voice";
-            /// <summary>
-            /// Constant FR_FR_RENEEVOICE for fr-FR_ReneeVoice
-            /// </summary>
-            public const string FR_FR_RENEEVOICE = "fr-FR_ReneeVoice";
-            /// <summary>
-            /// Constant FR_FR_RENEEV3VOICE for fr-FR_ReneeV3Voice
-            /// </summary>
-            public const string FR_FR_RENEEV3VOICE = "fr-FR_ReneeV3Voice";
-            /// <summary>
-            /// Constant IT_IT_FRANCESCAVOICE for it-IT_FrancescaVoice
-            /// </summary>
-            public const string IT_IT_FRANCESCAVOICE = "it-IT_FrancescaVoice";
-            /// <summary>
-            /// Constant IT_IT_FRANCESCAV3VOICE for it-IT_FrancescaV3Voice
-            /// </summary>
-            public const string IT_IT_FRANCESCAV3VOICE = "it-IT_FrancescaV3Voice";
-            /// <summary>
-            /// Constant JA_JP_EMIVOICE for ja-JP_EmiVoice
-            /// </summary>
-            public const string JA_JP_EMIVOICE = "ja-JP_EmiVoice";
-            /// <summary>
-            /// Constant JA_JP_EMIV3VOICE for ja-JP_EmiV3Voice
-            /// </summary>
-            public const string JA_JP_EMIV3VOICE = "ja-JP_EmiV3Voice";
-            /// <summary>
-            /// Constant PT_BR_ISABELAVOICE for pt-BR_IsabelaVoice
-            /// </summary>
-            public const string PT_BR_ISABELAVOICE = "pt-BR_IsabelaVoice";
-            /// <summary>
-            /// Constant PT_BR_ISABELAV3VOICE for pt-BR_IsabelaV3Voice
-            /// </summary>
-            public const string PT_BR_ISABELAV3VOICE = "pt-BR_IsabelaV3Voice";
-            
+            public class VoiceValue
+            {
+                /// <summary>
+                /// Constant DE_DE_BIRGITVOICE for de-DE_BirgitVoice
+                /// </summary>
+                public const string DE_DE_BIRGITVOICE = "de-DE_BirgitVoice";
+                /// <summary>
+                /// Constant DE_DE_BIRGITV3VOICE for de-DE_BirgitV3Voice
+                /// </summary>
+                public const string DE_DE_BIRGITV3VOICE = "de-DE_BirgitV3Voice";
+                /// <summary>
+                /// Constant DE_DE_DIETERVOICE for de-DE_DieterVoice
+                /// </summary>
+                public const string DE_DE_DIETERVOICE = "de-DE_DieterVoice";
+                /// <summary>
+                /// Constant DE_DE_DIETERV3VOICE for de-DE_DieterV3Voice
+                /// </summary>
+                public const string DE_DE_DIETERV3VOICE = "de-DE_DieterV3Voice";
+                /// <summary>
+                /// Constant EN_GB_KATEVOICE for en-GB_KateVoice
+                /// </summary>
+                public const string EN_GB_KATEVOICE = "en-GB_KateVoice";
+                /// <summary>
+                /// Constant EN_GB_KATEV3VOICE for en-GB_KateV3Voice
+                /// </summary>
+                public const string EN_GB_KATEV3VOICE = "en-GB_KateV3Voice";
+                /// <summary>
+                /// Constant EN_US_ALLISONVOICE for en-US_AllisonVoice
+                /// </summary>
+                public const string EN_US_ALLISONVOICE = "en-US_AllisonVoice";
+                /// <summary>
+                /// Constant EN_US_ALLISONV3VOICE for en-US_AllisonV3Voice
+                /// </summary>
+                public const string EN_US_ALLISONV3VOICE = "en-US_AllisonV3Voice";
+                /// <summary>
+                /// Constant EN_US_LISAVOICE for en-US_LisaVoice
+                /// </summary>
+                public const string EN_US_LISAVOICE = "en-US_LisaVoice";
+                /// <summary>
+                /// Constant EN_US_LISAV3VOICE for en-US_LisaV3Voice
+                /// </summary>
+                public const string EN_US_LISAV3VOICE = "en-US_LisaV3Voice";
+                /// <summary>
+                /// Constant EN_US_MICHAELVOICE for en-US_MichaelVoice
+                /// </summary>
+                public const string EN_US_MICHAELVOICE = "en-US_MichaelVoice";
+                /// <summary>
+                /// Constant EN_US_MICHAELV3VOICE for en-US_MichaelV3Voice
+                /// </summary>
+                public const string EN_US_MICHAELV3VOICE = "en-US_MichaelV3Voice";
+                /// <summary>
+                /// Constant ES_ES_ENRIQUEVOICE for es-ES_EnriqueVoice
+                /// </summary>
+                public const string ES_ES_ENRIQUEVOICE = "es-ES_EnriqueVoice";
+                /// <summary>
+                /// Constant ES_ES_ENRIQUEV3VOICE for es-ES_EnriqueV3Voice
+                /// </summary>
+                public const string ES_ES_ENRIQUEV3VOICE = "es-ES_EnriqueV3Voice";
+                /// <summary>
+                /// Constant ES_ES_LAURAVOICE for es-ES_LauraVoice
+                /// </summary>
+                public const string ES_ES_LAURAVOICE = "es-ES_LauraVoice";
+                /// <summary>
+                /// Constant ES_ES_LAURAV3VOICE for es-ES_LauraV3Voice
+                /// </summary>
+                public const string ES_ES_LAURAV3VOICE = "es-ES_LauraV3Voice";
+                /// <summary>
+                /// Constant ES_LA_SOFIAVOICE for es-LA_SofiaVoice
+                /// </summary>
+                public const string ES_LA_SOFIAVOICE = "es-LA_SofiaVoice";
+                /// <summary>
+                /// Constant ES_LA_SOFIAV3VOICE for es-LA_SofiaV3Voice
+                /// </summary>
+                public const string ES_LA_SOFIAV3VOICE = "es-LA_SofiaV3Voice";
+                /// <summary>
+                /// Constant ES_US_SOFIAVOICE for es-US_SofiaVoice
+                /// </summary>
+                public const string ES_US_SOFIAVOICE = "es-US_SofiaVoice";
+                /// <summary>
+                /// Constant ES_US_SOFIAV3VOICE for es-US_SofiaV3Voice
+                /// </summary>
+                public const string ES_US_SOFIAV3VOICE = "es-US_SofiaV3Voice";
+                /// <summary>
+                /// Constant FR_FR_RENEEVOICE for fr-FR_ReneeVoice
+                /// </summary>
+                public const string FR_FR_RENEEVOICE = "fr-FR_ReneeVoice";
+                /// <summary>
+                /// Constant FR_FR_RENEEV3VOICE for fr-FR_ReneeV3Voice
+                /// </summary>
+                public const string FR_FR_RENEEV3VOICE = "fr-FR_ReneeV3Voice";
+                /// <summary>
+                /// Constant IT_IT_FRANCESCAVOICE for it-IT_FrancescaVoice
+                /// </summary>
+                public const string IT_IT_FRANCESCAVOICE = "it-IT_FrancescaVoice";
+                /// <summary>
+                /// Constant IT_IT_FRANCESCAV3VOICE for it-IT_FrancescaV3Voice
+                /// </summary>
+                public const string IT_IT_FRANCESCAV3VOICE = "it-IT_FrancescaV3Voice";
+                /// <summary>
+                /// Constant JA_JP_EMIVOICE for ja-JP_EmiVoice
+                /// </summary>
+                public const string JA_JP_EMIVOICE = "ja-JP_EmiVoice";
+                /// <summary>
+                /// Constant JA_JP_EMIV3VOICE for ja-JP_EmiV3Voice
+                /// </summary>
+                public const string JA_JP_EMIV3VOICE = "ja-JP_EmiV3Voice";
+                /// <summary>
+                /// Constant PT_BR_ISABELAVOICE for pt-BR_IsabelaVoice
+                /// </summary>
+                public const string PT_BR_ISABELAVOICE = "pt-BR_IsabelaVoice";
+                /// <summary>
+                /// Constant PT_BR_ISABELAV3VOICE for pt-BR_IsabelaV3Voice
+                /// </summary>
+                public const string PT_BR_ISABELAV3VOICE = "pt-BR_IsabelaV3Voice";
+                
+            }
         }
         /// <summary>
         /// Synthesize audio.
@@ -388,185 +395,192 @@ namespace IBM.Watson.TextToSpeech.v1
 
             return result;
         }
+
         /// <summary>
-        /// The requested format (MIME type) of the audio. You can use the `Accept` header or the `accept` parameter to
-        /// specify the audio format. For more information about specifying an audio format, see **Audio formats (accept
-        /// types)** in the method description.
+        /// Enum values for Synthesize.
         /// </summary>
-        public class SynthesizeAcceptEnumValue
+        public class SynthesizeEnums
         {
             /// <summary>
-            /// Constant AUDIO_BASIC for audio/basic
+            /// The requested format (MIME type) of the audio. You can use the `Accept` header or the `accept` parameter
+            /// to specify the audio format. For more information about specifying an audio format, see **Audio formats
+            /// (accept types)** in the method description.
             /// </summary>
-            public const string AUDIO_BASIC = "audio/basic";
+            public class AcceptValue
+            {
+                /// <summary>
+                /// Constant AUDIO_BASIC for audio/basic
+                /// </summary>
+                public const string AUDIO_BASIC = "audio/basic";
+                /// <summary>
+                /// Constant AUDIO_FLAC for audio/flac
+                /// </summary>
+                public const string AUDIO_FLAC = "audio/flac";
+                /// <summary>
+                /// Constant AUDIO_L16 for audio/l16
+                /// </summary>
+                public const string AUDIO_L16 = "audio/l16";
+                /// <summary>
+                /// Constant AUDIO_OGG for audio/ogg
+                /// </summary>
+                public const string AUDIO_OGG = "audio/ogg";
+                /// <summary>
+                /// Constant AUDIO_OGG_CODECS_OPUS for audio/ogg;codecs=opus
+                /// </summary>
+                public const string AUDIO_OGG_CODECS_OPUS = "audio/ogg;codecs=opus";
+                /// <summary>
+                /// Constant AUDIO_OGG_CODECS_VORBIS for audio/ogg;codecs=vorbis
+                /// </summary>
+                public const string AUDIO_OGG_CODECS_VORBIS = "audio/ogg;codecs=vorbis";
+                /// <summary>
+                /// Constant AUDIO_MP3 for audio/mp3
+                /// </summary>
+                public const string AUDIO_MP3 = "audio/mp3";
+                /// <summary>
+                /// Constant AUDIO_MPEG for audio/mpeg
+                /// </summary>
+                public const string AUDIO_MPEG = "audio/mpeg";
+                /// <summary>
+                /// Constant AUDIO_MULAW for audio/mulaw
+                /// </summary>
+                public const string AUDIO_MULAW = "audio/mulaw";
+                /// <summary>
+                /// Constant AUDIO_WAV for audio/wav
+                /// </summary>
+                public const string AUDIO_WAV = "audio/wav";
+                /// <summary>
+                /// Constant AUDIO_WEBM for audio/webm
+                /// </summary>
+                public const string AUDIO_WEBM = "audio/webm";
+                /// <summary>
+                /// Constant AUDIO_WEBM_CODECS_OPUS for audio/webm;codecs=opus
+                /// </summary>
+                public const string AUDIO_WEBM_CODECS_OPUS = "audio/webm;codecs=opus";
+                /// <summary>
+                /// Constant AUDIO_WEBM_CODECS_VORBIS for audio/webm;codecs=vorbis
+                /// </summary>
+                public const string AUDIO_WEBM_CODECS_VORBIS = "audio/webm;codecs=vorbis";
+                
+            }
             /// <summary>
-            /// Constant AUDIO_FLAC for audio/flac
+            /// The voice to use for synthesis.
             /// </summary>
-            public const string AUDIO_FLAC = "audio/flac";
-            /// <summary>
-            /// Constant AUDIO_L16 for audio/l16
-            /// </summary>
-            public const string AUDIO_L16 = "audio/l16";
-            /// <summary>
-            /// Constant AUDIO_OGG for audio/ogg
-            /// </summary>
-            public const string AUDIO_OGG = "audio/ogg";
-            /// <summary>
-            /// Constant AUDIO_OGG_CODECS_OPUS for audio/ogg;codecs=opus
-            /// </summary>
-            public const string AUDIO_OGG_CODECS_OPUS = "audio/ogg;codecs=opus";
-            /// <summary>
-            /// Constant AUDIO_OGG_CODECS_VORBIS for audio/ogg;codecs=vorbis
-            /// </summary>
-            public const string AUDIO_OGG_CODECS_VORBIS = "audio/ogg;codecs=vorbis";
-            /// <summary>
-            /// Constant AUDIO_MP3 for audio/mp3
-            /// </summary>
-            public const string AUDIO_MP3 = "audio/mp3";
-            /// <summary>
-            /// Constant AUDIO_MPEG for audio/mpeg
-            /// </summary>
-            public const string AUDIO_MPEG = "audio/mpeg";
-            /// <summary>
-            /// Constant AUDIO_MULAW for audio/mulaw
-            /// </summary>
-            public const string AUDIO_MULAW = "audio/mulaw";
-            /// <summary>
-            /// Constant AUDIO_WAV for audio/wav
-            /// </summary>
-            public const string AUDIO_WAV = "audio/wav";
-            /// <summary>
-            /// Constant AUDIO_WEBM for audio/webm
-            /// </summary>
-            public const string AUDIO_WEBM = "audio/webm";
-            /// <summary>
-            /// Constant AUDIO_WEBM_CODECS_OPUS for audio/webm;codecs=opus
-            /// </summary>
-            public const string AUDIO_WEBM_CODECS_OPUS = "audio/webm;codecs=opus";
-            /// <summary>
-            /// Constant AUDIO_WEBM_CODECS_VORBIS for audio/webm;codecs=vorbis
-            /// </summary>
-            public const string AUDIO_WEBM_CODECS_VORBIS = "audio/webm;codecs=vorbis";
-            
-        }
-        /// <summary>
-        /// The voice to use for synthesis.
-        /// </summary>
-        public class SynthesizeVoiceEnumValue
-        {
-            /// <summary>
-            /// Constant DE_DE_BIRGITVOICE for de-DE_BirgitVoice
-            /// </summary>
-            public const string DE_DE_BIRGITVOICE = "de-DE_BirgitVoice";
-            /// <summary>
-            /// Constant DE_DE_BIRGITV3VOICE for de-DE_BirgitV3Voice
-            /// </summary>
-            public const string DE_DE_BIRGITV3VOICE = "de-DE_BirgitV3Voice";
-            /// <summary>
-            /// Constant DE_DE_DIETERVOICE for de-DE_DieterVoice
-            /// </summary>
-            public const string DE_DE_DIETERVOICE = "de-DE_DieterVoice";
-            /// <summary>
-            /// Constant DE_DE_DIETERV3VOICE for de-DE_DieterV3Voice
-            /// </summary>
-            public const string DE_DE_DIETERV3VOICE = "de-DE_DieterV3Voice";
-            /// <summary>
-            /// Constant EN_GB_KATEVOICE for en-GB_KateVoice
-            /// </summary>
-            public const string EN_GB_KATEVOICE = "en-GB_KateVoice";
-            /// <summary>
-            /// Constant EN_GB_KATEV3VOICE for en-GB_KateV3Voice
-            /// </summary>
-            public const string EN_GB_KATEV3VOICE = "en-GB_KateV3Voice";
-            /// <summary>
-            /// Constant EN_US_ALLISONVOICE for en-US_AllisonVoice
-            /// </summary>
-            public const string EN_US_ALLISONVOICE = "en-US_AllisonVoice";
-            /// <summary>
-            /// Constant EN_US_ALLISONV3VOICE for en-US_AllisonV3Voice
-            /// </summary>
-            public const string EN_US_ALLISONV3VOICE = "en-US_AllisonV3Voice";
-            /// <summary>
-            /// Constant EN_US_LISAVOICE for en-US_LisaVoice
-            /// </summary>
-            public const string EN_US_LISAVOICE = "en-US_LisaVoice";
-            /// <summary>
-            /// Constant EN_US_LISAV3VOICE for en-US_LisaV3Voice
-            /// </summary>
-            public const string EN_US_LISAV3VOICE = "en-US_LisaV3Voice";
-            /// <summary>
-            /// Constant EN_US_MICHAELVOICE for en-US_MichaelVoice
-            /// </summary>
-            public const string EN_US_MICHAELVOICE = "en-US_MichaelVoice";
-            /// <summary>
-            /// Constant EN_US_MICHAELV3VOICE for en-US_MichaelV3Voice
-            /// </summary>
-            public const string EN_US_MICHAELV3VOICE = "en-US_MichaelV3Voice";
-            /// <summary>
-            /// Constant ES_ES_ENRIQUEVOICE for es-ES_EnriqueVoice
-            /// </summary>
-            public const string ES_ES_ENRIQUEVOICE = "es-ES_EnriqueVoice";
-            /// <summary>
-            /// Constant ES_ES_ENRIQUEV3VOICE for es-ES_EnriqueV3Voice
-            /// </summary>
-            public const string ES_ES_ENRIQUEV3VOICE = "es-ES_EnriqueV3Voice";
-            /// <summary>
-            /// Constant ES_ES_LAURAVOICE for es-ES_LauraVoice
-            /// </summary>
-            public const string ES_ES_LAURAVOICE = "es-ES_LauraVoice";
-            /// <summary>
-            /// Constant ES_ES_LAURAV3VOICE for es-ES_LauraV3Voice
-            /// </summary>
-            public const string ES_ES_LAURAV3VOICE = "es-ES_LauraV3Voice";
-            /// <summary>
-            /// Constant ES_LA_SOFIAVOICE for es-LA_SofiaVoice
-            /// </summary>
-            public const string ES_LA_SOFIAVOICE = "es-LA_SofiaVoice";
-            /// <summary>
-            /// Constant ES_LA_SOFIAV3VOICE for es-LA_SofiaV3Voice
-            /// </summary>
-            public const string ES_LA_SOFIAV3VOICE = "es-LA_SofiaV3Voice";
-            /// <summary>
-            /// Constant ES_US_SOFIAVOICE for es-US_SofiaVoice
-            /// </summary>
-            public const string ES_US_SOFIAVOICE = "es-US_SofiaVoice";
-            /// <summary>
-            /// Constant ES_US_SOFIAV3VOICE for es-US_SofiaV3Voice
-            /// </summary>
-            public const string ES_US_SOFIAV3VOICE = "es-US_SofiaV3Voice";
-            /// <summary>
-            /// Constant FR_FR_RENEEVOICE for fr-FR_ReneeVoice
-            /// </summary>
-            public const string FR_FR_RENEEVOICE = "fr-FR_ReneeVoice";
-            /// <summary>
-            /// Constant FR_FR_RENEEV3VOICE for fr-FR_ReneeV3Voice
-            /// </summary>
-            public const string FR_FR_RENEEV3VOICE = "fr-FR_ReneeV3Voice";
-            /// <summary>
-            /// Constant IT_IT_FRANCESCAVOICE for it-IT_FrancescaVoice
-            /// </summary>
-            public const string IT_IT_FRANCESCAVOICE = "it-IT_FrancescaVoice";
-            /// <summary>
-            /// Constant IT_IT_FRANCESCAV3VOICE for it-IT_FrancescaV3Voice
-            /// </summary>
-            public const string IT_IT_FRANCESCAV3VOICE = "it-IT_FrancescaV3Voice";
-            /// <summary>
-            /// Constant JA_JP_EMIVOICE for ja-JP_EmiVoice
-            /// </summary>
-            public const string JA_JP_EMIVOICE = "ja-JP_EmiVoice";
-            /// <summary>
-            /// Constant JA_JP_EMIV3VOICE for ja-JP_EmiV3Voice
-            /// </summary>
-            public const string JA_JP_EMIV3VOICE = "ja-JP_EmiV3Voice";
-            /// <summary>
-            /// Constant PT_BR_ISABELAVOICE for pt-BR_IsabelaVoice
-            /// </summary>
-            public const string PT_BR_ISABELAVOICE = "pt-BR_IsabelaVoice";
-            /// <summary>
-            /// Constant PT_BR_ISABELAV3VOICE for pt-BR_IsabelaV3Voice
-            /// </summary>
-            public const string PT_BR_ISABELAV3VOICE = "pt-BR_IsabelaV3Voice";
-            
+            public class VoiceValue
+            {
+                /// <summary>
+                /// Constant DE_DE_BIRGITVOICE for de-DE_BirgitVoice
+                /// </summary>
+                public const string DE_DE_BIRGITVOICE = "de-DE_BirgitVoice";
+                /// <summary>
+                /// Constant DE_DE_BIRGITV3VOICE for de-DE_BirgitV3Voice
+                /// </summary>
+                public const string DE_DE_BIRGITV3VOICE = "de-DE_BirgitV3Voice";
+                /// <summary>
+                /// Constant DE_DE_DIETERVOICE for de-DE_DieterVoice
+                /// </summary>
+                public const string DE_DE_DIETERVOICE = "de-DE_DieterVoice";
+                /// <summary>
+                /// Constant DE_DE_DIETERV3VOICE for de-DE_DieterV3Voice
+                /// </summary>
+                public const string DE_DE_DIETERV3VOICE = "de-DE_DieterV3Voice";
+                /// <summary>
+                /// Constant EN_GB_KATEVOICE for en-GB_KateVoice
+                /// </summary>
+                public const string EN_GB_KATEVOICE = "en-GB_KateVoice";
+                /// <summary>
+                /// Constant EN_GB_KATEV3VOICE for en-GB_KateV3Voice
+                /// </summary>
+                public const string EN_GB_KATEV3VOICE = "en-GB_KateV3Voice";
+                /// <summary>
+                /// Constant EN_US_ALLISONVOICE for en-US_AllisonVoice
+                /// </summary>
+                public const string EN_US_ALLISONVOICE = "en-US_AllisonVoice";
+                /// <summary>
+                /// Constant EN_US_ALLISONV3VOICE for en-US_AllisonV3Voice
+                /// </summary>
+                public const string EN_US_ALLISONV3VOICE = "en-US_AllisonV3Voice";
+                /// <summary>
+                /// Constant EN_US_LISAVOICE for en-US_LisaVoice
+                /// </summary>
+                public const string EN_US_LISAVOICE = "en-US_LisaVoice";
+                /// <summary>
+                /// Constant EN_US_LISAV3VOICE for en-US_LisaV3Voice
+                /// </summary>
+                public const string EN_US_LISAV3VOICE = "en-US_LisaV3Voice";
+                /// <summary>
+                /// Constant EN_US_MICHAELVOICE for en-US_MichaelVoice
+                /// </summary>
+                public const string EN_US_MICHAELVOICE = "en-US_MichaelVoice";
+                /// <summary>
+                /// Constant EN_US_MICHAELV3VOICE for en-US_MichaelV3Voice
+                /// </summary>
+                public const string EN_US_MICHAELV3VOICE = "en-US_MichaelV3Voice";
+                /// <summary>
+                /// Constant ES_ES_ENRIQUEVOICE for es-ES_EnriqueVoice
+                /// </summary>
+                public const string ES_ES_ENRIQUEVOICE = "es-ES_EnriqueVoice";
+                /// <summary>
+                /// Constant ES_ES_ENRIQUEV3VOICE for es-ES_EnriqueV3Voice
+                /// </summary>
+                public const string ES_ES_ENRIQUEV3VOICE = "es-ES_EnriqueV3Voice";
+                /// <summary>
+                /// Constant ES_ES_LAURAVOICE for es-ES_LauraVoice
+                /// </summary>
+                public const string ES_ES_LAURAVOICE = "es-ES_LauraVoice";
+                /// <summary>
+                /// Constant ES_ES_LAURAV3VOICE for es-ES_LauraV3Voice
+                /// </summary>
+                public const string ES_ES_LAURAV3VOICE = "es-ES_LauraV3Voice";
+                /// <summary>
+                /// Constant ES_LA_SOFIAVOICE for es-LA_SofiaVoice
+                /// </summary>
+                public const string ES_LA_SOFIAVOICE = "es-LA_SofiaVoice";
+                /// <summary>
+                /// Constant ES_LA_SOFIAV3VOICE for es-LA_SofiaV3Voice
+                /// </summary>
+                public const string ES_LA_SOFIAV3VOICE = "es-LA_SofiaV3Voice";
+                /// <summary>
+                /// Constant ES_US_SOFIAVOICE for es-US_SofiaVoice
+                /// </summary>
+                public const string ES_US_SOFIAVOICE = "es-US_SofiaVoice";
+                /// <summary>
+                /// Constant ES_US_SOFIAV3VOICE for es-US_SofiaV3Voice
+                /// </summary>
+                public const string ES_US_SOFIAV3VOICE = "es-US_SofiaV3Voice";
+                /// <summary>
+                /// Constant FR_FR_RENEEVOICE for fr-FR_ReneeVoice
+                /// </summary>
+                public const string FR_FR_RENEEVOICE = "fr-FR_ReneeVoice";
+                /// <summary>
+                /// Constant FR_FR_RENEEV3VOICE for fr-FR_ReneeV3Voice
+                /// </summary>
+                public const string FR_FR_RENEEV3VOICE = "fr-FR_ReneeV3Voice";
+                /// <summary>
+                /// Constant IT_IT_FRANCESCAVOICE for it-IT_FrancescaVoice
+                /// </summary>
+                public const string IT_IT_FRANCESCAVOICE = "it-IT_FrancescaVoice";
+                /// <summary>
+                /// Constant IT_IT_FRANCESCAV3VOICE for it-IT_FrancescaV3Voice
+                /// </summary>
+                public const string IT_IT_FRANCESCAV3VOICE = "it-IT_FrancescaV3Voice";
+                /// <summary>
+                /// Constant JA_JP_EMIVOICE for ja-JP_EmiVoice
+                /// </summary>
+                public const string JA_JP_EMIVOICE = "ja-JP_EmiVoice";
+                /// <summary>
+                /// Constant JA_JP_EMIV3VOICE for ja-JP_EmiV3Voice
+                /// </summary>
+                public const string JA_JP_EMIV3VOICE = "ja-JP_EmiV3Voice";
+                /// <summary>
+                /// Constant PT_BR_ISABELAVOICE for pt-BR_IsabelaVoice
+                /// </summary>
+                public const string PT_BR_ISABELAVOICE = "pt-BR_IsabelaVoice";
+                /// <summary>
+                /// Constant PT_BR_ISABELAV3VOICE for pt-BR_IsabelaV3Voice
+                /// </summary>
+                public const string PT_BR_ISABELAV3VOICE = "pt-BR_IsabelaV3Voice";
+                
+            }
         }
         /// <summary>
         /// Get pronunciation.
@@ -644,141 +658,148 @@ namespace IBM.Watson.TextToSpeech.v1
 
             return result;
         }
+
         /// <summary>
-        /// A voice that specifies the language in which the pronunciation is to be returned. All voices for the same
-        /// language (for example, `en-US`) return the same translation.
+        /// Enum values for GetPronunciation.
         /// </summary>
-        public class GetPronunciationVoiceEnumValue
+        public class GetPronunciationEnums
         {
             /// <summary>
-            /// Constant DE_DE_BIRGITVOICE for de-DE_BirgitVoice
+            /// A voice that specifies the language in which the pronunciation is to be returned. All voices for the
+            /// same language (for example, `en-US`) return the same translation.
             /// </summary>
-            public const string DE_DE_BIRGITVOICE = "de-DE_BirgitVoice";
+            public class VoiceValue
+            {
+                /// <summary>
+                /// Constant DE_DE_BIRGITVOICE for de-DE_BirgitVoice
+                /// </summary>
+                public const string DE_DE_BIRGITVOICE = "de-DE_BirgitVoice";
+                /// <summary>
+                /// Constant DE_DE_BIRGITV3VOICE for de-DE_BirgitV3Voice
+                /// </summary>
+                public const string DE_DE_BIRGITV3VOICE = "de-DE_BirgitV3Voice";
+                /// <summary>
+                /// Constant DE_DE_DIETERVOICE for de-DE_DieterVoice
+                /// </summary>
+                public const string DE_DE_DIETERVOICE = "de-DE_DieterVoice";
+                /// <summary>
+                /// Constant DE_DE_DIETERV3VOICE for de-DE_DieterV3Voice
+                /// </summary>
+                public const string DE_DE_DIETERV3VOICE = "de-DE_DieterV3Voice";
+                /// <summary>
+                /// Constant EN_GB_KATEVOICE for en-GB_KateVoice
+                /// </summary>
+                public const string EN_GB_KATEVOICE = "en-GB_KateVoice";
+                /// <summary>
+                /// Constant EN_GB_KATEV3VOICE for en-GB_KateV3Voice
+                /// </summary>
+                public const string EN_GB_KATEV3VOICE = "en-GB_KateV3Voice";
+                /// <summary>
+                /// Constant EN_US_ALLISONVOICE for en-US_AllisonVoice
+                /// </summary>
+                public const string EN_US_ALLISONVOICE = "en-US_AllisonVoice";
+                /// <summary>
+                /// Constant EN_US_ALLISONV3VOICE for en-US_AllisonV3Voice
+                /// </summary>
+                public const string EN_US_ALLISONV3VOICE = "en-US_AllisonV3Voice";
+                /// <summary>
+                /// Constant EN_US_LISAVOICE for en-US_LisaVoice
+                /// </summary>
+                public const string EN_US_LISAVOICE = "en-US_LisaVoice";
+                /// <summary>
+                /// Constant EN_US_LISAV3VOICE for en-US_LisaV3Voice
+                /// </summary>
+                public const string EN_US_LISAV3VOICE = "en-US_LisaV3Voice";
+                /// <summary>
+                /// Constant EN_US_MICHAELVOICE for en-US_MichaelVoice
+                /// </summary>
+                public const string EN_US_MICHAELVOICE = "en-US_MichaelVoice";
+                /// <summary>
+                /// Constant EN_US_MICHAELV3VOICE for en-US_MichaelV3Voice
+                /// </summary>
+                public const string EN_US_MICHAELV3VOICE = "en-US_MichaelV3Voice";
+                /// <summary>
+                /// Constant ES_ES_ENRIQUEVOICE for es-ES_EnriqueVoice
+                /// </summary>
+                public const string ES_ES_ENRIQUEVOICE = "es-ES_EnriqueVoice";
+                /// <summary>
+                /// Constant ES_ES_ENRIQUEV3VOICE for es-ES_EnriqueV3Voice
+                /// </summary>
+                public const string ES_ES_ENRIQUEV3VOICE = "es-ES_EnriqueV3Voice";
+                /// <summary>
+                /// Constant ES_ES_LAURAVOICE for es-ES_LauraVoice
+                /// </summary>
+                public const string ES_ES_LAURAVOICE = "es-ES_LauraVoice";
+                /// <summary>
+                /// Constant ES_ES_LAURAV3VOICE for es-ES_LauraV3Voice
+                /// </summary>
+                public const string ES_ES_LAURAV3VOICE = "es-ES_LauraV3Voice";
+                /// <summary>
+                /// Constant ES_LA_SOFIAVOICE for es-LA_SofiaVoice
+                /// </summary>
+                public const string ES_LA_SOFIAVOICE = "es-LA_SofiaVoice";
+                /// <summary>
+                /// Constant ES_LA_SOFIAV3VOICE for es-LA_SofiaV3Voice
+                /// </summary>
+                public const string ES_LA_SOFIAV3VOICE = "es-LA_SofiaV3Voice";
+                /// <summary>
+                /// Constant ES_US_SOFIAVOICE for es-US_SofiaVoice
+                /// </summary>
+                public const string ES_US_SOFIAVOICE = "es-US_SofiaVoice";
+                /// <summary>
+                /// Constant ES_US_SOFIAV3VOICE for es-US_SofiaV3Voice
+                /// </summary>
+                public const string ES_US_SOFIAV3VOICE = "es-US_SofiaV3Voice";
+                /// <summary>
+                /// Constant FR_FR_RENEEVOICE for fr-FR_ReneeVoice
+                /// </summary>
+                public const string FR_FR_RENEEVOICE = "fr-FR_ReneeVoice";
+                /// <summary>
+                /// Constant FR_FR_RENEEV3VOICE for fr-FR_ReneeV3Voice
+                /// </summary>
+                public const string FR_FR_RENEEV3VOICE = "fr-FR_ReneeV3Voice";
+                /// <summary>
+                /// Constant IT_IT_FRANCESCAVOICE for it-IT_FrancescaVoice
+                /// </summary>
+                public const string IT_IT_FRANCESCAVOICE = "it-IT_FrancescaVoice";
+                /// <summary>
+                /// Constant IT_IT_FRANCESCAV3VOICE for it-IT_FrancescaV3Voice
+                /// </summary>
+                public const string IT_IT_FRANCESCAV3VOICE = "it-IT_FrancescaV3Voice";
+                /// <summary>
+                /// Constant JA_JP_EMIVOICE for ja-JP_EmiVoice
+                /// </summary>
+                public const string JA_JP_EMIVOICE = "ja-JP_EmiVoice";
+                /// <summary>
+                /// Constant JA_JP_EMIV3VOICE for ja-JP_EmiV3Voice
+                /// </summary>
+                public const string JA_JP_EMIV3VOICE = "ja-JP_EmiV3Voice";
+                /// <summary>
+                /// Constant PT_BR_ISABELAVOICE for pt-BR_IsabelaVoice
+                /// </summary>
+                public const string PT_BR_ISABELAVOICE = "pt-BR_IsabelaVoice";
+                /// <summary>
+                /// Constant PT_BR_ISABELAV3VOICE for pt-BR_IsabelaV3Voice
+                /// </summary>
+                public const string PT_BR_ISABELAV3VOICE = "pt-BR_IsabelaV3Voice";
+                
+            }
             /// <summary>
-            /// Constant DE_DE_BIRGITV3VOICE for de-DE_BirgitV3Voice
+            /// The phoneme format in which to return the pronunciation. Omit the parameter to obtain the pronunciation
+            /// in the default format.
             /// </summary>
-            public const string DE_DE_BIRGITV3VOICE = "de-DE_BirgitV3Voice";
-            /// <summary>
-            /// Constant DE_DE_DIETERVOICE for de-DE_DieterVoice
-            /// </summary>
-            public const string DE_DE_DIETERVOICE = "de-DE_DieterVoice";
-            /// <summary>
-            /// Constant DE_DE_DIETERV3VOICE for de-DE_DieterV3Voice
-            /// </summary>
-            public const string DE_DE_DIETERV3VOICE = "de-DE_DieterV3Voice";
-            /// <summary>
-            /// Constant EN_GB_KATEVOICE for en-GB_KateVoice
-            /// </summary>
-            public const string EN_GB_KATEVOICE = "en-GB_KateVoice";
-            /// <summary>
-            /// Constant EN_GB_KATEV3VOICE for en-GB_KateV3Voice
-            /// </summary>
-            public const string EN_GB_KATEV3VOICE = "en-GB_KateV3Voice";
-            /// <summary>
-            /// Constant EN_US_ALLISONVOICE for en-US_AllisonVoice
-            /// </summary>
-            public const string EN_US_ALLISONVOICE = "en-US_AllisonVoice";
-            /// <summary>
-            /// Constant EN_US_ALLISONV3VOICE for en-US_AllisonV3Voice
-            /// </summary>
-            public const string EN_US_ALLISONV3VOICE = "en-US_AllisonV3Voice";
-            /// <summary>
-            /// Constant EN_US_LISAVOICE for en-US_LisaVoice
-            /// </summary>
-            public const string EN_US_LISAVOICE = "en-US_LisaVoice";
-            /// <summary>
-            /// Constant EN_US_LISAV3VOICE for en-US_LisaV3Voice
-            /// </summary>
-            public const string EN_US_LISAV3VOICE = "en-US_LisaV3Voice";
-            /// <summary>
-            /// Constant EN_US_MICHAELVOICE for en-US_MichaelVoice
-            /// </summary>
-            public const string EN_US_MICHAELVOICE = "en-US_MichaelVoice";
-            /// <summary>
-            /// Constant EN_US_MICHAELV3VOICE for en-US_MichaelV3Voice
-            /// </summary>
-            public const string EN_US_MICHAELV3VOICE = "en-US_MichaelV3Voice";
-            /// <summary>
-            /// Constant ES_ES_ENRIQUEVOICE for es-ES_EnriqueVoice
-            /// </summary>
-            public const string ES_ES_ENRIQUEVOICE = "es-ES_EnriqueVoice";
-            /// <summary>
-            /// Constant ES_ES_ENRIQUEV3VOICE for es-ES_EnriqueV3Voice
-            /// </summary>
-            public const string ES_ES_ENRIQUEV3VOICE = "es-ES_EnriqueV3Voice";
-            /// <summary>
-            /// Constant ES_ES_LAURAVOICE for es-ES_LauraVoice
-            /// </summary>
-            public const string ES_ES_LAURAVOICE = "es-ES_LauraVoice";
-            /// <summary>
-            /// Constant ES_ES_LAURAV3VOICE for es-ES_LauraV3Voice
-            /// </summary>
-            public const string ES_ES_LAURAV3VOICE = "es-ES_LauraV3Voice";
-            /// <summary>
-            /// Constant ES_LA_SOFIAVOICE for es-LA_SofiaVoice
-            /// </summary>
-            public const string ES_LA_SOFIAVOICE = "es-LA_SofiaVoice";
-            /// <summary>
-            /// Constant ES_LA_SOFIAV3VOICE for es-LA_SofiaV3Voice
-            /// </summary>
-            public const string ES_LA_SOFIAV3VOICE = "es-LA_SofiaV3Voice";
-            /// <summary>
-            /// Constant ES_US_SOFIAVOICE for es-US_SofiaVoice
-            /// </summary>
-            public const string ES_US_SOFIAVOICE = "es-US_SofiaVoice";
-            /// <summary>
-            /// Constant ES_US_SOFIAV3VOICE for es-US_SofiaV3Voice
-            /// </summary>
-            public const string ES_US_SOFIAV3VOICE = "es-US_SofiaV3Voice";
-            /// <summary>
-            /// Constant FR_FR_RENEEVOICE for fr-FR_ReneeVoice
-            /// </summary>
-            public const string FR_FR_RENEEVOICE = "fr-FR_ReneeVoice";
-            /// <summary>
-            /// Constant FR_FR_RENEEV3VOICE for fr-FR_ReneeV3Voice
-            /// </summary>
-            public const string FR_FR_RENEEV3VOICE = "fr-FR_ReneeV3Voice";
-            /// <summary>
-            /// Constant IT_IT_FRANCESCAVOICE for it-IT_FrancescaVoice
-            /// </summary>
-            public const string IT_IT_FRANCESCAVOICE = "it-IT_FrancescaVoice";
-            /// <summary>
-            /// Constant IT_IT_FRANCESCAV3VOICE for it-IT_FrancescaV3Voice
-            /// </summary>
-            public const string IT_IT_FRANCESCAV3VOICE = "it-IT_FrancescaV3Voice";
-            /// <summary>
-            /// Constant JA_JP_EMIVOICE for ja-JP_EmiVoice
-            /// </summary>
-            public const string JA_JP_EMIVOICE = "ja-JP_EmiVoice";
-            /// <summary>
-            /// Constant JA_JP_EMIV3VOICE for ja-JP_EmiV3Voice
-            /// </summary>
-            public const string JA_JP_EMIV3VOICE = "ja-JP_EmiV3Voice";
-            /// <summary>
-            /// Constant PT_BR_ISABELAVOICE for pt-BR_IsabelaVoice
-            /// </summary>
-            public const string PT_BR_ISABELAVOICE = "pt-BR_IsabelaVoice";
-            /// <summary>
-            /// Constant PT_BR_ISABELAV3VOICE for pt-BR_IsabelaV3Voice
-            /// </summary>
-            public const string PT_BR_ISABELAV3VOICE = "pt-BR_IsabelaV3Voice";
-            
-        }
-        /// <summary>
-        /// The phoneme format in which to return the pronunciation. Omit the parameter to obtain the pronunciation in
-        /// the default format.
-        /// </summary>
-        public class GetPronunciationFormatEnumValue
-        {
-            /// <summary>
-            /// Constant IBM for ibm
-            /// </summary>
-            public const string IBM = "ibm";
-            /// <summary>
-            /// Constant IPA for ipa
-            /// </summary>
-            public const string IPA = "ipa";
-            
+            public class FormatValue
+            {
+                /// <summary>
+                /// Constant IBM for ibm
+                /// </summary>
+                public const string IBM = "ibm";
+                /// <summary>
+                /// Constant IPA for ipa
+                /// </summary>
+                public const string IPA = "ipa";
+                
+            }
         }
         /// <summary>
         /// Create a custom model.
@@ -904,53 +925,60 @@ namespace IBM.Watson.TextToSpeech.v1
         }
 
         /// <summary>
-        /// The language for which custom voice models that are owned by the requesting credentials are to be returned.
-        /// Omit the parameter to see all custom voice models that are owned by the requester.
+        /// Enum values for ListVoiceModels.
         /// </summary>
-        public class ListVoiceModelsLanguageEnumValue
+        public class ListVoiceModelsEnums
         {
             /// <summary>
-            /// Constant DE_DE for de-DE
+            /// The language for which custom voice models that are owned by the requesting credentials are to be
+            /// returned. Omit the parameter to see all custom voice models that are owned by the requester.
             /// </summary>
-            public const string DE_DE = "de-DE";
-            /// <summary>
-            /// Constant EN_GB for en-GB
-            /// </summary>
-            public const string EN_GB = "en-GB";
-            /// <summary>
-            /// Constant EN_US for en-US
-            /// </summary>
-            public const string EN_US = "en-US";
-            /// <summary>
-            /// Constant ES_ES for es-ES
-            /// </summary>
-            public const string ES_ES = "es-ES";
-            /// <summary>
-            /// Constant ES_LA for es-LA
-            /// </summary>
-            public const string ES_LA = "es-LA";
-            /// <summary>
-            /// Constant ES_US for es-US
-            /// </summary>
-            public const string ES_US = "es-US";
-            /// <summary>
-            /// Constant FR_FR for fr-FR
-            /// </summary>
-            public const string FR_FR = "fr-FR";
-            /// <summary>
-            /// Constant IT_IT for it-IT
-            /// </summary>
-            public const string IT_IT = "it-IT";
-            /// <summary>
-            /// Constant JA_JP for ja-JP
-            /// </summary>
-            public const string JA_JP = "ja-JP";
-            /// <summary>
-            /// Constant PT_BR for pt-BR
-            /// </summary>
-            public const string PT_BR = "pt-BR";
-            
+            public class LanguageValue
+            {
+                /// <summary>
+                /// Constant DE_DE for de-DE
+                /// </summary>
+                public const string DE_DE = "de-DE";
+                /// <summary>
+                /// Constant EN_GB for en-GB
+                /// </summary>
+                public const string EN_GB = "en-GB";
+                /// <summary>
+                /// Constant EN_US for en-US
+                /// </summary>
+                public const string EN_US = "en-US";
+                /// <summary>
+                /// Constant ES_ES for es-ES
+                /// </summary>
+                public const string ES_ES = "es-ES";
+                /// <summary>
+                /// Constant ES_LA for es-LA
+                /// </summary>
+                public const string ES_LA = "es-LA";
+                /// <summary>
+                /// Constant ES_US for es-US
+                /// </summary>
+                public const string ES_US = "es-US";
+                /// <summary>
+                /// Constant FR_FR for fr-FR
+                /// </summary>
+                public const string FR_FR = "fr-FR";
+                /// <summary>
+                /// Constant IT_IT for it-IT
+                /// </summary>
+                public const string IT_IT = "it-IT";
+                /// <summary>
+                /// Constant JA_JP for ja-JP
+                /// </summary>
+                public const string JA_JP = "ja-JP";
+                /// <summary>
+                /// Constant PT_BR for pt-BR
+                /// </summary>
+                public const string PT_BR = "pt-BR";
+                
+            }
         }
+
         /// <summary>
         /// Update a custom model.
         ///

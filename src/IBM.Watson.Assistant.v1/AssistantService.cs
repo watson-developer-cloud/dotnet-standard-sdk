@@ -228,21 +228,28 @@ namespace IBM.Watson.Assistant.v1
         }
 
         /// <summary>
-        /// The attribute by which returned workspaces will be sorted. To reverse the sort order, prefix the value with
-        /// a minus sign (`-`).
+        /// Enum values for ListWorkspaces.
         /// </summary>
-        public class ListWorkspacesSortEnumValue
+        public class ListWorkspacesEnums
         {
             /// <summary>
-            /// Constant NAME for name
+            /// The attribute by which returned workspaces will be sorted. To reverse the sort order, prefix the value
+            /// with a minus sign (`-`).
             /// </summary>
-            public const string NAME = "name";
-            /// <summary>
-            /// Constant UPDATED for updated
-            /// </summary>
-            public const string UPDATED = "updated";
-            
+            public class SortValue
+            {
+                /// <summary>
+                /// Constant NAME for name
+                /// </summary>
+                public const string NAME = "name";
+                /// <summary>
+                /// Constant UPDATED for updated
+                /// </summary>
+                public const string UPDATED = "updated";
+                
+            }
         }
+
         /// <summary>
         /// Create workspace.
         ///
@@ -433,17 +440,25 @@ namespace IBM.Watson.Assistant.v1
         }
 
         /// <summary>
-        /// Indicates how the returned workspace data will be sorted. This parameter is valid only if **export**=`true`.
-        /// Specify `sort=stable` to sort all workspace objects by unique identifier, in ascending alphabetical order.
+        /// Enum values for GetWorkspace.
         /// </summary>
-        public class GetWorkspaceSortEnumValue
+        public class GetWorkspaceEnums
         {
             /// <summary>
-            /// Constant STABLE for stable
+            /// Indicates how the returned workspace data will be sorted. This parameter is valid only if
+            /// **export**=`true`. Specify `sort=stable` to sort all workspace objects by unique identifier, in
+            /// ascending alphabetical order.
             /// </summary>
-            public const string STABLE = "stable";
-            
+            public class SortValue
+            {
+                /// <summary>
+                /// Constant STABLE for stable
+                /// </summary>
+                public const string STABLE = "stable";
+                
+            }
         }
+
         /// <summary>
         /// Update workspace.
         ///
@@ -717,21 +732,28 @@ namespace IBM.Watson.Assistant.v1
         }
 
         /// <summary>
-        /// The attribute by which returned intents will be sorted. To reverse the sort order, prefix the value with a
-        /// minus sign (`-`).
+        /// Enum values for ListIntents.
         /// </summary>
-        public class ListIntentsSortEnumValue
+        public class ListIntentsEnums
         {
             /// <summary>
-            /// Constant INTENT for intent
+            /// The attribute by which returned intents will be sorted. To reverse the sort order, prefix the value with
+            /// a minus sign (`-`).
             /// </summary>
-            public const string INTENT = "intent";
-            /// <summary>
-            /// Constant UPDATED for updated
-            /// </summary>
-            public const string UPDATED = "updated";
-            
+            public class SortValue
+            {
+                /// <summary>
+                /// Constant INTENT for intent
+                /// </summary>
+                public const string INTENT = "intent";
+                /// <summary>
+                /// Constant UPDATED for updated
+                /// </summary>
+                public const string UPDATED = "updated";
+                
+            }
         }
+
         /// <summary>
         /// Create intent.
         ///
@@ -1136,21 +1158,28 @@ namespace IBM.Watson.Assistant.v1
         }
 
         /// <summary>
-        /// The attribute by which returned examples will be sorted. To reverse the sort order, prefix the value with a
-        /// minus sign (`-`).
+        /// Enum values for ListExamples.
         /// </summary>
-        public class ListExamplesSortEnumValue
+        public class ListExamplesEnums
         {
             /// <summary>
-            /// Constant TEXT for text
+            /// The attribute by which returned examples will be sorted. To reverse the sort order, prefix the value
+            /// with a minus sign (`-`).
             /// </summary>
-            public const string TEXT = "text";
-            /// <summary>
-            /// Constant UPDATED for updated
-            /// </summary>
-            public const string UPDATED = "updated";
-            
+            public class SortValue
+            {
+                /// <summary>
+                /// Constant TEXT for text
+                /// </summary>
+                public const string TEXT = "text";
+                /// <summary>
+                /// Constant UPDATED for updated
+                /// </summary>
+                public const string UPDATED = "updated";
+                
+            }
         }
+
         /// <summary>
         /// Create user input example.
         ///
@@ -1563,21 +1592,28 @@ namespace IBM.Watson.Assistant.v1
         }
 
         /// <summary>
-        /// The attribute by which returned counterexamples will be sorted. To reverse the sort order, prefix the value
-        /// with a minus sign (`-`).
+        /// Enum values for ListCounterexamples.
         /// </summary>
-        public class ListCounterexamplesSortEnumValue
+        public class ListCounterexamplesEnums
         {
             /// <summary>
-            /// Constant TEXT for text
+            /// The attribute by which returned counterexamples will be sorted. To reverse the sort order, prefix the
+            /// value with a minus sign (`-`).
             /// </summary>
-            public const string TEXT = "text";
-            /// <summary>
-            /// Constant UPDATED for updated
-            /// </summary>
-            public const string UPDATED = "updated";
-            
+            public class SortValue
+            {
+                /// <summary>
+                /// Constant TEXT for text
+                /// </summary>
+                public const string TEXT = "text";
+                /// <summary>
+                /// Constant UPDATED for updated
+                /// </summary>
+                public const string UPDATED = "updated";
+                
+            }
         }
+
         /// <summary>
         /// Create counterexample.
         ///
@@ -1955,21 +1991,28 @@ namespace IBM.Watson.Assistant.v1
         }
 
         /// <summary>
-        /// The attribute by which returned entities will be sorted. To reverse the sort order, prefix the value with a
-        /// minus sign (`-`).
+        /// Enum values for ListEntities.
         /// </summary>
-        public class ListEntitiesSortEnumValue
+        public class ListEntitiesEnums
         {
             /// <summary>
-            /// Constant ENTITY for entity
+            /// The attribute by which returned entities will be sorted. To reverse the sort order, prefix the value
+            /// with a minus sign (`-`).
             /// </summary>
-            public const string ENTITY = "entity";
-            /// <summary>
-            /// Constant UPDATED for updated
-            /// </summary>
-            public const string UPDATED = "updated";
-            
+            public class SortValue
+            {
+                /// <summary>
+                /// Constant ENTITY for entity
+                /// </summary>
+                public const string ENTITY = "entity";
+                /// <summary>
+                /// Constant UPDATED for updated
+                /// </summary>
+                public const string UPDATED = "updated";
+                
+            }
         }
+
         /// <summary>
         /// Create entity.
         ///
@@ -2479,21 +2522,28 @@ namespace IBM.Watson.Assistant.v1
         }
 
         /// <summary>
-        /// The attribute by which returned entity values will be sorted. To reverse the sort order, prefix the value
-        /// with a minus sign (`-`).
+        /// Enum values for ListValues.
         /// </summary>
-        public class ListValuesSortEnumValue
+        public class ListValuesEnums
         {
             /// <summary>
-            /// Constant VALUE for value
+            /// The attribute by which returned entity values will be sorted. To reverse the sort order, prefix the
+            /// value with a minus sign (`-`).
             /// </summary>
-            public const string VALUE = "value";
-            /// <summary>
-            /// Constant UPDATED for updated
-            /// </summary>
-            public const string UPDATED = "updated";
-            
+            public class SortValue
+            {
+                /// <summary>
+                /// Constant VALUE for value
+                /// </summary>
+                public const string VALUE = "value";
+                /// <summary>
+                /// Constant UPDATED for updated
+                /// </summary>
+                public const string UPDATED = "updated";
+                
+            }
         }
+
         /// <summary>
         /// Create entity value.
         ///
@@ -2974,21 +3024,28 @@ namespace IBM.Watson.Assistant.v1
         }
 
         /// <summary>
-        /// The attribute by which returned entity value synonyms will be sorted. To reverse the sort order, prefix the
-        /// value with a minus sign (`-`).
+        /// Enum values for ListSynonyms.
         /// </summary>
-        public class ListSynonymsSortEnumValue
+        public class ListSynonymsEnums
         {
             /// <summary>
-            /// Constant SYNONYM for synonym
+            /// The attribute by which returned entity value synonyms will be sorted. To reverse the sort order, prefix
+            /// the value with a minus sign (`-`).
             /// </summary>
-            public const string SYNONYM = "synonym";
-            /// <summary>
-            /// Constant UPDATED for updated
-            /// </summary>
-            public const string UPDATED = "updated";
-            
+            public class SortValue
+            {
+                /// <summary>
+                /// Constant SYNONYM for synonym
+                /// </summary>
+                public const string SYNONYM = "synonym";
+                /// <summary>
+                /// Constant UPDATED for updated
+                /// </summary>
+                public const string UPDATED = "updated";
+                
+            }
         }
+
         /// <summary>
         /// Create entity value synonym.
         ///
@@ -3425,21 +3482,28 @@ namespace IBM.Watson.Assistant.v1
         }
 
         /// <summary>
-        /// The attribute by which returned dialog nodes will be sorted. To reverse the sort order, prefix the value
-        /// with a minus sign (`-`).
+        /// Enum values for ListDialogNodes.
         /// </summary>
-        public class ListDialogNodesSortEnumValue
+        public class ListDialogNodesEnums
         {
             /// <summary>
-            /// Constant DIALOG_NODE for dialog_node
+            /// The attribute by which returned dialog nodes will be sorted. To reverse the sort order, prefix the value
+            /// with a minus sign (`-`).
             /// </summary>
-            public const string DIALOG_NODE = "dialog_node";
-            /// <summary>
-            /// Constant UPDATED for updated
-            /// </summary>
-            public const string UPDATED = "updated";
-            
+            public class SortValue
+            {
+                /// <summary>
+                /// Constant DIALOG_NODE for dialog_node
+                /// </summary>
+                public const string DIALOG_NODE = "dialog_node";
+                /// <summary>
+                /// Constant UPDATED for updated
+                /// </summary>
+                public const string UPDATED = "updated";
+                
+            }
         }
+
         /// <summary>
         /// Create dialog node.
         ///

@@ -178,16 +178,23 @@ namespace IBM.Watson.VisualRecognition.v4
 
             return result;
         }
+
         /// <summary>
-        /// The features to analyze.
+        /// Enum values for Analyze.
         /// </summary>
-        public class AnalyzeFeaturesEnumValue
+        public class AnalyzeEnums
         {
             /// <summary>
-            /// Constant OBJECTS for objects
+            /// The features to analyze.
             /// </summary>
-            public const string OBJECTS = "objects";
-            
+            public class FeaturesValue
+            {
+                /// <summary>
+                /// Constant OBJECTS for objects
+                /// </summary>
+                public const string OBJECTS = "objects";
+                
+            }
         }
         /// <summary>
         /// Create a collection.
@@ -824,22 +831,29 @@ namespace IBM.Watson.VisualRecognition.v4
 
             return result;
         }
+
         /// <summary>
-        /// The image size. Specify `thumbnail` to return a version that maintains the original aspect ratio but is no
-        /// larger than 200 pixels in the larger dimension. For example, an original 800 x 1000 image is resized to 160
-        /// x 200 pixels.
+        /// Enum values for GetJpegImage.
         /// </summary>
-        public class GetJpegImageSizeEnumValue
+        public class GetJpegImageEnums
         {
             /// <summary>
-            /// Constant FULL for full
+            /// The image size. Specify `thumbnail` to return a version that maintains the original aspect ratio but is
+            /// no larger than 200 pixels in the larger dimension. For example, an original 800 x 1000 image is resized
+            /// to 160 x 200 pixels.
             /// </summary>
-            public const string FULL = "full";
-            /// <summary>
-            /// Constant THUMBNAIL for thumbnail
-            /// </summary>
-            public const string THUMBNAIL = "thumbnail";
-            
+            public class SizeValue
+            {
+                /// <summary>
+                /// Constant FULL for full
+                /// </summary>
+                public const string FULL = "full";
+                /// <summary>
+                /// Constant THUMBNAIL for thumbnail
+                /// </summary>
+                public const string THUMBNAIL = "thumbnail";
+                
+            }
         }
         /// <summary>
         /// Train a collection.

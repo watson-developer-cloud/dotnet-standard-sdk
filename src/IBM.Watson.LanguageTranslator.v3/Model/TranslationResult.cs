@@ -26,7 +26,7 @@ namespace IBM.Watson.LanguageTranslator.v3.Model
     public class TranslationResult
     {
         /// <summary>
-        /// An estimate of the number of words in the input text.
+        /// Number of words in the input text.
         /// </summary>
         [JsonProperty("word_count", NullValueHandling = NullValueHandling.Ignore)]
         public long? WordCount { get; set; }

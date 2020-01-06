@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2017, 2020.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -1983,6 +1983,37 @@ namespace IBM.Watson.Discovery.v1
         }
 
         /// <summary>
+        /// The content type of file.
+        /// </summary>
+        public class AddDocumentFileContentTypeEnumValue
+        {
+            /// <summary>
+            /// Constant APPLICATION_JSON for application/json
+            /// </summary>
+            public const string APPLICATION_JSON = "application/json";
+            /// <summary>
+            /// Constant APPLICATION_MSWORD for application/msword
+            /// </summary>
+            public const string APPLICATION_MSWORD = "application/msword";
+            /// <summary>
+            /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
+            /// </summary>
+            public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+            /// <summary>
+            /// Constant APPLICATION_PDF for application/pdf
+            /// </summary>
+            public const string APPLICATION_PDF = "application/pdf";
+            /// <summary>
+            /// Constant TEXT_HTML for text/html
+            /// </summary>
+            public const string TEXT_HTML = "text/html";
+            /// <summary>
+            /// Constant APPLICATION_XHTML_XML for application/xhtml+xml
+            /// </summary>
+            public const string APPLICATION_XHTML_XML = "application/xhtml+xml";
+            
+        }
+        /// <summary>
         /// Get document details.
         ///
         /// Fetch status details about a submitted document. **Note:** this operation does not return the document
@@ -2197,6 +2228,37 @@ namespace IBM.Watson.Discovery.v1
             }
         }
 
+        /// <summary>
+        /// The content type of file.
+        /// </summary>
+        public class UpdateDocumentFileContentTypeEnumValue
+        {
+            /// <summary>
+            /// Constant APPLICATION_JSON for application/json
+            /// </summary>
+            public const string APPLICATION_JSON = "application/json";
+            /// <summary>
+            /// Constant APPLICATION_MSWORD for application/msword
+            /// </summary>
+            public const string APPLICATION_MSWORD = "application/msword";
+            /// <summary>
+            /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
+            /// </summary>
+            public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+            /// <summary>
+            /// Constant APPLICATION_PDF for application/pdf
+            /// </summary>
+            public const string APPLICATION_PDF = "application/pdf";
+            /// <summary>
+            /// Constant TEXT_HTML for text/html
+            /// </summary>
+            public const string TEXT_HTML = "text/html";
+            /// <summary>
+            /// Constant APPLICATION_XHTML_XML for application/xhtml+xml
+            /// </summary>
+            public const string APPLICATION_XHTML_XML = "application/xhtml+xml";
+            
+        }
         /// <summary>
         /// Delete a document.
         ///
@@ -3867,7 +3929,7 @@ namespace IBM.Watson.Discovery.v1
         /// Create event.
         ///
         /// The **Events** API can be used to create log entries that are associated with specific queries. For example,
-        /// you can record which documents in the results set were "clicked" by a user and when that click occurred.
+        /// you can record which documents in the results set were "clicked" by a user and when that click occured.
         /// </summary>
         /// <param name="type">The event type to be created.</param>
         /// <param name="data">Query event data object.</param>
@@ -4089,6 +4151,17 @@ namespace IBM.Watson.Discovery.v1
         }
 
         /// <summary>
+        /// The type of result to consider when calculating the metric.
+        /// </summary>
+        public class GetMetricsQueryResultTypeEnumValue
+        {
+            /// <summary>
+            /// Constant DOCUMENT for document
+            /// </summary>
+            public const string DOCUMENT = "document";
+            
+        }
+        /// <summary>
         /// Number of queries with an event over time.
         ///
         /// Total number of queries using the **natural_language_query** parameter that have a corresponding "click"
@@ -4170,6 +4243,17 @@ namespace IBM.Watson.Discovery.v1
         }
 
         /// <summary>
+        /// The type of result to consider when calculating the metric.
+        /// </summary>
+        public class GetMetricsQueryEventResultTypeEnumValue
+        {
+            /// <summary>
+            /// Constant DOCUMENT for document
+            /// </summary>
+            public const string DOCUMENT = "document";
+            
+        }
+        /// <summary>
         /// Number of queries with no search results over time.
         ///
         /// Total number of queries using the **natural_language_query** parameter that have no results returned over a
@@ -4249,6 +4333,17 @@ namespace IBM.Watson.Discovery.v1
             }
         }
 
+        /// <summary>
+        /// The type of result to consider when calculating the metric.
+        /// </summary>
+        public class GetMetricsQueryNoResultsResultTypeEnumValue
+        {
+            /// <summary>
+            /// Constant DOCUMENT for document
+            /// </summary>
+            public const string DOCUMENT = "document";
+            
+        }
         /// <summary>
         /// Percentage of queries with an associated event.
         ///
@@ -4330,6 +4425,17 @@ namespace IBM.Watson.Discovery.v1
             }
         }
 
+        /// <summary>
+        /// The type of result to consider when calculating the metric.
+        /// </summary>
+        public class GetMetricsEventRateResultTypeEnumValue
+        {
+            /// <summary>
+            /// Constant DOCUMENT for document
+            /// </summary>
+            public const string DOCUMENT = "document";
+            
+        }
         /// <summary>
         /// Most frequent query tokens with an event.
         ///

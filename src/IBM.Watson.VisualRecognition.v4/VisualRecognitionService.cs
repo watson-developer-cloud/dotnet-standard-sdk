@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ namespace IBM.Watson.VisualRecognition.v4
 {
     public partial class VisualRecognitionService : IBMService, IVisualRecognitionService
     {
-        const string defaultServiceName = "visual_recognition";
+        const string defaultServiceName = "watson_vision_combined";
         private const string defaultServiceUrl = "https://gateway.watsonplatform.net/visual-recognition/api";
         public string VersionDate { get; set; }
 
@@ -195,6 +195,17 @@ namespace IBM.Watson.VisualRecognition.v4
                 public const string OBJECTS = "objects";
                 
             }
+        }
+        /// <summary>
+        /// The features to analyze.
+        /// </summary>
+        public class AnalyzeFeaturesEnumValue
+        {
+            /// <summary>
+            /// Constant OBJECTS for objects
+            /// </summary>
+            public const string OBJECTS = "objects";
+            
         }
         /// <summary>
         /// Create a collection.
@@ -854,6 +865,23 @@ namespace IBM.Watson.VisualRecognition.v4
                 public const string THUMBNAIL = "thumbnail";
                 
             }
+        }
+        /// <summary>
+        /// The image size. Specify `thumbnail` to return a version that maintains the original aspect ratio but is no
+        /// larger than 200 pixels in the larger dimension. For example, an original 800 x 1000 image is resized to 160
+        /// x 200 pixels.
+        /// </summary>
+        public class GetJpegImageSizeEnumValue
+        {
+            /// <summary>
+            /// Constant FULL for full
+            /// </summary>
+            public const string FULL = "full";
+            /// <summary>
+            /// Constant THUMBNAIL for thumbnail
+            /// </summary>
+            public const string THUMBNAIL = "thumbnail";
+            
         }
         /// <summary>
         /// Train a collection.

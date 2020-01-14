@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
             {
                 throw new ArgumentNullException("versionDate cannot be null.");
             }
-            
+
             VersionDate = versionDate;
 
             if (string.IsNullOrEmpty(ServiceUrl))
@@ -66,6 +66,10 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// - Semantic roles
         /// - Sentiment
         /// - Syntax (Experimental).
+        ///
+        /// If a language for the input text is not specified with the `language` parameter, the service [automatically
+        /// detects the
+        /// language](https://cloud.ibm.com/docs/services/natural-language-understanding?topic=natural-language-understanding-detectable-languages).
         /// </summary>
         /// <param name="parameters">An object containing request parameters. The `features` object and one of the
         /// `text`, `html`, or `url` attributes are required.</param>

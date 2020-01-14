@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ namespace IBM.Watson.VisualRecognition.v3
             {
                 throw new ArgumentNullException("versionDate cannot be null.");
             }
-            
+
             VersionDate = versionDate;
 
             if (string.IsNullOrEmpty(ServiceUrl))
@@ -194,7 +194,8 @@ namespace IBM.Watson.VisualRecognition.v3
         /// one positive example file in a call.
         ///
         /// Specify the parameter name by appending `_positive_examples` to the class name. For example,
-        /// `goldenretriever_positive_examples` creates the class **goldenretriever**.
+        /// `goldenretriever_positive_examples` creates the class **goldenretriever**. The string cannot contain the
+        /// following characters: ``$ * - { } \ | / ' " ` [ ]``.
         ///
         /// Include at least 10 images in .jpg or .png format. The minimum recommended image resolution is 32X32 pixels.
         /// The maximum number of images is 10,000 images or 100 MB per .zip file.
@@ -416,7 +417,8 @@ namespace IBM.Watson.VisualRecognition.v3
         /// update classes in the classifier. You can include more than one positive example file in a call.
         ///
         /// Specify the parameter name by appending `_positive_examples` to the class name. For example,
-        /// `goldenretriever_positive_examples` creates the class `goldenretriever`.
+        /// `goldenretriever_positive_examples` creates the class `goldenretriever`. The string cannot contain the
+        /// following characters: ``$ * - { } \ | / ' " ` [ ]``.
         ///
         /// Include at least 10 images in .jpg or .png format. The minimum recommended image resolution is 32X32 pixels.
         /// The maximum number of images is 10,000 images or 100 MB per .zip file.

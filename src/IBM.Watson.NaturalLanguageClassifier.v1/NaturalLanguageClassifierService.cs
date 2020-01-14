@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -34,6 +34,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
     {
         const string serviceName = "natural_language_classifier";
         private const string defaultServiceUrl = "https://gateway.watsonplatform.net/natural-language-classifier/api";
+
         public NaturalLanguageClassifierService() : this(ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public NaturalLanguageClassifierService(IClient httpClient) : base(serviceName, httpClient) { }
 

@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ namespace IBM.Watson.Discovery.v2.Model
         [JsonProperty("key_as_string", NullValueHandling = NullValueHandling.Ignore)]
         public string KeyAsString { get; set; }
         /// <summary>
-        /// Numeric date value of the upper bound for the timeslice interval in UNIX miliseconds since epoch.
+        /// Numeric date value of the upper bound for the timeslice interval in UNIX milliseconds since epoch.
         /// </summary>
         [JsonProperty("key", NullValueHandling = NullValueHandling.Ignore)]
         public long? Key { get; set; }

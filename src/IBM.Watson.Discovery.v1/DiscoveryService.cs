@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ namespace IBM.Watson.Discovery.v1
             {
                 throw new ArgumentNullException("versionDate cannot be null.");
             }
-            
+
             VersionDate = versionDate;
 
             if (string.IsNullOrEmpty(ServiceUrl))
@@ -3708,7 +3708,7 @@ namespace IBM.Watson.Discovery.v1
         /// Create event.
         ///
         /// The **Events** API can be used to create log entries that are associated with specific queries. For example,
-        /// you can record which documents in the results set were "clicked" by a user and when that click occured.
+        /// you can record which documents in the results set were "clicked" by a user and when that click occurred.
         /// </summary>
         /// <param name="queryEvent">An object that defines a query event to be added to the log.</param>
         /// <returns><see cref="CreateEventResponse" />CreateEventResponse</returns>

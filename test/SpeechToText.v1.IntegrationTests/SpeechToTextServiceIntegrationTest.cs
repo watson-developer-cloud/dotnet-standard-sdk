@@ -578,11 +578,13 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
             service.WithHeader("X-Watson-Test", "1");
             var recognizeResult = service.Recognize(
                 audio: testAudio,
-                contentType: "audio/wav"
+                contentType: "audio/wav",
+                endOfPhraseSilenceTime: 0.4,
+                splitTranscriptAtPhraseEnd: true
                 );
             Assert.IsNotNull(recognizeResult.Result);
             Assert.IsNotNull(recognizeResult.Result.Results);
-            Assert.IsTrue(recognizeResult.Result.Results.Count > 0);
+            Assert.IsTrue(recognizeResult.Result.Results.Count > 1);
         }
         #endregion
 
@@ -594,7 +596,9 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
             service.WithHeader("X-Watson-Test", "1");
             var createJobResult = service.CreateJob(
                 audio: testAudio,
-                contentType: "audio/mp3"
+                contentType: "audio/mp3",
+                endOfPhraseSilenceTime: 2,
+                splitTranscriptAtPhraseEnd: true
                 );
             var jobId = createJobResult.Result.Id;
 

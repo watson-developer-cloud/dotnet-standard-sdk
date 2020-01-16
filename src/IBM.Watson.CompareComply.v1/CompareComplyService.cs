@@ -45,7 +45,7 @@ namespace IBM.Watson.CompareComply.v1
             {
                 throw new ArgumentNullException("versionDate cannot be null.");
             }
-            
+
             VersionDate = versionDate;
 
             if (string.IsNullOrEmpty(ServiceUrl))

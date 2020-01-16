@@ -1,5 +1,5 @@
 ﻿/**
-* Copyright 2017 IBM Corp. All Rights Reserved.
+* (C) Copyright IBM Corp. 2017, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -578,11 +578,13 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
             service.WithHeader("X-Watson-Test", "1");
             var recognizeResult = service.Recognize(
                 audio: testAudio,
-                contentType: "audio/wav"
+                contentType: "audio/wav",
+                endOfPhraseSilenceTime: 0.4,
+                splitTranscriptAtPhraseEnd: true
                 );
             Assert.IsNotNull(recognizeResult.Result);
             Assert.IsNotNull(recognizeResult.Result.Results);
-            Assert.IsTrue(recognizeResult.Result.Results.Count > 0);
+            Assert.IsTrue(recognizeResult.Result.Results.Count > 1);
         }
         #endregion
 
@@ -594,7 +596,9 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
             service.WithHeader("X-Watson-Test", "1");
             var createJobResult = service.CreateJob(
                 audio: testAudio,
-                contentType: "audio/mp3"
+                contentType: "audio/mp3",
+                endOfPhraseSilenceTime: 2,
+                splitTranscriptAtPhraseEnd: true
                 );
             var jobId = createJobResult.Result.Id;
 

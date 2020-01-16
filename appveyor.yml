@@ -25,6 +25,8 @@ install:
 - cmd: >-
     pip install git+git://github.com/smsearcy/bumpversion.git@issue-135
 
+    npm install -g npm
+
     npm install @semantic-release/exec
 
     npm install @semantic-release/git
@@ -310,7 +312,7 @@ artifacts:
 deploy:
 - provider: NuGet
   api_key:
-    secure: q7ya4MDWM5JDI2JYw1DxSKTgX+jwbvdlRKPjVg1Cijxb33r1K5qSAabnsUHcWTLf
+    secure: mA45ocPyDh7u7GQ6xpmxftUVGgeXlsVPHNKDo3ZhBUlXp71glpZ/rGsQGQrNLHEI
   on:
     branch: master
     APPVEYOR_REPO_TAG: true

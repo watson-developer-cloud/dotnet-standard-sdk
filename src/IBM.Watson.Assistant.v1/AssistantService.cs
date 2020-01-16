@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 throw new ArgumentNullException("versionDate cannot be null.");
             }
-            
+
             VersionDate = versionDate;
 
             if (string.IsNullOrEmpty(ServiceUrl))
@@ -3804,6 +3804,8 @@ namespace IBM.Watson.Assistant.v1
         /// You associate a customer ID with data by passing the `X-Watson-Metadata` header with a request that passes
         /// data. For more information about personal data and customer IDs, see [Information
         /// security](https://cloud.ibm.com/docs/services/assistant?topic=assistant-information-security#information-security).
+        ///
+        /// This operation is limited to 4 requests per minute. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="customerId">The customer ID for which all data is to be deleted.</param>
         /// <returns><see cref="object" />object</returns>

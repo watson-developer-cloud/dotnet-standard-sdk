@@ -1015,7 +1015,7 @@ namespace IBM.Watson.Discovery.v1
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
         /// <param name="collectionId">The ID of the collection.</param>
-        /// <param name="body">Input an object that allows you to update a collection. (optional)</param>
+        /// <param name="body">Input an object that allows you to update a collection.</param>
         /// <returns><see cref="Collection" />Collection</returns>
         public DetailedResponse<Collection> UpdateCollection(string environmentId, string collectionId, string name, string description = null, string configurationId = null)
         {
@@ -1034,6 +1034,10 @@ namespace IBM.Watson.Discovery.v1
             else
             {
                 collectionId = Uri.EscapeDataString(collectionId);
+            }
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new ArgumentNullException("`name` is required for `UpdateCollection`");
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -2515,7 +2519,7 @@ namespace IBM.Watson.Discovery.v1
         /// documentation](https://cloud.ibm.com/docs/services/discovery?topic=discovery-query-concepts#query-concepts).
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
-        /// <param name="queryLong"> (optional)</param>
+        /// <param name="queryLong"></param>
         /// <param name="xWatsonLoggingOptOut">If `true`, queries are not stored in the Discovery **Logs** endpoint.
         /// (optional, default to false)</param>
         /// <returns><see cref="QueryResponse" />QueryResponse</returns>
@@ -2528,6 +2532,10 @@ namespace IBM.Watson.Discovery.v1
             else
             {
                 environmentId = Uri.EscapeDataString(environmentId);
+            }
+            if (string.IsNullOrEmpty(collectionIds))
+            {
+                throw new ArgumentNullException("`collectionIds` is required for `FederatedQuery`");
             }
 
             if (string.IsNullOrEmpty(VersionDate))

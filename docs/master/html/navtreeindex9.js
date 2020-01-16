@@ -1,5 +1,10 @@
 var NAVTREEINDEX9 =
 {
+"d9/d46/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_suggestion_response_generic.html#a8c48dd480c55ef0283da786809cb7dec":[1,0,0,0,0,0,0,20,10],
+"d9/d46/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_suggestion_response_generic.html#a8f998da88dec58acd5e9a62c26fac684":[1,0,0,0,0,0,0,20,9],
+"d9/d46/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_suggestion_response_generic.html#a9b8f5c428c2a3cd35cedcb8aeddda22f":[1,0,0,0,0,0,0,20,4],
+"d9/d46/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_suggestion_response_generic.html#ae251ec0f784c9412ffea36044771b93c":[1,0,0,0,0,0,0,20,11],
+"d9/d46/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_suggestion_response_generic.html#ae2f98848915c231b8b10b4c09348b953":[1,0,0,0,0,0,0,20,2],
 "d9/d47/_i_b_m_8_watson_8_discovery_8v2_2_model_2_query_response_8cs.html":[2,0,0,5,0,25],
 "d9/d47/_table_element_location_8cs.html":[2,0,0,5,0,45],
 "d9/d49/_message_input_options_8cs.html":[2,0,0,1,0,14],
@@ -244,10 +249,5 @@ var NAVTREEINDEX9 =
 "d9/df7/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contact.html#a09756988eb11d2c17839bb41a9857701":[1,0,0,0,1,0,0,11,1],
 "d9/df7/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_contact.html#a15799a0105c4010df0f9def4aed8fdcc":[1,0,0,0,1,0,0,11,0],
 "d9/df8/_i_b_m_8_watson_8_assistant_8v1_2_assistant_service_8cs.html":[2,0,0,0,2],
-"da/d00/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_gateway_delete.html":[1,0,0,0,2,0,0,33],
-"da/d00/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_gateway_delete.html#a9149f7e33e672925984f8e45d45a5866":[1,0,0,0,2,0,0,33,0],
-"da/d00/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_gateway_delete.html#a99362a4b8340cfa6f698268fd2c11ec6":[1,0,0,0,2,0,0,33,1],
-"da/d0c/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_section_titles.html":[1,0,0,0,1,0,0,47],
-"da/d0c/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_section_titles.html#a071c4d9391f311eb5aaabc469ff469e4":[1,0,0,0,1,0,0,47,1],
-"da/d0c/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_section_titles.html#a45f6786936a078b12579ed1c926a197a":[1,0,0,0,1,0,0,47,2]
+"da/d00/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_gateway_delete.html":[1,0,0,0,2,0,0,33]
 };

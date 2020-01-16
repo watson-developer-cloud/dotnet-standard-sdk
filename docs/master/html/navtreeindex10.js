@@ -1,5 +1,10 @@
 var NAVTREEINDEX10 =
 {
+"da/d00/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_gateway_delete.html#a9149f7e33e672925984f8e45d45a5866":[1,0,0,0,2,0,0,33,0],
+"da/d00/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_gateway_delete.html#a99362a4b8340cfa6f698268fd2c11ec6":[1,0,0,0,2,0,0,33,1],
+"da/d0c/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_section_titles.html":[1,0,0,0,1,0,0,47],
+"da/d0c/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_section_titles.html#a071c4d9391f311eb5aaabc469ff469e4":[1,0,0,0,1,0,0,47,1],
+"da/d0c/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_section_titles.html#a45f6786936a078b12579ed1c926a197a":[1,0,0,0,1,0,0,47,2],
 "da/d0c/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_section_titles.html#a56eb6f3b0511256ba5743b5c957a544c":[1,0,0,0,1,0,0,47,3],
 "da/d0c/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_section_titles.html#a753c4735a46a1ab2e59918e99d738760":[1,0,0,0,1,0,0,47,0],
 "da/d0e/_category_8cs.html":[2,0,0,3,0,6],
@@ -244,10 +249,5 @@ var NAVTREEINDEX10 =
 "db/d43/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_1_1_event_name_enum_value.html":[1,0,0,0,0,0,0,7,3],
 "db/d43/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_1_1_event_name_enum_value.html#a24dbad75fcd96a56dd003943f0c7b61b":[1,0,0,0,0,0,0,7,3,2],
 "db/d43/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_1_1_event_name_enum_value.html#a7750e169fcd0af66720ef111193e1a7e":[1,0,0,0,0,0,0,7,3,7],
-"db/d43/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_1_1_event_name_enum_value.html#a7ace5e42fa3b10b0f6d0b524a06dd885":[1,0,0,0,0,0,0,7,3,6],
-"db/d43/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_1_1_event_name_enum_value.html#a8a07efa1739cf2a786aa06f4753b19b1":[1,0,0,0,0,0,0,7,3,5],
-"db/d43/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_1_1_event_name_enum_value.html#aa2d62249c554957a48d03995487b3894":[1,0,0,0,0,0,0,7,3,0],
-"db/d43/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_1_1_event_name_enum_value.html#ad1f6a29b9373dca5208f5aca755e7106":[1,0,0,0,0,0,0,7,3,8],
-"db/d43/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_1_1_event_name_enum_value.html#ad6e7e3dfb80576894b3fe0f8e7ff85cf":[1,0,0,0,0,0,0,7,3,1],
-"db/d43/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_1_1_event_name_enum_value.html#af328077bdc7c1fbef63531fa686156a0":[1,0,0,0,0,0,0,7,3,4]
+"db/d43/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_1_1_event_name_enum_value.html#a7ace5e42fa3b10b0f6d0b524a06dd885":[1,0,0,0,0,0,0,7,3,6]
 };

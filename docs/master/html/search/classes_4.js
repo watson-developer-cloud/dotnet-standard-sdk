@@ -7,6 +7,7 @@ var searchData=
   ['emotionoptions',['EmotionOptions',['../dc/dc1/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_emotion_options.html',1,'IBM::Watson::NaturalLanguageUnderstanding::v1::Model']]],
   ['emotionresult',['EmotionResult',['../d9/df3/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_emotion_result.html',1,'IBM::Watson::NaturalLanguageUnderstanding::v1::Model']]],
   ['emotionscores',['EmotionScores',['../de/dcc/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_emotion_scores.html',1,'IBM::Watson::NaturalLanguageUnderstanding::v1::Model']]],
+  ['endofutteranceenumvalue',['EndOfUtteranceEnumValue',['../d3/d33/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result_1_1_end_of_utterance_enum_value.html',1,'IBM::Watson::SpeechToText::v1::Model::SpeechRecognitionResult']]],
   ['enrichment',['Enrichment',['../d6/d2b/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_enrichment.html',1,'IBM::Watson::Discovery::v1::Model']]],
   ['enrichmentoptions',['EnrichmentOptions',['../d3/dfe/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_enrichment_options.html',1,'IBM::Watson::Discovery::v1::Model']]],
   ['entitiesoptions',['EntitiesOptions',['../d8/d44/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_entities_options.html',1,'IBM::Watson::NaturalLanguageUnderstanding::v1::Model']]],

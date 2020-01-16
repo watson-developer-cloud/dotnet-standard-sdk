@@ -1,5 +1,10 @@
 var NAVTREEINDEX11 =
 {
+"db/d43/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_1_1_event_name_enum_value.html#a8a07efa1739cf2a786aa06f4753b19b1":[1,0,0,0,0,0,0,7,3,5],
+"db/d43/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_1_1_event_name_enum_value.html#aa2d62249c554957a48d03995487b3894":[1,0,0,0,0,0,0,7,3,0],
+"db/d43/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_1_1_event_name_enum_value.html#ad1f6a29b9373dca5208f5aca755e7106":[1,0,0,0,0,0,0,7,3,8],
+"db/d43/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_1_1_event_name_enum_value.html#ad6e7e3dfb80576894b3fe0f8e7ff85cf":[1,0,0,0,0,0,0,7,3,1],
+"db/d43/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_1_1_event_name_enum_value.html#af328077bdc7c1fbef63531fa686156a0":[1,0,0,0,0,0,0,7,3,4],
 "db/d43/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_1_1_event_name_enum_value.html#afc0e0bb884601e91e3ae30bd532cdf30":[1,0,0,0,0,0,0,7,3,3],
 "db/d46/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_gateway.html":[1,0,0,0,2,0,0,32],
 "db/d46/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_gateway.html#a344602eadfd580ead4590108390a6d2f":[1,0,0,0,2,0,0,32,5],
@@ -109,7 +114,8 @@ var NAVTREEINDEX11 =
 "db/df0/_i_b_m_8_watson_8_assistant_8v1_2_model_2_message_input_8cs.html":[2,0,0,0,0,36],
 "db/df3/_term_8cs.html":[2,0,0,4,0,87],
 "db/df3/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skill.html":[1,0,0,0,0,1,0,11],
-"db/df3/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skill.html#aa7311df8dea4c2384a58be0605b01a28":[1,0,0,0,0,1,0,11,0],
+"db/df3/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skill.html#aa7311df8dea4c2384a58be0605b01a28":[1,0,0,0,0,1,0,11,1],
+"db/df3/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skill.html#ac5190d559c0ffa8868b7e1b9b2d2d4b7":[1,0,0,0,0,1,0,11,0],
 "db/df4/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_entity_collection.html":[1,0,0,0,0,0,0,23],
 "db/df4/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_entity_collection.html#a9fc77e077ec19f5b1c1024c00dacb98b":[1,0,0,0,0,0,0,23,0],
 "db/df4/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_entity_collection.html#ad1a7365b2297df13b82ef2e4c9b3cf04":[1,0,0,0,0,0,0,23,1],
@@ -121,8 +127,8 @@ var NAVTREEINDEX11 =
 "db/df4/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_log.html#a7c0e987989a8f7cb08704d140d5a84f8":[1,0,0,0,0,0,0,30,2],
 "db/df4/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_log.html#a8fc00208224480dd347b001322029242":[1,0,0,0,0,0,0,30,5],
 "db/df4/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_log.html#aff44b3eeb31423bf5a126ea83277506c":[1,0,0,0,0,0,0,30,4],
-"db/df4/namespace_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model.html":[0,0,0,0,10,1,0],
 "db/df4/namespace_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model.html":[1,0,0,0,10,1,0],
+"db/df4/namespace_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model.html":[0,0,0,0,10,1,0],
 "db/df6/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_document_counts.html":[1,0,0,0,2,0,0,20],
 "db/df6/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_document_counts.html#a0c7f86a9709cfbde8885c25281211e30":[1,0,0,0,2,0,0,20,1],
 "db/df6/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_document_counts.html#a237f7722e755c092ecef199c4d330c79":[1,0,0,0,2,0,0,20,0],
@@ -147,7 +153,6 @@ var NAVTREEINDEX11 =
 "dc/d12/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_options.html":[1,0,0,0,5,0,0,4],
 "dc/d12/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_options.html#a2e9c76aabf12797dddca2377b2bf20fc":[1,0,0,0,5,0,0,4,1],
 "dc/d12/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_options.html#a43f9791fabcc6284d3243b695c3ae5de":[1,0,0,0,5,0,0,4,0],
-"dc/d12/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_options.html#a9845d5f1a562e7f645d43be9b8bc1576":[1,0,0,0,5,0,0,4,2],
 "dc/d1c/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_log_query_response_result_1_1_event_type_enum_value.html":[1,0,0,0,2,0,0,43,1],
 "dc/d1c/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_log_query_response_result_1_1_event_type_enum_value.html#ac603f6731701f0d22f670ec565fe176c":[1,0,0,0,2,0,0,43,1,1],
 "dc/d1c/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_log_query_response_result_1_1_event_type_enum_value.html#adf7183707e2918071acf161cf5f48a08":[1,0,0,0,2,0,0,43,1,0],
@@ -244,10 +249,5 @@ var NAVTREEINDEX11 =
 "dc/d90/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_status.html#a0f8fba3a4274b8d5ce4d48b4547b883b":[1,0,0,0,2,0,0,97,5],
 "dc/d90/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_status.html#a426ac8b3e3ae5ee2ce1a678eb3fb2b3b":[1,0,0,0,2,0,0,97,2],
 "dc/d90/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_status.html#a6da2be1505b6532bab995ff65156cb7e":[1,0,0,0,2,0,0,97,6],
-"dc/d90/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_status.html#a70547771f82cb4db9dacadf6e1e217e6":[1,0,0,0,2,0,0,97,1],
-"dc/d90/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_status.html#a9d4299e971e8a822d9653c38cabde10e":[1,0,0,0,2,0,0,97,7],
-"dc/d90/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_status.html#ab3390f91c9adaeaffb42fb0058a69822":[1,0,0,0,2,0,0,97,0],
-"dc/d90/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_status.html#abfaa7c36b7b0131fab984bea6c10caf8":[1,0,0,0,2,0,0,97,3],
-"dc/d90/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_status.html#aedbc70102310bb373de46e512efdf9db":[1,0,0,0,2,0,0,97,8],
-"dc/d99/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_document_attribute.html":[1,0,0,0,2,1,0,9]
+"dc/d90/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_status.html#a70547771f82cb4db9dacadf6e1e217e6":[1,0,0,0,2,0,0,97,1]
 };

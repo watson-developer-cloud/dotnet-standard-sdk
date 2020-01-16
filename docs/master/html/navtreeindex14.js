@@ -1,5 +1,11 @@
 var NAVTREEINDEX14 =
 {
+"de/db8/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_disambiguation_result.html#a5fadcdc3d728d88a5f9f648dadf0430b":[1,0,0,0,5,0,0,11,0],
+"de/db8/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_disambiguation_result.html#abaab28bab5467ec0d6ef87268175b1d5":[1,0,0,0,5,0,0,11,1],
+"de/db8/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_disambiguation_result.html#af74f5ce30d5a3fa481b1463908717f61":[1,0,0,0,5,0,0,11,2],
+"de/dbb/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_example_collection.html":[1,0,0,0,0,0,0,27],
+"de/dbb/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_example_collection.html#aacff04fc0b02cf7f92db5f36f05215c5":[1,0,0,0,0,0,0,27,0],
+"de/dbb/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_example_collection.html#ae3ef7d7cecdf3cce222cc2c2e870a395":[1,0,0,0,0,0,0,27,1],
 "de/dc0/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_element_pair.html":[1,0,0,0,1,0,0,24],
 "de/dc0/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_element_pair.html#a1642b24d01ec6301f218a633d094dc94":[1,0,0,0,1,0,0,24,3],
 "de/dc0/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_element_pair.html#a30e40a9a49479b2d527b47a1b9dbcf03":[1,0,0,0,1,0,0,24,4],
@@ -31,8 +37,8 @@ var NAVTREEINDEX14 =
 "de/dcc/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_emotion_scores.html#ae02dd5d8c31d2d7cdb0fca38b35e11f9":[1,0,0,0,5,0,0,16,1],
 "de/dcf/_nlu_enrichment_concepts_8cs.html":[2,0,0,4,0,54],
 "de/dd2/_query_table_result_8cs.html":[2,0,0,5,0,30],
-"de/dd5/namespace_i_b_m_1_1_watson_1_1_language_translator_1_1v3.html":[0,0,0,0,3,0],
 "de/dd5/namespace_i_b_m_1_1_watson_1_1_language_translator_1_1v3.html":[1,0,0,0,3,0],
+"de/dd5/namespace_i_b_m_1_1_watson_1_1_language_translator_1_1v3.html":[0,0,0,0,3,0],
 "de/dd6/_i_b_m_8_watson_8_discovery_8v1_2_model_2_query_notices_response_8cs.html":[2,0,0,4,0,67],
 "de/dd8/class_i_b_m_1_1_watson_1_1_tone_analyzer_1_1v3_1_1_model_1_1_utterance.html":[1,0,0,0,9,0,0,7],
 "de/dd8/class_i_b_m_1_1_watson_1_1_tone_analyzer_1_1v3_1_1_model_1_1_utterance.html#a7498aeb92707fc5369f689d20ee93574":[1,0,0,0,9,0,0,7,1],
@@ -79,8 +85,8 @@ var NAVTREEINDEX14 =
 "de/de8/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_document_status_1_1_status_enum_value.html#af2fa49838a52f5ff1926d0b7bb2d8464":[1,0,0,0,2,0,0,21,1,1],
 "de/dea/_address_8cs.html":[2,0,0,3,0,0],
 "de/dee/_concepts_result_8cs.html":[2,0,0,8,0,9],
-"de/def/namespace_i_b_m_1_1_watson_1_1_assistant_1_1v1.html":[0,0,0,0,0,0],
 "de/def/namespace_i_b_m_1_1_watson_1_1_assistant_1_1v1.html":[1,0,0,0,0,0],
+"de/def/namespace_i_b_m_1_1_watson_1_1_assistant_1_1v1.html":[0,0,0,0,0,0],
 "de/df0/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_sentiment.html":[1,0,0,0,2,0,0,61],
 "de/df0/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_sentiment.html#a799f12fdb36acdfba2e0b831e65ba292":[1,0,0,0,2,0,0,61,0],
 "de/df0/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_sentiment.html#a83c55359ee2584fabda04419f4501c16":[1,0,0,0,2,0,0,61,1],
@@ -242,12 +248,6 @@ var NAVTREEINDEX14 =
 "df/d62/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_options_element.html":[1,0,0,0,0,0,0,14],
 "df/d62/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_options_element.html#a16aafba413a23f2362707a258a6206dc":[1,0,0,0,0,0,0,14,1],
 "df/d62/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_options_element.html#aa6bb31993a56979871835bed230b1e57":[1,0,0,0,0,0,0,14,0],
-"df/d63/namespace_i_b_m_1_1_watson_1_1_natural_language_classifier.html":[0,0,0,0,4],
 "df/d63/namespace_i_b_m_1_1_watson_1_1_natural_language_classifier.html":[1,0,0,0,4],
-"df/d65/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_type_label.html":[1,0,0,0,1,0,0,54],
-"df/d65/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_type_label.html#a4258de616a60a52cc285ad2a811498f3":[1,0,0,0,1,0,0,54,1],
-"df/d65/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_type_label.html#a90b4172d4da917948a348a1c4acc5d28":[1,0,0,0,1,0,0,54,0],
-"df/d66/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier_1_1_status_enum_value.html":[1,0,0,0,10,0,0,2,0],
-"df/d66/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier_1_1_status_enum_value.html#a1cc6c24af7b12fabee935ecba44c6b0d":[1,0,0,0,10,0,0,2,0,2],
-"df/d66/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier_1_1_status_enum_value.html#a4c5b183908051f79d4b0a505fe8cb8c4":[1,0,0,0,10,0,0,2,0,3]
+"df/d63/namespace_i_b_m_1_1_watson_1_1_natural_language_classifier.html":[0,0,0,0,4]
 };

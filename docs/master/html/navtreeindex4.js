@@ -1,5 +1,10 @@
 var NAVTREEINDEX4 =
 {
+"d4/d2d/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_component_settings_aggregation.html#aa58daa9766cb2a146383ad5b8726e943":[1,0,0,0,2,1,0,2,4],
+"d4/d2d/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_component_settings_aggregation.html#ab79549664643eb6cee2f5025ad6fc73b":[1,0,0,0,2,1,0,2,3],
+"d4/d2d/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_component_settings_aggregation.html#ad57bbec79c9feb82470728f98eb9b4a2":[1,0,0,0,2,1,0,2,1],
+"d4/d2d/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_component_settings_aggregation.html#afd9f5b2aaa06e6f48fa99f72b08542a7":[1,0,0,0,2,1,0,2,2],
+"d4/d2f/_table_key_value_pairs_8cs.html":[2,0,0,5,0,47],
 "d4/d31/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_example_list.html":[1,0,0,0,2,0,0,95],
 "d4/d31/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_example_list.html#a6ea4208a0432915334c0806a354512b5":[1,0,0,0,2,0,0,95,0],
 "d4/d35/_i_b_m_8_watson_8_assistant_8v1_2_model_2_mention_8cs.html":[2,0,0,0,0,34],
@@ -244,10 +249,5 @@ var NAVTREEINDEX4 =
 "d5/d39/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_translation_models.html":[1,0,0,0,3,0,0,9],
 "d5/d39/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_translation_models.html#a1909c13b502f7fcf20fe4cf1a1105d52":[1,0,0,0,3,0,0,9,0],
 "d5/d3d/class_i_b_m_1_1_watson_1_1_tone_analyzer_1_1v3_1_1_tone_analyzer_service.html":[1,0,0,0,9,0,2],
-"d5/d3d/class_i_b_m_1_1_watson_1_1_tone_analyzer_1_1v3_1_1_tone_analyzer_service.html#a22e6d22ea770bcd304b5a7c003c9d571":[1,0,0,0,9,0,2,2],
-"d5/d3d/class_i_b_m_1_1_watson_1_1_tone_analyzer_1_1v3_1_1_tone_analyzer_service.html#a2dbb04d9eb336a989eedd30ae647e32d":[1,0,0,0,9,0,2,5],
-"d5/d3d/class_i_b_m_1_1_watson_1_1_tone_analyzer_1_1v3_1_1_tone_analyzer_service.html#a88002d9b9169dd6d145f7ad69a825bcd":[1,0,0,0,9,0,2,0],
-"d5/d3d/class_i_b_m_1_1_watson_1_1_tone_analyzer_1_1v3_1_1_tone_analyzer_service.html#aaca330407f3b13ca822a3c216faa9fd7":[1,0,0,0,9,0,2,3],
-"d5/d3d/class_i_b_m_1_1_watson_1_1_tone_analyzer_1_1v3_1_1_tone_analyzer_service.html#adc75aaebccf48879ee5f552fcbca871e":[1,0,0,0,9,0,2,1],
-"d5/d3d/class_i_b_m_1_1_watson_1_1_tone_analyzer_1_1v3_1_1_tone_analyzer_service.html#afe62320e30ed4deadf99626f6d83c0a3":[1,0,0,0,9,0,2,4]
+"d5/d3d/class_i_b_m_1_1_watson_1_1_tone_analyzer_1_1v3_1_1_tone_analyzer_service.html#a22e6d22ea770bcd304b5a7c003c9d571":[1,0,0,0,9,0,2,2]
 };

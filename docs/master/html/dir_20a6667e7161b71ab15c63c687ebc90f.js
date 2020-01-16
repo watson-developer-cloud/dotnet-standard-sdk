@@ -89,7 +89,8 @@ var dir_20a6667e7161b71ab15c63c687ebc90f =
       [ "SpeechRecognitionAlternative", "dd/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_alternative.html", "dd/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_alternative" ]
     ] ],
     [ "SpeechRecognitionResult.cs", "d9/db8/_speech_recognition_result_8cs.html", [
-      [ "SpeechRecognitionResult", "dd/dde/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html", "dd/dde/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result" ]
+      [ "SpeechRecognitionResult", "dd/dde/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html", "dd/dde/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result" ],
+      [ "EndOfUtteranceEnumValue", "d3/d33/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result_1_1_end_of_utterance_enum_value.html", "d3/d33/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result_1_1_end_of_utterance_enum_value" ]
     ] ],
     [ "SpeechRecognitionResults.cs", "dc/dec/_speech_recognition_results_8cs.html", [
       [ "SpeechRecognitionResults", "d3/d4c/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_results.html", "d3/d4c/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_results" ]

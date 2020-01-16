@@ -1,5 +1,10 @@
 var NAVTREEINDEX12 =
 {
+"dc/d90/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_status.html#a9d4299e971e8a822d9653c38cabde10e":[1,0,0,0,2,0,0,97,7],
+"dc/d90/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_status.html#ab3390f91c9adaeaffb42fb0058a69822":[1,0,0,0,2,0,0,97,0],
+"dc/d90/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_status.html#abfaa7c36b7b0131fab984bea6c10caf8":[1,0,0,0,2,0,0,97,3],
+"dc/d90/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_status.html#aedbc70102310bb373de46e512efdf9db":[1,0,0,0,2,0,0,97,8],
+"dc/d99/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_document_attribute.html":[1,0,0,0,2,1,0,9],
 "dc/d99/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_document_attribute.html#a01c9df69424fa90aa3672c5a99e4b112":[1,0,0,0,2,1,0,9,1],
 "dc/d99/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_document_attribute.html#a47c620c211f5bf64c2d04e50914eb414":[1,0,0,0,2,1,0,9,2],
 "dc/d99/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_document_attribute.html#aac6b3d25bf0172da166fbb9417ae3377":[1,0,0,0,2,1,0,9,0],
@@ -244,10 +249,5 @@ var NAVTREEINDEX12 =
 "dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#aa362d8eb7e950f02053c56956ea2f87d":[1,0,0,0,2,0,2,53],
 "dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#aa9319ca58cf3f25575aa4bb3e54ca645":[1,0,0,0,2,0,2,50],
 "dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#aaa61c37958206ab3c575ca11d95f1a3a":[1,0,0,0,2,0,2,10],
-"dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#aaabd7dae32c557518a8de2f4d3d915b4":[1,0,0,0,2,0,2,42],
-"dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#aaf5e566e0df835fb4d06c38a4958e1be":[1,0,0,0,2,0,2,33],
-"dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#ab0e704584614d6b75f1e48d3475bb30c":[1,0,0,0,2,0,2,5],
-"dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#ab6b8f9f2e1ec259b163870b437ffddff":[1,0,0,0,2,0,2,12],
-"dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#ab6c254e002960ccb8c8bde634ade28fb":[1,0,0,0,2,0,2,0],
-"dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#ab6e1e97fcfb36699490566a04ac794ff":[1,0,0,0,2,0,2,51]
+"dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#aaabd7dae32c557518a8de2f4d3d915b4":[1,0,0,0,2,0,2,42]
 };

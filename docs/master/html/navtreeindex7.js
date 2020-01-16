@@ -1,5 +1,10 @@
 var NAVTREEINDEX7 =
 {
+"d7/d0a/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_column_headers.html#a9268a2114cd8f64018fac943df1ba0bd":[1,0,0,0,1,0,0,9,1],
+"d7/d0a/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_column_headers.html#a9d337a254513ea6d2571c42772621071":[1,0,0,0,1,0,0,9,3],
+"d7/d0a/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_column_headers.html#ab919ce7c0cf3fa654af8b314d39c350c":[1,0,0,0,1,0,0,9,2],
+"d7/d0a/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_column_headers.html#acfaf1a943a787de9e0a5b3c130b2595e":[1,0,0,0,1,0,0,9,5],
+"d7/d0c/_list_models_results_8cs.html":[2,0,0,8,0,25],
 "d7/d0f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_table_column_header_ids.html":[1,0,0,0,2,1,0,41],
 "d7/d0f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_table_column_header_ids.html#a6552f08d7b6b059b86b7ed766d79be40":[1,0,0,0,2,1,0,41,0],
 "d7/d18/_element_locations_8cs.html":[2,0,0,3,0,23],
@@ -91,8 +96,8 @@ var NAVTREEINDEX7 =
 "d7/d93/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_term_aggregation.html#a184aab519679cdf5c3af09af6c20d32c":[1,0,0,0,2,1,0,31,1],
 "d7/d93/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_term_aggregation.html#a25b91c07286314209e80437c1483c1c4":[1,0,0,0,2,1,0,31,2],
 "d7/d93/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_term_aggregation.html#ad1c0da829a5cdeffc0455c8c65763f56":[1,0,0,0,2,1,0,31,0],
-"d7/d94/namespace_i_b_m_1_1_watson_1_1_assistant.html":[0,0,0,0,0],
 "d7/d94/namespace_i_b_m_1_1_watson_1_1_assistant.html":[1,0,0,0,0],
+"d7/d94/namespace_i_b_m_1_1_watson_1_1_assistant.html":[0,0,0,0,0],
 "d7/d97/_type_label_8cs.html":[2,0,0,3,0,54],
 "d7/d98/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_term.html":[1,0,0,0,2,0,0,87],
 "d7/d98/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_term.html#a3e0b9b99f5191199aae6335b45cad3a0":[1,0,0,0,2,0,0,87,0],
@@ -244,10 +249,5 @@ var NAVTREEINDEX7 =
 "d8/d3c/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_log_query_response_result_documents.html":[1,0,0,0,2,0,0,44],
 "d8/d3c/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_log_query_response_result_documents.html#a025722eec76b9d266890c934b957e58b":[1,0,0,0,2,0,0,44,1],
 "d8/d3c/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_log_query_response_result_documents.html#a27d4191d8ad30cbe53cfabef329e8c34":[1,0,0,0,2,0,0,44,0],
-"d8/d3d/_acoustic_models_8cs.html":[2,0,0,10,0,1],
-"d8/d44/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_entities_options.html":[1,0,0,0,5,0,0,17],
-"d8/d44/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_entities_options.html#a03d28450db1fad252b9930c2af1075c5":[1,0,0,0,5,0,0,17,3],
-"d8/d44/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_entities_options.html#a594bc016ce38cda0875732e8d5da0ffa":[1,0,0,0,5,0,0,17,4],
-"d8/d44/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_entities_options.html#a8101e1e107abc126d246fa5ef877f67d":[1,0,0,0,5,0,0,17,0],
-"d8/d44/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_entities_options.html#a96cc12c6a496d38429cd9ff89f5b6904":[1,0,0,0,5,0,0,17,1]
+"d8/d3d/_acoustic_models_8cs.html":[2,0,0,10,0,1]
 };

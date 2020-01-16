@@ -219,6 +219,11 @@ var NAVTREEINDEX2 =
 "d3/d21/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_webhook_header.html#ab86663e4c73adf8385acabae9d535b83":[1,0,0,0,0,0,0,50,0],
 "d3/d2e/_categories_result_explanation_8cs.html":[2,0,0,8,0,7],
 "d3/d31/_expansions_8cs.html":[2,0,0,4,0,28],
+"d3/d33/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result_1_1_end_of_utterance_enum_value.html":[1,0,0,0,7,0,0,26,0],
+"d3/d33/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result_1_1_end_of_utterance_enum_value.html#a19d1b74a1261a26292a11a2f6d0c505d":[1,0,0,0,7,0,0,26,0,2],
+"d3/d33/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result_1_1_end_of_utterance_enum_value.html#a5830742319c5cb649eb43ba660ec9ad7":[1,0,0,0,7,0,0,26,0,1],
+"d3/d33/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result_1_1_end_of_utterance_enum_value.html#a6bba008404e84e15ff6108b04b9f916f":[1,0,0,0,7,0,0,26,0,3],
+"d3/d33/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result_1_1_end_of_utterance_enum_value.html#a785073d0730f00e1e833c742b043ebe7":[1,0,0,0,7,0,0,26,0,0],
 "d3/d38/_word_alternative_result_8cs.html":[2,0,0,10,0,32],
 "d3/d3a/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_field.html":[1,0,0,0,2,0,0,29],
 "d3/d3a/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_field.html#a4a6a56681d2dbb60e4c827f6b36f3c31":[1,0,0,0,2,0,0,29,2],
@@ -244,10 +249,5 @@ var NAVTREEINDEX2 =
 "d3/d4e/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_top_hits_aggregation.html":[1,0,0,0,2,1,0,35],
 "d3/d4e/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_top_hits_aggregation.html#a48d9977b0b0d85dda96d164390a12594":[1,0,0,0,2,1,0,35,1],
 "d3/d4e/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_top_hits_aggregation.html#a8694c01d29bbb3da98ced257da4ea177":[1,0,0,0,2,1,0,35,0],
-"d3/d50/_log_collection_8cs.html":[2,0,0,0,0,31],
-"d3/d5c/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_categories.html":[1,0,0,0,2,0,0,53],
-"d3/d5f/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_keywords.html":[1,0,0,0,2,0,0,58],
-"d3/d5f/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_keywords.html#a0d0efc6c0b4e2731690d35ab892a3864":[1,0,0,0,2,0,0,58,1],
-"d3/d5f/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_keywords.html#adf3666e140e67cbbe044d6f7f88dc19c":[1,0,0,0,2,0,0,58,0],
-"d3/d5f/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_keywords.html#af6501a9b39b6fc8037952de1ce2772e6":[1,0,0,0,2,0,0,58,2]
+"d3/d50/_log_collection_8cs.html":[2,0,0,0,0,31]
 };

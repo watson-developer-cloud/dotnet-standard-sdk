@@ -1,5 +1,10 @@
 var NAVTREEINDEX13 =
 {
+"dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#aaf5e566e0df835fb4d06c38a4958e1be":[1,0,0,0,2,0,2,33],
+"dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#ab0e704584614d6b75f1e48d3475bb30c":[1,0,0,0,2,0,2,5],
+"dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#ab6b8f9f2e1ec259b163870b437ffddff":[1,0,0,0,2,0,2,12],
+"dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#ab6c254e002960ccb8c8bde634ade28fb":[1,0,0,0,2,0,2,0],
+"dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#ab6e1e97fcfb36699490566a04ac794ff":[1,0,0,0,2,0,2,51],
 "dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#abb49e27b02aaaca069d432618188fd2f":[1,0,0,0,2,0,2,40],
 "dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#abbef4abafc33a16ab4266e9ecce20316":[1,0,0,0,2,0,2,11],
 "dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#ac580f86ec04a08496d5166899b5ef153":[1,0,0,0,2,0,2,52],
@@ -35,10 +40,11 @@ var NAVTREEINDEX13 =
 "dd/dcf/_sdu_status_8cs.html":[2,0,0,4,0,74],
 "dd/ddc/_collection_disk_usage_8cs.html":[2,0,0,4,0,4],
 "dd/dde/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html":[1,0,0,0,7,0,0,26],
-"dd/dde/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html#a2abafb934d23cf193e6b10227920d182":[1,0,0,0,7,0,0,26,1],
-"dd/dde/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html#a4ebeac76ab9cf7acc962585a0f557c67":[1,0,0,0,7,0,0,26,2],
-"dd/dde/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html#aab00fef091de4588032a25008be53160":[1,0,0,0,7,0,0,26,3],
-"dd/dde/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html#ada77c8f871e7ce979f8a983c91801c75":[1,0,0,0,7,0,0,26,0],
+"dd/dde/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html#a2abafb934d23cf193e6b10227920d182":[1,0,0,0,7,0,0,26,3],
+"dd/dde/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html#a4ebeac76ab9cf7acc962585a0f557c67":[1,0,0,0,7,0,0,26,4],
+"dd/dde/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html#a639d4e2e34caed4c574efde43d015438":[1,0,0,0,7,0,0,26,2],
+"dd/dde/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html#aab00fef091de4588032a25008be53160":[1,0,0,0,7,0,0,26,5],
+"dd/dde/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html#ada77c8f871e7ce979f8a983c91801c75":[1,0,0,0,7,0,0,26,1],
 "dd/ddf/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_top_hits_results.html":[1,0,0,0,2,0,0,92],
 "dd/ddf/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_top_hits_results.html#a1571c799240fe755d6f0a3a83d2ebc13":[1,0,0,0,2,0,0,92,1],
 "dd/ddf/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_top_hits_results.html#a76e7c4a17e789badb73fbbb6a0d88de4":[1,0,0,0,2,0,0,92,0],
@@ -243,11 +249,5 @@ var NAVTREEINDEX13 =
 "de/da7/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_intent_8cs.html":[2,0,0,1,0,19],
 "de/db3/_entity_8cs.html":[2,0,0,0,0,22],
 "de/db5/_table_result_table_8cs.html":[2,0,0,5,0,48],
-"de/db8/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_disambiguation_result.html":[1,0,0,0,5,0,0,11],
-"de/db8/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_disambiguation_result.html#a5fadcdc3d728d88a5f9f648dadf0430b":[1,0,0,0,5,0,0,11,0],
-"de/db8/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_disambiguation_result.html#abaab28bab5467ec0d6ef87268175b1d5":[1,0,0,0,5,0,0,11,1],
-"de/db8/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_disambiguation_result.html#af74f5ce30d5a3fa481b1463908717f61":[1,0,0,0,5,0,0,11,2],
-"de/dbb/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_example_collection.html":[1,0,0,0,0,0,0,27],
-"de/dbb/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_example_collection.html#aacff04fc0b02cf7f92db5f36f05215c5":[1,0,0,0,0,0,0,27,0],
-"de/dbb/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_example_collection.html#ae3ef7d7cecdf3cce222cc2c2e870a395":[1,0,0,0,0,0,0,27,1]
+"de/db8/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_disambiguation_result.html":[1,0,0,0,5,0,0,11]
 };

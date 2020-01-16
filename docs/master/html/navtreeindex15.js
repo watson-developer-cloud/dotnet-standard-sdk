@@ -1,5 +1,11 @@
 var NAVTREEINDEX15 =
 {
+"df/d65/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_type_label.html":[1,0,0,0,1,0,0,54],
+"df/d65/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_type_label.html#a4258de616a60a52cc285ad2a811498f3":[1,0,0,0,1,0,0,54,1],
+"df/d65/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_type_label.html#a90b4172d4da917948a348a1c4acc5d28":[1,0,0,0,1,0,0,54,0],
+"df/d66/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier_1_1_status_enum_value.html":[1,0,0,0,10,0,0,2,0],
+"df/d66/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier_1_1_status_enum_value.html#a1cc6c24af7b12fabee935ecba44c6b0d":[1,0,0,0,10,0,0,2,0,2],
+"df/d66/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier_1_1_status_enum_value.html#a4c5b183908051f79d4b0a505fe8cb8c4":[1,0,0,0,10,0,0,2,0,3],
 "df/d66/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier_1_1_status_enum_value.html#a4e3f010ae2d8024d78a0b66b695cad88":[1,0,0,0,10,0,0,2,0,0],
 "df/d66/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_model_1_1_classifier_1_1_status_enum_value.html#adf6e885591f4de1ba3bd2a5f38741f49":[1,0,0,0,10,0,0,2,0,1],
 "df/d67/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_1_1_response_type_enum_value.html":[1,0,0,0,0,0,0,43,1],
@@ -243,11 +249,5 @@ var NAVTREEINDEX15 =
 "files.html":[2,0],
 "functions.html":[1,3,0,0],
 "functions.html":[1,3,0],
-"functions_a.html":[1,3,0,1],
-"functions_b.html":[1,3,0,2],
-"functions_c.html":[1,3,0,3],
-"functions_d.html":[1,3,0,4],
-"functions_e.html":[1,3,0,5],
-"functions_f.html":[1,3,0,6],
-"functions_func.html":[1,3,1,0]
+"functions_a.html":[1,3,0,1]
 };

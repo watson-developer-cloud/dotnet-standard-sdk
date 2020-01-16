@@ -938,7 +938,7 @@ namespace IBM.Watson.Discovery.v2
         /// </summary>
         /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
         /// Discovery administrative tooling.</param>
-        /// <param name="trainingQuery">An object that represents the query to be submitted. (optional)</param>
+        /// <param name="trainingQuery">An object that represents the query to be submitted.</param>
         /// <returns><see cref="TrainingQuery" />TrainingQuery</returns>
         public DetailedResponse<TrainingQuery> CreateTrainingQuery(string projectId, string naturalLanguageQuery, List<TrainingExample> examples, string filter = null)
         {
@@ -949,6 +949,14 @@ namespace IBM.Watson.Discovery.v2
             else
             {
                 projectId = Uri.EscapeDataString(projectId);
+            }
+            if (string.IsNullOrEmpty(naturalLanguageQuery))
+            {
+                throw new ArgumentNullException("`naturalLanguageQuery` is required for `CreateTrainingQuery`");
+            }
+            if (examples == null)
+            {
+                throw new ArgumentNullException("`examples` is required for `CreateTrainingQuery`");
             }
 
             if (string.IsNullOrEmpty(VersionDate))

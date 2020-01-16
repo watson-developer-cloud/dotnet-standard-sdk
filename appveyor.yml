@@ -25,6 +25,8 @@ install:
 - cmd: >-
     pip install git+git://github.com/smsearcy/bumpversion.git@issue-135
 
+    npm install -g npm
+
     npm install @semantic-release/exec
 
     npm install @semantic-release/git

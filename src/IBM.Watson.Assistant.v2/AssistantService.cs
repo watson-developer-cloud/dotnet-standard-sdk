@@ -43,7 +43,7 @@ namespace IBM.Watson.Assistant.v2
             {
                 throw new ArgumentNullException("versionDate cannot be null.");
             }
-            
+
             VersionDate = versionDate;
 
             if (string.IsNullOrEmpty(ServiceUrl))

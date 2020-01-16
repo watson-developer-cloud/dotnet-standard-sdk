@@ -88,6 +88,7 @@ $(document).ready(function(){initNavTree('dd/dde/class_i_b_m_1_1_watson_1_1_spee
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#properties">Properties</a> &#124;
 <a href="../../d9/db9/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -98,8 +99,17 @@ $(document).ready(function(){initNavTree('dd/dde/class_i_b_m_1_1_watson_1_1_spee
 <p>Component results for a speech recognition request.  
  <a href="../../dd/dde/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html#details">More...</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d33/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result_1_1_end_of_utterance_enum_value.html">EndOfUtteranceEnumValue</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the <code>split_transcript_at_phrase_end</code> parameter is <code>true</code>, describes the reason for the split:  <a href="../../d3/d33/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result_1_1_end_of_utterance_enum_value.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
+<tr class="memitem:a639d4e2e34caed4c574efde43d015438"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dde/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html#a639d4e2e34caed4c574efde43d015438">EndOfUtterance</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a639d4e2e34caed4c574efde43d015438"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the <code>split_transcript_at_phrase_end</code> parameter is <code>true</code>, describes the reason for the split:  <a href="#a639d4e2e34caed4c574efde43d015438">More...</a><br /></td></tr>
+<tr class="separator:a639d4e2e34caed4c574efde43d015438"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2abafb934d23cf193e6b10227920d182"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dde/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html#a2abafb934d23cf193e6b10227920d182">Final</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a2abafb934d23cf193e6b10227920d182"><td class="mdescLeft">&#160;</td><td class="mdescRight">An indication of whether the transcription results are final. If <code>true</code>, the results for this utterance are not updated further; no additional results are sent for a <code>result_index</code> once its results are indicated as final.  <a href="#a2abafb934d23cf193e6b10227920d182">More...</a><br /></td></tr>
 <tr class="separator:a2abafb934d23cf193e6b10227920d182"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -137,6 +147,36 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>An array of alternative transcripts. The <code>alternatives</code> array can include additional requested output such as word confidence or timestamps. </p>
+
+</div>
+</div>
+<a id="a639d4e2e34caed4c574efde43d015438"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a639d4e2e34caed4c574efde43d015438">&#9670;&nbsp;</a></span>EndOfUtterance</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string IBM.Watson.SpeechToText.v1.Model.SpeechRecognitionResult.EndOfUtterance</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>If the <code>split_transcript_at_phrase_end</code> parameter is <code>true</code>, describes the reason for the split: </p>
+<ul>
+<li><code>end_of_data</code> - The end of the input audio stream.</li>
+<li><code>full_stop</code> - A full semantic stop, such as for the conclusion of a grammatical sentence. The insertion of splits is influenced by the base language model and biased by custom language models and grammars.</li>
+<li><code>reset</code> - The amount of audio that is currently being processed exceeds the two-minute maximum. The service splits the transcript to avoid excessive memory use.</li>
+<li><code>silence</code> - A pause or silence that is at least as long as the pause interval. Constants for possible values can be found using <a class="el" href="../../d3/d33/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result_1_1_end_of_utterance_enum_value.html" title="If the split_transcript_at_phrase_end parameter is true, describes the reason for the split: ...">SpeechRecognitionResult.EndOfUtteranceEnumValue</a> </li>
+</ul>
 
 </div>
 </div>

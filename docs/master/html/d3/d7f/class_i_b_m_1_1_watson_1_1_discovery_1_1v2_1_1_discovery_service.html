@@ -327,12 +327,12 @@ Properties</h2></td></tr>
 </ul>
 <p>If the document is uploaded to a collection that has it's data shared with another collection, the <b>X-Watson-Discovery-Force</b> header must be set to <code>true</code>.</p>
 <p><b>Note:</b> Documents can be added with a specific <b>document_id</b> by using the **_/v2/projects/{project_id}/collections/{collection_id}/documents** method.</p>
-<p><b>Note:</b> This operation only works on collections created to accept direct file uploads. It cannot be used to modify a collection that conects to an external source such as Microsoft SharePoint. </p>
+<p><b>Note:</b> This operation only works on collections created to accept direct file uploads. It cannot be used to modify a collection that connects to an external source such as Microsoft SharePoint. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
     <tr><td class="paramname">collectionId</td><td>The ID of the collection.</td></tr>
-    <tr><td class="paramname">file</td><td>The content of the document to ingest. The maximum supported file size when adding a file to a collection is 50 megabytes, the maximum supported file size when testing a confiruration is 1 megabyte. Files larger than the supported size are rejected. (optional)</td></tr>
+    <tr><td class="paramname">file</td><td>The content of the document to ingest. The maximum supported file size when adding a file to a collection is 50 megabytes, the maximum supported file size when testing a configuration is 1 megabyte. Files larger than the supported size are rejected. (optional)</td></tr>
     <tr><td class="paramname">filename</td><td>The filename for file. (optional)</td></tr>
     <tr><td class="paramname">fileContentType</td><td>The content type of file. (optional)</td></tr>
     <tr><td class="paramname">metadata</td><td>The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are rejected. Example: ``` { "Creator": "Johnny Appleseed", "Subject": "Apples" } ``<code>. (optional)&lt;/param&gt; &lt;param name="xWatsonDiscoveryForce"&gt;When</code>true`, the uploaded document is added to the collection even if the data for that collection is shared with other collections. (optional, default to false)</td></tr>
@@ -396,7 +396,7 @@ Properties</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
-    <tr><td class="paramname">trainingQuery</td><td>An object that represents the query to be submitted. (optional)</td></tr>
+    <tr><td class="paramname">trainingQuery</td><td>An object that represents the query to be submitted.</td></tr>
   </table>
   </dd>
 </dl>
@@ -454,7 +454,7 @@ Properties</h2></td></tr>
 
 <p>Delete a document. </p>
 <p>If the given document ID is invalid, or if the document is not found, then the a success response is returned (HTTP status code <code>200</code>) with the status set to 'deleted'.</p>
-<p><b>Note:</b> This operation only works on collections created to accept direct file uploads. It cannot be used to modify a collection that conects to an external source such as Microsoft SharePoint. </p>
+<p><b>Note:</b> This operation only works on collections created to accept direct file uploads. It cannot be used to modify a collection that connects to an external source such as Microsoft SharePoint. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
@@ -1068,13 +1068,13 @@ Properties</h2></td></tr>
 <p>Replace an existing document or add a document with a specified <b>document_id</b>. Starts ingesting a document with optional metadata.</p>
 <p>If the document is uploaded to a collection that has it's data shared with another collection, the <b>X-Watson-Discovery-Force</b> header must be set to <code>true</code>.</p>
 <p><b>Note:</b> When uploading a new document with this method it automatically replaces any document stored with the same <b>document_id</b> if it exists.</p>
-<p><b>Note:</b> This operation only works on collections created to accept direct file uploads. It cannot be used to modify a collection that conects to an external source such as Microsoft SharePoint. </p>
+<p><b>Note:</b> This operation only works on collections created to accept direct file uploads. It cannot be used to modify a collection that connects to an external source such as Microsoft SharePoint. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
     <tr><td class="paramname">collectionId</td><td>The ID of the collection.</td></tr>
     <tr><td class="paramname">documentId</td><td>The ID of the document.</td></tr>
-    <tr><td class="paramname">file</td><td>The content of the document to ingest. The maximum supported file size when adding a file to a collection is 50 megabytes, the maximum supported file size when testing a confiruration is 1 megabyte. Files larger than the supported size are rejected. (optional)</td></tr>
+    <tr><td class="paramname">file</td><td>The content of the document to ingest. The maximum supported file size when adding a file to a collection is 50 megabytes, the maximum supported file size when testing a configuration is 1 megabyte. Files larger than the supported size are rejected. (optional)</td></tr>
     <tr><td class="paramname">filename</td><td>The filename for file. (optional)</td></tr>
     <tr><td class="paramname">fileContentType</td><td>The content type of file. (optional)</td></tr>
     <tr><td class="paramname">metadata</td><td>The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are rejected. Example: ``` { "Creator": "Johnny Appleseed", "Subject": "Apples" } ``<code>. (optional)&lt;/param&gt; &lt;param name="xWatsonDiscoveryForce"&gt;When</code>true`, the uploaded document is added to the collection even if the data for that collection is shared with other collections. (optional, default to false)</td></tr>

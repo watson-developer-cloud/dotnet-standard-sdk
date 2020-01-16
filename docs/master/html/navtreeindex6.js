@@ -1,5 +1,10 @@
 var NAVTREEINDEX6 =
 {
+"d6/d04/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_top_hits_aggregation_result.html":[1,0,0,0,2,1,0,36],
+"d6/d04/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_top_hits_aggregation_result.html#a26965bc10add42446804c60cae106746":[1,0,0,0,2,1,0,36,0],
+"d6/d04/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_top_hits_aggregation_result.html#a2b8d707025d5add424d8f8d16f0d7ba5":[1,0,0,0,2,1,0,36,1],
+"d6/d09/interface_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_i_natural_language_understanding_service.html":[1,0,0,0,5,0,1],
+"d6/d09/interface_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_i_natural_language_understanding_service.html#a2f0ad7b493eabbb1a4780fa20d74c929":[1,0,0,0,5,0,1,1],
 "d6/d09/interface_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_i_natural_language_understanding_service.html#aca706e7beae460eff88c6c47731de110":[1,0,0,0,5,0,1,0],
 "d6/d09/interface_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_i_natural_language_understanding_service.html#adaf57f84d379f077f54e0f7883373386":[1,0,0,0,5,0,1,2],
 "d6/d0a/_tone_analysis_8cs.html":[2,0,0,12,0,2],
@@ -244,10 +249,5 @@ var NAVTREEINDEX6 =
 "d7/d0a/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_column_headers.html#a4bb566afe8dd5ff5ca704dc58094a233":[1,0,0,0,1,0,0,9,7],
 "d7/d0a/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_column_headers.html#a6273aa68797f005472937b3ed1688000":[1,0,0,0,1,0,0,9,6],
 "d7/d0a/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_column_headers.html#a6802a6c08522f8d60e81312c94b8e7a1":[1,0,0,0,1,0,0,9,4],
-"d7/d0a/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_column_headers.html#a7982d62622d597763d4025169a9bafbd":[1,0,0,0,1,0,0,9,0],
-"d7/d0a/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_column_headers.html#a9268a2114cd8f64018fac943df1ba0bd":[1,0,0,0,1,0,0,9,1],
-"d7/d0a/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_column_headers.html#a9d337a254513ea6d2571c42772621071":[1,0,0,0,1,0,0,9,3],
-"d7/d0a/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_column_headers.html#ab919ce7c0cf3fa654af8b314d39c350c":[1,0,0,0,1,0,0,9,2],
-"d7/d0a/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_column_headers.html#acfaf1a943a787de9e0a5b3c130b2595e":[1,0,0,0,1,0,0,9,5],
-"d7/d0c/_list_models_results_8cs.html":[2,0,0,8,0,25]
+"d7/d0a/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_column_headers.html#a7982d62622d597763d4025169a9bafbd":[1,0,0,0,1,0,0,9,0]
 };

@@ -1,5 +1,10 @@
 var NAVTREEINDEX5 =
 {
+"d5/d3d/class_i_b_m_1_1_watson_1_1_tone_analyzer_1_1v3_1_1_tone_analyzer_service.html#a2dbb04d9eb336a989eedd30ae647e32d":[1,0,0,0,9,0,2,5],
+"d5/d3d/class_i_b_m_1_1_watson_1_1_tone_analyzer_1_1v3_1_1_tone_analyzer_service.html#a88002d9b9169dd6d145f7ad69a825bcd":[1,0,0,0,9,0,2,0],
+"d5/d3d/class_i_b_m_1_1_watson_1_1_tone_analyzer_1_1v3_1_1_tone_analyzer_service.html#aaca330407f3b13ca822a3c216faa9fd7":[1,0,0,0,9,0,2,3],
+"d5/d3d/class_i_b_m_1_1_watson_1_1_tone_analyzer_1_1v3_1_1_tone_analyzer_service.html#adc75aaebccf48879ee5f552fcbca871e":[1,0,0,0,9,0,2,1],
+"d5/d3d/class_i_b_m_1_1_watson_1_1_tone_analyzer_1_1v3_1_1_tone_analyzer_service.html#afe62320e30ed4deadf99626f6d83c0a3":[1,0,0,0,9,0,2,4],
 "d5/d48/_credentials_8cs.html":[2,0,0,4,0,11],
 "d5/d4b/_get_feedback_8cs.html":[2,0,0,3,0,30],
 "d5/d52/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_suggestion.html":[1,0,0,0,0,1,0,6],
@@ -244,10 +249,5 @@ var NAVTREEINDEX5 =
 "d5/dfb/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_suggestion_response_generic_1_1_response_type_enum_value.html#acf1f06bac783362498d7c9f69ec248d0":[1,0,0,0,0,0,0,20,1,4],
 "d5/dfb/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_suggestion_response_generic_1_1_response_type_enum_value.html#ad68770e4f164a26978920404c4874c73":[1,0,0,0,0,0,0,20,1,3],
 "d5/dfb/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_suggestion_response_generic_1_1_response_type_enum_value.html#af14fbbb6f5adaf93bc35912228ac33e8":[1,0,0,0,0,0,0,20,1,5],
-"d5/dff/_x_path_patterns_8cs.html":[2,0,0,4,0,101],
-"d6/d04/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_top_hits_aggregation_result.html":[1,0,0,0,2,1,0,36],
-"d6/d04/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_top_hits_aggregation_result.html#a26965bc10add42446804c60cae106746":[1,0,0,0,2,1,0,36,0],
-"d6/d04/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_top_hits_aggregation_result.html#a2b8d707025d5add424d8f8d16f0d7ba5":[1,0,0,0,2,1,0,36,1],
-"d6/d09/interface_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_i_natural_language_understanding_service.html":[1,0,0,0,5,0,1],
-"d6/d09/interface_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_i_natural_language_understanding_service.html#a2f0ad7b493eabbb1a4780fa20d74c929":[1,0,0,0,5,0,1,1]
+"d5/dff/_x_path_patterns_8cs.html":[2,0,0,4,0,101]
 };

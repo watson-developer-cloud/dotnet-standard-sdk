@@ -1,5 +1,10 @@
 var NAVTREEINDEX8 =
 {
+"d8/d44/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_entities_options.html":[1,0,0,0,5,0,0,17],
+"d8/d44/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_entities_options.html#a03d28450db1fad252b9930c2af1075c5":[1,0,0,0,5,0,0,17,3],
+"d8/d44/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_entities_options.html#a594bc016ce38cda0875732e8d5da0ffa":[1,0,0,0,5,0,0,17,4],
+"d8/d44/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_entities_options.html#a8101e1e107abc126d246fa5ef877f67d":[1,0,0,0,5,0,0,17,0],
+"d8/d44/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_entities_options.html#a96cc12c6a496d38429cd9ff89f5b6904":[1,0,0,0,5,0,0,17,1],
 "d8/d44/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_entities_options.html#ab7c463469ea5966d883a690c289a4d72":[1,0,0,0,5,0,0,17,2],
 "d8/d44/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_error.html":[1,0,0,0,10,1,0,5],
 "d8/d44/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_error.html#a2b5292f0d371dca0333839dc2854d619":[1,0,0,0,10,1,0,5,2],
@@ -244,10 +249,5 @@ var NAVTREEINDEX8 =
 "d9/d46/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_suggestion_response_generic.html#a37635cb8b57cfa878d736482598f9178":[1,0,0,0,0,0,0,20,8],
 "d9/d46/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_suggestion_response_generic.html#a5eb6b91a27110caea3dcd2dc18027b76":[1,0,0,0,0,0,0,20,12],
 "d9/d46/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_suggestion_response_generic.html#a6b250aa9e6a486bd5fe605580841d4aa":[1,0,0,0,0,0,0,20,5],
-"d9/d46/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_suggestion_response_generic.html#a6dbd51036a9877cae3879f6eab2e2c77":[1,0,0,0,0,0,0,20,7],
-"d9/d46/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_suggestion_response_generic.html#a8c48dd480c55ef0283da786809cb7dec":[1,0,0,0,0,0,0,20,10],
-"d9/d46/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_suggestion_response_generic.html#a8f998da88dec58acd5e9a62c26fac684":[1,0,0,0,0,0,0,20,9],
-"d9/d46/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_suggestion_response_generic.html#a9b8f5c428c2a3cd35cedcb8aeddda22f":[1,0,0,0,0,0,0,20,4],
-"d9/d46/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_suggestion_response_generic.html#ae251ec0f784c9412ffea36044771b93c":[1,0,0,0,0,0,0,20,11],
-"d9/d46/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_suggestion_response_generic.html#ae2f98848915c231b8b10b4c09348b953":[1,0,0,0,0,0,0,20,2]
+"d9/d46/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_suggestion_response_generic.html#a6dbd51036a9877cae3879f6eab2e2c77":[1,0,0,0,0,0,0,20,7]
 };

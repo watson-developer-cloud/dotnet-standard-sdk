@@ -1,0 +1,5 @@
+var searchData=
+[
+  ['speechtotextservice',['SpeechToTextService',['../d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a3da86c5055a6cf85c34a94f459d4f784',1,'IBM.Watson.SpeechToText.v1.SpeechToTextService.SpeechToTextService()'],['../d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#abbdfacf680992e1fea35c331555a64f8',1,'IBM.Watson.SpeechToText.v1.SpeechToTextService.SpeechToTextService(IClient httpClient)'],['../d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a31fd2b9a3b161176164104ca67d644e9',1,'IBM.Watson.SpeechToText.v1.SpeechToTextService.SpeechToTextService(IAuthenticator authenticator)']]],
+  ['synthesize',['Synthesize',['../dd/d30/interface_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#a09f4f631c4a62f805faa876cae0e851b',1,'IBM.Watson.TextToSpeech.v1.ITextToSpeechService.Synthesize()'],['../da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#aa24eeb76c7e6b6c1be062831d5d77d01',1,'IBM.Watson.TextToSpeech.v1.TextToSpeechService.Synthesize()']]]
+];

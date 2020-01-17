@@ -1,0 +1,5 @@
+var class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_options =
+[
+    [ "Explanation", "dc/d12/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_options.html#a43f9791fabcc6284d3243b695c3ae5de", null ],
+    [ "Limit", "dc/d12/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_options.html#a2e9c76aabf12797dddca2377b2bf20fc", null ]
+];

@@ -1,6 +1,7 @@
 {
+  "debug": true,
   "branch": "master",
-  "verifyConditions": [],
+  "verifyConditions": ["@semantic-release/git"],
   "prepare": [
     "@semantic-release/git",
     {

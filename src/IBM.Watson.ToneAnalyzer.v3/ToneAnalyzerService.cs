@@ -96,7 +96,7 @@ namespace IBM.Watson.ToneAnalyzer.v3
         /// variants are treated as their parent language; for example, `en-US` is interpreted as `en`. You can use
         /// different languages for **Content-Language** and **Accept-Language**. (optional, default to en)</param>
         /// <returns><see cref="ToneAnalysis" />ToneAnalysis</returns>
-        public DetailedResponse<ToneAnalysis> Tone(ToneInput toneInput, string contentType = null, bool? sentences = null, List<string> tones = null, string contentLanguage = null, string acceptLanguage = null)
+        public DetailedResponse<ToneAnalysis> Tone(System.IO.MemoryStream toneInput, string contentType = null, bool? sentences = null, List<string> tones = null, string contentLanguage = null, string acceptLanguage = null)
         {
             if (toneInput == null)
             {
@@ -142,7 +142,8 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 {
                     restRequest.WithArgument("tones", string.Join(",", tones.ToArray()));
                 }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(toneInput), Encoding.UTF8);
+
+                var httpContent = new StringContent(Encoding.UTF8.GetString(toneInput.ToArray()), Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("tone_analyzer", "v3", "Tone"));

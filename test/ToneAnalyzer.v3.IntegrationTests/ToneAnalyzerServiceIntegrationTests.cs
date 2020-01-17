@@ -34,6 +34,7 @@ namespace IBM.Watson.ToneAnalyzer.v3.IntegrationTests
         private static string apikey;
         private static string endpoint;
         private string inputText = "Hello! Welcome to IBM Watson! How can I help you?";
+        private string inputHtml = "<p>Hello! Welcome to IBM Watson! How can I help you?</p>";
         private string chatUser = "testChatUser";
         private string versionDate = "2016-05-19";
         private static string credentials = string.Empty;
@@ -53,18 +54,76 @@ namespace IBM.Watson.ToneAnalyzer.v3.IntegrationTests
                 Text = inputText
             };
 
-            service.WithHeader("X-Watson-Test", "1");
-            var result = service.Tone(
-                toneInput: toneInput,
-                contentType: "text/html",
-                sentences: true,
-                contentLanguage: "en-US",
-                acceptLanguage: "en-US"
-                );
+            using (MemoryStream ms = new MemoryStream())
+            {
+                var writer = new StreamWriter(ms);
+                writer.Write(JsonConvert.SerializeObject(toneInput));
+                writer.Flush();
+                ms.Position = 0;
 
-            Assert.IsNotNull(result.Result);
-            Assert.IsTrue(result.Result.DocumentTone.ToneCategories.Count >= 1);
-            Assert.IsTrue(result.Result.DocumentTone.ToneCategories[0].Tones.Count >= 1);
+                service.WithHeader("X-Watson-Test", "1");
+                var result = service.Tone(
+                    toneInput: ms,
+                    contentType: "application/json",
+                    sentences: true,
+                    contentLanguage: "en-US",
+                    acceptLanguage: "en-US"
+                    );
+
+                Assert.IsNotNull(result.Result);
+                Assert.IsTrue(result.Result.DocumentTone.ToneCategories.Count >= 1);
+                Assert.IsTrue(result.Result.DocumentTone.ToneCategories[0].Tones.Count >= 1);
+            }
+        }
+
+        [TestMethod]
+        public void PostToneText_Success()
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                var writer = new StreamWriter(ms);
+                writer.Write(inputText);
+                writer.Flush();
+                ms.Position = 0;
+
+                service.WithHeader("X-Watson-Test", "1");
+                var result = service.Tone(
+                    toneInput: ms,
+                    contentType: "text/plain",
+                    sentences: true,
+                    contentLanguage: "en-US",
+                    acceptLanguage: "en-US"
+                    );
+
+                Assert.IsNotNull(result.Result);
+                Assert.IsTrue(result.Result.DocumentTone.ToneCategories.Count >= 1);
+                Assert.IsTrue(result.Result.DocumentTone.ToneCategories[0].Tones.Count >= 1);
+            }
+        }
+
+        [TestMethod]
+        public void PostToneHtml_Success()
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                var writer = new StreamWriter(ms);
+                writer.Write(inputHtml);
+                writer.Flush();
+                ms.Position = 0;
+
+                service.WithHeader("X-Watson-Test", "1");
+                var result = service.Tone(
+                    toneInput: ms,
+                    contentType: "text/html",
+                    sentences: true,
+                    contentLanguage: "en-US",
+                    acceptLanguage: "en-US"
+                    );
+
+                Assert.IsNotNull(result.Result);
+                Assert.IsTrue(result.Result.DocumentTone.ToneCategories.Count >= 1);
+                Assert.IsTrue(result.Result.DocumentTone.ToneCategories[0].Tones.Count >= 1);
+            }
         }
 
         [TestMethod]

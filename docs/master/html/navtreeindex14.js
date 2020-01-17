@@ -1,5 +1,6 @@
 var NAVTREEINDEX14 =
 {
+"de/db8/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_disambiguation_result.html":[1,0,0,0,5,0,0,11],
 "de/db8/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_disambiguation_result.html#a5fadcdc3d728d88a5f9f648dadf0430b":[1,0,0,0,5,0,0,11,0],
 "de/db8/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_disambiguation_result.html#abaab28bab5467ec0d6ef87268175b1d5":[1,0,0,0,5,0,0,11,1],
 "de/db8/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_disambiguation_result.html#af74f5ce30d5a3fa481b1463908717f61":[1,0,0,0,5,0,0,11,2],
@@ -85,8 +86,8 @@ var NAVTREEINDEX14 =
 "de/de8/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_document_status_1_1_status_enum_value.html#af2fa49838a52f5ff1926d0b7bb2d8464":[1,0,0,0,2,0,0,21,1,1],
 "de/dea/_address_8cs.html":[2,0,0,3,0,0],
 "de/dee/_concepts_result_8cs.html":[2,0,0,8,0,9],
-"de/def/namespace_i_b_m_1_1_watson_1_1_assistant_1_1v1.html":[1,0,0,0,0,0],
 "de/def/namespace_i_b_m_1_1_watson_1_1_assistant_1_1v1.html":[0,0,0,0,0,0],
+"de/def/namespace_i_b_m_1_1_watson_1_1_assistant_1_1v1.html":[1,0,0,0,0,0],
 "de/df0/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_sentiment.html":[1,0,0,0,2,0,0,61],
 "de/df0/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_sentiment.html#a799f12fdb36acdfba2e0b831e65ba292":[1,0,0,0,2,0,0,61,0],
 "de/df0/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_sentiment.html#a83c55359ee2584fabda04419f4501c16":[1,0,0,0,2,0,0,61,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX14 =
 "df/d62/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_options_element.html":[1,0,0,0,0,0,0,14],
 "df/d62/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_options_element.html#a16aafba413a23f2362707a258a6206dc":[1,0,0,0,0,0,0,14,1],
 "df/d62/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_options_element.html#aa6bb31993a56979871835bed230b1e57":[1,0,0,0,0,0,0,14,0],
-"df/d63/namespace_i_b_m_1_1_watson_1_1_natural_language_classifier.html":[1,0,0,0,4],
 "df/d63/namespace_i_b_m_1_1_watson_1_1_natural_language_classifier.html":[0,0,0,0,4]
 };

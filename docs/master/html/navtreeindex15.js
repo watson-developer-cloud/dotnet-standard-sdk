@@ -1,5 +1,6 @@
 var NAVTREEINDEX15 =
 {
+"df/d63/namespace_i_b_m_1_1_watson_1_1_natural_language_classifier.html":[1,0,0,0,4],
 "df/d65/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_type_label.html":[1,0,0,0,1,0,0,54],
 "df/d65/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_type_label.html#a4258de616a60a52cc285ad2a811498f3":[1,0,0,0,1,0,0,54,1],
 "df/d65/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_type_label.html#a90b4172d4da917948a348a1c4acc5d28":[1,0,0,0,1,0,0,54,0],
@@ -118,8 +119,8 @@ var NAVTREEINDEX15 =
 "df/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_resource.html#a4fa97ab633c350d0d997b6d9648c7803":[1,0,0,0,7,0,0,7,1],
 "df/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_resource.html#a8d7bfe9fb07ec0ae3ab877b0a4747263":[1,0,0,0,7,0,0,7,4],
 "df/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_audio_resource.html#a9b10d857d845496fcd87be9219bac518":[1,0,0,0,7,0,0,7,3],
-"df/de0/namespace_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1.html":[1,0,0,0,8,0],
 "df/de0/namespace_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1.html":[0,0,0,0,8,0],
+"df/de0/namespace_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1.html":[1,0,0,0,8,0],
 "df/de1/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_table_result_table.html":[1,0,0,0,2,1,0,48],
 "df/de1/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_table_result_table.html#a0f83d2eda2a7467d652c1ded9e7b52ea":[1,0,0,0,2,1,0,48,8],
 "df/de1/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_table_result_table.html#a1f31b7d0fbc9c76a28e448bfb448be42":[1,0,0,0,2,1,0,48,7],
@@ -248,6 +249,5 @@ var NAVTREEINDEX15 =
 "dir_fb151dda3516ea028dbae08e53482f5c.html":[2,0,0,7],
 "files.html":[2,0],
 "functions.html":[1,3,0,0],
-"functions.html":[1,3,0],
-"functions_a.html":[1,3,0,1]
+"functions.html":[1,3,0]
 };

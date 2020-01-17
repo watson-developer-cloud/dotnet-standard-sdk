@@ -1,5 +1,6 @@
 var NAVTREEINDEX12 =
 {
+"dc/d90/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_status.html#a70547771f82cb4db9dacadf6e1e217e6":[1,0,0,0,2,0,0,97,1],
 "dc/d90/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_status.html#a9d4299e971e8a822d9653c38cabde10e":[1,0,0,0,2,0,0,97,7],
 "dc/d90/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_status.html#ab3390f91c9adaeaffb42fb0058a69822":[1,0,0,0,2,0,0,97,0],
 "dc/d90/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_status.html#abfaa7c36b7b0131fab984bea6c10caf8":[1,0,0,0,2,0,0,97,3],
@@ -148,15 +149,15 @@ var NAVTREEINDEX12 =
 "dd/d69/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_model_1_1_model_class.html":[1,0,0,0,10,0,0,7],
 "dd/d69/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_model_1_1_model_class.html#a6173063c7a68d587b9086303a1f632f7":[1,0,0,0,10,0,0,7,0],
 "dd/d6b/_i_b_m_8_watson_8_common_8_assembly_info_8cs.html":[2,0,0,2,0,0,0,0],
-"dd/d6b/namespace_i_b_m_1_1_watson_1_1_text_to_speech.html":[0,0,0,0,8],
 "dd/d6b/namespace_i_b_m_1_1_watson_1_1_text_to_speech.html":[1,0,0,0,8],
+"dd/d6b/namespace_i_b_m_1_1_watson_1_1_text_to_speech.html":[0,0,0,0,8],
 "dd/d6c/_nlu_enrichment_semantic_roles_8cs.html":[2,0,0,4,0,60],
 "dd/d6f/_voice_models_8cs.html":[2,0,0,11,0,5],
 "dd/d70/_delete_model_result_8cs.html":[2,0,0,6,0,0],
 "dd/d76/_component_settings_fields_shown_title_8cs.html":[2,0,0,5,0,5],
 "dd/d7b/_metric_token_response_8cs.html":[2,0,0,4,0,51],
-"dd/d7e/namespace_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_util.html":[1,0,0,0,7,0,1],
 "dd/d7e/namespace_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_util.html":[0,0,0,0,7,0,1],
+"dd/d7e/namespace_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_util.html":[1,0,0,0,7,0,1],
 "dd/d7f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_log_pagination.html":[1,0,0,0,0,0,0,33],
 "dd/d7f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_log_pagination.html#a13522dfcb4980c533098d8ec5c5d0353":[1,0,0,0,0,0,0,33,1],
 "dd/d7f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_log_pagination.html#a79b28e9fe09a53370717d5f8441dc698":[1,0,0,0,0,0,0,33,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX12 =
 "dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#aa2b8e27a228dba6d8ea4d7303f17f022":[1,0,0,0,2,0,2,47],
 "dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#aa362d8eb7e950f02053c56956ea2f87d":[1,0,0,0,2,0,2,53],
 "dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#aa9319ca58cf3f25575aa4bb3e54ca645":[1,0,0,0,2,0,2,50],
-"dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#aaa61c37958206ab3c575ca11d95f1a3a":[1,0,0,0,2,0,2,10],
-"dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#aaabd7dae32c557518a8de2f4d3d915b4":[1,0,0,0,2,0,2,42]
+"dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#aaa61c37958206ab3c575ca11d95f1a3a":[1,0,0,0,2,0,2,10]
 };

@@ -66,8 +66,8 @@ var NAVTREEINDEX11 =
 "db/db1/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_calculation.html":[1,0,0,0,2,0,0,1],
 "db/db1/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_calculation.html#aa62c6ca0a10e3e3473f06e13eec9c893":[1,0,0,0,2,0,0,1,0],
 "db/db1/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_calculation.html#af8b51a08fc427c611ff2798da6ba0225":[1,0,0,0,2,0,0,1,1],
-"db/db3/namespace_i_b_m_1_1_watson_1_1_natural_language_classifier_1_1v1_1_1_model.html":[0,0,0,0,4,0,0],
 "db/db3/namespace_i_b_m_1_1_watson_1_1_natural_language_classifier_1_1v1_1_1_model.html":[1,0,0,0,4,0,0],
+"db/db3/namespace_i_b_m_1_1_watson_1_1_natural_language_classifier_1_1v1_1_1_model.html":[0,0,0,0,4,0,0],
 "db/db4/_column_headers_8cs.html":[2,0,0,3,0,9],
 "db/dc0/_message_context_global_system_8cs.html":[2,0,0,1,0,10],
 "db/dc0/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_large_table_results.html":[1,0,0,0,2,1,0,21],
@@ -153,6 +153,7 @@ var NAVTREEINDEX11 =
 "dc/d12/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_options.html":[1,0,0,0,5,0,0,4],
 "dc/d12/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_options.html#a2e9c76aabf12797dddca2377b2bf20fc":[1,0,0,0,5,0,0,4,1],
 "dc/d12/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_options.html#a43f9791fabcc6284d3243b695c3ae5de":[1,0,0,0,5,0,0,4,0],
+"dc/d12/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_options.html#a9845d5f1a562e7f645d43be9b8bc1576":[1,0,0,0,5,0,0,4,2],
 "dc/d1c/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_log_query_response_result_1_1_event_type_enum_value.html":[1,0,0,0,2,0,0,43,1],
 "dc/d1c/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_log_query_response_result_1_1_event_type_enum_value.html#ac603f6731701f0d22f670ec565fe176c":[1,0,0,0,2,0,0,43,1,1],
 "dc/d1c/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_log_query_response_result_1_1_event_type_enum_value.html#adf7183707e2918071acf161cf5f48a08":[1,0,0,0,2,0,0,43,1,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX11 =
 "dc/d90/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_status.html#a0e3ab754c47d5ee1d7e9d1c8dfa39aa1":[1,0,0,0,2,0,0,97,4],
 "dc/d90/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_status.html#a0f8fba3a4274b8d5ce4d48b4547b883b":[1,0,0,0,2,0,0,97,5],
 "dc/d90/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_status.html#a426ac8b3e3ae5ee2ce1a678eb3fb2b3b":[1,0,0,0,2,0,0,97,2],
-"dc/d90/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_status.html#a6da2be1505b6532bab995ff65156cb7e":[1,0,0,0,2,0,0,97,6],
-"dc/d90/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_status.html#a70547771f82cb4db9dacadf6e1e217e6":[1,0,0,0,2,0,0,97,1]
+"dc/d90/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_status.html#a6da2be1505b6532bab995ff65156cb7e":[1,0,0,0,2,0,0,97,6]
 };

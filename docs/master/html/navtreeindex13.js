@@ -1,5 +1,6 @@
 var NAVTREEINDEX13 =
 {
+"dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#aaabd7dae32c557518a8de2f4d3d915b4":[1,0,0,0,2,0,2,42],
 "dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#aaf5e566e0df835fb4d06c38a4958e1be":[1,0,0,0,2,0,2,33],
 "dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#ab0e704584614d6b75f1e48d3475bb30c":[1,0,0,0,2,0,2,5],
 "dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#ab6b8f9f2e1ec259b163870b437ffddff":[1,0,0,0,2,0,2,12],
@@ -248,6 +249,5 @@ var NAVTREEINDEX13 =
 "de/da3/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_document_list.html#a6c10fe849de7364267c40284390763de":[1,0,0,0,3,0,0,1,0],
 "de/da7/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_intent_8cs.html":[2,0,0,1,0,19],
 "de/db3/_entity_8cs.html":[2,0,0,0,0,22],
-"de/db5/_table_result_table_8cs.html":[2,0,0,5,0,48],
-"de/db8/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_disambiguation_result.html":[1,0,0,0,5,0,0,11]
+"de/db5/_table_result_table_8cs.html":[2,0,0,5,0,48]
 };

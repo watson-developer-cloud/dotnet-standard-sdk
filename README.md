@@ -216,6 +216,28 @@ void Example()
 ## Discovery V2
 Discovery v2 is only available on Cloud Pak for Data.
 
+## Transaction IDs
+Every call from the SDK will receive a response which will contain a transaction ID, accessible via the x-global-transaction-id header. This transaction ID is useful for troubleshooting and accessing relevant logs from your service instance.
+
+```cs
+AssistantService service = new AssistantService("{version-date}");
+DetailedResponse<WorkspaceCollection> listWorkspacesResult = null;
+
+try
+{
+    listWorkspacesResult = service.ListWorkspaces();
+
+    //  Global transaction id on successful api call
+    listWorkspacesResult.Headers.TryGetValue("x-global-transaction-id", out object globalTransactionId);
+}
+catch(Exception e)
+{
+    //  Global transaction on failed api call is contained in the error message
+    Console.WriteLine("error: " + e.Message);
+}
+```
+
+
 ## Documentation
 Click [here][dotnet-standard-sdk-documentation] for documentation by release and branch.
 

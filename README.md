@@ -217,7 +217,7 @@ void Example()
 Discovery v2 is only available on Cloud Pak for Data.
 
 ## Transaction IDs
-Every SDK call will return a response which will contain a transaction ID, accessible via the x-global-transaction-id header. This transaction ID is useful for troubleshooting and accessing relevant logs from your service instance.
+Every SDK call returns a response with a transaction ID in the x-global-transaction-id header. This transaction ID is useful for troubleshooting and accessing relevant logs from your service instance.
 
 ```cs
 AssistantService service = new AssistantService("{version-date}");

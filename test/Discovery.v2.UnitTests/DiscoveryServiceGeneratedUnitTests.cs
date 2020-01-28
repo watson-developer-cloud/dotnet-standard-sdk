@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,6 +15,16 @@
 *
 */
 
+using IBM.Cloud.SDK.Core.Http;
+using NSubstitute;
+using System;
+using Newtonsoft.Json;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using IBM.Watson.Discovery.v2.Model;
+using System.Text;
+using IBM.Cloud.SDK.Core.Authentication.NoAuth;
+using System.Threading.Tasks;
 
 namespace IBM.Watson.Discovery.v2.UnitTests
 {
@@ -38,8 +48,14 @@ namespace IBM.Watson.Discovery.v2.UnitTests
         [TestMethod]
         public void ConstructorExternalConfig()
         {
+            var apikey = System.Environment.GetEnvironmentVariable("DISCOVERY_APIKEY");
+            var url = System.Environment.GetEnvironmentVariable("DISCOVERY_URL");
+            System.Environment.SetEnvironmentVariable("DISCOVERY_APIKEY", "apikey");
+            System.Environment.SetEnvironmentVariable("DISCOVERY_URL", "http://www.url.com");
             DiscoveryService service = Substitute.For<DiscoveryService>("versionDate");
             Assert.IsNotNull(service);
+            System.Environment.SetEnvironmentVariable("DISCOVERY_URL", url);
+            System.Environment.SetEnvironmentVariable("DISCOVERY_APIKEY", apikey);
         }
 
         [TestMethod]
@@ -62,19 +78,100 @@ namespace IBM.Watson.Discovery.v2.UnitTests
             DiscoveryService service = new DiscoveryService(null, new NoAuthAuthenticator());
         }
 
-        [TestMethod]
-        public void ConstructorNoUrl()
-        {
-            var url = System.Environment.GetEnvironmentVariable("DISCOVERY_SERVICE_URL");
-            System.Environment.SetEnvironmentVariable("DISCOVERY_SERVICE_URL", null);
-            DiscoveryService service = Substitute.For<DiscoveryService>("versionDate");
-            Assert.IsTrue(service.ServiceUrl == "");
-            System.Environment.SetEnvironmentVariable("DISCOVERY_SERVICE_URL", url);
-        }
         #endregion
 
         [TestMethod]
-        public void ListCollections_Success()
+        public void TestQueryLargePassagesModel()
+        {
+
+            var QueryLargePassagesFields = new List<string> { "testString" };
+            QueryLargePassages testRequestModel = new QueryLargePassages()
+            {
+                Enabled = true,
+                PerDocument = true,
+                MaxPerDocument = 38,
+                Fields = QueryLargePassagesFields,
+                Count = 38,
+                Characters = 38
+            };
+
+            Assert.IsTrue(testRequestModel.Enabled == true);
+            Assert.IsTrue(testRequestModel.PerDocument == true);
+            Assert.IsTrue(testRequestModel.MaxPerDocument == 38);
+            Assert.IsTrue(testRequestModel.Fields == QueryLargePassagesFields);
+            Assert.IsTrue(testRequestModel.Count == 38);
+            Assert.IsTrue(testRequestModel.Characters == 38);
+        }
+
+        [TestMethod]
+        public void TestQueryLargeSuggestedRefinementsModel()
+        {
+
+            QueryLargeSuggestedRefinements testRequestModel = new QueryLargeSuggestedRefinements()
+            {
+                Enabled = true,
+                Count = 38
+            };
+
+            Assert.IsTrue(testRequestModel.Enabled == true);
+            Assert.IsTrue(testRequestModel.Count == 38);
+        }
+
+        [TestMethod]
+        public void TestQueryLargeTableResultsModel()
+        {
+
+            QueryLargeTableResults testRequestModel = new QueryLargeTableResults()
+            {
+                Enabled = true,
+                Count = 38
+            };
+
+            Assert.IsTrue(testRequestModel.Enabled == true);
+            Assert.IsTrue(testRequestModel.Count == 38);
+        }
+
+        [TestMethod]
+        public void TestTrainingExampleModel()
+        {
+
+            TrainingExample testRequestModel = new TrainingExample()
+            {
+                DocumentId = "testString",
+                CollectionId = "testString",
+                Relevance = 38,
+            };
+
+            Assert.IsTrue(testRequestModel.DocumentId == "testString");
+            Assert.IsTrue(testRequestModel.CollectionId == "testString");
+            Assert.IsTrue(testRequestModel.Relevance == 38);
+        }
+
+        [TestMethod]
+        public void TestTrainingQueryModel()
+        {
+            TrainingExample TrainingExampleModel = new TrainingExample()
+            {
+                DocumentId = "testString",
+                CollectionId = "testString",
+                Relevance = 38,
+            };
+
+            var TrainingQueryExamples = new List<TrainingExample> { TrainingExampleModel };
+            TrainingQuery testRequestModel = new TrainingQuery()
+            {
+                NaturalLanguageQuery = "testString",
+                Filter = "testString",
+                Examples = TrainingQueryExamples
+            };
+
+            Assert.IsTrue(testRequestModel.NaturalLanguageQuery == "testString");
+            Assert.IsTrue(testRequestModel.Filter == "testString");
+            Assert.IsTrue(testRequestModel.Examples == TrainingQueryExamples);
+        }
+
+        [TestMethod]
+        public void TestTestListCollectionsAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -85,15 +182,28 @@ namespace IBM.Watson.Discovery.v2.UnitTests
             var versionDate = "versionDate";
             service.VersionDate = versionDate;
 
-            var projectId = "projectId";
+            var responseJson = "{'collections': [{'collection_id': 'CollectionId', 'name': 'Name'}]}";
+            var response = new DetailedResponse<ListCollectionsResponse>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<ListCollectionsResponse>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string projectId = "testString";
+
+            request.As<ListCollectionsResponse>().Returns(Task.FromResult(response));
+
+            var result = service.ListCollections(projectId: projectId);
 
             request.Received().WithArgument("version", versionDate);
-            client.Received().GetAsync($"{service.ServiceUrl}/v2/projects/{projectId}/collections");
+
+            string messageUrl = $"{service.ServiceUrl}/v2/projects/{projectId}/collections";
+            client.Received().GetAsync(messageUrl);
         }
+
         [TestMethod]
-        public void Query_Success()
+        public void TestTestQueryAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -104,82 +214,50 @@ namespace IBM.Watson.Discovery.v2.UnitTests
             var versionDate = "versionDate";
             service.VersionDate = versionDate;
 
-            var projectId = "projectId";
-            var collectionIds = new List<string>();
-            var filter = "filter";
-            var query = "query";
-            var naturalLanguageQuery = "naturalLanguageQuery";
-            var aggregation = "aggregation";
-            var count = 1;
-            var _return = new List<string>();
-            var offset = 1;
-            var sort = "sort";
-            var highlight = false;
-            var spellingSuggestions = false;
-            var tableResults = new QueryLargeTableResults();
-            var suggestedRefinements = new QueryLargeSuggestedRefinements();
-            var passages = new QueryLargePassages();
+            var responseJson = "{'matching_results': 15, 'results': [{'document_id': 'DocumentId', 'metadata': {}, 'result_metadata': {'document_retrieval_source': 'search', 'collection_id': 'CollectionId', 'confidence': 10}, 'document_passages': [{'passage_text': 'PassageText', 'start_offset': 11, 'end_offset': 9, 'field': 'Field'}]}], 'aggregations': [{'type': 'filter', 'match': 'Match', 'matching_results': 15, 'aggregations': [{'type': 'filter', 'match': 'Match', 'matching_results': 15, 'aggregations': [{'type': 'filter', 'match': 'Match', 'matching_results': 15, 'aggregations': [{'type': 'filter', 'match': 'Match', 'matching_results': 15, 'aggregations': [{'type': 'filter', 'match': 'Match', 'matching_results': 15, 'aggregations': [{'type': 'filter', 'match': 'Match', 'matching_results': 15, 'aggregations': [{'type': 'filter', 'match': 'Match', 'matching_results': 15, 'aggregations': [{'type': 'filter', 'match': 'Match', 'matching_results': 15, 'aggregations': [{'type': 'filter', 'match': 'Match', 'matching_results': 15, 'aggregations': [{'type': 'filter', 'match': 'Match', 'matching_results': 15, 'aggregations': []}]}]}]}]}]}]}]}]}]}], 'retrieval_details': {'document_retrieval_strategy': 'untrained'}, 'suggested_query': 'SuggestedQuery', 'suggested_refinements': [{'text': 'Text'}], 'table_results': [{'table_id': 'TableId', 'source_document_id': 'SourceDocumentId', 'collection_id': 'CollectionId', 'table_html': 'TableHtml', 'table_html_offset': 15, 'table': {'location': {'begin': 5, 'end': 3}, 'text': 'Text', 'section_title': {'text': 'Text', 'location': {'begin': 5, 'end': 3}}, 'title': {'text': 'Text', 'location': {'begin': 5, 'end': 3}}, 'table_headers': [{'cell_id': 'CellId', 'location': 'unknown property type: Location', 'text': 'Text', 'row_index_begin': 13, 'row_index_end': 11, 'column_index_begin': 16, 'column_index_end': 14}], 'row_headers': [{'cell_id': 'CellId', 'location': {'begin': 5, 'end': 3}, 'text': 'Text', 'text_normalized': 'TextNormalized', 'row_index_begin': 13, 'row_index_end': 11, 'column_index_begin': 16, 'column_index_end': 14}], 'column_headers': [{'cell_id': 'CellId', 'location': 'unknown property type: Location', 'text': 'Text', 'text_normalized': 'TextNormalized', 'row_index_begin': 13, 'row_index_end': 11, 'column_index_begin': 16, 'column_index_end': 14}], 'key_value_pairs': [{'key': {'cell_id': 'CellId', 'location': {'begin': 5, 'end': 3}, 'text': 'Text'}, 'value': [{'cell_id': 'CellId', 'location': {'begin': 5, 'end': 3}, 'text': 'Text'}]}], 'body_cells': [{'cell_id': 'CellId', 'location': {'begin': 5, 'end': 3}, 'text': 'Text', 'row_index_begin': 13, 'row_index_end': 11, 'column_index_begin': 16, 'column_index_end': 14, 'row_header_ids': [{'id': 'Id'}], 'row_header_texts': [{'text': 'Text'}], 'row_header_texts_normalized': [{'text_normalized': 'TextNormalized'}], 'column_header_ids': [{'id': 'Id'}], 'column_header_texts': [{'text': 'Text'}], 'column_header_texts_normalized': [{'text_normalized': 'TextNormalized'}], 'attributes': [{'type': 'Type', 'text': 'Text', 'location': {'begin': 5, 'end': 3}}]}], 'contexts': [{'text': 'Text', 'location': {'begin': 5, 'end': 3}}]}}]}";
+            var response = new DetailedResponse<QueryResponse>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<QueryResponse>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            var QueryLargePassagesFields = new List<string> { "testString" };
+            QueryLargePassages QueryLargePassagesModel = new QueryLargePassages()
+            {
+                Enabled = true,
+                PerDocument = true,
+                MaxPerDocument = 38,
+                Fields = QueryLargePassagesFields,
+                Count = 38,
+                Characters = 38
+            };
 
-            JObject bodyObject = new JObject();
-            if (collectionIds != null && collectionIds.Count > 0)
+            QueryLargeSuggestedRefinements QueryLargeSuggestedRefinementsModel = new QueryLargeSuggestedRefinements()
             {
-                bodyObject["collection_ids"] = JToken.FromObject(collectionIds);
-            }
-            if (!string.IsNullOrEmpty(filter))
+                Enabled = true,
+                Count = 38
+            };
+
+            QueryLargeTableResults QueryLargeTableResultsModel = new QueryLargeTableResults()
             {
-                bodyObject["filter"] = JToken.FromObject(filter);
-            }
-            if (!string.IsNullOrEmpty(query))
-            {
-                bodyObject["query"] = JToken.FromObject(query);
-            }
-            if (!string.IsNullOrEmpty(naturalLanguageQuery))
-            {
-                bodyObject["natural_language_query"] = JToken.FromObject(naturalLanguageQuery);
-            }
-            if (!string.IsNullOrEmpty(aggregation))
-            {
-                bodyObject["aggregation"] = JToken.FromObject(aggregation);
-            }
-            if (count != null)
-            {
-                bodyObject["count"] = JToken.FromObject(count);
-            }
-            if (_return != null && _return.Count > 0)
-            {
-                bodyObject["return"] = JToken.FromObject(_return);
-            }
-            if (offset != null)
-            {
-                bodyObject["offset"] = JToken.FromObject(offset);
-            }
-            if (!string.IsNullOrEmpty(sort))
-            {
-                bodyObject["sort"] = JToken.FromObject(sort);
-            }
-            bodyObject["highlight"] = JToken.FromObject(highlight);
-            bodyObject["spelling_suggestions"] = JToken.FromObject(spellingSuggestions);
-            if (tableResults != null)
-            {
-                bodyObject["table_results"] = JToken.FromObject(tableResults);
-            }
-            if (suggestedRefinements != null)
-            {
-                bodyObject["suggested_refinements"] = JToken.FromObject(suggestedRefinements);
-            }
-            if (passages != null)
-            {
-                bodyObject["passages"] = JToken.FromObject(passages);
-            }
-            var json = JsonConvert.SerializeObject(bodyObject);
+                Enabled = true,
+                Count = 38
+            };
+            string projectId = "testString";
+
+            request.As<QueryResponse>().Returns(Task.FromResult(response));
+
+            var result = service.Query(projectId: projectId, collectionIds: new List<string> { "testString" }, filter: "testString", query: "testString", naturalLanguageQuery: "testString", aggregation: "testString", count: 38, _return: new List<string> { "testString" }, offset: 38, sort: "testString", highlight: true, spellingSuggestions: true, tableResults: QueryLargeTableResultsModel, suggestedRefinements: QueryLargeSuggestedRefinementsModel, passages: QueryLargePassagesModel);
+
             request.Received().WithArgument("version", versionDate);
-            request.Received().WithBodyContent(Arg.Is<StringContent>(x => x.ReadAsStringAsync().Result.Equals(json)));
-            client.Received().PostAsync($"{service.ServiceUrl}/v2/projects/{projectId}/query");
+
+            string messageUrl = $"{service.ServiceUrl}/v2/projects/{projectId}/query";
+            client.Received().PostAsync(messageUrl);
         }
+
         [TestMethod]
-        public void GetAutocompletion_Success()
+        public void TestTestGetAutocompletionAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -190,19 +268,32 @@ namespace IBM.Watson.Discovery.v2.UnitTests
             var versionDate = "versionDate";
             service.VersionDate = versionDate;
 
-            var projectId = "projectId";
-            var prefix = "prefix";
-            var collectionIds = new List<string>() { "collectionIds0", "collectionIds1" };
-            var field = "field";
-            long? count = 1;
+            var responseJson = "{'completions': ['Completions']}";
+            var response = new DetailedResponse<Completions>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<Completions>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string projectId = "testString";
+            string prefix = "testString";
+            List<string> collectionIds = new List<string> { "testString" };
+            string field = "testString";
+            long? count = 38;
+
+            request.As<Completions>().Returns(Task.FromResult(response));
+
+            var result = service.GetAutocompletion(projectId: projectId, prefix: prefix, collectionIds: collectionIds, field: field, count: count);
 
             request.Received().WithArgument("version", versionDate);
-            client.Received().GetAsync($"{service.ServiceUrl}/v2/projects/{projectId}/autocompletion");
+
+            string messageUrl = $"{service.ServiceUrl}/v2/projects/{projectId}/autocompletion";
+            client.Received().GetAsync(messageUrl);
         }
+
         [TestMethod]
-        public void QueryNotices_Success()
+        public void TestTestQueryNoticesAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -213,20 +304,33 @@ namespace IBM.Watson.Discovery.v2.UnitTests
             var versionDate = "versionDate";
             service.VersionDate = versionDate;
 
-            var projectId = "projectId";
-            var filter = "filter";
-            var query = "query";
-            var naturalLanguageQuery = "naturalLanguageQuery";
-            long? count = 1;
-            long? offset = 1;
+            var responseJson = "{'matching_results': 15, 'notices': [{'notice_id': 'NoticeId', 'document_id': 'DocumentId', 'collection_id': 'CollectionId', 'query_id': 'QueryId', 'severity': 'warning', 'step': 'Step', 'description': 'Description'}]}";
+            var response = new DetailedResponse<QueryNoticesResponse>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<QueryNoticesResponse>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string projectId = "testString";
+            string filter = "testString";
+            string query = "testString";
+            string naturalLanguageQuery = "testString";
+            long? count = 38;
+            long? offset = 38;
+
+            request.As<QueryNoticesResponse>().Returns(Task.FromResult(response));
+
+            var result = service.QueryNotices(projectId: projectId, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery, count: count, offset: offset);
 
             request.Received().WithArgument("version", versionDate);
-            client.Received().GetAsync($"{service.ServiceUrl}/v2/projects/{projectId}/notices");
+
+            string messageUrl = $"{service.ServiceUrl}/v2/projects/{projectId}/notices";
+            client.Received().GetAsync(messageUrl);
         }
+
         [TestMethod]
-        public void ListFields_Success()
+        public void TestTestListFieldsAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -237,16 +341,29 @@ namespace IBM.Watson.Discovery.v2.UnitTests
             var versionDate = "versionDate";
             service.VersionDate = versionDate;
 
-            var projectId = "projectId";
-            var collectionIds = new List<string>() { "collectionIds0", "collectionIds1" };
+            var responseJson = "{'fields': [{'field': '_Field', 'type': 'nested', 'collection_id': 'CollectionId'}]}";
+            var response = new DetailedResponse<ListFieldsResponse>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<ListFieldsResponse>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string projectId = "testString";
+            List<string> collectionIds = new List<string> { "testString" };
+
+            request.As<ListFieldsResponse>().Returns(Task.FromResult(response));
+
+            var result = service.ListFields(projectId: projectId, collectionIds: collectionIds);
 
             request.Received().WithArgument("version", versionDate);
-            client.Received().GetAsync($"{service.ServiceUrl}/v2/projects/{projectId}/fields");
+
+            string messageUrl = $"{service.ServiceUrl}/v2/projects/{projectId}/fields";
+            client.Received().GetAsync(messageUrl);
         }
+
         [TestMethod]
-        public void GetComponentSettings_Success()
+        public void TestTestGetComponentSettingsAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -257,15 +374,28 @@ namespace IBM.Watson.Discovery.v2.UnitTests
             var versionDate = "versionDate";
             service.VersionDate = versionDate;
 
-            var projectId = "projectId";
+            var responseJson = "{'fields_shown': {'body': {'use_passage': true, 'field': 'Field'}, 'title': {'field': 'Field'}}, 'autocomplete': true, 'structured_search': true, 'results_per_page': 14, 'aggregations': [{'name': 'Name', 'label': 'Label', 'multiple_selections_allowed': false, 'visualization_type': 'auto'}]}";
+            var response = new DetailedResponse<ComponentSettingsResponse>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<ComponentSettingsResponse>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string projectId = "testString";
+
+            request.As<ComponentSettingsResponse>().Returns(Task.FromResult(response));
+
+            var result = service.GetComponentSettings(projectId: projectId);
 
             request.Received().WithArgument("version", versionDate);
-            client.Received().GetAsync($"{service.ServiceUrl}/v2/projects/{projectId}/component_settings");
+
+            string messageUrl = $"{service.ServiceUrl}/v2/projects/{projectId}/component_settings";
+            client.Received().GetAsync(messageUrl);
         }
+
         [TestMethod]
-        public void AddDocument_Success()
+        public void TestTestAddDocumentAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -276,21 +406,34 @@ namespace IBM.Watson.Discovery.v2.UnitTests
             var versionDate = "versionDate";
             service.VersionDate = versionDate;
 
-            var projectId = "projectId";
-            var collectionId = "collectionId";
-            var file = new MemoryStream();
-            var filename = "filename";
-            var fileContentType = "fileContentType";
-            var metadata = "metadata";
-            var xWatsonDiscoveryForce = false;
+            var responseJson = "{'document_id': 'DocumentId', 'status': 'processing'}";
+            var response = new DetailedResponse<DocumentAccepted>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<DocumentAccepted>(responseJson),
+                StatusCode = 202
+            };
 
-            var result = service.;
+            string projectId = "testString";
+            string collectionId = "testString";
+            System.IO.MemoryStream file = new System.IO.MemoryStream(Encoding.UTF8.GetBytes("This is a mock file."));
+            string filename = "testString";
+            string fileContentType = "application/json";
+            string metadata = "testString";
+            bool? xWatsonDiscoveryForce = true;
+
+            request.As<DocumentAccepted>().Returns(Task.FromResult(response));
+
+            var result = service.AddDocument(projectId: projectId, collectionId: collectionId, file: file, filename: filename, fileContentType: fileContentType, metadata: metadata, xWatsonDiscoveryForce: xWatsonDiscoveryForce);
 
             request.Received().WithArgument("version", versionDate);
-            client.Received().PostAsync($"{service.ServiceUrl}/v2/projects/{projectId}/collections/{collectionId}/documents");
+
+            string messageUrl = $"{service.ServiceUrl}/v2/projects/{projectId}/collections/{collectionId}/documents";
+            client.Received().PostAsync(messageUrl);
         }
+
         [TestMethod]
-        public void UpdateDocument_Success()
+        public void TestTestUpdateDocumentAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -301,22 +444,35 @@ namespace IBM.Watson.Discovery.v2.UnitTests
             var versionDate = "versionDate";
             service.VersionDate = versionDate;
 
-            var projectId = "projectId";
-            var collectionId = "collectionId";
-            var documentId = "documentId";
-            var file = new MemoryStream();
-            var filename = "filename";
-            var fileContentType = "fileContentType";
-            var metadata = "metadata";
-            var xWatsonDiscoveryForce = false;
+            var responseJson = "{'document_id': 'DocumentId', 'status': 'processing'}";
+            var response = new DetailedResponse<DocumentAccepted>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<DocumentAccepted>(responseJson),
+                StatusCode = 202
+            };
 
-            var result = service.;
+            string projectId = "testString";
+            string collectionId = "testString";
+            string documentId = "testString";
+            System.IO.MemoryStream file = new System.IO.MemoryStream(Encoding.UTF8.GetBytes("This is a mock file."));
+            string filename = "testString";
+            string fileContentType = "application/json";
+            string metadata = "testString";
+            bool? xWatsonDiscoveryForce = true;
+
+            request.As<DocumentAccepted>().Returns(Task.FromResult(response));
+
+            var result = service.UpdateDocument(projectId: projectId, collectionId: collectionId, documentId: documentId, file: file, filename: filename, fileContentType: fileContentType, metadata: metadata, xWatsonDiscoveryForce: xWatsonDiscoveryForce);
 
             request.Received().WithArgument("version", versionDate);
-            client.Received().PostAsync($"{service.ServiceUrl}/v2/projects/{projectId}/collections/{collectionId}/documents/{documentId}");
+
+            string messageUrl = $"{service.ServiceUrl}/v2/projects/{projectId}/collections/{collectionId}/documents/{documentId}";
+            client.Received().PostAsync(messageUrl);
         }
+
         [TestMethod]
-        public void DeleteDocument_Success()
+        public void TestTestDeleteDocumentAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -327,18 +483,31 @@ namespace IBM.Watson.Discovery.v2.UnitTests
             var versionDate = "versionDate";
             service.VersionDate = versionDate;
 
-            var projectId = "projectId";
-            var collectionId = "collectionId";
-            var documentId = "documentId";
-            var xWatsonDiscoveryForce = false;
+            var responseJson = "{'document_id': 'DocumentId', 'status': 'deleted'}";
+            var response = new DetailedResponse<DeleteDocumentResponse>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<DeleteDocumentResponse>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string projectId = "testString";
+            string collectionId = "testString";
+            string documentId = "testString";
+            bool? xWatsonDiscoveryForce = true;
+
+            request.As<DeleteDocumentResponse>().Returns(Task.FromResult(response));
+
+            var result = service.DeleteDocument(projectId: projectId, collectionId: collectionId, documentId: documentId, xWatsonDiscoveryForce: xWatsonDiscoveryForce);
 
             request.Received().WithArgument("version", versionDate);
-            client.Received().DeleteAsync($"{service.ServiceUrl}/v2/projects/{projectId}/collections/{collectionId}/documents/{documentId}");
+
+            string messageUrl = $"{service.ServiceUrl}/v2/projects/{projectId}/collections/{collectionId}/documents/{documentId}";
+            client.Received().DeleteAsync(messageUrl);
         }
+
         [TestMethod]
-        public void ListTrainingQueries_Success()
+        public void TestTestListTrainingQueriesAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -349,15 +518,28 @@ namespace IBM.Watson.Discovery.v2.UnitTests
             var versionDate = "versionDate";
             service.VersionDate = versionDate;
 
-            var projectId = "projectId";
+            var responseJson = "{'queries': [{'query_id': 'QueryId', 'natural_language_query': 'NaturalLanguageQuery', 'filter': 'Filter', 'examples': [{'document_id': 'DocumentId', 'collection_id': 'CollectionId', 'relevance': 9}]}]}";
+            var response = new DetailedResponse<TrainingQuerySet>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<TrainingQuerySet>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string projectId = "testString";
+
+            request.As<TrainingQuerySet>().Returns(Task.FromResult(response));
+
+            var result = service.ListTrainingQueries(projectId: projectId);
 
             request.Received().WithArgument("version", versionDate);
-            client.Received().GetAsync($"{service.ServiceUrl}/v2/projects/{projectId}/training_data/queries");
+
+            string messageUrl = $"{service.ServiceUrl}/v2/projects/{projectId}/training_data/queries";
+            client.Received().GetAsync(messageUrl);
         }
+
         [TestMethod]
-        public void DeleteTrainingQueries_Success()
+        public void TestTestDeleteTrainingQueriesAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -368,15 +550,28 @@ namespace IBM.Watson.Discovery.v2.UnitTests
             var versionDate = "versionDate";
             service.VersionDate = versionDate;
 
-            var projectId = "projectId";
+            var responseJson = "{}";
+            var response = new DetailedResponse<object>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<object>(responseJson),
+                StatusCode = 204
+            };
 
-            var result = service.;
+            string projectId = "testString";
+
+            request.As<object>().Returns(Task.FromResult(response));
+
+            var result = service.DeleteTrainingQueries(projectId: projectId);
 
             request.Received().WithArgument("version", versionDate);
-            client.Received().DeleteAsync($"{service.ServiceUrl}/v2/projects/{projectId}/training_data/queries");
+
+            string messageUrl = $"{service.ServiceUrl}/v2/projects/{projectId}/training_data/queries";
+            client.Received().DeleteAsync(messageUrl);
         }
+
         [TestMethod]
-        public void CreateTrainingQuery_Success()
+        public void TestTestCreateTrainingQueryAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -387,33 +582,34 @@ namespace IBM.Watson.Discovery.v2.UnitTests
             var versionDate = "versionDate";
             service.VersionDate = versionDate;
 
-            var projectId = "projectId";
-            var naturalLanguageQuery = "naturalLanguageQuery";
-            var examples = new List<TrainingExample>();
-            var filter = "filter";
+            var responseJson = "{'query_id': 'QueryId', 'natural_language_query': 'NaturalLanguageQuery', 'filter': 'Filter', 'examples': [{'document_id': 'DocumentId', 'collection_id': 'CollectionId', 'relevance': 9}]}";
+            var response = new DetailedResponse<TrainingQuery>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<TrainingQuery>(responseJson),
+                StatusCode = 201
+            };
 
-            var result = service.;
+            TrainingExample TrainingExampleModel = new TrainingExample()
+            {
+                DocumentId = "testString",
+                CollectionId = "testString",
+                Relevance = 38,
+            };
+            string projectId = "testString";
 
-            JObject bodyObject = new JObject();
-            if (!string.IsNullOrEmpty(naturalLanguageQuery))
-            {
-                bodyObject["natural_language_query"] = JToken.FromObject(naturalLanguageQuery);
-            }
-            if (examples != null && examples.Count > 0)
-            {
-                bodyObject["examples"] = JToken.FromObject(examples);
-            }
-            if (!string.IsNullOrEmpty(filter))
-            {
-                bodyObject["filter"] = JToken.FromObject(filter);
-            }
-            var json = JsonConvert.SerializeObject(bodyObject);
+            request.As<TrainingQuery>().Returns(Task.FromResult(response));
+
+            var result = service.CreateTrainingQuery(projectId: projectId, naturalLanguageQuery: "testString", examples: new List<TrainingExample> { TrainingExampleModel }, filter: "testString");
+
             request.Received().WithArgument("version", versionDate);
-            request.Received().WithBodyContent(Arg.Is<StringContent>(x => x.ReadAsStringAsync().Result.Equals(json)));
-            client.Received().PostAsync($"{service.ServiceUrl}/v2/projects/{projectId}/training_data/queries");
+
+            string messageUrl = $"{service.ServiceUrl}/v2/projects/{projectId}/training_data/queries";
+            client.Received().PostAsync(messageUrl);
         }
+
         [TestMethod]
-        public void GetTrainingQuery_Success()
+        public void TestTestGetTrainingQueryAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -424,16 +620,29 @@ namespace IBM.Watson.Discovery.v2.UnitTests
             var versionDate = "versionDate";
             service.VersionDate = versionDate;
 
-            var projectId = "projectId";
-            var queryId = "queryId";
+            var responseJson = "{'query_id': 'QueryId', 'natural_language_query': 'NaturalLanguageQuery', 'filter': 'Filter', 'examples': [{'document_id': 'DocumentId', 'collection_id': 'CollectionId', 'relevance': 9}]}";
+            var response = new DetailedResponse<TrainingQuery>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<TrainingQuery>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string projectId = "testString";
+            string queryId = "testString";
+
+            request.As<TrainingQuery>().Returns(Task.FromResult(response));
+
+            var result = service.GetTrainingQuery(projectId: projectId, queryId: queryId);
 
             request.Received().WithArgument("version", versionDate);
-            client.Received().GetAsync($"{service.ServiceUrl}/v2/projects/{projectId}/training_data/queries/{queryId}");
+
+            string messageUrl = $"{service.ServiceUrl}/v2/projects/{projectId}/training_data/queries/{queryId}";
+            client.Received().GetAsync(messageUrl);
         }
+
         [TestMethod]
-        public void UpdateTrainingQuery_Success()
+        public void TestTestUpdateTrainingQueryAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -444,31 +653,32 @@ namespace IBM.Watson.Discovery.v2.UnitTests
             var versionDate = "versionDate";
             service.VersionDate = versionDate;
 
-            var projectId = "projectId";
-            var queryId = "queryId";
-            var naturalLanguageQuery = "naturalLanguageQuery";
-            var examples = new List<TrainingExample>();
-            var filter = "filter";
+            var responseJson = "{'query_id': 'QueryId', 'natural_language_query': 'NaturalLanguageQuery', 'filter': 'Filter', 'examples': [{'document_id': 'DocumentId', 'collection_id': 'CollectionId', 'relevance': 9}]}";
+            var response = new DetailedResponse<TrainingQuery>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<TrainingQuery>(responseJson),
+                StatusCode = 201
+            };
 
-            var result = service.;
+            TrainingExample TrainingExampleModel = new TrainingExample()
+            {
+                DocumentId = "testString",
+                CollectionId = "testString",
+                Relevance = 38,
+            };
+            string projectId = "testString";
+            string queryId = "testString";
 
-            JObject bodyObject = new JObject();
-            if (!string.IsNullOrEmpty(naturalLanguageQuery))
-            {
-                bodyObject["natural_language_query"] = JToken.FromObject(naturalLanguageQuery);
-            }
-            if (examples != null && examples.Count > 0)
-            {
-                bodyObject["examples"] = JToken.FromObject(examples);
-            }
-            if (!string.IsNullOrEmpty(filter))
-            {
-                bodyObject["filter"] = JToken.FromObject(filter);
-            }
-            var json = JsonConvert.SerializeObject(bodyObject);
+            request.As<TrainingQuery>().Returns(Task.FromResult(response));
+
+            var result = service.UpdateTrainingQuery(projectId: projectId, queryId: queryId, naturalLanguageQuery: "testString", examples: new List<TrainingExample> { TrainingExampleModel }, filter: "testString");
+
             request.Received().WithArgument("version", versionDate);
-            request.Received().WithBodyContent(Arg.Is<StringContent>(x => x.ReadAsStringAsync().Result.Equals(json)));
-            client.Received().PostAsync($"{service.ServiceUrl}/v2/projects/{projectId}/training_data/queries/{queryId}");
+
+            string messageUrl = $"{service.ServiceUrl}/v2/projects/{projectId}/training_data/queries/{queryId}";
+            client.Received().PostAsync(messageUrl);
         }
+
     }
 }

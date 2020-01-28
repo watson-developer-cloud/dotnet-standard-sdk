@@ -37,10 +37,12 @@ namespace IBM.Watson.Discovery.v1
         private const string defaultServiceUrl = "https://gateway.watsonplatform.net/discovery/api";
         public string VersionDate { get; set; }
 
-        public DiscoveryService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public DiscoveryService(string versionDate) : this(versionDate, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public DiscoveryService(string versionDate, IAuthenticator authenticator) : this(versionDate, defaultServiceName, authenticator) {}
+        public DiscoveryService(string versionDate, string serviceName) : this(versionDate, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public DiscoveryService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public DiscoveryService(string versionDate, IAuthenticator authenticator) : base(defaultServiceName, authenticator)
+        public DiscoveryService(string versionDate, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
             if (string.IsNullOrEmpty(versionDate))
             {
@@ -110,7 +112,7 @@ namespace IBM.Watson.Discovery.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "CreateEnvironment"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "CreateEnvironment"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -159,7 +161,7 @@ namespace IBM.Watson.Discovery.v1
                     restRequest.WithArgument("name", name);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "ListEnvironments"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListEnvironments"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -210,7 +212,7 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "GetEnvironment"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetEnvironment"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -285,7 +287,7 @@ namespace IBM.Watson.Discovery.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "UpdateEnvironment"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "UpdateEnvironment"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -336,7 +338,7 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "DeleteEnvironment"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteEnvironment"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -398,7 +400,7 @@ namespace IBM.Watson.Discovery.v1
                     restRequest.WithArgument("collection_ids", string.Join(",", collectionIds.ToArray()));
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "ListFields"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListFields"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -498,7 +500,7 @@ namespace IBM.Watson.Discovery.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "CreateConfiguration"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "CreateConfiguration"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -556,7 +558,7 @@ namespace IBM.Watson.Discovery.v1
                     restRequest.WithArgument("name", name);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "ListConfigurations"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListConfigurations"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -616,7 +618,7 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "GetConfiguration"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetConfiguration"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -725,7 +727,7 @@ namespace IBM.Watson.Discovery.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "UpdateConfiguration"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "UpdateConfiguration"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -790,7 +792,7 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "DeleteConfiguration"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteConfiguration"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -871,7 +873,7 @@ namespace IBM.Watson.Discovery.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "CreateCollection"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "CreateCollection"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -929,7 +931,7 @@ namespace IBM.Watson.Discovery.v1
                     restRequest.WithArgument("name", name);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "ListCollections"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListCollections"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -989,7 +991,7 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "GetCollection"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetCollection"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1074,7 +1076,7 @@ namespace IBM.Watson.Discovery.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "UpdateCollection"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "UpdateCollection"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1134,7 +1136,7 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "DeleteCollection"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteCollection"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1196,7 +1198,7 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "ListCollectionFields"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListCollectionFields"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1258,7 +1260,7 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "ListExpansions"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListExpansions"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1347,7 +1349,7 @@ namespace IBM.Watson.Discovery.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "CreateExpansions"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "CreateExpansions"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1409,7 +1411,7 @@ namespace IBM.Watson.Discovery.v1
 
                 restRequest.WithArgument("version", VersionDate);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "DeleteExpansions"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteExpansions"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1471,7 +1473,7 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "GetTokenizationDictionaryStatus"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetTokenizationDictionaryStatus"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1545,7 +1547,7 @@ namespace IBM.Watson.Discovery.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "CreateTokenizationDictionary"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "CreateTokenizationDictionary"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1606,7 +1608,7 @@ namespace IBM.Watson.Discovery.v1
 
                 restRequest.WithArgument("version", VersionDate);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "DeleteTokenizationDictionary"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteTokenizationDictionary"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1668,7 +1670,7 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "GetStopwordListStatus"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetStopwordListStatus"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1752,7 +1754,7 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithHeader("Accept", "application/json");
                 restRequest.WithBodyContent(formData);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "CreateStopwordList"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "CreateStopwordList"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1814,7 +1816,7 @@ namespace IBM.Watson.Discovery.v1
 
                 restRequest.WithArgument("version", VersionDate);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "DeleteStopwordList"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteStopwordList"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1926,7 +1928,7 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithHeader("Accept", "application/json");
                 restRequest.WithBodyContent(formData);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "AddDocument"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "AddDocument"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -2068,7 +2070,7 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "GetDocumentStatus"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetDocumentStatus"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -2172,7 +2174,7 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithHeader("Accept", "application/json");
                 restRequest.WithBodyContent(formData);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "UpdateDocument"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "UpdateDocument"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -2313,7 +2315,7 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "DeleteDocument"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteDocument"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -2525,7 +2527,7 @@ namespace IBM.Watson.Discovery.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "Query"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "Query"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -2701,7 +2703,7 @@ namespace IBM.Watson.Discovery.v1
                     restRequest.WithArgument("similar.fields", string.Join(",", similarFields.ToArray()));
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "QueryNotices"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "QueryNotices"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -2727,7 +2729,59 @@ namespace IBM.Watson.Discovery.v1
         /// documentation](https://cloud.ibm.com/docs/services/discovery?topic=discovery-query-concepts#query-concepts).
         /// </summary>
         /// <param name="environmentId">The ID of the environment.</param>
-        /// <param name="queryLong"> (optional)</param>
+        /// <param name="collectionIds">A comma-separated list of collection IDs to be queried against.</param>
+        /// <param name="filter">A cacheable query that excludes documents that don't mention the query content. Filter
+        /// searches are better for metadata-type searches and for assessing the concepts in the data set.
+        /// (optional)</param>
+        /// <param name="query">A query search returns all documents in your data set with full enrichments and full
+        /// text, but with the most relevant documents listed first. Use a query search when you want to find the most
+        /// relevant search results. (optional)</param>
+        /// <param name="naturalLanguageQuery">A natural language query that returns relevant documents by utilizing
+        /// training data and natural language understanding. (optional)</param>
+        /// <param name="passages">A passages query that returns the most relevant passages from the results.
+        /// (optional)</param>
+        /// <param name="aggregation">An aggregation search that returns an exact answer by combining query search with
+        /// filters. Useful for applications to build lists, tables, and time series. For a full list of possible
+        /// aggregations, see the Query reference. (optional)</param>
+        /// <param name="count">Number of results to return. (optional)</param>
+        /// <param name="_return">A comma-separated list of the portion of the document hierarchy to return.
+        /// (optional)</param>
+        /// <param name="offset">The number of query results to skip at the beginning. For example, if the total number
+        /// of results that are returned is 10 and the offset is 8, it returns the last two results. (optional)</param>
+        /// <param name="sort">A comma-separated list of fields in the document to sort on. You can optionally specify a
+        /// sort direction by prefixing the field with `-` for descending or `+` for ascending. Ascending is the default
+        /// sort direction if no prefix is specified. This parameter cannot be used in the same query as the **bias**
+        /// parameter. (optional)</param>
+        /// <param name="highlight">When true, a highlight field is returned for each result which contains the fields
+        /// which match the query with `<em></em>` tags around the matching query terms. (optional, default to
+        /// false)</param>
+        /// <param name="passagesFields">A comma-separated list of fields that passages are drawn from. If this
+        /// parameter not specified, then all top-level fields are included. (optional)</param>
+        /// <param name="passagesCount">The maximum number of passages to return. The search returns fewer passages if
+        /// the requested total is not found. The default is `10`. The maximum is `100`. (optional)</param>
+        /// <param name="passagesCharacters">The approximate number of characters that any one passage will have.
+        /// (optional)</param>
+        /// <param name="deduplicate">When `true`, and used with a Watson Discovery News collection, duplicate results
+        /// (based on the contents of the **title** field) are removed. Duplicate comparison is limited to the current
+        /// query only; **offset** is not considered. This parameter is currently Beta functionality. (optional, default
+        /// to false)</param>
+        /// <param name="deduplicateField">When specified, duplicate results based on the field specified are removed
+        /// from the returned results. Duplicate comparison is limited to the current query only, **offset** is not
+        /// considered. This parameter is currently Beta functionality. (optional)</param>
+        /// <param name="similar">When `true`, results are returned based on their similarity to the document IDs
+        /// specified in the **similar.document_ids** parameter. (optional, default to false)</param>
+        /// <param name="similarDocumentIds">A comma-separated list of document IDs to find similar documents.
+        ///
+        /// **Tip:** Include the **natural_language_query** parameter to expand the scope of the document similarity
+        /// search with the natural language query. Other query parameters, such as **filter** and **query**, are
+        /// subsequently applied and reduce the scope. (optional)</param>
+        /// <param name="similarFields">A comma-separated list of field names that are used as a basis for comparison to
+        /// identify similar documents. If not specified, the entire document is used for comparison. (optional)</param>
+        /// <param name="bias">Field which the returned results will be biased against. The specified field must be
+        /// either a **date** or **number** format. When a **date** type field is specified returned results are biased
+        /// towards field values closer to the current date. When a **number** type field is specified, returned results
+        /// are biased towards higher field values. This parameter cannot be used in the same query as the **sort**
+        /// parameter. (optional)</param>
         /// <param name="xWatsonLoggingOptOut">If `true`, queries are not stored in the Discovery **Logs** endpoint.
         /// (optional, default to false)</param>
         /// <returns><see cref="QueryResponse" />QueryResponse</returns>
@@ -2853,7 +2907,7 @@ namespace IBM.Watson.Discovery.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "FederatedQuery"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "FederatedQuery"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3005,7 +3059,7 @@ namespace IBM.Watson.Discovery.v1
                     restRequest.WithArgument("similar.fields", string.Join(",", similarFields.ToArray()));
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "FederatedQueryNotices"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "FederatedQueryNotices"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3089,7 +3143,7 @@ namespace IBM.Watson.Discovery.v1
                     restRequest.WithArgument("count", count);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "GetAutocompletion"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetAutocompletion"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3150,7 +3204,7 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "ListTrainingData"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListTrainingData"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3234,7 +3288,7 @@ namespace IBM.Watson.Discovery.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "AddTrainingData"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "AddTrainingData"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3295,7 +3349,7 @@ namespace IBM.Watson.Discovery.v1
 
                 restRequest.WithArgument("version", VersionDate);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "DeleteAllTrainingData"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteAllTrainingData"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3366,7 +3420,7 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "GetTrainingData"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetTrainingData"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3436,7 +3490,7 @@ namespace IBM.Watson.Discovery.v1
 
                 restRequest.WithArgument("version", VersionDate);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "DeleteTrainingData"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteTrainingData"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3507,7 +3561,7 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "ListTrainingExamples"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListTrainingExamples"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3598,7 +3652,7 @@ namespace IBM.Watson.Discovery.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "CreateTrainingExample"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "CreateTrainingExample"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3677,7 +3731,7 @@ namespace IBM.Watson.Discovery.v1
 
                 restRequest.WithArgument("version", VersionDate);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "DeleteTrainingExample"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteTrainingExample"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3772,7 +3826,7 @@ namespace IBM.Watson.Discovery.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "UpdateTrainingExample"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "UpdateTrainingExample"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3852,7 +3906,7 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "GetTrainingExample"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetTrainingExample"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3908,7 +3962,7 @@ namespace IBM.Watson.Discovery.v1
                     restRequest.WithArgument("customer_id", customerId);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "DeleteUserData"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteUserData"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3929,7 +3983,7 @@ namespace IBM.Watson.Discovery.v1
         /// Create event.
         ///
         /// The **Events** API can be used to create log entries that are associated with specific queries. For example,
-        /// you can record which documents in the results set were "clicked" by a user and when that click occured.
+        /// you can record which documents in the results set were "clicked" by a user and when that click occurred.
         /// </summary>
         /// <param name="type">The event type to be created.</param>
         /// <param name="data">Query event data object.</param>
@@ -3975,7 +4029,7 @@ namespace IBM.Watson.Discovery.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "CreateEvent"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "CreateEvent"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4053,7 +4107,7 @@ namespace IBM.Watson.Discovery.v1
                     restRequest.WithArgument("sort", string.Join(",", sort.ToArray()));
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "QueryLog"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "QueryLog"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4114,7 +4168,7 @@ namespace IBM.Watson.Discovery.v1
                     restRequest.WithArgument("result_type", resultType);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "GetMetricsQuery"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetMetricsQuery"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4206,7 +4260,7 @@ namespace IBM.Watson.Discovery.v1
                     restRequest.WithArgument("result_type", resultType);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "GetMetricsQueryEvent"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetMetricsQueryEvent"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4297,7 +4351,7 @@ namespace IBM.Watson.Discovery.v1
                     restRequest.WithArgument("result_type", resultType);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "GetMetricsQueryNoResults"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetMetricsQueryNoResults"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4389,7 +4443,7 @@ namespace IBM.Watson.Discovery.v1
                     restRequest.WithArgument("result_type", resultType);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "GetMetricsEventRate"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetMetricsEventRate"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4470,7 +4524,7 @@ namespace IBM.Watson.Discovery.v1
                     restRequest.WithArgument("count", count);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "GetMetricsQueryTokenEvent"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetMetricsQueryTokenEvent"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4524,7 +4578,7 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "ListCredentials"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListCredentials"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4611,7 +4665,7 @@ namespace IBM.Watson.Discovery.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "CreateCredentials"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "CreateCredentials"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4676,7 +4730,7 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "GetCredentials"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetCredentials"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4771,7 +4825,7 @@ namespace IBM.Watson.Discovery.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "UpdateCredentials"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "UpdateCredentials"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4833,7 +4887,7 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "DeleteCredentials"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteCredentials"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4885,7 +4939,7 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "ListGateways"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListGateways"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4948,7 +5002,7 @@ namespace IBM.Watson.Discovery.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "CreateGateway"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "CreateGateway"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -5010,7 +5064,7 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "GetGateway"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetGateway"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -5072,7 +5126,7 @@ namespace IBM.Watson.Discovery.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v1", "DeleteGateway"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteGateway"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 

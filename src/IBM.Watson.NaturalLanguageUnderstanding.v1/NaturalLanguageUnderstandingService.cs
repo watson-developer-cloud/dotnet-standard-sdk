@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -30,14 +30,16 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
 {
     public partial class NaturalLanguageUnderstandingService : IBMService, INaturalLanguageUnderstandingService
     {
-        const string defaultServiceName = "natural-language-understanding";
+        const string defaultServiceName = "natural_language_understanding";
         private const string defaultServiceUrl = "https://gateway.watsonplatform.net/natural-language-understanding/api";
         public string VersionDate { get; set; }
 
-        public NaturalLanguageUnderstandingService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public NaturalLanguageUnderstandingService(string versionDate) : this(versionDate, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public NaturalLanguageUnderstandingService(string versionDate, IAuthenticator authenticator) : this(versionDate, defaultServiceName, authenticator) {}
+        public NaturalLanguageUnderstandingService(string versionDate, string serviceName) : this(versionDate, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public NaturalLanguageUnderstandingService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public NaturalLanguageUnderstandingService(string versionDate, IAuthenticator authenticator) : base(defaultServiceName, authenticator)
+        public NaturalLanguageUnderstandingService(string versionDate, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
             if (string.IsNullOrEmpty(versionDate))
             {
@@ -66,6 +68,10 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// - Semantic roles
         /// - Sentiment
         /// - Syntax (Experimental).
+        ///
+        /// If a language for the input text is not specified with the `language` parameter, the service [automatically
+        /// detects the
+        /// language](https://cloud.ibm.com/docs/services/natural-language-understanding?topic=natural-language-understanding-detectable-languages).
         /// </summary>
         /// <param name="features">Specific features to analyze the document for.</param>
         /// <param name="text">The plain text to analyze. One of the `text`, `html`, or `url` parameters is required.
@@ -164,7 +170,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("natural-language-understanding", "v1", "Analyze"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "Analyze"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -209,7 +215,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("natural-language-understanding", "v1", "ListModels"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListModels"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -262,7 +268,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("natural-language-understanding", "v1", "DeleteModel"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteModel"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 

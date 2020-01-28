@@ -35,10 +35,12 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
         const string defaultServiceName = "natural_language_classifier";
         private const string defaultServiceUrl = "https://gateway.watsonplatform.net/natural-language-classifier/api";
 
-        public NaturalLanguageClassifierService() : this(ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public NaturalLanguageClassifierService() : this(defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public NaturalLanguageClassifierService(IAuthenticator authenticator) : this(defaultServiceName, authenticator) {}
+        public NaturalLanguageClassifierService(string serviceName) : this(serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public NaturalLanguageClassifierService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public NaturalLanguageClassifierService(IAuthenticator authenticator) : base(defaultServiceName, authenticator)
+        public NaturalLanguageClassifierService(string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
 
             if (string.IsNullOrEmpty(ServiceUrl))
@@ -90,7 +92,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("natural_language_classifier", "v1", "Classify"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "Classify"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -153,7 +155,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("natural_language_classifier", "v1", "ClassifyCollection"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ClassifyCollection"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -227,7 +229,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                 restRequest.WithHeader("Accept", "application/json");
                 restRequest.WithBodyContent(formData);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("natural_language_classifier", "v1", "CreateClassifier"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "CreateClassifier"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -264,7 +266,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("natural_language_classifier", "v1", "ListClassifiers"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListClassifiers"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -310,7 +312,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("natural_language_classifier", "v1", "GetClassifier"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetClassifier"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -354,7 +356,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("natural_language_classifier", "v1", "DeleteClassifier"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteClassifier"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 

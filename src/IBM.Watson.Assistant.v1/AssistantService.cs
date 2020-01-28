@@ -34,10 +34,12 @@ namespace IBM.Watson.Assistant.v1
         private const string defaultServiceUrl = "https://gateway.watsonplatform.net/assistant/api";
         public string VersionDate { get; set; }
 
-        public AssistantService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public AssistantService(string versionDate) : this(versionDate, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public AssistantService(string versionDate, IAuthenticator authenticator) : this(versionDate, defaultServiceName, authenticator) {}
+        public AssistantService(string versionDate, string serviceName) : this(versionDate, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public AssistantService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public AssistantService(string versionDate, IAuthenticator authenticator) : base(defaultServiceName, authenticator)
+        public AssistantService(string versionDate, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
             if (string.IsNullOrEmpty(versionDate))
             {
@@ -142,7 +144,7 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "Message"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "Message"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -209,7 +211,7 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListWorkspaces"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListWorkspaces"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -361,7 +363,7 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateWorkspace"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "CreateWorkspace"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -437,7 +439,7 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("sort", sort);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "GetWorkspace"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetWorkspace"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -521,7 +523,7 @@ namespace IBM.Watson.Assistant.v1
         /// If **append**=`true`, existing elements are preserved, and the new elements are added. If any elements in
         /// the new data collide with existing elements, the update request fails. (optional, default to false)</param>
         /// <returns><see cref="Workspace" />Workspace</returns>
-        public DetailedResponse<Workspace> UpdateWorkspace(string workspaceId, string name = null, string description = null, string language = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null, bool? append = null, List<Webhook> webhooks = null)
+        public DetailedResponse<Workspace> UpdateWorkspace(string workspaceId, string name = null, string description = null, string language = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null, bool? append = null, List < Webhook > webhooks = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -602,7 +604,7 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateWorkspace"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "UpdateWorkspace"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -657,7 +659,7 @@ namespace IBM.Watson.Assistant.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "DeleteWorkspace"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteWorkspace"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -741,7 +743,7 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListIntents"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListIntents"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -865,7 +867,7 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateIntent"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "CreateIntent"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -943,7 +945,7 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "GetIntent"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetIntent"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1034,7 +1036,7 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateIntent"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "UpdateIntent"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1098,7 +1100,7 @@ namespace IBM.Watson.Assistant.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "DeleteIntent"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteIntent"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1183,7 +1185,7 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListExamples"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListExamples"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1310,7 +1312,7 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateExample"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "CreateExample"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1389,7 +1391,7 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "GetExample"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetExample"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1483,7 +1485,7 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateExample"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "UpdateExample"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1556,7 +1558,7 @@ namespace IBM.Watson.Assistant.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "DeleteExample"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteExample"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1633,7 +1635,7 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListCounterexamples"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListCounterexamples"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1748,7 +1750,7 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateCounterexample"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "CreateCounterexample"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1819,7 +1821,7 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "GetCounterexample"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetCounterexample"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1899,7 +1901,7 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateCounterexample"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "UpdateCounterexample"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1964,7 +1966,7 @@ namespace IBM.Watson.Assistant.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "DeleteCounterexample"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteCounterexample"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -2048,7 +2050,7 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListEntities"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListEntities"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -2183,7 +2185,7 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateEntity"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "CreateEntity"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -2261,7 +2263,7 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "GetEntity"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetEntity"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -2362,7 +2364,7 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateEntity"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "UpdateEntity"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -2426,7 +2428,7 @@ namespace IBM.Watson.Assistant.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "DeleteEntity"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteEntity"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -2503,7 +2505,7 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListMentions"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListMentions"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -2595,7 +2597,7 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListValues"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListValues"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -2744,7 +2746,7 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateValue"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "CreateValue"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -2830,7 +2832,7 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "GetValue"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetValue"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -2946,7 +2948,7 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateValue"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "UpdateValue"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3019,7 +3021,7 @@ namespace IBM.Watson.Assistant.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "DeleteValue"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteValue"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3113,7 +3115,7 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListSynonyms"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListSynonyms"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3244,7 +3246,7 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateSynonym"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "CreateSynonym"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3332,7 +3334,7 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "GetSynonym"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetSynonym"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3429,7 +3431,7 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateSynonym"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "UpdateSynonym"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3511,7 +3513,7 @@ namespace IBM.Watson.Assistant.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "DeleteSynonym"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteSynonym"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3587,7 +3589,7 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListDialogNodes"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListDialogNodes"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3803,7 +3805,7 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateDialogNode"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "CreateDialogNode"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3873,7 +3875,7 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "GetDialogNode"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetDialogNode"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4057,7 +4059,7 @@ namespace IBM.Watson.Assistant.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateDialogNode"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "UpdateDialogNode"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4121,7 +4123,7 @@ namespace IBM.Watson.Assistant.v1
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "DeleteDialogNode"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteDialogNode"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4200,7 +4202,7 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("cursor", cursor);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListLogs"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListLogs"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4276,7 +4278,7 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("cursor", cursor);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListAllLogs"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListAllLogs"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4335,7 +4337,7 @@ namespace IBM.Watson.Assistant.v1
                     restRequest.WithArgument("customer_id", customerId);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "DeleteUserData"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteUserData"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 

@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,6 +15,16 @@
 *
 */
 
+using IBM.Cloud.SDK.Core.Http;
+using IBM.Watson.SpeechToText.v1.Model;
+using NSubstitute;
+using System;
+using Newtonsoft.Json;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using System.Text;
+using IBM.Cloud.SDK.Core.Authentication.NoAuth;
+using System.Threading.Tasks;
 
 namespace IBM.Watson.SpeechToText.v1.UnitTests
 {
@@ -38,8 +48,14 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
         [TestMethod]
         public void ConstructorExternalConfig()
         {
+            var apikey = System.Environment.GetEnvironmentVariable("SPEECH_TO_TEXT_APIKEY");
+            var url = System.Environment.GetEnvironmentVariable("SPEECH_TO_TEXT_URL");
+            System.Environment.SetEnvironmentVariable("SPEECH_TO_TEXT_APIKEY", "apikey");
+            System.Environment.SetEnvironmentVariable("SPEECH_TO_TEXT_URL", "http://www.url.com");
             SpeechToTextService service = Substitute.For<SpeechToTextService>();
             Assert.IsNotNull(service);
+            System.Environment.SetEnvironmentVariable("SPEECH_TO_TEXT_URL", url);
+            System.Environment.SetEnvironmentVariable("SPEECH_TO_TEXT_APIKEY", apikey);
         }
 
         [TestMethod]
@@ -59,16 +75,36 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
         [TestMethod]
         public void ConstructorNoUrl()
         {
-            var url = System.Environment.GetEnvironmentVariable("SPEECH_TO_TEXT_SERVICE_URL");
-            System.Environment.SetEnvironmentVariable("SPEECH_TO_TEXT_SERVICE_URL", null);
+            var apikey = System.Environment.GetEnvironmentVariable("SPEECH_TO_TEXT_APIKEY");
+            var url = System.Environment.GetEnvironmentVariable("SPEECH_TO_TEXT_URL");
+            System.Environment.SetEnvironmentVariable("SPEECH_TO_TEXT_APIKEY", "apikey");
+            System.Environment.SetEnvironmentVariable("SPEECH_TO_TEXT_URL", null);
             SpeechToTextService service = Substitute.For<SpeechToTextService>();
             Assert.IsTrue(service.ServiceUrl == "https://stream.watsonplatform.net/speech-to-text/api");
-            System.Environment.SetEnvironmentVariable("SPEECH_TO_TEXT_SERVICE_URL", url);
+            System.Environment.SetEnvironmentVariable("SPEECH_TO_TEXT_URL", url);
+            System.Environment.SetEnvironmentVariable("SPEECH_TO_TEXT_APIKEY", apikey);
         }
         #endregion
 
         [TestMethod]
-        public void ListModels_Success()
+        public void TestCustomWordModel()
+        {
+
+            var CustomWordSoundsLike = new List<string> { "testString" };
+            CustomWord testRequestModel = new CustomWord()
+            {
+                Word = "testString",
+                SoundsLike = CustomWordSoundsLike,
+                DisplayAs = "testString"
+            };
+
+            Assert.IsTrue(testRequestModel.Word == "testString");
+            Assert.IsTrue(testRequestModel.SoundsLike == CustomWordSoundsLike);
+            Assert.IsTrue(testRequestModel.DisplayAs == "testString");
+        }
+
+        [TestMethod]
+        public void TestTestListModelsAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -77,12 +113,26 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
+            var responseJson = "{'models': [{'name': 'Name', 'language': 'Language', 'rate': 4, 'url': 'Url', 'supported_features': {'custom_language_model': false, 'speaker_labels': false}, 'description': 'Description'}]}";
+            var response = new DetailedResponse<SpeechModels>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<SpeechModels>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
 
+            request.As<SpeechModels>().Returns(Task.FromResult(response));
+
+            var result = service.ListModels();
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/models";
+            client.Received().GetAsync(messageUrl);
         }
+
         [TestMethod]
-        public void GetModel_Success()
+        public void TestTestGetModelAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -91,14 +141,27 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var modelId = "modelId";
+            var responseJson = "{'name': 'Name', 'language': 'Language', 'rate': 4, 'url': 'Url', 'supported_features': {'custom_language_model': false, 'speaker_labels': false}, 'description': 'Description'}";
+            var response = new DetailedResponse<SpeechModel>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<SpeechModel>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string modelId = "ar-AR_BroadbandModel";
 
-            client.Received().GetAsync($"{service.ServiceUrl}/v1/models/{modelId}");
+            request.As<SpeechModel>().Returns(Task.FromResult(response));
+
+            var result = service.GetModel(modelId: modelId);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/models/{modelId}";
+            client.Received().GetAsync(messageUrl);
         }
+
         [TestMethod]
-        public void Recognize_Success()
+        public void TestTestRecognizeAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -107,35 +170,49 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var audio = new byte[4];
-            var contentType = "contentType";
-            var model = "model";
-            var languageCustomizationId = "languageCustomizationId";
-            var acousticCustomizationId = "acousticCustomizationId";
-            var baseModelVersion = "baseModelVersion";
-            double? customizationWeight = 0.5f;
-            long? inactivityTimeout = 1;
-            var keywords = new List<string>() { "keywords0", "keywords1" };
-            float? keywordsThreshold = 0.5f;
-            long? maxAlternatives = 1;
-            float? wordAlternativesThreshold = 0.5f;
-            var wordConfidence = false;
-            var timestamps = false;
-            var profanityFilter = false;
-            var smartFormatting = false;
-            var speakerLabels = false;
-            var customizationId = "customizationId";
-            var grammarName = "grammarName";
-            var redaction = false;
-            var audioMetrics = false;
+            var responseJson = "{'results': [{'final': false, 'alternatives': [{'transcript': 'Transcript', 'confidence': 10, 'timestamps': [['Timestamps']], 'word_confidence': [['WordConfidence']]}], 'keywords_result': {}, 'word_alternatives': [{'start_time': 9, 'end_time': 7, 'alternatives': [{'confidence': 10, 'word': 'Word'}]}], 'end_of_utterance': 'end_of_data'}], 'result_index': 11, 'speaker_labels': [{'from': 4, 'to': 2, 'speaker': 7, 'confidence': 10, 'final': false}], 'processing_metrics': {'processed_audio': {'received': 8, 'seen_by_engine': 12, 'transcription': 13, 'speaker_labels': 13}, 'wall_clock_since_first_byte_received': 31, 'periodic': true}, 'audio_metrics': {'sampling_interval': 16, 'accumulated': {'final': false, 'end_time': 7, 'signal_to_noise_ratio': 18, 'speech_ratio': 11, 'high_frequency_loss': 17, 'direct_current_offset': [{'begin': 5, 'end': 3, 'count': 5}], 'clipping_rate': [{'begin': 5, 'end': 3, 'count': 5}], 'speech_level': [{'begin': 5, 'end': 3, 'count': 5}], 'non_speech_level': [{'begin': 5, 'end': 3, 'count': 5}]}}, 'warnings': ['Warnings']}";
+            var response = new DetailedResponse<SpeechRecognitionResults>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<SpeechRecognitionResults>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            byte[] audio = new byte[4];
+            string contentType = "application/octet-stream";
+            string model = "ar-AR_BroadbandModel";
+            string languageCustomizationId = "testString";
+            string acousticCustomizationId = "testString";
+            string baseModelVersion = "testString";
+            double? customizationWeight = 72.5f;
+            long? inactivityTimeout = 38;
+            List<string> keywords = new List<string> { "testString" };
+            float? keywordsThreshold = 36.0f;
+            long? maxAlternatives = 38;
+            float? wordAlternativesThreshold = 36.0f;
+            bool? wordConfidence = true;
+            bool? timestamps = true;
+            bool? profanityFilter = true;
+            bool? smartFormatting = true;
+            bool? speakerLabels = true;
+            string customizationId = "testString";
+            string grammarName = "testString";
+            bool? redaction = true;
+            bool? audioMetrics = true;
+            double? endOfPhraseSilenceTime = 72.5f;
+            bool? splitTranscriptAtPhraseEnd = true;
 
-            var audioString = System.Text.Encoding.Default.GetString(audio);
-            request.Received().WithBodyContent(Arg.Is<ByteArrayContent>(x => x.ReadAsStringAsync().Result.Equals(audioString)));
+            request.As<SpeechRecognitionResults>().Returns(Task.FromResult(response));
+
+            var result = service.Recognize(audio: audio, contentType: contentType, model: model, languageCustomizationId: languageCustomizationId, acousticCustomizationId: acousticCustomizationId, baseModelVersion: baseModelVersion, customizationWeight: customizationWeight, inactivityTimeout: inactivityTimeout, keywords: keywords, keywordsThreshold: keywordsThreshold, maxAlternatives: maxAlternatives, wordAlternativesThreshold: wordAlternativesThreshold, wordConfidence: wordConfidence, timestamps: timestamps, profanityFilter: profanityFilter, smartFormatting: smartFormatting, speakerLabels: speakerLabels, customizationId: customizationId, grammarName: grammarName, redaction: redaction, audioMetrics: audioMetrics, endOfPhraseSilenceTime: endOfPhraseSilenceTime, splitTranscriptAtPhraseEnd: splitTranscriptAtPhraseEnd);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/recognize";
+            client.Received().PostAsync(messageUrl);
         }
+
         [TestMethod]
-        public void RegisterCallback_Success()
+        public void TestTestRegisterCallbackAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -144,14 +221,28 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var callbackUrl = "callbackUrl";
-            var userSecret = "userSecret";
+            var responseJson = "{'status': 'created', 'url': 'Url'}";
+            var response = new DetailedResponse<RegisterStatus>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<RegisterStatus>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string callbackUrl = "testString";
+            string userSecret = "testString";
 
+            request.As<RegisterStatus>().Returns(Task.FromResult(response));
+
+            var result = service.RegisterCallback(callbackUrl: callbackUrl, userSecret: userSecret);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/register_callback";
+            client.Received().PostAsync(messageUrl);
         }
+
         [TestMethod]
-        public void UnregisterCallback_Success()
+        public void TestTestUnregisterCallbackAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -160,13 +251,27 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var callbackUrl = "callbackUrl";
+            var responseJson = "{}";
+            var response = new DetailedResponse<object>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<object>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string callbackUrl = "testString";
 
+            request.As<object>().Returns(Task.FromResult(response));
+
+            var result = service.UnregisterCallback(callbackUrl: callbackUrl);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/unregister_callback";
+            client.Received().PostAsync(messageUrl);
         }
+
         [TestMethod]
-        public void CreateJob_Success()
+        public void TestTestCreateJobAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -175,41 +280,55 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var audio = new byte[4];
-            var contentType = "contentType";
-            var model = "model";
-            var callbackUrl = "callbackUrl";
-            var events = "events";
-            var userToken = "userToken";
-            long? resultsTtl = 1;
-            var languageCustomizationId = "languageCustomizationId";
-            var acousticCustomizationId = "acousticCustomizationId";
-            var baseModelVersion = "baseModelVersion";
-            double? customizationWeight = 0.5f;
-            long? inactivityTimeout = 1;
-            var keywords = new List<string>() { "keywords0", "keywords1" };
-            float? keywordsThreshold = 0.5f;
-            long? maxAlternatives = 1;
-            float? wordAlternativesThreshold = 0.5f;
-            var wordConfidence = false;
-            var timestamps = false;
-            var profanityFilter = false;
-            var smartFormatting = false;
-            var speakerLabels = false;
-            var customizationId = "customizationId";
-            var grammarName = "grammarName";
-            var redaction = false;
-            var processingMetrics = false;
-            float? processingMetricsInterval = 0.5f;
-            var audioMetrics = false;
+            var responseJson = "{'id': 'Id', 'status': 'waiting', 'created': 'Created', 'updated': 'Updated', 'url': 'Url', 'user_token': 'UserToken', 'results': [{'results': [{'final': false, 'alternatives': [{'transcript': 'Transcript', 'confidence': 10, 'timestamps': [['Timestamps']], 'word_confidence': [['WordConfidence']]}], 'keywords_result': {}, 'word_alternatives': [{'start_time': 9, 'end_time': 7, 'alternatives': [{'confidence': 10, 'word': 'Word'}]}], 'end_of_utterance': 'end_of_data'}], 'result_index': 11, 'speaker_labels': [{'from': 4, 'to': 2, 'speaker': 7, 'confidence': 10, 'final': false}], 'processing_metrics': {'processed_audio': {'received': 8, 'seen_by_engine': 12, 'transcription': 13, 'speaker_labels': 13}, 'wall_clock_since_first_byte_received': 31, 'periodic': true}, 'audio_metrics': {'sampling_interval': 16, 'accumulated': {'final': false, 'end_time': 7, 'signal_to_noise_ratio': 18, 'speech_ratio': 11, 'high_frequency_loss': 17, 'direct_current_offset': [{'begin': 5, 'end': 3, 'count': 5}], 'clipping_rate': [{'begin': 5, 'end': 3, 'count': 5}], 'speech_level': [{'begin': 5, 'end': 3, 'count': 5}], 'non_speech_level': [{'begin': 5, 'end': 3, 'count': 5}]}}, 'warnings': ['Warnings']}], 'warnings': ['Warnings']}";
+            var response = new DetailedResponse<RecognitionJob>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<RecognitionJob>(responseJson),
+                StatusCode = 201
+            };
 
-            var result = service.;
+            byte[] audio = new byte[4];
+            string contentType = "application/octet-stream";
+            string model = "ar-AR_BroadbandModel";
+            string callbackUrl = "testString";
+            string events = "recognitions.started";
+            string userToken = "testString";
+            long? resultsTtl = 38;
+            string languageCustomizationId = "testString";
+            string acousticCustomizationId = "testString";
+            string baseModelVersion = "testString";
+            double? customizationWeight = 72.5f;
+            long? inactivityTimeout = 38;
+            List<string> keywords = new List<string> { "testString" };
+            float? keywordsThreshold = 36.0f;
+            long? maxAlternatives = 38;
+            float? wordAlternativesThreshold = 36.0f;
+            bool? wordConfidence = true;
+            bool? timestamps = true;
+            bool? profanityFilter = true;
+            bool? smartFormatting = true;
+            bool? speakerLabels = true;
+            string customizationId = "testString";
+            string grammarName = "testString";
+            bool? redaction = true;
+            bool? processingMetrics = true;
+            float? processingMetricsInterval = 36.0f;
+            bool? audioMetrics = true;
+            double? endOfPhraseSilenceTime = 72.5f;
+            bool? splitTranscriptAtPhraseEnd = true;
 
-            var audioString = System.Text.Encoding.Default.GetString(audio);
-            request.Received().WithBodyContent(Arg.Is<ByteArrayContent>(x => x.ReadAsStringAsync().Result.Equals(audioString)));
+            request.As<RecognitionJob>().Returns(Task.FromResult(response));
+
+            var result = service.CreateJob(audio: audio, contentType: contentType, model: model, callbackUrl: callbackUrl, events: events, userToken: userToken, resultsTtl: resultsTtl, languageCustomizationId: languageCustomizationId, acousticCustomizationId: acousticCustomizationId, baseModelVersion: baseModelVersion, customizationWeight: customizationWeight, inactivityTimeout: inactivityTimeout, keywords: keywords, keywordsThreshold: keywordsThreshold, maxAlternatives: maxAlternatives, wordAlternativesThreshold: wordAlternativesThreshold, wordConfidence: wordConfidence, timestamps: timestamps, profanityFilter: profanityFilter, smartFormatting: smartFormatting, speakerLabels: speakerLabels, customizationId: customizationId, grammarName: grammarName, redaction: redaction, processingMetrics: processingMetrics, processingMetricsInterval: processingMetricsInterval, audioMetrics: audioMetrics, endOfPhraseSilenceTime: endOfPhraseSilenceTime, splitTranscriptAtPhraseEnd: splitTranscriptAtPhraseEnd);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/recognitions";
+            client.Received().PostAsync(messageUrl);
         }
+
         [TestMethod]
-        public void CheckJobs_Success()
+        public void TestTestCheckJobsAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -218,12 +337,26 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
+            var responseJson = "{'recognitions': [{'id': 'Id', 'status': 'waiting', 'created': 'Created', 'updated': 'Updated', 'url': 'Url', 'user_token': 'UserToken', 'results': [{'results': [{'final': false, 'alternatives': [{'transcript': 'Transcript', 'confidence': 10, 'timestamps': [['Timestamps']], 'word_confidence': [['WordConfidence']]}], 'keywords_result': {}, 'word_alternatives': [{'start_time': 9, 'end_time': 7, 'alternatives': [{'confidence': 10, 'word': 'Word'}]}], 'end_of_utterance': 'end_of_data'}], 'result_index': 11, 'speaker_labels': [{'from': 4, 'to': 2, 'speaker': 7, 'confidence': 10, 'final': false}], 'processing_metrics': {'processed_audio': {'received': 8, 'seen_by_engine': 12, 'transcription': 13, 'speaker_labels': 13}, 'wall_clock_since_first_byte_received': 31, 'periodic': true}, 'audio_metrics': {'sampling_interval': 16, 'accumulated': {'final': false, 'end_time': 7, 'signal_to_noise_ratio': 18, 'speech_ratio': 11, 'high_frequency_loss': 17, 'direct_current_offset': [{'begin': 5, 'end': 3, 'count': 5}], 'clipping_rate': [{'begin': 5, 'end': 3, 'count': 5}], 'speech_level': [{'begin': 5, 'end': 3, 'count': 5}], 'non_speech_level': [{'begin': 5, 'end': 3, 'count': 5}]}}, 'warnings': ['Warnings']}], 'warnings': ['Warnings']}]}";
+            var response = new DetailedResponse<RecognitionJobs>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<RecognitionJobs>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
 
+            request.As<RecognitionJobs>().Returns(Task.FromResult(response));
+
+            var result = service.CheckJobs();
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/recognitions";
+            client.Received().GetAsync(messageUrl);
         }
+
         [TestMethod]
-        public void CheckJob_Success()
+        public void TestTestCheckJobAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -232,14 +365,27 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var id = "id";
+            var responseJson = "{'id': 'Id', 'status': 'waiting', 'created': 'Created', 'updated': 'Updated', 'url': 'Url', 'user_token': 'UserToken', 'results': [{'results': [{'final': false, 'alternatives': [{'transcript': 'Transcript', 'confidence': 10, 'timestamps': [['Timestamps']], 'word_confidence': [['WordConfidence']]}], 'keywords_result': {}, 'word_alternatives': [{'start_time': 9, 'end_time': 7, 'alternatives': [{'confidence': 10, 'word': 'Word'}]}], 'end_of_utterance': 'end_of_data'}], 'result_index': 11, 'speaker_labels': [{'from': 4, 'to': 2, 'speaker': 7, 'confidence': 10, 'final': false}], 'processing_metrics': {'processed_audio': {'received': 8, 'seen_by_engine': 12, 'transcription': 13, 'speaker_labels': 13}, 'wall_clock_since_first_byte_received': 31, 'periodic': true}, 'audio_metrics': {'sampling_interval': 16, 'accumulated': {'final': false, 'end_time': 7, 'signal_to_noise_ratio': 18, 'speech_ratio': 11, 'high_frequency_loss': 17, 'direct_current_offset': [{'begin': 5, 'end': 3, 'count': 5}], 'clipping_rate': [{'begin': 5, 'end': 3, 'count': 5}], 'speech_level': [{'begin': 5, 'end': 3, 'count': 5}], 'non_speech_level': [{'begin': 5, 'end': 3, 'count': 5}]}}, 'warnings': ['Warnings']}], 'warnings': ['Warnings']}";
+            var response = new DetailedResponse<RecognitionJob>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<RecognitionJob>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string id = "testString";
 
-            client.Received().GetAsync($"{service.ServiceUrl}/v1/recognitions/{id}");
+            request.As<RecognitionJob>().Returns(Task.FromResult(response));
+
+            var result = service.CheckJob(id: id);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/recognitions/{id}";
+            client.Received().GetAsync(messageUrl);
         }
+
         [TestMethod]
-        public void DeleteJob_Success()
+        public void TestTestDeleteJobAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -248,14 +394,27 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var id = "id";
+            var responseJson = "{}";
+            var response = new DetailedResponse<object>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<object>(responseJson),
+                StatusCode = 204
+            };
 
-            var result = service.;
+            string id = "testString";
 
-            client.Received().DeleteAsync($"{service.ServiceUrl}/v1/recognitions/{id}");
+            request.As<object>().Returns(Task.FromResult(response));
+
+            var result = service.DeleteJob(id: id);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/recognitions/{id}";
+            client.Received().DeleteAsync(messageUrl);
         }
+
         [TestMethod]
-        public void CreateLanguageModel_Success()
+        public void TestTestCreateLanguageModelAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -264,35 +423,26 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var name = "name";
-            var baseModelName = "baseModelName";
-            var dialect = "dialect";
-            var description = "description";
+            var responseJson = "{'customization_id': 'CustomizationId', 'created': 'Created', 'updated': 'Updated', 'language': 'Language', 'dialect': 'Dialect', 'versions': ['Versions'], 'owner': 'Owner', 'name': 'Name', 'description': 'Description', 'base_model_name': 'BaseModelName', 'status': 'pending', 'progress': 8, 'error': 'Error', 'warnings': 'Warnings'}";
+            var response = new DetailedResponse<LanguageModel>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<LanguageModel>(responseJson),
+                StatusCode = 201
+            };
 
-            var result = service.;
 
-            JObject bodyObject = new JObject();
-            if (!string.IsNullOrEmpty(name))
-            {
-                bodyObject["name"] = JToken.FromObject(name);
-            }
-            if (!string.IsNullOrEmpty(baseModelName))
-            {
-                bodyObject["base_model_name"] = JToken.FromObject(baseModelName);
-            }
-            if (!string.IsNullOrEmpty(dialect))
-            {
-                bodyObject["dialect"] = JToken.FromObject(dialect);
-            }
-            if (!string.IsNullOrEmpty(description))
-            {
-                bodyObject["description"] = JToken.FromObject(description);
-            }
-            var json = JsonConvert.SerializeObject(bodyObject);
-            request.Received().WithBodyContent(Arg.Is<StringContent>(x => x.ReadAsStringAsync().Result.Equals(json)));
+            request.As<LanguageModel>().Returns(Task.FromResult(response));
+
+            var result = service.CreateLanguageModel(name: "testString", baseModelName: "de-DE_BroadbandModel", dialect: "testString", description: "testString");
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/customizations";
+            client.Received().PostAsync(messageUrl);
         }
+
         [TestMethod]
-        public void ListLanguageModels_Success()
+        public void TestTestListLanguageModelsAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -301,13 +451,27 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var language = "language";
+            var responseJson = "{'customizations': [{'customization_id': 'CustomizationId', 'created': 'Created', 'updated': 'Updated', 'language': 'Language', 'dialect': 'Dialect', 'versions': ['Versions'], 'owner': 'Owner', 'name': 'Name', 'description': 'Description', 'base_model_name': 'BaseModelName', 'status': 'pending', 'progress': 8, 'error': 'Error', 'warnings': 'Warnings'}]}";
+            var response = new DetailedResponse<LanguageModels>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<LanguageModels>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string language = "testString";
 
+            request.As<LanguageModels>().Returns(Task.FromResult(response));
+
+            var result = service.ListLanguageModels(language: language);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/customizations";
+            client.Received().GetAsync(messageUrl);
         }
+
         [TestMethod]
-        public void GetLanguageModel_Success()
+        public void TestTestGetLanguageModelAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -316,14 +480,27 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var customizationId = "customizationId";
+            var responseJson = "{'customization_id': 'CustomizationId', 'created': 'Created', 'updated': 'Updated', 'language': 'Language', 'dialect': 'Dialect', 'versions': ['Versions'], 'owner': 'Owner', 'name': 'Name', 'description': 'Description', 'base_model_name': 'BaseModelName', 'status': 'pending', 'progress': 8, 'error': 'Error', 'warnings': 'Warnings'}";
+            var response = new DetailedResponse<LanguageModel>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<LanguageModel>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string customizationId = "testString";
 
-            client.Received().GetAsync($"{service.ServiceUrl}/v1/customizations/{customizationId}");
+            request.As<LanguageModel>().Returns(Task.FromResult(response));
+
+            var result = service.GetLanguageModel(customizationId: customizationId);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/customizations/{customizationId}";
+            client.Received().GetAsync(messageUrl);
         }
+
         [TestMethod]
-        public void DeleteLanguageModel_Success()
+        public void TestTestDeleteLanguageModelAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -332,14 +509,25 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var customizationId = "customizationId";
+            var response = new DetailedResponse<object>()
+            {
+                Result = new object(),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string customizationId = "testString";
 
-            client.Received().DeleteAsync($"{service.ServiceUrl}/v1/customizations/{customizationId}");
+            request.As<object>().Returns(Task.FromResult(response));
+
+            var result = service.DeleteLanguageModel(customizationId: customizationId);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/customizations/{customizationId}";
+            client.Received().DeleteAsync(messageUrl);
         }
+
         [TestMethod]
-        public void TrainLanguageModel_Success()
+        public void TestTestTrainLanguageModelAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -348,16 +536,29 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var customizationId = "customizationId";
-            var wordTypeToAdd = "wordTypeToAdd";
-            double? customizationWeight = 0.5f;
+            var responseJson = "{'warnings': [{'code': 'invalid_audio_files', 'message': 'Message'}]}";
+            var response = new DetailedResponse<TrainingResponse>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<TrainingResponse>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string customizationId = "testString";
+            string wordTypeToAdd = "all";
+            double? customizationWeight = 72.5f;
 
-            client.Received().PostAsync($"{service.ServiceUrl}/v1/customizations/{customizationId}/train");
+            request.As<TrainingResponse>().Returns(Task.FromResult(response));
+
+            var result = service.TrainLanguageModel(customizationId: customizationId, wordTypeToAdd: wordTypeToAdd, customizationWeight: customizationWeight);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/customizations/{customizationId}/train";
+            client.Received().PostAsync(messageUrl);
         }
+
         [TestMethod]
-        public void ResetLanguageModel_Success()
+        public void TestTestResetLanguageModelAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -366,14 +567,25 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var customizationId = "customizationId";
+            var response = new DetailedResponse<object>()
+            {
+                Result = new object(),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string customizationId = "testString";
 
-            client.Received().PostAsync($"{service.ServiceUrl}/v1/customizations/{customizationId}/reset");
+            request.As<object>().Returns(Task.FromResult(response));
+
+            var result = service.ResetLanguageModel(customizationId: customizationId);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/customizations/{customizationId}/reset";
+            client.Received().PostAsync(messageUrl);
         }
+
         [TestMethod]
-        public void UpgradeLanguageModel_Success()
+        public void TestTestUpgradeLanguageModelAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -382,14 +594,25 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var customizationId = "customizationId";
+            var response = new DetailedResponse<object>()
+            {
+                Result = new object(),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string customizationId = "testString";
 
-            client.Received().PostAsync($"{service.ServiceUrl}/v1/customizations/{customizationId}/upgrade_model");
+            request.As<object>().Returns(Task.FromResult(response));
+
+            var result = service.UpgradeLanguageModel(customizationId: customizationId);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/customizations/{customizationId}/upgrade_model";
+            client.Received().PostAsync(messageUrl);
         }
+
         [TestMethod]
-        public void ListCorpora_Success()
+        public void TestTestListCorporaAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -398,14 +621,27 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var customizationId = "customizationId";
+            var responseJson = "{'corpora': [{'name': 'Name', 'total_words': 10, 'out_of_vocabulary_words': 20, 'status': 'analyzed', 'error': 'Error'}]}";
+            var response = new DetailedResponse<Corpora>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<Corpora>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string customizationId = "testString";
 
-            client.Received().GetAsync($"{service.ServiceUrl}/v1/customizations/{customizationId}/corpora");
+            request.As<Corpora>().Returns(Task.FromResult(response));
+
+            var result = service.ListCorpora(customizationId: customizationId);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/customizations/{customizationId}/corpora";
+            client.Received().GetAsync(messageUrl);
         }
+
         [TestMethod]
-        public void AddCorpus_Success()
+        public void TestTestAddCorpusAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -414,17 +650,28 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var customizationId = "customizationId";
-            var corpusName = "corpusName";
-            var corpusFile = new MemoryStream();
-            var allowOverwrite = false;
+            var response = new DetailedResponse<object>()
+            {
+                Result = new object(),
+                StatusCode = 201
+            };
 
-            var result = service.;
+            string customizationId = "testString";
+            string corpusName = "testString";
+            System.IO.MemoryStream corpusFile = new System.IO.MemoryStream(Encoding.UTF8.GetBytes("This is a mock file."));
+            bool? allowOverwrite = true;
 
-            client.Received().PostAsync($"{service.ServiceUrl}/v1/customizations/{customizationId}/corpora/{corpusName}");
+            request.As<object>().Returns(Task.FromResult(response));
+
+            var result = service.AddCorpus(customizationId: customizationId, corpusName: corpusName, corpusFile: corpusFile, allowOverwrite: allowOverwrite);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/customizations/{customizationId}/corpora/{corpusName}";
+            client.Received().PostAsync(messageUrl);
         }
+
         [TestMethod]
-        public void GetCorpus_Success()
+        public void TestTestGetCorpusAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -433,15 +680,28 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var customizationId = "customizationId";
-            var corpusName = "corpusName";
+            var responseJson = "{'name': 'Name', 'total_words': 10, 'out_of_vocabulary_words': 20, 'status': 'analyzed', 'error': 'Error'}";
+            var response = new DetailedResponse<Corpus>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<Corpus>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string customizationId = "testString";
+            string corpusName = "testString";
 
-            client.Received().GetAsync($"{service.ServiceUrl}/v1/customizations/{customizationId}/corpora/{corpusName}");
+            request.As<Corpus>().Returns(Task.FromResult(response));
+
+            var result = service.GetCorpus(customizationId: customizationId, corpusName: corpusName);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/customizations/{customizationId}/corpora/{corpusName}";
+            client.Received().GetAsync(messageUrl);
         }
+
         [TestMethod]
-        public void DeleteCorpus_Success()
+        public void TestTestDeleteCorpusAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -450,15 +710,26 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var customizationId = "customizationId";
-            var corpusName = "corpusName";
+            var response = new DetailedResponse<object>()
+            {
+                Result = new object(),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string customizationId = "testString";
+            string corpusName = "testString";
 
-            client.Received().DeleteAsync($"{service.ServiceUrl}/v1/customizations/{customizationId}/corpora/{corpusName}");
+            request.As<object>().Returns(Task.FromResult(response));
+
+            var result = service.DeleteCorpus(customizationId: customizationId, corpusName: corpusName);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/customizations/{customizationId}/corpora/{corpusName}";
+            client.Received().DeleteAsync(messageUrl);
         }
+
         [TestMethod]
-        public void ListWords_Success()
+        public void TestTestListWordsAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -467,16 +738,29 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var customizationId = "customizationId";
-            var wordType = "wordType";
-            var sort = "sort";
+            var responseJson = "{'words': [{'word': '_Word', 'sounds_like': ['SoundsLike'], 'display_as': 'DisplayAs', 'count': 5, 'source': ['Source'], 'error': [{'element': 'Element'}]}]}";
+            var response = new DetailedResponse<Words>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<Words>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string customizationId = "testString";
+            string wordType = "all";
+            string sort = "alphabetical";
 
-            client.Received().GetAsync($"{service.ServiceUrl}/v1/customizations/{customizationId}/words");
+            request.As<Words>().Returns(Task.FromResult(response));
+
+            var result = service.ListWords(customizationId: customizationId, wordType: wordType, sort: sort);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/customizations/{customizationId}/words";
+            client.Received().GetAsync(messageUrl);
         }
+
         [TestMethod]
-        public void AddWords_Success()
+        public void TestTestAddWordsAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -485,22 +769,32 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var customizationId = "customizationId";
-            var words = new List<CustomWord>();
-
-            var result = service.;
-
-            JObject bodyObject = new JObject();
-            if (words != null && words.Count > 0)
+            var response = new DetailedResponse<object>()
             {
-                bodyObject["words"] = JToken.FromObject(words);
-            }
-            var json = JsonConvert.SerializeObject(bodyObject);
-            request.Received().WithBodyContent(Arg.Is<StringContent>(x => x.ReadAsStringAsync().Result.Equals(json)));
-            client.Received().PostAsync($"{service.ServiceUrl}/v1/customizations/{customizationId}/words");
+                Result = new object(),
+                StatusCode = 201
+            };
+
+            var CustomWordSoundsLike = new List<string> { "testString" };
+            CustomWord CustomWordModel = new CustomWord()
+            {
+                Word = "testString",
+                SoundsLike = CustomWordSoundsLike,
+                DisplayAs = "testString"
+            };
+            string customizationId = "testString";
+
+            request.As<object>().Returns(Task.FromResult(response));
+
+            var result = service.AddWords(customizationId: customizationId, words: new List<CustomWord> { CustomWordModel });
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/customizations/{customizationId}/words";
+            client.Received().PostAsync(messageUrl);
         }
+
         [TestMethod]
-        public void AddWord_Success()
+        public void TestTestAddWordAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -509,33 +803,26 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var customizationId = "customizationId";
-            var wordName = "wordName";
-            var word = "word";
-            var soundsLike = new List<string>();
-            var displayAs = "displayAs";
+            var response = new DetailedResponse<object>()
+            {
+                Result = new object(),
+                StatusCode = 201
+            };
 
-            var result = service.;
+            string customizationId = "testString";
+            string wordName = "testString";
 
-            JObject bodyObject = new JObject();
-            if (!string.IsNullOrEmpty(word))
-            {
-                bodyObject["word"] = JToken.FromObject(word);
-            }
-            if (soundsLike != null && soundsLike.Count > 0)
-            {
-                bodyObject["sounds_like"] = JToken.FromObject(soundsLike);
-            }
-            if (!string.IsNullOrEmpty(displayAs))
-            {
-                bodyObject["display_as"] = JToken.FromObject(displayAs);
-            }
-            var json = JsonConvert.SerializeObject(bodyObject);
-            request.Received().WithBodyContent(Arg.Is<StringContent>(x => x.ReadAsStringAsync().Result.Equals(json)));
-            client.Received().PutAsync($"{service.ServiceUrl}/v1/customizations/{customizationId}/words/{wordName}");
+            request.As<object>().Returns(Task.FromResult(response));
+
+            var result = service.AddWord(customizationId: customizationId, wordName: wordName, word: "testString", soundsLike: new List<string> { "testString" }, displayAs: "testString");
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/customizations/{customizationId}/words/{wordName}";
+            client.Received().PutAsync(messageUrl);
         }
+
         [TestMethod]
-        public void GetWord_Success()
+        public void TestTestGetWordAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -544,15 +831,28 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var customizationId = "customizationId";
-            var wordName = "wordName";
+            var responseJson = "{'word': '_Word', 'sounds_like': ['SoundsLike'], 'display_as': 'DisplayAs', 'count': 5, 'source': ['Source'], 'error': [{'element': 'Element'}]}";
+            var response = new DetailedResponse<Word>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<Word>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string customizationId = "testString";
+            string wordName = "testString";
 
-            client.Received().GetAsync($"{service.ServiceUrl}/v1/customizations/{customizationId}/words/{wordName}");
+            request.As<Word>().Returns(Task.FromResult(response));
+
+            var result = service.GetWord(customizationId: customizationId, wordName: wordName);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/customizations/{customizationId}/words/{wordName}";
+            client.Received().GetAsync(messageUrl);
         }
+
         [TestMethod]
-        public void DeleteWord_Success()
+        public void TestTestDeleteWordAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -561,118 +861,86 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var customizationId = "customizationId";
-            var wordName = "wordName";
-
-            var result = service.;
-
-            client.Received().DeleteAsync($"{service.ServiceUrl}/v1/customizations/{customizationId}/words/{wordName}");
-        }
-        [TestMethod]
-        public void ListGrammars_Success()
-        {
-            IClient client = Substitute.For<IClient>();
-            IRequest request = Substitute.For<IRequest>();
-            client.GetAsync(Arg.Any<string>())
-                .Returns(request);
-
-            SpeechToTextService service = new SpeechToTextService(client);
-
-            var customizationId = "customizationId";
-
-            var result = service.;
-
-            client.Received().GetAsync($"{service.ServiceUrl}/v1/customizations/{customizationId}/grammars");
-        }
-        [TestMethod]
-        public void AddGrammar_Success()
-        {
-            IClient client = Substitute.For<IClient>();
-            IRequest request = Substitute.For<IRequest>();
-            client.PostAsync(Arg.Any<string>())
-                .Returns(request);
-
-            SpeechToTextService service = new SpeechToTextService(client);
-
-            var customizationId = "customizationId";
-            var grammarName = "grammarName";
-            var grammarFile = "grammarFile";
-            var contentType = "contentType";
-            var allowOverwrite = false;
-
-            var result = service.;
-
-            request.Received().WithBodyContent(Arg.Is<StringContent>(x => x.ReadAsStringAsync().Result.Equals(grammarFile)));
-            client.Received().PostAsync($"{service.ServiceUrl}/v1/customizations/{customizationId}/grammars/{grammarName}");
-        }
-        [TestMethod]
-        public void GetGrammar_Success()
-        {
-            IClient client = Substitute.For<IClient>();
-            IRequest request = Substitute.For<IRequest>();
-            client.GetAsync(Arg.Any<string>())
-                .Returns(request);
-
-            SpeechToTextService service = new SpeechToTextService(client);
-
-            var customizationId = "customizationId";
-            var grammarName = "grammarName";
-
-            var result = service.;
-
-            client.Received().GetAsync($"{service.ServiceUrl}/v1/customizations/{customizationId}/grammars/{grammarName}");
-        }
-        [TestMethod]
-        public void DeleteGrammar_Success()
-        {
-            IClient client = Substitute.For<IClient>();
-            IRequest request = Substitute.For<IRequest>();
-            client.DeleteAsync(Arg.Any<string>())
-                .Returns(request);
-
-            SpeechToTextService service = new SpeechToTextService(client);
-
-            var customizationId = "customizationId";
-            var grammarName = "grammarName";
-
-            var result = service.;
-
-            client.Received().DeleteAsync($"{service.ServiceUrl}/v1/customizations/{customizationId}/grammars/{grammarName}");
-        }
-        [TestMethod]
-        public void CreateAcousticModel_Success()
-        {
-            IClient client = Substitute.For<IClient>();
-            IRequest request = Substitute.For<IRequest>();
-            client.PostAsync(Arg.Any<string>())
-                .Returns(request);
-
-            SpeechToTextService service = new SpeechToTextService(client);
-
-            var name = "name";
-            var baseModelName = "baseModelName";
-            var description = "description";
-
-            var result = service.;
-
-            JObject bodyObject = new JObject();
-            if (!string.IsNullOrEmpty(name))
+            var response = new DetailedResponse<object>()
             {
-                bodyObject["name"] = JToken.FromObject(name);
-            }
-            if (!string.IsNullOrEmpty(baseModelName))
+                Result = new object(),
+                StatusCode = 200
+            };
+
+            string customizationId = "testString";
+            string wordName = "testString";
+
+            request.As<object>().Returns(Task.FromResult(response));
+
+            var result = service.DeleteWord(customizationId: customizationId, wordName: wordName);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/customizations/{customizationId}/words/{wordName}";
+            client.Received().DeleteAsync(messageUrl);
+        }
+
+        [TestMethod]
+        public void TestTestListGrammarsAllParams()
+        {
+            IClient client = Substitute.For<IClient>();
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                .Returns(request);
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var responseJson = "{'grammars': [{'name': 'Name', 'out_of_vocabulary_words': 20, 'status': 'analyzed', 'error': 'Error'}]}";
+            var response = new DetailedResponse<Grammars>()
             {
-                bodyObject["base_model_name"] = JToken.FromObject(baseModelName);
-            }
-            if (!string.IsNullOrEmpty(description))
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<Grammars>(responseJson),
+                StatusCode = 200
+            };
+
+            string customizationId = "testString";
+
+            request.As<Grammars>().Returns(Task.FromResult(response));
+
+            var result = service.ListGrammars(customizationId: customizationId);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/customizations/{customizationId}/grammars";
+            client.Received().GetAsync(messageUrl);
+        }
+
+        [TestMethod]
+        public void TestTestAddGrammarAllParams()
+        {
+            IClient client = Substitute.For<IClient>();
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                .Returns(request);
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var response = new DetailedResponse<object>()
             {
-                bodyObject["description"] = JToken.FromObject(description);
-            }
-            var json = JsonConvert.SerializeObject(bodyObject);
-            request.Received().WithBodyContent(Arg.Is<StringContent>(x => x.ReadAsStringAsync().Result.Equals(json)));
+                Result = new object(),
+                StatusCode = 201
+            };
+
+            string customizationId = "testString";
+            string grammarName = "testString";
+            string grammarFile = "testString";
+            string contentType = "application/srgs";
+            bool? allowOverwrite = true;
+
+            request.As<object>().Returns(Task.FromResult(response));
+
+            var result = service.AddGrammar(customizationId: customizationId, grammarName: grammarName, grammarFile: grammarFile, contentType: contentType, allowOverwrite: allowOverwrite);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/customizations/{customizationId}/grammars/{grammarName}";
+            client.Received().PostAsync(messageUrl);
         }
+
         [TestMethod]
-        public void ListAcousticModels_Success()
+        public void TestTestGetGrammarAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -681,29 +949,28 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var language = "language";
+            var responseJson = "{'name': 'Name', 'out_of_vocabulary_words': 20, 'status': 'analyzed', 'error': 'Error'}";
+            var response = new DetailedResponse<Grammar>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<Grammar>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string customizationId = "testString";
+            string grammarName = "testString";
 
+            request.As<Grammar>().Returns(Task.FromResult(response));
+
+            var result = service.GetGrammar(customizationId: customizationId, grammarName: grammarName);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/customizations/{customizationId}/grammars/{grammarName}";
+            client.Received().GetAsync(messageUrl);
         }
+
         [TestMethod]
-        public void GetAcousticModel_Success()
-        {
-            IClient client = Substitute.For<IClient>();
-            IRequest request = Substitute.For<IRequest>();
-            client.GetAsync(Arg.Any<string>())
-                .Returns(request);
-
-            SpeechToTextService service = new SpeechToTextService(client);
-
-            var customizationId = "customizationId";
-
-            var result = service.;
-
-            client.Received().GetAsync($"{service.ServiceUrl}/v1/acoustic_customizations/{customizationId}");
-        }
-        [TestMethod]
-        public void DeleteAcousticModel_Success()
+        public void TestTestDeleteGrammarAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -712,14 +979,26 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var customizationId = "customizationId";
+            var response = new DetailedResponse<object>()
+            {
+                Result = new object(),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string customizationId = "testString";
+            string grammarName = "testString";
 
-            client.Received().DeleteAsync($"{service.ServiceUrl}/v1/acoustic_customizations/{customizationId}");
+            request.As<object>().Returns(Task.FromResult(response));
+
+            var result = service.DeleteGrammar(customizationId: customizationId, grammarName: grammarName);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/customizations/{customizationId}/grammars/{grammarName}";
+            client.Received().DeleteAsync(messageUrl);
         }
+
         [TestMethod]
-        public void TrainAcousticModel_Success()
+        public void TestTestCreateAcousticModelAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -728,49 +1007,26 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var customizationId = "customizationId";
-            var customLanguageModelId = "customLanguageModelId";
+            var responseJson = "{'customization_id': 'CustomizationId', 'created': 'Created', 'updated': 'Updated', 'language': 'Language', 'versions': ['Versions'], 'owner': 'Owner', 'name': 'Name', 'description': 'Description', 'base_model_name': 'BaseModelName', 'status': 'pending', 'progress': 8, 'warnings': 'Warnings'}";
+            var response = new DetailedResponse<AcousticModel>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<AcousticModel>(responseJson),
+                StatusCode = 201
+            };
 
-            var result = service.;
 
-            client.Received().PostAsync($"{service.ServiceUrl}/v1/acoustic_customizations/{customizationId}/train");
+            request.As<AcousticModel>().Returns(Task.FromResult(response));
+
+            var result = service.CreateAcousticModel(name: "testString", baseModelName: "ar-AR_BroadbandModel", description: "testString");
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/acoustic_customizations";
+            client.Received().PostAsync(messageUrl);
         }
+
         [TestMethod]
-        public void ResetAcousticModel_Success()
-        {
-            IClient client = Substitute.For<IClient>();
-            IRequest request = Substitute.For<IRequest>();
-            client.PostAsync(Arg.Any<string>())
-                .Returns(request);
-
-            SpeechToTextService service = new SpeechToTextService(client);
-
-            var customizationId = "customizationId";
-
-            var result = service.;
-
-            client.Received().PostAsync($"{service.ServiceUrl}/v1/acoustic_customizations/{customizationId}/reset");
-        }
-        [TestMethod]
-        public void UpgradeAcousticModel_Success()
-        {
-            IClient client = Substitute.For<IClient>();
-            IRequest request = Substitute.For<IRequest>();
-            client.PostAsync(Arg.Any<string>())
-                .Returns(request);
-
-            SpeechToTextService service = new SpeechToTextService(client);
-
-            var customizationId = "customizationId";
-            var customLanguageModelId = "customLanguageModelId";
-            var force = false;
-
-            var result = service.;
-
-            client.Received().PostAsync($"{service.ServiceUrl}/v1/acoustic_customizations/{customizationId}/upgrade_model");
-        }
-        [TestMethod]
-        public void ListAudio_Success()
+        public void TestTestListAcousticModelsAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -779,37 +1035,27 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var customizationId = "customizationId";
+            var responseJson = "{'customizations': [{'customization_id': 'CustomizationId', 'created': 'Created', 'updated': 'Updated', 'language': 'Language', 'versions': ['Versions'], 'owner': 'Owner', 'name': 'Name', 'description': 'Description', 'base_model_name': 'BaseModelName', 'status': 'pending', 'progress': 8, 'warnings': 'Warnings'}]}";
+            var response = new DetailedResponse<AcousticModels>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<AcousticModels>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string language = "testString";
 
-            client.Received().GetAsync($"{service.ServiceUrl}/v1/acoustic_customizations/{customizationId}/audio");
+            request.As<AcousticModels>().Returns(Task.FromResult(response));
+
+            var result = service.ListAcousticModels(language: language);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/acoustic_customizations";
+            client.Received().GetAsync(messageUrl);
         }
+
         [TestMethod]
-        public void AddAudio_Success()
-        {
-            IClient client = Substitute.For<IClient>();
-            IRequest request = Substitute.For<IRequest>();
-            client.PostAsync(Arg.Any<string>())
-                .Returns(request);
-
-            SpeechToTextService service = new SpeechToTextService(client);
-
-            var customizationId = "customizationId";
-            var audioName = "audioName";
-            var audioResource = new byte[4];
-            var contentType = "contentType";
-            var containedContentType = "containedContentType";
-            var allowOverwrite = false;
-
-            var result = service.;
-
-            var audioResourceString = System.Text.Encoding.Default.GetString(audioResource);
-            request.Received().WithBodyContent(Arg.Is<ByteArrayContent>(x => x.ReadAsStringAsync().Result.Equals(audioResourceString)));
-            client.Received().PostAsync($"{service.ServiceUrl}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
-        }
-        [TestMethod]
-        public void GetAudio_Success()
+        public void TestTestGetAcousticModelAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -818,15 +1064,27 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var customizationId = "customizationId";
-            var audioName = "audioName";
+            var responseJson = "{'customization_id': 'CustomizationId', 'created': 'Created', 'updated': 'Updated', 'language': 'Language', 'versions': ['Versions'], 'owner': 'Owner', 'name': 'Name', 'description': 'Description', 'base_model_name': 'BaseModelName', 'status': 'pending', 'progress': 8, 'warnings': 'Warnings'}";
+            var response = new DetailedResponse<AcousticModel>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<AcousticModel>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string customizationId = "testString";
 
-            client.Received().GetAsync($"{service.ServiceUrl}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
+            request.As<AcousticModel>().Returns(Task.FromResult(response));
+
+            var result = service.GetAcousticModel(customizationId: customizationId);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/acoustic_customizations/{customizationId}";
+            client.Received().GetAsync(messageUrl);
         }
+
         [TestMethod]
-        public void DeleteAudio_Success()
+        public void TestTestDeleteAcousticModelAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -835,15 +1093,202 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var customizationId = "customizationId";
-            var audioName = "audioName";
+            var response = new DetailedResponse<object>()
+            {
+                Result = new object(),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string customizationId = "testString";
 
-            client.Received().DeleteAsync($"{service.ServiceUrl}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
+            request.As<object>().Returns(Task.FromResult(response));
+
+            var result = service.DeleteAcousticModel(customizationId: customizationId);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/acoustic_customizations/{customizationId}";
+            client.Received().DeleteAsync(messageUrl);
         }
+
         [TestMethod]
-        public void DeleteUserData_Success()
+        public void TestTestTrainAcousticModelAllParams()
+        {
+            IClient client = Substitute.For<IClient>();
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                .Returns(request);
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var responseJson = "{'warnings': [{'code': 'invalid_audio_files', 'message': 'Message'}]}";
+            var response = new DetailedResponse<TrainingResponse>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<TrainingResponse>(responseJson),
+                StatusCode = 200
+            };
+
+            string customizationId = "testString";
+            string customLanguageModelId = "testString";
+
+            request.As<TrainingResponse>().Returns(Task.FromResult(response));
+
+            var result = service.TrainAcousticModel(customizationId: customizationId, customLanguageModelId: customLanguageModelId);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/acoustic_customizations/{customizationId}/train";
+            client.Received().PostAsync(messageUrl);
+        }
+
+        [TestMethod]
+        public void TestTestResetAcousticModelAllParams()
+        {
+            IClient client = Substitute.For<IClient>();
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                .Returns(request);
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var response = new DetailedResponse<object>()
+            {
+                Result = new object(),
+                StatusCode = 200
+            };
+
+            string customizationId = "testString";
+
+            request.As<object>().Returns(Task.FromResult(response));
+
+            var result = service.ResetAcousticModel(customizationId: customizationId);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/acoustic_customizations/{customizationId}/reset";
+            client.Received().PostAsync(messageUrl);
+        }
+
+        [TestMethod]
+        public void TestTestUpgradeAcousticModelAllParams()
+        {
+            IClient client = Substitute.For<IClient>();
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                .Returns(request);
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var response = new DetailedResponse<object>()
+            {
+                Result = new object(),
+                StatusCode = 200
+            };
+
+            string customizationId = "testString";
+            string customLanguageModelId = "testString";
+            bool? force = true;
+
+            request.As<object>().Returns(Task.FromResult(response));
+
+            var result = service.UpgradeAcousticModel(customizationId: customizationId, customLanguageModelId: customLanguageModelId, force: force);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/acoustic_customizations/{customizationId}/upgrade_model";
+            client.Received().PostAsync(messageUrl);
+        }
+
+        [TestMethod]
+        public void TestTestListAudioAllParams()
+        {
+            IClient client = Substitute.For<IClient>();
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                .Returns(request);
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var responseJson = "{'total_minutes_of_audio': 19, 'audio': [{'duration': 8, 'name': 'Name', 'details': {'type': 'audio', 'codec': 'Codec', 'frequency': 9, 'compression': 'zip'}, 'status': 'ok'}]}";
+            var response = new DetailedResponse<AudioResources>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<AudioResources>(responseJson),
+                StatusCode = 200
+            };
+
+            string customizationId = "testString";
+
+            request.As<AudioResources>().Returns(Task.FromResult(response));
+
+            var result = service.ListAudio(customizationId: customizationId);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/acoustic_customizations/{customizationId}/audio";
+            client.Received().GetAsync(messageUrl);
+        }
+
+        [TestMethod]
+        public void TestTestAddAudioAllParams()
+        {
+            IClient client = Substitute.For<IClient>();
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                .Returns(request);
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var response = new DetailedResponse<object>()
+            {
+                Result = new object(),
+                StatusCode = 201
+            };
+
+            string customizationId = "testString";
+            string audioName = "testString";
+            byte[] audioResource = new byte[4];
+            string contentType = "application/zip";
+            string containedContentType = "audio/alaw";
+            bool? allowOverwrite = true;
+
+            request.As<object>().Returns(Task.FromResult(response));
+
+            var result = service.AddAudio(customizationId: customizationId, audioName: audioName, audioResource: audioResource, contentType: contentType, containedContentType: containedContentType, allowOverwrite: allowOverwrite);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/acoustic_customizations/{customizationId}/audio/{audioName}";
+            client.Received().PostAsync(messageUrl);
+        }
+
+        [TestMethod]
+        public void TestTestGetAudioAllParams()
+        {
+            IClient client = Substitute.For<IClient>();
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                .Returns(request);
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var responseJson = "{'duration': 8, 'name': 'Name', 'details': {'type': 'audio', 'codec': 'Codec', 'frequency': 9, 'compression': 'zip'}, 'status': 'ok', 'container': {'duration': 8, 'name': 'Name', 'details': {'type': 'audio', 'codec': 'Codec', 'frequency': 9, 'compression': 'zip'}, 'status': 'ok'}, 'audio': [{'duration': 8, 'name': 'Name', 'details': {'type': 'audio', 'codec': 'Codec', 'frequency': 9, 'compression': 'zip'}, 'status': 'ok'}]}";
+            var response = new DetailedResponse<AudioListing>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<AudioListing>(responseJson),
+                StatusCode = 200
+            };
+
+            string customizationId = "testString";
+            string audioName = "testString";
+
+            request.As<AudioListing>().Returns(Task.FromResult(response));
+
+            var result = service.GetAudio(customizationId: customizationId, audioName: audioName);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/acoustic_customizations/{customizationId}/audio/{audioName}";
+            client.Received().GetAsync(messageUrl);
+        }
+
+        [TestMethod]
+        public void TestTestDeleteAudioAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -852,10 +1297,52 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var customerId = "customerId";
+            var response = new DetailedResponse<object>()
+            {
+                Result = new object(),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string customizationId = "testString";
+            string audioName = "testString";
 
+            request.As<object>().Returns(Task.FromResult(response));
+
+            var result = service.DeleteAudio(customizationId: customizationId, audioName: audioName);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/acoustic_customizations/{customizationId}/audio/{audioName}";
+            client.Received().DeleteAsync(messageUrl);
         }
+
+        [TestMethod]
+        public void TestTestDeleteUserDataAllParams()
+        {
+            IClient client = Substitute.For<IClient>();
+            IRequest request = Substitute.For<IRequest>();
+            client.DeleteAsync(Arg.Any<string>())
+                .Returns(request);
+
+            SpeechToTextService service = new SpeechToTextService(client);
+
+            var responseJson = "{}";
+            var response = new DetailedResponse<object>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<object>(responseJson),
+                StatusCode = 200
+            };
+
+            string customerId = "testString";
+
+            request.As<object>().Returns(Task.FromResult(response));
+
+            var result = service.DeleteUserData(customerId: customerId);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/user_data";
+            client.Received().DeleteAsync(messageUrl);
+        }
+
     }
 }

@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -34,10 +34,12 @@ namespace IBM.Watson.VisualRecognition.v3
         private const string defaultServiceUrl = "https://gateway.watsonplatform.net/visual-recognition/api";
         public string VersionDate { get; set; }
 
-        public VisualRecognitionService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public VisualRecognitionService(string versionDate) : this(versionDate, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public VisualRecognitionService(string versionDate, IAuthenticator authenticator) : this(versionDate, defaultServiceName, authenticator) {}
+        public VisualRecognitionService(string versionDate, string serviceName) : this(versionDate, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public VisualRecognitionService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public VisualRecognitionService(string versionDate, IAuthenticator authenticator) : base(defaultServiceName, authenticator)
+        public VisualRecognitionService(string versionDate, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
             if (string.IsNullOrEmpty(versionDate))
             {
@@ -155,7 +157,7 @@ namespace IBM.Watson.VisualRecognition.v3
                 }
                 restRequest.WithBodyContent(formData);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v3", "Classify"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "Classify"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -380,7 +382,7 @@ namespace IBM.Watson.VisualRecognition.v3
                 restRequest.WithHeader("Accept", "application/json");
                 restRequest.WithBodyContent(formData);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v3", "CreateClassifier"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "CreateClassifier"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -428,7 +430,7 @@ namespace IBM.Watson.VisualRecognition.v3
                     restRequest.WithArgument("verbose", verbose);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v3", "ListClassifiers"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "ListClassifiers"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -481,7 +483,7 @@ namespace IBM.Watson.VisualRecognition.v3
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v3", "GetClassifier"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "GetClassifier"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -592,7 +594,7 @@ namespace IBM.Watson.VisualRecognition.v3
                 restRequest.WithHeader("Accept", "application/json");
                 restRequest.WithBodyContent(formData);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v3", "UpdateClassifier"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "UpdateClassifier"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -643,7 +645,7 @@ namespace IBM.Watson.VisualRecognition.v3
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v3", "DeleteClassifier"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "DeleteClassifier"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -696,7 +698,7 @@ namespace IBM.Watson.VisualRecognition.v3
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/octet-stream");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v3", "GetCoreMlModel"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "GetCoreMlModel"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -750,7 +752,7 @@ namespace IBM.Watson.VisualRecognition.v3
                     restRequest.WithArgument("customer_id", customerId);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v3", "DeleteUserData"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "DeleteUserData"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 

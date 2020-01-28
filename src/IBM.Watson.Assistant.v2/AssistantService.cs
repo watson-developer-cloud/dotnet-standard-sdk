@@ -34,10 +34,12 @@ namespace IBM.Watson.Assistant.v2
         private const string defaultServiceUrl = "https://gateway.watsonplatform.net/assistant/api";
         public string VersionDate { get; set; }
 
-        public AssistantService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public AssistantService(string versionDate) : this(versionDate, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public AssistantService(string versionDate, IAuthenticator authenticator) : this(versionDate, defaultServiceName, authenticator) {}
+        public AssistantService(string versionDate, string serviceName) : this(versionDate, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public AssistantService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public AssistantService(string versionDate, IAuthenticator authenticator) : base(defaultServiceName, authenticator)
+        public AssistantService(string versionDate, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
             if (string.IsNullOrEmpty(versionDate))
             {
@@ -95,7 +97,7 @@ namespace IBM.Watson.Assistant.v2
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v2", "CreateSession"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v2", "CreateSession"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -164,7 +166,7 @@ namespace IBM.Watson.Assistant.v2
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v2", "DeleteSession"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v2", "DeleteSession"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -249,7 +251,7 @@ namespace IBM.Watson.Assistant.v2
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v2", "Message"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v2", "Message"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 

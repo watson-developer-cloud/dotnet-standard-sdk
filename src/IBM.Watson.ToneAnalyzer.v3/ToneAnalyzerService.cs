@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -34,10 +34,12 @@ namespace IBM.Watson.ToneAnalyzer.v3
         private const string defaultServiceUrl = "https://gateway.watsonplatform.net/tone-analyzer/api";
         public string VersionDate { get; set; }
 
-        public ToneAnalyzerService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public ToneAnalyzerService(string versionDate) : this(versionDate, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public ToneAnalyzerService(string versionDate, IAuthenticator authenticator) : this(versionDate, defaultServiceName, authenticator) {}
+        public ToneAnalyzerService(string versionDate, string serviceName) : this(versionDate, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public ToneAnalyzerService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public ToneAnalyzerService(string versionDate, IAuthenticator authenticator) : base(defaultServiceName, authenticator)
+        public ToneAnalyzerService(string versionDate, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
             if (string.IsNullOrEmpty(versionDate))
             {
@@ -145,7 +147,7 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 var httpContent = new StringContent(JsonConvert.SerializeObject(toneInput), Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("tone_analyzer", "v3", "Tone"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "Tone"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -321,15 +323,15 @@ namespace IBM.Watson.ToneAnalyzer.v3
             /// <summary>
             /// Constant EMOTION for emotion
             /// </summary>
-            public const ;
+            public const string EMOTION = "emotion";
             /// <summary>
             /// Constant LANGUAGE for language
             /// </summary>
-            public const ;
+            public const string LANGUAGE = "language";
             /// <summary>
             /// Constant SOCIAL for social
             /// </summary>
-            public const ;
+            public const string SOCIAL = "social";
             
         }
         /// <summary>
@@ -476,7 +478,7 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("tone_analyzer", "v3", "ToneChat"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "ToneChat"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 

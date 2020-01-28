@@ -36,10 +36,12 @@ namespace IBM.Watson.LanguageTranslator.v3
         private const string defaultServiceUrl = "https://gateway.watsonplatform.net/language-translator/api";
         public string VersionDate { get; set; }
 
-        public LanguageTranslatorService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public LanguageTranslatorService(string versionDate) : this(versionDate, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public LanguageTranslatorService(string versionDate, IAuthenticator authenticator) : this(versionDate, defaultServiceName, authenticator) {}
+        public LanguageTranslatorService(string versionDate, string serviceName) : this(versionDate, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public LanguageTranslatorService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public LanguageTranslatorService(string versionDate, IAuthenticator authenticator) : base(defaultServiceName, authenticator)
+        public LanguageTranslatorService(string versionDate, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
             if (string.IsNullOrEmpty(versionDate))
             {
@@ -111,7 +113,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "Translate"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "Translate"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -155,7 +157,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "ListIdentifiableLanguages"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "ListIdentifiableLanguages"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -207,7 +209,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                 var httpContent = new StringContent(text, Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "Identify"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "Identify"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -268,7 +270,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                     restRequest.WithArgument("default", _default);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "ListModels"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "ListModels"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -370,7 +372,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                 }
                 restRequest.WithBodyContent(formData);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "CreateModel"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "CreateModel"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -423,7 +425,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "DeleteModel"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "DeleteModel"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -478,7 +480,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "GetModel"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "GetModel"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -521,7 +523,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "ListDocuments"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "ListDocuments"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -545,7 +547,7 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// Submit a document for translation. You can submit the document contents in the `file` parameter, or you can
         /// reference a previously submitted document by document ID.
         /// </summary>
-        /// <param name="file">The source file to translate.
+        /// <param name="file">The contents of the source file to translate.
         ///
         /// [Supported file
         /// types](https://cloud.ibm.com/docs/services/language-translator?topic=language-translator-document-translator-tutorial#supported-file-formats)
@@ -628,7 +630,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                 restRequest.WithHeader("Accept", "application/json");
                 restRequest.WithBodyContent(formData);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "TranslateDocument"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "TranslateDocument"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -878,7 +880,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "GetDocumentStatus"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "GetDocumentStatus"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -930,7 +932,7 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 restRequest.WithArgument("version", VersionDate);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "DeleteDocument"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "DeleteDocument"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -996,7 +998,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                     restRequest.WithHeader("Accept", accept);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "GetTranslatedDocument"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "GetTranslatedDocument"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 

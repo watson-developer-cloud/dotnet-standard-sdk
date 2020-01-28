@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -33,10 +33,12 @@ namespace IBM.Watson.TextToSpeech.v1
         const string defaultServiceName = "text_to_speech";
         private const string defaultServiceUrl = "https://stream.watsonplatform.net/text-to-speech/api";
 
-        public TextToSpeechService() : this(ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public TextToSpeechService() : this(defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public TextToSpeechService(IAuthenticator authenticator) : this(defaultServiceName, authenticator) {}
+        public TextToSpeechService(string serviceName) : this(serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public TextToSpeechService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public TextToSpeechService(IAuthenticator authenticator) : base(defaultServiceName, authenticator)
+        public TextToSpeechService(string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
 
             if (string.IsNullOrEmpty(ServiceUrl))
@@ -69,7 +71,7 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "ListVoices"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListVoices"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -129,7 +131,7 @@ namespace IBM.Watson.TextToSpeech.v1
                     restRequest.WithArgument("customization_id", customizationId);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "GetVoice"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetVoice"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -500,7 +502,7 @@ namespace IBM.Watson.TextToSpeech.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "Synthesize"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "Synthesize"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -586,6 +588,10 @@ namespace IBM.Watson.TextToSpeech.v1
             /// </summary>
             public class VoiceValue
             {
+                /// <summary>
+                /// Constant AR_AR_OMARVOICE for ar-AR_OmarVoice
+                /// </summary>
+                public const string AR_AR_OMARVOICE = "ar-AR_OmarVoice";
                 /// <summary>
                 /// Constant DE_DE_BIRGITVOICE for de-DE_BirgitVoice
                 /// </summary>
@@ -691,6 +697,14 @@ namespace IBM.Watson.TextToSpeech.v1
                 /// </summary>
                 public const string JA_JP_EMIV3VOICE = "ja-JP_EmiV3Voice";
                 /// <summary>
+                /// Constant NL_NL_EMMAVOICE for nl-NL_EmmaVoice
+                /// </summary>
+                public const string NL_NL_EMMAVOICE = "nl-NL_EmmaVoice";
+                /// <summary>
+                /// Constant NL_NL_LIAMVOICE for nl-NL_LiamVoice
+                /// </summary>
+                public const string NL_NL_LIAMVOICE = "nl-NL_LiamVoice";
+                /// <summary>
                 /// Constant PT_BR_ISABELAVOICE for pt-BR_IsabelaVoice
                 /// </summary>
                 public const string PT_BR_ISABELAVOICE = "pt-BR_IsabelaVoice";
@@ -698,6 +712,18 @@ namespace IBM.Watson.TextToSpeech.v1
                 /// Constant PT_BR_ISABELAV3VOICE for pt-BR_IsabelaV3Voice
                 /// </summary>
                 public const string PT_BR_ISABELAV3VOICE = "pt-BR_IsabelaV3Voice";
+                /// <summary>
+                /// Constant ZH_CN_LINAVOICE for zh-CN_LiNaVoice
+                /// </summary>
+                public const string ZH_CN_LINAVOICE = "zh-CN_LiNaVoice";
+                /// <summary>
+                /// Constant ZH_CN_WANGWEIVOICE for zh-CN_WangWeiVoice
+                /// </summary>
+                public const string ZH_CN_WANGWEIVOICE = "zh-CN_WangWeiVoice";
+                /// <summary>
+                /// Constant ZH_CN_ZHANGJINGVOICE for zh-CN_ZhangJingVoice
+                /// </summary>
+                public const string ZH_CN_ZHANGJINGVOICE = "zh-CN_ZhangJingVoice";
                 
             }
         }
@@ -767,6 +793,10 @@ namespace IBM.Watson.TextToSpeech.v1
         /// </summary>
         public class SynthesizeVoiceEnumValue
         {
+            /// <summary>
+            /// Constant AR_AR_OMARVOICE for ar-AR_OmarVoice
+            /// </summary>
+            public const string AR_AR_OMARVOICE = "ar-AR_OmarVoice";
             /// <summary>
             /// Constant DE_DE_BIRGITVOICE for de-DE_BirgitVoice
             /// </summary>
@@ -872,6 +902,14 @@ namespace IBM.Watson.TextToSpeech.v1
             /// </summary>
             public const string JA_JP_EMIV3VOICE = "ja-JP_EmiV3Voice";
             /// <summary>
+            /// Constant NL_NL_EMMAVOICE for nl-NL_EmmaVoice
+            /// </summary>
+            public const string NL_NL_EMMAVOICE = "nl-NL_EmmaVoice";
+            /// <summary>
+            /// Constant NL_NL_LIAMVOICE for nl-NL_LiamVoice
+            /// </summary>
+            public const string NL_NL_LIAMVOICE = "nl-NL_LiamVoice";
+            /// <summary>
             /// Constant PT_BR_ISABELAVOICE for pt-BR_IsabelaVoice
             /// </summary>
             public const string PT_BR_ISABELAVOICE = "pt-BR_IsabelaVoice";
@@ -879,6 +917,18 @@ namespace IBM.Watson.TextToSpeech.v1
             /// Constant PT_BR_ISABELAV3VOICE for pt-BR_IsabelaV3Voice
             /// </summary>
             public const string PT_BR_ISABELAV3VOICE = "pt-BR_IsabelaV3Voice";
+            /// <summary>
+            /// Constant ZH_CN_LINAVOICE for zh-CN_LiNaVoice
+            /// </summary>
+            public const string ZH_CN_LINAVOICE = "zh-CN_LiNaVoice";
+            /// <summary>
+            /// Constant ZH_CN_WANGWEIVOICE for zh-CN_WangWeiVoice
+            /// </summary>
+            public const string ZH_CN_WANGWEIVOICE = "zh-CN_WangWeiVoice";
+            /// <summary>
+            /// Constant ZH_CN_ZHANGJINGVOICE for zh-CN_ZhangJingVoice
+            /// </summary>
+            public const string ZH_CN_ZHANGJINGVOICE = "zh-CN_ZhangJingVoice";
             
         }
         /// <summary>
@@ -940,7 +990,7 @@ namespace IBM.Watson.TextToSpeech.v1
                     restRequest.WithArgument("customization_id", customizationId);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "GetPronunciation"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetPronunciation"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1289,7 +1339,7 @@ namespace IBM.Watson.TextToSpeech.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "CreateVoiceModel"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "CreateVoiceModel"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1341,7 +1391,7 @@ namespace IBM.Watson.TextToSpeech.v1
                     restRequest.WithArgument("language", language);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "ListVoiceModels"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListVoiceModels"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1538,7 +1588,7 @@ namespace IBM.Watson.TextToSpeech.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "UpdateVoiceModel"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "UpdateVoiceModel"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1592,7 +1642,7 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "GetVoiceModel"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetVoiceModel"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1644,7 +1694,7 @@ namespace IBM.Watson.TextToSpeech.v1
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}");
 
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "DeleteVoiceModel"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteVoiceModel"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1733,7 +1783,7 @@ namespace IBM.Watson.TextToSpeech.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "AddWords"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "AddWords"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1787,7 +1837,7 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "ListWords"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListWords"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1892,7 +1942,7 @@ namespace IBM.Watson.TextToSpeech.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "AddWord"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "AddWord"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1955,7 +2005,7 @@ namespace IBM.Watson.TextToSpeech.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "GetWord"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetWord"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -2016,7 +2066,7 @@ namespace IBM.Watson.TextToSpeech.v1
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/customizations/{customizationId}/words/{word}");
 
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "DeleteWord"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteWord"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -2069,7 +2119,7 @@ namespace IBM.Watson.TextToSpeech.v1
                     restRequest.WithArgument("customer_id", customerId);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "DeleteUserData"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteUserData"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 

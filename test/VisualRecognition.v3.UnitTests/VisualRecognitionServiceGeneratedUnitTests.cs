@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,6 +15,16 @@
 *
 */
 
+using IBM.Cloud.SDK.Core.Http;
+using NSubstitute;
+using System;
+using Newtonsoft.Json;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using IBM.Watson.VisualRecognition.v3.Model;
+using System.Collections.Generic;
+using System.Text;
+using IBM.Cloud.SDK.Core.Authentication.NoAuth;
+using System.Threading.Tasks;
 
 namespace IBM.Watson.VisualRecognition.v3.UnitTests
 {
@@ -38,8 +48,14 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
         [TestMethod]
         public void ConstructorExternalConfig()
         {
+            var apikey = System.Environment.GetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY");
+            var url = System.Environment.GetEnvironmentVariable("VISUAL_RECOGNITION_URL");
+            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY", "apikey");
+            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_URL", "http://www.url.com");
             VisualRecognitionService service = Substitute.For<VisualRecognitionService>("versionDate");
             Assert.IsNotNull(service);
+            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_URL", url);
+            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY", apikey);
         }
 
         [TestMethod]
@@ -65,16 +81,19 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
         [TestMethod]
         public void ConstructorNoUrl()
         {
-            var url = System.Environment.GetEnvironmentVariable("VISUAL_RECOGNITION_SERVICE_URL");
-            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_SERVICE_URL", null);
+            var apikey = System.Environment.GetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY");
+            var url = System.Environment.GetEnvironmentVariable("VISUAL_RECOGNITION_URL");
+            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY", "apikey");
+            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_URL", null);
             VisualRecognitionService service = Substitute.For<VisualRecognitionService>("versionDate");
             Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/visual-recognition/api");
-            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_SERVICE_URL", url);
+            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_URL", url);
+            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY", apikey);
         }
         #endregion
 
         [TestMethod]
-        public void Classify_Success()
+        public void TestTestClassifyAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -85,21 +104,35 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
             var versionDate = "versionDate";
             service.VersionDate = versionDate;
 
-            var imagesFile = new MemoryStream();
-            var imagesFilename = "imagesFilename";
-            var imagesFileContentType = "imagesFileContentType";
-            var url = "url";
-            float? threshold = 0.5f;
-            var owners = new List<string>() { "owners0", "owners1" };
-            var classifierIds = new List<string>() { "classifierIds0", "classifierIds1" };
-            var acceptLanguage = "acceptLanguage";
+            var responseJson = "{'custom_classes': 13, 'images_processed': 15, 'images': [{'source_url': 'SourceUrl', 'resolved_url': 'ResolvedUrl', 'image': 'Image', 'error': {'code': 4, 'description': 'Description', 'error_id': 'ErrorId'}, 'classifiers': [{'name': 'Name', 'classifier_id': 'ClassifierId', 'classes': [{'class': '_Class', 'score': 5, 'type_hierarchy': 'TypeHierarchy'}]}]}], 'warnings': [{'warning_id': 'WarningId', 'description': 'Description'}]}";
+            var response = new DetailedResponse<ClassifiedImages>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<ClassifiedImages>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            System.IO.MemoryStream imagesFile = new System.IO.MemoryStream(Encoding.UTF8.GetBytes("This is a mock file."));
+            string imagesFilename = "testString";
+            string imagesFileContentType = "testString";
+            string url = "testString";
+            float? threshold = 36.0f;
+            List<string> owners = new List<string> { "testString" };
+            List<string> classifierIds = new List<string> { "testString" };
+            string acceptLanguage = "en";
+
+            request.As<ClassifiedImages>().Returns(Task.FromResult(response));
+
+            var result = service.Classify(imagesFile: imagesFile, imagesFilename: imagesFilename, imagesFileContentType: imagesFileContentType, url: url, threshold: threshold, owners: owners, classifierIds: classifierIds, acceptLanguage: acceptLanguage);
 
             request.Received().WithArgument("version", versionDate);
+
+            string messageUrl = $"{service.ServiceUrl}/v3/classify";
+            client.Received().PostAsync(messageUrl);
         }
+
         [TestMethod]
-        public void CreateClassifier_Success()
+        public void TestTestCreateClassifierAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -110,18 +143,34 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
             var versionDate = "versionDate";
             service.VersionDate = versionDate;
 
-            var name = "name";
-            var positiveExamples = new Dictionary<string, System.IO.MemoryStream>();
-            positiveExamples.Add("positiveExamples", new System.IO.MemoryStream());
-            var negativeExamples = new MemoryStream();
-            var negativeExamplesFilename = "negativeExamplesFilename";
+            var responseJson = "{'classifier_id': 'ClassifierId', 'name': 'Name', 'owner': 'Owner', 'status': 'ready', 'core_ml_enabled': false, 'explanation': 'Explanation', 'classes': [{'class': '_Class'}]}";
+            var response = new DetailedResponse<Classifier>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<Classifier>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string name = "testString";
+            Dictionary<string, System.IO.MemoryStream> positiveExamples = new Dictionary<string, System.IO.MemoryStream>()
+            {
+                { "test", new System.IO.MemoryStream(Encoding.UTF8.GetBytes("This is a mock file.")) }
+            };
+            System.IO.MemoryStream negativeExamples = new System.IO.MemoryStream(Encoding.UTF8.GetBytes("This is a mock file."));
+            string negativeExamplesFilename = "testString";
+
+            request.As<Classifier>().Returns(Task.FromResult(response));
+
+            var result = service.CreateClassifier(name: name, positiveExamples: positiveExamples, negativeExamples: negativeExamples, negativeExamplesFilename: negativeExamplesFilename);
 
             request.Received().WithArgument("version", versionDate);
+
+            string messageUrl = $"{service.ServiceUrl}/v3/classifiers";
+            client.Received().PostAsync(messageUrl);
         }
+
         [TestMethod]
-        public void ListClassifiers_Success()
+        public void TestTestListClassifiersAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -132,14 +181,28 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
             var versionDate = "versionDate";
             service.VersionDate = versionDate;
 
-            var verbose = false;
+            var responseJson = "{'classifiers': [{'classifier_id': 'ClassifierId', 'name': 'Name', 'owner': 'Owner', 'status': 'ready', 'core_ml_enabled': false, 'explanation': 'Explanation', 'classes': [{'class': '_Class'}]}]}";
+            var response = new DetailedResponse<Classifiers>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<Classifiers>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            bool? verbose = true;
+
+            request.As<Classifiers>().Returns(Task.FromResult(response));
+
+            var result = service.ListClassifiers(verbose: verbose);
 
             request.Received().WithArgument("version", versionDate);
+
+            string messageUrl = $"{service.ServiceUrl}/v3/classifiers";
+            client.Received().GetAsync(messageUrl);
         }
+
         [TestMethod]
-        public void GetClassifier_Success()
+        public void TestTestGetClassifierAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -150,15 +213,28 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
             var versionDate = "versionDate";
             service.VersionDate = versionDate;
 
-            var classifierId = "classifierId";
+            var responseJson = "{'classifier_id': 'ClassifierId', 'name': 'Name', 'owner': 'Owner', 'status': 'ready', 'core_ml_enabled': false, 'explanation': 'Explanation', 'classes': [{'class': '_Class'}]}";
+            var response = new DetailedResponse<Classifier>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<Classifier>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string classifierId = "testString";
+
+            request.As<Classifier>().Returns(Task.FromResult(response));
+
+            var result = service.GetClassifier(classifierId: classifierId);
 
             request.Received().WithArgument("version", versionDate);
-            client.Received().GetAsync($"{service.ServiceUrl}/v3/classifiers/{classifierId}");
+
+            string messageUrl = $"{service.ServiceUrl}/v3/classifiers/{classifierId}";
+            client.Received().GetAsync(messageUrl);
         }
+
         [TestMethod]
-        public void UpdateClassifier_Success()
+        public void TestTestUpdateClassifierAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -169,19 +245,35 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
             var versionDate = "versionDate";
             service.VersionDate = versionDate;
 
-            var classifierId = "classifierId";
-            var positiveExamples = new Dictionary<string, System.IO.MemoryStream>();
-            positiveExamples.Add("positiveExamples", new System.IO.MemoryStream());
-            var negativeExamples = new MemoryStream();
-            var negativeExamplesFilename = "negativeExamplesFilename";
+            var responseJson = "{'classifier_id': 'ClassifierId', 'name': 'Name', 'owner': 'Owner', 'status': 'ready', 'core_ml_enabled': false, 'explanation': 'Explanation', 'classes': [{'class': '_Class'}]}";
+            var response = new DetailedResponse<Classifier>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<Classifier>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string classifierId = "testString";
+            Dictionary<string, System.IO.MemoryStream> positiveExamples = new Dictionary<string, System.IO.MemoryStream>()
+            {
+                { "test", new System.IO.MemoryStream(Encoding.UTF8.GetBytes("This is a mock file.")) }
+            };
+
+            System.IO.MemoryStream negativeExamples = new System.IO.MemoryStream(Encoding.UTF8.GetBytes("This is a mock file."));
+            string negativeExamplesFilename = "testString";
+
+            request.As<Classifier>().Returns(Task.FromResult(response));
+
+            var result = service.UpdateClassifier(classifierId: classifierId, positiveExamples: positiveExamples, negativeExamples: negativeExamples, negativeExamplesFilename: negativeExamplesFilename);
 
             request.Received().WithArgument("version", versionDate);
-            client.Received().PostAsync($"{service.ServiceUrl}/v3/classifiers/{classifierId}");
+
+            string messageUrl = $"{service.ServiceUrl}/v3/classifiers/{classifierId}";
+            client.Received().PostAsync(messageUrl);
         }
+
         [TestMethod]
-        public void DeleteClassifier_Success()
+        public void TestTestDeleteClassifierAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -192,15 +284,26 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
             var versionDate = "versionDate";
             service.VersionDate = versionDate;
 
-            var classifierId = "classifierId";
+            var response = new DetailedResponse<object>()
+            {
+                Result = new object(),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string classifierId = "testString";
+
+            request.As<object>().Returns(Task.FromResult(response));
+
+            var result = service.DeleteClassifier(classifierId: classifierId);
 
             request.Received().WithArgument("version", versionDate);
-            client.Received().DeleteAsync($"{service.ServiceUrl}/v3/classifiers/{classifierId}");
+
+            string messageUrl = $"{service.ServiceUrl}/v3/classifiers/{classifierId}";
+            client.Received().DeleteAsync(messageUrl);
         }
+
         [TestMethod]
-        public void GetCoreMlModel_Success()
+        public void TestTestGetCoreMlModelAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -211,15 +314,25 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
             var versionDate = "versionDate";
             service.VersionDate = versionDate;
 
-            var classifierId = "classifierId";
+            var response = new DetailedResponse<byte[]>()
+            {
+                Result = new byte[4],
+                StatusCode = 200
+            };
+            string classifierId = "testString";
 
-            var result = service.;
+            request.As<byte[]>().Returns(Task.FromResult(response));
+
+            var result = service.GetCoreMlModel(classifierId: classifierId);
 
             request.Received().WithArgument("version", versionDate);
-            client.Received().GetAsync($"{service.ServiceUrl}/v3/classifiers/{classifierId}/core_ml_model");
+
+            string messageUrl = $"{service.ServiceUrl}/v3/classifiers/{classifierId}/core_ml_model";
+            client.Received().GetAsync(messageUrl);
         }
+
         [TestMethod]
-        public void DeleteUserData_Success()
+        public void TestTestDeleteUserDataAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -230,11 +343,23 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
             var versionDate = "versionDate";
             service.VersionDate = versionDate;
 
-            var customerId = "customerId";
+            var response = new DetailedResponse<object>()
+            {
+                Result = new object(),
+                StatusCode = 202
+            };
 
-            var result = service.;
+            string customerId = "testString";
+
+            request.As<object>().Returns(Task.FromResult(response));
+
+            var result = service.DeleteUserData(customerId: customerId);
 
             request.Received().WithArgument("version", versionDate);
+
+            string messageUrl = $"{service.ServiceUrl}/v3/user_data";
+            client.Received().DeleteAsync(messageUrl);
         }
+
     }
 }

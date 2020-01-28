@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,6 +15,16 @@
 *
 */
 
+using IBM.Cloud.SDK.Core.Http;
+using NSubstitute;
+using System;
+using Newtonsoft.Json;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using System.Text;
+using IBM.Cloud.SDK.Core.Authentication.NoAuth;
+using System.Threading.Tasks;
+using IBM.Watson.NaturalLanguageClassifier.v1.Model;
 
 namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
 {
@@ -38,8 +48,14 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
         [TestMethod]
         public void ConstructorExternalConfig()
         {
+            var apikey = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_APIKEY");
+            var url = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_URL");
+            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_APIKEY", "apikey");
+            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_URL", "http://www.url.com");
             NaturalLanguageClassifierService service = Substitute.For<NaturalLanguageClassifierService>();
             Assert.IsNotNull(service);
+            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_URL", url);
+            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_APIKEY", apikey);
         }
 
         [TestMethod]
@@ -59,40 +75,31 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
         [TestMethod]
         public void ConstructorNoUrl()
         {
-            var url = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_SERVICE_URL");
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_SERVICE_URL", null);
+            var apikey = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_APIKEY");
+            var url = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_URL");
+            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_APIKEY", "apikey");
+            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_URL", null);
             NaturalLanguageClassifierService service = Substitute.For<NaturalLanguageClassifierService>();
             Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/natural-language-classifier/api");
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_SERVICE_URL", url);
+            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_URL", url);
+            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_APIKEY", apikey);
         }
         #endregion
 
         [TestMethod]
-        public void Classify_Success()
+        public void TestClassifyInputModel()
         {
-            IClient client = Substitute.For<IClient>();
-            IRequest request = Substitute.For<IRequest>();
-            client.PostAsync(Arg.Any<string>())
-                .Returns(request);
 
-            NaturalLanguageClassifierService service = new NaturalLanguageClassifierService(client);
-
-            var classifierId = "classifierId";
-            var text = "text";
-
-            var result = service.;
-
-            JObject bodyObject = new JObject();
-            if (!string.IsNullOrEmpty(text))
+            ClassifyInput testRequestModel = new ClassifyInput()
             {
-                bodyObject["text"] = JToken.FromObject(text);
-            }
-            var json = JsonConvert.SerializeObject(bodyObject);
-            request.Received().WithBodyContent(Arg.Is<StringContent>(x => x.ReadAsStringAsync().Result.Equals(json)));
-            client.Received().PostAsync($"{service.ServiceUrl}/v1/classifiers/{classifierId}/classify");
+                Text = "testString"
+            };
+
+            Assert.IsTrue(testRequestModel.Text == "testString");
         }
+
         [TestMethod]
-        public void ClassifyCollection_Success()
+        public void TestTestClassifyAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -101,22 +108,27 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
 
             NaturalLanguageClassifierService service = new NaturalLanguageClassifierService(client);
 
-            var classifierId = "classifierId";
-            var collection = new List<ClassifyInput>();
-
-            var result = service.;
-
-            JObject bodyObject = new JObject();
-            if (collection != null && collection.Count > 0)
+            var responseJson = "{'classifier_id': 'ClassifierId', 'url': 'Url', 'text': 'Text', 'top_class': 'TopClass', 'classes': [{'confidence': 10, 'class_name': 'ClassName'}]}";
+            var response = new DetailedResponse<Classification>()
             {
-                bodyObject["collection"] = JToken.FromObject(collection);
-            }
-            var json = JsonConvert.SerializeObject(bodyObject);
-            request.Received().WithBodyContent(Arg.Is<StringContent>(x => x.ReadAsStringAsync().Result.Equals(json)));
-            client.Received().PostAsync($"{service.ServiceUrl}/v1/classifiers/{classifierId}/classify_collection");
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<Classification>(responseJson),
+                StatusCode = 200
+            };
+
+            string classifierId = "testString";
+
+            request.As<Classification>().Returns(Task.FromResult(response));
+
+            var result = service.Classify(classifierId: classifierId, text: "testString");
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/classifiers/{classifierId}/classify";
+            client.Received().PostAsync(messageUrl);
         }
+
         [TestMethod]
-        public void CreateClassifier_Success()
+        public void TestTestClassifyCollectionAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -125,14 +137,61 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
 
             NaturalLanguageClassifierService service = new NaturalLanguageClassifierService(client);
 
-            var trainingMetadata = new MemoryStream();
-            var trainingData = new MemoryStream();
+            var responseJson = "{'classifier_id': 'ClassifierId', 'url': 'Url', 'collection': [{'text': 'Text', 'top_class': 'TopClass', 'classes': [{'confidence': 10, 'class_name': 'ClassName'}]}]}";
+            var response = new DetailedResponse<ClassificationCollection>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<ClassificationCollection>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            ClassifyInput ClassifyInputModel = new ClassifyInput()
+            {
+                Text = "testString"
+            };
+            string classifierId = "testString";
 
+            request.As<ClassificationCollection>().Returns(Task.FromResult(response));
+
+            var result = service.ClassifyCollection(classifierId: classifierId, collection: new List<ClassifyInput> { ClassifyInputModel });
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/classifiers/{classifierId}/classify_collection";
+            client.Received().PostAsync(messageUrl);
         }
+
         [TestMethod]
-        public void ListClassifiers_Success()
+        public void TestTestCreateClassifierAllParams()
+        {
+            IClient client = Substitute.For<IClient>();
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                .Returns(request);
+
+            NaturalLanguageClassifierService service = new NaturalLanguageClassifierService(client);
+
+            var responseJson = "{'name': 'Name', 'url': 'Url', 'status': 'Non Existent', 'classifier_id': 'ClassifierId', 'status_description': 'StatusDescription', 'language': 'Language'}";
+            var response = new DetailedResponse<Classifier>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<Classifier>(responseJson),
+                StatusCode = 200
+            };
+
+            System.IO.MemoryStream trainingMetadata = new System.IO.MemoryStream(Encoding.UTF8.GetBytes("This is a mock file."));
+            System.IO.MemoryStream trainingData = new System.IO.MemoryStream(Encoding.UTF8.GetBytes("This is a mock file."));
+
+            request.As<Classifier>().Returns(Task.FromResult(response));
+
+            var result = service.CreateClassifier(trainingMetadata: trainingMetadata, trainingData: trainingData);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/classifiers";
+            client.Received().PostAsync(messageUrl);
+        }
+
+        [TestMethod]
+        public void TestTestListClassifiersAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -141,12 +200,26 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
 
             NaturalLanguageClassifierService service = new NaturalLanguageClassifierService(client);
 
+            var responseJson = "{'classifiers': [{'name': 'Name', 'url': 'Url', 'status': 'Non Existent', 'classifier_id': 'ClassifierId', 'status_description': 'StatusDescription', 'language': 'Language'}]}";
+            var response = new DetailedResponse<ClassifierList>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<ClassifierList>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
 
+            request.As<ClassifierList>().Returns(Task.FromResult(response));
+
+            var result = service.ListClassifiers();
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/classifiers";
+            client.Received().GetAsync(messageUrl);
         }
+
         [TestMethod]
-        public void GetClassifier_Success()
+        public void TestTestGetClassifierAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -155,14 +228,27 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
 
             NaturalLanguageClassifierService service = new NaturalLanguageClassifierService(client);
 
-            var classifierId = "classifierId";
+            var responseJson = "{'name': 'Name', 'url': 'Url', 'status': 'Non Existent', 'classifier_id': 'ClassifierId', 'status_description': 'StatusDescription', 'language': 'Language'}";
+            var response = new DetailedResponse<Classifier>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<Classifier>(responseJson),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string classifierId = "testString";
 
-            client.Received().GetAsync($"{service.ServiceUrl}/v1/classifiers/{classifierId}");
+            request.As<Classifier>().Returns(Task.FromResult(response));
+
+            var result = service.GetClassifier(classifierId: classifierId);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/classifiers/{classifierId}";
+            client.Received().GetAsync(messageUrl);
         }
+
         [TestMethod]
-        public void DeleteClassifier_Success()
+        public void TestTestDeleteClassifierAllParams()
         {
             IClient client = Substitute.For<IClient>();
             IRequest request = Substitute.For<IRequest>();
@@ -171,11 +257,22 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
 
             NaturalLanguageClassifierService service = new NaturalLanguageClassifierService(client);
 
-            var classifierId = "classifierId";
+            var response = new DetailedResponse<object>()
+            {
+                Result = new object(),
+                StatusCode = 200
+            };
 
-            var result = service.;
+            string classifierId = "testString";
 
-            client.Received().DeleteAsync($"{service.ServiceUrl}/v1/classifiers/{classifierId}");
+            request.As<object>().Returns(Task.FromResult(response));
+
+            var result = service.DeleteClassifier(classifierId: classifierId);
+
+
+            string messageUrl = $"{service.ServiceUrl}/v1/classifiers/{classifierId}";
+            client.Received().DeleteAsync(messageUrl);
         }
+
     }
 }

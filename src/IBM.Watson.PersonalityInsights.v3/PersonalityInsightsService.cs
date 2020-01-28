@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -33,10 +33,12 @@ namespace IBM.Watson.PersonalityInsights.v3
         private const string defaultServiceUrl = "https://gateway.watsonplatform.net/personality-insights/api";
         public string VersionDate { get; set; }
 
-        public PersonalityInsightsService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public PersonalityInsightsService(string versionDate) : this(versionDate, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public PersonalityInsightsService(string versionDate, IAuthenticator authenticator) : this(versionDate, defaultServiceName, authenticator) {}
+        public PersonalityInsightsService(string versionDate, string serviceName) : this(versionDate, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public PersonalityInsightsService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public PersonalityInsightsService(string versionDate, IAuthenticator authenticator) : base(defaultServiceName, authenticator)
+        public PersonalityInsightsService(string versionDate, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
             if (string.IsNullOrEmpty(versionDate))
             {
@@ -173,7 +175,7 @@ namespace IBM.Watson.PersonalityInsights.v3
                 var httpContent = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("personality_insights", "v3", "Profile"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "Profile"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -535,7 +537,7 @@ namespace IBM.Watson.PersonalityInsights.v3
                 var httpContent = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("personality_insights", "v3", "ProfileAsCsv"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "ProfileAsCsv"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 

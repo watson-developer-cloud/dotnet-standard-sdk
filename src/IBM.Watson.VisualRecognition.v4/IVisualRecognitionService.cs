@@ -25,10 +25,10 @@ namespace IBM.Watson.VisualRecognition.v4
     public partial interface IVisualRecognitionService
     {
         DetailedResponse<AnalyzeResponse> Analyze(List<string> collectionIds, List<string> features, List<FileWithMetadata> imagesFile = null, List<string> imageUrl = null, float? threshold = null);
-        DetailedResponse<Collection> CreateCollection(string name = null, string description = null);
+        DetailedResponse<Collection> CreateCollection(string name = null, string description = null, TrainingStatus trainingStatus = null);
         DetailedResponse<CollectionsList> ListCollections();
         DetailedResponse<Collection> GetCollection(string collectionId);
-        DetailedResponse<Collection> UpdateCollection(string collectionId, string name = null, string description = null);
+        DetailedResponse<Collection> UpdateCollection(string collectionId, string name = null, string description = null, TrainingStatus trainingStatus = null);
         DetailedResponse<object> DeleteCollection(string collectionId);
         DetailedResponse<ImageDetailsList> AddImages(string collectionId, List<FileWithMetadata> imagesFile = null, List<string> imageUrl = null, string trainingData = null);
         DetailedResponse<ImageSummaryList> ListImages(string collectionId);

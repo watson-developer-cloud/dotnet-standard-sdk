@@ -30,12 +30,12 @@ namespace IBM.Watson.VisualRecognition.v3
 {
     public partial class VisualRecognitionService : IBMService, IVisualRecognitionService
     {
-        const string defaultServiceName = "watson_vision_combined";
+        const string defaultServiceName = "visual_recognition";
         private const string defaultServiceUrl = "https://gateway.watsonplatform.net/visual-recognition/api";
         public string Version { get; set; }
 
         public VisualRecognitionService(string version) : this(version, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
-        public VisualRecognitionService(string version, IAuthenticator authenticator) : this(version, defaultServiceName, authenticator) {}
+        public VisualRecognitionService(string version, IAuthenticator authenticator) : this(version, defaultServiceName, authenticator) { }
         public VisualRecognitionService(string version, string serviceName) : this(version, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public VisualRecognitionService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
@@ -128,22 +128,16 @@ namespace IBM.Watson.VisualRecognition.v3
 
                 if (owners != null)
                 {
-                    foreach (string item in owners)
-                    {
-                        var ownersContent = new StringContent(item, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                        ownersContent.Headers.ContentType = null;
-                        formData.Add(ownersContent, "owners");
-                    }
+                    var ownersContent = new StringContent(string.Join(", ", owners.ToArray()), Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                    ownersContent.Headers.ContentType = null;
+                    formData.Add(ownersContent, "owners");
                 }
 
                 if (classifierIds != null)
                 {
-                    foreach (string item in classifierIds)
-                    {
-                        var classifierIdsContent = new StringContent(item, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                        classifierIdsContent.Headers.ContentType = null;
-                        formData.Add(classifierIdsContent, "classifier_ids");
-                    }
+                    var classifierIdsContent = new StringContent(string.Join(", ", classifierIds.ToArray()), Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                    classifierIdsContent.Headers.ContentType = null;
+                    formData.Add(classifierIdsContent, "classifier_ids");
                 }
 
                 IClient client = this.Client;
@@ -235,7 +229,7 @@ namespace IBM.Watson.VisualRecognition.v3
                 /// Constant ZH_TW for zh-tw
                 /// </summary>
                 public const string ZH_TW = "zh-tw";
-                
+
             }
         }
         /// <summary>
@@ -287,7 +281,7 @@ namespace IBM.Watson.VisualRecognition.v3
             /// Constant ZH_TW for zh-tw
             /// </summary>
             public const string ZH_TW = "zh-tw";
-            
+
         }
         /// <summary>
         /// Create a classifier.

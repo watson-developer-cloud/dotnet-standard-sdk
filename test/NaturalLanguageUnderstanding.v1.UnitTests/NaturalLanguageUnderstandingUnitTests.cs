@@ -77,7 +77,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
         {
 
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
 
             service.Analyze(new Features());
         }
@@ -97,7 +97,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
                  });
 
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(client);
-            service.VersionDate = "2017-02-27";
+            service.Version = "2017-02-27";
 
             service.Analyze(new Features());
         }
@@ -296,7 +296,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.Analyze(new Features(), "testText", language: "en");
 
@@ -319,7 +319,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
         public void DeleteModel_No_VersionDate()
         {
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
 
             service.DeleteModel("modelId");
         }
@@ -339,7 +339,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
                  });
 
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(client);
-            service.VersionDate = "2017-02-27";
+            service.Version = "2017-02-27";
 
             service.DeleteModel("modelID");
         }
@@ -369,7 +369,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.DeleteModel("modelId");
 
@@ -384,7 +384,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
         public void ListModels_No_VersionDate()
         {
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
 
             service.ListModels();
         }
@@ -404,7 +404,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
                  });
 
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(client);
-            service.VersionDate = "2017-02-27";
+            service.Version = "2017-02-27";
 
             service.ListModels();
         }
@@ -443,7 +443,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.ListModels();
 

@@ -34,21 +34,20 @@ namespace IBM.Watson.LanguageTranslator.v3
     {
         const string defaultServiceName = "language_translator";
         private const string defaultServiceUrl = "https://gateway.watsonplatform.net/language-translator/api";
-        public string VersionDate { get; set; }
+        public string Version { get; set; }
 
-        public LanguageTranslatorService(string versionDate) : this(versionDate, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
-        public LanguageTranslatorService(string versionDate, IAuthenticator authenticator) : this(versionDate, defaultServiceName, authenticator) {}
-        public LanguageTranslatorService(string versionDate, string serviceName) : this(versionDate, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public LanguageTranslatorService(string version) : this(version, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public LanguageTranslatorService(string version, IAuthenticator authenticator) : this(version, defaultServiceName, authenticator) {}
+        public LanguageTranslatorService(string version, string serviceName) : this(version, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public LanguageTranslatorService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public LanguageTranslatorService(string versionDate, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
+        public LanguageTranslatorService(string version, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
-            if (string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`version` is required");
             }
-
-            VersionDate = versionDate;
+            Version = version;
 
             if (string.IsNullOrEmpty(ServiceUrl))
             {
@@ -70,16 +69,14 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <returns><see cref="TranslationResult" />TranslationResult</returns>
         public DetailedResponse<TranslationResult> Translate(List<string> text, string modelId = null, string source = null, string target = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (text == null)
             {
                 throw new ArgumentNullException("`text` is required for `Translate`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<TranslationResult> result = null;
 
             try
@@ -89,8 +86,11 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/translate");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -139,12 +139,10 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <returns><see cref="IdentifiableLanguages" />IdentifiableLanguages</returns>
         public DetailedResponse<IdentifiableLanguages> ListIdentifiableLanguages()
         {
-
-            if (string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(Version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`Version` is required");
             }
-
             DetailedResponse<IdentifiableLanguages> result = null;
 
             try
@@ -154,8 +152,11 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/identifiable_languages");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "ListIdentifiableLanguages"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -184,16 +185,14 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <returns><see cref="IdentifiedLanguages" />IdentifiedLanguages</returns>
         public DetailedResponse<IdentifiedLanguages> Identify(string text)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(text))
             {
                 throw new ArgumentNullException("`text` is required for `Identify`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<IdentifiedLanguages> result = null;
 
             try
@@ -203,8 +202,11 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/identify");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithHeader("Content-Type", "text/plain");
                 var httpContent = new StringContent(text, Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
@@ -240,12 +242,10 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <returns><see cref="TranslationModels" />TranslationModels</returns>
         public DetailedResponse<TranslationModels> ListModels(string source = null, string target = null, bool? _default = null)
         {
-
-            if (string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(Version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`Version` is required");
             }
-
             DetailedResponse<TranslationModels> result = null;
 
             try
@@ -255,8 +255,11 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/models");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(source))
                 {
                     restRequest.WithArgument("source", source);
@@ -321,16 +324,14 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <returns><see cref="TranslationModel" />TranslationModel</returns>
         public DetailedResponse<TranslationModel> CreateModel(string baseModelId, System.IO.MemoryStream forcedGlossary = null, System.IO.MemoryStream parallelCorpus = null, string name = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(baseModelId))
             {
                 throw new ArgumentNullException("`baseModelId` is required for `CreateModel`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<TranslationModel> result = null;
 
             try
@@ -360,8 +361,11 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/models");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(baseModelId))
                 {
                     restRequest.WithArgument("base_model_id", baseModelId);
@@ -399,6 +403,10 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <returns><see cref="DeleteModelResult" />DeleteModelResult</returns>
         public DetailedResponse<DeleteModelResult> DeleteModel(string modelId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(modelId))
             {
                 throw new ArgumentNullException("`modelId` is required for `DeleteModel`");
@@ -407,12 +415,6 @@ namespace IBM.Watson.LanguageTranslator.v3
             {
                 modelId = Uri.EscapeDataString(modelId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<DeleteModelResult> result = null;
 
             try
@@ -422,8 +424,11 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v3/models/{modelId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "DeleteModel"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -454,6 +459,10 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <returns><see cref="TranslationModel" />TranslationModel</returns>
         public DetailedResponse<TranslationModel> GetModel(string modelId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(modelId))
             {
                 throw new ArgumentNullException("`modelId` is required for `GetModel`");
@@ -462,12 +471,6 @@ namespace IBM.Watson.LanguageTranslator.v3
             {
                 modelId = Uri.EscapeDataString(modelId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<TranslationModel> result = null;
 
             try
@@ -477,8 +480,11 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/models/{modelId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "GetModel"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -505,12 +511,10 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <returns><see cref="DocumentList" />DocumentList</returns>
         public DetailedResponse<DocumentList> ListDocuments()
         {
-
-            if (string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(Version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`Version` is required");
             }
-
             DetailedResponse<DocumentList> result = null;
 
             try
@@ -520,8 +524,11 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/documents");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "ListDocuments"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -564,6 +571,10 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <returns><see cref="DocumentStatus" />DocumentStatus</returns>
         public DetailedResponse<DocumentStatus> TranslateDocument(System.IO.MemoryStream file, string filename, string fileContentType = null, string modelId = null, string source = null, string target = null, string documentId = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (file == null)
             {
                 throw new ArgumentNullException("`file` is required for `TranslateDocument`");
@@ -572,12 +583,6 @@ namespace IBM.Watson.LanguageTranslator.v3
             {
                 throw new ArgumentNullException("`filename` is required for `TranslateDocument`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<DocumentStatus> result = null;
 
             try
@@ -626,8 +631,11 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/documents");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithBodyContent(formData);
 
                 restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "TranslateDocument"));
@@ -854,6 +862,10 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <returns><see cref="DocumentStatus" />DocumentStatus</returns>
         public DetailedResponse<DocumentStatus> GetDocumentStatus(string documentId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(documentId))
             {
                 throw new ArgumentNullException("`documentId` is required for `GetDocumentStatus`");
@@ -862,12 +874,6 @@ namespace IBM.Watson.LanguageTranslator.v3
             {
                 documentId = Uri.EscapeDataString(documentId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<DocumentStatus> result = null;
 
             try
@@ -877,8 +883,11 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/documents/{documentId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "GetDocumentStatus"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -907,6 +916,10 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteDocument(string documentId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(documentId))
             {
                 throw new ArgumentNullException("`documentId` is required for `DeleteDocument`");
@@ -915,12 +928,6 @@ namespace IBM.Watson.LanguageTranslator.v3
             {
                 documentId = Uri.EscapeDataString(documentId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<object> result = null;
 
             try
@@ -930,7 +937,10 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v3/documents/{documentId}");
 
-                restRequest.WithArgument("version", VersionDate);
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "DeleteDocument"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -968,6 +978,10 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <returns><see cref="byte[]" />byte[]</returns>
         public DetailedResponse<System.IO.MemoryStream> GetTranslatedDocument(string documentId, string accept = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(documentId))
             {
                 throw new ArgumentNullException("`documentId` is required for `GetTranslatedDocument`");
@@ -976,12 +990,6 @@ namespace IBM.Watson.LanguageTranslator.v3
             {
                 documentId = Uri.EscapeDataString(documentId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<System.IO.MemoryStream> result = null;
 
             try
@@ -991,11 +999,14 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/documents/{documentId}/translated_document");
 
-                restRequest.WithArgument("version", VersionDate);
 
                 if (!string.IsNullOrEmpty(accept))
                 {
                     restRequest.WithHeader("Accept", accept);
+                }
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
                 }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "GetTranslatedDocument"));

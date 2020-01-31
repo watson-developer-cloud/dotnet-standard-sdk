@@ -52,7 +52,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
             var url = System.Environment.GetEnvironmentVariable("LANGUAGE_TRANSLATOR_URL");
             System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_APIKEY", "apikey");
             System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_URL", "http://www.url.com");
-            LanguageTranslatorService service = Substitute.For<LanguageTranslatorService>("versionDate");
+            LanguageTranslatorService service = Substitute.For<LanguageTranslatorService>("testString");
             Assert.IsNotNull(service);
             System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_URL", url);
             System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_APIKEY", apikey);
@@ -66,29 +66,13 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
         }
 
         [TestMethod]
-        public void ConstructorAuthenticator()
-        {
-            LanguageTranslatorService service = new LanguageTranslatorService("versionDate", new NoAuthAuthenticator());
-            Assert.IsNotNull(service);
-        }
-
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void ConstructorNoVersion()
-        {
-            LanguageTranslatorService service = new LanguageTranslatorService(null, new NoAuthAuthenticator());
-        }
-
-        [TestMethod]
         public void ConstructorNoUrl()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("LANGUAGE_TRANSLATOR_APIKEY");
-            var url = System.Environment.GetEnvironmentVariable("LANGUAGE_TRANSLATOR_URL");
-            System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_APIKEY", "apikey");
-            System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_URL", null);
-            LanguageTranslatorService service = Substitute.For<LanguageTranslatorService>("versionDate");
+            var apikey = System.Environment.GetEnvironmentVariable("TEST_SERVICE_APIKEY");
+            System.Environment.SetEnvironmentVariable("TEST_SERVICE_APIKEY", "apikey");
+            LanguageTranslatorService service = Substitute.For<LanguageTranslatorService>("testString", "test_service");
             Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/language-translator/api");
-            System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_URL", url);
-            System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_APIKEY", apikey);
+            System.Environment.SetEnvironmentVariable("TEST_SERVICE_APIKEY", apikey);
         }
         #endregion
 
@@ -101,8 +85,9 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
                 .Returns(request);
 
             LanguageTranslatorService service = new LanguageTranslatorService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'word_count': 9, 'character_count': 14, 'translations': [{'translation': '_Translation'}]}";
             var response = new DetailedResponse<TranslationResult>()
@@ -112,12 +97,16 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
                 StatusCode = 200
             };
 
+            List<string> text = new List<string> { "testString" };
+            string modelId = "testString";
+            string source = "testString";
+            string target = "testString";
 
             request.As<TranslationResult>().Returns(Task.FromResult(response));
 
-            var result = service.Translate(text: new List<string> { "testString" }, modelId: "testString", source: "testString", target: "testString");
+            var result = service.Translate(text: text, modelId: modelId, source: source, target: target);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v3/translate";
             client.Received().PostAsync(messageUrl);
@@ -132,8 +121,9 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
                 .Returns(request);
 
             LanguageTranslatorService service = new LanguageTranslatorService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'languages': [{'language': 'Language', 'name': 'Name'}]}";
             var response = new DetailedResponse<IdentifiableLanguages>()
@@ -148,7 +138,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             var result = service.ListIdentifiableLanguages();
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v3/identifiable_languages";
             client.Received().GetAsync(messageUrl);
@@ -163,8 +153,9 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
                 .Returns(request);
 
             LanguageTranslatorService service = new LanguageTranslatorService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'languages': [{'language': 'Language', 'confidence': 10}]}";
             var response = new DetailedResponse<IdentifiedLanguages>()
@@ -180,7 +171,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             var result = service.Identify(text: text);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v3/identify";
             client.Received().PostAsync(messageUrl);
@@ -195,8 +186,9 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
                 .Returns(request);
 
             LanguageTranslatorService service = new LanguageTranslatorService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'models': [{'model_id': 'ModelId', 'name': 'Name', 'source': 'Source', 'target': 'Target', 'base_model_id': 'BaseModelId', 'domain': 'Domain', 'customizable': true, 'default_model': true, 'owner': 'Owner', 'status': 'uploading'}]}";
             var response = new DetailedResponse<TranslationModels>()
@@ -214,7 +206,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             var result = service.ListModels(source: source, target: target, _default: _default);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v3/models";
             client.Received().GetAsync(messageUrl);
@@ -229,8 +221,9 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
                 .Returns(request);
 
             LanguageTranslatorService service = new LanguageTranslatorService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'model_id': 'ModelId', 'name': 'Name', 'source': 'Source', 'target': 'Target', 'base_model_id': 'BaseModelId', 'domain': 'Domain', 'customizable': true, 'default_model': true, 'owner': 'Owner', 'status': 'uploading'}";
             var response = new DetailedResponse<TranslationModel>()
@@ -249,7 +242,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             var result = service.CreateModel(baseModelId: baseModelId, forcedGlossary: forcedGlossary, parallelCorpus: parallelCorpus, name: name);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v3/models";
             client.Received().PostAsync(messageUrl);
@@ -264,8 +257,9 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
                 .Returns(request);
 
             LanguageTranslatorService service = new LanguageTranslatorService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'status': 'Status'}";
             var response = new DetailedResponse<DeleteModelResult>()
@@ -281,7 +275,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             var result = service.DeleteModel(modelId: modelId);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v3/models/{modelId}";
             client.Received().DeleteAsync(messageUrl);
@@ -296,8 +290,9 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
                 .Returns(request);
 
             LanguageTranslatorService service = new LanguageTranslatorService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'model_id': 'ModelId', 'name': 'Name', 'source': 'Source', 'target': 'Target', 'base_model_id': 'BaseModelId', 'domain': 'Domain', 'customizable': true, 'default_model': true, 'owner': 'Owner', 'status': 'uploading'}";
             var response = new DetailedResponse<TranslationModel>()
@@ -313,7 +308,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             var result = service.GetModel(modelId: modelId);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v3/models/{modelId}";
             client.Received().GetAsync(messageUrl);
@@ -328,8 +323,9 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
                 .Returns(request);
 
             LanguageTranslatorService service = new LanguageTranslatorService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'documents': [{'document_id': 'DocumentId', 'filename': 'Filename', 'status': 'processing', 'model_id': 'ModelId', 'base_model_id': 'BaseModelId', 'source': 'Source', 'target': 'Target', 'word_count': 9, 'character_count': 14}]}";
             var response = new DetailedResponse<DocumentList>()
@@ -344,7 +340,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             var result = service.ListDocuments();
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v3/documents";
             client.Received().GetAsync(messageUrl);
@@ -359,8 +355,9 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
                 .Returns(request);
 
             LanguageTranslatorService service = new LanguageTranslatorService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'document_id': 'DocumentId', 'filename': 'Filename', 'status': 'processing', 'model_id': 'ModelId', 'base_model_id': 'BaseModelId', 'source': 'Source', 'target': 'Target', 'word_count': 9, 'character_count': 14}";
             var response = new DetailedResponse<DocumentStatus>()
@@ -382,7 +379,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             var result = service.TranslateDocument(file: file, filename: filename, fileContentType: fileContentType, modelId: modelId, source: source, target: target, documentId: documentId);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v3/documents";
             client.Received().PostAsync(messageUrl);
@@ -397,8 +394,9 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
                 .Returns(request);
 
             LanguageTranslatorService service = new LanguageTranslatorService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'document_id': 'DocumentId', 'filename': 'Filename', 'status': 'processing', 'model_id': 'ModelId', 'base_model_id': 'BaseModelId', 'source': 'Source', 'target': 'Target', 'word_count': 9, 'character_count': 14}";
             var response = new DetailedResponse<DocumentStatus>()
@@ -414,7 +412,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             var result = service.GetDocumentStatus(documentId: documentId);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v3/documents/{documentId}";
             client.Received().GetAsync(messageUrl);
@@ -429,8 +427,9 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
                 .Returns(request);
 
             LanguageTranslatorService service = new LanguageTranslatorService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{}";
             var response = new DetailedResponse<object>()
@@ -446,7 +445,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             var result = service.DeleteDocument(documentId: documentId);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v3/documents/{documentId}";
             client.Received().DeleteAsync(messageUrl);
@@ -461,8 +460,9 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
                 .Returns(request);
 
             LanguageTranslatorService service = new LanguageTranslatorService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var response = new DetailedResponse<byte[]>()
             {
@@ -476,7 +476,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             var result = service.GetTranslatedDocument(documentId: documentId, accept: accept);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v3/documents/{documentId}/translated_document";
             client.Received().GetAsync(messageUrl);

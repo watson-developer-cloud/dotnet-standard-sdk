@@ -32,23 +32,22 @@ namespace IBM.Watson.CompareComply.v1
 {
     public partial class CompareComplyService : IBMService, ICompareComplyService
     {
-        const string defaultServiceName = "compare_comply";
+        const string defaultServiceName = "compare-comply";
         private const string defaultServiceUrl = "https://gateway.watsonplatform.net/compare-comply/api";
-        public string VersionDate { get; set; }
+        public string Version { get; set; }
 
-        public CompareComplyService(string versionDate) : this(versionDate, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
-        public CompareComplyService(string versionDate, IAuthenticator authenticator) : this(versionDate, defaultServiceName, authenticator) {}
-        public CompareComplyService(string versionDate, string serviceName) : this(versionDate, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public CompareComplyService(string version) : this(version, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public CompareComplyService(string version, IAuthenticator authenticator) : this(version, defaultServiceName, authenticator) {}
+        public CompareComplyService(string version, string serviceName) : this(version, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public CompareComplyService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public CompareComplyService(string versionDate, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
+        public CompareComplyService(string version, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
-            if (string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`version` is required");
             }
-
-            VersionDate = versionDate;
+            Version = version;
 
             if (string.IsNullOrEmpty(ServiceUrl))
             {
@@ -70,16 +69,14 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="HTMLReturn" />HTMLReturn</returns>
         public DetailedResponse<HTMLReturn> ConvertToHtml(System.IO.MemoryStream file, string fileContentType = null, string model = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (file == null)
             {
                 throw new ArgumentNullException("`file` is required for `ConvertToHtml`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<HTMLReturn> result = null;
 
             try
@@ -100,8 +97,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/html_conversion");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(model))
                 {
                     restRequest.WithArgument("model", model);
@@ -267,16 +267,14 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="ClassifyReturn" />ClassifyReturn</returns>
         public DetailedResponse<ClassifyReturn> ClassifyElements(System.IO.MemoryStream file, string fileContentType = null, string model = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (file == null)
             {
                 throw new ArgumentNullException("`file` is required for `ClassifyElements`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<ClassifyReturn> result = null;
 
             try
@@ -297,8 +295,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/element_classification");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(model))
                 {
                     restRequest.WithArgument("model", model);
@@ -456,16 +457,14 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="TableReturn" />TableReturn</returns>
         public DetailedResponse<TableReturn> ExtractTables(System.IO.MemoryStream file, string fileContentType = null, string model = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (file == null)
             {
                 throw new ArgumentNullException("`file` is required for `ExtractTables`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<TableReturn> result = null;
 
             try
@@ -486,8 +485,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/tables");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(model))
                 {
                     restRequest.WithArgument("model", model);
@@ -657,6 +659,10 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="CompareReturn" />CompareReturn</returns>
         public DetailedResponse<CompareReturn> CompareDocuments(System.IO.MemoryStream file1, System.IO.MemoryStream file2, string file1ContentType = null, string file2ContentType = null, string file1Label = null, string file2Label = null, string model = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (file1 == null)
             {
                 throw new ArgumentNullException("`file1` is required for `CompareDocuments`");
@@ -665,12 +671,6 @@ namespace IBM.Watson.CompareComply.v1
             {
                 throw new ArgumentNullException("`file2` is required for `CompareDocuments`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<CompareReturn> result = null;
 
             try
@@ -700,8 +700,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/comparison");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(file1Label))
                 {
                     restRequest.WithArgument("file_1_label", file1Label);
@@ -961,16 +964,14 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="FeedbackReturn" />FeedbackReturn</returns>
         public DetailedResponse<FeedbackReturn> AddFeedback(FeedbackDataInput feedbackData, string userId = null, string comment = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (feedbackData == null)
             {
                 throw new ArgumentNullException("`feedbackData` is required for `AddFeedback`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<FeedbackReturn> result = null;
 
             try
@@ -980,8 +981,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/feedback");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -1066,12 +1070,10 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="FeedbackList" />FeedbackList</returns>
         public DetailedResponse<FeedbackList> ListFeedback(string feedbackType = null, DateTime? before = null, DateTime? after = null, string documentTitle = null, string modelId = null, string modelVersion = null, string categoryRemoved = null, string categoryAdded = null, string categoryNotChanged = null, string typeRemoved = null, string typeAdded = null, string typeNotChanged = null, long? pageLimit = null, string cursor = null, string sort = null, bool? includeTotal = null)
         {
-
-            if (string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(Version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`Version` is required");
             }
-
             DetailedResponse<FeedbackList> result = null;
 
             try
@@ -1081,8 +1083,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/feedback");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(feedbackType))
                 {
                     restRequest.WithArgument("feedback_type", feedbackType);
@@ -1179,6 +1184,10 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="GetFeedback" />GetFeedback</returns>
         public DetailedResponse<GetFeedback> GetFeedback(string feedbackId, string model = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(feedbackId))
             {
                 throw new ArgumentNullException("`feedbackId` is required for `GetFeedback`");
@@ -1187,12 +1196,6 @@ namespace IBM.Watson.CompareComply.v1
             {
                 feedbackId = Uri.EscapeDataString(feedbackId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<GetFeedback> result = null;
 
             try
@@ -1202,8 +1205,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/feedback/{feedbackId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(model))
                 {
                     restRequest.WithArgument("model", model);
@@ -1282,6 +1288,10 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="FeedbackDeleted" />FeedbackDeleted</returns>
         public DetailedResponse<FeedbackDeleted> DeleteFeedback(string feedbackId, string model = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(feedbackId))
             {
                 throw new ArgumentNullException("`feedbackId` is required for `DeleteFeedback`");
@@ -1290,12 +1300,6 @@ namespace IBM.Watson.CompareComply.v1
             {
                 feedbackId = Uri.EscapeDataString(feedbackId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<FeedbackDeleted> result = null;
 
             try
@@ -1305,8 +1309,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/feedback/{feedbackId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(model))
                 {
                     restRequest.WithArgument("model", model);
@@ -1403,6 +1410,10 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="BatchStatus" />BatchStatus</returns>
         public DetailedResponse<BatchStatus> CreateBatch(string function, System.IO.MemoryStream inputCredentialsFile, string inputBucketLocation, string inputBucketName, System.IO.MemoryStream outputCredentialsFile, string outputBucketLocation, string outputBucketName, string model = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(function))
             {
                 throw new ArgumentNullException("`function` is required for `CreateBatch`");
@@ -1431,12 +1442,6 @@ namespace IBM.Watson.CompareComply.v1
             {
                 throw new ArgumentNullException("`outputBucketName` is required for `CreateBatch`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<BatchStatus> result = null;
 
             try
@@ -1494,8 +1499,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/batches");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(function))
                 {
                     restRequest.WithArgument("function", function);
@@ -1612,12 +1620,10 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="Batches" />Batches</returns>
         public DetailedResponse<Batches> ListBatches()
         {
-
-            if (string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(Version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`Version` is required");
             }
-
             DetailedResponse<Batches> result = null;
 
             try
@@ -1627,8 +1633,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/batches");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListBatches"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -1657,6 +1666,10 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="BatchStatus" />BatchStatus</returns>
         public DetailedResponse<BatchStatus> GetBatch(string batchId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(batchId))
             {
                 throw new ArgumentNullException("`batchId` is required for `GetBatch`");
@@ -1665,12 +1678,6 @@ namespace IBM.Watson.CompareComply.v1
             {
                 batchId = Uri.EscapeDataString(batchId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<BatchStatus> result = null;
 
             try
@@ -1680,8 +1687,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/batches/{batchId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetBatch"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -1716,6 +1726,10 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="BatchStatus" />BatchStatus</returns>
         public DetailedResponse<BatchStatus> UpdateBatch(string batchId, string action, string model = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(batchId))
             {
                 throw new ArgumentNullException("`batchId` is required for `UpdateBatch`");
@@ -1728,12 +1742,6 @@ namespace IBM.Watson.CompareComply.v1
             {
                 throw new ArgumentNullException("`action` is required for `UpdateBatch`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<BatchStatus> result = null;
 
             try
@@ -1743,8 +1751,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 var restRequest = client.PutAsync($"{this.Endpoint}/v1/batches/{batchId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(action))
                 {
                     restRequest.WithArgument("action", action);

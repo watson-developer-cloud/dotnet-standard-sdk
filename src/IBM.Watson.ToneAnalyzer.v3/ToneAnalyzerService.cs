@@ -32,21 +32,20 @@ namespace IBM.Watson.ToneAnalyzer.v3
     {
         const string defaultServiceName = "tone_analyzer";
         private const string defaultServiceUrl = "https://gateway.watsonplatform.net/tone-analyzer/api";
-        public string VersionDate { get; set; }
+        public string Version { get; set; }
 
-        public ToneAnalyzerService(string versionDate) : this(versionDate, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
-        public ToneAnalyzerService(string versionDate, IAuthenticator authenticator) : this(versionDate, defaultServiceName, authenticator) {}
-        public ToneAnalyzerService(string versionDate, string serviceName) : this(versionDate, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public ToneAnalyzerService(string version) : this(version, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public ToneAnalyzerService(string version, IAuthenticator authenticator) : this(version, defaultServiceName, authenticator) {}
+        public ToneAnalyzerService(string version, string serviceName) : this(version, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public ToneAnalyzerService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public ToneAnalyzerService(string versionDate, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
+        public ToneAnalyzerService(string version, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
-            if (string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`version` is required");
             }
-
-            VersionDate = versionDate;
+            Version = version;
 
             if (string.IsNullOrEmpty(ServiceUrl))
             {
@@ -100,16 +99,14 @@ namespace IBM.Watson.ToneAnalyzer.v3
         /// <returns><see cref="ToneAnalysis" />ToneAnalysis</returns>
         public DetailedResponse<ToneAnalysis> Tone(ToneInput toneInput, string contentType = null, bool? sentences = null, List<string> tones = null, string contentLanguage = null, string acceptLanguage = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (toneInput == null)
             {
                 throw new ArgumentNullException("`toneInput` is required for `Tone`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<ToneAnalysis> result = null;
 
             try
@@ -119,7 +116,6 @@ namespace IBM.Watson.ToneAnalyzer.v3
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/tone");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
                 if (!string.IsNullOrEmpty(contentType))
@@ -135,6 +131,10 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 if (!string.IsNullOrEmpty(acceptLanguage))
                 {
                     restRequest.WithHeader("Accept-Language", acceptLanguage);
+                }
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
                 }
                 if (sentences != null)
                 {
@@ -437,16 +437,14 @@ namespace IBM.Watson.ToneAnalyzer.v3
         /// <returns><see cref="UtteranceAnalyses" />UtteranceAnalyses</returns>
         public DetailedResponse<UtteranceAnalyses> ToneChat(List<Utterance> utterances, string contentLanguage = null, string acceptLanguage = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (utterances == null)
             {
                 throw new ArgumentNullException("`utterances` is required for `ToneChat`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<UtteranceAnalyses> result = null;
 
             try
@@ -456,7 +454,6 @@ namespace IBM.Watson.ToneAnalyzer.v3
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/tone_chat");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
                 if (!string.IsNullOrEmpty(contentLanguage))
@@ -467,6 +464,10 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 if (!string.IsNullOrEmpty(acceptLanguage))
                 {
                     restRequest.WithHeader("Accept-Language", acceptLanguage);
+                }
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
                 }
                 restRequest.WithHeader("Content-Type", "application/json");
 

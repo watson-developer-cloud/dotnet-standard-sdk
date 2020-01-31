@@ -31,21 +31,20 @@ namespace IBM.Watson.PersonalityInsights.v3
     {
         const string defaultServiceName = "personality_insights";
         private const string defaultServiceUrl = "https://gateway.watsonplatform.net/personality-insights/api";
-        public string VersionDate { get; set; }
+        public string Version { get; set; }
 
-        public PersonalityInsightsService(string versionDate) : this(versionDate, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
-        public PersonalityInsightsService(string versionDate, IAuthenticator authenticator) : this(versionDate, defaultServiceName, authenticator) {}
-        public PersonalityInsightsService(string versionDate, string serviceName) : this(versionDate, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public PersonalityInsightsService(string version) : this(version, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public PersonalityInsightsService(string version, IAuthenticator authenticator) : this(version, defaultServiceName, authenticator) {}
+        public PersonalityInsightsService(string version, string serviceName) : this(version, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public PersonalityInsightsService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public PersonalityInsightsService(string versionDate, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
+        public PersonalityInsightsService(string version, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
-            if (string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`version` is required");
             }
-
-            VersionDate = versionDate;
+            Version = version;
 
             if (string.IsNullOrEmpty(ServiceUrl))
             {
@@ -124,16 +123,14 @@ namespace IBM.Watson.PersonalityInsights.v3
         /// <returns><see cref="Profile" />Profile</returns>
         public DetailedResponse<Profile> Profile(Content content, string contentType = null, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (content == null)
             {
                 throw new ArgumentNullException("`content` is required for `Profile`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<Profile> result = null;
 
             try
@@ -143,7 +140,6 @@ namespace IBM.Watson.PersonalityInsights.v3
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/profile");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
                 if (!string.IsNullOrEmpty(contentType))
@@ -159,6 +155,10 @@ namespace IBM.Watson.PersonalityInsights.v3
                 if (!string.IsNullOrEmpty(acceptLanguage))
                 {
                     restRequest.WithHeader("Accept-Language", acceptLanguage);
+                }
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
                 }
                 if (rawScores != null)
                 {
@@ -486,16 +486,14 @@ namespace IBM.Watson.PersonalityInsights.v3
         /// <returns><see cref="System.IO.MemoryStream" />System.IO.MemoryStream</returns>
         public DetailedResponse<System.IO.MemoryStream> ProfileAsCsv(Content content, string contentType = null, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (content == null)
             {
                 throw new ArgumentNullException("`content` is required for `ProfileAsCsv`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<System.IO.MemoryStream> result = null;
 
             try
@@ -505,7 +503,6 @@ namespace IBM.Watson.PersonalityInsights.v3
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/profile");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "text/csv");
 
                 if (!string.IsNullOrEmpty(contentType))
@@ -521,6 +518,10 @@ namespace IBM.Watson.PersonalityInsights.v3
                 if (!string.IsNullOrEmpty(acceptLanguage))
                 {
                     restRequest.WithHeader("Accept-Language", acceptLanguage);
+                }
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
                 }
                 if (rawScores != null)
                 {

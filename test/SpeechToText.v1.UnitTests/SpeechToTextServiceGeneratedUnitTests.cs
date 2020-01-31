@@ -66,23 +66,13 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
         }
 
         [TestMethod]
-        public void ConstructorAuthenticator()
-        {
-            SpeechToTextService service = new SpeechToTextService(new NoAuthAuthenticator());
-            Assert.IsNotNull(service);
-        }
-
-        [TestMethod]
         public void ConstructorNoUrl()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("SPEECH_TO_TEXT_APIKEY");
-            var url = System.Environment.GetEnvironmentVariable("SPEECH_TO_TEXT_URL");
-            System.Environment.SetEnvironmentVariable("SPEECH_TO_TEXT_APIKEY", "apikey");
-            System.Environment.SetEnvironmentVariable("SPEECH_TO_TEXT_URL", null);
-            SpeechToTextService service = Substitute.For<SpeechToTextService>();
+            var apikey = System.Environment.GetEnvironmentVariable("TEST_SERVICE_APIKEY");
+            System.Environment.SetEnvironmentVariable("TEST_SERVICE_APIKEY", "apikey");
+            SpeechToTextService service = Substitute.For<SpeechToTextService>("test_service");
             Assert.IsTrue(service.ServiceUrl == "https://stream.watsonplatform.net/speech-to-text/api");
-            System.Environment.SetEnvironmentVariable("SPEECH_TO_TEXT_URL", url);
-            System.Environment.SetEnvironmentVariable("SPEECH_TO_TEXT_APIKEY", apikey);
+            System.Environment.SetEnvironmentVariable("TEST_SERVICE_APIKEY", apikey);
         }
         #endregion
 
@@ -112,7 +102,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var responseJson = "{'models': [{'name': 'Name', 'language': 'Language', 'rate': 4, 'url': 'Url', 'supported_features': {'custom_language_model': false, 'speaker_labels': false}, 'description': 'Description'}]}";
             var response = new DetailedResponse<SpeechModels>()
             {
@@ -140,7 +129,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var responseJson = "{'name': 'Name', 'language': 'Language', 'rate': 4, 'url': 'Url', 'supported_features': {'custom_language_model': false, 'speaker_labels': false}, 'description': 'Description'}";
             var response = new DetailedResponse<SpeechModel>()
             {
@@ -169,8 +157,7 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
-            var responseJson = "{'results': [{'final': false, 'alternatives': [{'transcript': 'Transcript', 'confidence': 10, 'timestamps': [['Timestamps']], 'word_confidence': [['WordConfidence']]}], 'keywords_result': {}, 'word_alternatives': [{'start_time': 9, 'end_time': 7, 'alternatives': [{'confidence': 10, 'word': 'Word'}]}], 'end_of_utterance': 'end_of_data'}], 'result_index': 11, 'speaker_labels': [{'from': 4, 'to': 2, 'speaker': 7, 'confidence': 10, 'final': false}], 'processing_metrics': {'processed_audio': {'received': 8, 'seen_by_engine': 12, 'transcription': 13, 'speaker_labels': 13}, 'wall_clock_since_first_byte_received': 31, 'periodic': true}, 'audio_metrics': {'sampling_interval': 16, 'accumulated': {'final': false, 'end_time': 7, 'signal_to_noise_ratio': 18, 'speech_ratio': 11, 'high_frequency_loss': 17, 'direct_current_offset': [{'begin': 5, 'end': 3, 'count': 5}], 'clipping_rate': [{'begin': 5, 'end': 3, 'count': 5}], 'speech_level': [{'begin': 5, 'end': 3, 'count': 5}], 'non_speech_level': [{'begin': 5, 'end': 3, 'count': 5}]}}, 'warnings': ['Warnings']}";
+            var responseJson = "{'results': [{'final': false, 'alternatives': [{'transcript': 'Transcript', 'confidence': 10, 'timestamps': ['Timestamps'], 'word_confidence': ['WordConfidence']}], 'keywords_result': {}, 'word_alternatives': [{'start_time': 9, 'end_time': 7, 'alternatives': [{'confidence': 10, 'word': 'Word'}]}], 'end_of_utterance': 'end_of_data'}], 'result_index': 11, 'speaker_labels': [{'from': 4, 'to': 2, 'speaker': 7, 'confidence': 10, 'final': false}], 'processing_metrics': {'processed_audio': {'received': 8, 'seen_by_engine': 12, 'transcription': 13, 'speaker_labels': 13}, 'wall_clock_since_first_byte_received': 31, 'periodic': true}, 'audio_metrics': {'sampling_interval': 16, 'accumulated': {'final': false, 'end_time': 7, 'signal_to_noise_ratio': 18, 'speech_ratio': 11, 'high_frequency_loss': 17, 'direct_current_offset': [{'begin': 5, 'end': 3, 'count': 5}], 'clipping_rate': [{'begin': 5, 'end': 3, 'count': 5}], 'speech_level': [{'begin': 5, 'end': 3, 'count': 5}], 'non_speech_level': [{'begin': 5, 'end': 3, 'count': 5}]}}, 'warnings': ['Warnings']}";
             var response = new DetailedResponse<SpeechRecognitionResults>()
             {
                 Response = responseJson,
@@ -178,7 +165,7 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 StatusCode = 200
             };
 
-            byte[] audio = new byte[4];
+            System.IO.MemoryStream audio = new System.IO.MemoryStream(Encoding.UTF8.GetBytes("This is a mock file."));
             string contentType = "application/octet-stream";
             string model = "ar-AR_BroadbandModel";
             string languageCustomizationId = "testString";
@@ -220,7 +207,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var responseJson = "{'status': 'created', 'url': 'Url'}";
             var response = new DetailedResponse<RegisterStatus>()
             {
@@ -250,7 +236,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var responseJson = "{}";
             var response = new DetailedResponse<object>()
             {
@@ -279,8 +264,7 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
-            var responseJson = "{'id': 'Id', 'status': 'waiting', 'created': 'Created', 'updated': 'Updated', 'url': 'Url', 'user_token': 'UserToken', 'results': [{'results': [{'final': false, 'alternatives': [{'transcript': 'Transcript', 'confidence': 10, 'timestamps': [['Timestamps']], 'word_confidence': [['WordConfidence']]}], 'keywords_result': {}, 'word_alternatives': [{'start_time': 9, 'end_time': 7, 'alternatives': [{'confidence': 10, 'word': 'Word'}]}], 'end_of_utterance': 'end_of_data'}], 'result_index': 11, 'speaker_labels': [{'from': 4, 'to': 2, 'speaker': 7, 'confidence': 10, 'final': false}], 'processing_metrics': {'processed_audio': {'received': 8, 'seen_by_engine': 12, 'transcription': 13, 'speaker_labels': 13}, 'wall_clock_since_first_byte_received': 31, 'periodic': true}, 'audio_metrics': {'sampling_interval': 16, 'accumulated': {'final': false, 'end_time': 7, 'signal_to_noise_ratio': 18, 'speech_ratio': 11, 'high_frequency_loss': 17, 'direct_current_offset': [{'begin': 5, 'end': 3, 'count': 5}], 'clipping_rate': [{'begin': 5, 'end': 3, 'count': 5}], 'speech_level': [{'begin': 5, 'end': 3, 'count': 5}], 'non_speech_level': [{'begin': 5, 'end': 3, 'count': 5}]}}, 'warnings': ['Warnings']}], 'warnings': ['Warnings']}";
+            var responseJson = "{'id': 'Id', 'status': 'waiting', 'created': 'Created', 'updated': 'Updated', 'url': 'Url', 'user_token': 'UserToken', 'results': [{'results': [{'final': false, 'alternatives': [{'transcript': 'Transcript', 'confidence': 10, 'timestamps': ['Timestamps'], 'word_confidence': ['WordConfidence']}], 'keywords_result': {}, 'word_alternatives': [{'start_time': 9, 'end_time': 7, 'alternatives': [{'confidence': 10, 'word': 'Word'}]}], 'end_of_utterance': 'end_of_data'}], 'result_index': 11, 'speaker_labels': [{'from': 4, 'to': 2, 'speaker': 7, 'confidence': 10, 'final': false}], 'processing_metrics': {'processed_audio': {'received': 8, 'seen_by_engine': 12, 'transcription': 13, 'speaker_labels': 13}, 'wall_clock_since_first_byte_received': 31, 'periodic': true}, 'audio_metrics': {'sampling_interval': 16, 'accumulated': {'final': false, 'end_time': 7, 'signal_to_noise_ratio': 18, 'speech_ratio': 11, 'high_frequency_loss': 17, 'direct_current_offset': [{'begin': 5, 'end': 3, 'count': 5}], 'clipping_rate': [{'begin': 5, 'end': 3, 'count': 5}], 'speech_level': [{'begin': 5, 'end': 3, 'count': 5}], 'non_speech_level': [{'begin': 5, 'end': 3, 'count': 5}]}}, 'warnings': ['Warnings']}], 'warnings': ['Warnings']}";
             var response = new DetailedResponse<RecognitionJob>()
             {
                 Response = responseJson,
@@ -288,7 +272,7 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 StatusCode = 201
             };
 
-            byte[] audio = new byte[4];
+            System.IO.MemoryStream audio = new System.IO.MemoryStream(Encoding.UTF8.GetBytes("This is a mock file."));
             string contentType = "application/octet-stream";
             string model = "ar-AR_BroadbandModel";
             string callbackUrl = "testString";
@@ -336,8 +320,7 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
-            var responseJson = "{'recognitions': [{'id': 'Id', 'status': 'waiting', 'created': 'Created', 'updated': 'Updated', 'url': 'Url', 'user_token': 'UserToken', 'results': [{'results': [{'final': false, 'alternatives': [{'transcript': 'Transcript', 'confidence': 10, 'timestamps': [['Timestamps']], 'word_confidence': [['WordConfidence']]}], 'keywords_result': {}, 'word_alternatives': [{'start_time': 9, 'end_time': 7, 'alternatives': [{'confidence': 10, 'word': 'Word'}]}], 'end_of_utterance': 'end_of_data'}], 'result_index': 11, 'speaker_labels': [{'from': 4, 'to': 2, 'speaker': 7, 'confidence': 10, 'final': false}], 'processing_metrics': {'processed_audio': {'received': 8, 'seen_by_engine': 12, 'transcription': 13, 'speaker_labels': 13}, 'wall_clock_since_first_byte_received': 31, 'periodic': true}, 'audio_metrics': {'sampling_interval': 16, 'accumulated': {'final': false, 'end_time': 7, 'signal_to_noise_ratio': 18, 'speech_ratio': 11, 'high_frequency_loss': 17, 'direct_current_offset': [{'begin': 5, 'end': 3, 'count': 5}], 'clipping_rate': [{'begin': 5, 'end': 3, 'count': 5}], 'speech_level': [{'begin': 5, 'end': 3, 'count': 5}], 'non_speech_level': [{'begin': 5, 'end': 3, 'count': 5}]}}, 'warnings': ['Warnings']}], 'warnings': ['Warnings']}]}";
+            var responseJson = "{'recognitions': [{'id': 'Id', 'status': 'waiting', 'created': 'Created', 'updated': 'Updated', 'url': 'Url', 'user_token': 'UserToken', 'results': [{'results': [{'final': false, 'alternatives': [{'transcript': 'Transcript', 'confidence': 10, 'timestamps': ['Timestamps'], 'word_confidence': ['WordConfidence']}], 'keywords_result': {}, 'word_alternatives': [{'start_time': 9, 'end_time': 7, 'alternatives': [{'confidence': 10, 'word': 'Word'}]}], 'end_of_utterance': 'end_of_data'}], 'result_index': 11, 'speaker_labels': [{'from': 4, 'to': 2, 'speaker': 7, 'confidence': 10, 'final': false}], 'processing_metrics': {'processed_audio': {'received': 8, 'seen_by_engine': 12, 'transcription': 13, 'speaker_labels': 13}, 'wall_clock_since_first_byte_received': 31, 'periodic': true}, 'audio_metrics': {'sampling_interval': 16, 'accumulated': {'final': false, 'end_time': 7, 'signal_to_noise_ratio': 18, 'speech_ratio': 11, 'high_frequency_loss': 17, 'direct_current_offset': [{'begin': 5, 'end': 3, 'count': 5}], 'clipping_rate': [{'begin': 5, 'end': 3, 'count': 5}], 'speech_level': [{'begin': 5, 'end': 3, 'count': 5}], 'non_speech_level': [{'begin': 5, 'end': 3, 'count': 5}]}}, 'warnings': ['Warnings']}], 'warnings': ['Warnings']}]}";
             var response = new DetailedResponse<RecognitionJobs>()
             {
                 Response = responseJson,
@@ -364,8 +347,7 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
-            var responseJson = "{'id': 'Id', 'status': 'waiting', 'created': 'Created', 'updated': 'Updated', 'url': 'Url', 'user_token': 'UserToken', 'results': [{'results': [{'final': false, 'alternatives': [{'transcript': 'Transcript', 'confidence': 10, 'timestamps': [['Timestamps']], 'word_confidence': [['WordConfidence']]}], 'keywords_result': {}, 'word_alternatives': [{'start_time': 9, 'end_time': 7, 'alternatives': [{'confidence': 10, 'word': 'Word'}]}], 'end_of_utterance': 'end_of_data'}], 'result_index': 11, 'speaker_labels': [{'from': 4, 'to': 2, 'speaker': 7, 'confidence': 10, 'final': false}], 'processing_metrics': {'processed_audio': {'received': 8, 'seen_by_engine': 12, 'transcription': 13, 'speaker_labels': 13}, 'wall_clock_since_first_byte_received': 31, 'periodic': true}, 'audio_metrics': {'sampling_interval': 16, 'accumulated': {'final': false, 'end_time': 7, 'signal_to_noise_ratio': 18, 'speech_ratio': 11, 'high_frequency_loss': 17, 'direct_current_offset': [{'begin': 5, 'end': 3, 'count': 5}], 'clipping_rate': [{'begin': 5, 'end': 3, 'count': 5}], 'speech_level': [{'begin': 5, 'end': 3, 'count': 5}], 'non_speech_level': [{'begin': 5, 'end': 3, 'count': 5}]}}, 'warnings': ['Warnings']}], 'warnings': ['Warnings']}";
+            var responseJson = "{'id': 'Id', 'status': 'waiting', 'created': 'Created', 'updated': 'Updated', 'url': 'Url', 'user_token': 'UserToken', 'results': [{'results': [{'final': false, 'alternatives': [{'transcript': 'Transcript', 'confidence': 10, 'timestamps': ['Timestamps'], 'word_confidence': ['WordConfidence']}], 'keywords_result': {}, 'word_alternatives': [{'start_time': 9, 'end_time': 7, 'alternatives': [{'confidence': 10, 'word': 'Word'}]}], 'end_of_utterance': 'end_of_data'}], 'result_index': 11, 'speaker_labels': [{'from': 4, 'to': 2, 'speaker': 7, 'confidence': 10, 'final': false}], 'processing_metrics': {'processed_audio': {'received': 8, 'seen_by_engine': 12, 'transcription': 13, 'speaker_labels': 13}, 'wall_clock_since_first_byte_received': 31, 'periodic': true}, 'audio_metrics': {'sampling_interval': 16, 'accumulated': {'final': false, 'end_time': 7, 'signal_to_noise_ratio': 18, 'speech_ratio': 11, 'high_frequency_loss': 17, 'direct_current_offset': [{'begin': 5, 'end': 3, 'count': 5}], 'clipping_rate': [{'begin': 5, 'end': 3, 'count': 5}], 'speech_level': [{'begin': 5, 'end': 3, 'count': 5}], 'non_speech_level': [{'begin': 5, 'end': 3, 'count': 5}]}}, 'warnings': ['Warnings']}], 'warnings': ['Warnings']}";
             var response = new DetailedResponse<RecognitionJob>()
             {
                 Response = responseJson,
@@ -393,7 +375,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var responseJson = "{}";
             var response = new DetailedResponse<object>()
             {
@@ -422,7 +403,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var responseJson = "{'customization_id': 'CustomizationId', 'created': 'Created', 'updated': 'Updated', 'language': 'Language', 'dialect': 'Dialect', 'versions': ['Versions'], 'owner': 'Owner', 'name': 'Name', 'description': 'Description', 'base_model_name': 'BaseModelName', 'status': 'pending', 'progress': 8, 'error': 'Error', 'warnings': 'Warnings'}";
             var response = new DetailedResponse<LanguageModel>()
             {
@@ -431,10 +411,14 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 StatusCode = 201
             };
 
+            string name = "testString";
+            string baseModelName = "de-DE_BroadbandModel";
+            string dialect = "testString";
+            string description = "testString";
 
             request.As<LanguageModel>().Returns(Task.FromResult(response));
 
-            var result = service.CreateLanguageModel(name: "testString", baseModelName: "de-DE_BroadbandModel", dialect: "testString", description: "testString");
+            var result = service.CreateLanguageModel(name: name, baseModelName: baseModelName, dialect: dialect, description: description);
 
 
             string messageUrl = $"{service.ServiceUrl}/v1/customizations";
@@ -450,7 +434,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var responseJson = "{'customizations': [{'customization_id': 'CustomizationId', 'created': 'Created', 'updated': 'Updated', 'language': 'Language', 'dialect': 'Dialect', 'versions': ['Versions'], 'owner': 'Owner', 'name': 'Name', 'description': 'Description', 'base_model_name': 'BaseModelName', 'status': 'pending', 'progress': 8, 'error': 'Error', 'warnings': 'Warnings'}]}";
             var response = new DetailedResponse<LanguageModels>()
             {
@@ -479,7 +462,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var responseJson = "{'customization_id': 'CustomizationId', 'created': 'Created', 'updated': 'Updated', 'language': 'Language', 'dialect': 'Dialect', 'versions': ['Versions'], 'owner': 'Owner', 'name': 'Name', 'description': 'Description', 'base_model_name': 'BaseModelName', 'status': 'pending', 'progress': 8, 'error': 'Error', 'warnings': 'Warnings'}";
             var response = new DetailedResponse<LanguageModel>()
             {
@@ -508,7 +490,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var response = new DetailedResponse<object>()
             {
                 Result = new object(),
@@ -535,7 +516,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var responseJson = "{'warnings': [{'code': 'invalid_audio_files', 'message': 'Message'}]}";
             var response = new DetailedResponse<TrainingResponse>()
             {
@@ -566,7 +546,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var response = new DetailedResponse<object>()
             {
                 Result = new object(),
@@ -593,7 +572,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var response = new DetailedResponse<object>()
             {
                 Result = new object(),
@@ -620,7 +598,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var responseJson = "{'corpora': [{'name': 'Name', 'total_words': 10, 'out_of_vocabulary_words': 20, 'status': 'analyzed', 'error': 'Error'}]}";
             var response = new DetailedResponse<Corpora>()
             {
@@ -649,7 +626,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var response = new DetailedResponse<object>()
             {
                 Result = new object(),
@@ -679,7 +655,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var responseJson = "{'name': 'Name', 'total_words': 10, 'out_of_vocabulary_words': 20, 'status': 'analyzed', 'error': 'Error'}";
             var response = new DetailedResponse<Corpus>()
             {
@@ -709,7 +684,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var response = new DetailedResponse<object>()
             {
                 Result = new object(),
@@ -737,7 +711,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var responseJson = "{'words': [{'word': '_Word', 'sounds_like': ['SoundsLike'], 'display_as': 'DisplayAs', 'count': 5, 'source': ['Source'], 'error': [{'element': 'Element'}]}]}";
             var response = new DetailedResponse<Words>()
             {
@@ -768,7 +741,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var response = new DetailedResponse<object>()
             {
                 Result = new object(),
@@ -783,10 +755,11 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 DisplayAs = "testString"
             };
             string customizationId = "testString";
+            List<CustomWord> words = new List<CustomWord> { CustomWordModel };
 
             request.As<object>().Returns(Task.FromResult(response));
 
-            var result = service.AddWords(customizationId: customizationId, words: new List<CustomWord> { CustomWordModel });
+            var result = service.AddWords(customizationId: customizationId, words: words);
 
 
             string messageUrl = $"{service.ServiceUrl}/v1/customizations/{customizationId}/words";
@@ -802,7 +775,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var response = new DetailedResponse<object>()
             {
                 Result = new object(),
@@ -811,10 +783,13 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             string customizationId = "testString";
             string wordName = "testString";
+            string word = "testString";
+            List<string> soundsLike = new List<string> { "testString" };
+            string displayAs = "testString";
 
             request.As<object>().Returns(Task.FromResult(response));
 
-            var result = service.AddWord(customizationId: customizationId, wordName: wordName, word: "testString", soundsLike: new List<string> { "testString" }, displayAs: "testString");
+            var result = service.AddWord(customizationId: customizationId, wordName: wordName, word: word, soundsLike: soundsLike, displayAs: displayAs);
 
 
             string messageUrl = $"{service.ServiceUrl}/v1/customizations/{customizationId}/words/{wordName}";
@@ -830,7 +805,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var responseJson = "{'word': '_Word', 'sounds_like': ['SoundsLike'], 'display_as': 'DisplayAs', 'count': 5, 'source': ['Source'], 'error': [{'element': 'Element'}]}";
             var response = new DetailedResponse<Word>()
             {
@@ -860,7 +834,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var response = new DetailedResponse<object>()
             {
                 Result = new object(),
@@ -888,7 +861,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var responseJson = "{'grammars': [{'name': 'Name', 'out_of_vocabulary_words': 20, 'status': 'analyzed', 'error': 'Error'}]}";
             var response = new DetailedResponse<Grammars>()
             {
@@ -917,7 +889,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var response = new DetailedResponse<object>()
             {
                 Result = new object(),
@@ -948,7 +919,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var responseJson = "{'name': 'Name', 'out_of_vocabulary_words': 20, 'status': 'analyzed', 'error': 'Error'}";
             var response = new DetailedResponse<Grammar>()
             {
@@ -978,7 +948,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var response = new DetailedResponse<object>()
             {
                 Result = new object(),
@@ -1006,7 +975,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var responseJson = "{'customization_id': 'CustomizationId', 'created': 'Created', 'updated': 'Updated', 'language': 'Language', 'versions': ['Versions'], 'owner': 'Owner', 'name': 'Name', 'description': 'Description', 'base_model_name': 'BaseModelName', 'status': 'pending', 'progress': 8, 'warnings': 'Warnings'}";
             var response = new DetailedResponse<AcousticModel>()
             {
@@ -1015,10 +983,13 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 StatusCode = 201
             };
 
+            string name = "testString";
+            string baseModelName = "ar-AR_BroadbandModel";
+            string description = "testString";
 
             request.As<AcousticModel>().Returns(Task.FromResult(response));
 
-            var result = service.CreateAcousticModel(name: "testString", baseModelName: "ar-AR_BroadbandModel", description: "testString");
+            var result = service.CreateAcousticModel(name: name, baseModelName: baseModelName, description: description);
 
 
             string messageUrl = $"{service.ServiceUrl}/v1/acoustic_customizations";
@@ -1034,7 +1005,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var responseJson = "{'customizations': [{'customization_id': 'CustomizationId', 'created': 'Created', 'updated': 'Updated', 'language': 'Language', 'versions': ['Versions'], 'owner': 'Owner', 'name': 'Name', 'description': 'Description', 'base_model_name': 'BaseModelName', 'status': 'pending', 'progress': 8, 'warnings': 'Warnings'}]}";
             var response = new DetailedResponse<AcousticModels>()
             {
@@ -1063,7 +1033,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var responseJson = "{'customization_id': 'CustomizationId', 'created': 'Created', 'updated': 'Updated', 'language': 'Language', 'versions': ['Versions'], 'owner': 'Owner', 'name': 'Name', 'description': 'Description', 'base_model_name': 'BaseModelName', 'status': 'pending', 'progress': 8, 'warnings': 'Warnings'}";
             var response = new DetailedResponse<AcousticModel>()
             {
@@ -1092,7 +1061,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var response = new DetailedResponse<object>()
             {
                 Result = new object(),
@@ -1119,7 +1087,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var responseJson = "{'warnings': [{'code': 'invalid_audio_files', 'message': 'Message'}]}";
             var response = new DetailedResponse<TrainingResponse>()
             {
@@ -1149,7 +1116,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var response = new DetailedResponse<object>()
             {
                 Result = new object(),
@@ -1176,7 +1142,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var response = new DetailedResponse<object>()
             {
                 Result = new object(),
@@ -1205,7 +1170,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var responseJson = "{'total_minutes_of_audio': 19, 'audio': [{'duration': 8, 'name': 'Name', 'details': {'type': 'audio', 'codec': 'Codec', 'frequency': 9, 'compression': 'zip'}, 'status': 'ok'}]}";
             var response = new DetailedResponse<AudioResources>()
             {
@@ -1234,7 +1198,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var response = new DetailedResponse<object>()
             {
                 Result = new object(),
@@ -1243,7 +1206,7 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             string customizationId = "testString";
             string audioName = "testString";
-            byte[] audioResource = new byte[4];
+            System.IO.MemoryStream audioResource = new System.IO.MemoryStream(Encoding.UTF8.GetBytes("This is a mock file."));
             string contentType = "application/zip";
             string containedContentType = "audio/alaw";
             bool? allowOverwrite = true;
@@ -1266,7 +1229,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var responseJson = "{'duration': 8, 'name': 'Name', 'details': {'type': 'audio', 'codec': 'Codec', 'frequency': 9, 'compression': 'zip'}, 'status': 'ok', 'container': {'duration': 8, 'name': 'Name', 'details': {'type': 'audio', 'codec': 'Codec', 'frequency': 9, 'compression': 'zip'}, 'status': 'ok'}, 'audio': [{'duration': 8, 'name': 'Name', 'details': {'type': 'audio', 'codec': 'Codec', 'frequency': 9, 'compression': 'zip'}, 'status': 'ok'}]}";
             var response = new DetailedResponse<AudioListing>()
             {
@@ -1296,7 +1258,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var response = new DetailedResponse<object>()
             {
                 Result = new object(),
@@ -1324,7 +1285,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
                 .Returns(request);
 
             SpeechToTextService service = new SpeechToTextService(client);
-
             var responseJson = "{}";
             var response = new DetailedResponse<object>()
             {

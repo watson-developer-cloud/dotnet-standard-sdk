@@ -52,7 +52,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
             var url = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_URL");
             System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_APIKEY", "apikey");
             System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_URL", "http://www.url.com");
-            NaturalLanguageUnderstandingService service = Substitute.For<NaturalLanguageUnderstandingService>("versionDate");
+            NaturalLanguageUnderstandingService service = Substitute.For<NaturalLanguageUnderstandingService>("testString");
             Assert.IsNotNull(service);
             System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_URL", url);
             System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_APIKEY", apikey);
@@ -66,29 +66,13 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
         }
 
         [TestMethod]
-        public void ConstructorAuthenticator()
-        {
-            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("versionDate", new NoAuthAuthenticator());
-            Assert.IsNotNull(service);
-        }
-
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void ConstructorNoVersion()
-        {
-            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(null, new NoAuthAuthenticator());
-        }
-
-        [TestMethod]
         public void ConstructorNoUrl()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_APIKEY");
-            var url = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_URL");
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_APIKEY", "apikey");
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_URL", null);
-            NaturalLanguageUnderstandingService service = Substitute.For<NaturalLanguageUnderstandingService>("versionDate");
+            var apikey = System.Environment.GetEnvironmentVariable("TEST_SERVICE_APIKEY");
+            System.Environment.SetEnvironmentVariable("TEST_SERVICE_APIKEY", "apikey");
+            NaturalLanguageUnderstandingService service = Substitute.For<NaturalLanguageUnderstandingService>("testString", "test_service");
             Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/natural-language-understanding/api");
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_URL", url);
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_APIKEY", apikey);
+            System.Environment.SetEnvironmentVariable("TEST_SERVICE_APIKEY", apikey);
         }
         #endregion
 
@@ -365,8 +349,9 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
                 .Returns(request);
 
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'language': 'Language', 'analyzed_text': 'AnalyzedText', 'retrieved_url': 'RetrievedUrl', 'usage': {'features': 8, 'text_characters': 14, 'text_units': 9}, 'concepts': [{'text': 'Text', 'relevance': 9, 'dbpedia_resource': 'DbpediaResource'}], 'entities': [{'type': 'Type', 'text': 'Text', 'relevance': 9, 'confidence': 10, 'mentions': [{'text': 'Text', 'location': [8], 'confidence': 10}], 'count': 5, 'emotion': {'anger': 5, 'disgust': 7, 'fear': 4, 'joy': 3, 'sadness': 7}, 'sentiment': {'score': 5}, 'disambiguation': {'name': 'Name', 'dbpedia_resource': 'DbpediaResource', 'subtype': ['Subtype']}}], 'keywords': [{'count': 5, 'relevance': 9, 'text': 'Text', 'emotion': {'anger': 5, 'disgust': 7, 'fear': 4, 'joy': 3, 'sadness': 7}, 'sentiment': {'score': 5}}], 'categories': [{'label': 'Label', 'score': 5, 'explanation': {'relevant_text': [{'text': 'Text'}]}}], 'emotion': {'document': {'emotion': {'anger': 5, 'disgust': 7, 'fear': 4, 'joy': 3, 'sadness': 7}}, 'targets': [{'text': 'Text', 'emotion': {'anger': 5, 'disgust': 7, 'fear': 4, 'joy': 3, 'sadness': 7}}]}, 'metadata': {'authors': [{'name': 'Name'}], 'publication_date': 'PublicationDate', 'title': 'Title', 'image': 'Image', 'feeds': [{'link': 'Link'}]}, 'relations': [{'score': 5, 'sentence': 'Sentence', 'type': 'Type', 'arguments': [{'entities': [{'text': 'Text', 'type': 'Type'}], 'location': [8], 'text': 'Text'}]}], 'semantic_roles': [{'sentence': 'Sentence', 'subject': {'text': 'Text', 'entities': [{'type': 'Type', 'text': 'Text'}], 'keywords': [{'text': 'Text'}]}, 'action': {'text': 'Text', 'normalized': 'Normalized', 'verb': {'text': 'Text', 'tense': 'Tense'}}, 'object': {'text': 'Text', 'keywords': [{'text': 'Text'}]}}], 'sentiment': {'document': {'label': 'Label', 'score': 5}, 'targets': [{'text': 'Text', 'score': 5}]}, 'syntax': {'tokens': [{'text': 'Text', 'part_of_speech': 'ADJ', 'location': [8], 'lemma': 'Lemma'}], 'sentences': [{'text': 'Text', 'location': [8]}]}}";
             var response = new DetailedResponse<AnalysisResults>()
@@ -459,12 +444,22 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
                 Categories = CategoriesOptionsModel,
                 Syntax = SyntaxOptionsModel
             };
+            Features features = FeaturesModel;
+            string text = "testString";
+            string html = "testString";
+            string url = "testString";
+            bool? clean = true;
+            string xpath = "testString";
+            bool? fallbackToRaw = true;
+            bool? returnAnalyzedText = true;
+            string language = "testString";
+            long? limitTextCharacters = 38;
 
             request.As<AnalysisResults>().Returns(Task.FromResult(response));
 
-            var result = service.Analyze(features: FeaturesModel, text: "testString", html: "testString", url: "testString", clean: true, xpath: "testString", fallbackToRaw: true, returnAnalyzedText: true, language: "testString", limitTextCharacters: 38);
+            var result = service.Analyze(features: features, text: text, html: html, url: url, clean: clean, xpath: xpath, fallbackToRaw: fallbackToRaw, returnAnalyzedText: returnAnalyzedText, language: language, limitTextCharacters: limitTextCharacters);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/analyze";
             client.Received().PostAsync(messageUrl);
@@ -479,8 +474,9 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
                 .Returns(request);
 
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'models': [{'status': 'Status', 'model_id': 'ModelId', 'language': 'Language', 'description': 'Description', 'workspace_id': 'WorkspaceId', 'version': 'Version', 'version_description': 'VersionDescription'}]}";
             var response = new DetailedResponse<ListModelsResults>()
@@ -495,7 +491,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
 
             var result = service.ListModels();
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/models";
             client.Received().GetAsync(messageUrl);
@@ -510,8 +506,9 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
                 .Returns(request);
 
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'deleted': 'Deleted'}";
             var response = new DetailedResponse<DeleteModelResults>()
@@ -527,7 +524,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
 
             var result = service.DeleteModel(modelId: modelId);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/models/{modelId}";
             client.Received().DeleteAsync(messageUrl);

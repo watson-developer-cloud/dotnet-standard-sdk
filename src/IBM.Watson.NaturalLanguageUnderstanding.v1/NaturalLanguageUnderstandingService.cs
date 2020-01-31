@@ -30,7 +30,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
 {
     public partial class NaturalLanguageUnderstandingService : IBMService, INaturalLanguageUnderstandingService
     {
-        const string defaultServiceName = "natural-language-understanding";
+        const string defaultServiceName = "natural_language_understanding";
         private const string defaultServiceUrl = "https://gateway.watsonplatform.net/natural-language-understanding/api";
         public string Version { get; set; }
 

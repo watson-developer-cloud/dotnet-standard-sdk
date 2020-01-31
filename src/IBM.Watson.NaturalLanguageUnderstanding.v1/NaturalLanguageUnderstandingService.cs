@@ -30,23 +30,22 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
 {
     public partial class NaturalLanguageUnderstandingService : IBMService, INaturalLanguageUnderstandingService
     {
-        const string defaultServiceName = "natural_language_understanding";
+        const string defaultServiceName = "natural-language-understanding";
         private const string defaultServiceUrl = "https://gateway.watsonplatform.net/natural-language-understanding/api";
-        public string VersionDate { get; set; }
+        public string Version { get; set; }
 
-        public NaturalLanguageUnderstandingService(string versionDate) : this(versionDate, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
-        public NaturalLanguageUnderstandingService(string versionDate, IAuthenticator authenticator) : this(versionDate, defaultServiceName, authenticator) {}
-        public NaturalLanguageUnderstandingService(string versionDate, string serviceName) : this(versionDate, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public NaturalLanguageUnderstandingService(string version) : this(version, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public NaturalLanguageUnderstandingService(string version, IAuthenticator authenticator) : this(version, defaultServiceName, authenticator) {}
+        public NaturalLanguageUnderstandingService(string version, string serviceName) : this(version, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public NaturalLanguageUnderstandingService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public NaturalLanguageUnderstandingService(string versionDate, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
+        public NaturalLanguageUnderstandingService(string version, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
-            if (string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`version` is required");
             }
-
-            VersionDate = versionDate;
+            Version = version;
 
             if (string.IsNullOrEmpty(ServiceUrl))
             {
@@ -103,16 +102,14 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// <returns><see cref="AnalysisResults" />AnalysisResults</returns>
         public DetailedResponse<AnalysisResults> Analyze(Features features, string text = null, string html = null, string url = null, bool? clean = null, string xpath = null, bool? fallbackToRaw = null, bool? returnAnalyzedText = null, string language = null, long? limitTextCharacters = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (features == null)
             {
                 throw new ArgumentNullException("`features` is required for `Analyze`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<AnalysisResults> result = null;
 
             try
@@ -122,8 +119,11 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/analyze");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -197,12 +197,10 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// <returns><see cref="ListModelsResults" />ListModelsResults</returns>
         public DetailedResponse<ListModelsResults> ListModels()
         {
-
-            if (string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(Version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`Version` is required");
             }
-
             DetailedResponse<ListModelsResults> result = null;
 
             try
@@ -212,8 +210,11 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/models");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListModels"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -242,6 +243,10 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// <returns><see cref="DeleteModelResults" />DeleteModelResults</returns>
         public DetailedResponse<DeleteModelResults> DeleteModel(string modelId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(modelId))
             {
                 throw new ArgumentNullException("`modelId` is required for `DeleteModel`");
@@ -250,12 +255,6 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
             {
                 modelId = Uri.EscapeDataString(modelId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<DeleteModelResults> result = null;
 
             try
@@ -265,8 +264,11 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/models/{modelId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteModel"));
                 restRequest.WithHeaders(customRequestHeaders);

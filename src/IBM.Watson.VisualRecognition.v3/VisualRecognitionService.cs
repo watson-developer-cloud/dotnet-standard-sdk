@@ -30,23 +30,22 @@ namespace IBM.Watson.VisualRecognition.v3
 {
     public partial class VisualRecognitionService : IBMService, IVisualRecognitionService
     {
-        const string defaultServiceName = "visual_recognition";
+        const string defaultServiceName = "watson_vision_combined";
         private const string defaultServiceUrl = "https://gateway.watsonplatform.net/visual-recognition/api";
-        public string VersionDate { get; set; }
+        public string Version { get; set; }
 
-        public VisualRecognitionService(string versionDate) : this(versionDate, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
-        public VisualRecognitionService(string versionDate, IAuthenticator authenticator) : this(versionDate, defaultServiceName, authenticator) {}
-        public VisualRecognitionService(string versionDate, string serviceName) : this(versionDate, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public VisualRecognitionService(string version) : this(version, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public VisualRecognitionService(string version, IAuthenticator authenticator) : this(version, defaultServiceName, authenticator) {}
+        public VisualRecognitionService(string version, string serviceName) : this(version, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public VisualRecognitionService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public VisualRecognitionService(string versionDate, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
+        public VisualRecognitionService(string version, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
-            if (string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`version` is required");
             }
-
-            VersionDate = versionDate;
+            Version = version;
 
             if (string.IsNullOrEmpty(ServiceUrl))
             {
@@ -94,12 +93,10 @@ namespace IBM.Watson.VisualRecognition.v3
         /// <returns><see cref="ClassifiedImages" />ClassifiedImages</returns>
         public DetailedResponse<ClassifiedImages> Classify(System.IO.MemoryStream imagesFile = null, string imagesFilename = null, string imagesFileContentType = null, string url = null, float? threshold = null, List<string> owners = null, List<string> classifierIds = null, string acceptLanguage = null)
         {
-
-            if (string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(Version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`Version` is required");
             }
-
             DetailedResponse<ClassifiedImages> result = null;
 
             try
@@ -131,16 +128,22 @@ namespace IBM.Watson.VisualRecognition.v3
 
                 if (owners != null)
                 {
-                    var ownersContent = new StringContent(string.Join(", ", owners.ToArray()), Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    ownersContent.Headers.ContentType = null;
-                    formData.Add(ownersContent, "owners");
+                    foreach (string item in owners)
+                    {
+                        var ownersContent = new StringContent(item, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                        ownersContent.Headers.ContentType = null;
+                        formData.Add(ownersContent, "owners");
+                    }
                 }
 
                 if (classifierIds != null)
                 {
-                    var classifierIdsContent = new StringContent(string.Join(", ", classifierIds.ToArray()), Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    classifierIdsContent.Headers.ContentType = null;
-                    formData.Add(classifierIdsContent, "classifier_ids");
+                    foreach (string item in classifierIds)
+                    {
+                        var classifierIdsContent = new StringContent(item, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                        classifierIdsContent.Headers.ContentType = null;
+                        formData.Add(classifierIdsContent, "classifier_ids");
+                    }
                 }
 
                 IClient client = this.Client;
@@ -148,12 +151,15 @@ namespace IBM.Watson.VisualRecognition.v3
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/classify");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
                 if (!string.IsNullOrEmpty(acceptLanguage))
                 {
                     restRequest.WithHeader("Accept-Language", acceptLanguage);
+                }
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
                 }
                 restRequest.WithBodyContent(formData);
 
@@ -320,6 +326,10 @@ namespace IBM.Watson.VisualRecognition.v3
         /// <returns><see cref="Classifier" />Classifier</returns>
         public DetailedResponse<Classifier> CreateClassifier(string name, Dictionary<string, System.IO.MemoryStream> positiveExamples, System.IO.MemoryStream negativeExamples = null, string negativeExamplesFilename = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(name))
             {
                 throw new ArgumentNullException("`name` is required for `CreateClassifier`");
@@ -332,12 +342,6 @@ namespace IBM.Watson.VisualRecognition.v3
             {
                 throw new ArgumentException("`positiveExamples` must contain at least one dictionary entry");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<Classifier> result = null;
 
             try
@@ -378,8 +382,11 @@ namespace IBM.Watson.VisualRecognition.v3
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/classifiers");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithBodyContent(formData);
 
                 restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "CreateClassifier"));
@@ -408,12 +415,10 @@ namespace IBM.Watson.VisualRecognition.v3
         /// <returns><see cref="Classifiers" />Classifiers</returns>
         public DetailedResponse<Classifiers> ListClassifiers(bool? verbose = null)
         {
-
-            if (string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(Version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`Version` is required");
             }
-
             DetailedResponse<Classifiers> result = null;
 
             try
@@ -423,8 +428,11 @@ namespace IBM.Watson.VisualRecognition.v3
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/classifiers");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (verbose != null)
                 {
                     restRequest.WithArgument("verbose", verbose);
@@ -457,6 +465,10 @@ namespace IBM.Watson.VisualRecognition.v3
         /// <returns><see cref="Classifier" />Classifier</returns>
         public DetailedResponse<Classifier> GetClassifier(string classifierId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(classifierId))
             {
                 throw new ArgumentNullException("`classifierId` is required for `GetClassifier`");
@@ -465,12 +477,6 @@ namespace IBM.Watson.VisualRecognition.v3
             {
                 classifierId = Uri.EscapeDataString(classifierId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<Classifier> result = null;
 
             try
@@ -480,8 +486,11 @@ namespace IBM.Watson.VisualRecognition.v3
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/classifiers/{classifierId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "GetClassifier"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -507,7 +516,7 @@ namespace IBM.Watson.VisualRecognition.v3
         /// Update a custom classifier by adding new positive or negative classes or by adding new images to existing
         /// classes. You must supply at least one set of positive or negative examples. For details, see [Updating
         /// custom
-        /// classifiers](https://cloud.ibm.com/docs/services/visual-recognition?topic=visual-recognition-customizing#updating-custom-classifiers).
+        /// classifiers](https://cloud.ibm.com/docs/visual-recognition?topic=visual-recognition-customizing#updating-custom-classifiers).
         ///
         /// Encode all names in UTF-8 if they contain non-ASCII characters (.zip and image file names, and classifier
         /// and class names). The service assumes UTF-8 encoding if it encounters non-ASCII characters.
@@ -543,6 +552,10 @@ namespace IBM.Watson.VisualRecognition.v3
         /// <returns><see cref="Classifier" />Classifier</returns>
         public DetailedResponse<Classifier> UpdateClassifier(string classifierId, Dictionary<string, System.IO.MemoryStream> positiveExamples = null, System.IO.MemoryStream negativeExamples = null, string negativeExamplesFilename = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(classifierId))
             {
                 throw new ArgumentNullException("`classifierId` is required for `UpdateClassifier`");
@@ -551,12 +564,6 @@ namespace IBM.Watson.VisualRecognition.v3
             {
                 classifierId = Uri.EscapeDataString(classifierId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<Classifier> result = null;
 
             try
@@ -590,8 +597,11 @@ namespace IBM.Watson.VisualRecognition.v3
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/classifiers/{classifierId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithBodyContent(formData);
 
                 restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "UpdateClassifier"));
@@ -619,6 +629,10 @@ namespace IBM.Watson.VisualRecognition.v3
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteClassifier(string classifierId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(classifierId))
             {
                 throw new ArgumentNullException("`classifierId` is required for `DeleteClassifier`");
@@ -627,12 +641,6 @@ namespace IBM.Watson.VisualRecognition.v3
             {
                 classifierId = Uri.EscapeDataString(classifierId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<object> result = null;
 
             try
@@ -642,8 +650,11 @@ namespace IBM.Watson.VisualRecognition.v3
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v3/classifiers/{classifierId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "DeleteClassifier"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -672,6 +683,10 @@ namespace IBM.Watson.VisualRecognition.v3
         /// <returns><see cref="byte[]" />byte[]</returns>
         public DetailedResponse<System.IO.MemoryStream> GetCoreMlModel(string classifierId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(classifierId))
             {
                 throw new ArgumentNullException("`classifierId` is required for `GetCoreMlModel`");
@@ -680,12 +695,6 @@ namespace IBM.Watson.VisualRecognition.v3
             {
                 classifierId = Uri.EscapeDataString(classifierId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<System.IO.MemoryStream> result = null;
 
             try
@@ -695,8 +704,11 @@ namespace IBM.Watson.VisualRecognition.v3
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/classifiers/{classifierId}/core_ml_model");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/octet-stream");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "GetCoreMlModel"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -720,22 +732,20 @@ namespace IBM.Watson.VisualRecognition.v3
         ///
         /// You associate a customer ID with data by passing the `X-Watson-Metadata` header with a request that passes
         /// data. For more information about personal data and customer IDs, see [Information
-        /// security](https://cloud.ibm.com/docs/services/visual-recognition?topic=visual-recognition-information-security).
+        /// security](https://cloud.ibm.com/docs/visual-recognition?topic=visual-recognition-information-security).
         /// </summary>
         /// <param name="customerId">The customer ID for which all data is to be deleted.</param>
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteUserData(string customerId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(customerId))
             {
                 throw new ArgumentNullException("`customerId` is required for `DeleteUserData`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<object> result = null;
 
             try
@@ -745,8 +755,11 @@ namespace IBM.Watson.VisualRecognition.v3
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v3/user_data");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(customerId))
                 {
                     restRequest.WithArgument("customer_id", customerId);

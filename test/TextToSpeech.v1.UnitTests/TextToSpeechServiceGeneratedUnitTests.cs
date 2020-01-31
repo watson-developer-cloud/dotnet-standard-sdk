@@ -66,23 +66,13 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
         }
 
         [TestMethod]
-        public void ConstructorAuthenticator()
-        {
-            TextToSpeechService service = new TextToSpeechService(new NoAuthAuthenticator());
-            Assert.IsNotNull(service);
-        }
-
-        [TestMethod]
         public void ConstructorNoUrl()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("TEXT_TO_SPEECH_APIKEY");
-            var url = System.Environment.GetEnvironmentVariable("TEXT_TO_SPEECH_URL");
-            System.Environment.SetEnvironmentVariable("TEXT_TO_SPEECH_APIKEY", "apikey");
-            System.Environment.SetEnvironmentVariable("TEXT_TO_SPEECH_URL", null);
-            TextToSpeechService service = Substitute.For<TextToSpeechService>();
+            var apikey = System.Environment.GetEnvironmentVariable("TEST_SERVICE_APIKEY");
+            System.Environment.SetEnvironmentVariable("TEST_SERVICE_APIKEY", "apikey");
+            TextToSpeechService service = Substitute.For<TextToSpeechService>("test_service");
             Assert.IsTrue(service.ServiceUrl == "https://stream.watsonplatform.net/text-to-speech/api");
-            System.Environment.SetEnvironmentVariable("TEXT_TO_SPEECH_URL", url);
-            System.Environment.SetEnvironmentVariable("TEXT_TO_SPEECH_APIKEY", apikey);
+            System.Environment.SetEnvironmentVariable("TEST_SERVICE_APIKEY", apikey);
         }
         #endregion
 
@@ -144,7 +134,6 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
                 .Returns(request);
 
             TextToSpeechService service = new TextToSpeechService(client);
-
             var responseJson = "{'voices': [{'url': 'Url', 'gender': 'Gender', 'name': 'Name', 'language': 'Language', 'description': 'Description', 'customizable': true, 'supported_features': {'custom_pronunciation': false, 'voice_transformation': false}, 'customization': {'customization_id': 'CustomizationId', 'name': 'Name', 'language': 'Language', 'owner': 'Owner', 'created': 'Created', 'last_modified': 'LastModified', 'description': 'Description', 'words': [{'word': '_Word', 'translation': 'Translation', 'part_of_speech': 'Dosi'}]}}]}";
             var response = new DetailedResponse<Voices>()
             {
@@ -172,7 +161,6 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
                 .Returns(request);
 
             TextToSpeechService service = new TextToSpeechService(client);
-
             var responseJson = "{'url': 'Url', 'gender': 'Gender', 'name': 'Name', 'language': 'Language', 'description': 'Description', 'customizable': true, 'supported_features': {'custom_pronunciation': false, 'voice_transformation': false}, 'customization': {'customization_id': 'CustomizationId', 'name': 'Name', 'language': 'Language', 'owner': 'Owner', 'created': 'Created', 'last_modified': 'LastModified', 'description': 'Description', 'words': [{'word': '_Word', 'translation': 'Translation', 'part_of_speech': 'Dosi'}]}}";
             var response = new DetailedResponse<Voice>()
             {
@@ -202,19 +190,19 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
                 .Returns(request);
 
             TextToSpeechService service = new TextToSpeechService(client);
-
             var response = new DetailedResponse<byte[]>()
             {
                 Result = new byte[4],
                 StatusCode = 200
             };
+            string text = "testString";
             string accept = "audio/basic";
             string voice = "ar-AR_OmarVoice";
             string customizationId = "testString";
 
             request.As<byte[]>().Returns(Task.FromResult(response));
 
-            var result = service.Synthesize(text: "testString", accept: accept, voice: voice, customizationId: customizationId);
+            var result = service.Synthesize(text: text, accept: accept, voice: voice, customizationId: customizationId);
 
 
             string messageUrl = $"{service.ServiceUrl}/v1/synthesize";
@@ -230,7 +218,6 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
                 .Returns(request);
 
             TextToSpeechService service = new TextToSpeechService(client);
-
             var responseJson = "{'pronunciation': '_Pronunciation'}";
             var response = new DetailedResponse<Pronunciation>()
             {
@@ -262,7 +249,6 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
                 .Returns(request);
 
             TextToSpeechService service = new TextToSpeechService(client);
-
             var responseJson = "{'customization_id': 'CustomizationId', 'name': 'Name', 'language': 'Language', 'owner': 'Owner', 'created': 'Created', 'last_modified': 'LastModified', 'description': 'Description', 'words': [{'word': '_Word', 'translation': 'Translation', 'part_of_speech': 'Dosi'}]}";
             var response = new DetailedResponse<VoiceModel>()
             {
@@ -271,10 +257,13 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
                 StatusCode = 201
             };
 
+            string name = "testString";
+            string language = "de-DE";
+            string description = "testString";
 
             request.As<VoiceModel>().Returns(Task.FromResult(response));
 
-            var result = service.CreateVoiceModel(name: "testString", language: "de-DE", description: "testString");
+            var result = service.CreateVoiceModel(name: name, language: language, description: description);
 
 
             string messageUrl = $"{service.ServiceUrl}/v1/customizations";
@@ -290,7 +279,6 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
                 .Returns(request);
 
             TextToSpeechService service = new TextToSpeechService(client);
-
             var responseJson = "{'customizations': [{'customization_id': 'CustomizationId', 'name': 'Name', 'language': 'Language', 'owner': 'Owner', 'created': 'Created', 'last_modified': 'LastModified', 'description': 'Description', 'words': [{'word': '_Word', 'translation': 'Translation', 'part_of_speech': 'Dosi'}]}]}";
             var response = new DetailedResponse<VoiceModels>()
             {
@@ -319,7 +307,6 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
                 .Returns(request);
 
             TextToSpeechService service = new TextToSpeechService(client);
-
             var response = new DetailedResponse<object>()
             {
                 Result = new object(),
@@ -333,10 +320,13 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
                 PartOfSpeech = "Dosi"
             };
             string customizationId = "testString";
+            string name = "testString";
+            string description = "testString";
+            List<Word> words = new List<Word> { WordModel };
 
             request.As<object>().Returns(Task.FromResult(response));
 
-            var result = service.UpdateVoiceModel(customizationId: customizationId, name: "testString", description: "testString", words: new List<Word> { WordModel });
+            var result = service.UpdateVoiceModel(customizationId: customizationId, name: name, description: description, words: words);
 
 
             string messageUrl = $"{service.ServiceUrl}/v1/customizations/{customizationId}";
@@ -352,7 +342,6 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
                 .Returns(request);
 
             TextToSpeechService service = new TextToSpeechService(client);
-
             var responseJson = "{'customization_id': 'CustomizationId', 'name': 'Name', 'language': 'Language', 'owner': 'Owner', 'created': 'Created', 'last_modified': 'LastModified', 'description': 'Description', 'words': [{'word': '_Word', 'translation': 'Translation', 'part_of_speech': 'Dosi'}]}";
             var response = new DetailedResponse<VoiceModel>()
             {
@@ -381,7 +370,6 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
                 .Returns(request);
 
             TextToSpeechService service = new TextToSpeechService(client);
-
             var responseJson = "{}";
             var response = new DetailedResponse<object>()
             {
@@ -410,7 +398,6 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
                 .Returns(request);
 
             TextToSpeechService service = new TextToSpeechService(client);
-
             var response = new DetailedResponse<object>()
             {
                 Result = new object(),
@@ -424,10 +411,11 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
                 PartOfSpeech = "Dosi"
             };
             string customizationId = "testString";
+            List<Word> words = new List<Word> { WordModel };
 
             request.As<object>().Returns(Task.FromResult(response));
 
-            var result = service.AddWords(customizationId: customizationId, words: new List<Word> { WordModel });
+            var result = service.AddWords(customizationId: customizationId, words: words);
 
 
             string messageUrl = $"{service.ServiceUrl}/v1/customizations/{customizationId}/words";
@@ -443,7 +431,6 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
                 .Returns(request);
 
             TextToSpeechService service = new TextToSpeechService(client);
-
             var responseJson = "{'words': [{'word': '_Word', 'translation': 'Translation', 'part_of_speech': 'Dosi'}]}";
             var response = new DetailedResponse<Words>()
             {
@@ -472,7 +459,6 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
                 .Returns(request);
 
             TextToSpeechService service = new TextToSpeechService(client);
-
             var responseJson = "{}";
             var response = new DetailedResponse<object>()
             {
@@ -483,10 +469,12 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
 
             string customizationId = "testString";
             string word = "testString";
+            string translation = "testString";
+            string partOfSpeech = "Dosi";
 
             request.As<object>().Returns(Task.FromResult(response));
 
-            var result = service.AddWord(customizationId: customizationId, word: word, translation: "testString", partOfSpeech: "Dosi");
+            var result = service.AddWord(customizationId: customizationId, word: word, translation: translation, partOfSpeech: partOfSpeech);
 
 
             string messageUrl = $"{service.ServiceUrl}/v1/customizations/{customizationId}/words/{word}";
@@ -502,7 +490,6 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
                 .Returns(request);
 
             TextToSpeechService service = new TextToSpeechService(client);
-
             var responseJson = "{'translation': '_Translation', 'part_of_speech': 'Dosi'}";
             var response = new DetailedResponse<Translation>()
             {
@@ -532,7 +519,6 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
                 .Returns(request);
 
             TextToSpeechService service = new TextToSpeechService(client);
-
             var responseJson = "{}";
             var response = new DetailedResponse<object>()
             {
@@ -562,7 +548,6 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
                 .Returns(request);
 
             TextToSpeechService service = new TextToSpeechService(client);
-
             var responseJson = "{}";
             var response = new DetailedResponse<object>()
             {

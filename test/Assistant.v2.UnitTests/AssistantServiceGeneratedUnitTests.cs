@@ -52,7 +52,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
             var url = System.Environment.GetEnvironmentVariable("ASSISTANT_URL");
             System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", "apikey");
             System.Environment.SetEnvironmentVariable("ASSISTANT_URL", "http://www.url.com");
-            AssistantService service = Substitute.For<AssistantService>("versionDate");
+            AssistantService service = Substitute.For<AssistantService>("testString");
             Assert.IsNotNull(service);
             System.Environment.SetEnvironmentVariable("ASSISTANT_URL", url);
             System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", apikey);
@@ -66,29 +66,13 @@ namespace IBM.Watson.Assistant.v2.UnitTests
         }
 
         [TestMethod]
-        public void ConstructorAuthenticator()
-        {
-            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            Assert.IsNotNull(service);
-        }
-
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void ConstructorNoVersion()
-        {
-            AssistantService service = new AssistantService(null, new NoAuthAuthenticator());
-        }
-
-        [TestMethod]
         public void ConstructorNoUrl()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("ASSISTANT_APIKEY");
-            var url = System.Environment.GetEnvironmentVariable("ASSISTANT_URL");
-            System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", "apikey");
-            System.Environment.SetEnvironmentVariable("ASSISTANT_URL", null);
-            AssistantService service = Substitute.For<AssistantService>("versionDate");
+            var apikey = System.Environment.GetEnvironmentVariable("TEST_SERVICE_APIKEY");
+            System.Environment.SetEnvironmentVariable("TEST_SERVICE_APIKEY", "apikey");
+            AssistantService service = Substitute.For<AssistantService>("testString", "test_service");
             Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/assistant/api");
-            System.Environment.SetEnvironmentVariable("ASSISTANT_URL", url);
-            System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", apikey);
+            System.Environment.SetEnvironmentVariable("TEST_SERVICE_APIKEY", apikey);
         }
         #endregion
 
@@ -118,7 +102,9 @@ namespace IBM.Watson.Assistant.v2.UnitTests
             {
                 Timezone = "testString",
                 UserId = "testString",
-                TurnCount = 38
+                TurnCount = 38,
+                Locale = "en-us",
+                ReferenceTime = "testString"
             };
 
             MessageContextGlobal MessageContextGlobalModel = new MessageContextGlobal()
@@ -143,7 +129,9 @@ namespace IBM.Watson.Assistant.v2.UnitTests
             {
                 Timezone = "testString",
                 UserId = "testString",
-                TurnCount = 38
+                TurnCount = 38,
+                Locale = "en-us",
+                ReferenceTime = "testString"
             };
 
             MessageContextGlobal testRequestModel = new MessageContextGlobal()
@@ -162,12 +150,16 @@ namespace IBM.Watson.Assistant.v2.UnitTests
             {
                 Timezone = "testString",
                 UserId = "testString",
-                TurnCount = 38
+                TurnCount = 38,
+                Locale = "en-us",
+                ReferenceTime = "testString"
             };
 
             Assert.IsTrue(testRequestModel.Timezone == "testString");
             Assert.IsTrue(testRequestModel.UserId == "testString");
             Assert.IsTrue(testRequestModel.TurnCount == 38);
+            Assert.IsTrue(testRequestModel.Locale == "en-us");
+            Assert.IsTrue(testRequestModel.ReferenceTime == "testString");
         }
 
         [TestMethod]
@@ -189,6 +181,47 @@ namespace IBM.Watson.Assistant.v2.UnitTests
         [TestMethod]
         public void TestMessageInputModel()
         {
+            RuntimeEntityRole RuntimeEntityRoleModel = new RuntimeEntityRole()
+            {
+                Type = "date_from"
+            };
+
+            RuntimeEntityAlternative RuntimeEntityAlternativeModel = new RuntimeEntityAlternative()
+            {
+                Value = "testString",
+                Confidence = 72.5f
+            };
+
+            RuntimeEntityInterpretation RuntimeEntityInterpretationModel = new RuntimeEntityInterpretation()
+            {
+                CalendarType = "testString",
+                DatetimeLink = "testString",
+                Festival = "testString",
+                Granularity = "day",
+                RangeLink = "testString",
+                RangeModifier = "testString",
+                RelativeDay = 72.5f,
+                RelativeMonth = 72.5f,
+                RelativeWeek = 72.5f,
+                RelativeWeekend = 72.5f,
+                RelativeYear = 72.5f,
+                SpecificDay = 72.5f,
+                SpecificDayOfWeek = "testString",
+                SpecificMonth = 72.5f,
+                SpecificQuarter = 72.5f,
+                SpecificYear = 72.5f,
+                NumericValue = 72.5f,
+                Subtype = "testString",
+                PartOfDay = "testString",
+                RelativeHour = 72.5f,
+                RelativeMinute = 72.5f,
+                RelativeSecond = 72.5f,
+                SpecificHour = 72.5f,
+                SpecificMinute = 72.5f,
+                SpecificSecond = 72.5f,
+                Timezone = "testString"
+            };
+
             var CaptureGroupLocation = new List<long?> { 38 };
             CaptureGroup CaptureGroupModel = new CaptureGroup()
             {
@@ -199,6 +232,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
             var RuntimeEntityLocation = new List<long?> { 38 };
             var RuntimeEntityMetadata = new Dictionary<string, object>();
             var RuntimeEntityGroups = new List<CaptureGroup> { CaptureGroupModel };
+            var RuntimeEntityAlternatives = new List<RuntimeEntityAlternative> { RuntimeEntityAlternativeModel };
             RuntimeEntity RuntimeEntityModel = new RuntimeEntity()
             {
                 Entity = "testString",
@@ -206,7 +240,10 @@ namespace IBM.Watson.Assistant.v2.UnitTests
                 Value = "testString",
                 Confidence = 72.5f,
                 Metadata = RuntimeEntityMetadata,
-                Groups = RuntimeEntityGroups
+                Groups = RuntimeEntityGroups,
+                Interpretation = RuntimeEntityInterpretationModel,
+                Alternatives = RuntimeEntityAlternatives,
+                Role = RuntimeEntityRoleModel
             };
 
             RuntimeIntent RuntimeIntentModel = new RuntimeIntent()
@@ -264,6 +301,47 @@ namespace IBM.Watson.Assistant.v2.UnitTests
         [TestMethod]
         public void TestRuntimeEntityModel()
         {
+            RuntimeEntityRole RuntimeEntityRoleModel = new RuntimeEntityRole()
+            {
+                Type = "date_from"
+            };
+
+            RuntimeEntityAlternative RuntimeEntityAlternativeModel = new RuntimeEntityAlternative()
+            {
+                Value = "testString",
+                Confidence = 72.5f
+            };
+
+            RuntimeEntityInterpretation RuntimeEntityInterpretationModel = new RuntimeEntityInterpretation()
+            {
+                CalendarType = "testString",
+                DatetimeLink = "testString",
+                Festival = "testString",
+                Granularity = "day",
+                RangeLink = "testString",
+                RangeModifier = "testString",
+                RelativeDay = 72.5f,
+                RelativeMonth = 72.5f,
+                RelativeWeek = 72.5f,
+                RelativeWeekend = 72.5f,
+                RelativeYear = 72.5f,
+                SpecificDay = 72.5f,
+                SpecificDayOfWeek = "testString",
+                SpecificMonth = 72.5f,
+                SpecificQuarter = 72.5f,
+                SpecificYear = 72.5f,
+                NumericValue = 72.5f,
+                Subtype = "testString",
+                PartOfDay = "testString",
+                RelativeHour = 72.5f,
+                RelativeMinute = 72.5f,
+                RelativeSecond = 72.5f,
+                SpecificHour = 72.5f,
+                SpecificMinute = 72.5f,
+                SpecificSecond = 72.5f,
+                Timezone = "testString"
+            };
+
             var CaptureGroupLocation = new List<long?> { 38 };
             CaptureGroup CaptureGroupModel = new CaptureGroup()
             {
@@ -274,6 +352,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
             var RuntimeEntityLocation = new List<long?> { 38 };
             var RuntimeEntityMetadata = new Dictionary<string, object>();
             var RuntimeEntityGroups = new List<CaptureGroup> { CaptureGroupModel };
+            var RuntimeEntityAlternatives = new List<RuntimeEntityAlternative> { RuntimeEntityAlternativeModel };
             RuntimeEntity testRequestModel = new RuntimeEntity()
             {
                 Entity = "testString",
@@ -281,7 +360,10 @@ namespace IBM.Watson.Assistant.v2.UnitTests
                 Value = "testString",
                 Confidence = 72.5f,
                 Metadata = RuntimeEntityMetadata,
-                Groups = RuntimeEntityGroups
+                Groups = RuntimeEntityGroups,
+                Interpretation = RuntimeEntityInterpretationModel,
+                Alternatives = RuntimeEntityAlternatives,
+                Role = RuntimeEntityRoleModel
             };
 
             Assert.IsTrue(testRequestModel.Entity == "testString");
@@ -290,6 +372,97 @@ namespace IBM.Watson.Assistant.v2.UnitTests
             Assert.IsTrue(testRequestModel.Confidence == 72.5f);
             Assert.IsTrue(testRequestModel.Metadata == RuntimeEntityMetadata);
             Assert.IsTrue(testRequestModel.Groups == RuntimeEntityGroups);
+            Assert.IsTrue(testRequestModel.Interpretation == RuntimeEntityInterpretationModel);
+            Assert.IsTrue(testRequestModel.Alternatives == RuntimeEntityAlternatives);
+            Assert.IsTrue(testRequestModel.Role == RuntimeEntityRoleModel);
+        }
+
+        [TestMethod]
+        public void TestRuntimeEntityAlternativeModel()
+        {
+
+            RuntimeEntityAlternative testRequestModel = new RuntimeEntityAlternative()
+            {
+                Value = "testString",
+                Confidence = 72.5f
+            };
+
+            Assert.IsTrue(testRequestModel.Value == "testString");
+            Assert.IsTrue(testRequestModel.Confidence == 72.5f);
+        }
+
+        [TestMethod]
+        public void TestRuntimeEntityInterpretationModel()
+        {
+
+            RuntimeEntityInterpretation testRequestModel = new RuntimeEntityInterpretation()
+            {
+                CalendarType = "testString",
+                DatetimeLink = "testString",
+                Festival = "testString",
+                Granularity = "day",
+                RangeLink = "testString",
+                RangeModifier = "testString",
+                RelativeDay = 72.5f,
+                RelativeMonth = 72.5f,
+                RelativeWeek = 72.5f,
+                RelativeWeekend = 72.5f,
+                RelativeYear = 72.5f,
+                SpecificDay = 72.5f,
+                SpecificDayOfWeek = "testString",
+                SpecificMonth = 72.5f,
+                SpecificQuarter = 72.5f,
+                SpecificYear = 72.5f,
+                NumericValue = 72.5f,
+                Subtype = "testString",
+                PartOfDay = "testString",
+                RelativeHour = 72.5f,
+                RelativeMinute = 72.5f,
+                RelativeSecond = 72.5f,
+                SpecificHour = 72.5f,
+                SpecificMinute = 72.5f,
+                SpecificSecond = 72.5f,
+                Timezone = "testString"
+            };
+
+            Assert.IsTrue(testRequestModel.CalendarType == "testString");
+            Assert.IsTrue(testRequestModel.DatetimeLink == "testString");
+            Assert.IsTrue(testRequestModel.Festival == "testString");
+            Assert.IsTrue(testRequestModel.Granularity == "day");
+            Assert.IsTrue(testRequestModel.RangeLink == "testString");
+            Assert.IsTrue(testRequestModel.RangeModifier == "testString");
+            Assert.IsTrue(testRequestModel.RelativeDay == 72.5f);
+            Assert.IsTrue(testRequestModel.RelativeMonth == 72.5f);
+            Assert.IsTrue(testRequestModel.RelativeWeek == 72.5f);
+            Assert.IsTrue(testRequestModel.RelativeWeekend == 72.5f);
+            Assert.IsTrue(testRequestModel.RelativeYear == 72.5f);
+            Assert.IsTrue(testRequestModel.SpecificDay == 72.5f);
+            Assert.IsTrue(testRequestModel.SpecificDayOfWeek == "testString");
+            Assert.IsTrue(testRequestModel.SpecificMonth == 72.5f);
+            Assert.IsTrue(testRequestModel.SpecificQuarter == 72.5f);
+            Assert.IsTrue(testRequestModel.SpecificYear == 72.5f);
+            Assert.IsTrue(testRequestModel.NumericValue == 72.5f);
+            Assert.IsTrue(testRequestModel.Subtype == "testString");
+            Assert.IsTrue(testRequestModel.PartOfDay == "testString");
+            Assert.IsTrue(testRequestModel.RelativeHour == 72.5f);
+            Assert.IsTrue(testRequestModel.RelativeMinute == 72.5f);
+            Assert.IsTrue(testRequestModel.RelativeSecond == 72.5f);
+            Assert.IsTrue(testRequestModel.SpecificHour == 72.5f);
+            Assert.IsTrue(testRequestModel.SpecificMinute == 72.5f);
+            Assert.IsTrue(testRequestModel.SpecificSecond == 72.5f);
+            Assert.IsTrue(testRequestModel.Timezone == "testString");
+        }
+
+        [TestMethod]
+        public void TestRuntimeEntityRoleModel()
+        {
+
+            RuntimeEntityRole testRequestModel = new RuntimeEntityRole()
+            {
+                Type = "date_from"
+            };
+
+            Assert.IsTrue(testRequestModel.Type == "date_from");
         }
 
         [TestMethod]
@@ -325,8 +498,9 @@ namespace IBM.Watson.Assistant.v2.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'session_id': 'SessionId'}";
             var response = new DetailedResponse<SessionResponse>()
@@ -342,7 +516,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
 
             var result = service.CreateSession(assistantId: assistantId);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v2/assistants/{assistantId}/sessions";
             client.Received().PostAsync(messageUrl);
@@ -357,8 +531,9 @@ namespace IBM.Watson.Assistant.v2.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var response = new DetailedResponse<object>()
             {
@@ -373,7 +548,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
 
             var result = service.DeleteSession(assistantId: assistantId, sessionId: sessionId);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v2/assistants/{assistantId}/sessions/{sessionId}";
             client.Received().DeleteAsync(messageUrl);
@@ -388,10 +563,11 @@ namespace IBM.Watson.Assistant.v2.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
 
-            var responseJson = "{'output': {'generic': [{'response_type': 'text', 'text': 'Text', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'message_type': 'text', 'text': 'Text', 'options': {'debug': false, 'restart': false, 'alternate_intents': true, 'return_context': false}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}], 'suggestion_id': 'SuggestionId'}}}], 'message_to_human_agent': 'MessageToHumanAgent', 'topic': 'Topic', 'suggestions': [{'label': 'Label', 'value': {'input': {'message_type': 'text', 'text': 'Text', 'options': {'debug': false, 'restart': false, 'alternate_intents': true, 'return_context': false}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}], 'suggestion_id': 'SuggestionId'}}, 'output': {}}], 'header': 'Header', 'results': [{'id': 'Id', 'result_metadata': {'confidence': 10, 'score': 5}, 'body': 'Body', 'title': 'Title', 'url': 'Url', 'highlight': {'body': ['Body'], 'title': ['Title'], 'url': ['Url']}}]}], 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}], 'actions': [{'name': 'Name', 'type': 'client', 'parameters': {}, 'result_variable': 'ResultVariable', 'credentials': 'Credentials'}], 'debug': {'nodes_visited': [{'dialog_node': 'DialogNode', 'title': 'Title', 'conditions': 'Conditions'}], 'log_messages': [{'level': 'info', 'message': 'Message'}], 'branch_exited': true, 'branch_exited_reason': 'completed'}, 'user_defined': {}}, 'context': {'global': {'system': {'timezone': 'Timezone', 'user_id': 'UserId', 'turn_count': 9}}, 'skills': {}}}";
+            var version = "testString";
+            service.Version = version;
+
+            var responseJson = "{'output': {'generic': [{'response_type': 'text', 'text': 'Text', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'message_type': 'text', 'text': 'Text', 'options': {'debug': false, 'restart': false, 'alternate_intents': true, 'return_context': false}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'alternatives': [{'value': 'Value', 'confidence': 10}], 'role': {'type': 'date_from'}}], 'suggestion_id': 'SuggestionId'}}}], 'message_to_human_agent': 'MessageToHumanAgent', 'topic': 'Topic', 'suggestions': [{'label': 'Label', 'value': {'input': {'message_type': 'text', 'text': 'Text', 'options': {'debug': false, 'restart': false, 'alternate_intents': true, 'return_context': false}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'alternatives': [{'value': 'Value', 'confidence': 10}], 'role': {'type': 'date_from'}}], 'suggestion_id': 'SuggestionId'}}, 'output': {}}], 'header': 'Header', 'results': [{'id': 'Id', 'result_metadata': {'confidence': 10, 'score': 5}, 'body': 'Body', 'title': 'Title', 'url': 'Url', 'highlight': {'body': ['Body'], 'title': ['Title'], 'url': ['Url']}}]}], 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'alternatives': [{'value': 'Value', 'confidence': 10}], 'role': {'type': 'date_from'}}], 'actions': [{'name': 'Name', 'type': 'client', 'parameters': {}, 'result_variable': 'ResultVariable', 'credentials': 'Credentials'}], 'debug': {'nodes_visited': [{'dialog_node': 'DialogNode', 'title': 'Title', 'conditions': 'Conditions'}], 'log_messages': [{'level': 'info', 'message': 'Message'}], 'branch_exited': true, 'branch_exited_reason': 'completed'}, 'user_defined': {}}, 'context': {'global': {'system': {'timezone': 'Timezone', 'user_id': 'UserId', 'turn_count': 9, 'locale': 'en-us', 'reference_time': 'ReferenceTime'}}, 'skills': {}}}";
             var response = new DetailedResponse<MessageResponse>()
             {
                 Response = responseJson,
@@ -407,7 +583,9 @@ namespace IBM.Watson.Assistant.v2.UnitTests
             {
                 Timezone = "testString",
                 UserId = "testString",
-                TurnCount = 38
+                TurnCount = 38,
+                Locale = "en-us",
+                ReferenceTime = "testString"
             };
 
             MessageContextGlobal MessageContextGlobalModel = new MessageContextGlobal()
@@ -421,6 +599,47 @@ namespace IBM.Watson.Assistant.v2.UnitTests
                 Skills = MessageContextSkillsModel
             };
 
+            RuntimeEntityRole RuntimeEntityRoleModel = new RuntimeEntityRole()
+            {
+                Type = "date_from"
+            };
+
+            RuntimeEntityAlternative RuntimeEntityAlternativeModel = new RuntimeEntityAlternative()
+            {
+                Value = "testString",
+                Confidence = 72.5f
+            };
+
+            RuntimeEntityInterpretation RuntimeEntityInterpretationModel = new RuntimeEntityInterpretation()
+            {
+                CalendarType = "testString",
+                DatetimeLink = "testString",
+                Festival = "testString",
+                Granularity = "day",
+                RangeLink = "testString",
+                RangeModifier = "testString",
+                RelativeDay = 72.5f,
+                RelativeMonth = 72.5f,
+                RelativeWeek = 72.5f,
+                RelativeWeekend = 72.5f,
+                RelativeYear = 72.5f,
+                SpecificDay = 72.5f,
+                SpecificDayOfWeek = "testString",
+                SpecificMonth = 72.5f,
+                SpecificQuarter = 72.5f,
+                SpecificYear = 72.5f,
+                NumericValue = 72.5f,
+                Subtype = "testString",
+                PartOfDay = "testString",
+                RelativeHour = 72.5f,
+                RelativeMinute = 72.5f,
+                RelativeSecond = 72.5f,
+                SpecificHour = 72.5f,
+                SpecificMinute = 72.5f,
+                SpecificSecond = 72.5f,
+                Timezone = "testString"
+            };
+
             var CaptureGroupLocation = new List<long?> { 38 };
             CaptureGroup CaptureGroupModel = new CaptureGroup()
             {
@@ -431,6 +650,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
             var RuntimeEntityLocation = new List<long?> { 38 };
             var RuntimeEntityMetadata = new Dictionary<string, object>();
             var RuntimeEntityGroups = new List<CaptureGroup> { CaptureGroupModel };
+            var RuntimeEntityAlternatives = new List<RuntimeEntityAlternative> { RuntimeEntityAlternativeModel };
             RuntimeEntity RuntimeEntityModel = new RuntimeEntity()
             {
                 Entity = "testString",
@@ -438,7 +658,10 @@ namespace IBM.Watson.Assistant.v2.UnitTests
                 Value = "testString",
                 Confidence = 72.5f,
                 Metadata = RuntimeEntityMetadata,
-                Groups = RuntimeEntityGroups
+                Groups = RuntimeEntityGroups,
+                Interpretation = RuntimeEntityInterpretationModel,
+                Alternatives = RuntimeEntityAlternatives,
+                Role = RuntimeEntityRoleModel
             };
 
             RuntimeIntent RuntimeIntentModel = new RuntimeIntent()
@@ -468,12 +691,14 @@ namespace IBM.Watson.Assistant.v2.UnitTests
             };
             string assistantId = "testString";
             string sessionId = "testString";
+            MessageInput input = MessageInputModel;
+            MessageContext context = MessageContextModel;
 
             request.As<MessageResponse>().Returns(Task.FromResult(response));
 
-            var result = service.Message(assistantId: assistantId, sessionId: sessionId, input: MessageInputModel, context: MessageContextModel);
+            var result = service.Message(assistantId: assistantId, sessionId: sessionId, input: input, context: context);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v2/assistants/{assistantId}/sessions/{sessionId}/message";
             client.Received().PostAsync(messageUrl);

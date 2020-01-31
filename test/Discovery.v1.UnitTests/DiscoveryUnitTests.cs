@@ -76,11 +76,11 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         #region Environments
         #region List Environments
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void ListEnvironments_No_VersionDate()
+        public void ListEnvironments_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
             service.ListEnvironments();
         }
 
@@ -99,7 +99,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
             service.ListEnvironments();
         }
 
@@ -145,7 +145,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.ListEnvironments();
 
@@ -165,16 +165,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void CreateEnvironment_No_Environment()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.CreateEnvironment(null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void CreateEnvironment_No_VersionDate()
+        public void CreateEnvironment_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
 
             service.CreateEnvironment("environment");
         }
@@ -194,7 +194,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
 
             service.CreateEnvironment("environment");
         }
@@ -235,7 +235,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.CreateEnvironment("environment");
 
@@ -252,16 +252,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void DeleteEnvironment_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.DeleteEnvironment(null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void DeleteEnvironment_No_VersionDate()
+        public void DeleteEnvironment_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
             service.DeleteEnvironment("environmentId");
         }
 
@@ -280,7 +280,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
 
             service.DeleteEnvironment("environmentId");
         }
@@ -311,7 +311,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.DeleteEnvironment("environmentId");
 
@@ -327,16 +327,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void GetEnvironment_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.GetEnvironment(null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void GetEnvironment_No_VersionDate()
+        public void GetEnvironment_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
             service.GetEnvironment("environmentId");
         }
 
@@ -355,7 +355,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
             service.GetEnvironment("EnvironmentId");
         }
 
@@ -387,7 +387,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.GetEnvironment("environmentId");
 
@@ -405,17 +405,17 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void UpdateEnvironment_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
 
             service.UpdateEnvironment(null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void UpdateEnvironment_No_VersionDate()
+        public void UpdateEnvironment_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
 
             service.UpdateEnvironment("environmentId");
         }
@@ -435,7 +435,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
 
             service.UpdateEnvironment("environmentId");
         }
@@ -470,7 +470,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.UpdateEnvironment("environmentId");
 
@@ -490,16 +490,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void ListConfigurations_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.ListConfigurations(null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void ListConfigurations_No_VersionDate()
+        public void ListConfigurations_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
             service.ListConfigurations("environmentId");
         }
 
@@ -518,7 +518,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
             service.ListConfigurations("environmentId");
         }
 
@@ -667,7 +667,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.ListConfigurations("environmentId");
 
@@ -696,7 +696,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void CreateConfiguration_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.CreateConfiguration(null, "configuration");
         }
 
@@ -704,16 +704,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void CreateConfiguration_No_Configuration()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.CreateConfiguration("environmentId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void CreateConfiguration_No_VersionDate()
+        public void CreateConfiguration_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
 
             service.CreateConfiguration("environmentId", "configuration");
         }
@@ -733,7 +733,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
 
             service.CreateConfiguration("environmentId", "configuration");
         }
@@ -808,7 +808,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(Configuration));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.CreateConfiguration("environmentId", "name", "description");
 
@@ -824,7 +824,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void DeleteConfiguration_No_environmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.DeleteConfiguration(null, "configurationId");
         }
 
@@ -832,16 +832,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void DeleteConfiguration_No_ConfigurationId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.DeleteConfiguration("environmentId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void DeleteConfiguration_No_VersionDate()
+        public void DeleteConfiguration_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
             service.DeleteConfiguration("environmentId", "ConfigurationId");
         }
 
@@ -860,7 +860,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
 
             service.DeleteConfiguration("environmentId", "configurationId");
         }
@@ -904,7 +904,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.DeleteConfiguration("environmentId", "ConfigurationId");
 
@@ -928,7 +928,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void GetConfiguration_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.GetConfiguration(null, "configurationId");
         }
 
@@ -936,16 +936,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void GetConfiguration_No_ConfigurationId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.GetConfiguration("environmentId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void GetConfiguration_No_VersionDate()
+        public void GetConfiguration_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
             service.GetConfiguration("environmentId", "ConfigurationId");
         }
 
@@ -964,7 +964,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
             service.GetConfiguration("environmentId", "ConfigurationId");
         }
 
@@ -1038,7 +1038,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.GetConfiguration("environmentId", "ConfigurationId");
 
@@ -1054,7 +1054,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void UpdateConfiguration_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.UpdateConfiguration(null, "configurationId", "configuration");
         }
 
@@ -1062,7 +1062,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void UpdateConfiguration_No_ConfigurationId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.UpdateConfiguration("environmentId", null, "configuration");
         }
 
@@ -1070,16 +1070,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void UpdateConfiguration_No_Configuration()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.UpdateConfiguration("environmentId", "configurationId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void UpdateConfiguration_No_VersionDate()
+        public void UpdateConfiguration_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
 
             service.UpdateConfiguration("environmentId", "ConfigurationId", "configuration");
         }
@@ -1099,7 +1099,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
 
             service.UpdateConfiguration("environmentId", "ConfigurationId", "configuration");
         }
@@ -1176,7 +1176,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.UpdateConfiguration("environmentId", "ConfigurationId", "configuration");
 
@@ -1194,16 +1194,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void ListCollections_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.ListCollections(null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void ListCollections_No_VersionDate()
+        public void ListCollections_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
             service.ListCollections("environmentId");
         }
 
@@ -1222,7 +1222,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
             service.ListCollections("environmentId");
         }
 
@@ -1264,7 +1264,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.ListCollections("environmentId");
 
@@ -1284,7 +1284,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void CreateCollection_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.CreateCollection(null, "collection");
         }
 
@@ -1292,16 +1292,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void CreateCollection_No_Body()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.CreateCollection("environmentId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void CreateCollection_No_VersionDate()
+        public void CreateCollection_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
 
             service.CreateCollection("environmentId", "collection");
         }
@@ -1321,7 +1321,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
 
             service.CreateCollection("environmentId", "collection");
         }
@@ -1356,7 +1356,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.CreateCollection("environmentId", "collection");
 
@@ -1375,7 +1375,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void DeleteCollection_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.DeleteCollection(null, "collectionId");
         }
 
@@ -1383,16 +1383,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void DeleteCollection_No_CollectionId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.DeleteCollection("environmentId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void DeleteCollection_No_VersionDate()
+        public void DeleteCollection_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
             service.DeleteCollection("environmentId", "collectionId");
         }
 
@@ -1411,7 +1411,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
 
             service.DeleteCollection("environmentId", "collectionId");
         }
@@ -1442,7 +1442,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.DeleteCollection("environmentId", "collectionId");
 
@@ -1458,7 +1458,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void GetCollection_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.GetCollection(null, "collectionId");
         }
 
@@ -1466,16 +1466,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void GetCollection_No_CollectionId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.GetCollection("environmentId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void GetCollection_No_VersionDate()
+        public void GetCollection_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
             service.GetCollection("environmentId", "collectionId");
         }
 
@@ -1494,7 +1494,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
             service.GetCollection("environmentId", "collectionId");
         }
 
@@ -1528,7 +1528,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.GetCollection("environmentId", "collectionId");
 
@@ -1546,7 +1546,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void UpdateCollection_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.UpdateCollection(null, "collectionId", "collection");
         }
 
@@ -1554,16 +1554,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void UpdateCollection_No_collectionId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.UpdateCollection("environmentId", null, "collection");
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void UpdateCollection_No_VersionDate()
+        public void UpdateCollection_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
 
             service.UpdateCollection("environmentId", "collectionId", "collection");
         }
@@ -1583,7 +1583,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
 
             service.UpdateCollection("environmentId", "collectionId", "collection");
         }
@@ -1625,7 +1625,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.UpdateCollection("environmentId", "collectionId", "collection");
 
@@ -1649,7 +1649,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void ListCollectionFields_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.ListCollectionFields(null, "collectionId");
         }
 
@@ -1657,16 +1657,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void ListCollectionFields_No_CollectionId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.ListCollectionFields("environmentId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void ListCollectionFields_No_VersionDate()
+        public void ListCollectionFields_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
             service.ListCollectionFields("environmentId", "collectionId");
         }
 
@@ -1685,7 +1685,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
             service.ListCollectionFields("environmentId", "collectionId");
         }
 
@@ -1721,7 +1721,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.ListCollectionFields("environmentId", "collectionId");
 
@@ -1741,7 +1741,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void AddDocument_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.AddDocument(null, "collectionId");
         }
 
@@ -1749,16 +1749,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void AddDocument_No_CollectionId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.AddDocument("environmentId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void AddDocument_No_VersionDate()
+        public void AddDocument_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
 
             service.AddDocument("environmentId", "collectionId");
         }
@@ -1778,7 +1778,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
 
             service.AddDocument("environmentId", "collectionId");
         }
@@ -1824,7 +1824,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(documentAccepted));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.AddDocument("environmentId", "collectionId");
 
@@ -1883,7 +1883,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(documentAccepted));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.AddDocument("environmentId", "collectionId");
 
@@ -1907,7 +1907,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void DeleteDocument_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.DeleteDocument(null, "collectionId", "doucmentId");
         }
 
@@ -1915,7 +1915,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void DeleteDocument_No_CollectionId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.DeleteDocument("environmentId", null, "documentId");
         }
 
@@ -1923,16 +1923,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void DeleteDocument_No_DocumentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.DeleteDocument("environmentId", "collectionId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void DeleteDocument_No_VersionDate()
+        public void DeleteDocument_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
             service.DeleteDocument("environmentId", "collectionId", "doucmentId");
         }
 
@@ -1951,7 +1951,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
 
             service.DeleteDocument("environmentId", "collectionId", "doucmentId");
         }
@@ -1982,7 +1982,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.DeleteDocument("environmentId", "collectionId", "doucmentId");
 
@@ -1998,7 +1998,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void GetDocument_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.GetDocumentStatus(null, "collectionId", "documentId");
         }
 
@@ -2006,7 +2006,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void GetDocument_No_CollectionId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.GetDocumentStatus("environmentId", null, "documentId");
         }
 
@@ -2014,16 +2014,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void GetDocument_No_DocumentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.GetDocumentStatus("environmentId", "collectionId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void GetDocument_No_VersionDate()
+        public void GetDocument_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
             service.GetDocumentStatus("environmentId", "collectionId", "documentId");
         }
 
@@ -2042,7 +2042,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
             service.GetDocumentStatus("environmentId", "collectionId", "documentId");
         }
 
@@ -2073,7 +2073,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.GetDocumentStatus("environmentId", "collectionId", "documentId");
 
@@ -2091,7 +2091,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void UpdateDocument_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.UpdateDocument(null, "collectionId", "documentId");
         }
 
@@ -2099,7 +2099,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void UpdateDocument_No_CollectionId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.UpdateDocument("environmentId", null, "documentId");
         }
 
@@ -2107,16 +2107,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void UpdateDocument_No_DocumentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.UpdateDocument("environmentId", "collectionId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void UpdateDocument_No_VersionDate()
+        public void UpdateDocument_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
 
             service.UpdateDocument("environmentId", "collectionId", "documentId");
         }
@@ -2136,7 +2136,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
 
             service.UpdateDocument("environmentId", "collectionId", "documentId");
         }
@@ -2180,7 +2180,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(documentAccepted));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.UpdateDocument("environmentId", "collectionId", "documentId");
 
@@ -2237,7 +2237,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(documentAccepted));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.UpdateDocument("environmentId", "collectionId", "documentId");
 
@@ -2262,7 +2262,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void Query_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.Query(null, "collectionId");
         }
 
@@ -2270,16 +2270,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void Query_No_CollectionId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.Query("environmentId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void Query_No_VersionDate()
+        public void Query_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
             service.Query("environmentId", "collectionId");
         }
 
@@ -2298,7 +2298,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
             service.Query("environmentId", "collectionId");
         }
 
@@ -2367,7 +2367,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.Query("environmentId", "collectionId");
 
@@ -2381,7 +2381,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void Notices_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.QueryNotices(null, "collectionId");
         }
 
@@ -2389,16 +2389,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void Notices_No_CollectionId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.QueryNotices("environmentId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void Notices_No_VersionDate()
+        public void Notices_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
             service.QueryNotices("environmentId", "collectionId");
         }
 
@@ -2417,7 +2417,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
             service.QueryNotices("environmentId", "collectionId");
         }
 
@@ -2504,7 +2504,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.QueryNotices("environmentId", "collectionId");
 
@@ -2523,7 +2523,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void DeleteAllTrainingData_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.DeleteAllTrainingData(null, "collectionId");
         }
 
@@ -2531,16 +2531,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void DeleteAllTrainingData_No_CollectionId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.DeleteAllTrainingData("environmentId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void DeleteAllTrainingData_No_VersionDate()
+        public void DeleteAllTrainingData_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
             service.DeleteAllTrainingData("environmentId", "collectionId");
         }
 
@@ -2559,7 +2559,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
 
             service.DeleteAllTrainingData("environmentId", "collectionId");
         }
@@ -2583,7 +2583,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.DeleteAllTrainingData("environmentId", "collectionId");
 
@@ -2597,7 +2597,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void ListTrainingData_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.ListTrainingData(null, "collectionId");
         }
 
@@ -2605,16 +2605,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void ListTrainingData_No_CollectionId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.ListTrainingData("environmentId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void ListTrainingData_No_VersionDate()
+        public void ListTrainingData_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
             service.ListTrainingData("environmentId", "collectionId");
         }
 
@@ -2633,7 +2633,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
             service.ListTrainingData("environmentId", "collectionId");
         }
 
@@ -2681,7 +2681,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.ListTrainingData("environmentId", "collectionId");
 
@@ -2707,7 +2707,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void AddTrainingData_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.AddTrainingData(null, "collectionId");
         }
 
@@ -2715,16 +2715,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void AddTrainingData_No_CollectionId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.AddTrainingData("environmentId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void AddTrainingData_No_VersionDate()
+        public void AddTrainingData_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
 
             service.AddTrainingData("environmentId", "collectionId");
         }
@@ -2744,7 +2744,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
 
             service.AddTrainingData("environmentId", "collectionId");
         }
@@ -2787,7 +2787,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.AddTrainingData("environmentId", "collectionId");
 
@@ -2809,7 +2809,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void DeleteTrainingData_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.DeleteTrainingData(null, "collectionId", "queryId");
         }
 
@@ -2817,7 +2817,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void DeleteTrainingData_No_CollectionId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.DeleteTrainingData("environmentId", null, "queryId");
         }
 
@@ -2825,16 +2825,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void DeleteTrainingData_No_QueryId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.DeleteTrainingData("environmentId", "collectionId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void DeleteTrainingData_No_VersionDate()
+        public void DeleteTrainingData_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
             service.DeleteTrainingData("environmentId", "collectionId", "queryId");
         }
 
@@ -2853,7 +2853,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
 
             service.DeleteTrainingData("environmentId", "collectionId", "queryId");
         }
@@ -2877,7 +2877,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.DeleteTrainingData("environmentId", "collectionId", "queryId");
 
@@ -2891,7 +2891,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void GetTrainingData_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.GetTrainingData(null, "collectionId", "queryId");
         }
 
@@ -2899,7 +2899,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void GetTrainingData_No_CollectionId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.GetTrainingData("environmentId", null, "queryId");
         }
 
@@ -2907,16 +2907,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void GetTrainingData_No_QueryId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.GetTrainingData("environmentId", "collectionId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void GetTrainingData_No_VersionDate()
+        public void GetTrainingData_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
             service.GetTrainingData("environmentId", "collectionId", "queryId");
         }
 
@@ -2935,7 +2935,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
             service.GetTrainingData("environmentId", "collectionId", "queryId");
         }
 
@@ -2975,7 +2975,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.GetTrainingData("environmentId", "collectionId", "queryId");
 
@@ -3001,7 +3001,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void CreateTrainingExample_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.CreateTrainingExample(null, "collectionId", "queryId");
         }
 
@@ -3009,7 +3009,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void CreateTrainingExample_No_CollectionId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.CreateTrainingExample("environmentId", null, "queryId");
         }
 
@@ -3017,16 +3017,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void CreateTrainingExample_No_QueryId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.CreateTrainingExample("environmentId", "collectionId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void CreateTrainingExample_No_VersionDate()
+        public void CreateTrainingExample_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
 
             service.CreateTrainingExample("environmentId", "collectionId", "queryId");
         }
@@ -3046,7 +3046,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
 
             service.CreateTrainingExample("environmentId", "collectionId", "queryId");
         }
@@ -3080,7 +3080,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.CreateTrainingExample("environmentId", "collectionId", "queryId");
 
@@ -3097,7 +3097,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void DeleteTrainingExample_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.DeleteTrainingExample(null, "collectionId", "queryId", "exampleId");
         }
 
@@ -3105,7 +3105,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void DeleteTrainingExample_No_CollectionId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.DeleteTrainingExample("environmentId", null, "queryId", "exampleId");
         }
 
@@ -3113,7 +3113,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void DeleteTrainingExample_No_QueryId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.DeleteTrainingExample("environmentId", "collectionId", null, "exampleId");
         }
 
@@ -3121,16 +3121,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void DeleteTrainingExample_No_ExampleId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.DeleteTrainingExample("environmentId", "collectionId", "queryId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void DeleteTrainingExample_No_VersionDate()
+        public void DeleteTrainingExample_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
             service.DeleteTrainingExample("environmentId", "collectionId", "queryId", "exampleId");
         }
 
@@ -3149,7 +3149,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
 
             service.DeleteTrainingExample("environmentId", "collectionId", "queryId", "exampleId");
         }
@@ -3173,7 +3173,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.DeleteTrainingExample("environmentId", "collectionId", "queryId", "exampleId");
 
@@ -3187,7 +3187,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void GetTrainingExample_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.GetTrainingExample(null, "collectionId", "queryId", "exampleId");
         }
 
@@ -3195,7 +3195,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void GetTrainingExample_No_CollectionId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.GetTrainingExample("environmentId", null, "queryId", "exampleId");
         }
 
@@ -3203,7 +3203,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void GetTrainingExample_No_QueryId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.GetTrainingExample("environmentId", "collectionId", null, "exampleId");
         }
 
@@ -3211,16 +3211,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void GetTrainingExample_No_ExampleId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.GetTrainingExample("environmentId", "collectionId", "queryId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void GetTrainingExample_No_VersionDate()
+        public void GetTrainingExample_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
             service.GetTrainingExample("environmentId", "collectionId", "queryId", "exampleId");
         }
 
@@ -3239,7 +3239,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
             service.GetTrainingExample("environmentId", "collectionId", "queryId", "exampleId");
         }
 
@@ -3270,7 +3270,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.GetTrainingExample("environmentId", "collectionId", "queryId", "exampleId");
 
@@ -3287,7 +3287,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void UpdateTrainingExample_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.UpdateTrainingExample(null, "collectionId", "queryId", "exampleId");
         }
 
@@ -3295,7 +3295,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void UpdateTrainingExample_No_CollectionId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.UpdateTrainingExample("environmentId", null, "queryId", "exampleId");
         }
 
@@ -3303,7 +3303,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void UpdateTrainingExample_No_QueryId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.UpdateTrainingExample("environmentId", "collectionId", null, "exampleId");
         }
 
@@ -3311,16 +3311,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void UpdateTrainingExample_No_ExampleId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.UpdateTrainingExample("environmentId", "collectionId", "queryId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void UpdateTrainingExample_No_VersionDate()
+        public void UpdateTrainingExample_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
             service.UpdateTrainingExample("environmentId", "collectionId", "queryId", "exampleId");
         }
 
@@ -3339,7 +3339,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
 
             service.UpdateTrainingExample("environmentId", "collectionId", "queryId", "exampleId");
         }
@@ -3373,7 +3373,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.UpdateTrainingExample("environmentId", "collectionId", "queryId", "exampleId");
 
@@ -3392,17 +3392,17 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void ListCredentials_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.ListCredentials(null);
         }
 
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void ListCredentials_No_VersionDate()
+        public void ListCredentials_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
             service.ListCredentials("environmentId");
         }
 
@@ -3421,7 +3421,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
             service.ListCredentials("environmentId");
         }
 
@@ -3471,7 +3471,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.ListCredentials("environmentId");
 
@@ -3501,16 +3501,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void CreateCredentials_No_Environment()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.CreateCredentials(null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void CreateCredentials_No_VersionDate()
+        public void CreateCredentials_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
 
             service.CreateCredentials("environtmentId");
         }
@@ -3530,7 +3530,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
 
             service.CreateCredentials("environmentId");
         }
@@ -3579,7 +3579,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.CreateCredentials("environmentId");
 
@@ -3607,7 +3607,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void GetCredentials_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.GetCredentials(null, "credentialId");
         }
 
@@ -3615,16 +3615,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void GetCredentials_No_CredentialId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.GetCredentials("environmentId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void GetCredentials_No_VersionDate()
+        public void GetCredentials_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
             service.GetCredentials("environmentId", "credentialId");
         }
 
@@ -3643,7 +3643,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
             service.GetCredentials("environmentId", "credentialId");
         }
 
@@ -3687,7 +3687,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.GetCredentials("environmentId", "credentailID");
 
@@ -3715,7 +3715,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void DeleteCredentials_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.DeleteCredentials(null, "credentialId");
         }
 
@@ -3723,16 +3723,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void DeleteCredentials_No_CredentialId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.DeleteCredentials("environmentId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void DeleteCredentials_No_VersionDate()
+        public void DeleteCredentials_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
             service.DeleteCredentials("environmentId", "credentialId");
         }
 
@@ -3751,7 +3751,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
 
             service.DeleteCredentials("environmentId", "credentialId");
         }
@@ -3782,7 +3782,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.DeleteCredentials("environmentId", "credentialId");
 
@@ -3798,7 +3798,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void UpdateCredentials_No_EnvironmentId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.UpdateCredentials(null, "credentialId");
         }
 
@@ -3806,16 +3806,16 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         public void UpdateCredentials_No_CredentialId()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
             service.UpdateCredentials("environmentId", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void UpdateCredentials_No_VersionDate()
+        public void UpdateCredentials_No_Version()
         {
             BasicAuthenticator authenticator = new BasicAuthenticator("username", "password");
-            DiscoveryService service = new DiscoveryService("versionDate", authenticator);
-            service.VersionDate = null;
+            DiscoveryService service = new DiscoveryService("Version", authenticator);
+            service.Version = null;
             service.UpdateCredentials("environmentId", "credentialId");
         }
 
@@ -3834,7 +3834,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                  });
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "2017-11-07";
+            service.Version = "2017-11-07";
 
             service.UpdateCredentials("environmentId", "credentialId");
         }
@@ -3881,7 +3881,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             DiscoveryService service = new DiscoveryService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "Version";
 
             var result = service.UpdateCredentials("environmentId", "credentialId");
 

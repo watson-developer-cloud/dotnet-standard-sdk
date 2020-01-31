@@ -19,13 +19,13 @@ using IBM.Cloud.SDK.Core.Http;
 using NSubstitute;
 using System;
 using Newtonsoft.Json;
+using IBM.Cloud.SDK.Core.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Text;
 using IBM.Cloud.SDK.Core.Authentication.NoAuth;
 using System.Threading.Tasks;
 using IBM.Watson.VisualRecognition.v4.Model;
-using IBM.Cloud.SDK.Core.Model;
 
 namespace IBM.Watson.VisualRecognition.v4.UnitTests
 {
@@ -53,7 +53,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
             var url = System.Environment.GetEnvironmentVariable("VISUAL_RECOGNITION_URL");
             System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY", "apikey");
             System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_URL", "http://www.url.com");
-            VisualRecognitionService service = Substitute.For<VisualRecognitionService>("versionDate");
+            VisualRecognitionService service = Substitute.For<VisualRecognitionService>("testString");
             Assert.IsNotNull(service);
             System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_URL", url);
             System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY", apikey);
@@ -67,29 +67,13 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
         }
 
         [TestMethod]
-        public void ConstructorAuthenticator()
-        {
-            VisualRecognitionService service = new VisualRecognitionService("versionDate", new NoAuthAuthenticator());
-            Assert.IsNotNull(service);
-        }
-
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void ConstructorNoVersion()
-        {
-            VisualRecognitionService service = new VisualRecognitionService(null, new NoAuthAuthenticator());
-        }
-
-        [TestMethod]
         public void ConstructorNoUrl()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY");
-            var url = System.Environment.GetEnvironmentVariable("VISUAL_RECOGNITION_URL");
-            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY", "apikey");
-            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_URL", null);
-            VisualRecognitionService service = Substitute.For<VisualRecognitionService>("versionDate");
+            var apikey = System.Environment.GetEnvironmentVariable("TEST_SERVICE_APIKEY");
+            System.Environment.SetEnvironmentVariable("TEST_SERVICE_APIKEY", "apikey");
+            VisualRecognitionService service = Substitute.For<VisualRecognitionService>("testString", "test_service");
             Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/visual-recognition/api");
-            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_URL", url);
-            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY", apikey);
+            System.Environment.SetEnvironmentVariable("TEST_SERVICE_APIKEY", apikey);
         }
         #endregion
 
@@ -173,6 +157,18 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
         }
 
         [TestMethod]
+        public void TestUpdateObjectMetadataModel()
+        {
+
+            UpdateObjectMetadata testRequestModel = new UpdateObjectMetadata()
+            {
+                _Object = "testString",
+            };
+
+            Assert.IsTrue(testRequestModel._Object == "testString");
+        }
+
+        [TestMethod]
         public void TestTestAnalyzeAllParams()
         {
             IClient client = Substitute.For<IClient>();
@@ -181,8 +177,9 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
                 .Returns(request);
 
             VisualRecognitionService service = new VisualRecognitionService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'images': [{'source': {'type': 'file', 'filename': 'Filename', 'archive_filename': 'ArchiveFilename', 'source_url': 'SourceUrl', 'resolved_url': 'ResolvedUrl'}, 'dimensions': {'height': 6, 'width': 5}, 'objects': {'collections': [{'collection_id': 'CollectionId', 'objects': [{'object': '_Object', 'location': {'top': 3, 'left': 4, 'width': 5, 'height': 6}, 'score': 5}]}]}, 'errors': [{'code': 'invalid_field', 'message': 'Message', 'more_info': 'MoreInfo', 'target': {'type': 'field', 'name': 'Name'}}]}], 'warnings': [{'code': 'invalid_field', 'message': 'Message', 'more_info': 'MoreInfo'}], 'trace': 'Trace'}";
             var response = new DetailedResponse<AnalyzeResponse>()
@@ -193,17 +190,8 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
             };
 
             List<string> collectionIds = new List<string> { "testString" };
-            List<string> features = new List<string> { "testString" };
-            List<FileWithMetadata> imagesFile = new List<FileWithMetadata>()
-            {
-                new FileWithMetadata()
-                {
-                    Data = new System.IO.MemoryStream(Encoding.UTF8.GetBytes("This is a mock file.")),
-                    Filename = "filename",
-                    ContentType = "contentType"
-                    
-                }
-            };
+            List<string> features = new List<string> { "objects" };
+            List<FileWithMetadata> imagesFile = new List<FileWithMetadata> { new FileWithMetadata() { Data = new System.IO.MemoryStream(Encoding.UTF8.GetBytes("This is a mock file.")), ContentType = "contentType", Filename = "filename" } };
             List<string> imageUrl = new List<string> { "testString" };
             float? threshold = 36.0f;
 
@@ -211,7 +199,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             var result = service.Analyze(collectionIds: collectionIds, features: features, imagesFile: imagesFile, imageUrl: imageUrl, threshold: threshold);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v4/analyze";
             client.Received().PostAsync(messageUrl);
@@ -226,8 +214,9 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
                 .Returns(request);
 
             VisualRecognitionService service = new VisualRecognitionService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'collection_id': 'CollectionId', 'name': 'Name', 'description': 'Description', 'image_count': 10, 'training_status': {'objects': {'ready': false, 'in_progress': true, 'data_changed': false, 'latest_failed': true, 'description': 'Description'}}}";
             var response = new DetailedResponse<Collection>()
@@ -250,12 +239,15 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
             {
                 Objects = ObjectTrainingStatusModel
             };
+            string name = "testString";
+            string description = "testString";
+            TrainingStatus trainingStatus = TrainingStatusModel;
 
             request.As<Collection>().Returns(Task.FromResult(response));
 
-            var result = service.CreateCollection(name: "testString", description: "testString", trainingStatus: TrainingStatusModel);
+            var result = service.CreateCollection(name: name, description: description, trainingStatus: trainingStatus);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v4/collections";
             client.Received().PostAsync(messageUrl);
@@ -270,8 +262,9 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
                 .Returns(request);
 
             VisualRecognitionService service = new VisualRecognitionService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'collections': [{'collection_id': 'CollectionId', 'name': 'Name', 'description': 'Description', 'image_count': 10, 'training_status': {'objects': {'ready': false, 'in_progress': true, 'data_changed': false, 'latest_failed': true, 'description': 'Description'}}}]}";
             var response = new DetailedResponse<CollectionsList>()
@@ -286,7 +279,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             var result = service.ListCollections();
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v4/collections";
             client.Received().GetAsync(messageUrl);
@@ -301,8 +294,9 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
                 .Returns(request);
 
             VisualRecognitionService service = new VisualRecognitionService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'collection_id': 'CollectionId', 'name': 'Name', 'description': 'Description', 'image_count': 10, 'training_status': {'objects': {'ready': false, 'in_progress': true, 'data_changed': false, 'latest_failed': true, 'description': 'Description'}}}";
             var response = new DetailedResponse<Collection>()
@@ -318,7 +312,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             var result = service.GetCollection(collectionId: collectionId);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v4/collections/{collectionId}";
             client.Received().GetAsync(messageUrl);
@@ -333,8 +327,9 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
                 .Returns(request);
 
             VisualRecognitionService service = new VisualRecognitionService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'collection_id': 'CollectionId', 'name': 'Name', 'description': 'Description', 'image_count': 10, 'training_status': {'objects': {'ready': false, 'in_progress': true, 'data_changed': false, 'latest_failed': true, 'description': 'Description'}}}";
             var response = new DetailedResponse<Collection>()
@@ -358,12 +353,15 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
                 Objects = ObjectTrainingStatusModel
             };
             string collectionId = "testString";
+            string name = "testString";
+            string description = "testString";
+            TrainingStatus trainingStatus = TrainingStatusModel;
 
             request.As<Collection>().Returns(Task.FromResult(response));
 
-            var result = service.UpdateCollection(collectionId: collectionId, name: "testString", description: "testString", trainingStatus: TrainingStatusModel);
+            var result = service.UpdateCollection(collectionId: collectionId, name: name, description: description, trainingStatus: trainingStatus);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v4/collections/{collectionId}";
             client.Received().PostAsync(messageUrl);
@@ -378,8 +376,9 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
                 .Returns(request);
 
             VisualRecognitionService service = new VisualRecognitionService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var response = new DetailedResponse<object>()
             {
@@ -393,7 +392,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             var result = service.DeleteCollection(collectionId: collectionId);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v4/collections/{collectionId}";
             client.Received().DeleteAsync(messageUrl);
@@ -408,8 +407,9 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
                 .Returns(request);
 
             VisualRecognitionService service = new VisualRecognitionService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'images': [{'image_id': 'ImageId', 'source': {'type': 'file', 'filename': 'Filename', 'archive_filename': 'ArchiveFilename', 'source_url': 'SourceUrl', 'resolved_url': 'ResolvedUrl'}, 'dimensions': {'height': 6, 'width': 5}, 'errors': [{'code': 'invalid_field', 'message': 'Message', 'more_info': 'MoreInfo', 'target': {'type': 'field', 'name': 'Name'}}], 'training_data': {'objects': [{'object': '_Object', 'location': {'top': 3, 'left': 4, 'width': 5, 'height': 6}}]}}], 'warnings': [{'code': 'invalid_field', 'message': 'Message', 'more_info': 'MoreInfo'}], 'trace': 'Trace'}";
             var response = new DetailedResponse<ImageDetailsList>()
@@ -420,23 +420,15 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
             };
 
             string collectionId = "testString";
-            List<FileWithMetadata> imagesFile = new List<FileWithMetadata>()
-            {
-                new FileWithMetadata()
-                {
-                    Data = new System.IO.MemoryStream(Encoding.UTF8.GetBytes("This is a mock file.")),
-                    Filename = "filename",
-                    ContentType = "contentType"
-                }
-            };
-            List<string> imageUrl = new List<string>() { "testString" };
+            List<FileWithMetadata> imagesFile = new List<FileWithMetadata> { new FileWithMetadata() { Data = new System.IO.MemoryStream(Encoding.UTF8.GetBytes("This is a mock file.")), ContentType = "contentType", Filename = "filename" } };
+            List<string> imageUrl = new List<string> { "testString" };
             string trainingData = "testString";
 
             request.As<ImageDetailsList>().Returns(Task.FromResult(response));
 
             var result = service.AddImages(collectionId: collectionId, imagesFile: imagesFile, imageUrl: imageUrl, trainingData: trainingData);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v4/collections/{collectionId}/images";
             client.Received().PostAsync(messageUrl);
@@ -451,8 +443,9 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
                 .Returns(request);
 
             VisualRecognitionService service = new VisualRecognitionService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'images': [{'image_id': 'ImageId'}]}";
             var response = new DetailedResponse<ImageSummaryList>()
@@ -468,7 +461,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             var result = service.ListImages(collectionId: collectionId);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v4/collections/{collectionId}/images";
             client.Received().GetAsync(messageUrl);
@@ -483,8 +476,9 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
                 .Returns(request);
 
             VisualRecognitionService service = new VisualRecognitionService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'image_id': 'ImageId', 'source': {'type': 'file', 'filename': 'Filename', 'archive_filename': 'ArchiveFilename', 'source_url': 'SourceUrl', 'resolved_url': 'ResolvedUrl'}, 'dimensions': {'height': 6, 'width': 5}, 'errors': [{'code': 'invalid_field', 'message': 'Message', 'more_info': 'MoreInfo', 'target': {'type': 'field', 'name': 'Name'}}], 'training_data': {'objects': [{'object': '_Object', 'location': {'top': 3, 'left': 4, 'width': 5, 'height': 6}}]}}";
             var response = new DetailedResponse<ImageDetails>()
@@ -501,7 +495,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             var result = service.GetImageDetails(collectionId: collectionId, imageId: imageId);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v4/collections/{collectionId}/images/{imageId}";
             client.Received().GetAsync(messageUrl);
@@ -516,8 +510,9 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
                 .Returns(request);
 
             VisualRecognitionService service = new VisualRecognitionService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var response = new DetailedResponse<object>()
             {
@@ -532,7 +527,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             var result = service.DeleteImage(collectionId: collectionId, imageId: imageId);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v4/collections/{collectionId}/images/{imageId}";
             client.Received().DeleteAsync(messageUrl);
@@ -547,8 +542,9 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
                 .Returns(request);
 
             VisualRecognitionService service = new VisualRecognitionService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var response = new DetailedResponse<byte[]>()
             {
@@ -563,10 +559,144 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             var result = service.GetJpegImage(collectionId: collectionId, imageId: imageId, size: size);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v4/collections/{collectionId}/images/{imageId}/jpeg";
             client.Received().GetAsync(messageUrl);
+        }
+
+        [TestMethod]
+        public void TestTestListObjectMetadataAllParams()
+        {
+            IClient client = Substitute.For<IClient>();
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                .Returns(request);
+
+            VisualRecognitionService service = new VisualRecognitionService(client);
+
+            var version = "testString";
+            service.Version = version;
+
+            var responseJson = "{'object_count': 11, 'objects': [{'object': '_Object', 'count': 5}]}";
+            var response = new DetailedResponse<ObjectMetadataList>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<ObjectMetadataList>(responseJson),
+                StatusCode = 200
+            };
+
+            string collectionId = "testString";
+
+            request.As<ObjectMetadataList>().Returns(Task.FromResult(response));
+
+            var result = service.ListObjectMetadata(collectionId: collectionId);
+
+            request.Received().WithArgument("version", "testString");
+
+            string messageUrl = $"{service.ServiceUrl}/v4/collections/{collectionId}/objects";
+            client.Received().GetAsync(messageUrl);
+        }
+
+        [TestMethod]
+        public void TestTestUpdateObjectMetadataAllParams()
+        {
+            IClient client = Substitute.For<IClient>();
+            IRequest request = Substitute.For<IRequest>();
+            client.PostAsync(Arg.Any<string>())
+                .Returns(request);
+
+            VisualRecognitionService service = new VisualRecognitionService(client);
+
+            var version = "testString";
+            service.Version = version;
+
+            var responseJson = "{'object': '_Object', 'count': 5}";
+            var response = new DetailedResponse<UpdateObjectMetadata>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<UpdateObjectMetadata>(responseJson),
+                StatusCode = 200
+            };
+
+            string collectionId = "testString";
+            string _object = "testString";
+            string newObject = "testString";
+
+            request.As<UpdateObjectMetadata>().Returns(Task.FromResult(response));
+
+            var result = service.UpdateObjectMetadata(collectionId: collectionId, _object: _object, newObject: newObject);
+
+            request.Received().WithArgument("version", "testString");
+
+            string messageUrl = $"{service.ServiceUrl}/v4/collections/{collectionId}/objects/{_object}";
+            client.Received().PostAsync(messageUrl);
+        }
+
+        [TestMethod]
+        public void TestTestGetObjectMetadataAllParams()
+        {
+            IClient client = Substitute.For<IClient>();
+            IRequest request = Substitute.For<IRequest>();
+            client.GetAsync(Arg.Any<string>())
+                .Returns(request);
+
+            VisualRecognitionService service = new VisualRecognitionService(client);
+
+            var version = "testString";
+            service.Version = version;
+
+            var responseJson = "{'object': '_Object', 'count': 5}";
+            var response = new DetailedResponse<ObjectMetadata>()
+            {
+                Response = responseJson,
+                Result = JsonConvert.DeserializeObject<ObjectMetadata>(responseJson),
+                StatusCode = 200
+            };
+
+            string collectionId = "testString";
+            string _object = "testString";
+
+            request.As<ObjectMetadata>().Returns(Task.FromResult(response));
+
+            var result = service.GetObjectMetadata(collectionId: collectionId, _object: _object);
+
+            request.Received().WithArgument("version", "testString");
+
+            string messageUrl = $"{service.ServiceUrl}/v4/collections/{collectionId}/objects/{_object}";
+            client.Received().GetAsync(messageUrl);
+        }
+
+        [TestMethod]
+        public void TestTestDeleteObjectAllParams()
+        {
+            IClient client = Substitute.For<IClient>();
+            IRequest request = Substitute.For<IRequest>();
+            client.DeleteAsync(Arg.Any<string>())
+                .Returns(request);
+
+            VisualRecognitionService service = new VisualRecognitionService(client);
+
+            var version = "testString";
+            service.Version = version;
+
+            var response = new DetailedResponse<object>()
+            {
+                Result = new object(),
+                StatusCode = 200
+            };
+
+            string collectionId = "testString";
+            string _object = "testString";
+
+            request.As<object>().Returns(Task.FromResult(response));
+
+            var result = service.DeleteObject(collectionId: collectionId, _object: _object);
+
+            request.Received().WithArgument("version", "testString");
+
+            string messageUrl = $"{service.ServiceUrl}/v4/collections/{collectionId}/objects/{_object}";
+            client.Received().DeleteAsync(messageUrl);
         }
 
         [TestMethod]
@@ -578,8 +708,9 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
                 .Returns(request);
 
             VisualRecognitionService service = new VisualRecognitionService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'collection_id': 'CollectionId', 'name': 'Name', 'description': 'Description', 'image_count': 10, 'training_status': {'objects': {'ready': false, 'in_progress': true, 'data_changed': false, 'latest_failed': true, 'description': 'Description'}}}";
             var response = new DetailedResponse<Collection>()
@@ -595,7 +726,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             var result = service.Train(collectionId: collectionId);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v4/collections/{collectionId}/train";
             client.Received().PostAsync(messageUrl);
@@ -610,8 +741,9 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
                 .Returns(request);
 
             VisualRecognitionService service = new VisualRecognitionService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'objects': [{'object': '_Object', 'location': {'top': 3, 'left': 4, 'width': 5, 'height': 6}}]}";
             var response = new DetailedResponse<TrainingDataObjects>()
@@ -636,12 +768,13 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
             };
             string collectionId = "testString";
             string imageId = "testString";
+            List<TrainingDataObject> objects = new List<TrainingDataObject> { TrainingDataObjectModel };
 
             request.As<TrainingDataObjects>().Returns(Task.FromResult(response));
 
-            var result = service.AddImageTrainingData(collectionId: collectionId, imageId: imageId, objects: new List<TrainingDataObject> { TrainingDataObjectModel });
+            var result = service.AddImageTrainingData(collectionId: collectionId, imageId: imageId, objects: objects);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v4/collections/{collectionId}/images/{imageId}/training_data";
             client.Received().PostAsync(messageUrl);
@@ -656,8 +789,9 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
                 .Returns(request);
 
             VisualRecognitionService service = new VisualRecognitionService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'completed_events': 15, 'trained_images': 13, 'events': [{'type': 'objects', 'collection_id': 'CollectionId', 'status': 'failed', 'image_count': 10}]}";
             var response = new DetailedResponse<TrainingEvents>()
@@ -674,7 +808,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             var result = service.GetTrainingUsage(startTime: startTime, endTime: endTime);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v4/training_usage";
             client.Received().GetAsync(messageUrl);
@@ -689,8 +823,9 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
                 .Returns(request);
 
             VisualRecognitionService service = new VisualRecognitionService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var response = new DetailedResponse<object>()
             {
@@ -704,7 +839,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             var result = service.DeleteUserData(customerId: customerId);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v4/user_data";
             client.Received().DeleteAsync(messageUrl);

@@ -164,7 +164,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
     //        NoAuthAuthenticator authenticator = new NoAuthAuthenticator();
     //        VisualRecognitionService service = new VisualRecognitionService(client);
-    //        service.VersionDate = "versionDate";
+    //        service.Version = "versionDate";
     //        service.Analyze(
     //            collectionIds: new List<string> { "colletionIds" },
     //            features: new List<string> { "features" });
@@ -194,7 +194,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
     //            versionDate: "versionDate",
     //            authenticator: new NoAuthAuthenticator()
     //            );
-    //        service.VersionDate = null;
+    //        service.Version = null;
 
     //        var result = service.CreateCollection(
     //            name: "collectionName",
@@ -216,7 +216,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
     //             });
 
     //        VisualRecognitionService service = new VisualRecognitionService(client);
-    //        service.VersionDate = "versionDate";
+    //        service.Version = "versionDate";
 
     //        var result = service.CreateCollection(
     //            name: "collectionName",
@@ -233,7 +233,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
     //            .Returns(request);
 
     //        VisualRecognitionService service = new VisualRecognitionService(client);
-    //        service.VersionDate = "versionDate";
+    //        service.Version = "versionDate";
     //        var result = service.CreateCollection(
     //            name: "collectionName",
     //            description: "collectionDescription"
@@ -258,7 +258,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
     //            versionDate: "versionDate",
     //            authenticator: new NoAuthAuthenticator()
     //            );
-    //        service.VersionDate = null;
+    //        service.Version = null;
 
     //        var result = service.ListCollections();
     //    }
@@ -277,7 +277,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
     //             });
 
     //        VisualRecognitionService service = new VisualRecognitionService(client);
-    //        service.VersionDate = "versionDate";
+    //        service.Version = "versionDate";
 
     //        var result = service.ListCollections();
     //    }
@@ -291,7 +291,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
     //            .Returns(request);
 
     //        VisualRecognitionService service = new VisualRecognitionService(client);
-    //        service.VersionDate = "versionDate";
+    //        service.Version = "versionDate";
     //        var result = service.ListCollections();
 
     //        request.Received().WithArgument("version", "versionDate");
@@ -306,7 +306,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
     //            versionDate: "versionDate",
     //            authenticator: new NoAuthAuthenticator()
     //            );
-    //        service.VersionDate = null;
+    //        service.Version = null;
 
     //        var result = service.GetCollection(
     //            collectionId: "collectionId"
@@ -340,7 +340,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
     //             });
 
     //        VisualRecognitionService service = new VisualRecognitionService(client);
-    //        service.VersionDate = "versionDate";
+    //        service.Version = "versionDate";
 
     //        var result = service.GetCollection(
     //            collectionId: "collectionId"
@@ -356,7 +356,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
     //            .Returns(request);
 
     //        VisualRecognitionService service = new VisualRecognitionService(client);
-    //        service.VersionDate = "versionDate";
+    //        service.Version = "versionDate";
     //        var result = service.GetCollection(
     //            collectionId: "collectionId"
     //            );
@@ -374,7 +374,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
     //            versionDate: "versionDate",
     //            authenticator: new NoAuthAuthenticator()
     //            );
-    //        service.VersionDate = null;
+    //        service.Version = null;
 
     //        var result = service.UpdateCollection(
     //            collectionId: "collectionId"
@@ -408,7 +408,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
     //             });
 
     //        VisualRecognitionService service = new VisualRecognitionService(client);
-    //        service.VersionDate = "versionDate";
+    //        service.Version = "versionDate";
 
     //        var result = service.UpdateCollection(
     //            collectionId: "collectionId",
@@ -426,7 +426,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
     //            .Returns(request);
 
     //        VisualRecognitionService service = new VisualRecognitionService(client);
-    //        service.VersionDate = "versionDate";
+    //        service.Version = "versionDate";
     //        var result = service.UpdateCollection(
     //            collectionId: "collectionId",
     //            name: "collectionName",
@@ -452,7 +452,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
     //            versionDate: "versionDate",
     //            authenticator: new NoAuthAuthenticator()
     //            );
-    //        service.VersionDate = null;
+    //        service.Version = null;
 
     //        var result = service.DeleteCollection(
     //            collectionId: "collectionId"
@@ -486,7 +486,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
     //             });
 
     //        VisualRecognitionService service = new VisualRecognitionService(client);
-    //        service.VersionDate = "versionDate";
+    //        service.Version = "versionDate";
 
     //        var result = service.DeleteCollection(
     //            collectionId: "collectionId"
@@ -502,7 +502,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
     //            .Returns(request);
 
     //        VisualRecognitionService service = new VisualRecognitionService(client);
-    //        service.VersionDate = "versionDate";
+    //        service.Version = "versionDate";
     //        var result = service.DeleteCollection(
     //            collectionId: "collectionId"
     //            );

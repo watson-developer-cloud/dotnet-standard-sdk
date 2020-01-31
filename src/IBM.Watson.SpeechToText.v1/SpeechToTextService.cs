@@ -674,7 +674,7 @@ namespace IBM.Watson.SpeechToText.v1
         /// end](https://cloud.ibm.com/docs/services/speech-to-text?topic=speech-to-text-output#split_transcript).
         /// (optional, default to false)</param>
         /// <returns><see cref="SpeechRecognitionResults" />SpeechRecognitionResults</returns>
-        public DetailedResponse<SpeechRecognitionResults> Recognize(byte[] audio, string contentType = null, string model = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, bool? audioMetrics = null, double? endOfPhraseSilenceTime = null, bool? splitTranscriptAtPhraseEnd = null)
+        public DetailedResponse<SpeechRecognitionResults> Recognize(System.IO.MemoryStream audio, string contentType = null, string model = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, bool? audioMetrics = null, double? endOfPhraseSilenceTime = null, bool? splitTranscriptAtPhraseEnd = null)
         {
             if (audio == null)
             {
@@ -779,7 +779,7 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     restRequest.WithArgument("split_transcript_at_phrase_end", splitTranscriptAtPhraseEnd);
                 }
-                var httpContent = new ByteArrayContent(audio);
+                var httpContent = new ByteArrayContent(audio.ToArray());
                 System.Net.Http.Headers.MediaTypeHeaderValue audioContentType;
                 System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out audioContentType);
                 httpContent.Headers.ContentType = audioContentType;
@@ -1678,7 +1678,7 @@ namespace IBM.Watson.SpeechToText.v1
         /// end](https://cloud.ibm.com/docs/services/speech-to-text?topic=speech-to-text-output#split_transcript).
         /// (optional, default to false)</param>
         /// <returns><see cref="RecognitionJob" />RecognitionJob</returns>
-        public DetailedResponse<RecognitionJob> CreateJob(byte[] audio, string contentType = null, string model = null, string callbackUrl = null, string events = null, string userToken = null, long? resultsTtl = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, bool? processingMetrics = null, float? processingMetricsInterval = null, bool? audioMetrics = null, double? endOfPhraseSilenceTime = null, bool? splitTranscriptAtPhraseEnd = null)
+        public DetailedResponse<RecognitionJob> CreateJob(System.IO.MemoryStream audio, string contentType = null, string model = null, string callbackUrl = null, string events = null, string userToken = null, long? resultsTtl = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, bool? processingMetrics = null, float? processingMetricsInterval = null, bool? audioMetrics = null, double? endOfPhraseSilenceTime = null, bool? splitTranscriptAtPhraseEnd = null)
         {
             if (audio == null)
             {
@@ -1807,7 +1807,7 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     restRequest.WithArgument("split_transcript_at_phrase_end", splitTranscriptAtPhraseEnd);
                 }
-                var httpContent = new ByteArrayContent(audio);
+                var httpContent = new ByteArrayContent(audio.ToArray());
                 System.Net.Http.Headers.MediaTypeHeaderValue audioContentType;
                 System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out audioContentType);
                 httpContent.Headers.ContentType = audioContentType;
@@ -4894,7 +4894,7 @@ namespace IBM.Watson.SpeechToText.v1
         /// The parameter has no effect if an audio resource with the same name does not already exist. (optional,
         /// default to false)</param>
         /// <returns><see cref="object" />object</returns>
-        public DetailedResponse<object> AddAudio(string customizationId, string audioName, byte[] audioResource, string contentType = null, string containedContentType = null, bool? allowOverwrite = null)
+        public DetailedResponse<object> AddAudio(string customizationId, string audioName, System.IO.MemoryStream audioResource, string contentType = null, string containedContentType = null, bool? allowOverwrite = null)
         {
             if (string.IsNullOrEmpty(customizationId))
             {
@@ -4940,7 +4940,7 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     restRequest.WithArgument("allow_overwrite", allowOverwrite);
                 }
-                var httpContent = new ByteArrayContent(audioResource);
+                var httpContent = new ByteArrayContent(audioResource.ToArray());
                 System.Net.Http.Headers.MediaTypeHeaderValue audioResourceContentType;
                 System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out audioResourceContentType);
                 httpContent.Headers.ContentType = audioResourceContentType;

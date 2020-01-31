@@ -41,7 +41,7 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
         public void Setup()
         {
             Authenticator discoveryAuthenticator = new BearerTokenAuthenticator(bearerToken: bearerToken);
-            service = new DiscoveryService(versionDate: versionDate, authenticator: discoveryAuthenticator);
+            service = new DiscoveryService(version: versionDate, authenticator: discoveryAuthenticator);
             service.SetServiceUrl(serviceUrl: serviceUrl);
             service.DisableSslVerification(true);
         }

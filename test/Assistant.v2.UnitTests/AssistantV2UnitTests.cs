@@ -76,7 +76,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
     //    public void CreateSession_No_VersionDate()
     //    {
     //        AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-    //        service.VersionDate = null;
+    //        service.Version = null;
 
     //        service.CreateSession("assistantId");
     //    }
@@ -103,7 +103,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
     //            });
 
     //        AssistantService service = new AssistantService(client);
-    //        service.VersionDate = "versionDate";
+    //        service.Version = "versionDate";
     //        service.CreateSession("assistantId");
     //    }
 
@@ -128,7 +128,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
     //            .Returns(Task.FromResult(response));
 
     //        AssistantService service = new AssistantService(client);
-    //        service.VersionDate = "versionDate";
+    //        service.Version = "versionDate";
 
     //        var result = service.CreateSession("assistantId");
 
@@ -141,7 +141,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
     //    public void DeleteSession_No_VersionDate()
     //    {
     //        AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-    //        service.VersionDate = null;
+    //        service.Version = null;
 
     //        service.DeleteSession("assistantId", "sessionId");
     //    }
@@ -175,7 +175,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
     //            });
 
     //        AssistantService service = new AssistantService(client);
-    //        service.VersionDate = "versionDate";
+    //        service.Version = "versionDate";
     //        service.DeleteSession("assistantId", "sessionId");
     //    }
 
@@ -200,7 +200,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
     //            .Returns(Task.FromResult(response));
 
     //        AssistantService service = new AssistantService(client);
-    //        service.VersionDate = "versionDate";
+    //        service.Version = "versionDate";
 
     //        var result = service.DeleteSession("assistantId", "sessionId");
 
@@ -214,7 +214,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
     //    public void Message_No_VersionDate()
     //    {
     //        AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-    //        service.VersionDate = null;
+    //        service.Version = null;
 
     //        service.Message("assistantId", "sessionId");
     //    }
@@ -248,7 +248,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
     //            });
 
     //        AssistantService service = new AssistantService(client);
-    //        service.VersionDate = "versionDate";
+    //        service.Version = "versionDate";
     //        service.Message("assistantId", "sessionId");
     //    }
 
@@ -411,7 +411,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
     //            .Returns(Task.FromResult(response));
 
     //        AssistantService service = new AssistantService(client);
-    //        service.VersionDate = "versionDate";
+    //        service.Version = "versionDate";
 
     //        var result = service.Message("assistantId", "sessionId");
 

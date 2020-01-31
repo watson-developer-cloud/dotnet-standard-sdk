@@ -30,23 +30,22 @@ namespace IBM.Watson.Assistant.v2
 {
     public partial class AssistantService : IBMService, IAssistantService
     {
-        const string defaultServiceName = "assistant";
+        const string defaultServiceName = "conversation";
         private const string defaultServiceUrl = "https://gateway.watsonplatform.net/assistant/api";
-        public string VersionDate { get; set; }
+        public string Version { get; set; }
 
-        public AssistantService(string versionDate) : this(versionDate, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
-        public AssistantService(string versionDate, IAuthenticator authenticator) : this(versionDate, defaultServiceName, authenticator) {}
-        public AssistantService(string versionDate, string serviceName) : this(versionDate, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public AssistantService(string version) : this(version, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public AssistantService(string version, IAuthenticator authenticator) : this(version, defaultServiceName, authenticator) {}
+        public AssistantService(string version, string serviceName) : this(version, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public AssistantService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public AssistantService(string versionDate, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
+        public AssistantService(string version, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
-            if (string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`version` is required");
             }
-
-            VersionDate = versionDate;
+            Version = version;
 
             if (string.IsNullOrEmpty(ServiceUrl))
             {
@@ -60,12 +59,12 @@ namespace IBM.Watson.Assistant.v2
         /// Create a new session. A session is used to send user input to a skill and receive responses. It also
         /// maintains the state of the conversation. A session persists until it is deleted, or until it times out
         /// because of inactivity. (For more information, see the
-        /// [documentation](https://cloud.ibm.com/docs/services/assistant?topic=assistant-assistant-settings).
+        /// [documentation](https://cloud.ibm.com/docs/assistant?topic=assistant-assistant-settings).
         /// </summary>
         /// <param name="assistantId">Unique identifier of the assistant. To find the assistant ID in the Watson
         /// Assistant user interface, open the assistant settings and click **API Details**. For information about
         /// creating assistants, see the
-        /// [documentation](https://cloud.ibm.com/docs/services/assistant?topic=assistant-assistant-add#assistant-add-task).
+        /// [documentation](https://cloud.ibm.com/docs/assistant?topic=assistant-assistant-add#assistant-add-task).
         ///
         /// **Note:** Currently, the v2 API does not support creating assistants.</param>
         /// <returns><see cref="SessionResponse" />SessionResponse</returns>
@@ -79,12 +78,10 @@ namespace IBM.Watson.Assistant.v2
             {
                 assistantId = Uri.EscapeDataString(assistantId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(Version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`Version` is required");
             }
-
             DetailedResponse<SessionResponse> result = null;
 
             try
@@ -94,8 +91,11 @@ namespace IBM.Watson.Assistant.v2
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v2/assistants/{assistantId}/sessions");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v2", "CreateSession"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -119,13 +119,12 @@ namespace IBM.Watson.Assistant.v2
         /// Delete session.
         ///
         /// Deletes a session explicitly before it times out. (For more information about the session inactivity
-        /// timeout, see the
-        /// [documentation](https://cloud.ibm.com/docs/services/assistant?topic=assistant-assistant-settings)).
+        /// timeout, see the [documentation](https://cloud.ibm.com/docs/assistant?topic=assistant-assistant-settings)).
         /// </summary>
         /// <param name="assistantId">Unique identifier of the assistant. To find the assistant ID in the Watson
         /// Assistant user interface, open the assistant settings and click **API Details**. For information about
         /// creating assistants, see the
-        /// [documentation](https://cloud.ibm.com/docs/services/assistant?topic=assistant-assistant-add#assistant-add-task).
+        /// [documentation](https://cloud.ibm.com/docs/assistant?topic=assistant-assistant-add#assistant-add-task).
         ///
         /// **Note:** Currently, the v2 API does not support creating assistants.</param>
         /// <param name="sessionId">Unique identifier of the session.</param>
@@ -140,6 +139,10 @@ namespace IBM.Watson.Assistant.v2
             {
                 assistantId = Uri.EscapeDataString(assistantId);
             }
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(sessionId))
             {
                 throw new ArgumentNullException("`sessionId` is required for `DeleteSession`");
@@ -148,12 +151,6 @@ namespace IBM.Watson.Assistant.v2
             {
                 sessionId = Uri.EscapeDataString(sessionId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<object> result = null;
 
             try
@@ -163,8 +160,11 @@ namespace IBM.Watson.Assistant.v2
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v2/assistants/{assistantId}/sessions/{sessionId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v2", "DeleteSession"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -193,7 +193,7 @@ namespace IBM.Watson.Assistant.v2
         /// <param name="assistantId">Unique identifier of the assistant. To find the assistant ID in the Watson
         /// Assistant user interface, open the assistant settings and click **API Details**. For information about
         /// creating assistants, see the
-        /// [documentation](https://cloud.ibm.com/docs/services/assistant?topic=assistant-assistant-add#assistant-add-task).
+        /// [documentation](https://cloud.ibm.com/docs/assistant?topic=assistant-assistant-add#assistant-add-task).
         ///
         /// **Note:** Currently, the v2 API does not support creating assistants.</param>
         /// <param name="sessionId">Unique identifier of the session.</param>
@@ -220,12 +220,10 @@ namespace IBM.Watson.Assistant.v2
             {
                 sessionId = Uri.EscapeDataString(sessionId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(Version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`Version` is required");
             }
-
             DetailedResponse<MessageResponse> result = null;
 
             try
@@ -235,8 +233,11 @@ namespace IBM.Watson.Assistant.v2
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v2/assistants/{assistantId}/sessions/{sessionId}/message");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();

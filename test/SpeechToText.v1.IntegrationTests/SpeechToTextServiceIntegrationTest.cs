@@ -498,10 +498,11 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
             DetailedResponse<object> addAudioResult = null;
 
             service.WithHeader("X-Watson-Test", "1");
+            MemoryStream ms = new MemoryStream(acousticResourceData);
             addAudioResult = service.AddAudio(
                 customizationId: acousticCustomizationId,
                 audioName: acousticResourceName,
-                audioResource: acousticResourceData,
+                audioResource: ms,
                 contentType: acousticResourceMimeType,
                 allowOverwrite: true
                 );
@@ -576,8 +577,9 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
         {
             var testAudio = File.ReadAllBytes(testAudioPath);
             service.WithHeader("X-Watson-Test", "1");
+            MemoryStream ms = new MemoryStream(testAudio);
             var recognizeResult = service.Recognize(
-                audio: testAudio,
+                audio: ms,
                 contentType: "audio/wav",
                 endOfPhraseSilenceTime: 0.4,
                 splitTranscriptAtPhraseEnd: true
@@ -594,8 +596,9 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
         {
             var testAudio = File.ReadAllBytes(testAudioPath);
             service.WithHeader("X-Watson-Test", "1");
+            MemoryStream ms = new MemoryStream(testAudio);
             var createJobResult = service.CreateJob(
-                audio: testAudio,
+                audio: ms,
                 contentType: "audio/mp3",
                 endOfPhraseSilenceTime: 2,
                 splitTranscriptAtPhraseEnd: true

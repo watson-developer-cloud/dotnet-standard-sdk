@@ -66,23 +66,13 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
         }
 
         [TestMethod]
-        public void ConstructorAuthenticator()
-        {
-            NaturalLanguageClassifierService service = new NaturalLanguageClassifierService(new NoAuthAuthenticator());
-            Assert.IsNotNull(service);
-        }
-
-        [TestMethod]
         public void ConstructorNoUrl()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_APIKEY");
-            var url = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_URL");
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_APIKEY", "apikey");
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_URL", null);
-            NaturalLanguageClassifierService service = Substitute.For<NaturalLanguageClassifierService>();
+            var apikey = System.Environment.GetEnvironmentVariable("TEST_SERVICE_APIKEY");
+            System.Environment.SetEnvironmentVariable("TEST_SERVICE_APIKEY", "apikey");
+            NaturalLanguageClassifierService service = Substitute.For<NaturalLanguageClassifierService>("test_service");
             Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/natural-language-classifier/api");
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_URL", url);
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_APIKEY", apikey);
+            System.Environment.SetEnvironmentVariable("TEST_SERVICE_APIKEY", apikey);
         }
         #endregion
 
@@ -107,7 +97,6 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
                 .Returns(request);
 
             NaturalLanguageClassifierService service = new NaturalLanguageClassifierService(client);
-
             var responseJson = "{'classifier_id': 'ClassifierId', 'url': 'Url', 'text': 'Text', 'top_class': 'TopClass', 'classes': [{'confidence': 10, 'class_name': 'ClassName'}]}";
             var response = new DetailedResponse<Classification>()
             {
@@ -117,10 +106,11 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
             };
 
             string classifierId = "testString";
+            string text = "testString";
 
             request.As<Classification>().Returns(Task.FromResult(response));
 
-            var result = service.Classify(classifierId: classifierId, text: "testString");
+            var result = service.Classify(classifierId: classifierId, text: text);
 
 
             string messageUrl = $"{service.ServiceUrl}/v1/classifiers/{classifierId}/classify";
@@ -136,7 +126,6 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
                 .Returns(request);
 
             NaturalLanguageClassifierService service = new NaturalLanguageClassifierService(client);
-
             var responseJson = "{'classifier_id': 'ClassifierId', 'url': 'Url', 'collection': [{'text': 'Text', 'top_class': 'TopClass', 'classes': [{'confidence': 10, 'class_name': 'ClassName'}]}]}";
             var response = new DetailedResponse<ClassificationCollection>()
             {
@@ -150,10 +139,11 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
                 Text = "testString"
             };
             string classifierId = "testString";
+            List<ClassifyInput> collection = new List<ClassifyInput> { ClassifyInputModel };
 
             request.As<ClassificationCollection>().Returns(Task.FromResult(response));
 
-            var result = service.ClassifyCollection(classifierId: classifierId, collection: new List<ClassifyInput> { ClassifyInputModel });
+            var result = service.ClassifyCollection(classifierId: classifierId, collection: collection);
 
 
             string messageUrl = $"{service.ServiceUrl}/v1/classifiers/{classifierId}/classify_collection";
@@ -169,7 +159,6 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
                 .Returns(request);
 
             NaturalLanguageClassifierService service = new NaturalLanguageClassifierService(client);
-
             var responseJson = "{'name': 'Name', 'url': 'Url', 'status': 'Non Existent', 'classifier_id': 'ClassifierId', 'status_description': 'StatusDescription', 'language': 'Language'}";
             var response = new DetailedResponse<Classifier>()
             {
@@ -199,7 +188,6 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
                 .Returns(request);
 
             NaturalLanguageClassifierService service = new NaturalLanguageClassifierService(client);
-
             var responseJson = "{'classifiers': [{'name': 'Name', 'url': 'Url', 'status': 'Non Existent', 'classifier_id': 'ClassifierId', 'status_description': 'StatusDescription', 'language': 'Language'}]}";
             var response = new DetailedResponse<ClassifierList>()
             {
@@ -227,7 +215,6 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
                 .Returns(request);
 
             NaturalLanguageClassifierService service = new NaturalLanguageClassifierService(client);
-
             var responseJson = "{'name': 'Name', 'url': 'Url', 'status': 'Non Existent', 'classifier_id': 'ClassifierId', 'status_description': 'StatusDescription', 'language': 'Language'}";
             var response = new DetailedResponse<Classifier>()
             {
@@ -256,7 +243,6 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
                 .Returns(request);
 
             NaturalLanguageClassifierService service = new NaturalLanguageClassifierService(client);
-
             var response = new DetailedResponse<object>()
             {
                 Result = new object(),

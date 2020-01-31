@@ -52,7 +52,7 @@ namespace IBM.Watson.PersonalityInsights.v3.UnitTests
             var url = System.Environment.GetEnvironmentVariable("PERSONALITY_INSIGHTS_URL");
             System.Environment.SetEnvironmentVariable("PERSONALITY_INSIGHTS_APIKEY", "apikey");
             System.Environment.SetEnvironmentVariable("PERSONALITY_INSIGHTS_URL", "http://www.url.com");
-            PersonalityInsightsService service = Substitute.For<PersonalityInsightsService>("versionDate");
+            PersonalityInsightsService service = Substitute.For<PersonalityInsightsService>("testString");
             Assert.IsNotNull(service);
             System.Environment.SetEnvironmentVariable("PERSONALITY_INSIGHTS_URL", url);
             System.Environment.SetEnvironmentVariable("PERSONALITY_INSIGHTS_APIKEY", apikey);
@@ -66,29 +66,13 @@ namespace IBM.Watson.PersonalityInsights.v3.UnitTests
         }
 
         [TestMethod]
-        public void ConstructorAuthenticator()
-        {
-            PersonalityInsightsService service = new PersonalityInsightsService("versionDate", new NoAuthAuthenticator());
-            Assert.IsNotNull(service);
-        }
-
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void ConstructorNoVersion()
-        {
-            PersonalityInsightsService service = new PersonalityInsightsService(null, new NoAuthAuthenticator());
-        }
-
-        [TestMethod]
         public void ConstructorNoUrl()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("PERSONALITY_INSIGHTS_APIKEY");
-            var url = System.Environment.GetEnvironmentVariable("PERSONALITY_INSIGHTS_URL");
-            System.Environment.SetEnvironmentVariable("PERSONALITY_INSIGHTS_APIKEY", "apikey");
-            System.Environment.SetEnvironmentVariable("PERSONALITY_INSIGHTS_URL", null);
-            PersonalityInsightsService service = Substitute.For<PersonalityInsightsService>("versionDate");
+            var apikey = System.Environment.GetEnvironmentVariable("TEST_SERVICE_APIKEY");
+            System.Environment.SetEnvironmentVariable("TEST_SERVICE_APIKEY", "apikey");
+            PersonalityInsightsService service = Substitute.For<PersonalityInsightsService>("testString", "test_service");
             Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/personality-insights/api");
-            System.Environment.SetEnvironmentVariable("PERSONALITY_INSIGHTS_URL", url);
-            System.Environment.SetEnvironmentVariable("PERSONALITY_INSIGHTS_APIKEY", apikey);
+            System.Environment.SetEnvironmentVariable("TEST_SERVICE_APIKEY", apikey);
         }
         #endregion
 
@@ -154,8 +138,9 @@ namespace IBM.Watson.PersonalityInsights.v3.UnitTests
                 .Returns(request);
 
             PersonalityInsightsService service = new PersonalityInsightsService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'processed_language': 'ar', 'word_count': 9, 'word_count_message': 'WordCountMessage', 'personality': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': []}]}]}]}]}]}]}]}]}]}], 'needs': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': []}]}]}]}]}]}]}]}]}]}], 'values': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'personality', 'percentile': 10, 'raw_score': 8, 'significant': false, 'children': []}]}]}]}]}]}]}]}]}]}], 'behavior': [{'trait_id': 'TraitId', 'name': 'Name', 'category': 'Category', 'percentage': 10}], 'consumption_preferences': [{'consumption_preference_category_id': 'ConsumptionPreferenceCategoryId', 'name': 'Name', 'consumption_preferences': [{'consumption_preference_id': 'ConsumptionPreferenceId', 'name': 'Name', 'score': 5}]}], 'warnings': [{'warning_id': 'WORD_COUNT_MESSAGE', 'message': 'Message'}]}";
             var response = new DetailedResponse<Profile>()
@@ -195,7 +180,7 @@ namespace IBM.Watson.PersonalityInsights.v3.UnitTests
 
             var result = service.Profile(content: content, contentType: contentType, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage, rawScores: rawScores, csvHeaders: csvHeaders, consumptionPreferences: consumptionPreferences);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v3/profile";
             client.Received().PostAsync(messageUrl);
@@ -210,8 +195,9 @@ namespace IBM.Watson.PersonalityInsights.v3.UnitTests
                 .Returns(request);
 
             PersonalityInsightsService service = new PersonalityInsightsService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var response = new DetailedResponse<System.IO.MemoryStream>()
             {
@@ -248,7 +234,7 @@ namespace IBM.Watson.PersonalityInsights.v3.UnitTests
 
             var result = service.ProfileAsCsv(content: content, contentType: contentType, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage, rawScores: rawScores, csvHeaders: csvHeaders, consumptionPreferences: consumptionPreferences);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v3/profile";
             client.Received().PostAsync(messageUrl);

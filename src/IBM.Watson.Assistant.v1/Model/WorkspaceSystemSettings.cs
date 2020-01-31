@@ -43,6 +43,11 @@ namespace IBM.Watson.Assistant.v1.Model
         [JsonProperty("human_agent_assist", NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, object> HumanAgentAssist { get; set; }
         /// <summary>
+        /// Workspace settings related to the behavior of system entities.
+        /// </summary>
+        [JsonProperty("system_entities", NullValueHandling = NullValueHandling.Ignore)]
+        public WorkspaceSystemSettingsSystemEntities SystemEntities { get; set; }
+        /// <summary>
         /// Workspace settings related to detection of irrelevant input.
         /// </summary>
         [JsonProperty("off_topic", NullValueHandling = NullValueHandling.Ignore)]

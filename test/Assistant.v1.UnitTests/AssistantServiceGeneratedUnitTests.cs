@@ -52,7 +52,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var url = System.Environment.GetEnvironmentVariable("ASSISTANT_URL");
             System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", "apikey");
             System.Environment.SetEnvironmentVariable("ASSISTANT_URL", "http://www.url.com");
-            AssistantService service = Substitute.For<AssistantService>("versionDate");
+            AssistantService service = Substitute.For<AssistantService>("testString");
             Assert.IsNotNull(service);
             System.Environment.SetEnvironmentVariable("ASSISTANT_URL", url);
             System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", apikey);
@@ -66,29 +66,13 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         }
 
         [TestMethod]
-        public void ConstructorAuthenticator()
-        {
-            AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            Assert.IsNotNull(service);
-        }
-
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void ConstructorNoVersion()
-        {
-            AssistantService service = new AssistantService(null, new NoAuthAuthenticator());
-        }
-
-        [TestMethod]
         public void ConstructorNoUrl()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("ASSISTANT_APIKEY");
-            var url = System.Environment.GetEnvironmentVariable("ASSISTANT_URL");
-            System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", "apikey");
-            System.Environment.SetEnvironmentVariable("ASSISTANT_URL", null);
-            AssistantService service = Substitute.For<AssistantService>("versionDate");
+            var apikey = System.Environment.GetEnvironmentVariable("TEST_SERVICE_APIKEY");
+            System.Environment.SetEnvironmentVariable("TEST_SERVICE_APIKEY", "apikey");
+            AssistantService service = Substitute.For<AssistantService>("testString", "test_service");
             Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/assistant/api");
-            System.Environment.SetEnvironmentVariable("ASSISTANT_URL", url);
-            System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", apikey);
+            System.Environment.SetEnvironmentVariable("TEST_SERVICE_APIKEY", apikey);
         }
         #endregion
 
@@ -230,6 +214,41 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Overwrite = true
             };
 
+            RuntimeEntityRole RuntimeEntityRoleModel = new RuntimeEntityRole()
+            {
+                Type = "date_from"
+            };
+
+            RuntimeEntityInterpretation RuntimeEntityInterpretationModel = new RuntimeEntityInterpretation()
+            {
+                CalendarType = "testString",
+                DatetimeLink = "testString",
+                Festival = "testString",
+                Granularity = "day",
+                RangeLink = "testString",
+                RangeModifier = "testString",
+                RelativeDay = 72.5f,
+                RelativeMonth = 72.5f,
+                RelativeWeek = 72.5f,
+                RelativeWeekend = 72.5f,
+                RelativeYear = 72.5f,
+                SpecificDay = 72.5f,
+                SpecificDayOfWeek = "testString",
+                SpecificMonth = 72.5f,
+                SpecificQuarter = 72.5f,
+                SpecificYear = 72.5f,
+                NumericValue = 72.5f,
+                Subtype = "testString",
+                PartOfDay = "testString",
+                RelativeHour = 72.5f,
+                RelativeMinute = 72.5f,
+                RelativeSecond = 72.5f,
+                SpecificHour = 72.5f,
+                SpecificMinute = 72.5f,
+                SpecificSecond = 72.5f,
+                Timezone = "testString"
+            };
+
             var CaptureGroupLocation = new List<long?> { 38 };
             CaptureGroup CaptureGroupModel = new CaptureGroup()
             {
@@ -247,7 +266,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Value = "testString",
                 Confidence = 72.5f,
                 Metadata = RuntimeEntityMetadata,
-                Groups = RuntimeEntityGroups
+                Groups = RuntimeEntityGroups,
+                Interpretation = RuntimeEntityInterpretationModel,
+                Role = RuntimeEntityRoleModel
             };
 
             RuntimeIntent RuntimeIntentModel = new RuntimeIntent()
@@ -397,6 +418,41 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod]
         public void TestDialogNodeOutputGenericModel()
         {
+            RuntimeEntityRole RuntimeEntityRoleModel = new RuntimeEntityRole()
+            {
+                Type = "date_from"
+            };
+
+            RuntimeEntityInterpretation RuntimeEntityInterpretationModel = new RuntimeEntityInterpretation()
+            {
+                CalendarType = "testString",
+                DatetimeLink = "testString",
+                Festival = "testString",
+                Granularity = "day",
+                RangeLink = "testString",
+                RangeModifier = "testString",
+                RelativeDay = 72.5f,
+                RelativeMonth = 72.5f,
+                RelativeWeek = 72.5f,
+                RelativeWeekend = 72.5f,
+                RelativeYear = 72.5f,
+                SpecificDay = 72.5f,
+                SpecificDayOfWeek = "testString",
+                SpecificMonth = 72.5f,
+                SpecificQuarter = 72.5f,
+                SpecificYear = 72.5f,
+                NumericValue = 72.5f,
+                Subtype = "testString",
+                PartOfDay = "testString",
+                RelativeHour = 72.5f,
+                RelativeMinute = 72.5f,
+                RelativeSecond = 72.5f,
+                SpecificHour = 72.5f,
+                SpecificMinute = 72.5f,
+                SpecificSecond = 72.5f,
+                Timezone = "testString"
+            };
+
             var CaptureGroupLocation = new List<long?> { 38 };
             CaptureGroup CaptureGroupModel = new CaptureGroup()
             {
@@ -414,7 +470,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Value = "testString",
                 Confidence = 72.5f,
                 Metadata = RuntimeEntityMetadata,
-                Groups = RuntimeEntityGroups
+                Groups = RuntimeEntityGroups,
+                Interpretation = RuntimeEntityInterpretationModel,
+                Role = RuntimeEntityRoleModel
             };
 
             RuntimeIntent RuntimeIntentModel = new RuntimeIntent()
@@ -503,6 +561,41 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod]
         public void TestDialogNodeOutputOptionsElementModel()
         {
+            RuntimeEntityRole RuntimeEntityRoleModel = new RuntimeEntityRole()
+            {
+                Type = "date_from"
+            };
+
+            RuntimeEntityInterpretation RuntimeEntityInterpretationModel = new RuntimeEntityInterpretation()
+            {
+                CalendarType = "testString",
+                DatetimeLink = "testString",
+                Festival = "testString",
+                Granularity = "day",
+                RangeLink = "testString",
+                RangeModifier = "testString",
+                RelativeDay = 72.5f,
+                RelativeMonth = 72.5f,
+                RelativeWeek = 72.5f,
+                RelativeWeekend = 72.5f,
+                RelativeYear = 72.5f,
+                SpecificDay = 72.5f,
+                SpecificDayOfWeek = "testString",
+                SpecificMonth = 72.5f,
+                SpecificQuarter = 72.5f,
+                SpecificYear = 72.5f,
+                NumericValue = 72.5f,
+                Subtype = "testString",
+                PartOfDay = "testString",
+                RelativeHour = 72.5f,
+                RelativeMinute = 72.5f,
+                RelativeSecond = 72.5f,
+                SpecificHour = 72.5f,
+                SpecificMinute = 72.5f,
+                SpecificSecond = 72.5f,
+                Timezone = "testString"
+            };
+
             var CaptureGroupLocation = new List<long?> { 38 };
             CaptureGroup CaptureGroupModel = new CaptureGroup()
             {
@@ -520,7 +613,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Value = "testString",
                 Confidence = 72.5f,
                 Metadata = RuntimeEntityMetadata,
-                Groups = RuntimeEntityGroups
+                Groups = RuntimeEntityGroups,
+                Interpretation = RuntimeEntityInterpretationModel,
+                Role = RuntimeEntityRoleModel
             };
 
             RuntimeIntent RuntimeIntentModel = new RuntimeIntent()
@@ -556,6 +651,41 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod]
         public void TestDialogNodeOutputOptionsElementValueModel()
         {
+            RuntimeEntityRole RuntimeEntityRoleModel = new RuntimeEntityRole()
+            {
+                Type = "date_from"
+            };
+
+            RuntimeEntityInterpretation RuntimeEntityInterpretationModel = new RuntimeEntityInterpretation()
+            {
+                CalendarType = "testString",
+                DatetimeLink = "testString",
+                Festival = "testString",
+                Granularity = "day",
+                RangeLink = "testString",
+                RangeModifier = "testString",
+                RelativeDay = 72.5f,
+                RelativeMonth = 72.5f,
+                RelativeWeek = 72.5f,
+                RelativeWeekend = 72.5f,
+                RelativeYear = 72.5f,
+                SpecificDay = 72.5f,
+                SpecificDayOfWeek = "testString",
+                SpecificMonth = 72.5f,
+                SpecificQuarter = 72.5f,
+                SpecificYear = 72.5f,
+                NumericValue = 72.5f,
+                Subtype = "testString",
+                PartOfDay = "testString",
+                RelativeHour = 72.5f,
+                RelativeMinute = 72.5f,
+                RelativeSecond = 72.5f,
+                SpecificHour = 72.5f,
+                SpecificMinute = 72.5f,
+                SpecificSecond = 72.5f,
+                Timezone = "testString"
+            };
+
             var CaptureGroupLocation = new List<long?> { 38 };
             CaptureGroup CaptureGroupModel = new CaptureGroup()
             {
@@ -573,7 +703,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Value = "testString",
                 Confidence = 72.5f,
                 Metadata = RuntimeEntityMetadata,
-                Groups = RuntimeEntityGroups
+                Groups = RuntimeEntityGroups,
+                Interpretation = RuntimeEntityInterpretationModel,
+                Role = RuntimeEntityRoleModel
             };
 
             RuntimeIntent RuntimeIntentModel = new RuntimeIntent()
@@ -632,6 +764,41 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod]
         public void TestDialogSuggestionModel()
         {
+            RuntimeEntityRole RuntimeEntityRoleModel = new RuntimeEntityRole()
+            {
+                Type = "date_from"
+            };
+
+            RuntimeEntityInterpretation RuntimeEntityInterpretationModel = new RuntimeEntityInterpretation()
+            {
+                CalendarType = "testString",
+                DatetimeLink = "testString",
+                Festival = "testString",
+                Granularity = "day",
+                RangeLink = "testString",
+                RangeModifier = "testString",
+                RelativeDay = 72.5f,
+                RelativeMonth = 72.5f,
+                RelativeWeek = 72.5f,
+                RelativeWeekend = 72.5f,
+                RelativeYear = 72.5f,
+                SpecificDay = 72.5f,
+                SpecificDayOfWeek = "testString",
+                SpecificMonth = 72.5f,
+                SpecificQuarter = 72.5f,
+                SpecificYear = 72.5f,
+                NumericValue = 72.5f,
+                Subtype = "testString",
+                PartOfDay = "testString",
+                RelativeHour = 72.5f,
+                RelativeMinute = 72.5f,
+                RelativeSecond = 72.5f,
+                SpecificHour = 72.5f,
+                SpecificMinute = 72.5f,
+                SpecificSecond = 72.5f,
+                Timezone = "testString"
+            };
+
             var CaptureGroupLocation = new List<long?> { 38 };
             CaptureGroup CaptureGroupModel = new CaptureGroup()
             {
@@ -649,7 +816,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Value = "testString",
                 Confidence = 72.5f,
                 Metadata = RuntimeEntityMetadata,
-                Groups = RuntimeEntityGroups
+                Groups = RuntimeEntityGroups,
+                Interpretation = RuntimeEntityInterpretationModel,
+                Role = RuntimeEntityRoleModel
             };
 
             RuntimeIntent RuntimeIntentModel = new RuntimeIntent()
@@ -739,6 +908,41 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod]
         public void TestDialogSuggestionResponseGenericModel()
         {
+            RuntimeEntityRole RuntimeEntityRoleModel = new RuntimeEntityRole()
+            {
+                Type = "date_from"
+            };
+
+            RuntimeEntityInterpretation RuntimeEntityInterpretationModel = new RuntimeEntityInterpretation()
+            {
+                CalendarType = "testString",
+                DatetimeLink = "testString",
+                Festival = "testString",
+                Granularity = "day",
+                RangeLink = "testString",
+                RangeModifier = "testString",
+                RelativeDay = 72.5f,
+                RelativeMonth = 72.5f,
+                RelativeWeek = 72.5f,
+                RelativeWeekend = 72.5f,
+                RelativeYear = 72.5f,
+                SpecificDay = 72.5f,
+                SpecificDayOfWeek = "testString",
+                SpecificMonth = 72.5f,
+                SpecificQuarter = 72.5f,
+                SpecificYear = 72.5f,
+                NumericValue = 72.5f,
+                Subtype = "testString",
+                PartOfDay = "testString",
+                RelativeHour = 72.5f,
+                RelativeMinute = 72.5f,
+                RelativeSecond = 72.5f,
+                SpecificHour = 72.5f,
+                SpecificMinute = 72.5f,
+                SpecificSecond = 72.5f,
+                Timezone = "testString"
+            };
+
             var CaptureGroupLocation = new List<long?> { 38 };
             CaptureGroup CaptureGroupModel = new CaptureGroup()
             {
@@ -756,7 +960,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Value = "testString",
                 Confidence = 72.5f,
                 Metadata = RuntimeEntityMetadata,
-                Groups = RuntimeEntityGroups
+                Groups = RuntimeEntityGroups,
+                Interpretation = RuntimeEntityInterpretationModel,
+                Role = RuntimeEntityRoleModel
             };
 
             RuntimeIntent RuntimeIntentModel = new RuntimeIntent()
@@ -817,6 +1023,41 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod]
         public void TestDialogSuggestionValueModel()
         {
+            RuntimeEntityRole RuntimeEntityRoleModel = new RuntimeEntityRole()
+            {
+                Type = "date_from"
+            };
+
+            RuntimeEntityInterpretation RuntimeEntityInterpretationModel = new RuntimeEntityInterpretation()
+            {
+                CalendarType = "testString",
+                DatetimeLink = "testString",
+                Festival = "testString",
+                Granularity = "day",
+                RangeLink = "testString",
+                RangeModifier = "testString",
+                RelativeDay = 72.5f,
+                RelativeMonth = 72.5f,
+                RelativeWeek = 72.5f,
+                RelativeWeekend = 72.5f,
+                RelativeYear = 72.5f,
+                SpecificDay = 72.5f,
+                SpecificDayOfWeek = "testString",
+                SpecificMonth = 72.5f,
+                SpecificQuarter = 72.5f,
+                SpecificYear = 72.5f,
+                NumericValue = 72.5f,
+                Subtype = "testString",
+                PartOfDay = "testString",
+                RelativeHour = 72.5f,
+                RelativeMinute = 72.5f,
+                RelativeSecond = 72.5f,
+                SpecificHour = 72.5f,
+                SpecificMinute = 72.5f,
+                SpecificSecond = 72.5f,
+                Timezone = "testString"
+            };
+
             var CaptureGroupLocation = new List<long?> { 38 };
             CaptureGroup CaptureGroupModel = new CaptureGroup()
             {
@@ -834,7 +1075,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Value = "testString",
                 Confidence = 72.5f,
                 Metadata = RuntimeEntityMetadata,
-                Groups = RuntimeEntityGroups
+                Groups = RuntimeEntityGroups,
+                Interpretation = RuntimeEntityInterpretationModel,
+                Role = RuntimeEntityRoleModel
             };
 
             RuntimeIntent RuntimeIntentModel = new RuntimeIntent()
@@ -939,6 +1182,41 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Credentials = "testString"
             };
 
+            RuntimeEntityRole RuntimeEntityRoleModel = new RuntimeEntityRole()
+            {
+                Type = "date_from"
+            };
+
+            RuntimeEntityInterpretation RuntimeEntityInterpretationModel = new RuntimeEntityInterpretation()
+            {
+                CalendarType = "testString",
+                DatetimeLink = "testString",
+                Festival = "testString",
+                Granularity = "day",
+                RangeLink = "testString",
+                RangeModifier = "testString",
+                RelativeDay = 72.5f,
+                RelativeMonth = 72.5f,
+                RelativeWeek = 72.5f,
+                RelativeWeekend = 72.5f,
+                RelativeYear = 72.5f,
+                SpecificDay = 72.5f,
+                SpecificDayOfWeek = "testString",
+                SpecificMonth = 72.5f,
+                SpecificQuarter = 72.5f,
+                SpecificYear = 72.5f,
+                NumericValue = 72.5f,
+                Subtype = "testString",
+                PartOfDay = "testString",
+                RelativeHour = 72.5f,
+                RelativeMinute = 72.5f,
+                RelativeSecond = 72.5f,
+                SpecificHour = 72.5f,
+                SpecificMinute = 72.5f,
+                SpecificSecond = 72.5f,
+                Timezone = "testString"
+            };
+
             var CaptureGroupLocation = new List<long?> { 38 };
             CaptureGroup CaptureGroupModel = new CaptureGroup()
             {
@@ -956,7 +1234,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Value = "testString",
                 Confidence = 72.5f,
                 Metadata = RuntimeEntityMetadata,
-                Groups = RuntimeEntityGroups
+                Groups = RuntimeEntityGroups,
+                Interpretation = RuntimeEntityInterpretationModel,
+                Role = RuntimeEntityRoleModel
             };
 
             RuntimeIntent RuntimeIntentModel = new RuntimeIntent()
@@ -1115,6 +1395,41 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod]
         public void TestRuntimeEntityModel()
         {
+            RuntimeEntityRole RuntimeEntityRoleModel = new RuntimeEntityRole()
+            {
+                Type = "date_from"
+            };
+
+            RuntimeEntityInterpretation RuntimeEntityInterpretationModel = new RuntimeEntityInterpretation()
+            {
+                CalendarType = "testString",
+                DatetimeLink = "testString",
+                Festival = "testString",
+                Granularity = "day",
+                RangeLink = "testString",
+                RangeModifier = "testString",
+                RelativeDay = 72.5f,
+                RelativeMonth = 72.5f,
+                RelativeWeek = 72.5f,
+                RelativeWeekend = 72.5f,
+                RelativeYear = 72.5f,
+                SpecificDay = 72.5f,
+                SpecificDayOfWeek = "testString",
+                SpecificMonth = 72.5f,
+                SpecificQuarter = 72.5f,
+                SpecificYear = 72.5f,
+                NumericValue = 72.5f,
+                Subtype = "testString",
+                PartOfDay = "testString",
+                RelativeHour = 72.5f,
+                RelativeMinute = 72.5f,
+                RelativeSecond = 72.5f,
+                SpecificHour = 72.5f,
+                SpecificMinute = 72.5f,
+                SpecificSecond = 72.5f,
+                Timezone = "testString"
+            };
+
             var CaptureGroupLocation = new List<long?> { 38 };
             CaptureGroup CaptureGroupModel = new CaptureGroup()
             {
@@ -1132,7 +1447,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Value = "testString",
                 Confidence = 72.5f,
                 Metadata = RuntimeEntityMetadata,
-                Groups = RuntimeEntityGroups
+                Groups = RuntimeEntityGroups,
+                Interpretation = RuntimeEntityInterpretationModel,
+                Role = RuntimeEntityRoleModel
             };
 
             Assert.IsTrue(testRequestModel.Entity == "testString");
@@ -1141,6 +1458,82 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             Assert.IsTrue(testRequestModel.Confidence == 72.5f);
             Assert.IsTrue(testRequestModel.Metadata == RuntimeEntityMetadata);
             Assert.IsTrue(testRequestModel.Groups == RuntimeEntityGroups);
+            Assert.IsTrue(testRequestModel.Interpretation == RuntimeEntityInterpretationModel);
+            Assert.IsTrue(testRequestModel.Role == RuntimeEntityRoleModel);
+        }
+
+        [TestMethod]
+        public void TestRuntimeEntityInterpretationModel()
+        {
+
+            RuntimeEntityInterpretation testRequestModel = new RuntimeEntityInterpretation()
+            {
+                CalendarType = "testString",
+                DatetimeLink = "testString",
+                Festival = "testString",
+                Granularity = "day",
+                RangeLink = "testString",
+                RangeModifier = "testString",
+                RelativeDay = 72.5f,
+                RelativeMonth = 72.5f,
+                RelativeWeek = 72.5f,
+                RelativeWeekend = 72.5f,
+                RelativeYear = 72.5f,
+                SpecificDay = 72.5f,
+                SpecificDayOfWeek = "testString",
+                SpecificMonth = 72.5f,
+                SpecificQuarter = 72.5f,
+                SpecificYear = 72.5f,
+                NumericValue = 72.5f,
+                Subtype = "testString",
+                PartOfDay = "testString",
+                RelativeHour = 72.5f,
+                RelativeMinute = 72.5f,
+                RelativeSecond = 72.5f,
+                SpecificHour = 72.5f,
+                SpecificMinute = 72.5f,
+                SpecificSecond = 72.5f,
+                Timezone = "testString"
+            };
+
+            Assert.IsTrue(testRequestModel.CalendarType == "testString");
+            Assert.IsTrue(testRequestModel.DatetimeLink == "testString");
+            Assert.IsTrue(testRequestModel.Festival == "testString");
+            Assert.IsTrue(testRequestModel.Granularity == "day");
+            Assert.IsTrue(testRequestModel.RangeLink == "testString");
+            Assert.IsTrue(testRequestModel.RangeModifier == "testString");
+            Assert.IsTrue(testRequestModel.RelativeDay == 72.5f);
+            Assert.IsTrue(testRequestModel.RelativeMonth == 72.5f);
+            Assert.IsTrue(testRequestModel.RelativeWeek == 72.5f);
+            Assert.IsTrue(testRequestModel.RelativeWeekend == 72.5f);
+            Assert.IsTrue(testRequestModel.RelativeYear == 72.5f);
+            Assert.IsTrue(testRequestModel.SpecificDay == 72.5f);
+            Assert.IsTrue(testRequestModel.SpecificDayOfWeek == "testString");
+            Assert.IsTrue(testRequestModel.SpecificMonth == 72.5f);
+            Assert.IsTrue(testRequestModel.SpecificQuarter == 72.5f);
+            Assert.IsTrue(testRequestModel.SpecificYear == 72.5f);
+            Assert.IsTrue(testRequestModel.NumericValue == 72.5f);
+            Assert.IsTrue(testRequestModel.Subtype == "testString");
+            Assert.IsTrue(testRequestModel.PartOfDay == "testString");
+            Assert.IsTrue(testRequestModel.RelativeHour == 72.5f);
+            Assert.IsTrue(testRequestModel.RelativeMinute == 72.5f);
+            Assert.IsTrue(testRequestModel.RelativeSecond == 72.5f);
+            Assert.IsTrue(testRequestModel.SpecificHour == 72.5f);
+            Assert.IsTrue(testRequestModel.SpecificMinute == 72.5f);
+            Assert.IsTrue(testRequestModel.SpecificSecond == 72.5f);
+            Assert.IsTrue(testRequestModel.Timezone == "testString");
+        }
+
+        [TestMethod]
+        public void TestRuntimeEntityRoleModel()
+        {
+
+            RuntimeEntityRole testRequestModel = new RuntimeEntityRole()
+            {
+                Type = "date_from"
+            };
+
+            Assert.IsTrue(testRequestModel.Type == "date_from");
         }
 
         [TestMethod]
@@ -1160,6 +1553,41 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod]
         public void TestRuntimeResponseGenericModel()
         {
+            RuntimeEntityRole RuntimeEntityRoleModel = new RuntimeEntityRole()
+            {
+                Type = "date_from"
+            };
+
+            RuntimeEntityInterpretation RuntimeEntityInterpretationModel = new RuntimeEntityInterpretation()
+            {
+                CalendarType = "testString",
+                DatetimeLink = "testString",
+                Festival = "testString",
+                Granularity = "day",
+                RangeLink = "testString",
+                RangeModifier = "testString",
+                RelativeDay = 72.5f,
+                RelativeMonth = 72.5f,
+                RelativeWeek = 72.5f,
+                RelativeWeekend = 72.5f,
+                RelativeYear = 72.5f,
+                SpecificDay = 72.5f,
+                SpecificDayOfWeek = "testString",
+                SpecificMonth = 72.5f,
+                SpecificQuarter = 72.5f,
+                SpecificYear = 72.5f,
+                NumericValue = 72.5f,
+                Subtype = "testString",
+                PartOfDay = "testString",
+                RelativeHour = 72.5f,
+                RelativeMinute = 72.5f,
+                RelativeSecond = 72.5f,
+                SpecificHour = 72.5f,
+                SpecificMinute = 72.5f,
+                SpecificSecond = 72.5f,
+                Timezone = "testString"
+            };
+
             var CaptureGroupLocation = new List<long?> { 38 };
             CaptureGroup CaptureGroupModel = new CaptureGroup()
             {
@@ -1177,7 +1605,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Value = "testString",
                 Confidence = 72.5f,
                 Metadata = RuntimeEntityMetadata,
-                Groups = RuntimeEntityGroups
+                Groups = RuntimeEntityGroups,
+                Interpretation = RuntimeEntityInterpretationModel,
+                Role = RuntimeEntityRoleModel
             };
 
             RuntimeIntent RuntimeIntentModel = new RuntimeIntent()
@@ -1346,6 +1776,11 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Enabled = true
             };
 
+            WorkspaceSystemSettingsSystemEntities WorkspaceSystemSettingsSystemEntitiesModel = new WorkspaceSystemSettingsSystemEntities()
+            {
+                Enabled = true
+            };
+
             WorkspaceSystemSettingsDisambiguation WorkspaceSystemSettingsDisambiguationModel = new WorkspaceSystemSettingsDisambiguation()
             {
                 Prompt = "testString",
@@ -1368,12 +1803,14 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Tooling = WorkspaceSystemSettingsToolingModel,
                 Disambiguation = WorkspaceSystemSettingsDisambiguationModel,
                 HumanAgentAssist = WorkspaceSystemSettingsHumanAgentAssist,
+                SystemEntities = WorkspaceSystemSettingsSystemEntitiesModel,
                 OffTopic = WorkspaceSystemSettingsOffTopicModel
             };
 
             Assert.IsTrue(testRequestModel.Tooling == WorkspaceSystemSettingsToolingModel);
             Assert.IsTrue(testRequestModel.Disambiguation == WorkspaceSystemSettingsDisambiguationModel);
             Assert.IsTrue(testRequestModel.HumanAgentAssist == WorkspaceSystemSettingsHumanAgentAssist);
+            Assert.IsTrue(testRequestModel.SystemEntities == WorkspaceSystemSettingsSystemEntitiesModel);
             Assert.IsTrue(testRequestModel.OffTopic == WorkspaceSystemSettingsOffTopicModel);
         }
 
@@ -1406,6 +1843,18 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         {
 
             WorkspaceSystemSettingsOffTopic testRequestModel = new WorkspaceSystemSettingsOffTopic()
+            {
+                Enabled = true
+            };
+
+            Assert.IsTrue(testRequestModel.Enabled == true);
+        }
+
+        [TestMethod]
+        public void TestWorkspaceSystemSettingsSystemEntitiesModel()
+        {
+
+            WorkspaceSystemSettingsSystemEntities testRequestModel = new WorkspaceSystemSettingsSystemEntities()
             {
                 Enabled = true
             };
@@ -1458,6 +1907,41 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Overwrite = true
             };
 
+            RuntimeEntityRole RuntimeEntityRoleModel = new RuntimeEntityRole()
+            {
+                Type = "date_from"
+            };
+
+            RuntimeEntityInterpretation RuntimeEntityInterpretationModel = new RuntimeEntityInterpretation()
+            {
+                CalendarType = "testString",
+                DatetimeLink = "testString",
+                Festival = "testString",
+                Granularity = "day",
+                RangeLink = "testString",
+                RangeModifier = "testString",
+                RelativeDay = 72.5f,
+                RelativeMonth = 72.5f,
+                RelativeWeek = 72.5f,
+                RelativeWeekend = 72.5f,
+                RelativeYear = 72.5f,
+                SpecificDay = 72.5f,
+                SpecificDayOfWeek = "testString",
+                SpecificMonth = 72.5f,
+                SpecificQuarter = 72.5f,
+                SpecificYear = 72.5f,
+                NumericValue = 72.5f,
+                Subtype = "testString",
+                PartOfDay = "testString",
+                RelativeHour = 72.5f,
+                RelativeMinute = 72.5f,
+                RelativeSecond = 72.5f,
+                SpecificHour = 72.5f,
+                SpecificMinute = 72.5f,
+                SpecificSecond = 72.5f,
+                Timezone = "testString"
+            };
+
             var CaptureGroupLocation = new List<long?> { 38 };
             CaptureGroup CaptureGroupModel = new CaptureGroup()
             {
@@ -1475,7 +1959,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Value = "testString",
                 Confidence = 72.5f,
                 Metadata = RuntimeEntityMetadata,
-                Groups = RuntimeEntityGroups
+                Groups = RuntimeEntityGroups,
+                Interpretation = RuntimeEntityInterpretationModel,
+                Role = RuntimeEntityRoleModel
             };
 
             RuntimeIntent RuntimeIntentModel = new RuntimeIntent()
@@ -1545,6 +2031,41 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod]
         public void TestDialogSuggestionOutputModel()
         {
+            RuntimeEntityRole RuntimeEntityRoleModel = new RuntimeEntityRole()
+            {
+                Type = "date_from"
+            };
+
+            RuntimeEntityInterpretation RuntimeEntityInterpretationModel = new RuntimeEntityInterpretation()
+            {
+                CalendarType = "testString",
+                DatetimeLink = "testString",
+                Festival = "testString",
+                Granularity = "day",
+                RangeLink = "testString",
+                RangeModifier = "testString",
+                RelativeDay = 72.5f,
+                RelativeMonth = 72.5f,
+                RelativeWeek = 72.5f,
+                RelativeWeekend = 72.5f,
+                RelativeYear = 72.5f,
+                SpecificDay = 72.5f,
+                SpecificDayOfWeek = "testString",
+                SpecificMonth = 72.5f,
+                SpecificQuarter = 72.5f,
+                SpecificYear = 72.5f,
+                NumericValue = 72.5f,
+                Subtype = "testString",
+                PartOfDay = "testString",
+                RelativeHour = 72.5f,
+                RelativeMinute = 72.5f,
+                RelativeSecond = 72.5f,
+                SpecificHour = 72.5f,
+                SpecificMinute = 72.5f,
+                SpecificSecond = 72.5f,
+                Timezone = "testString"
+            };
+
             var CaptureGroupLocation = new List<long?> { 38 };
             CaptureGroup CaptureGroupModel = new CaptureGroup()
             {
@@ -1562,7 +2083,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Value = "testString",
                 Confidence = 72.5f,
                 Metadata = RuntimeEntityMetadata,
-                Groups = RuntimeEntityGroups
+                Groups = RuntimeEntityGroups,
+                Interpretation = RuntimeEntityInterpretationModel,
+                Role = RuntimeEntityRoleModel
             };
 
             RuntimeIntent RuntimeIntentModel = new RuntimeIntent()
@@ -1647,6 +2170,41 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         [TestMethod]
         public void TestOutputDataModel()
         {
+            RuntimeEntityRole RuntimeEntityRoleModel = new RuntimeEntityRole()
+            {
+                Type = "date_from"
+            };
+
+            RuntimeEntityInterpretation RuntimeEntityInterpretationModel = new RuntimeEntityInterpretation()
+            {
+                CalendarType = "testString",
+                DatetimeLink = "testString",
+                Festival = "testString",
+                Granularity = "day",
+                RangeLink = "testString",
+                RangeModifier = "testString",
+                RelativeDay = 72.5f,
+                RelativeMonth = 72.5f,
+                RelativeWeek = 72.5f,
+                RelativeWeekend = 72.5f,
+                RelativeYear = 72.5f,
+                SpecificDay = 72.5f,
+                SpecificDayOfWeek = "testString",
+                SpecificMonth = 72.5f,
+                SpecificQuarter = 72.5f,
+                SpecificYear = 72.5f,
+                NumericValue = 72.5f,
+                Subtype = "testString",
+                PartOfDay = "testString",
+                RelativeHour = 72.5f,
+                RelativeMinute = 72.5f,
+                RelativeSecond = 72.5f,
+                SpecificHour = 72.5f,
+                SpecificMinute = 72.5f,
+                SpecificSecond = 72.5f,
+                Timezone = "testString"
+            };
+
             var CaptureGroupLocation = new List<long?> { 38 };
             CaptureGroup CaptureGroupModel = new CaptureGroup()
             {
@@ -1664,7 +2222,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Value = "testString",
                 Confidence = 72.5f,
                 Metadata = RuntimeEntityMetadata,
-                Groups = RuntimeEntityGroups
+                Groups = RuntimeEntityGroups,
+                Interpretation = RuntimeEntityInterpretationModel,
+                Role = RuntimeEntityRoleModel
             };
 
             RuntimeIntent RuntimeIntentModel = new RuntimeIntent()
@@ -1809,15 +2369,51 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
 
-            var responseJson = "{'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}], 'alternate_intents': true, 'context': {'conversation_id': 'ConversationId', 'system': {}, 'metadata': {'deployment': 'Deployment', 'user_id': 'UserId'}}, 'output': {'nodes_visited': ['NodesVisited'], 'nodes_visited_details': [{'dialog_node': 'DialogNode', 'title': 'Title', 'conditions': 'Conditions'}], 'log_messages': [{'level': 'info', 'msg': 'Msg'}], 'text': ['Text'], 'generic': [{'response_type': 'text', 'text': 'Text', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'topic': 'Topic', 'dialog_node': 'DialogNode', 'suggestions': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}]}, 'output': {'nodes_visited': ['NodesVisited'], 'nodes_visited_details': [{'dialog_node': 'DialogNode', 'title': 'Title', 'conditions': 'Conditions'}], 'text': ['Text'], 'generic': [{'response_type': 'text', 'text': 'Text', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'topic': 'Topic', 'dialog_node': 'DialogNode'}]}, 'dialog_node': 'DialogNode'}]}]}, 'actions': [{'name': 'Name', 'type': 'client', 'parameters': {}, 'result_variable': 'ResultVariable', 'credentials': 'Credentials'}]}";
+            var version = "testString";
+            service.Version = version;
+
+            var responseJson = "{'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'role': {'type': 'date_from'}}], 'alternate_intents': true, 'context': {'conversation_id': 'ConversationId', 'system': {}, 'metadata': {'deployment': 'Deployment', 'user_id': 'UserId'}}, 'output': {'nodes_visited': ['NodesVisited'], 'nodes_visited_details': [{'dialog_node': 'DialogNode', 'title': 'Title', 'conditions': 'Conditions'}], 'log_messages': [{'level': 'info', 'msg': 'Msg'}], 'text': ['Text'], 'generic': [{'response_type': 'text', 'text': 'Text', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'role': {'type': 'date_from'}}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'topic': 'Topic', 'dialog_node': 'DialogNode', 'suggestions': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'role': {'type': 'date_from'}}]}, 'output': {'nodes_visited': ['NodesVisited'], 'nodes_visited_details': [{'dialog_node': 'DialogNode', 'title': 'Title', 'conditions': 'Conditions'}], 'text': ['Text'], 'generic': [{'response_type': 'text', 'text': 'Text', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'role': {'type': 'date_from'}}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'topic': 'Topic', 'dialog_node': 'DialogNode'}]}, 'dialog_node': 'DialogNode'}]}]}, 'actions': [{'name': 'Name', 'type': 'client', 'parameters': {}, 'result_variable': 'ResultVariable', 'credentials': 'Credentials'}]}";
             var response = new DetailedResponse<MessageResponse>()
             {
                 Response = responseJson,
                 Result = JsonConvert.DeserializeObject<MessageResponse>(responseJson),
                 StatusCode = 200
+            };
+
+            RuntimeEntityRole RuntimeEntityRoleModel = new RuntimeEntityRole()
+            {
+                Type = "date_from"
+            };
+
+            RuntimeEntityInterpretation RuntimeEntityInterpretationModel = new RuntimeEntityInterpretation()
+            {
+                CalendarType = "testString",
+                DatetimeLink = "testString",
+                Festival = "testString",
+                Granularity = "day",
+                RangeLink = "testString",
+                RangeModifier = "testString",
+                RelativeDay = 72.5f,
+                RelativeMonth = 72.5f,
+                RelativeWeek = 72.5f,
+                RelativeWeekend = 72.5f,
+                RelativeYear = 72.5f,
+                SpecificDay = 72.5f,
+                SpecificDayOfWeek = "testString",
+                SpecificMonth = 72.5f,
+                SpecificQuarter = 72.5f,
+                SpecificYear = 72.5f,
+                NumericValue = 72.5f,
+                Subtype = "testString",
+                PartOfDay = "testString",
+                RelativeHour = 72.5f,
+                RelativeMinute = 72.5f,
+                RelativeSecond = 72.5f,
+                SpecificHour = 72.5f,
+                SpecificMinute = 72.5f,
+                SpecificSecond = 72.5f,
+                Timezone = "testString"
             };
 
             var CaptureGroupLocation = new List<long?> { 38 };
@@ -1837,7 +2433,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Value = "testString",
                 Confidence = 72.5f,
                 Metadata = RuntimeEntityMetadata,
-                Groups = RuntimeEntityGroups
+                Groups = RuntimeEntityGroups,
+                Interpretation = RuntimeEntityInterpretationModel,
+                Role = RuntimeEntityRoleModel
             };
 
             RuntimeIntent RuntimeIntentModel = new RuntimeIntent()
@@ -1973,13 +2571,19 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Metadata = MessageContextMetadataModel
             };
             string workspaceId = "testString";
+            MessageInput input = MessageInputModel;
+            List<RuntimeIntent> intents = new List<RuntimeIntent> { RuntimeIntentModel };
+            List<RuntimeEntity> entities = new List<RuntimeEntity> { RuntimeEntityModel };
+            bool? alternateIntents = true;
+            Context context = ContextModel;
+            OutputData output = OutputDataModel;
             bool? nodesVisitedDetails = true;
 
             request.As<MessageResponse>().Returns(Task.FromResult(response));
 
-            var result = service.Message(workspaceId: workspaceId, input: MessageInputModel, intents: new List<RuntimeIntent> { RuntimeIntentModel }, entities: new List<RuntimeEntity> { RuntimeEntityModel }, alternateIntents: true, context: ContextModel, output: OutputDataModel, nodesVisitedDetails: nodesVisitedDetails);
+            var result = service.Message(workspaceId: workspaceId, input: input, intents: intents, entities: entities, alternateIntents: alternateIntents, context: context, output: output, nodesVisitedDetails: nodesVisitedDetails);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/message";
             client.Received().PostAsync(messageUrl);
@@ -1994,10 +2598,11 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
 
-            var responseJson = "{'workspaces': [{'name': 'Name', 'description': 'Description', 'language': 'Language', 'metadata': {}, 'learning_opt_out': true, 'system_settings': {'tooling': {'store_generic_responses': false}, 'disambiguation': {'prompt': 'Prompt', 'none_of_the_above_prompt': 'NoneOfTheAbovePrompt', 'enabled': false, 'sensitivity': 'auto', 'randomize': false, 'max_suggestions': 14, 'suggestion_text_policy': 'SuggestionTextPolicy'}, 'human_agent_assist': {}, 'off_topic': {'enabled': false}}, 'workspace_id': 'WorkspaceId', 'status': 'Non Existent', 'intents': [{'intent': '_Intent', 'description': 'Description', 'examples': [{'text': 'Text', 'mentions': [{'entity': 'Entity', 'location': [8]}]}]}], 'entities': [{'entity': '_Entity', 'description': 'Description', 'metadata': {}, 'fuzzy_match': true, 'values': [{'value': '_Value', 'metadata': {}, 'type': 'synonyms', 'synonyms': ['Synonym'], 'patterns': ['Pattern']}]}], 'dialog_nodes': [{'dialog_node': '_DialogNode', 'description': 'Description', 'conditions': 'Conditions', 'parent': 'Parent', 'previous_sibling': 'PreviousSibling', 'output': {'generic': [{'response_type': 'text', 'values': [{'text': 'Text'}], 'selection_policy': 'sequential', 'delimiter': 'Delimiter', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'query': 'Query', 'query_type': 'natural_language', 'filter': 'Filter', 'discovery_version': 'DiscoveryVersion'}], 'modifiers': {'overwrite': false}}, 'context': {}, 'metadata': {}, 'next_step': {'behavior': 'get_user_input', 'dialog_node': 'DialogNode', 'selector': 'condition'}, 'title': 'Title', 'type': 'standard', 'event_name': 'focus', 'variable': 'Variable', 'actions': [{'name': 'Name', 'type': 'client', 'parameters': {}, 'result_variable': 'ResultVariable', 'credentials': 'Credentials'}], 'digress_in': 'not_available', 'digress_out': 'allow_returning', 'digress_out_slots': 'not_allowed', 'user_label': 'UserLabel', 'disambiguation_opt_out': true, 'disabled': true}], 'counterexamples': [{'text': 'Text'}], 'webhooks': [{'url': 'Url', 'name': 'Name', 'headers': [{'name': 'Name', 'value': 'Value'}]}]}], 'pagination': {'refresh_url': 'RefreshUrl', 'next_url': 'NextUrl', 'total': 5, 'matched': 7, 'refresh_cursor': 'RefreshCursor', 'next_cursor': 'NextCursor'}}";
+            var version = "testString";
+            service.Version = version;
+
+            var responseJson = "{'workspaces': [{'name': 'Name', 'description': 'Description', 'language': 'Language', 'metadata': {}, 'learning_opt_out': true, 'system_settings': {'tooling': {'store_generic_responses': false}, 'disambiguation': {'prompt': 'Prompt', 'none_of_the_above_prompt': 'NoneOfTheAbovePrompt', 'enabled': false, 'sensitivity': 'auto', 'randomize': false, 'max_suggestions': 14, 'suggestion_text_policy': 'SuggestionTextPolicy'}, 'human_agent_assist': {}, 'system_entities': {'enabled': false}, 'off_topic': {'enabled': false}}, 'workspace_id': 'WorkspaceId', 'status': 'Non Existent', 'intents': [{'intent': '_Intent', 'description': 'Description', 'examples': [{'text': 'Text', 'mentions': [{'entity': 'Entity', 'location': [8]}]}]}], 'entities': [{'entity': '_Entity', 'description': 'Description', 'metadata': {}, 'fuzzy_match': true, 'values': [{'value': '_Value', 'metadata': {}, 'type': 'synonyms', 'synonyms': ['Synonym'], 'patterns': ['Pattern']}]}], 'dialog_nodes': [{'dialog_node': '_DialogNode', 'description': 'Description', 'conditions': 'Conditions', 'parent': 'Parent', 'previous_sibling': 'PreviousSibling', 'output': {'generic': [{'response_type': 'text', 'values': [{'text': 'Text'}], 'selection_policy': 'sequential', 'delimiter': 'Delimiter', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'role': {'type': 'date_from'}}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'query': 'Query', 'query_type': 'natural_language', 'filter': 'Filter', 'discovery_version': 'DiscoveryVersion'}], 'modifiers': {'overwrite': false}}, 'context': {}, 'metadata': {}, 'next_step': {'behavior': 'get_user_input', 'dialog_node': 'DialogNode', 'selector': 'condition'}, 'title': 'Title', 'type': 'standard', 'event_name': 'focus', 'variable': 'Variable', 'actions': [{'name': 'Name', 'type': 'client', 'parameters': {}, 'result_variable': 'ResultVariable', 'credentials': 'Credentials'}], 'digress_in': 'not_available', 'digress_out': 'allow_returning', 'digress_out_slots': 'not_allowed', 'user_label': 'UserLabel', 'disambiguation_opt_out': true, 'disabled': true}], 'counterexamples': [{'text': 'Text'}], 'webhooks': [{'url': 'Url', 'name': 'Name', 'headers': [{'name': 'Name', 'value': 'Value'}]}]}], 'pagination': {'refresh_url': 'RefreshUrl', 'next_url': 'NextUrl', 'total': 5, 'matched': 7, 'refresh_cursor': 'RefreshCursor', 'next_cursor': 'NextCursor'}}";
             var response = new DetailedResponse<WorkspaceCollection>()
             {
                 Response = responseJson,
@@ -2014,7 +2619,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var result = service.ListWorkspaces(pageLimit: pageLimit, sort: sort, cursor: cursor, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces";
             client.Received().GetAsync(messageUrl);
@@ -2029,10 +2634,11 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
 
-            var responseJson = "{'name': 'Name', 'description': 'Description', 'language': 'Language', 'metadata': {}, 'learning_opt_out': true, 'system_settings': {'tooling': {'store_generic_responses': false}, 'disambiguation': {'prompt': 'Prompt', 'none_of_the_above_prompt': 'NoneOfTheAbovePrompt', 'enabled': false, 'sensitivity': 'auto', 'randomize': false, 'max_suggestions': 14, 'suggestion_text_policy': 'SuggestionTextPolicy'}, 'human_agent_assist': {}, 'off_topic': {'enabled': false}}, 'workspace_id': 'WorkspaceId', 'status': 'Non Existent', 'intents': [{'intent': '_Intent', 'description': 'Description', 'examples': [{'text': 'Text', 'mentions': [{'entity': 'Entity', 'location': [8]}]}]}], 'entities': [{'entity': '_Entity', 'description': 'Description', 'metadata': {}, 'fuzzy_match': true, 'values': [{'value': '_Value', 'metadata': {}, 'type': 'synonyms', 'synonyms': ['Synonym'], 'patterns': ['Pattern']}]}], 'dialog_nodes': [{'dialog_node': '_DialogNode', 'description': 'Description', 'conditions': 'Conditions', 'parent': 'Parent', 'previous_sibling': 'PreviousSibling', 'output': {'generic': [{'response_type': 'text', 'values': [{'text': 'Text'}], 'selection_policy': 'sequential', 'delimiter': 'Delimiter', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'query': 'Query', 'query_type': 'natural_language', 'filter': 'Filter', 'discovery_version': 'DiscoveryVersion'}], 'modifiers': {'overwrite': false}}, 'context': {}, 'metadata': {}, 'next_step': {'behavior': 'get_user_input', 'dialog_node': 'DialogNode', 'selector': 'condition'}, 'title': 'Title', 'type': 'standard', 'event_name': 'focus', 'variable': 'Variable', 'actions': [{'name': 'Name', 'type': 'client', 'parameters': {}, 'result_variable': 'ResultVariable', 'credentials': 'Credentials'}], 'digress_in': 'not_available', 'digress_out': 'allow_returning', 'digress_out_slots': 'not_allowed', 'user_label': 'UserLabel', 'disambiguation_opt_out': true, 'disabled': true}], 'counterexamples': [{'text': 'Text'}], 'webhooks': [{'url': 'Url', 'name': 'Name', 'headers': [{'name': 'Name', 'value': 'Value'}]}]}";
+            var version = "testString";
+            service.Version = version;
+
+            var responseJson = "{'name': 'Name', 'description': 'Description', 'language': 'Language', 'metadata': {}, 'learning_opt_out': true, 'system_settings': {'tooling': {'store_generic_responses': false}, 'disambiguation': {'prompt': 'Prompt', 'none_of_the_above_prompt': 'NoneOfTheAbovePrompt', 'enabled': false, 'sensitivity': 'auto', 'randomize': false, 'max_suggestions': 14, 'suggestion_text_policy': 'SuggestionTextPolicy'}, 'human_agent_assist': {}, 'system_entities': {'enabled': false}, 'off_topic': {'enabled': false}}, 'workspace_id': 'WorkspaceId', 'status': 'Non Existent', 'intents': [{'intent': '_Intent', 'description': 'Description', 'examples': [{'text': 'Text', 'mentions': [{'entity': 'Entity', 'location': [8]}]}]}], 'entities': [{'entity': '_Entity', 'description': 'Description', 'metadata': {}, 'fuzzy_match': true, 'values': [{'value': '_Value', 'metadata': {}, 'type': 'synonyms', 'synonyms': ['Synonym'], 'patterns': ['Pattern']}]}], 'dialog_nodes': [{'dialog_node': '_DialogNode', 'description': 'Description', 'conditions': 'Conditions', 'parent': 'Parent', 'previous_sibling': 'PreviousSibling', 'output': {'generic': [{'response_type': 'text', 'values': [{'text': 'Text'}], 'selection_policy': 'sequential', 'delimiter': 'Delimiter', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'role': {'type': 'date_from'}}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'query': 'Query', 'query_type': 'natural_language', 'filter': 'Filter', 'discovery_version': 'DiscoveryVersion'}], 'modifiers': {'overwrite': false}}, 'context': {}, 'metadata': {}, 'next_step': {'behavior': 'get_user_input', 'dialog_node': 'DialogNode', 'selector': 'condition'}, 'title': 'Title', 'type': 'standard', 'event_name': 'focus', 'variable': 'Variable', 'actions': [{'name': 'Name', 'type': 'client', 'parameters': {}, 'result_variable': 'ResultVariable', 'credentials': 'Credentials'}], 'digress_in': 'not_available', 'digress_out': 'allow_returning', 'digress_out_slots': 'not_allowed', 'user_label': 'UserLabel', 'disambiguation_opt_out': true, 'disabled': true}], 'counterexamples': [{'text': 'Text'}], 'webhooks': [{'url': 'Url', 'name': 'Name', 'headers': [{'name': 'Name', 'value': 'Value'}]}]}";
             var response = new DetailedResponse<Workspace>()
             {
                 Response = responseJson,
@@ -2081,6 +2687,41 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Overwrite = true
             };
 
+            RuntimeEntityRole RuntimeEntityRoleModel = new RuntimeEntityRole()
+            {
+                Type = "date_from"
+            };
+
+            RuntimeEntityInterpretation RuntimeEntityInterpretationModel = new RuntimeEntityInterpretation()
+            {
+                CalendarType = "testString",
+                DatetimeLink = "testString",
+                Festival = "testString",
+                Granularity = "day",
+                RangeLink = "testString",
+                RangeModifier = "testString",
+                RelativeDay = 72.5f,
+                RelativeMonth = 72.5f,
+                RelativeWeek = 72.5f,
+                RelativeWeekend = 72.5f,
+                RelativeYear = 72.5f,
+                SpecificDay = 72.5f,
+                SpecificDayOfWeek = "testString",
+                SpecificMonth = 72.5f,
+                SpecificQuarter = 72.5f,
+                SpecificYear = 72.5f,
+                NumericValue = 72.5f,
+                Subtype = "testString",
+                PartOfDay = "testString",
+                RelativeHour = 72.5f,
+                RelativeMinute = 72.5f,
+                RelativeSecond = 72.5f,
+                SpecificHour = 72.5f,
+                SpecificMinute = 72.5f,
+                SpecificSecond = 72.5f,
+                Timezone = "testString"
+            };
+
             var CaptureGroupLocation = new List<long?> { 38 };
             CaptureGroup CaptureGroupModel = new CaptureGroup()
             {
@@ -2098,7 +2739,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Value = "testString",
                 Confidence = 72.5f,
                 Metadata = RuntimeEntityMetadata,
-                Groups = RuntimeEntityGroups
+                Groups = RuntimeEntityGroups,
+                Interpretation = RuntimeEntityInterpretationModel,
+                Role = RuntimeEntityRoleModel
             };
 
             RuntimeIntent RuntimeIntentModel = new RuntimeIntent()
@@ -2237,6 +2880,11 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Enabled = true
             };
 
+            WorkspaceSystemSettingsSystemEntities WorkspaceSystemSettingsSystemEntitiesModel = new WorkspaceSystemSettingsSystemEntities()
+            {
+                Enabled = true
+            };
+
             WorkspaceSystemSettingsDisambiguation WorkspaceSystemSettingsDisambiguationModel = new WorkspaceSystemSettingsDisambiguation()
             {
                 Prompt = "testString",
@@ -2259,14 +2907,27 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Tooling = WorkspaceSystemSettingsToolingModel,
                 Disambiguation = WorkspaceSystemSettingsDisambiguationModel,
                 HumanAgentAssist = WorkspaceSystemSettingsHumanAgentAssist,
+                SystemEntities = WorkspaceSystemSettingsSystemEntitiesModel,
                 OffTopic = WorkspaceSystemSettingsOffTopicModel
             };
+            string name = "testString";
+            string description = "testString";
+            string language = "testString";
+            Dictionary<string, object> metadata = new Dictionary<string, object>();
+            bool? learningOptOut = true;
+            WorkspaceSystemSettings systemSettings = WorkspaceSystemSettingsModel;
+            List<CreateIntent> intents = new List<CreateIntent> { CreateIntentModel };
+            List<CreateEntity> entities = new List<CreateEntity> { CreateEntityModel };
+            List<DialogNode> dialogNodes = new List<DialogNode> { DialogNodeModel };
+            List<Counterexample> counterexamples = new List<Counterexample> { CounterexampleModel };
+            List<Webhook> webhooks = new List<Webhook> { WebhookModel };
+            bool? includeAudit = true;
 
             request.As<Workspace>().Returns(Task.FromResult(response));
 
-            var result = service.CreateWorkspace(name: "testString", description: "testString", language: "testString", metadata: new Dictionary<string, object>(), learningOptOut: true, systemSettings: WorkspaceSystemSettingsModel, intents: new List<CreateIntent> { CreateIntentModel }, entities: new List<CreateEntity> { CreateEntityModel }, dialogNodes: new List<DialogNode> { DialogNodeModel }, counterexamples: new List<Counterexample> { CounterexampleModel }, webhooks: new List<Webhook> { WebhookModel });
+            var result = service.CreateWorkspace(name: name, description: description, language: language, metadata: metadata, learningOptOut: learningOptOut, systemSettings: systemSettings, intents: intents, entities: entities, dialogNodes: dialogNodes, counterexamples: counterexamples, webhooks: webhooks, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces";
             client.Received().PostAsync(messageUrl);
@@ -2281,10 +2942,11 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
 
-            var responseJson = "{'name': 'Name', 'description': 'Description', 'language': 'Language', 'metadata': {}, 'learning_opt_out': true, 'system_settings': {'tooling': {'store_generic_responses': false}, 'disambiguation': {'prompt': 'Prompt', 'none_of_the_above_prompt': 'NoneOfTheAbovePrompt', 'enabled': false, 'sensitivity': 'auto', 'randomize': false, 'max_suggestions': 14, 'suggestion_text_policy': 'SuggestionTextPolicy'}, 'human_agent_assist': {}, 'off_topic': {'enabled': false}}, 'workspace_id': 'WorkspaceId', 'status': 'Non Existent', 'intents': [{'intent': '_Intent', 'description': 'Description', 'examples': [{'text': 'Text', 'mentions': [{'entity': 'Entity', 'location': [8]}]}]}], 'entities': [{'entity': '_Entity', 'description': 'Description', 'metadata': {}, 'fuzzy_match': true, 'values': [{'value': '_Value', 'metadata': {}, 'type': 'synonyms', 'synonyms': ['Synonym'], 'patterns': ['Pattern']}]}], 'dialog_nodes': [{'dialog_node': '_DialogNode', 'description': 'Description', 'conditions': 'Conditions', 'parent': 'Parent', 'previous_sibling': 'PreviousSibling', 'output': {'generic': [{'response_type': 'text', 'values': [{'text': 'Text'}], 'selection_policy': 'sequential', 'delimiter': 'Delimiter', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'query': 'Query', 'query_type': 'natural_language', 'filter': 'Filter', 'discovery_version': 'DiscoveryVersion'}], 'modifiers': {'overwrite': false}}, 'context': {}, 'metadata': {}, 'next_step': {'behavior': 'get_user_input', 'dialog_node': 'DialogNode', 'selector': 'condition'}, 'title': 'Title', 'type': 'standard', 'event_name': 'focus', 'variable': 'Variable', 'actions': [{'name': 'Name', 'type': 'client', 'parameters': {}, 'result_variable': 'ResultVariable', 'credentials': 'Credentials'}], 'digress_in': 'not_available', 'digress_out': 'allow_returning', 'digress_out_slots': 'not_allowed', 'user_label': 'UserLabel', 'disambiguation_opt_out': true, 'disabled': true}], 'counterexamples': [{'text': 'Text'}], 'webhooks': [{'url': 'Url', 'name': 'Name', 'headers': [{'name': 'Name', 'value': 'Value'}]}]}";
+            var version = "testString";
+            service.Version = version;
+
+            var responseJson = "{'name': 'Name', 'description': 'Description', 'language': 'Language', 'metadata': {}, 'learning_opt_out': true, 'system_settings': {'tooling': {'store_generic_responses': false}, 'disambiguation': {'prompt': 'Prompt', 'none_of_the_above_prompt': 'NoneOfTheAbovePrompt', 'enabled': false, 'sensitivity': 'auto', 'randomize': false, 'max_suggestions': 14, 'suggestion_text_policy': 'SuggestionTextPolicy'}, 'human_agent_assist': {}, 'system_entities': {'enabled': false}, 'off_topic': {'enabled': false}}, 'workspace_id': 'WorkspaceId', 'status': 'Non Existent', 'intents': [{'intent': '_Intent', 'description': 'Description', 'examples': [{'text': 'Text', 'mentions': [{'entity': 'Entity', 'location': [8]}]}]}], 'entities': [{'entity': '_Entity', 'description': 'Description', 'metadata': {}, 'fuzzy_match': true, 'values': [{'value': '_Value', 'metadata': {}, 'type': 'synonyms', 'synonyms': ['Synonym'], 'patterns': ['Pattern']}]}], 'dialog_nodes': [{'dialog_node': '_DialogNode', 'description': 'Description', 'conditions': 'Conditions', 'parent': 'Parent', 'previous_sibling': 'PreviousSibling', 'output': {'generic': [{'response_type': 'text', 'values': [{'text': 'Text'}], 'selection_policy': 'sequential', 'delimiter': 'Delimiter', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'role': {'type': 'date_from'}}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'query': 'Query', 'query_type': 'natural_language', 'filter': 'Filter', 'discovery_version': 'DiscoveryVersion'}], 'modifiers': {'overwrite': false}}, 'context': {}, 'metadata': {}, 'next_step': {'behavior': 'get_user_input', 'dialog_node': 'DialogNode', 'selector': 'condition'}, 'title': 'Title', 'type': 'standard', 'event_name': 'focus', 'variable': 'Variable', 'actions': [{'name': 'Name', 'type': 'client', 'parameters': {}, 'result_variable': 'ResultVariable', 'credentials': 'Credentials'}], 'digress_in': 'not_available', 'digress_out': 'allow_returning', 'digress_out_slots': 'not_allowed', 'user_label': 'UserLabel', 'disambiguation_opt_out': true, 'disabled': true}], 'counterexamples': [{'text': 'Text'}], 'webhooks': [{'url': 'Url', 'name': 'Name', 'headers': [{'name': 'Name', 'value': 'Value'}]}]}";
             var response = new DetailedResponse<Workspace>()
             {
                 Response = responseJson,
@@ -2301,7 +2963,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var result = service.GetWorkspace(workspaceId: workspaceId, export: export, includeAudit: includeAudit, sort: sort);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}";
             client.Received().GetAsync(messageUrl);
@@ -2316,10 +2978,11 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
 
-            var responseJson = "{'name': 'Name', 'description': 'Description', 'language': 'Language', 'metadata': {}, 'learning_opt_out': true, 'system_settings': {'tooling': {'store_generic_responses': false}, 'disambiguation': {'prompt': 'Prompt', 'none_of_the_above_prompt': 'NoneOfTheAbovePrompt', 'enabled': false, 'sensitivity': 'auto', 'randomize': false, 'max_suggestions': 14, 'suggestion_text_policy': 'SuggestionTextPolicy'}, 'human_agent_assist': {}, 'off_topic': {'enabled': false}}, 'workspace_id': 'WorkspaceId', 'status': 'Non Existent', 'intents': [{'intent': '_Intent', 'description': 'Description', 'examples': [{'text': 'Text', 'mentions': [{'entity': 'Entity', 'location': [8]}]}]}], 'entities': [{'entity': '_Entity', 'description': 'Description', 'metadata': {}, 'fuzzy_match': true, 'values': [{'value': '_Value', 'metadata': {}, 'type': 'synonyms', 'synonyms': ['Synonym'], 'patterns': ['Pattern']}]}], 'dialog_nodes': [{'dialog_node': '_DialogNode', 'description': 'Description', 'conditions': 'Conditions', 'parent': 'Parent', 'previous_sibling': 'PreviousSibling', 'output': {'generic': [{'response_type': 'text', 'values': [{'text': 'Text'}], 'selection_policy': 'sequential', 'delimiter': 'Delimiter', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'query': 'Query', 'query_type': 'natural_language', 'filter': 'Filter', 'discovery_version': 'DiscoveryVersion'}], 'modifiers': {'overwrite': false}}, 'context': {}, 'metadata': {}, 'next_step': {'behavior': 'get_user_input', 'dialog_node': 'DialogNode', 'selector': 'condition'}, 'title': 'Title', 'type': 'standard', 'event_name': 'focus', 'variable': 'Variable', 'actions': [{'name': 'Name', 'type': 'client', 'parameters': {}, 'result_variable': 'ResultVariable', 'credentials': 'Credentials'}], 'digress_in': 'not_available', 'digress_out': 'allow_returning', 'digress_out_slots': 'not_allowed', 'user_label': 'UserLabel', 'disambiguation_opt_out': true, 'disabled': true}], 'counterexamples': [{'text': 'Text'}], 'webhooks': [{'url': 'Url', 'name': 'Name', 'headers': [{'name': 'Name', 'value': 'Value'}]}]}";
+            var version = "testString";
+            service.Version = version;
+
+            var responseJson = "{'name': 'Name', 'description': 'Description', 'language': 'Language', 'metadata': {}, 'learning_opt_out': true, 'system_settings': {'tooling': {'store_generic_responses': false}, 'disambiguation': {'prompt': 'Prompt', 'none_of_the_above_prompt': 'NoneOfTheAbovePrompt', 'enabled': false, 'sensitivity': 'auto', 'randomize': false, 'max_suggestions': 14, 'suggestion_text_policy': 'SuggestionTextPolicy'}, 'human_agent_assist': {}, 'system_entities': {'enabled': false}, 'off_topic': {'enabled': false}}, 'workspace_id': 'WorkspaceId', 'status': 'Non Existent', 'intents': [{'intent': '_Intent', 'description': 'Description', 'examples': [{'text': 'Text', 'mentions': [{'entity': 'Entity', 'location': [8]}]}]}], 'entities': [{'entity': '_Entity', 'description': 'Description', 'metadata': {}, 'fuzzy_match': true, 'values': [{'value': '_Value', 'metadata': {}, 'type': 'synonyms', 'synonyms': ['Synonym'], 'patterns': ['Pattern']}]}], 'dialog_nodes': [{'dialog_node': '_DialogNode', 'description': 'Description', 'conditions': 'Conditions', 'parent': 'Parent', 'previous_sibling': 'PreviousSibling', 'output': {'generic': [{'response_type': 'text', 'values': [{'text': 'Text'}], 'selection_policy': 'sequential', 'delimiter': 'Delimiter', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'role': {'type': 'date_from'}}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'query': 'Query', 'query_type': 'natural_language', 'filter': 'Filter', 'discovery_version': 'DiscoveryVersion'}], 'modifiers': {'overwrite': false}}, 'context': {}, 'metadata': {}, 'next_step': {'behavior': 'get_user_input', 'dialog_node': 'DialogNode', 'selector': 'condition'}, 'title': 'Title', 'type': 'standard', 'event_name': 'focus', 'variable': 'Variable', 'actions': [{'name': 'Name', 'type': 'client', 'parameters': {}, 'result_variable': 'ResultVariable', 'credentials': 'Credentials'}], 'digress_in': 'not_available', 'digress_out': 'allow_returning', 'digress_out_slots': 'not_allowed', 'user_label': 'UserLabel', 'disambiguation_opt_out': true, 'disabled': true}], 'counterexamples': [{'text': 'Text'}], 'webhooks': [{'url': 'Url', 'name': 'Name', 'headers': [{'name': 'Name', 'value': 'Value'}]}]}";
             var response = new DetailedResponse<Workspace>()
             {
                 Response = responseJson,
@@ -2368,6 +3031,41 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Overwrite = true
             };
 
+            RuntimeEntityRole RuntimeEntityRoleModel = new RuntimeEntityRole()
+            {
+                Type = "date_from"
+            };
+
+            RuntimeEntityInterpretation RuntimeEntityInterpretationModel = new RuntimeEntityInterpretation()
+            {
+                CalendarType = "testString",
+                DatetimeLink = "testString",
+                Festival = "testString",
+                Granularity = "day",
+                RangeLink = "testString",
+                RangeModifier = "testString",
+                RelativeDay = 72.5f,
+                RelativeMonth = 72.5f,
+                RelativeWeek = 72.5f,
+                RelativeWeekend = 72.5f,
+                RelativeYear = 72.5f,
+                SpecificDay = 72.5f,
+                SpecificDayOfWeek = "testString",
+                SpecificMonth = 72.5f,
+                SpecificQuarter = 72.5f,
+                SpecificYear = 72.5f,
+                NumericValue = 72.5f,
+                Subtype = "testString",
+                PartOfDay = "testString",
+                RelativeHour = 72.5f,
+                RelativeMinute = 72.5f,
+                RelativeSecond = 72.5f,
+                SpecificHour = 72.5f,
+                SpecificMinute = 72.5f,
+                SpecificSecond = 72.5f,
+                Timezone = "testString"
+            };
+
             var CaptureGroupLocation = new List<long?> { 38 };
             CaptureGroup CaptureGroupModel = new CaptureGroup()
             {
@@ -2385,7 +3083,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Value = "testString",
                 Confidence = 72.5f,
                 Metadata = RuntimeEntityMetadata,
-                Groups = RuntimeEntityGroups
+                Groups = RuntimeEntityGroups,
+                Interpretation = RuntimeEntityInterpretationModel,
+                Role = RuntimeEntityRoleModel
             };
 
             RuntimeIntent RuntimeIntentModel = new RuntimeIntent()
@@ -2524,6 +3224,11 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Enabled = true
             };
 
+            WorkspaceSystemSettingsSystemEntities WorkspaceSystemSettingsSystemEntitiesModel = new WorkspaceSystemSettingsSystemEntities()
+            {
+                Enabled = true
+            };
+
             WorkspaceSystemSettingsDisambiguation WorkspaceSystemSettingsDisambiguationModel = new WorkspaceSystemSettingsDisambiguation()
             {
                 Prompt = "testString",
@@ -2546,16 +3251,29 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Tooling = WorkspaceSystemSettingsToolingModel,
                 Disambiguation = WorkspaceSystemSettingsDisambiguationModel,
                 HumanAgentAssist = WorkspaceSystemSettingsHumanAgentAssist,
+                SystemEntities = WorkspaceSystemSettingsSystemEntitiesModel,
                 OffTopic = WorkspaceSystemSettingsOffTopicModel
             };
             string workspaceId = "testString";
+            string name = "testString";
+            string description = "testString";
+            string language = "testString";
+            Dictionary<string, object> metadata = new Dictionary<string, object>();
+            bool? learningOptOut = true;
+            WorkspaceSystemSettings systemSettings = WorkspaceSystemSettingsModel;
+            List<CreateIntent> intents = new List<CreateIntent> { CreateIntentModel };
+            List<CreateEntity> entities = new List<CreateEntity> { CreateEntityModel };
+            List<DialogNode> dialogNodes = new List<DialogNode> { DialogNodeModel };
+            List<Counterexample> counterexamples = new List<Counterexample> { CounterexampleModel };
+            List<Webhook> webhooks = new List<Webhook> { WebhookModel };
             bool? append = true;
+            bool? includeAudit = true;
 
             request.As<Workspace>().Returns(Task.FromResult(response));
 
-            var result = service.UpdateWorkspace(workspaceId: workspaceId, name: "testString", description: "testString", language: "testString", metadata: new Dictionary<string, object>(), learningOptOut: true, systemSettings: WorkspaceSystemSettingsModel, intents: new List<CreateIntent> { CreateIntentModel }, entities: new List<CreateEntity> { CreateEntityModel }, dialogNodes: new List<DialogNode> { DialogNodeModel }, counterexamples: new List<Counterexample> { CounterexampleModel }, webhooks: new List<Webhook> { WebhookModel }, append: append);
+            var result = service.UpdateWorkspace(workspaceId: workspaceId, name: name, description: description, language: language, metadata: metadata, learningOptOut: learningOptOut, systemSettings: systemSettings, intents: intents, entities: entities, dialogNodes: dialogNodes, counterexamples: counterexamples, webhooks: webhooks, append: append, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}";
             client.Received().PostAsync(messageUrl);
@@ -2570,8 +3288,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var response = new DetailedResponse<object>()
             {
@@ -2585,7 +3304,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var result = service.DeleteWorkspace(workspaceId: workspaceId);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}";
             client.Received().DeleteAsync(messageUrl);
@@ -2600,8 +3319,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'intents': [{'intent': '_Intent', 'description': 'Description', 'examples': [{'text': 'Text', 'mentions': [{'entity': 'Entity', 'location': [8]}]}]}], 'pagination': {'refresh_url': 'RefreshUrl', 'next_url': 'NextUrl', 'total': 5, 'matched': 7, 'refresh_cursor': 'RefreshCursor', 'next_cursor': 'NextCursor'}}";
             var response = new DetailedResponse<IntentCollection>()
@@ -2622,7 +3342,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var result = service.ListIntents(workspaceId: workspaceId, export: export, pageLimit: pageLimit, sort: sort, cursor: cursor, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/intents";
             client.Received().GetAsync(messageUrl);
@@ -2637,8 +3357,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'intent': '_Intent', 'description': 'Description', 'examples': [{'text': 'Text', 'mentions': [{'entity': 'Entity', 'location': [8]}]}]}";
             var response = new DetailedResponse<Intent>()
@@ -2662,12 +3383,16 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Mentions = ExampleMentions,
             };
             string workspaceId = "testString";
+            string intent = "testString";
+            string description = "testString";
+            List<Example> examples = new List<Example> { ExampleModel };
+            bool? includeAudit = true;
 
             request.As<Intent>().Returns(Task.FromResult(response));
 
-            var result = service.CreateIntent(workspaceId: workspaceId, intent: "testString", description: "testString", examples: new List<Example> { ExampleModel });
+            var result = service.CreateIntent(workspaceId: workspaceId, intent: intent, description: description, examples: examples, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/intents";
             client.Received().PostAsync(messageUrl);
@@ -2682,8 +3407,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'intent': '_Intent', 'description': 'Description', 'examples': [{'text': 'Text', 'mentions': [{'entity': 'Entity', 'location': [8]}]}]}";
             var response = new DetailedResponse<Intent>()
@@ -2702,7 +3428,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var result = service.GetIntent(workspaceId: workspaceId, intent: intent, export: export, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/intents/{intent}";
             client.Received().GetAsync(messageUrl);
@@ -2717,8 +3443,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'intent': '_Intent', 'description': 'Description', 'examples': [{'text': 'Text', 'mentions': [{'entity': 'Entity', 'location': [8]}]}]}";
             var response = new DetailedResponse<Intent>()
@@ -2743,12 +3470,17 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             };
             string workspaceId = "testString";
             string intent = "testString";
+            string newIntent = "testString";
+            string newDescription = "testString";
+            List<Example> newExamples = new List<Example> { ExampleModel };
+            bool? append = true;
+            bool? includeAudit = true;
 
             request.As<Intent>().Returns(Task.FromResult(response));
 
-            var result = service.UpdateIntent(workspaceId: workspaceId, intent: intent, newIntent: "testString", newDescription: "testString", newExamples: new List<Example> { ExampleModel });
+            var result = service.UpdateIntent(workspaceId: workspaceId, intent: intent, newIntent: newIntent, newDescription: newDescription, newExamples: newExamples, append: append, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/intents/{intent}";
             client.Received().PostAsync(messageUrl);
@@ -2763,8 +3495,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var response = new DetailedResponse<object>()
             {
@@ -2779,7 +3512,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var result = service.DeleteIntent(workspaceId: workspaceId, intent: intent);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/intents/{intent}";
             client.Received().DeleteAsync(messageUrl);
@@ -2794,8 +3527,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'examples': [{'text': 'Text', 'mentions': [{'entity': 'Entity', 'location': [8]}]}], 'pagination': {'refresh_url': 'RefreshUrl', 'next_url': 'NextUrl', 'total': 5, 'matched': 7, 'refresh_cursor': 'RefreshCursor', 'next_cursor': 'NextCursor'}}";
             var response = new DetailedResponse<ExampleCollection>()
@@ -2816,7 +3550,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var result = service.ListExamples(workspaceId: workspaceId, intent: intent, pageLimit: pageLimit, sort: sort, cursor: cursor, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/intents/{intent}/examples";
             client.Received().GetAsync(messageUrl);
@@ -2831,8 +3565,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'text': 'Text', 'mentions': [{'entity': 'Entity', 'location': [8]}]}";
             var response = new DetailedResponse<Example>()
@@ -2850,12 +3585,15 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             };
             string workspaceId = "testString";
             string intent = "testString";
+            string text = "testString";
+            List<Mention> mentions = new List<Mention> { MentionModel };
+            bool? includeAudit = true;
 
             request.As<Example>().Returns(Task.FromResult(response));
 
-            var result = service.CreateExample(workspaceId: workspaceId, intent: intent, text: "testString", mentions: new List<Mention> { MentionModel });
+            var result = service.CreateExample(workspaceId: workspaceId, intent: intent, text: text, mentions: mentions, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/intents/{intent}/examples";
             client.Received().PostAsync(messageUrl);
@@ -2870,8 +3608,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'text': 'Text', 'mentions': [{'entity': 'Entity', 'location': [8]}]}";
             var response = new DetailedResponse<Example>()
@@ -2890,7 +3629,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var result = service.GetExample(workspaceId: workspaceId, intent: intent, text: text, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}";
             client.Received().GetAsync(messageUrl);
@@ -2905,8 +3644,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'text': 'Text', 'mentions': [{'entity': 'Entity', 'location': [8]}]}";
             var response = new DetailedResponse<Example>()
@@ -2925,12 +3665,15 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             string workspaceId = "testString";
             string intent = "testString";
             string text = "testString";
+            string newText = "testString";
+            List<Mention> newMentions = new List<Mention> { MentionModel };
+            bool? includeAudit = true;
 
             request.As<Example>().Returns(Task.FromResult(response));
 
-            var result = service.UpdateExample(workspaceId: workspaceId, intent: intent, text: text, newText: "testString", newMentions: new List<Mention> { MentionModel });
+            var result = service.UpdateExample(workspaceId: workspaceId, intent: intent, text: text, newText: newText, newMentions: newMentions, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}";
             client.Received().PostAsync(messageUrl);
@@ -2945,8 +3688,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var response = new DetailedResponse<object>()
             {
@@ -2962,7 +3706,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var result = service.DeleteExample(workspaceId: workspaceId, intent: intent, text: text);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}";
             client.Received().DeleteAsync(messageUrl);
@@ -2977,8 +3721,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'counterexamples': [{'text': 'Text'}], 'pagination': {'refresh_url': 'RefreshUrl', 'next_url': 'NextUrl', 'total': 5, 'matched': 7, 'refresh_cursor': 'RefreshCursor', 'next_cursor': 'NextCursor'}}";
             var response = new DetailedResponse<CounterexampleCollection>()
@@ -2998,7 +3743,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var result = service.ListCounterexamples(workspaceId: workspaceId, pageLimit: pageLimit, sort: sort, cursor: cursor, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/counterexamples";
             client.Received().GetAsync(messageUrl);
@@ -3013,8 +3758,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'text': 'Text'}";
             var response = new DetailedResponse<Counterexample>()
@@ -3025,12 +3771,14 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             };
 
             string workspaceId = "testString";
+            string text = "testString";
+            bool? includeAudit = true;
 
             request.As<Counterexample>().Returns(Task.FromResult(response));
 
-            var result = service.CreateCounterexample(workspaceId: workspaceId, text: "testString");
+            var result = service.CreateCounterexample(workspaceId: workspaceId, text: text, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/counterexamples";
             client.Received().PostAsync(messageUrl);
@@ -3045,8 +3793,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'text': 'Text'}";
             var response = new DetailedResponse<Counterexample>()
@@ -3064,7 +3813,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var result = service.GetCounterexample(workspaceId: workspaceId, text: text, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/counterexamples/{text}";
             client.Received().GetAsync(messageUrl);
@@ -3079,8 +3828,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'text': 'Text'}";
             var response = new DetailedResponse<Counterexample>()
@@ -3092,12 +3842,14 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             string workspaceId = "testString";
             string text = "testString";
+            string newText = "testString";
+            bool? includeAudit = true;
 
             request.As<Counterexample>().Returns(Task.FromResult(response));
 
-            var result = service.UpdateCounterexample(workspaceId: workspaceId, text: text, newText: "testString");
+            var result = service.UpdateCounterexample(workspaceId: workspaceId, text: text, newText: newText, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/counterexamples/{text}";
             client.Received().PostAsync(messageUrl);
@@ -3112,8 +3864,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var response = new DetailedResponse<object>()
             {
@@ -3128,7 +3881,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var result = service.DeleteCounterexample(workspaceId: workspaceId, text: text);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/counterexamples/{text}";
             client.Received().DeleteAsync(messageUrl);
@@ -3143,8 +3896,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'entities': [{'entity': '_Entity', 'description': 'Description', 'metadata': {}, 'fuzzy_match': true, 'values': [{'value': '_Value', 'metadata': {}, 'type': 'synonyms', 'synonyms': ['Synonym'], 'patterns': ['Pattern']}]}], 'pagination': {'refresh_url': 'RefreshUrl', 'next_url': 'NextUrl', 'total': 5, 'matched': 7, 'refresh_cursor': 'RefreshCursor', 'next_cursor': 'NextCursor'}}";
             var response = new DetailedResponse<EntityCollection>()
@@ -3165,7 +3919,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var result = service.ListEntities(workspaceId: workspaceId, export: export, pageLimit: pageLimit, sort: sort, cursor: cursor, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/entities";
             client.Received().GetAsync(messageUrl);
@@ -3180,8 +3934,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'entity': '_Entity', 'description': 'Description', 'metadata': {}, 'fuzzy_match': true, 'values': [{'value': '_Value', 'metadata': {}, 'type': 'synonyms', 'synonyms': ['Synonym'], 'patterns': ['Pattern']}]}";
             var response = new DetailedResponse<Entity>()
@@ -3203,12 +3958,18 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Patterns = CreateValuePatterns,
             };
             string workspaceId = "testString";
+            string entity = "testString";
+            string description = "testString";
+            Dictionary<string, object> metadata = new Dictionary<string, object>();
+            bool? fuzzyMatch = true;
+            List<CreateValue> values = new List<CreateValue> { CreateValueModel };
+            bool? includeAudit = true;
 
             request.As<Entity>().Returns(Task.FromResult(response));
 
-            var result = service.CreateEntity(workspaceId: workspaceId, entity: "testString", description: "testString", metadata: new Dictionary<string, object>(), fuzzyMatch: true, values: new List<CreateValue> { CreateValueModel });
+            var result = service.CreateEntity(workspaceId: workspaceId, entity: entity, description: description, metadata: metadata, fuzzyMatch: fuzzyMatch, values: values, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/entities";
             client.Received().PostAsync(messageUrl);
@@ -3223,8 +3984,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'entity': '_Entity', 'description': 'Description', 'metadata': {}, 'fuzzy_match': true, 'values': [{'value': '_Value', 'metadata': {}, 'type': 'synonyms', 'synonyms': ['Synonym'], 'patterns': ['Pattern']}]}";
             var response = new DetailedResponse<Entity>()
@@ -3243,7 +4005,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var result = service.GetEntity(workspaceId: workspaceId, entity: entity, export: export, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/entities/{entity}";
             client.Received().GetAsync(messageUrl);
@@ -3258,8 +4020,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'entity': '_Entity', 'description': 'Description', 'metadata': {}, 'fuzzy_match': true, 'values': [{'value': '_Value', 'metadata': {}, 'type': 'synonyms', 'synonyms': ['Synonym'], 'patterns': ['Pattern']}]}";
             var response = new DetailedResponse<Entity>()
@@ -3282,12 +4045,19 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             };
             string workspaceId = "testString";
             string entity = "testString";
+            string newEntity = "testString";
+            string newDescription = "testString";
+            Dictionary<string, object> newMetadata = new Dictionary<string, object>();
+            bool? newFuzzyMatch = true;
+            List<CreateValue> newValues = new List<CreateValue> { CreateValueModel };
+            bool? append = true;
+            bool? includeAudit = true;
 
             request.As<Entity>().Returns(Task.FromResult(response));
 
-            var result = service.UpdateEntity(workspaceId: workspaceId, entity: entity, newEntity: "testString", newDescription: "testString", newMetadata: new Dictionary<string, object>(), newFuzzyMatch: true, newValues: new List<CreateValue> { CreateValueModel });
+            var result = service.UpdateEntity(workspaceId: workspaceId, entity: entity, newEntity: newEntity, newDescription: newDescription, newMetadata: newMetadata, newFuzzyMatch: newFuzzyMatch, newValues: newValues, append: append, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/entities/{entity}";
             client.Received().PostAsync(messageUrl);
@@ -3302,8 +4072,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var response = new DetailedResponse<object>()
             {
@@ -3318,7 +4089,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var result = service.DeleteEntity(workspaceId: workspaceId, entity: entity);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/entities/{entity}";
             client.Received().DeleteAsync(messageUrl);
@@ -3333,8 +4104,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'examples': [{'text': 'Text', 'intent': 'Intent', 'location': [8]}], 'pagination': {'refresh_url': 'RefreshUrl', 'next_url': 'NextUrl', 'total': 5, 'matched': 7, 'refresh_cursor': 'RefreshCursor', 'next_cursor': 'NextCursor'}}";
             var response = new DetailedResponse<EntityMentionCollection>()
@@ -3353,7 +4125,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var result = service.ListMentions(workspaceId: workspaceId, entity: entity, export: export, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/entities/{entity}/mentions";
             client.Received().GetAsync(messageUrl);
@@ -3368,8 +4140,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'values': [{'value': '_Value', 'metadata': {}, 'type': 'synonyms', 'synonyms': ['Synonym'], 'patterns': ['Pattern']}], 'pagination': {'refresh_url': 'RefreshUrl', 'next_url': 'NextUrl', 'total': 5, 'matched': 7, 'refresh_cursor': 'RefreshCursor', 'next_cursor': 'NextCursor'}}";
             var response = new DetailedResponse<ValueCollection>()
@@ -3391,7 +4164,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var result = service.ListValues(workspaceId: workspaceId, entity: entity, export: export, pageLimit: pageLimit, sort: sort, cursor: cursor, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/entities/{entity}/values";
             client.Received().GetAsync(messageUrl);
@@ -3406,8 +4179,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'value': '_Value', 'metadata': {}, 'type': 'synonyms', 'synonyms': ['Synonym'], 'patterns': ['Pattern']}";
             var response = new DetailedResponse<Value>()
@@ -3419,12 +4193,18 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             string workspaceId = "testString";
             string entity = "testString";
+            string value = "testString";
+            Dictionary<string, object> metadata = new Dictionary<string, object>();
+            string type = "synonyms";
+            List<string> synonyms = new List<string> { "testString" };
+            List<string> patterns = new List<string> { "testString" };
+            bool? includeAudit = true;
 
             request.As<Value>().Returns(Task.FromResult(response));
 
-            var result = service.CreateValue(workspaceId: workspaceId, entity: entity, value: "testString", metadata: new Dictionary<string, object>(), type: "synonyms", synonyms: new List<string> { "testString" }, patterns: new List<string> { "testString" });
+            var result = service.CreateValue(workspaceId: workspaceId, entity: entity, value: value, metadata: metadata, type: type, synonyms: synonyms, patterns: patterns, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/entities/{entity}/values";
             client.Received().PostAsync(messageUrl);
@@ -3439,8 +4219,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'value': '_Value', 'metadata': {}, 'type': 'synonyms', 'synonyms': ['Synonym'], 'patterns': ['Pattern']}";
             var response = new DetailedResponse<Value>()
@@ -3460,7 +4241,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var result = service.GetValue(workspaceId: workspaceId, entity: entity, value: value, export: export, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}";
             client.Received().GetAsync(messageUrl);
@@ -3475,8 +4256,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'value': '_Value', 'metadata': {}, 'type': 'synonyms', 'synonyms': ['Synonym'], 'patterns': ['Pattern']}";
             var response = new DetailedResponse<Value>()
@@ -3489,12 +4271,19 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             string workspaceId = "testString";
             string entity = "testString";
             string value = "testString";
+            string newValue = "testString";
+            Dictionary<string, object> newMetadata = new Dictionary<string, object>();
+            string newType = "synonyms";
+            List<string> newSynonyms = new List<string> { "testString" };
+            List<string> newPatterns = new List<string> { "testString" };
+            bool? append = true;
+            bool? includeAudit = true;
 
             request.As<Value>().Returns(Task.FromResult(response));
 
-            var result = service.UpdateValue(workspaceId: workspaceId, entity: entity, value: value, newValue: "testString", newMetadata: new Dictionary<string, object>(), newType: "synonyms", newSynonyms: new List<string> { "testString" }, newPatterns: new List<string> { "testString" });
+            var result = service.UpdateValue(workspaceId: workspaceId, entity: entity, value: value, newValue: newValue, newMetadata: newMetadata, newType: newType, newSynonyms: newSynonyms, newPatterns: newPatterns, append: append, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}";
             client.Received().PostAsync(messageUrl);
@@ -3509,8 +4298,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var response = new DetailedResponse<object>()
             {
@@ -3526,7 +4316,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var result = service.DeleteValue(workspaceId: workspaceId, entity: entity, value: value);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}";
             client.Received().DeleteAsync(messageUrl);
@@ -3541,8 +4331,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'synonyms': [{'synonym': '_Synonym'}], 'pagination': {'refresh_url': 'RefreshUrl', 'next_url': 'NextUrl', 'total': 5, 'matched': 7, 'refresh_cursor': 'RefreshCursor', 'next_cursor': 'NextCursor'}}";
             var response = new DetailedResponse<SynonymCollection>()
@@ -3564,7 +4355,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var result = service.ListSynonyms(workspaceId: workspaceId, entity: entity, value: value, pageLimit: pageLimit, sort: sort, cursor: cursor, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms";
             client.Received().GetAsync(messageUrl);
@@ -3579,8 +4370,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'synonym': '_Synonym'}";
             var response = new DetailedResponse<Synonym>()
@@ -3593,12 +4385,14 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             string workspaceId = "testString";
             string entity = "testString";
             string value = "testString";
+            string synonym = "testString";
+            bool? includeAudit = true;
 
             request.As<Synonym>().Returns(Task.FromResult(response));
 
-            var result = service.CreateSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: "testString");
+            var result = service.CreateSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms";
             client.Received().PostAsync(messageUrl);
@@ -3613,8 +4407,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'synonym': '_Synonym'}";
             var response = new DetailedResponse<Synonym>()
@@ -3634,7 +4429,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var result = service.GetSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}";
             client.Received().GetAsync(messageUrl);
@@ -3649,8 +4444,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'synonym': '_Synonym'}";
             var response = new DetailedResponse<Synonym>()
@@ -3664,12 +4460,14 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             string entity = "testString";
             string value = "testString";
             string synonym = "testString";
+            string newSynonym = "testString";
+            bool? includeAudit = true;
 
             request.As<Synonym>().Returns(Task.FromResult(response));
 
-            var result = service.UpdateSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym, newSynonym: "testString");
+            var result = service.UpdateSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym, newSynonym: newSynonym, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}";
             client.Received().PostAsync(messageUrl);
@@ -3684,8 +4482,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var response = new DetailedResponse<object>()
             {
@@ -3702,7 +4501,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var result = service.DeleteSynonym(workspaceId: workspaceId, entity: entity, value: value, synonym: synonym);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}";
             client.Received().DeleteAsync(messageUrl);
@@ -3717,10 +4516,11 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
 
-            var responseJson = "{'dialog_nodes': [{'dialog_node': '_DialogNode', 'description': 'Description', 'conditions': 'Conditions', 'parent': 'Parent', 'previous_sibling': 'PreviousSibling', 'output': {'generic': [{'response_type': 'text', 'values': [{'text': 'Text'}], 'selection_policy': 'sequential', 'delimiter': 'Delimiter', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'query': 'Query', 'query_type': 'natural_language', 'filter': 'Filter', 'discovery_version': 'DiscoveryVersion'}], 'modifiers': {'overwrite': false}}, 'context': {}, 'metadata': {}, 'next_step': {'behavior': 'get_user_input', 'dialog_node': 'DialogNode', 'selector': 'condition'}, 'title': 'Title', 'type': 'standard', 'event_name': 'focus', 'variable': 'Variable', 'actions': [{'name': 'Name', 'type': 'client', 'parameters': {}, 'result_variable': 'ResultVariable', 'credentials': 'Credentials'}], 'digress_in': 'not_available', 'digress_out': 'allow_returning', 'digress_out_slots': 'not_allowed', 'user_label': 'UserLabel', 'disambiguation_opt_out': true, 'disabled': true}], 'pagination': {'refresh_url': 'RefreshUrl', 'next_url': 'NextUrl', 'total': 5, 'matched': 7, 'refresh_cursor': 'RefreshCursor', 'next_cursor': 'NextCursor'}}";
+            var version = "testString";
+            service.Version = version;
+
+            var responseJson = "{'dialog_nodes': [{'dialog_node': '_DialogNode', 'description': 'Description', 'conditions': 'Conditions', 'parent': 'Parent', 'previous_sibling': 'PreviousSibling', 'output': {'generic': [{'response_type': 'text', 'values': [{'text': 'Text'}], 'selection_policy': 'sequential', 'delimiter': 'Delimiter', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'role': {'type': 'date_from'}}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'query': 'Query', 'query_type': 'natural_language', 'filter': 'Filter', 'discovery_version': 'DiscoveryVersion'}], 'modifiers': {'overwrite': false}}, 'context': {}, 'metadata': {}, 'next_step': {'behavior': 'get_user_input', 'dialog_node': 'DialogNode', 'selector': 'condition'}, 'title': 'Title', 'type': 'standard', 'event_name': 'focus', 'variable': 'Variable', 'actions': [{'name': 'Name', 'type': 'client', 'parameters': {}, 'result_variable': 'ResultVariable', 'credentials': 'Credentials'}], 'digress_in': 'not_available', 'digress_out': 'allow_returning', 'digress_out_slots': 'not_allowed', 'user_label': 'UserLabel', 'disambiguation_opt_out': true, 'disabled': true}], 'pagination': {'refresh_url': 'RefreshUrl', 'next_url': 'NextUrl', 'total': 5, 'matched': 7, 'refresh_cursor': 'RefreshCursor', 'next_cursor': 'NextCursor'}}";
             var response = new DetailedResponse<DialogNodeCollection>()
             {
                 Response = responseJson,
@@ -3738,7 +4538,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var result = service.ListDialogNodes(workspaceId: workspaceId, pageLimit: pageLimit, sort: sort, cursor: cursor, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/dialog_nodes";
             client.Received().GetAsync(messageUrl);
@@ -3753,10 +4553,11 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
 
-            var responseJson = "{'dialog_node': '_DialogNode', 'description': 'Description', 'conditions': 'Conditions', 'parent': 'Parent', 'previous_sibling': 'PreviousSibling', 'output': {'generic': [{'response_type': 'text', 'values': [{'text': 'Text'}], 'selection_policy': 'sequential', 'delimiter': 'Delimiter', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'query': 'Query', 'query_type': 'natural_language', 'filter': 'Filter', 'discovery_version': 'DiscoveryVersion'}], 'modifiers': {'overwrite': false}}, 'context': {}, 'metadata': {}, 'next_step': {'behavior': 'get_user_input', 'dialog_node': 'DialogNode', 'selector': 'condition'}, 'title': 'Title', 'type': 'standard', 'event_name': 'focus', 'variable': 'Variable', 'actions': [{'name': 'Name', 'type': 'client', 'parameters': {}, 'result_variable': 'ResultVariable', 'credentials': 'Credentials'}], 'digress_in': 'not_available', 'digress_out': 'allow_returning', 'digress_out_slots': 'not_allowed', 'user_label': 'UserLabel', 'disambiguation_opt_out': true, 'disabled': true}";
+            var version = "testString";
+            service.Version = version;
+
+            var responseJson = "{'dialog_node': '_DialogNode', 'description': 'Description', 'conditions': 'Conditions', 'parent': 'Parent', 'previous_sibling': 'PreviousSibling', 'output': {'generic': [{'response_type': 'text', 'values': [{'text': 'Text'}], 'selection_policy': 'sequential', 'delimiter': 'Delimiter', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'role': {'type': 'date_from'}}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'query': 'Query', 'query_type': 'natural_language', 'filter': 'Filter', 'discovery_version': 'DiscoveryVersion'}], 'modifiers': {'overwrite': false}}, 'context': {}, 'metadata': {}, 'next_step': {'behavior': 'get_user_input', 'dialog_node': 'DialogNode', 'selector': 'condition'}, 'title': 'Title', 'type': 'standard', 'event_name': 'focus', 'variable': 'Variable', 'actions': [{'name': 'Name', 'type': 'client', 'parameters': {}, 'result_variable': 'ResultVariable', 'credentials': 'Credentials'}], 'digress_in': 'not_available', 'digress_out': 'allow_returning', 'digress_out_slots': 'not_allowed', 'user_label': 'UserLabel', 'disambiguation_opt_out': true, 'disabled': true}";
             var response = new DetailedResponse<DialogNode>()
             {
                 Response = responseJson,
@@ -3786,6 +4587,41 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Overwrite = true
             };
 
+            RuntimeEntityRole RuntimeEntityRoleModel = new RuntimeEntityRole()
+            {
+                Type = "date_from"
+            };
+
+            RuntimeEntityInterpretation RuntimeEntityInterpretationModel = new RuntimeEntityInterpretation()
+            {
+                CalendarType = "testString",
+                DatetimeLink = "testString",
+                Festival = "testString",
+                Granularity = "day",
+                RangeLink = "testString",
+                RangeModifier = "testString",
+                RelativeDay = 72.5f,
+                RelativeMonth = 72.5f,
+                RelativeWeek = 72.5f,
+                RelativeWeekend = 72.5f,
+                RelativeYear = 72.5f,
+                SpecificDay = 72.5f,
+                SpecificDayOfWeek = "testString",
+                SpecificMonth = 72.5f,
+                SpecificQuarter = 72.5f,
+                SpecificYear = 72.5f,
+                NumericValue = 72.5f,
+                Subtype = "testString",
+                PartOfDay = "testString",
+                RelativeHour = 72.5f,
+                RelativeMinute = 72.5f,
+                RelativeSecond = 72.5f,
+                SpecificHour = 72.5f,
+                SpecificMinute = 72.5f,
+                SpecificSecond = 72.5f,
+                Timezone = "testString"
+            };
+
             var CaptureGroupLocation = new List<long?> { 38 };
             CaptureGroup CaptureGroupModel = new CaptureGroup()
             {
@@ -3803,7 +4639,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Value = "testString",
                 Confidence = 72.5f,
                 Metadata = RuntimeEntityMetadata,
-                Groups = RuntimeEntityGroups
+                Groups = RuntimeEntityGroups,
+                Interpretation = RuntimeEntityInterpretationModel,
+                Role = RuntimeEntityRoleModel
             };
 
             RuntimeIntent RuntimeIntentModel = new RuntimeIntent()
@@ -3866,12 +4704,32 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Modifiers = DialogNodeOutputModifiersModel
             };
             string workspaceId = "testString";
+            string dialogNode = "testString";
+            string description = "testString";
+            string conditions = "testString";
+            string parent = "testString";
+            string previousSibling = "testString";
+            DialogNodeOutput output = DialogNodeOutputModel;
+            Dictionary<string, object> context = new Dictionary<string, object>();
+            Dictionary<string, object> metadata = new Dictionary<string, object>();
+            DialogNodeNextStep nextStep = DialogNodeNextStepModel;
+            string title = "testString";
+            string type = "standard";
+            string eventName = "focus";
+            string variable = "testString";
+            List<DialogNodeAction> actions = new List<DialogNodeAction> { DialogNodeActionModel };
+            string digressIn = "not_available";
+            string digressOut = "allow_returning";
+            string digressOutSlots = "not_allowed";
+            string userLabel = "testString";
+            bool? disambiguationOptOut = true;
+            bool? includeAudit = true;
 
             request.As<DialogNode>().Returns(Task.FromResult(response));
 
-            var result = service.CreateDialogNode(workspaceId: workspaceId, dialogNode: "testString", description: "testString", conditions: "testString", parent: "testString", previousSibling: "testString", output: DialogNodeOutputModel, context: new Dictionary<string, object>(), metadata: new Dictionary<string, object>(), nextStep: DialogNodeNextStepModel, title: "testString", type: "standard", eventName: "focus", variable: "testString", actions: new List<DialogNodeAction> { DialogNodeActionModel }, digressIn: "not_available", digressOut: "allow_returning", digressOutSlots: "not_allowed", userLabel: "testString", disambiguationOptOut: true);
+            var result = service.CreateDialogNode(workspaceId: workspaceId, dialogNode: dialogNode, description: description, conditions: conditions, parent: parent, previousSibling: previousSibling, output: output, context: context, metadata: metadata, nextStep: nextStep, title: title, type: type, eventName: eventName, variable: variable, actions: actions, digressIn: digressIn, digressOut: digressOut, digressOutSlots: digressOutSlots, userLabel: userLabel, disambiguationOptOut: disambiguationOptOut, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/dialog_nodes";
             client.Received().PostAsync(messageUrl);
@@ -3886,10 +4744,11 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
 
-            var responseJson = "{'dialog_node': '_DialogNode', 'description': 'Description', 'conditions': 'Conditions', 'parent': 'Parent', 'previous_sibling': 'PreviousSibling', 'output': {'generic': [{'response_type': 'text', 'values': [{'text': 'Text'}], 'selection_policy': 'sequential', 'delimiter': 'Delimiter', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'query': 'Query', 'query_type': 'natural_language', 'filter': 'Filter', 'discovery_version': 'DiscoveryVersion'}], 'modifiers': {'overwrite': false}}, 'context': {}, 'metadata': {}, 'next_step': {'behavior': 'get_user_input', 'dialog_node': 'DialogNode', 'selector': 'condition'}, 'title': 'Title', 'type': 'standard', 'event_name': 'focus', 'variable': 'Variable', 'actions': [{'name': 'Name', 'type': 'client', 'parameters': {}, 'result_variable': 'ResultVariable', 'credentials': 'Credentials'}], 'digress_in': 'not_available', 'digress_out': 'allow_returning', 'digress_out_slots': 'not_allowed', 'user_label': 'UserLabel', 'disambiguation_opt_out': true, 'disabled': true}";
+            var version = "testString";
+            service.Version = version;
+
+            var responseJson = "{'dialog_node': '_DialogNode', 'description': 'Description', 'conditions': 'Conditions', 'parent': 'Parent', 'previous_sibling': 'PreviousSibling', 'output': {'generic': [{'response_type': 'text', 'values': [{'text': 'Text'}], 'selection_policy': 'sequential', 'delimiter': 'Delimiter', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'role': {'type': 'date_from'}}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'query': 'Query', 'query_type': 'natural_language', 'filter': 'Filter', 'discovery_version': 'DiscoveryVersion'}], 'modifiers': {'overwrite': false}}, 'context': {}, 'metadata': {}, 'next_step': {'behavior': 'get_user_input', 'dialog_node': 'DialogNode', 'selector': 'condition'}, 'title': 'Title', 'type': 'standard', 'event_name': 'focus', 'variable': 'Variable', 'actions': [{'name': 'Name', 'type': 'client', 'parameters': {}, 'result_variable': 'ResultVariable', 'credentials': 'Credentials'}], 'digress_in': 'not_available', 'digress_out': 'allow_returning', 'digress_out_slots': 'not_allowed', 'user_label': 'UserLabel', 'disambiguation_opt_out': true, 'disabled': true}";
             var response = new DetailedResponse<DialogNode>()
             {
                 Response = responseJson,
@@ -3905,7 +4764,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var result = service.GetDialogNode(workspaceId: workspaceId, dialogNode: dialogNode, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}";
             client.Received().GetAsync(messageUrl);
@@ -3920,10 +4779,11 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
 
-            var responseJson = "{'dialog_node': '_DialogNode', 'description': 'Description', 'conditions': 'Conditions', 'parent': 'Parent', 'previous_sibling': 'PreviousSibling', 'output': {'generic': [{'response_type': 'text', 'values': [{'text': 'Text'}], 'selection_policy': 'sequential', 'delimiter': 'Delimiter', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'query': 'Query', 'query_type': 'natural_language', 'filter': 'Filter', 'discovery_version': 'DiscoveryVersion'}], 'modifiers': {'overwrite': false}}, 'context': {}, 'metadata': {}, 'next_step': {'behavior': 'get_user_input', 'dialog_node': 'DialogNode', 'selector': 'condition'}, 'title': 'Title', 'type': 'standard', 'event_name': 'focus', 'variable': 'Variable', 'actions': [{'name': 'Name', 'type': 'client', 'parameters': {}, 'result_variable': 'ResultVariable', 'credentials': 'Credentials'}], 'digress_in': 'not_available', 'digress_out': 'allow_returning', 'digress_out_slots': 'not_allowed', 'user_label': 'UserLabel', 'disambiguation_opt_out': true, 'disabled': true}";
+            var version = "testString";
+            service.Version = version;
+
+            var responseJson = "{'dialog_node': '_DialogNode', 'description': 'Description', 'conditions': 'Conditions', 'parent': 'Parent', 'previous_sibling': 'PreviousSibling', 'output': {'generic': [{'response_type': 'text', 'values': [{'text': 'Text'}], 'selection_policy': 'sequential', 'delimiter': 'Delimiter', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'role': {'type': 'date_from'}}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'query': 'Query', 'query_type': 'natural_language', 'filter': 'Filter', 'discovery_version': 'DiscoveryVersion'}], 'modifiers': {'overwrite': false}}, 'context': {}, 'metadata': {}, 'next_step': {'behavior': 'get_user_input', 'dialog_node': 'DialogNode', 'selector': 'condition'}, 'title': 'Title', 'type': 'standard', 'event_name': 'focus', 'variable': 'Variable', 'actions': [{'name': 'Name', 'type': 'client', 'parameters': {}, 'result_variable': 'ResultVariable', 'credentials': 'Credentials'}], 'digress_in': 'not_available', 'digress_out': 'allow_returning', 'digress_out_slots': 'not_allowed', 'user_label': 'UserLabel', 'disambiguation_opt_out': true, 'disabled': true}";
             var response = new DetailedResponse<DialogNode>()
             {
                 Response = responseJson,
@@ -3953,6 +4813,41 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Overwrite = true
             };
 
+            RuntimeEntityRole RuntimeEntityRoleModel = new RuntimeEntityRole()
+            {
+                Type = "date_from"
+            };
+
+            RuntimeEntityInterpretation RuntimeEntityInterpretationModel = new RuntimeEntityInterpretation()
+            {
+                CalendarType = "testString",
+                DatetimeLink = "testString",
+                Festival = "testString",
+                Granularity = "day",
+                RangeLink = "testString",
+                RangeModifier = "testString",
+                RelativeDay = 72.5f,
+                RelativeMonth = 72.5f,
+                RelativeWeek = 72.5f,
+                RelativeWeekend = 72.5f,
+                RelativeYear = 72.5f,
+                SpecificDay = 72.5f,
+                SpecificDayOfWeek = "testString",
+                SpecificMonth = 72.5f,
+                SpecificQuarter = 72.5f,
+                SpecificYear = 72.5f,
+                NumericValue = 72.5f,
+                Subtype = "testString",
+                PartOfDay = "testString",
+                RelativeHour = 72.5f,
+                RelativeMinute = 72.5f,
+                RelativeSecond = 72.5f,
+                SpecificHour = 72.5f,
+                SpecificMinute = 72.5f,
+                SpecificSecond = 72.5f,
+                Timezone = "testString"
+            };
+
             var CaptureGroupLocation = new List<long?> { 38 };
             CaptureGroup CaptureGroupModel = new CaptureGroup()
             {
@@ -3970,7 +4865,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Value = "testString",
                 Confidence = 72.5f,
                 Metadata = RuntimeEntityMetadata,
-                Groups = RuntimeEntityGroups
+                Groups = RuntimeEntityGroups,
+                Interpretation = RuntimeEntityInterpretationModel,
+                Role = RuntimeEntityRoleModel
             };
 
             RuntimeIntent RuntimeIntentModel = new RuntimeIntent()
@@ -4034,12 +4931,32 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             };
             string workspaceId = "testString";
             string dialogNode = "testString";
+            string newDialogNode = "testString";
+            string newDescription = "testString";
+            string newConditions = "testString";
+            string newParent = "testString";
+            string newPreviousSibling = "testString";
+            DialogNodeOutput newOutput = DialogNodeOutputModel;
+            Dictionary<string, object> newContext = new Dictionary<string, object>();
+            Dictionary<string, object> newMetadata = new Dictionary<string, object>();
+            DialogNodeNextStep newNextStep = DialogNodeNextStepModel;
+            string newTitle = "testString";
+            string newType = "standard";
+            string newEventName = "focus";
+            string newVariable = "testString";
+            List<DialogNodeAction> newActions = new List<DialogNodeAction> { DialogNodeActionModel };
+            string newDigressIn = "not_available";
+            string newDigressOut = "allow_returning";
+            string newDigressOutSlots = "not_allowed";
+            string newUserLabel = "testString";
+            bool? newDisambiguationOptOut = true;
+            bool? includeAudit = true;
 
             request.As<DialogNode>().Returns(Task.FromResult(response));
 
-            var result = service.UpdateDialogNode(workspaceId: workspaceId, dialogNode: dialogNode, newDialogNode: "testString", newDescription: "testString", newConditions: "testString", newParent: "testString", newPreviousSibling: "testString", newOutput: DialogNodeOutputModel, newContext: new Dictionary<string, object>(), newMetadata: new Dictionary<string, object>(), newNextStep: DialogNodeNextStepModel, newTitle: "testString", newType: "standard", newEventName: "focus", newVariable: "testString", newActions: new List<DialogNodeAction> { DialogNodeActionModel }, newDigressIn: "not_available", newDigressOut: "allow_returning", newDigressOutSlots: "not_allowed", newUserLabel: "testString", newDisambiguationOptOut: true);
+            var result = service.UpdateDialogNode(workspaceId: workspaceId, dialogNode: dialogNode, newDialogNode: newDialogNode, newDescription: newDescription, newConditions: newConditions, newParent: newParent, newPreviousSibling: newPreviousSibling, newOutput: newOutput, newContext: newContext, newMetadata: newMetadata, newNextStep: newNextStep, newTitle: newTitle, newType: newType, newEventName: newEventName, newVariable: newVariable, newActions: newActions, newDigressIn: newDigressIn, newDigressOut: newDigressOut, newDigressOutSlots: newDigressOutSlots, newUserLabel: newUserLabel, newDisambiguationOptOut: newDisambiguationOptOut, includeAudit: includeAudit);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}";
             client.Received().PostAsync(messageUrl);
@@ -4054,8 +4971,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var response = new DetailedResponse<object>()
             {
@@ -4070,7 +4988,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var result = service.DeleteDialogNode(workspaceId: workspaceId, dialogNode: dialogNode);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}";
             client.Received().DeleteAsync(messageUrl);
@@ -4085,10 +5003,11 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
 
-            var responseJson = "{'logs': [{'request': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}], 'alternate_intents': true, 'context': {'conversation_id': 'ConversationId', 'system': {}, 'metadata': {'deployment': 'Deployment', 'user_id': 'UserId'}}, 'output': {'nodes_visited': ['NodesVisited'], 'nodes_visited_details': [{'dialog_node': 'DialogNode', 'title': 'Title', 'conditions': 'Conditions'}], 'log_messages': [{'level': 'info', 'msg': 'Msg'}], 'text': ['Text'], 'generic': [{'response_type': 'text', 'text': 'Text', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'topic': 'Topic', 'dialog_node': 'DialogNode', 'suggestions': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}]}, 'output': {'nodes_visited': ['NodesVisited'], 'nodes_visited_details': [{'dialog_node': 'DialogNode', 'title': 'Title', 'conditions': 'Conditions'}], 'text': ['Text'], 'generic': [{'response_type': 'text', 'text': 'Text', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'topic': 'Topic', 'dialog_node': 'DialogNode'}]}, 'dialog_node': 'DialogNode'}]}]}, 'actions': [{'name': 'Name', 'type': 'client', 'parameters': {}, 'result_variable': 'ResultVariable', 'credentials': 'Credentials'}]}, 'response': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}], 'alternate_intents': true, 'context': {'conversation_id': 'ConversationId', 'system': {}, 'metadata': {'deployment': 'Deployment', 'user_id': 'UserId'}}, 'output': {'nodes_visited': ['NodesVisited'], 'nodes_visited_details': [{'dialog_node': 'DialogNode', 'title': 'Title', 'conditions': 'Conditions'}], 'log_messages': [{'level': 'info', 'msg': 'Msg'}], 'text': ['Text'], 'generic': [{'response_type': 'text', 'text': 'Text', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'topic': 'Topic', 'dialog_node': 'DialogNode', 'suggestions': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}]}, 'output': {'nodes_visited': ['NodesVisited'], 'nodes_visited_details': [{'dialog_node': 'DialogNode', 'title': 'Title', 'conditions': 'Conditions'}], 'text': ['Text'], 'generic': [{'response_type': 'text', 'text': 'Text', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'topic': 'Topic', 'dialog_node': 'DialogNode'}]}, 'dialog_node': 'DialogNode'}]}]}, 'actions': [{'name': 'Name', 'type': 'client', 'parameters': {}, 'result_variable': 'ResultVariable', 'credentials': 'Credentials'}]}, 'log_id': 'LogId', 'request_timestamp': 'RequestTimestamp', 'response_timestamp': 'ResponseTimestamp', 'workspace_id': 'WorkspaceId', 'language': 'Language'}], 'pagination': {'next_url': 'NextUrl', 'matched': 7, 'next_cursor': 'NextCursor'}}";
+            var version = "testString";
+            service.Version = version;
+
+            var responseJson = "{'logs': [{'request': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'role': {'type': 'date_from'}}], 'alternate_intents': true, 'context': {'conversation_id': 'ConversationId', 'system': {}, 'metadata': {'deployment': 'Deployment', 'user_id': 'UserId'}}, 'output': {'nodes_visited': ['NodesVisited'], 'nodes_visited_details': [{'dialog_node': 'DialogNode', 'title': 'Title', 'conditions': 'Conditions'}], 'log_messages': [{'level': 'info', 'msg': 'Msg'}], 'text': ['Text'], 'generic': [{'response_type': 'text', 'text': 'Text', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'role': {'type': 'date_from'}}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'topic': 'Topic', 'dialog_node': 'DialogNode', 'suggestions': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'role': {'type': 'date_from'}}]}, 'output': {'nodes_visited': ['NodesVisited'], 'nodes_visited_details': [{'dialog_node': 'DialogNode', 'title': 'Title', 'conditions': 'Conditions'}], 'text': ['Text'], 'generic': [{'response_type': 'text', 'text': 'Text', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'role': {'type': 'date_from'}}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'topic': 'Topic', 'dialog_node': 'DialogNode'}]}, 'dialog_node': 'DialogNode'}]}]}, 'actions': [{'name': 'Name', 'type': 'client', 'parameters': {}, 'result_variable': 'ResultVariable', 'credentials': 'Credentials'}]}, 'response': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'role': {'type': 'date_from'}}], 'alternate_intents': true, 'context': {'conversation_id': 'ConversationId', 'system': {}, 'metadata': {'deployment': 'Deployment', 'user_id': 'UserId'}}, 'output': {'nodes_visited': ['NodesVisited'], 'nodes_visited_details': [{'dialog_node': 'DialogNode', 'title': 'Title', 'conditions': 'Conditions'}], 'log_messages': [{'level': 'info', 'msg': 'Msg'}], 'text': ['Text'], 'generic': [{'response_type': 'text', 'text': 'Text', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'role': {'type': 'date_from'}}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'topic': 'Topic', 'dialog_node': 'DialogNode', 'suggestions': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'role': {'type': 'date_from'}}]}, 'output': {'nodes_visited': ['NodesVisited'], 'nodes_visited_details': [{'dialog_node': 'DialogNode', 'title': 'Title', 'conditions': 'Conditions'}], 'text': ['Text'], 'generic': [{'response_type': 'text', 'text': 'Text', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'role': {'type': 'date_from'}}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'topic': 'Topic', 'dialog_node': 'DialogNode'}]}, 'dialog_node': 'DialogNode'}]}]}, 'actions': [{'name': 'Name', 'type': 'client', 'parameters': {}, 'result_variable': 'ResultVariable', 'credentials': 'Credentials'}]}, 'log_id': 'LogId', 'request_timestamp': 'RequestTimestamp', 'response_timestamp': 'ResponseTimestamp', 'workspace_id': 'WorkspaceId', 'language': 'Language'}], 'pagination': {'next_url': 'NextUrl', 'matched': 7, 'next_cursor': 'NextCursor'}}";
             var response = new DetailedResponse<LogCollection>()
             {
                 Response = responseJson,
@@ -4106,7 +5025,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var result = service.ListLogs(workspaceId: workspaceId, sort: sort, filter: filter, pageLimit: pageLimit, cursor: cursor);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/workspaces/{workspaceId}/logs";
             client.Received().GetAsync(messageUrl);
@@ -4121,10 +5040,11 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
 
-            var responseJson = "{'logs': [{'request': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}], 'alternate_intents': true, 'context': {'conversation_id': 'ConversationId', 'system': {}, 'metadata': {'deployment': 'Deployment', 'user_id': 'UserId'}}, 'output': {'nodes_visited': ['NodesVisited'], 'nodes_visited_details': [{'dialog_node': 'DialogNode', 'title': 'Title', 'conditions': 'Conditions'}], 'log_messages': [{'level': 'info', 'msg': 'Msg'}], 'text': ['Text'], 'generic': [{'response_type': 'text', 'text': 'Text', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'topic': 'Topic', 'dialog_node': 'DialogNode', 'suggestions': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}]}, 'output': {'nodes_visited': ['NodesVisited'], 'nodes_visited_details': [{'dialog_node': 'DialogNode', 'title': 'Title', 'conditions': 'Conditions'}], 'text': ['Text'], 'generic': [{'response_type': 'text', 'text': 'Text', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'topic': 'Topic', 'dialog_node': 'DialogNode'}]}, 'dialog_node': 'DialogNode'}]}]}, 'actions': [{'name': 'Name', 'type': 'client', 'parameters': {}, 'result_variable': 'ResultVariable', 'credentials': 'Credentials'}]}, 'response': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}], 'alternate_intents': true, 'context': {'conversation_id': 'ConversationId', 'system': {}, 'metadata': {'deployment': 'Deployment', 'user_id': 'UserId'}}, 'output': {'nodes_visited': ['NodesVisited'], 'nodes_visited_details': [{'dialog_node': 'DialogNode', 'title': 'Title', 'conditions': 'Conditions'}], 'log_messages': [{'level': 'info', 'msg': 'Msg'}], 'text': ['Text'], 'generic': [{'response_type': 'text', 'text': 'Text', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'topic': 'Topic', 'dialog_node': 'DialogNode', 'suggestions': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}]}, 'output': {'nodes_visited': ['NodesVisited'], 'nodes_visited_details': [{'dialog_node': 'DialogNode', 'title': 'Title', 'conditions': 'Conditions'}], 'text': ['Text'], 'generic': [{'response_type': 'text', 'text': 'Text', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}]}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'topic': 'Topic', 'dialog_node': 'DialogNode'}]}, 'dialog_node': 'DialogNode'}]}]}, 'actions': [{'name': 'Name', 'type': 'client', 'parameters': {}, 'result_variable': 'ResultVariable', 'credentials': 'Credentials'}]}, 'log_id': 'LogId', 'request_timestamp': 'RequestTimestamp', 'response_timestamp': 'ResponseTimestamp', 'workspace_id': 'WorkspaceId', 'language': 'Language'}], 'pagination': {'next_url': 'NextUrl', 'matched': 7, 'next_cursor': 'NextCursor'}}";
+            var version = "testString";
+            service.Version = version;
+
+            var responseJson = "{'logs': [{'request': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'role': {'type': 'date_from'}}], 'alternate_intents': true, 'context': {'conversation_id': 'ConversationId', 'system': {}, 'metadata': {'deployment': 'Deployment', 'user_id': 'UserId'}}, 'output': {'nodes_visited': ['NodesVisited'], 'nodes_visited_details': [{'dialog_node': 'DialogNode', 'title': 'Title', 'conditions': 'Conditions'}], 'log_messages': [{'level': 'info', 'msg': 'Msg'}], 'text': ['Text'], 'generic': [{'response_type': 'text', 'text': 'Text', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'role': {'type': 'date_from'}}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'topic': 'Topic', 'dialog_node': 'DialogNode', 'suggestions': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'role': {'type': 'date_from'}}]}, 'output': {'nodes_visited': ['NodesVisited'], 'nodes_visited_details': [{'dialog_node': 'DialogNode', 'title': 'Title', 'conditions': 'Conditions'}], 'text': ['Text'], 'generic': [{'response_type': 'text', 'text': 'Text', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'role': {'type': 'date_from'}}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'topic': 'Topic', 'dialog_node': 'DialogNode'}]}, 'dialog_node': 'DialogNode'}]}]}, 'actions': [{'name': 'Name', 'type': 'client', 'parameters': {}, 'result_variable': 'ResultVariable', 'credentials': 'Credentials'}]}, 'response': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'role': {'type': 'date_from'}}], 'alternate_intents': true, 'context': {'conversation_id': 'ConversationId', 'system': {}, 'metadata': {'deployment': 'Deployment', 'user_id': 'UserId'}}, 'output': {'nodes_visited': ['NodesVisited'], 'nodes_visited_details': [{'dialog_node': 'DialogNode', 'title': 'Title', 'conditions': 'Conditions'}], 'log_messages': [{'level': 'info', 'msg': 'Msg'}], 'text': ['Text'], 'generic': [{'response_type': 'text', 'text': 'Text', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'role': {'type': 'date_from'}}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'topic': 'Topic', 'dialog_node': 'DialogNode', 'suggestions': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'role': {'type': 'date_from'}}]}, 'output': {'nodes_visited': ['NodesVisited'], 'nodes_visited_details': [{'dialog_node': 'DialogNode', 'title': 'Title', 'conditions': 'Conditions'}], 'text': ['Text'], 'generic': [{'response_type': 'text', 'text': 'Text', 'time': 4, 'typing': true, 'source': 'Source', 'title': 'Title', 'description': 'Description', 'preference': 'dropdown', 'options': [{'label': 'Label', 'value': {'input': {'text': 'Text'}, 'intents': [{'intent': 'Intent', 'confidence': 10}], 'entities': [{'entity': 'Entity', 'location': [8], 'value': 'Value', 'confidence': 10, 'metadata': {}, 'groups': [{'group': 'Group', 'location': [8]}], 'interpretation': {'calendar_type': 'CalendarType', 'datetime_link': 'DatetimeLink', 'festival': 'Festival', 'granularity': 'day', 'range_link': 'RangeLink', 'range_modifier': 'RangeModifier', 'relative_day': 11, 'relative_month': 13, 'relative_week': 12, 'relative_weekend': 15, 'relative_year': 12, 'specific_day': 11, 'specific_day_of_week': 'SpecificDayOfWeek', 'specific_month': 13, 'specific_quarter': 15, 'specific_year': 12, 'numeric_value': 12, 'subtype': 'Subtype', 'part_of_day': 'PartOfDay', 'relative_hour': 12, 'relative_minute': 14, 'relative_second': 14, 'specific_hour': 12, 'specific_minute': 14, 'specific_second': 14, 'timezone': 'Timezone'}, 'role': {'type': 'date_from'}}]}}], 'message_to_human_agent': 'MessageToHumanAgent', 'topic': 'Topic', 'dialog_node': 'DialogNode'}]}, 'dialog_node': 'DialogNode'}]}]}, 'actions': [{'name': 'Name', 'type': 'client', 'parameters': {}, 'result_variable': 'ResultVariable', 'credentials': 'Credentials'}]}, 'log_id': 'LogId', 'request_timestamp': 'RequestTimestamp', 'response_timestamp': 'ResponseTimestamp', 'workspace_id': 'WorkspaceId', 'language': 'Language'}], 'pagination': {'next_url': 'NextUrl', 'matched': 7, 'next_cursor': 'NextCursor'}}";
             var response = new DetailedResponse<LogCollection>()
             {
                 Response = responseJson,
@@ -4141,7 +5061,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var result = service.ListAllLogs(filter: filter, sort: sort, pageLimit: pageLimit, cursor: cursor);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/logs";
             client.Received().GetAsync(messageUrl);
@@ -4156,8 +5076,9 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(request);
 
             AssistantService service = new AssistantService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var response = new DetailedResponse<object>()
             {
@@ -4171,7 +5092,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             var result = service.DeleteUserData(customerId: customerId);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/user_data";
             client.Received().DeleteAsync(messageUrl);

@@ -23,7 +23,7 @@ namespace IBM.Watson.Assistant.v1.Model
 {
     /// <summary>
     /// The output of the dialog node. For more information about how to specify dialog node output, see the
-    /// [documentation](https://cloud.ibm.com/docs/services/assistant?topic=assistant-dialog-overview#dialog-overview-responses).
+    /// [documentation](https://cloud.ibm.com/docs/assistant?topic=assistant-dialog-overview#dialog-overview-responses).
     /// </summary>
     public class DialogNodeOutput : DynamicModel<object>
     {

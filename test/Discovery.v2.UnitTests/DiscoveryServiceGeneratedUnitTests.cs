@@ -52,7 +52,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
             var url = System.Environment.GetEnvironmentVariable("DISCOVERY_URL");
             System.Environment.SetEnvironmentVariable("DISCOVERY_APIKEY", "apikey");
             System.Environment.SetEnvironmentVariable("DISCOVERY_URL", "http://www.url.com");
-            DiscoveryService service = Substitute.For<DiscoveryService>("versionDate");
+            DiscoveryService service = Substitute.For<DiscoveryService>("testString");
             Assert.IsNotNull(service);
             System.Environment.SetEnvironmentVariable("DISCOVERY_URL", url);
             System.Environment.SetEnvironmentVariable("DISCOVERY_APIKEY", apikey);
@@ -63,19 +63,6 @@ namespace IBM.Watson.Discovery.v2.UnitTests
         {
             DiscoveryService service = new DiscoveryService(new IBMHttpClient());
             Assert.IsNotNull(service);
-        }
-
-        [TestMethod]
-        public void ConstructorAuthenticator()
-        {
-            DiscoveryService service = new DiscoveryService("versionDate", new NoAuthAuthenticator());
-            Assert.IsNotNull(service);
-        }
-
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void ConstructorNoVersion()
-        {
-            DiscoveryService service = new DiscoveryService(null, new NoAuthAuthenticator());
         }
 
         #endregion
@@ -179,8 +166,9 @@ namespace IBM.Watson.Discovery.v2.UnitTests
                 .Returns(request);
 
             DiscoveryService service = new DiscoveryService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'collections': [{'collection_id': 'CollectionId', 'name': 'Name'}]}";
             var response = new DetailedResponse<ListCollectionsResponse>()
@@ -196,7 +184,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             var result = service.ListCollections(projectId: projectId);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v2/projects/{projectId}/collections";
             client.Received().GetAsync(messageUrl);
@@ -211,8 +199,9 @@ namespace IBM.Watson.Discovery.v2.UnitTests
                 .Returns(request);
 
             DiscoveryService service = new DiscoveryService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'matching_results': 15, 'results': [{'document_id': 'DocumentId', 'metadata': {}, 'result_metadata': {'document_retrieval_source': 'search', 'collection_id': 'CollectionId', 'confidence': 10}, 'document_passages': [{'passage_text': 'PassageText', 'start_offset': 11, 'end_offset': 9, 'field': 'Field'}]}], 'aggregations': [{'type': 'filter', 'match': 'Match', 'matching_results': 15, 'aggregations': [{'type': 'filter', 'match': 'Match', 'matching_results': 15, 'aggregations': [{'type': 'filter', 'match': 'Match', 'matching_results': 15, 'aggregations': [{'type': 'filter', 'match': 'Match', 'matching_results': 15, 'aggregations': [{'type': 'filter', 'match': 'Match', 'matching_results': 15, 'aggregations': [{'type': 'filter', 'match': 'Match', 'matching_results': 15, 'aggregations': [{'type': 'filter', 'match': 'Match', 'matching_results': 15, 'aggregations': [{'type': 'filter', 'match': 'Match', 'matching_results': 15, 'aggregations': [{'type': 'filter', 'match': 'Match', 'matching_results': 15, 'aggregations': [{'type': 'filter', 'match': 'Match', 'matching_results': 15, 'aggregations': []}]}]}]}]}]}]}]}]}]}], 'retrieval_details': {'document_retrieval_strategy': 'untrained'}, 'suggested_query': 'SuggestedQuery', 'suggested_refinements': [{'text': 'Text'}], 'table_results': [{'table_id': 'TableId', 'source_document_id': 'SourceDocumentId', 'collection_id': 'CollectionId', 'table_html': 'TableHtml', 'table_html_offset': 15, 'table': {'location': {'begin': 5, 'end': 3}, 'text': 'Text', 'section_title': {'text': 'Text', 'location': {'begin': 5, 'end': 3}}, 'title': {'text': 'Text', 'location': {'begin': 5, 'end': 3}}, 'table_headers': [{'cell_id': 'CellId', 'location': 'unknown property type: Location', 'text': 'Text', 'row_index_begin': 13, 'row_index_end': 11, 'column_index_begin': 16, 'column_index_end': 14}], 'row_headers': [{'cell_id': 'CellId', 'location': {'begin': 5, 'end': 3}, 'text': 'Text', 'text_normalized': 'TextNormalized', 'row_index_begin': 13, 'row_index_end': 11, 'column_index_begin': 16, 'column_index_end': 14}], 'column_headers': [{'cell_id': 'CellId', 'location': 'unknown property type: Location', 'text': 'Text', 'text_normalized': 'TextNormalized', 'row_index_begin': 13, 'row_index_end': 11, 'column_index_begin': 16, 'column_index_end': 14}], 'key_value_pairs': [{'key': {'cell_id': 'CellId', 'location': {'begin': 5, 'end': 3}, 'text': 'Text'}, 'value': [{'cell_id': 'CellId', 'location': {'begin': 5, 'end': 3}, 'text': 'Text'}]}], 'body_cells': [{'cell_id': 'CellId', 'location': {'begin': 5, 'end': 3}, 'text': 'Text', 'row_index_begin': 13, 'row_index_end': 11, 'column_index_begin': 16, 'column_index_end': 14, 'row_header_ids': [{'id': 'Id'}], 'row_header_texts': [{'text': 'Text'}], 'row_header_texts_normalized': [{'text_normalized': 'TextNormalized'}], 'column_header_ids': [{'id': 'Id'}], 'column_header_texts': [{'text': 'Text'}], 'column_header_texts_normalized': [{'text_normalized': 'TextNormalized'}], 'attributes': [{'type': 'Type', 'text': 'Text', 'location': {'begin': 5, 'end': 3}}]}], 'contexts': [{'text': 'Text', 'location': {'begin': 5, 'end': 3}}]}}]}";
             var response = new DetailedResponse<QueryResponse>()
@@ -245,12 +234,26 @@ namespace IBM.Watson.Discovery.v2.UnitTests
                 Count = 38
             };
             string projectId = "testString";
+            List<string> collectionIds = new List<string> { "testString" };
+            string filter = "testString";
+            string query = "testString";
+            string naturalLanguageQuery = "testString";
+            string aggregation = "testString";
+            long? count = 38;
+            List<string> _return = new List<string> { "testString" };
+            long? offset = 38;
+            string sort = "testString";
+            bool? highlight = true;
+            bool? spellingSuggestions = true;
+            QueryLargeTableResults tableResults = QueryLargeTableResultsModel;
+            QueryLargeSuggestedRefinements suggestedRefinements = QueryLargeSuggestedRefinementsModel;
+            QueryLargePassages passages = QueryLargePassagesModel;
 
             request.As<QueryResponse>().Returns(Task.FromResult(response));
 
-            var result = service.Query(projectId: projectId, collectionIds: new List<string> { "testString" }, filter: "testString", query: "testString", naturalLanguageQuery: "testString", aggregation: "testString", count: 38, _return: new List<string> { "testString" }, offset: 38, sort: "testString", highlight: true, spellingSuggestions: true, tableResults: QueryLargeTableResultsModel, suggestedRefinements: QueryLargeSuggestedRefinementsModel, passages: QueryLargePassagesModel);
+            var result = service.Query(projectId: projectId, collectionIds: collectionIds, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery, aggregation: aggregation, count: count, _return: _return, offset: offset, sort: sort, highlight: highlight, spellingSuggestions: spellingSuggestions, tableResults: tableResults, suggestedRefinements: suggestedRefinements, passages: passages);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v2/projects/{projectId}/query";
             client.Received().PostAsync(messageUrl);
@@ -265,8 +268,9 @@ namespace IBM.Watson.Discovery.v2.UnitTests
                 .Returns(request);
 
             DiscoveryService service = new DiscoveryService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'completions': ['Completions']}";
             var response = new DetailedResponse<Completions>()
@@ -286,7 +290,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             var result = service.GetAutocompletion(projectId: projectId, prefix: prefix, collectionIds: collectionIds, field: field, count: count);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v2/projects/{projectId}/autocompletion";
             client.Received().GetAsync(messageUrl);
@@ -301,8 +305,9 @@ namespace IBM.Watson.Discovery.v2.UnitTests
                 .Returns(request);
 
             DiscoveryService service = new DiscoveryService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'matching_results': 15, 'notices': [{'notice_id': 'NoticeId', 'document_id': 'DocumentId', 'collection_id': 'CollectionId', 'query_id': 'QueryId', 'severity': 'warning', 'step': 'Step', 'description': 'Description'}]}";
             var response = new DetailedResponse<QueryNoticesResponse>()
@@ -323,7 +328,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             var result = service.QueryNotices(projectId: projectId, filter: filter, query: query, naturalLanguageQuery: naturalLanguageQuery, count: count, offset: offset);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v2/projects/{projectId}/notices";
             client.Received().GetAsync(messageUrl);
@@ -338,8 +343,9 @@ namespace IBM.Watson.Discovery.v2.UnitTests
                 .Returns(request);
 
             DiscoveryService service = new DiscoveryService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'fields': [{'field': '_Field', 'type': 'nested', 'collection_id': 'CollectionId'}]}";
             var response = new DetailedResponse<ListFieldsResponse>()
@@ -356,7 +362,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             var result = service.ListFields(projectId: projectId, collectionIds: collectionIds);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v2/projects/{projectId}/fields";
             client.Received().GetAsync(messageUrl);
@@ -371,8 +377,9 @@ namespace IBM.Watson.Discovery.v2.UnitTests
                 .Returns(request);
 
             DiscoveryService service = new DiscoveryService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'fields_shown': {'body': {'use_passage': true, 'field': 'Field'}, 'title': {'field': 'Field'}}, 'autocomplete': true, 'structured_search': true, 'results_per_page': 14, 'aggregations': [{'name': 'Name', 'label': 'Label', 'multiple_selections_allowed': false, 'visualization_type': 'auto'}]}";
             var response = new DetailedResponse<ComponentSettingsResponse>()
@@ -388,7 +395,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             var result = service.GetComponentSettings(projectId: projectId);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v2/projects/{projectId}/component_settings";
             client.Received().GetAsync(messageUrl);
@@ -403,8 +410,9 @@ namespace IBM.Watson.Discovery.v2.UnitTests
                 .Returns(request);
 
             DiscoveryService service = new DiscoveryService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'document_id': 'DocumentId', 'status': 'processing'}";
             var response = new DetailedResponse<DocumentAccepted>()
@@ -426,7 +434,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             var result = service.AddDocument(projectId: projectId, collectionId: collectionId, file: file, filename: filename, fileContentType: fileContentType, metadata: metadata, xWatsonDiscoveryForce: xWatsonDiscoveryForce);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v2/projects/{projectId}/collections/{collectionId}/documents";
             client.Received().PostAsync(messageUrl);
@@ -441,8 +449,9 @@ namespace IBM.Watson.Discovery.v2.UnitTests
                 .Returns(request);
 
             DiscoveryService service = new DiscoveryService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'document_id': 'DocumentId', 'status': 'processing'}";
             var response = new DetailedResponse<DocumentAccepted>()
@@ -465,7 +474,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             var result = service.UpdateDocument(projectId: projectId, collectionId: collectionId, documentId: documentId, file: file, filename: filename, fileContentType: fileContentType, metadata: metadata, xWatsonDiscoveryForce: xWatsonDiscoveryForce);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v2/projects/{projectId}/collections/{collectionId}/documents/{documentId}";
             client.Received().PostAsync(messageUrl);
@@ -480,8 +489,9 @@ namespace IBM.Watson.Discovery.v2.UnitTests
                 .Returns(request);
 
             DiscoveryService service = new DiscoveryService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'document_id': 'DocumentId', 'status': 'deleted'}";
             var response = new DetailedResponse<DeleteDocumentResponse>()
@@ -500,7 +510,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             var result = service.DeleteDocument(projectId: projectId, collectionId: collectionId, documentId: documentId, xWatsonDiscoveryForce: xWatsonDiscoveryForce);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v2/projects/{projectId}/collections/{collectionId}/documents/{documentId}";
             client.Received().DeleteAsync(messageUrl);
@@ -515,8 +525,9 @@ namespace IBM.Watson.Discovery.v2.UnitTests
                 .Returns(request);
 
             DiscoveryService service = new DiscoveryService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'queries': [{'query_id': 'QueryId', 'natural_language_query': 'NaturalLanguageQuery', 'filter': 'Filter', 'examples': [{'document_id': 'DocumentId', 'collection_id': 'CollectionId', 'relevance': 9}]}]}";
             var response = new DetailedResponse<TrainingQuerySet>()
@@ -532,7 +543,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             var result = service.ListTrainingQueries(projectId: projectId);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v2/projects/{projectId}/training_data/queries";
             client.Received().GetAsync(messageUrl);
@@ -547,8 +558,9 @@ namespace IBM.Watson.Discovery.v2.UnitTests
                 .Returns(request);
 
             DiscoveryService service = new DiscoveryService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{}";
             var response = new DetailedResponse<object>()
@@ -564,7 +576,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             var result = service.DeleteTrainingQueries(projectId: projectId);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v2/projects/{projectId}/training_data/queries";
             client.Received().DeleteAsync(messageUrl);
@@ -579,8 +591,9 @@ namespace IBM.Watson.Discovery.v2.UnitTests
                 .Returns(request);
 
             DiscoveryService service = new DiscoveryService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'query_id': 'QueryId', 'natural_language_query': 'NaturalLanguageQuery', 'filter': 'Filter', 'examples': [{'document_id': 'DocumentId', 'collection_id': 'CollectionId', 'relevance': 9}]}";
             var response = new DetailedResponse<TrainingQuery>()
@@ -597,12 +610,15 @@ namespace IBM.Watson.Discovery.v2.UnitTests
                 Relevance = 38,
             };
             string projectId = "testString";
+            string naturalLanguageQuery = "testString";
+            List<TrainingExample> examples = new List<TrainingExample> { TrainingExampleModel };
+            string filter = "testString";
 
             request.As<TrainingQuery>().Returns(Task.FromResult(response));
 
-            var result = service.CreateTrainingQuery(projectId: projectId, naturalLanguageQuery: "testString", examples: new List<TrainingExample> { TrainingExampleModel }, filter: "testString");
+            var result = service.CreateTrainingQuery(projectId: projectId, naturalLanguageQuery: naturalLanguageQuery, examples: examples, filter: filter);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v2/projects/{projectId}/training_data/queries";
             client.Received().PostAsync(messageUrl);
@@ -617,8 +633,9 @@ namespace IBM.Watson.Discovery.v2.UnitTests
                 .Returns(request);
 
             DiscoveryService service = new DiscoveryService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'query_id': 'QueryId', 'natural_language_query': 'NaturalLanguageQuery', 'filter': 'Filter', 'examples': [{'document_id': 'DocumentId', 'collection_id': 'CollectionId', 'relevance': 9}]}";
             var response = new DetailedResponse<TrainingQuery>()
@@ -635,7 +652,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             var result = service.GetTrainingQuery(projectId: projectId, queryId: queryId);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v2/projects/{projectId}/training_data/queries/{queryId}";
             client.Received().GetAsync(messageUrl);
@@ -650,8 +667,9 @@ namespace IBM.Watson.Discovery.v2.UnitTests
                 .Returns(request);
 
             DiscoveryService service = new DiscoveryService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'query_id': 'QueryId', 'natural_language_query': 'NaturalLanguageQuery', 'filter': 'Filter', 'examples': [{'document_id': 'DocumentId', 'collection_id': 'CollectionId', 'relevance': 9}]}";
             var response = new DetailedResponse<TrainingQuery>()
@@ -669,12 +687,15 @@ namespace IBM.Watson.Discovery.v2.UnitTests
             };
             string projectId = "testString";
             string queryId = "testString";
+            string naturalLanguageQuery = "testString";
+            List<TrainingExample> examples = new List<TrainingExample> { TrainingExampleModel };
+            string filter = "testString";
 
             request.As<TrainingQuery>().Returns(Task.FromResult(response));
 
-            var result = service.UpdateTrainingQuery(projectId: projectId, queryId: queryId, naturalLanguageQuery: "testString", examples: new List<TrainingExample> { TrainingExampleModel }, filter: "testString");
+            var result = service.UpdateTrainingQuery(projectId: projectId, queryId: queryId, naturalLanguageQuery: naturalLanguageQuery, examples: examples, filter: filter);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v2/projects/{projectId}/training_data/queries/{queryId}";
             client.Received().PostAsync(messageUrl);

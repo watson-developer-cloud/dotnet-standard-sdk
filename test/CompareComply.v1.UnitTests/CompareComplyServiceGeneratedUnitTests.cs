@@ -52,7 +52,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
             var url = System.Environment.GetEnvironmentVariable("COMPARE_COMPLY_URL");
             System.Environment.SetEnvironmentVariable("COMPARE_COMPLY_APIKEY", "apikey");
             System.Environment.SetEnvironmentVariable("COMPARE_COMPLY_URL", "http://www.url.com");
-            CompareComplyService service = Substitute.For<CompareComplyService>("versionDate");
+            CompareComplyService service = Substitute.For<CompareComplyService>("testString");
             Assert.IsNotNull(service);
             System.Environment.SetEnvironmentVariable("COMPARE_COMPLY_URL", url);
             System.Environment.SetEnvironmentVariable("COMPARE_COMPLY_APIKEY", apikey);
@@ -66,29 +66,13 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
         }
 
         [TestMethod]
-        public void ConstructorAuthenticator()
-        {
-            CompareComplyService service = new CompareComplyService("versionDate", new NoAuthAuthenticator());
-            Assert.IsNotNull(service);
-        }
-
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void ConstructorNoVersion()
-        {
-            CompareComplyService service = new CompareComplyService(null, new NoAuthAuthenticator());
-        }
-
-        [TestMethod]
         public void ConstructorNoUrl()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("COMPARE_COMPLY_APIKEY");
-            var url = System.Environment.GetEnvironmentVariable("COMPARE_COMPLY_URL");
-            System.Environment.SetEnvironmentVariable("COMPARE_COMPLY_APIKEY", "apikey");
-            System.Environment.SetEnvironmentVariable("COMPARE_COMPLY_URL", null);
-            CompareComplyService service = Substitute.For<CompareComplyService>("versionDate");
+            var apikey = System.Environment.GetEnvironmentVariable("TEST_SERVICE_APIKEY");
+            System.Environment.SetEnvironmentVariable("TEST_SERVICE_APIKEY", "apikey");
+            CompareComplyService service = Substitute.For<CompareComplyService>("testString", "test_service");
             Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/compare-comply/api");
-            System.Environment.SetEnvironmentVariable("COMPARE_COMPLY_URL", url);
-            System.Environment.SetEnvironmentVariable("COMPARE_COMPLY_APIKEY", apikey);
+            System.Environment.SetEnvironmentVariable("TEST_SERVICE_APIKEY", apikey);
         }
         #endregion
 
@@ -321,8 +305,9 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
                 .Returns(request);
 
             CompareComplyService service = new CompareComplyService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'num_pages': 'NumPages', 'author': 'Author', 'publication_date': 'PublicationDate', 'title': 'Title', 'html': 'Html'}";
             var response = new DetailedResponse<HTMLReturn>()
@@ -340,7 +325,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
 
             var result = service.ConvertToHtml(file: file, fileContentType: fileContentType, model: model);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/html_conversion";
             client.Received().PostAsync(messageUrl);
@@ -355,8 +340,9 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
                 .Returns(request);
 
             CompareComplyService service = new CompareComplyService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'document': {'title': 'Title', 'html': 'Html', 'hash': 'Hash', 'label': 'Label'}, 'model_id': 'ModelId', 'model_version': 'ModelVersion', 'elements': [{'location': {'begin': 5, 'end': 3}, 'text': 'Text', 'types': [{'label': {'nature': 'Nature', 'party': 'Party'}, 'provenance_ids': ['ProvenanceIds']}], 'categories': [{'label': 'Amendments', 'provenance_ids': ['ProvenanceIds']}], 'attributes': [{'type': 'Currency', 'text': 'Text', 'location': {'begin': 5, 'end': 3}}]}], 'effective_dates': [{'confidence_level': 'High', 'text': 'Text', 'text_normalized': 'TextNormalized', 'provenance_ids': ['ProvenanceIds'], 'location': {'begin': 5, 'end': 3}}], 'contract_amounts': [{'confidence_level': 'High', 'text': 'Text', 'text_normalized': 'TextNormalized', 'interpretation': {'value': 'Value', 'numeric_value': 12, 'unit': 'Unit'}, 'provenance_ids': ['ProvenanceIds'], 'location': {'begin': 5, 'end': 3}}], 'termination_dates': [{'confidence_level': 'High', 'text': 'Text', 'text_normalized': 'TextNormalized', 'provenance_ids': ['ProvenanceIds'], 'location': {'begin': 5, 'end': 3}}], 'contract_types': [{'confidence_level': 'High', 'text': 'Text', 'provenance_ids': ['ProvenanceIds'], 'location': {'begin': 5, 'end': 3}}], 'contract_terms': [{'confidence_level': 'High', 'text': 'Text', 'text_normalized': 'TextNormalized', 'interpretation': {'value': 'Value', 'numeric_value': 12, 'unit': 'Unit'}, 'provenance_ids': ['ProvenanceIds'], 'location': {'begin': 5, 'end': 3}}], 'payment_terms': [{'confidence_level': 'High', 'text': 'Text', 'text_normalized': 'TextNormalized', 'interpretation': {'value': 'Value', 'numeric_value': 12, 'unit': 'Unit'}, 'provenance_ids': ['ProvenanceIds'], 'location': {'begin': 5, 'end': 3}}], 'contract_currencies': [{'confidence_level': 'High', 'text': 'Text', 'text_normalized': 'TextNormalized', 'provenance_ids': ['ProvenanceIds'], 'location': {'begin': 5, 'end': 3}}], 'tables': [{'location': {'begin': 5, 'end': 3}, 'text': 'Text', 'section_title': {'text': 'Text', 'location': {'begin': 5, 'end': 3}}, 'title': {'location': {'begin': 5, 'end': 3}, 'text': 'Text'}, 'table_headers': [{'cell_id': 'CellId', 'location': 'unknown property type: Location', 'text': 'Text', 'row_index_begin': 13, 'row_index_end': 11, 'column_index_begin': 16, 'column_index_end': 14}], 'row_headers': [{'cell_id': 'CellId', 'location': {'begin': 5, 'end': 3}, 'text': 'Text', 'text_normalized': 'TextNormalized', 'row_index_begin': 13, 'row_index_end': 11, 'column_index_begin': 16, 'column_index_end': 14}], 'column_headers': [{'cell_id': 'CellId', 'location': 'unknown property type: Location', 'text': 'Text', 'text_normalized': 'TextNormalized', 'row_index_begin': 13, 'row_index_end': 11, 'column_index_begin': 16, 'column_index_end': 14}], 'body_cells': [{'cell_id': 'CellId', 'location': {'begin': 5, 'end': 3}, 'text': 'Text', 'row_index_begin': 13, 'row_index_end': 11, 'column_index_begin': 16, 'column_index_end': 14, 'row_header_ids': ['RowHeaderIds'], 'row_header_texts': ['RowHeaderTexts'], 'row_header_texts_normalized': ['RowHeaderTextsNormalized'], 'column_header_ids': ['ColumnHeaderIds'], 'column_header_texts': ['ColumnHeaderTexts'], 'column_header_texts_normalized': ['ColumnHeaderTextsNormalized'], 'attributes': [{'type': 'Currency', 'text': 'Text', 'location': {'begin': 5, 'end': 3}}]}], 'contexts': [{'text': 'Text', 'location': {'begin': 5, 'end': 3}}], 'key_value_pairs': [{'key': {'cell_id': 'CellId', 'location': {'begin': 5, 'end': 3}, 'text': 'Text'}, 'value': [{'cell_id': 'CellId', 'location': {'begin': 5, 'end': 3}, 'text': 'Text'}]}]}], 'document_structure': {'section_titles': [{'text': 'Text', 'location': {'begin': 5, 'end': 3}, 'level': 5, 'element_locations': [{'begin': 5, 'end': 3}]}], 'leading_sentences': [{'text': 'Text', 'location': {'begin': 5, 'end': 3}, 'element_locations': [{'begin': 5, 'end': 3}]}], 'paragraphs': [{'location': {'begin': 5, 'end': 3}}]}, 'parties': [{'party': 'Party', 'role': 'Role', 'importance': 'Primary', 'addresses': [{'text': 'Text', 'location': {'begin': 5, 'end': 3}}], 'contacts': [{'name': 'Name', 'role': 'Role'}], 'mentions': [{'text': 'Text', 'location': {'begin': 5, 'end': 3}}]}]}";
             var response = new DetailedResponse<ClassifyReturn>()
@@ -374,7 +360,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
 
             var result = service.ClassifyElements(file: file, fileContentType: fileContentType, model: model);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/element_classification";
             client.Received().PostAsync(messageUrl);
@@ -389,8 +375,9 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
                 .Returns(request);
 
             CompareComplyService service = new CompareComplyService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'document': {'html': 'Html', 'title': 'Title', 'hash': 'Hash'}, 'model_id': 'ModelId', 'model_version': 'ModelVersion', 'tables': [{'location': {'begin': 5, 'end': 3}, 'text': 'Text', 'section_title': {'text': 'Text', 'location': {'begin': 5, 'end': 3}}, 'title': {'location': {'begin': 5, 'end': 3}, 'text': 'Text'}, 'table_headers': [{'cell_id': 'CellId', 'location': 'unknown property type: Location', 'text': 'Text', 'row_index_begin': 13, 'row_index_end': 11, 'column_index_begin': 16, 'column_index_end': 14}], 'row_headers': [{'cell_id': 'CellId', 'location': {'begin': 5, 'end': 3}, 'text': 'Text', 'text_normalized': 'TextNormalized', 'row_index_begin': 13, 'row_index_end': 11, 'column_index_begin': 16, 'column_index_end': 14}], 'column_headers': [{'cell_id': 'CellId', 'location': 'unknown property type: Location', 'text': 'Text', 'text_normalized': 'TextNormalized', 'row_index_begin': 13, 'row_index_end': 11, 'column_index_begin': 16, 'column_index_end': 14}], 'body_cells': [{'cell_id': 'CellId', 'location': {'begin': 5, 'end': 3}, 'text': 'Text', 'row_index_begin': 13, 'row_index_end': 11, 'column_index_begin': 16, 'column_index_end': 14, 'row_header_ids': ['RowHeaderIds'], 'row_header_texts': ['RowHeaderTexts'], 'row_header_texts_normalized': ['RowHeaderTextsNormalized'], 'column_header_ids': ['ColumnHeaderIds'], 'column_header_texts': ['ColumnHeaderTexts'], 'column_header_texts_normalized': ['ColumnHeaderTextsNormalized'], 'attributes': [{'type': 'Currency', 'text': 'Text', 'location': {'begin': 5, 'end': 3}}]}], 'contexts': [{'text': 'Text', 'location': {'begin': 5, 'end': 3}}], 'key_value_pairs': [{'key': {'cell_id': 'CellId', 'location': {'begin': 5, 'end': 3}, 'text': 'Text'}, 'value': [{'cell_id': 'CellId', 'location': {'begin': 5, 'end': 3}, 'text': 'Text'}]}]}]}";
             var response = new DetailedResponse<TableReturn>()
@@ -408,7 +395,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
 
             var result = service.ExtractTables(file: file, fileContentType: fileContentType, model: model);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/tables";
             client.Received().PostAsync(messageUrl);
@@ -423,8 +410,9 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
                 .Returns(request);
 
             CompareComplyService service = new CompareComplyService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'model_id': 'ModelId', 'model_version': 'ModelVersion', 'documents': [{'title': 'Title', 'html': 'Html', 'hash': 'Hash', 'label': 'Label'}], 'aligned_elements': [{'element_pair': [{'document_label': 'DocumentLabel', 'text': 'Text', 'location': {'begin': 5, 'end': 3}, 'types': [{'label': {'nature': 'Nature', 'party': 'Party'}}], 'categories': [{'label': 'Amendments'}], 'attributes': [{'type': 'Currency', 'text': 'Text', 'location': {'begin': 5, 'end': 3}}]}], 'identical_text': false, 'provenance_ids': ['ProvenanceIds'], 'significant_elements': false}], 'unaligned_elements': [{'document_label': 'DocumentLabel', 'location': {'begin': 5, 'end': 3}, 'text': 'Text', 'types': [{'label': {'nature': 'Nature', 'party': 'Party'}}], 'categories': [{'label': 'Amendments'}], 'attributes': [{'type': 'Currency', 'text': 'Text', 'location': {'begin': 5, 'end': 3}}]}]}";
             var response = new DetailedResponse<CompareReturn>()
@@ -446,7 +434,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
 
             var result = service.CompareDocuments(file1: file1, file2: file2, file1ContentType: file1ContentType, file2ContentType: file2ContentType, file1Label: file1Label, file2Label: file2Label, model: model);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/comparison";
             client.Received().PostAsync(messageUrl);
@@ -461,8 +449,9 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
                 .Returns(request);
 
             CompareComplyService service = new CompareComplyService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'feedback_id': 'FeedbackId', 'user_id': 'UserId', 'comment': 'Comment', 'feedback_data': {'feedback_type': 'FeedbackType', 'document': {'title': 'Title', 'hash': 'Hash'}, 'model_id': 'ModelId', 'model_version': 'ModelVersion', 'location': {'begin': 5, 'end': 3}, 'text': 'Text', 'original_labels': {'types': [{'label': {'nature': 'Nature', 'party': 'Party'}, 'provenance_ids': ['ProvenanceIds']}], 'categories': [{'label': 'Amendments', 'provenance_ids': ['ProvenanceIds']}], 'modification': 'added'}, 'updated_labels': {'types': [{'label': {'nature': 'Nature', 'party': 'Party'}, 'provenance_ids': ['ProvenanceIds']}], 'categories': [{'label': 'Amendments', 'provenance_ids': ['ProvenanceIds']}], 'modification': 'added'}, 'pagination': {'refresh_cursor': 'RefreshCursor', 'next_cursor': 'NextCursor', 'refresh_url': 'RefreshUrl', 'next_url': 'NextUrl', 'total': 5}}}";
             var response = new DetailedResponse<FeedbackReturn>()
@@ -531,12 +520,15 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
                 OriginalLabels = OriginalLabelsInModel,
                 UpdatedLabels = UpdatedLabelsInModel
             };
+            FeedbackDataInput feedbackData = FeedbackDataInputModel;
+            string userId = "testString";
+            string comment = "testString";
 
             request.As<FeedbackReturn>().Returns(Task.FromResult(response));
 
-            var result = service.AddFeedback(feedbackData: FeedbackDataInputModel, userId: "testString", comment: "testString");
+            var result = service.AddFeedback(feedbackData: feedbackData, userId: userId, comment: comment);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/feedback";
             client.Received().PostAsync(messageUrl);
@@ -551,8 +543,9 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
                 .Returns(request);
 
             CompareComplyService service = new CompareComplyService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'feedback': [{'feedback_id': 'FeedbackId', 'comment': 'Comment', 'feedback_data': {'feedback_type': 'FeedbackType', 'document': {'title': 'Title', 'hash': 'Hash'}, 'model_id': 'ModelId', 'model_version': 'ModelVersion', 'location': {'begin': 5, 'end': 3}, 'text': 'Text', 'original_labels': {'types': [{'label': {'nature': 'Nature', 'party': 'Party'}, 'provenance_ids': ['ProvenanceIds']}], 'categories': [{'label': 'Amendments', 'provenance_ids': ['ProvenanceIds']}], 'modification': 'added'}, 'updated_labels': {'types': [{'label': {'nature': 'Nature', 'party': 'Party'}, 'provenance_ids': ['ProvenanceIds']}], 'categories': [{'label': 'Amendments', 'provenance_ids': ['ProvenanceIds']}], 'modification': 'added'}, 'pagination': {'refresh_cursor': 'RefreshCursor', 'next_cursor': 'NextCursor', 'refresh_url': 'RefreshUrl', 'next_url': 'NextUrl', 'total': 5}}}]}";
             var response = new DetailedResponse<FeedbackList>()
@@ -583,7 +576,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
 
             var result = service.ListFeedback(feedbackType: feedbackType, before: before, after: after, documentTitle: documentTitle, modelId: modelId, modelVersion: modelVersion, categoryRemoved: categoryRemoved, categoryAdded: categoryAdded, categoryNotChanged: categoryNotChanged, typeRemoved: typeRemoved, typeAdded: typeAdded, typeNotChanged: typeNotChanged, pageLimit: pageLimit, cursor: cursor, sort: sort, includeTotal: includeTotal);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/feedback";
             client.Received().GetAsync(messageUrl);
@@ -598,8 +591,9 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
                 .Returns(request);
 
             CompareComplyService service = new CompareComplyService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'feedback_id': 'FeedbackId', 'comment': 'Comment', 'feedback_data': {'feedback_type': 'FeedbackType', 'document': {'title': 'Title', 'hash': 'Hash'}, 'model_id': 'ModelId', 'model_version': 'ModelVersion', 'location': {'begin': 5, 'end': 3}, 'text': 'Text', 'original_labels': {'types': [{'label': {'nature': 'Nature', 'party': 'Party'}, 'provenance_ids': ['ProvenanceIds']}], 'categories': [{'label': 'Amendments', 'provenance_ids': ['ProvenanceIds']}], 'modification': 'added'}, 'updated_labels': {'types': [{'label': {'nature': 'Nature', 'party': 'Party'}, 'provenance_ids': ['ProvenanceIds']}], 'categories': [{'label': 'Amendments', 'provenance_ids': ['ProvenanceIds']}], 'modification': 'added'}, 'pagination': {'refresh_cursor': 'RefreshCursor', 'next_cursor': 'NextCursor', 'refresh_url': 'RefreshUrl', 'next_url': 'NextUrl', 'total': 5}}}";
             var response = new DetailedResponse<GetFeedback>()
@@ -616,7 +610,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
 
             var result = service.GetFeedback(feedbackId: feedbackId, model: model);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/feedback/{feedbackId}";
             client.Received().GetAsync(messageUrl);
@@ -631,8 +625,9 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
                 .Returns(request);
 
             CompareComplyService service = new CompareComplyService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'status': 6, 'message': 'Message'}";
             var response = new DetailedResponse<FeedbackDeleted>()
@@ -649,7 +644,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
 
             var result = service.DeleteFeedback(feedbackId: feedbackId, model: model);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/feedback/{feedbackId}";
             client.Received().DeleteAsync(messageUrl);
@@ -664,8 +659,9 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
                 .Returns(request);
 
             CompareComplyService service = new CompareComplyService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'function': 'element_classification', 'input_bucket_location': 'InputBucketLocation', 'input_bucket_name': 'InputBucketName', 'output_bucket_location': 'OutputBucketLocation', 'output_bucket_name': 'OutputBucketName', 'batch_id': 'BatchId', 'document_counts': {'total': 5, 'pending': 7, 'successful': 10, 'failed': 6}, 'status': 'Status'}";
             var response = new DetailedResponse<BatchStatus>()
@@ -688,7 +684,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
 
             var result = service.CreateBatch(function: function, inputCredentialsFile: inputCredentialsFile, inputBucketLocation: inputBucketLocation, inputBucketName: inputBucketName, outputCredentialsFile: outputCredentialsFile, outputBucketLocation: outputBucketLocation, outputBucketName: outputBucketName, model: model);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/batches";
             client.Received().PostAsync(messageUrl);
@@ -703,8 +699,9 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
                 .Returns(request);
 
             CompareComplyService service = new CompareComplyService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'batches': [{'function': 'element_classification', 'input_bucket_location': 'InputBucketLocation', 'input_bucket_name': 'InputBucketName', 'output_bucket_location': 'OutputBucketLocation', 'output_bucket_name': 'OutputBucketName', 'batch_id': 'BatchId', 'document_counts': {'total': 5, 'pending': 7, 'successful': 10, 'failed': 6}, 'status': 'Status'}]}";
             var response = new DetailedResponse<Batches>()
@@ -719,7 +716,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
 
             var result = service.ListBatches();
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/batches";
             client.Received().GetAsync(messageUrl);
@@ -734,8 +731,9 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
                 .Returns(request);
 
             CompareComplyService service = new CompareComplyService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'function': 'element_classification', 'input_bucket_location': 'InputBucketLocation', 'input_bucket_name': 'InputBucketName', 'output_bucket_location': 'OutputBucketLocation', 'output_bucket_name': 'OutputBucketName', 'batch_id': 'BatchId', 'document_counts': {'total': 5, 'pending': 7, 'successful': 10, 'failed': 6}, 'status': 'Status'}";
             var response = new DetailedResponse<BatchStatus>()
@@ -751,7 +749,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
 
             var result = service.GetBatch(batchId: batchId);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/batches/{batchId}";
             client.Received().GetAsync(messageUrl);
@@ -766,8 +764,9 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
                 .Returns(request);
 
             CompareComplyService service = new CompareComplyService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'function': 'element_classification', 'input_bucket_location': 'InputBucketLocation', 'input_bucket_name': 'InputBucketName', 'output_bucket_location': 'OutputBucketLocation', 'output_bucket_name': 'OutputBucketName', 'batch_id': 'BatchId', 'document_counts': {'total': 5, 'pending': 7, 'successful': 10, 'failed': 6}, 'status': 'Status'}";
             var response = new DetailedResponse<BatchStatus>()
@@ -785,7 +784,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
 
             var result = service.UpdateBatch(batchId: batchId, action: action, model: model);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v1/batches/{batchId}";
             client.Received().PutAsync(messageUrl);

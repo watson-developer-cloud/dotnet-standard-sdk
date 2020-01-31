@@ -52,7 +52,7 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
             var url = System.Environment.GetEnvironmentVariable("TONE_ANALYZER_URL");
             System.Environment.SetEnvironmentVariable("TONE_ANALYZER_APIKEY", "apikey");
             System.Environment.SetEnvironmentVariable("TONE_ANALYZER_URL", "http://www.url.com");
-            ToneAnalyzerService service = Substitute.For<ToneAnalyzerService>("versionDate");
+            ToneAnalyzerService service = Substitute.For<ToneAnalyzerService>("testString");
             Assert.IsNotNull(service);
             System.Environment.SetEnvironmentVariable("TONE_ANALYZER_URL", url);
             System.Environment.SetEnvironmentVariable("TONE_ANALYZER_APIKEY", apikey);
@@ -66,29 +66,13 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
         }
 
         [TestMethod]
-        public void ConstructorAuthenticator()
-        {
-            ToneAnalyzerService service = new ToneAnalyzerService("versionDate", new NoAuthAuthenticator());
-            Assert.IsNotNull(service);
-        }
-
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void ConstructorNoVersion()
-        {
-            ToneAnalyzerService service = new ToneAnalyzerService(null, new NoAuthAuthenticator());
-        }
-
-        [TestMethod]
         public void ConstructorNoUrl()
         {
-            var apikey = System.Environment.GetEnvironmentVariable("TONE_ANALYZER_APIKEY");
-            var url = System.Environment.GetEnvironmentVariable("TONE_ANALYZER_URL");
-            System.Environment.SetEnvironmentVariable("TONE_ANALYZER_APIKEY", "apikey");
-            System.Environment.SetEnvironmentVariable("TONE_ANALYZER_URL", null);
-            ToneAnalyzerService service = Substitute.For<ToneAnalyzerService>("versionDate");
+            var apikey = System.Environment.GetEnvironmentVariable("TEST_SERVICE_APIKEY");
+            System.Environment.SetEnvironmentVariable("TEST_SERVICE_APIKEY", "apikey");
+            ToneAnalyzerService service = Substitute.For<ToneAnalyzerService>("testString", "test_service");
             Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/tone-analyzer/api");
-            System.Environment.SetEnvironmentVariable("TONE_ANALYZER_URL", url);
-            System.Environment.SetEnvironmentVariable("TONE_ANALYZER_APIKEY", apikey);
+            System.Environment.SetEnvironmentVariable("TEST_SERVICE_APIKEY", apikey);
         }
         #endregion
 
@@ -127,8 +111,9 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
                 .Returns(request);
 
             ToneAnalyzerService service = new ToneAnalyzerService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'document_tone': {'tones': [{'score': 5, 'tone_id': 'ToneId', 'tone_name': 'ToneName'}], 'tone_categories': [{'tones': [{'score': 5, 'tone_id': 'ToneId', 'tone_name': 'ToneName'}], 'category_id': 'CategoryId', 'category_name': 'CategoryName'}], 'warning': 'Warning'}, 'sentences_tone': [{'sentence_id': 10, 'text': 'Text', 'tones': [{'score': 5, 'tone_id': 'ToneId', 'tone_name': 'ToneName'}], 'tone_categories': [{'tones': [{'score': 5, 'tone_id': 'ToneId', 'tone_name': 'ToneName'}], 'category_id': 'CategoryId', 'category_name': 'CategoryName'}], 'input_from': 9, 'input_to': 7}]}";
             var response = new DetailedResponse<ToneAnalysis>()
@@ -153,7 +138,7 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
 
             var result = service.Tone(toneInput: toneInput, contentType: contentType, sentences: sentences, tones: tones, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v3/tone";
             client.Received().PostAsync(messageUrl);
@@ -168,8 +153,9 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
                 .Returns(request);
 
             ToneAnalyzerService service = new ToneAnalyzerService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+
+            var version = "testString";
+            service.Version = version;
 
             var responseJson = "{'utterances_tone': [{'utterance_id': 11, 'utterance_text': 'UtteranceText', 'tones': [{'score': 5, 'tone_id': 'excited', 'tone_name': 'ToneName'}], 'error': 'Error'}], 'warning': 'Warning'}";
             var response = new DetailedResponse<UtteranceAnalyses>()
@@ -184,14 +170,15 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
                 Text = "testString",
                 User = "testString"
             };
+            List<Utterance> utterances = new List<Utterance> { UtteranceModel };
             string contentLanguage = "en";
             string acceptLanguage = "ar";
 
             request.As<UtteranceAnalyses>().Returns(Task.FromResult(response));
 
-            var result = service.ToneChat(utterances: new List<Utterance> { UtteranceModel }, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage);
+            var result = service.ToneChat(utterances: utterances, contentLanguage: contentLanguage, acceptLanguage: acceptLanguage);
 
-            request.Received().WithArgument("version", versionDate);
+            request.Received().WithArgument("version", "testString");
 
             string messageUrl = $"{service.ServiceUrl}/v3/tone_chat";
             client.Received().PostAsync(messageUrl);

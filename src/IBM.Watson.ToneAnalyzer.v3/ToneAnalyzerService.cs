@@ -71,7 +71,7 @@ namespace IBM.Watson.ToneAnalyzer.v3
         /// For `text/html`, the service removes HTML tags and analyzes only the textual content.
         ///
         /// **See also:** [Using the general-purpose
-        /// endpoint](https://cloud.ibm.com/docs/services/tone-analyzer?topic=tone-analyzer-utgpe#utgpe).
+        /// endpoint](https://cloud.ibm.com/docs/tone-analyzer?topic=tone-analyzer-utgpe#utgpe).
         /// </summary>
         /// <param name="toneInput">JSON, plain text, or HTML input that contains the content to be analyzed. For JSON
         /// input, provide an object of type `ToneInput`.</param>
@@ -97,7 +97,7 @@ namespace IBM.Watson.ToneAnalyzer.v3
         /// variants are treated as their parent language; for example, `en-US` is interpreted as `en`. You can use
         /// different languages for **Content-Language** and **Accept-Language**. (optional, default to en)</param>
         /// <returns><see cref="ToneAnalysis" />ToneAnalysis</returns>
-        public DetailedResponse<ToneAnalysis> Tone(ToneInput toneInput, string contentType = null, bool? sentences = null, List<string> tones = null, string contentLanguage = null, string acceptLanguage = null)
+        public DetailedResponse<ToneAnalysis> Tone(System.IO.MemoryStream toneInput, string contentType = null, bool? sentences = null, List<string> tones = null, string contentLanguage = null, string acceptLanguage = null)
         {
             if (string.IsNullOrEmpty(Version))
             {
@@ -144,7 +144,7 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 {
                     restRequest.WithArgument("tones", string.Join(",", tones.ToArray()));
                 }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(toneInput), Encoding.UTF8);
+                var httpContent = new StringContent(Encoding.UTF8.GetString(toneInput.ToArray()), Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
 
                 restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "Tone"));
@@ -421,7 +421,7 @@ namespace IBM.Watson.ToneAnalyzer.v3
         /// JSON content is effectively always UTF-8.
         ///
         /// **See also:** [Using the customer-engagement
-        /// endpoint](https://cloud.ibm.com/docs/services/tone-analyzer?topic=tone-analyzer-utco#utco).
+        /// endpoint](https://cloud.ibm.com/docs/tone-analyzer?topic=tone-analyzer-utco#utco).
         /// </summary>
         /// <param name="utterances">An array of `Utterance` objects that provides the input content that the service is
         /// to analyze.</param>

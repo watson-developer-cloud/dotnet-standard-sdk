@@ -598,15 +598,23 @@ namespace IBM.Watson.SpeechToText.v1.Examples
             SpeechToTextService service = new SpeechToTextService(authenticator);
             service.SetServiceUrl("{serviceUrl}");
 
-            var result = service.AddGrammar(
-                customizationId: "{customizationId}",
-                grammarFile: File.ReadAllText("list.abnf"),
-                grammarName: "list-abnf",
-                contentType: "application/srgs"
-                );
+            using (FileStream fs = File.OpenRead("list.abnf"))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    fs.CopyTo(ms);
 
-            Console.WriteLine(result.Response);
-            // Poll for language model status.
+                    var result = service.AddGrammar(
+                        customizationId: "{customizationId}",
+                        grammarFile: ms,
+                        grammarName: "list-abnf",
+                        contentType: "application/srgs"
+                        );
+
+                    Console.WriteLine(result.Response);
+                    // Poll for language model status.
+                }
+            }
         }
 
         public void GetGrammar()

@@ -49,7 +49,7 @@ namespace IBM.Watson.SpeechToText.v1
         DetailedResponse<Word> GetWord(string customizationId, string wordName);
         DetailedResponse<object> DeleteWord(string customizationId, string wordName);
         DetailedResponse<Grammars> ListGrammars(string customizationId);
-        DetailedResponse<object> AddGrammar(string customizationId, string grammarName, string grammarFile, string contentType, bool? allowOverwrite = null);
+        DetailedResponse<object> AddGrammar(string customizationId, string grammarName, System.IO.MemoryStream grammarFile, string contentType, bool? allowOverwrite = null);
         DetailedResponse<Grammar> GetGrammar(string customizationId, string grammarName);
         DetailedResponse<object> DeleteGrammar(string customizationId, string grammarName);
         DetailedResponse<AcousticModel> CreateAcousticModel(string name, string baseModelName, string description = null);

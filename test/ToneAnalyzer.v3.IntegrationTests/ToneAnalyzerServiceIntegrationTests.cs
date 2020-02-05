@@ -53,18 +53,26 @@ namespace IBM.Watson.ToneAnalyzer.v3.IntegrationTests
                 Text = inputText
             };
 
-            service.WithHeader("X-Watson-Test", "1");
-            var result = service.Tone(
-                toneInput: toneInput,
-                contentType: "text/html",
-                sentences: true,
-                contentLanguage: "en-US",
-                acceptLanguage: "en-US"
-                );
+            using (MemoryStream ms = new MemoryStream())
+            {
+                var writer = new StreamWriter(ms);
+                writer.Write(JsonConvert.SerializeObject(toneInput));
+                writer.Flush();
+                ms.Position = 0;
 
-            Assert.IsNotNull(result.Result);
-            Assert.IsTrue(result.Result.DocumentTone.ToneCategories.Count >= 1);
-            Assert.IsTrue(result.Result.DocumentTone.ToneCategories[0].Tones.Count >= 1);
+                service.WithHeader("X-Watson-Test", "1");
+                var result = service.Tone(
+                    toneInput: ms,
+                    contentType: "text/html",
+                    sentences: true,
+                    contentLanguage: "en-US",
+                    acceptLanguage: "en-US"
+                    );
+
+                Assert.IsNotNull(result.Result);
+                Assert.IsTrue(result.Result.DocumentTone.ToneCategories.Count >= 1);
+                Assert.IsTrue(result.Result.DocumentTone.ToneCategories[0].Tones.Count >= 1);
+            }
         }
 
         [TestMethod]

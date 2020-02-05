@@ -17,8 +17,10 @@
 
 using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Watson.ToneAnalyzer.v3.Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace IBM.Watson.ToneAnalyzer.v3.Examples
 {
@@ -53,11 +55,19 @@ namespace IBM.Watson.ToneAnalyzer.v3.Examples
                 Text = "Team, I know that times are tough! Product sales have been disappointing for the past three quarters. We have a competitive product, but we need to do a better job of selling it!"
             };
 
-            var result = service.Tone(
-                toneInput: toneInput
-                );
+            using (MemoryStream ms = new MemoryStream())
+            {
+                var writer = new StreamWriter(ms);
+                writer.Write(JsonConvert.SerializeObject(toneInput));
+                writer.Flush();
+                ms.Position = 0;
 
-            Console.WriteLine(result.Response);
+                var result = service.Tone(
+                    toneInput: ms
+                    );
+
+                Console.WriteLine(result.Response);
+            }
         }
         #endregion
 

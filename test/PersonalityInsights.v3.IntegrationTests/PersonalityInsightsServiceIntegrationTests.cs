@@ -59,19 +59,27 @@ namespace IBM.Watson.PersonalityInsights.v3.IntegrationTests
                 }
             };
 
-            service.WithHeader("X-Watson-Test", "1");
-            var result = service.Profile(
-                content: content,
-                contentType: "text/plain",
-                contentLanguage: "en",
-                acceptLanguage: "en",
-                rawScores: true,
-                consumptionPreferences: true,
-                csvHeaders: true
-                );
+            using (MemoryStream ms = new MemoryStream())
+            {
+                var writer = new StreamWriter(ms);
+                writer.Write(JsonConvert.SerializeObject(content));
+                writer.Flush();
+                ms.Position = 0;
 
-            Assert.IsNotNull(result.Result);
-            Assert.IsNotNull(result.Result.Personality);
+                service.WithHeader("X-Watson-Test", "1");
+                var result = service.Profile(
+                    content: ms,
+                    contentType: "text/plain",
+                    contentLanguage: "en",
+                    acceptLanguage: "en",
+                    rawScores: true,
+                    consumptionPreferences: true,
+                    csvHeaders: true
+                    );
+
+                Assert.IsNotNull(result.Result);
+                Assert.IsNotNull(result.Result.Personality);
+            }
         }
 
         [TestMethod]
@@ -92,21 +100,29 @@ namespace IBM.Watson.PersonalityInsights.v3.IntegrationTests
                 }
             };
 
-            service.WithHeader("X-Watson-Test", "1");
-            var result = service.ProfileAsCsv(
-                content: content,
-                contentLanguage: "en",
-                acceptLanguage: "en",
-                rawScores: true,
-                csvHeaders: true,
-                consumptionPreferences: true,
-                contentType: "text/plain"
-                );
+            using (MemoryStream ms = new MemoryStream())
+            {
+                var writer = new StreamWriter(ms);
+                writer.Write(JsonConvert.SerializeObject(content));
+                writer.Flush();
+                ms.Position = 0;
 
-            StreamReader reader = new StreamReader(result.Result);
-            var text = reader.ReadToEnd();
+                service.WithHeader("X-Watson-Test", "1");
+                var result = service.ProfileAsCsv(
+                    content: ms,
+                    contentLanguage: "en",
+                    acceptLanguage: "en",
+                    rawScores: true,
+                    csvHeaders: true,
+                    consumptionPreferences: true,
+                    contentType: "text/plain"
+                    );
 
-            Assert.IsFalse(text.StartsWith("{"));
+                StreamReader reader = new StreamReader(result.Result);
+                var text = reader.ReadToEnd();
+
+                Assert.IsFalse(text.StartsWith("{"));
+            }
         }
     }
 }

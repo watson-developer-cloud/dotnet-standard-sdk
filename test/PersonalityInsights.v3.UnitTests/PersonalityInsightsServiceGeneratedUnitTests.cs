@@ -150,25 +150,7 @@ namespace IBM.Watson.PersonalityInsights.v3.UnitTests
                 StatusCode = 200
             };
 
-            ContentItem ContentItemModel = new ContentItem()
-            {
-                Content = "testString",
-                Id = "testString",
-                Created = 26L,
-                Updated = 26L,
-                Contenttype = "text/plain",
-                Language = "ar",
-                Parentid = "testString",
-                Reply = true,
-                Forward = true
-            };
-
-            var ContentContentItems = new List<ContentItem> { ContentItemModel };
-            Content ContentModel = new Content()
-            {
-                ContentItems = ContentContentItems
-            };
-            Content content = ContentModel;
+            System.IO.MemoryStream content = new System.IO.MemoryStream(Encoding.UTF8.GetBytes("This is a mock binary value."));
             string contentType = "application/json";
             string contentLanguage = "ar";
             string acceptLanguage = "ar";
@@ -204,25 +186,7 @@ namespace IBM.Watson.PersonalityInsights.v3.UnitTests
                 Result = new System.IO.MemoryStream(),
                 StatusCode = 200
             };
-            ContentItem ContentItemModel = new ContentItem()
-            {
-                Content = "testString",
-                Id = "testString",
-                Created = 26L,
-                Updated = 26L,
-                Contenttype = "text/plain",
-                Language = "ar",
-                Parentid = "testString",
-                Reply = true,
-                Forward = true
-            };
-
-            var ContentContentItems = new List<ContentItem> { ContentItemModel };
-            Content ContentModel = new Content()
-            {
-                ContentItems = ContentContentItems
-            };
-            Content content = ContentModel;
+            System.IO.MemoryStream content = new System.IO.MemoryStream(Encoding.UTF8.GetBytes("This is a mock binary value."));
             string contentType = "application/json";
             string contentLanguage = "ar";
             string acceptLanguage = "ar";

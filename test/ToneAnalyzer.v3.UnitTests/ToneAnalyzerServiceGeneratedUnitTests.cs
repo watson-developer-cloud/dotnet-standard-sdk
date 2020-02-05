@@ -123,11 +123,7 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
                 StatusCode = 200
             };
 
-            ToneInput ToneInputModel = new ToneInput()
-            {
-                Text = "testString"
-            };
-            ToneInput toneInput = ToneInputModel;
+            System.IO.MemoryStream toneInput = new System.IO.MemoryStream(Encoding.UTF8.GetBytes("This is a mock binary value."));
             string contentType = "application/json";
             bool? sentences = true;
             List<string> tones = new List<string> { "emotion" };

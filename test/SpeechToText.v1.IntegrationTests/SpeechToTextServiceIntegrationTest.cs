@@ -251,12 +251,22 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
             service.WithHeader("X-Watson-Test", "1");
             var listGrammarsResult = service.ListGrammars(customizationId: customizationId);
             service.WithHeader("X-Watson-Test", "1");
-            var addGrammarResult = service.AddGrammar(
-                customizationId: customizationId,
-                grammarName: grammarName,
-                grammarFile: File.ReadAllText(grammarPath),
-                contentType: grammarsContentType
-                );
+            DetailedResponse<object> addGrammarResult = null;
+            using (FileStream fs = File.OpenRead(grammarPath))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    fs.CopyTo(ms);
+
+                addGrammarResult = service.AddGrammar(
+                    customizationId: customizationId,
+                    grammarName: grammarName,
+                    grammarFile: ms,
+                    contentType: grammarsContentType
+                    );
+                }
+            }
+
             service.WithHeader("X-Watson-Test", "1");
             var getGrammarResult = service.GetGrammar(
                 customizationId: customizationId,
@@ -594,15 +604,22 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void TestJobs_Success()
         {
-            var testAudio = File.ReadAllBytes(testAudioPath);
             service.WithHeader("X-Watson-Test", "1");
-            MemoryStream ms = new MemoryStream(testAudio);
-            var createJobResult = service.CreateJob(
-                audio: ms,
-                contentType: "audio/mp3",
-                endOfPhraseSilenceTime: 2,
-                splitTranscriptAtPhraseEnd: true
-                );
+            DetailedResponse<RecognitionJob> createJobResult = null;
+            using (FileStream fs = File.OpenRead(testAudioPath))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    fs.CopyTo(ms);
+                    createJobResult = service.CreateJob(
+                        audio: ms,
+                        contentType: "audio/mp3",
+                        endOfPhraseSilenceTime: 2,
+                        splitTranscriptAtPhraseEnd: true
+                        );
+                }
+            }
+                
             var jobId = createJobResult.Result.Id;
 
             service.WithHeader("X-Watson-Test", "1");

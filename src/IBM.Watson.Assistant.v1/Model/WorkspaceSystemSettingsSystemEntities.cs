@@ -15,15 +15,20 @@
 *
 */
 
-using System.Collections.Generic;
-using IBM.Cloud.SDK.Core.Http;
-using IBM.Watson.ToneAnalyzer.v3.Model;
+using Newtonsoft.Json;
 
-namespace IBM.Watson.ToneAnalyzer.v3
+namespace IBM.Watson.Assistant.v1.Model
 {
-    public partial interface IToneAnalyzerService
+    /// <summary>
+    /// Workspace settings related to the behavior of system entities.
+    /// </summary>
+    public class WorkspaceSystemSettingsSystemEntities
     {
-        DetailedResponse<ToneAnalysis> Tone(System.IO.MemoryStream toneInput, string contentType = null, bool? sentences = null, List<string> tones = null, string contentLanguage = null, string acceptLanguage = null);
-        DetailedResponse<UtteranceAnalyses> ToneChat(List<Utterance> utterances, string contentLanguage = null, string acceptLanguage = null);
+        /// <summary>
+        /// Whether the new system entities are enabled for the workspace.
+        /// </summary>
+        [JsonProperty("enabled", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? Enabled { get; set; }
     }
+
 }

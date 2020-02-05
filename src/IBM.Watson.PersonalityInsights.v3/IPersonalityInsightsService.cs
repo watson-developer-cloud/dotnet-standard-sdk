@@ -22,7 +22,7 @@ namespace IBM.Watson.PersonalityInsights.v3
 {
     public partial interface IPersonalityInsightsService
     {
-        DetailedResponse<Profile> Profile(Content content, string contentType = null, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null);
-        DetailedResponse<System.IO.MemoryStream> ProfileAsCsv(Content content, string contentType = null, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null);
+        DetailedResponse<Profile> Profile(System.IO.MemoryStream content, string contentType = null, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null);
+        DetailedResponse<System.IO.MemoryStream> ProfileAsCsv(System.IO.MemoryStream content, string contentType = null, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null);
     }
 }

@@ -55,14 +55,22 @@ namespace IBM.Watson.PersonalityInsights.v3.Examples
             Content content = null;
             content = JsonConvert.DeserializeObject<Content>(File.ReadAllText("profile.json"));
 
-            var result = service.Profile(
-                content: content,
-                contentType: "application/json",
-                rawScores: true,
-                consumptionPreferences: true
-                );
+            using (MemoryStream ms = new MemoryStream())
+            {
+                var writer = new StreamWriter(ms);
+                writer.Write(JsonConvert.SerializeObject(content));
+                writer.Flush();
+                ms.Position = 0;
 
-            Console.WriteLine(result.Response);
+                var result = service.Profile(
+                    content: ms,
+                    contentType: "application/json",
+                    rawScores: true,
+                    consumptionPreferences: true
+                    );
+
+                Console.WriteLine(result.Response);
+            }
         }
 
         public void ProfileAsCsv()
@@ -76,19 +84,27 @@ namespace IBM.Watson.PersonalityInsights.v3.Examples
             Content content = null;
             content = JsonConvert.DeserializeObject<Content>(File.ReadAllText("profile.json"));
 
-            var result = service.ProfileAsCsv(
-                content: content,
-                contentType: "application/json",
-                consumptionPreferences: true,
-                rawScores: true,
-                csvHeaders: true
-                );
-
-            using (FileStream fs = File.Create("output.csv"))
+            using (MemoryStream ms = new MemoryStream())
             {
-                result.Result.WriteTo(fs);
-                fs.Close();
-                result.Result.Close();
+                var writer = new StreamWriter(ms);
+                writer.Write(JsonConvert.SerializeObject(content));
+                writer.Flush();
+                ms.Position = 0;
+
+                var result = service.ProfileAsCsv(
+                    content: ms,
+                    contentType: "application/json",
+                    consumptionPreferences: true,
+                    rawScores: true,
+                    csvHeaders: true
+                    );
+
+                using (FileStream fs = File.Create("output.csv"))
+                {
+                    result.Result.WriteTo(fs);
+                    fs.Close();
+                    result.Result.Close();
+                }
             }
         }
         #endregion

@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2020.
+* (C) Copyright IBM Corp. 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -60,7 +60,7 @@ namespace IBM.Watson.Assistant.v1
         /// **Important:** This method has been superseded by the new v2 runtime API. The v2 API offers significant
         /// advantages, including ease of deployment, automatic state management, versioning, and search capabilities.
         /// For more information, see the
-        /// [documentation](https://cloud.ibm.com/docs/services/assistant?topic=assistant-api-overview).
+        /// [documentation](https://cloud.ibm.com/docs/assistant?topic=assistant-api-overview).
         ///
         /// There is no rate limit for this operation.
         /// </summary>
@@ -228,8 +228,10 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// The maximum size for this data is 50MB. If you need to import a larger workspace, consider importing the
         /// workspace without intents and entities and then adding them separately. (optional)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
         /// <returns><see cref="Workspace" />Workspace</returns>
-        public DetailedResponse<Workspace> CreateWorkspace(string name = null, string description = null, string language = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null, List<Webhook> webhooks = null)
+        public DetailedResponse<Workspace> CreateWorkspace(string name = null, string description = null, string language = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null, List<Webhook> webhooks = null, bool? includeAudit = null)
         {
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -248,6 +250,10 @@ namespace IBM.Watson.Assistant.v1
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (includeAudit != null)
+                {
+                    restRequest.WithArgument("include_audit", includeAudit);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -405,15 +411,17 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// The maximum size for this data is 50MB. If you need to import a larger amount of workspace data, consider
         /// importing components such as intents and entities using separate operations. (optional)</param>
-        /// <param name="append">Whether the new data is to be appended to the existing data in the workspace. If
+        /// <param name="append">Whether the new data is to be appended to the existing data in the object. If
         /// **append**=`false`, elements included in the new data completely replace the corresponding existing
-        /// elements, including all subelements. For example, if the new data includes **entities** and
+        /// elements, including all subelements. For example, if the new data for a workspace includes **entities** and
         /// **append**=`false`, all existing entities in the workspace are discarded and replaced with the new entities.
         ///
         /// If **append**=`true`, existing elements are preserved, and the new elements are added. If any elements in
         /// the new data collide with existing elements, the update request fails. (optional, default to false)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
         /// <returns><see cref="Workspace" />Workspace</returns>
-        public DetailedResponse<Workspace> UpdateWorkspace(string workspaceId, string name = null, string description = null, string language = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null, bool? append = null, List<Webhook> webhooks = null)
+        public DetailedResponse<Workspace> UpdateWorkspace(string workspaceId, string name = null, string description = null, string language = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null, bool? append = null, List<Webhook> webhooks = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -443,6 +451,10 @@ namespace IBM.Watson.Assistant.v1
                 if (append != null)
                 {
                     restRequest.WithArgument("append", append);
+                }
+                if (includeAudit != null)
+                {
+                    restRequest.WithArgument("include_audit", includeAudit);
                 }
                 restRequest.WithHeader("Content-Type", "application/json");
 
@@ -663,8 +675,10 @@ namespace IBM.Watson.Assistant.v1
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="body">The content of the new intent.</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
         /// <returns><see cref="Intent" />Intent</returns>
-        public DetailedResponse<Intent> CreateIntent(string workspaceId, string intent, string description = null, List<Example> examples = null)
+        public DetailedResponse<Intent> CreateIntent(string workspaceId, string intent, string description = null, List<Example> examples = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -695,6 +709,10 @@ namespace IBM.Watson.Assistant.v1
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (includeAudit != null)
+                {
+                    restRequest.WithArgument("include_audit", includeAudit);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -828,8 +846,17 @@ namespace IBM.Watson.Assistant.v1
         /// all subelements. (Previously existing subelements are not retained unless they are also included in the new
         /// data.) For example, if you update the user input examples for an intent, the previously existing examples
         /// are discarded and replaced with the new examples specified in the update.</param>
+        /// <param name="append">Whether the new data is to be appended to the existing data in the object. If
+        /// **append**=`false`, elements included in the new data completely replace the corresponding existing
+        /// elements, including all subelements. For example, if the new data for the intent includes **examples** and
+        /// **append**=`false`, all existing examples for the intent are discarded and replaced with the new examples.
+        ///
+        /// If **append**=`true`, existing elements are preserved, and the new elements are added. If any elements in
+        /// the new data collide with existing elements, the update request fails. (optional, default to false)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
         /// <returns><see cref="Intent" />Intent</returns>
-        public DetailedResponse<Intent> UpdateIntent(string workspaceId, string intent, string newIntent = null, string newDescription = null, List<Example> newExamples = null)
+        public DetailedResponse<Intent> UpdateIntent(string workspaceId, string intent, string newIntent = null, string newDescription = null, List<Example> newExamples = null, bool? append = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -864,6 +891,14 @@ namespace IBM.Watson.Assistant.v1
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (append != null)
+                {
+                    restRequest.WithArgument("append", append);
+                }
+                if (includeAudit != null)
+                {
+                    restRequest.WithArgument("include_audit", includeAudit);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -1062,8 +1097,10 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="intent">The intent name.</param>
         /// <param name="body">The content of the new user input example.</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
         /// <returns><see cref="Example" />Example</returns>
-        public DetailedResponse<Example> CreateExample(string workspaceId, string intent, string text, List<Mention> mentions = null)
+        public DetailedResponse<Example> CreateExample(string workspaceId, string intent, string text, List<Mention> mentions = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -1102,6 +1139,10 @@ namespace IBM.Watson.Assistant.v1
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (includeAudit != null)
+                {
+                    restRequest.WithArgument("include_audit", includeAudit);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -1227,8 +1268,10 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="intent">The intent name.</param>
         /// <param name="text">The text of the user input example.</param>
         /// <param name="body">The new text of the user input example.</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
         /// <returns><see cref="Example" />Example</returns>
-        public DetailedResponse<Example> UpdateExample(string workspaceId, string intent, string text, string newText = null, List<Mention> newMentions = null)
+        public DetailedResponse<Example> UpdateExample(string workspaceId, string intent, string text, string newText = null, List<Mention> newMentions = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -1271,6 +1314,10 @@ namespace IBM.Watson.Assistant.v1
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (includeAudit != null)
+                {
+                    restRequest.WithArgument("include_audit", includeAudit);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -1466,8 +1513,10 @@ namespace IBM.Watson.Assistant.v1
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="body">The content of the new counterexample.</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
         /// <returns><see cref="Counterexample" />Counterexample</returns>
-        public DetailedResponse<Counterexample> CreateCounterexample(string workspaceId, string text)
+        public DetailedResponse<Counterexample> CreateCounterexample(string workspaceId, string text, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -1498,6 +1547,10 @@ namespace IBM.Watson.Assistant.v1
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (includeAudit != null)
+                {
+                    restRequest.WithArgument("include_audit", includeAudit);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -1610,8 +1663,10 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="text">The text of a user input counterexample (for example, `What are you wearing?`).</param>
         /// <param name="body">The text of the counterexample.</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
         /// <returns><see cref="Counterexample" />Counterexample</returns>
-        public DetailedResponse<Counterexample> UpdateCounterexample(string workspaceId, string text, string newText = null)
+        public DetailedResponse<Counterexample> UpdateCounterexample(string workspaceId, string text, string newText = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -1646,6 +1701,10 @@ namespace IBM.Watson.Assistant.v1
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (includeAudit != null)
+                {
+                    restRequest.WithArgument("include_audit", includeAudit);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -1835,8 +1894,10 @@ namespace IBM.Watson.Assistant.v1
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="body">The content of the new entity.</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
         /// <returns><see cref="Entity" />Entity</returns>
-        public DetailedResponse<Entity> CreateEntity(string workspaceId, string entity, string description = null, Dictionary<string, object> metadata = null, bool? fuzzyMatch = null, List<CreateValue> values = null)
+        public DetailedResponse<Entity> CreateEntity(string workspaceId, string entity, string description = null, Dictionary<string, object> metadata = null, bool? fuzzyMatch = null, List<CreateValue> values = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -1867,6 +1928,10 @@ namespace IBM.Watson.Assistant.v1
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (includeAudit != null)
+                {
+                    restRequest.WithArgument("include_audit", includeAudit);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -2007,8 +2072,17 @@ namespace IBM.Watson.Assistant.v1
         /// not retained unless they are also included in the new data.) For example, if you update the values for an
         /// entity, the previously existing values are discarded and replaced with the new values specified in the
         /// update.</param>
+        /// <param name="append">Whether the new data is to be appended to the existing data in the entity. If
+        /// **append**=`false`, elements included in the new data completely replace the corresponding existing
+        /// elements, including all subelements. For example, if the new data for the entity includes **values** and
+        /// **append**=`false`, all existing values for the entity are discarded and replaced with the new values.
+        ///
+        /// If **append**=`true`, existing elements are preserved, and the new elements are added. If any elements in
+        /// the new data collide with existing elements, the update request fails. (optional, default to false)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
         /// <returns><see cref="Entity" />Entity</returns>
-        public DetailedResponse<Entity> UpdateEntity(string workspaceId, string entity, string newEntity = null, string newDescription = null, Dictionary<string, object> newMetadata = null, bool? newFuzzyMatch = null, List<CreateValue> newValues = null)
+        public DetailedResponse<Entity> UpdateEntity(string workspaceId, string entity, string newEntity = null, string newDescription = null, Dictionary<string, object> newMetadata = null, bool? newFuzzyMatch = null, List<CreateValue> newValues = null, bool? append = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -2043,6 +2117,14 @@ namespace IBM.Watson.Assistant.v1
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (append != null)
+                {
+                    restRequest.WithArgument("append", append);
+                }
+                if (includeAudit != null)
+                {
+                    restRequest.WithArgument("include_audit", includeAudit);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -2333,8 +2415,10 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
         /// <param name="body">The new entity value.</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
         /// <returns><see cref="Value" />Value</returns>
-        public DetailedResponse<Value> CreateValue(string workspaceId, string entity, string value, Dictionary<string, object> metadata = null, string type = null, List<string> synonyms = null, List<string> patterns = null)
+        public DetailedResponse<Value> CreateValue(string workspaceId, string entity, string value, Dictionary<string, object> metadata = null, string type = null, List<string> synonyms = null, List<string> patterns = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -2373,6 +2457,10 @@ namespace IBM.Watson.Assistant.v1
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (includeAudit != null)
+                {
+                    restRequest.WithArgument("include_audit", includeAudit);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -2523,8 +2611,18 @@ namespace IBM.Watson.Assistant.v1
         /// all subelements. (Previously existing subelements are not retained unless they are also included in the new
         /// data.) For example, if you update the synonyms for an entity value, the previously existing synonyms are
         /// discarded and replaced with the new synonyms specified in the update.</param>
+        /// <param name="append">Whether the new data is to be appended to the existing data in the entity value. If
+        /// **append**=`false`, elements included in the new data completely replace the corresponding existing
+        /// elements, including all subelements. For example, if the new data for the entity value includes **synonyms**
+        /// and **append**=`false`, all existing synonyms for the entity value are discarded and replaced with the new
+        /// synonyms.
+        ///
+        /// If **append**=`true`, existing elements are preserved, and the new elements are added. If any elements in
+        /// the new data collide with existing elements, the update request fails. (optional, default to false)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
         /// <returns><see cref="Value" />Value</returns>
-        public DetailedResponse<Value> UpdateValue(string workspaceId, string entity, string value, string newValue = null, Dictionary<string, object> newMetadata = null, string newType = null, List<string> newSynonyms = null, List<string> newPatterns = null)
+        public DetailedResponse<Value> UpdateValue(string workspaceId, string entity, string value, string newValue = null, Dictionary<string, object> newMetadata = null, string newType = null, List<string> newSynonyms = null, List<string> newPatterns = null, bool? append = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -2567,6 +2665,14 @@ namespace IBM.Watson.Assistant.v1
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (append != null)
+                {
+                    restRequest.WithArgument("append", append);
+                }
+                if (includeAudit != null)
+                {
+                    restRequest.WithArgument("include_audit", includeAudit);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -2792,8 +2898,10 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="entity">The name of the entity.</param>
         /// <param name="value">The text of the entity value.</param>
         /// <param name="body">The new synonym.</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
         /// <returns><see cref="Synonym" />Synonym</returns>
-        public DetailedResponse<Synonym> CreateSynonym(string workspaceId, string entity, string value, string synonym)
+        public DetailedResponse<Synonym> CreateSynonym(string workspaceId, string entity, string value, string synonym, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -2840,6 +2948,10 @@ namespace IBM.Watson.Assistant.v1
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (includeAudit != null)
+                {
+                    restRequest.WithArgument("include_audit", includeAudit);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -2971,8 +3083,10 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="value">The text of the entity value.</param>
         /// <param name="synonym">The text of the synonym.</param>
         /// <param name="body">The updated entity value synonym.</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
         /// <returns><see cref="Synonym" />Synonym</returns>
-        public DetailedResponse<Synonym> UpdateSynonym(string workspaceId, string entity, string value, string synonym, string newSynonym = null)
+        public DetailedResponse<Synonym> UpdateSynonym(string workspaceId, string entity, string value, string synonym, string newSynonym = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -3023,6 +3137,10 @@ namespace IBM.Watson.Assistant.v1
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (includeAudit != null)
+                {
+                    restRequest.WithArgument("include_audit", includeAudit);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -3221,8 +3339,10 @@ namespace IBM.Watson.Assistant.v1
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="body">A CreateDialogNode object defining the content of the new dialog node.</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
         /// <returns><see cref="DialogNode" />DialogNode</returns>
-        public DetailedResponse<DialogNode> CreateDialogNode(string workspaceId, string dialogNode, string description = null, string conditions = null, string parent = null, string previousSibling = null, DialogNodeOutput output = null, Dictionary<string, object> context = null, Dictionary<string, object> metadata = null, DialogNodeNextStep nextStep = null, string title = null, string type = null, string eventName = null, string variable = null, List<DialogNodeAction> actions = null, string digressIn = null, string digressOut = null, string digressOutSlots = null, string userLabel = null, bool? disambiguationOptOut = null)
+        public DetailedResponse<DialogNode> CreateDialogNode(string workspaceId, string dialogNode, string description = null, string conditions = null, string parent = null, string previousSibling = null, DialogNodeOutput output = null, Dictionary<string, object> context = null, Dictionary<string, object> metadata = null, DialogNodeNextStep nextStep = null, string title = null, string type = null, string eventName = null, string variable = null, List<DialogNodeAction> actions = null, string digressIn = null, string digressOut = null, string digressOutSlots = null, string userLabel = null, bool? disambiguationOptOut = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -3253,6 +3373,10 @@ namespace IBM.Watson.Assistant.v1
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (includeAudit != null)
+                {
+                    restRequest.WithArgument("include_audit", includeAudit);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -3441,8 +3565,10 @@ namespace IBM.Watson.Assistant.v1
         /// all subelements. (Previously existing subelements are not retained unless they are also included in the new
         /// data.) For example, if you update the actions for a dialog node, the previously existing actions are
         /// discarded and replaced with the new actions specified in the update.</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
         /// <returns><see cref="DialogNode" />DialogNode</returns>
-        public DetailedResponse<DialogNode> UpdateDialogNode(string workspaceId, string dialogNode, string newDialogNode = null, string newDescription = null, string newConditions = null, string newParent = null, string newPreviousSibling = null, DialogNodeOutput newOutput = null, Dictionary<string, object> newContext = null, Dictionary<string, object> newMetadata = null, DialogNodeNextStep newNextStep = null, string newTitle = null, string newType = null, string newEventName = null, string newVariable = null, List<DialogNodeAction> newActions = null, string newDigressIn = null, string newDigressOut = null, string newDigressOutSlots = null, string newUserLabel = null, bool? newDisambiguationOptOut = null)
+        public DetailedResponse<DialogNode> UpdateDialogNode(string workspaceId, string dialogNode, string newDialogNode = null, string newDescription = null, string newConditions = null, string newParent = null, string newPreviousSibling = null, DialogNodeOutput newOutput = null, Dictionary<string, object> newContext = null, Dictionary<string, object> newMetadata = null, DialogNodeNextStep newNextStep = null, string newTitle = null, string newType = null, string newEventName = null, string newVariable = null, List<DialogNodeAction> newActions = null, string newDigressIn = null, string newDigressOut = null, string newDigressOutSlots = null, string newUserLabel = null, bool? newDisambiguationOptOut = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -3477,6 +3603,10 @@ namespace IBM.Watson.Assistant.v1
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (includeAudit != null)
+                {
+                    restRequest.WithArgument("include_audit", includeAudit);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -3653,7 +3783,7 @@ namespace IBM.Watson.Assistant.v1
         /// the sort order, prefix the parameter value with a minus sign (`-`). (optional)</param>
         /// <param name="filter">A cacheable parameter that limits the results to those matching the specified filter.
         /// For more information, see the
-        /// [documentation](https://cloud.ibm.com/docs/services/assistant?topic=assistant-filter-reference#filter-reference).
+        /// [documentation](https://cloud.ibm.com/docs/assistant?topic=assistant-filter-reference#filter-reference).
         /// (optional)</param>
         /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
@@ -3732,7 +3862,7 @@ namespace IBM.Watson.Assistant.v1
         /// You must specify a filter query that includes a value for `language`, as well as a value for
         /// `request.context.system.assistant_id`, `workspace_id`, or `request.context.metadata.deployment`. For more
         /// information, see the
-        /// [documentation](https://cloud.ibm.com/docs/services/assistant?topic=assistant-filter-reference#filter-reference).</param>
+        /// [documentation](https://cloud.ibm.com/docs/assistant?topic=assistant-filter-reference#filter-reference).</param>
         /// <param name="sort">How to sort the returned log events. You can sort by **request_timestamp**. To reverse
         /// the sort order, prefix the parameter value with a minus sign (`-`). (optional)</param>
         /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
@@ -3803,7 +3933,7 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// You associate a customer ID with data by passing the `X-Watson-Metadata` header with a request that passes
         /// data. For more information about personal data and customer IDs, see [Information
-        /// security](https://cloud.ibm.com/docs/services/assistant?topic=assistant-information-security#information-security).
+        /// security](https://cloud.ibm.com/docs/assistant?topic=assistant-information-security#information-security).
         ///
         /// This operation is limited to 4 requests per minute. For more information, see **Rate limiting**.
         /// </summary>

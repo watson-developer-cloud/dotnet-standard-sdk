@@ -330,6 +330,74 @@ namespace IBM.Watson.VisualRecognition.v4.Examples
         }
         #endregion
 
+        #region Objects
+        public void ListObjectMetadata()
+        {
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}"
+                );
+
+            VisualRecognitionService service = new VisualRecognitionService("2019-02-11", authenticator);
+
+            var result = service.ListObjectMetadata(
+                collectionId: "5826c5ec-6f86-44b1-ab2b-cca6c75f2fc7"
+                );
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void UpdateObject()
+        {
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}"
+                );
+
+            VisualRecognitionService service = new VisualRecognitionService("2019-02-11", authenticator);
+
+            var result = service.UpdateObjectMetadata(
+                collectionId: "5826c5ec-6f86-44b1-ab2b-cca6c75f2fc7",
+                _object: "2018-Fit",
+                newObject: "subcompact"
+                );
+
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void GetObjectMetadata()
+        {
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}"
+                );
+
+            VisualRecognitionService service = new VisualRecognitionService("2019-02-11", authenticator);
+
+            var result = service.GetObjectMetadata(
+                collectionId: "5826c5ec-6f86-44b1-ab2b-cca6c75f2fc7",
+                _object: "subcompact"
+                );
+
+            Console.WriteLine(result.Response);
+        }
+
+        public void DeleteObject()
+        {
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}"
+                );
+
+            VisualRecognitionService service = new VisualRecognitionService("2019-02-11", authenticator);
+
+            var result = service.DeleteObject(
+                collectionId: "5826c5ec-6f86-44b1-ab2b-cca6c75f2fc7",
+                _object: "subcompact"
+                );
+
+            Console.WriteLine(result.Response);
+        }
+
+        #endregion
+
         #region User Data
         public void DeleteUserData()
         {

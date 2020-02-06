@@ -185,6 +185,11 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
             Assert.IsTrue(results0.Result.Context.Get("name").ToString() == "Watson");
             Assert.IsNotNull(results1);
             Assert.IsTrue(results1.Result.Context.Get("name").ToString() == "Watson");
+            Assert.IsTrue(results1.Result.Entities[1].Entity == "sys-date");
+            Assert.IsTrue(results1.Result.Entities[1].Interpretation.Timezone == "GMT");
+            Assert.IsTrue(results1.Result.Entities[1].Interpretation.Granularity == RuntimeEntityInterpretation.GranularityEnumValue.DAY);
+            Assert.IsTrue(results1.Result.Entities[1].Interpretation.Festival == "christmas");
+            Assert.IsTrue(results1.Result.Entities[1].Interpretation.CalendarType == "GREGORIAN");
             Assert.IsNotNull(results2);
             Assert.IsTrue(results2.Result.Context.Get("name").ToString() == "Watson");
             Assert.IsNotNull(results3);
@@ -236,7 +241,8 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
             service.WithHeader("X-Watson-Test", "1");
             var createCounterexampleResult = service.CreateCounterexample(
                 workspaceId: workspaceId,
-                text: createdCounterExampleText
+                text: createdCounterExampleText,
+                includeAudit: true
                 );
 
             service.WithHeader("X-Watson-Test", "1");
@@ -252,7 +258,8 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
             var updateCounterexampleResult = service.UpdateCounterexample(
                 workspaceId: workspaceId,
                 text: createdCounterExampleText,
-                newText: updatedCounterExampleText
+                newText: updatedCounterExampleText,
+                includeAudit: true
                 );
 
             service.WithHeader("X-Watson-Test", "1");
@@ -269,10 +276,14 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
             Assert.IsNotNull(listCounterExamplesResult);
             Assert.IsNotNull(listCounterExamplesResult.Result.Counterexamples);
             Assert.IsNotNull(createCounterexampleResult);
+            Assert.IsNotNull(createCounterexampleResult.Result.Created);
+            Assert.IsNotNull(createCounterexampleResult.Result.Updated);
             Assert.IsFalse(string.IsNullOrEmpty(createCounterexampleResult.Result.Text));
             Assert.IsNotNull(getCounterexampleResult);
             Assert.IsFalse(string.IsNullOrEmpty(getCounterexampleResult.Result.Text));
             Assert.IsNotNull(updateCounterexampleResult);
+            Assert.IsNotNull(updateCounterexampleResult.Result.Created);
+            Assert.IsNotNull(updateCounterexampleResult.Result.Updated);
             Assert.IsTrue(updateCounterexampleResult.Result.Text == updatedCounterExampleText);
             Assert.IsNotNull(deleteCounterexampleResult);
         }
@@ -300,10 +311,14 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                     Prompt = "Hello, welcome to watson",
                     NoneOfTheAbovePrompt = "None of the above",
                     Enabled = true,
-                    Randomize = true, 
+                    Randomize = true,
                     MaxSuggestions = 5
                 },
                 OffTopic = new WorkspaceSystemSettingsOffTopic()
+                {
+                    Enabled = true
+                },
+                SystemEntities = new WorkspaceSystemSettingsSystemEntities()
                 {
                     Enabled = true
                 }
@@ -330,7 +345,8 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 metadata: metadata, 
                 learningOptOut: false, 
                 systemSettings: systemSettings, 
-                webhooks: webhooks
+                webhooks: webhooks,
+                includeAudit: true
                 );
 
             var workspaceId = createWorkspaceResult.Result.WorkspaceId;
@@ -388,7 +404,8 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 learningOptOut: true,
                 metadata: updatedMetadata,
                 systemSettings: updatedSystemSettings,
-                webhooks: updatedWebhooks
+                webhooks: updatedWebhooks,
+                includeAudit: true
                 );
 
             service.WithHeader("X-Watson-Test", "1");
@@ -399,6 +416,9 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
             Assert.IsNotNull(workspaceId);
             Assert.IsNotNull(createWorkspaceResult.Result.Metadata);
             Assert.IsNotNull(createWorkspaceResult.Result.Metadata["name"].ToString() == "Watson");
+            Assert.IsNotNull(createWorkspaceResult.Result.Created);
+            Assert.IsNotNull(createWorkspaceResult.Result.Updated);
+            Assert.IsNotNull(createWorkspaceResult.Result.SystemSettings.SystemEntities.Enabled == true);
             Assert.IsNotNull(createWorkspaceResult.Result.SystemSettings.Tooling.StoreGenericResponses == false);
             Assert.IsNotNull(createWorkspaceResult.Result.SystemSettings.Disambiguation.Sensitivity == WorkspaceSystemSettingsDisambiguation.SensitivityEnumValue.AUTO);
             Assert.IsNotNull(createWorkspaceResult.Result.SystemSettings.Disambiguation.Prompt == "Hello, welcome to watson");
@@ -427,6 +447,8 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
             Assert.IsNotNull(updateWorkspaceResult.Result.SystemSettings.Disambiguation.MaxSuggestions == 3);
             Assert.IsNotNull(updateWorkspaceResult.Result.SystemSettings.OffTopic.Enabled == false);
             Assert.IsTrue(updateWorkspaceResult.Result.Webhooks[0].Name == "IBM Cloud Docs");
+            Assert.IsNotNull(updateWorkspaceResult.Result.Created);
+            Assert.IsNotNull(updateWorkspaceResult.Result.Updated);
             Assert.IsNotNull(updateWorkspaceResult.Result.Webhooks[0].Headers);
             Assert.IsTrue(updateWorkspaceResult.Result.Webhooks[0].Headers[0].Name == "testWebhookHeaderName-updated");
             Assert.IsTrue(updateWorkspaceResult.Result.Webhooks[0].Headers[0].Value == "testWebhookHeaderValue-updated");
@@ -461,7 +483,8 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 workspaceId: workspaceId,
                 entity: createdEntity,
                 description: createdEntityDescription,
-                fuzzyMatch: true
+                fuzzyMatch: true,
+                includeAudit: true
                 );
 
             service.WithHeader("X-Watson-Test", "1");
@@ -480,7 +503,9 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 entity: createdEntity,
                 newEntity: updatedEntity,
                 newDescription: updatedEntityDescription,
-                newFuzzyMatch: true
+                newFuzzyMatch: true,
+                append: true,
+                includeAudit: true
                 );
 
             service.WithHeader("X-Watson-Test", "1");
@@ -496,10 +521,14 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
 
             Assert.IsNotNull(listEntitiesResult);
             Assert.IsNotNull(createEntityResult);
+            Assert.IsNotNull(createEntityResult.Result.Created);
+            Assert.IsNotNull(createEntityResult.Result.Updated);
             Assert.IsFalse(string.IsNullOrEmpty(createEntityResult.Result._Entity));
             Assert.IsNotNull(getEntityResult);
             Assert.IsTrue(getEntityResult.Result._Entity == createdEntity);
             Assert.IsNotNull(updateEntityResult);
+            Assert.IsNotNull(updateEntityResult.Result.Created);
+            Assert.IsNotNull(updateEntityResult.Result.Updated);
             Assert.IsTrue(updateEntityResult.Result._Entity == updatedEntity);
             Assert.IsTrue(updateEntityResult.Result.Description == updatedEntityDescription);
             Assert.IsNotNull(deleteEntityResult);
@@ -538,7 +567,8 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
             var createValueResult = service.CreateValue(
                 workspaceId: workspaceId,
                 entity: createdEntity,
-                value: createdValue
+                value: createdValue,
+                includeAudit: true
                 );
 
             service.WithHeader("X-Watson-Test", "1");
@@ -555,7 +585,9 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 workspaceId: workspaceId,
                 entity: createdEntity,
                 value: createdValue,
-                newValue: updatedValue
+                newValue: updatedValue,
+                append: true,
+                includeAudit: true
                 );
 
             service.WithHeader("X-Watson-Test", "1");
@@ -576,10 +608,14 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
 
             Assert.IsNotNull(listValuesResult);
             Assert.IsNotNull(createValueResult);
+            Assert.IsNotNull(createValueResult.Result.Created);
+            Assert.IsNotNull(createValueResult.Result.Updated);
             Assert.IsFalse(string.IsNullOrEmpty(createValueResult.Result._Value));
             Assert.IsNotNull(getValueResult);
             Assert.IsTrue(getValueResult.Result._Value == createdValue);
             Assert.IsNotNull(updateValueResult);
+            Assert.IsNotNull(updateValueResult.Result.Created);
+            Assert.IsNotNull(updateValueResult.Result.Updated);
             Assert.IsTrue(updateValueResult.Result._Value == updatedValue);
             Assert.IsNotNull(deleteValueResult);
         }
@@ -629,7 +665,8 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 workspaceId: workspaceId,
                 entity: createdEntity,
                 value: createdValue,
-                synonym: createdSynonym
+                synonym: createdSynonym,
+                includeAudit: true
                 );
 
             service.WithHeader("X-Watson-Test", "1");
@@ -647,7 +684,9 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 entity: createdEntity,
                 value: createdValue,
                 synonym: createdSynonym,
-                newSynonym: updatedSynonym);
+                newSynonym: updatedSynonym,
+                includeAudit: true
+                );
 
             service.WithHeader("X-Watson-Test", "1");
             var deleteSynonymResult = service.DeleteSynonym(
@@ -674,10 +713,14 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
 
             Assert.IsNotNull(listSynonymsResult);
             Assert.IsNotNull(createSynonymResult);
+            Assert.IsNotNull(createSynonymResult.Result.Created);
+            Assert.IsNotNull(createSynonymResult.Result.Updated);
             Assert.IsTrue(createSynonymResult.Result._Synonym == createdSynonym);
             Assert.IsNotNull(getSynonymResult);
             Assert.IsTrue(getSynonymResult.Result._Synonym == createdSynonym);
             Assert.IsNotNull(updateSynonymResult);
+            Assert.IsNotNull(updateSynonymResult.Result.Created);
+            Assert.IsNotNull(updateSynonymResult.Result.Updated);
             Assert.IsTrue(updateSynonymResult.Result._Synonym == updatedSynonym);
             Assert.IsNotNull(deleteSynonymResult);
         }
@@ -710,7 +753,8 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
             var createIntentResult = service.CreateIntent(
                 workspaceId: workspaceId,
                 intent: createdIntent,
-                description: createdIntentDescription
+                description: createdIntentDescription,
+                includeAudit: true
                 );
 
             service.WithHeader("X-Watson-Test", "1");
@@ -727,7 +771,9 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 workspaceId: workspaceId,
                 intent: createdIntent,
                 newIntent: updatedIntent,
-                newDescription: updatedIntentDescription
+                newDescription: updatedIntentDescription,
+                append:true,
+                includeAudit: true
                 );
             service.WithHeader("X-Watson-Test", "1");
             var deleteIntentResult = service.DeleteIntent(
@@ -739,11 +785,16 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
 
             Assert.IsNotNull(listIntentsReult);
             Assert.IsNotNull(createIntentResult);
+            Assert.IsNotNull(createIntentResult.Result.Created);
+            Assert.IsNotNull(createIntentResult.Result.Updated);
             Assert.IsFalse(string.IsNullOrEmpty(createIntentResult.Result._Intent));
             Assert.IsTrue(createIntentResult.Result._Intent == createdIntent);
             Assert.IsNotNull(getIntentResult);
             Assert.IsFalse(string.IsNullOrEmpty(getIntentResult.Result._Intent));
             Assert.IsNotNull(updateIntentResult);
+            Assert.IsNotNull(updateIntentResult.Result);
+            Assert.IsNotNull(updateIntentResult.Result.Created);
+            Assert.IsNotNull(updateIntentResult.Result.Updated);
             Assert.IsTrue(updateIntentResult.Result._Intent == updatedIntent);
             Assert.IsNotNull(deleteIntentResult);
         }
@@ -783,7 +834,8 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
             var createExampleResult = service.CreateExample(
                 workspaceId: workspaceId,
                 intent: createdIntent,
-                text: createdExample
+                text: createdExample,
+                includeAudit: true
                 );
 
             service.WithHeader("X-Watson-Test", "1");
@@ -800,7 +852,8 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 workspaceId: workspaceId,
                 intent: createdIntent,
                 text: createdExample,
-                newText: updatedExample
+                newText: updatedExample,
+                includeAudit: true
                 );
 
             service.WithHeader("X-Watson-Test", "1");
@@ -821,10 +874,14 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
 
             Assert.IsNotNull(listExamplesResult);
             Assert.IsNotNull(createExampleResult);
+            Assert.IsNotNull(createExampleResult.Result.Created);
+            Assert.IsNotNull(createExampleResult.Result.Updated);
             Assert.IsTrue(createExampleResult.Result.Text == createdExample);
             Assert.IsNotNull(getExampleResult);
             Assert.IsTrue(getExampleResult.Result.Text == createdExample);
             Assert.IsNotNull(updateExampleResult);
+            Assert.IsNotNull(updateExampleResult.Result.Created);
+            Assert.IsNotNull(updateExampleResult.Result.Updated);
             Assert.IsTrue(updateExampleResult.Result.Text == updatedExample);
             Assert.IsNotNull(deleteExampleResult);
         }
@@ -854,7 +911,8 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 workspaceId: workspaceId,
                 dialogNode: dialogNodeName,
                 description: dialogNodeDesc,
-                disambiguationOptOut: true
+                disambiguationOptOut: true,
+                includeAudit: true
                 );
 
             service.WithHeader("X-Watson-Test", "1");
@@ -872,7 +930,8 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 dialogNode: dialogNodeName,
                 newDialogNode: updatedDialogNodeName,
                 newDescription: updatedDialogNodeDescription,
-                newDisambiguationOptOut: true
+                newDisambiguationOptOut: true,
+                includeAudit: true
                 );
 
             service.WithHeader("X-Watson-Test", "1");
@@ -887,6 +946,8 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
 
             Assert.IsNotNull(listDialogNodes);
             Assert.IsNotNull(createDialogNodeResult);
+            Assert.IsNotNull(createDialogNodeResult.Result.Created);
+            Assert.IsNotNull(createDialogNodeResult.Result.Updated);
             Assert.IsTrue(createDialogNodeResult.Result._DialogNode == dialogNodeName);
             Assert.IsTrue(createDialogNodeResult.Result.Description == dialogNodeDesc);
             Assert.IsTrue(createDialogNodeResult.Result.DisambiguationOptOut == true);
@@ -894,6 +955,8 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
             Assert.IsTrue(getDialogNodeResult.Result._DialogNode == dialogNodeName);
             Assert.IsTrue(getDialogNodeResult.Result.Description == dialogNodeDesc);
             Assert.IsNotNull(updateDialogNodeResult);
+            Assert.IsNotNull(updateDialogNodeResult.Result.Created);
+            Assert.IsNotNull(updateDialogNodeResult.Result.Updated);
             Assert.IsTrue(updateDialogNodeResult.Result._DialogNode == updatedDialogNodeName);
             Assert.IsTrue(updateDialogNodeResult.Result.Description == updatedDialogNodeDescription);
             Assert.IsTrue(updateDialogNodeResult.Result.DisambiguationOptOut == true);

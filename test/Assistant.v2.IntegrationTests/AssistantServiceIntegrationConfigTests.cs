@@ -146,8 +146,6 @@ namespace IBM.Watson.Assistant.v2.IntegrationTests
                 input: input
                 );
 
-
-
             input.Text = inputString1;
 
             service.WithHeader("X-Watson-Test", "1");
@@ -203,6 +201,14 @@ namespace IBM.Watson.Assistant.v2.IntegrationTests
             Assert.IsNotNull(createSessionResult.Result.SessionId);
             Assert.IsNotNull(messageResult0.Result.Output);
             Assert.IsNotNull(messageResult1.Result.Output);
+            Assert.IsTrue(messageResult1.Result.Output.Entities[0].Entity == "holiday");
+            Assert.IsTrue(messageResult1.Result.Output.Entities[0].Value == "christmas");
+            Assert.IsTrue(messageResult1.Result.Output.Entities[1].Entity == "sys-date");
+            Assert.IsTrue(messageResult1.Result.Output.Entities[1].Value.Contains("12-25"));
+            Assert.IsTrue(messageResult1.Result.Output.Entities[1].Interpretation.Timezone == "GMT");
+            Assert.IsTrue(messageResult1.Result.Output.Entities[1].Interpretation.Festival == "christmas");
+            Assert.IsTrue(messageResult1.Result.Output.Entities[1].Interpretation.Granularity == RuntimeEntityInterpretation.GranularityEnumValue.DAY);
+            Assert.IsTrue(messageResult1.Result.Output.Entities[1].Interpretation.CalendarType == "GREGORIAN");
             Assert.IsNotNull(messageResult2.Result.Output);
             Assert.IsNotNull(messageResult3.Result.Output);
             Assert.IsNotNull(messageResult4.Result.Output);

@@ -48,11 +48,8 @@ namespace IBM.Watson.CompareComply.v1.IntegrationTests
         {
             service = new CompareComplyService(versionDate);
 
-            var parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.Parent.Parent.FullName;
-            string credentialsFilepath = parentDirectory + "projects" + Path.DirectorySeparatorChar + "sdk-credentials" + Path.DirectorySeparatorChar + "credentials.json";
-
-            objectStorageCredentialsInputFilepath = parentDirectory + "projects" + Path.DirectorySeparatorChar + "sdk-credentials" + Path.DirectorySeparatorChar + "cloud-object-storage-credentials-input.json";
-            objectStorageCredentialsOutputFilepath = parentDirectory + "projects" + Path.DirectorySeparatorChar + "sdk-credentials" + Path.DirectorySeparatorChar + "cloud-object-storage-credentials-output.json";
+            objectStorageCredentialsInputFilepath = "C:\\projects\\sdk-credentials\\cloud-object-storage-credentials-input.json";
+            objectStorageCredentialsOutputFilepath = "C:\\projects\\sdk-credentials\\cloud-object-storage-credentials-output.json";
         }
 
         #region HTML Conversion

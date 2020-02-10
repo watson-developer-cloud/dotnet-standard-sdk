@@ -46,11 +46,22 @@ install:
     nuget install -Verbosity quiet -OutputDirectory packages secure-file -ExcludeVersion
 
 before_build:
-- ps: >-
-    if($env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null)
-    {
-      git clone https://$env:CREDENTIALS_GITHUB_TOKEN@github.ibm.com/germanatt/sdk-credentials.git C:\projects\sdk-credentials
-    }
+- sh: >-
+    CREDENTIALS_DIRECTORY="C:\projects\sdk-credentials"
+
+    if [ -d $CREDENTIALS_DIRECTORY ]
+    then
+        echo "Removing SDK credentials from C:\projects\sdk-credentials"
+        rm -rf $CREDENTIALS_DIRECTORY
+    fi
+
+    if [ -z ${APPVEYOR_PULL_REQUEST_NUMBER+null} ]
+    then
+        echo "APPVEYOR_PULL_REQUEST_NUMBER is null, downloading credentials to C:\projects\sdk-credentials"
+        git clone https://$CREDENTIALS_GITHUB_TOKEN@github.ibm.com/germanatt/sdk-credentials.git C:\\projects\\sdk-credentials
+    else
+        echo "APPVEYOR_PULL_REQUEST_NUMBER is $APPVEYOR_PULL_REQUEST_NUMBER - skip cloning credentials"
+    fi
 
     dotnet restore
 

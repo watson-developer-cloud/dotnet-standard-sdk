@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2017, 2019.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -70,7 +70,7 @@ namespace IBM.Watson.ToneAnalyzer.v3
         /// For `text/html`, the service removes HTML tags and analyzes only the textual content.
         ///
         /// **See also:** [Using the general-purpose
-        /// endpoint](https://cloud.ibm.com/docs/services/tone-analyzer?topic=tone-analyzer-utgpe#utgpe).
+        /// endpoint](https://cloud.ibm.com/docs/tone-analyzer?topic=tone-analyzer-utgpe#utgpe).
         /// </summary>
         /// <param name="toneInput">JSON, plain text, or HTML input that contains the content to be analyzed. For JSON
         /// input, provide an object of type `ToneInput`.</param>
@@ -177,7 +177,7 @@ namespace IBM.Watson.ToneAnalyzer.v3
         /// JSON content is effectively always UTF-8.
         ///
         /// **See also:** [Using the customer-engagement
-        /// endpoint](https://cloud.ibm.com/docs/services/tone-analyzer?topic=tone-analyzer-utco#utco).
+        /// endpoint](https://cloud.ibm.com/docs/tone-analyzer?topic=tone-analyzer-utco#utco).
         /// </summary>
         /// <param name="utterances">An object that contains the content to be analyzed.</param>
         /// <param name="contentLanguage">The language of the input text for the request: English or French. Regional

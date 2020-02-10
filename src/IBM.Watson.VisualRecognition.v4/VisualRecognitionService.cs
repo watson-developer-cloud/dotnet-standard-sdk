@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2019, 2020.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -870,9 +870,9 @@ namespace IBM.Watson.VisualRecognition.v4
         /// </summary>
         /// <param name="collectionId">The identifier of the collection.</param>
         /// <param name="_object">The name of the object.</param>
-        /// <param name="updateObjectMetadata"> (optional)</param>
+        /// <param name="updateObjectMetadata"></param>
         /// <returns><see cref="UpdateObjectMetadata" />UpdateObjectMetadata</returns>
-        public DetailedResponse<UpdateObjectMetadata> UpdateObjectMetadata(string collectionId, string _object, string newObject = null)
+        public DetailedResponse<UpdateObjectMetadata> UpdateObjectMetadata(string collectionId, string _object, string newObject)
         {
             if (string.IsNullOrEmpty(collectionId))
             {
@@ -889,6 +889,10 @@ namespace IBM.Watson.VisualRecognition.v4
             else
             {
                 _object = Uri.EscapeDataString(_object);
+            }
+            if (string.IsNullOrEmpty(newObject))
+            {
+                throw new ArgumentNullException("`newObject` is required for `UpdateObjectMetadata`");
             }
 
             if (string.IsNullOrEmpty(VersionDate))

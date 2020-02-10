@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2019, 2020.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ namespace IBM.Watson.VisualRecognition.v4
         DetailedResponse<object> DeleteImage(string collectionId, string imageId);
         DetailedResponse<System.IO.MemoryStream> GetJpegImage(string collectionId, string imageId, string size = null);
         DetailedResponse<ObjectMetadataList> ListObjectMetadata(string collectionId);
-        DetailedResponse<UpdateObjectMetadata> UpdateObjectMetadata(string collectionId, string _object, string newObject = null);
+        DetailedResponse<UpdateObjectMetadata> UpdateObjectMetadata(string collectionId, string _object, string newObject);
         DetailedResponse<ObjectMetadata> GetObjectMetadata(string collectionId, string _object);
         DetailedResponse<object> DeleteObject(string collectionId, string _object);
         DetailedResponse<Collection> Train(string collectionId);

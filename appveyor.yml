@@ -50,11 +50,11 @@ before_build:
     SET CREDENTIALS_DIRECTORY="C:\projects\sdk-credentials"
 
 
-    if NOT DEFINED APPVEYOR_PULL_REQUEST_NUMBER (
-        @echo "APPVEYOR_PULL_REQUEST_NUMBER is null, downloading credentials to %%CREDENTIALS_DIRECTORY%%"
-        git clone https://%%CREDENTIALS_GITHUB_TOKEN%%@github.ibm.com/germanatt/sdk-credentials.git %%CREDENTIALS_DIRECTORY%%
-    ) else (
-        echo "APPVEYOR_PULL_REQUEST_NUMBER is %%APPVEYOR_PULL_REQUEST_NUMBER%% - skip cloning credentials"
+    IF NOT DEFINED APPVEYOR_PULL_REQUEST_NUMBER (
+        ECHO "APPVEYOR_PULL_REQUEST_NUMBER is null, downloading credentials to %CREDENTIALS_DIRECTORY%"
+        git clone https://%CREDENTIALS_GITHUB_TOKEN%@github.ibm.com/germanatt/sdk-credentials.git %CREDENTIALS_DIRECTORY%
+    ) ELSE (
+        ECHO "APPVEYOR_PULL_REQUEST_NUMBER is %APPVEYOR_PULL_REQUEST_NUMBER% - skip cloning credentials"
     )
 
 

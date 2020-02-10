@@ -46,7 +46,6 @@ install:
     nuget install -Verbosity quiet -OutputDirectory packages secure-file -ExcludeVersion
 
 before_build:
-- cmd: >-
     SET CREDENTIALS_DIRECTORY="C:\projects\sdk-credentials"
 
 

@@ -255,9 +255,9 @@ after_test:
             ECHO "APPVEYOR_PULL_REQUEST_NUMBER is %APPVEYOR_PULL_REQUEST_NUMBER%, not running semantic release"
         )
     ) ELSE (
-        ECHO "BRANCH_NAME is not master - BRANCH_NAME: %BRANCH_NAME%, not running semantic release"
+        ECHO "BRANCH_NAME is not master - BRANCH_NAME is %BRANCH_NAME%, not running semantic release"
         IF BRANCH_NAME==%APPVEYOR_REPO_TAG_NAME% (
-            ECHO "BRANCH_NAME is a tag: %APPVEYOR_PULL_REQUEST_NUMBER%. Building Nuget packages"
+            ECHO "BRANCH_NAME is a tag is %APPVEYOR_PULL_REQUEST_NUMBER%. Building Nuget packages"
             dotnet pack .\src\IBM.Watson.Assistant.v1\IBM.Watson.Assistant.v1.csproj --configuration Release
             dotnet pack .\src\IBM.Watson.Assistant.v2\IBM.Watson.Assistant.v2.csproj --configuration Release
             dotnet pack .\src\IBM.Watson.CompareComply.v1\IBM.Watson.CompareComply.v1.csproj --configuration Release

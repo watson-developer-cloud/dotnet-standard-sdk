@@ -50,6 +50,8 @@ before_build:
 
 
     git config --global credential.helper store
+
+    
     ECHO "https://$(%CREDENTIALS_GITHUB_TOKEN%):x-oauth-basic@github.ibm.com`n">>"%USERPROFILE%\.git-credentials"
 
 

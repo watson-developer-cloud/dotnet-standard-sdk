@@ -56,10 +56,15 @@ before_build:
 
 
     IF NOT DEFINED APPVEYOR_PULL_REQUEST_NUMBER (
+
         ECHO "APPVEYOR_PULL_REQUEST_NUMBER is null, downloading credentials to %CREDENTIALS_DIRECTORY%"
+
         git clone https://github.ibm.com/germanatt/sdk-credentials.git %CREDENTIALS_DIRECTORY%
+
     ) ELSE (
+
         ECHO "APPVEYOR_PULL_REQUEST_NUMBER is %APPVEYOR_PULL_REQUEST_NUMBER% - skip cloning credentials"
+
     )
 
 
@@ -247,32 +252,59 @@ after_test:
 
 
     IF NOT BRANCH_NAME=="master" (
+
         ECHO "BRANCH_NAME is master"
+
         IF NOT DEFINED APPVEYOR_PULL_REQUEST_NUMBER (
+
             ECHO "APPVEYOR_PULL_REQUEST_NUMBER is not defined, running semantic release"
+
             npx semantic-release@15.11.0
+
         ) ELSE (
+
             ECHO "APPVEYOR_PULL_REQUEST_NUMBER is %APPVEYOR_PULL_REQUEST_NUMBER%, not running semantic release"
+
         )
+
     ) ELSE (
+
         ECHO "BRANCH_NAME is not master - BRANCH_NAME is %BRANCH_NAME%, not running semantic release"
+
         IF BRANCH_NAME==%APPVEYOR_REPO_TAG_NAME% (
+
             ECHO "BRANCH_NAME is a tag is %APPVEYOR_PULL_REQUEST_NUMBER%. Building Nuget packages"
+
             dotnet pack .\src\IBM.Watson.Assistant.v1\IBM.Watson.Assistant.v1.csproj --configuration Release
+
             dotnet pack .\src\IBM.Watson.Assistant.v2\IBM.Watson.Assistant.v2.csproj --configuration Release
+
             dotnet pack .\src\IBM.Watson.CompareComply.v1\IBM.Watson.CompareComply.v1.csproj --configuration Release
+
             dotnet pack .\src\IBM.Watson.Discovery.v1\IBM.Watson.Discovery.v1.csproj --configuration Release
+
             dotnet pack .\src\IBM.Watson.Discovery.v2\IBM.Watson.Discovery.v2.csproj --configuration Release
+
             dotnet pack .\src\IBM.Watson.LanguageTranslator.v3\IBM.Watson.LanguageTranslator.v3.csproj --configuration Release
+
             dotnet pack .\src\IBM.Watson.NaturalLanguageClassifier.v1\IBM.Watson.NaturalLanguageClassifier.v1.csproj --configuration Release
+            
             dotnet pack .\src\IBM.Watson.NaturalLanguageUnderstanding.v1\IBM.Watson.NaturalLanguageUnderstanding.v1.csproj --configuration Release
+            
             dotnet pack .\src\IBM.Watson.PersonalityInsights.v3\IBM.Watson.PersonalityInsights.v3.csproj --configuration Release
+            
             dotnet pack .\src\IBM.Watson.SpeechToText.v1\IBM.Watson.SpeechToText.v1.csproj --configuration Release
+            
             dotnet pack .\src\IBM.Watson.TextToSpeech.v1\IBM.Watson.TextToSpeech.v1.csproj --configuration Release
+            
             dotnet pack .\src\IBM.Watson.ToneAnalyzer.v3\IBM.Watson.ToneAnalyzer.v3.csproj --configuration Release
+            
             dotnet pack .\src\IBM.Watson.VisualRecognition.v3\IBM.Watson.VisualRecognition.v3.csproj --configuration Release
+            
             dotnet pack .\src\IBM.Watson.VisualRecognition.v4\IBM.Watson.VisualRecognition.v4.csproj --configuration Release
+
         )
+        
     )
 
 artifacts:

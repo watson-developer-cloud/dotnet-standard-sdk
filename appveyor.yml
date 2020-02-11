@@ -46,29 +46,16 @@ install:
     nuget install -Verbosity quiet -OutputDirectory packages secure-file -ExcludeVersion
 
 before_build:
-    SET CREDENTIALS_DIRECTORY="C:\projects\sdk-credentials"
-
-
-    git config --global credential.helper store
-
-
-    ECHO "https://$(%CREDENTIALS_GITHUB_TOKEN%):x-oauth-basic@github.ibm.com`n">>"%USERPROFILE%\.git-credentials"
-
-
-    IF NOT DEFINED APPVEYOR_PULL_REQUEST_NUMBER (
-
-        ECHO "APPVEYOR_PULL_REQUEST_NUMBER is null, downloading credentials to %CREDENTIALS_DIRECTORY%"
-
-        git clone https://github.ibm.com/germanatt/sdk-credentials.git %CREDENTIALS_DIRECTORY%
-
-    ) ELSE (
-
-        ECHO "APPVEYOR_PULL_REQUEST_NUMBER is %APPVEYOR_PULL_REQUEST_NUMBER% - skip cloning credentials"
-
-    )
-
-
+- ps: >-
+    if($env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null)
+    {
+      Write-Output "APPVEYOR_PULL_REQUEST_NUMBER is null, cloning credentials."
+      
+      git clone https://$env:CREDENTIALS_GITHUB_TOKEN@github.ibm.com/germanatt/sdk-credentials.git C:\projects\sdk-credentials
+    }
+    
     dotnet restore
+
 build:
   project: IBM.Watson.sln
   verbosity: minimal

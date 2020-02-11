@@ -14,7 +14,7 @@ environment:
     CRED_SECRET:
         secure: eEcA/09B7XzeTSb3GlaeqcWfQ/TemXxAq9/0AFM5+z8= #pragma: whitelist secret
     CREDENTIALS_GITHUB_TOKEN:
-        secure: gevsMhy8RTWMdf7MjOnIo5QaN6JpL9DPK6I+Go5ByZir5LDwyFsv9hO6nBjGTg8n #pragma: whitelist secret
+        secure: Zkh0ZB9E5PB/Kq5maKln+aKSH0xqDjR2LTDaJRmMaUYVOV7nzYsON4KlkqCKCgGs #pragma: whitelist secret
     GITHUB_TOKEN:
         secure: +B2bs86RVtJtlbkB+cTf9bkqnNlFJi/PbBBPzR5jlUlLLZoOc+ZgqgQLwee4tCT+ #pragma: whitelist secret
     IBM_CREDENTIALS_FILE: C:\projects\sdk-credentials\ibm-credentials.env
@@ -49,7 +49,7 @@ before_build:
 - ps: >-
     if($env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null)
     {
-      git clone https://$env:CREDENTIALS_GITHUB_TOKEN@github.ibm.com/germanatt/sdk-credentials.git C:\projects\sdk-credentials
+      git clone https://$env:CREDENTIALS_GITHUB_TOKEN@github.ibm.com/germanatt/sdk-credentials.git C:\projects\sdk-credentials -q
     }
 
     dotnet restore
@@ -238,7 +238,7 @@ test_script:
         
         Write-Output "branchName is master and not a pull request - running semantic release"
 
-        npx semantic-release@15.11.0
+        npx -q semantic-release@15.11.0
 
     }
 

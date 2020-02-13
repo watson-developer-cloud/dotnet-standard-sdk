@@ -1,26 +1,26 @@
 {
-	"branch": "master",
-	"debug": true,
-	"verifyConditions": [
-		"@semantic-release/changelog",
-		"@semantic-release/git"
-	],
-	"plugins": [
-		"@semantic-release/commit-analyzer",
-		"@semantic-release/release-notes-generator",
-		"@semantic-release/changelog",
-		[
-			"@semantic-release/exec",
-			{
-				"prepareCmd": "bumpversion --allow-dirty --current-version ${lastRelease.version} --new-version ${nextRelease.version} patch"
-			}
-		],
-		[
-			"@semantic-release/git",
-			{
-				"message": "chore(release): ${nextRelease.version} release notes\n\n${nextRelease.notes}"
-			}
-		],
-		"@semantic-release/github"
-	]
+    "branch": "master",
+    "debug": true,
+    "verifyConditions": [
+        "@semantic-release/changelog",
+        "@semantic-release/git"
+    ],
+    "plugins": [
+        "@semantic-release/commit-analyzer",
+        "@semantic-release/release-notes-generator",
+        "@semantic-release/changelog",
+        [
+            "@semantic-release/exec",
+            {
+                "prepareCmd": "bumpversion --allow-dirty --current-version ${lastRelease.version} --new-version ${nextRelease.version} patch"
+            }
+        ],
+        [
+            "@semantic-release/git",
+            {
+                "message": "chore(release): ${nextRelease.version} release notes\n\n${nextRelease.notes}"
+            }
+        ],
+        "@semantic-release/github"
+    ]
 }

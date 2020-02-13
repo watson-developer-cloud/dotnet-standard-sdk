@@ -17,5 +17,6 @@ var searchData=
   ['workspacesystemsettings_2ecs',['WorkspaceSystemSettings.cs',['../da/df2/_workspace_system_settings_8cs.html',1,'']]],
   ['workspacesystemsettingsdisambiguation_2ecs',['WorkspaceSystemSettingsDisambiguation.cs',['../de/d85/_workspace_system_settings_disambiguation_8cs.html',1,'']]],
   ['workspacesystemsettingsofftopic_2ecs',['WorkspaceSystemSettingsOffTopic.cs',['../de/d3d/_workspace_system_settings_off_topic_8cs.html',1,'']]],
+  ['workspacesystemsettingssystementities_2ecs',['WorkspaceSystemSettingsSystemEntities.cs',['../da/d7e/_workspace_system_settings_system_entities_8cs.html',1,'']]],
   ['workspacesystemsettingstooling_2ecs',['WorkspaceSystemSettingsTooling.cs',['../da/d79/_workspace_system_settings_tooling_8cs.html',1,'']]]
 ];

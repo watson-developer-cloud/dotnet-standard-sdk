@@ -42,6 +42,8 @@ var namespace_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model =
     [ "OutputData", "df/d42/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_output_data.html", "df/d42/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_output_data" ],
     [ "Pagination", "d0/d4b/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_pagination.html", "d0/d4b/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_pagination" ],
     [ "RuntimeEntity", "d2/db2/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity.html", "d2/db2/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity" ],
+    [ "RuntimeEntityInterpretation", "de/d7f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity_interpretation.html", "de/d7f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity_interpretation" ],
+    [ "RuntimeEntityRole", "d5/ddf/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity_role.html", "d5/ddf/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity_role" ],
     [ "RuntimeIntent", "d6/d26/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_intent.html", "d6/d26/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_intent" ],
     [ "RuntimeResponseGeneric", "db/d07/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic.html", "db/d07/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic" ],
     [ "Synonym", "d4/d65/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_synonym.html", "d4/d65/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_synonym" ],
@@ -56,5 +58,6 @@ var namespace_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model =
     [ "WorkspaceSystemSettings", "dc/d9f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings.html", "dc/d9f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings" ],
     [ "WorkspaceSystemSettingsDisambiguation", "db/d06/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings_disambiguation.html", "db/d06/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings_disambiguation" ],
     [ "WorkspaceSystemSettingsOffTopic", "d7/dd1/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings_off_topic.html", "d7/dd1/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings_off_topic" ],
+    [ "WorkspaceSystemSettingsSystemEntities", "df/dff/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings_system_entities.html", "df/dff/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings_system_entities" ],
     [ "WorkspaceSystemSettingsTooling", "d9/d3b/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings_tooling.html", "d9/d3b/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings_tooling" ]
 ];

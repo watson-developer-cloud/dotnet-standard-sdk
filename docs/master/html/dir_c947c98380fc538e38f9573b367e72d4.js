@@ -51,6 +51,12 @@ var dir_c947c98380fc538e38f9573b367e72d4 =
     [ "ObjectDetail.cs", "d7/d8b/_object_detail_8cs.html", [
       [ "ObjectDetail", "d1/d03/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_object_detail.html", "d1/d03/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_object_detail" ]
     ] ],
+    [ "ObjectMetadata.cs", "d6/d13/_object_metadata_8cs.html", [
+      [ "ObjectMetadata", "da/d5c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_object_metadata.html", "da/d5c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_object_metadata" ]
+    ] ],
+    [ "ObjectMetadataList.cs", "dc/d6f/_object_metadata_list_8cs.html", [
+      [ "ObjectMetadataList", "df/d9c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_object_metadata_list.html", "df/d9c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_object_metadata_list" ]
+    ] ],
     [ "ObjectTrainingStatus.cs", "d4/d23/_object_training_status_8cs.html", [
       [ "ObjectTrainingStatus", "d3/dd8/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_object_training_status.html", "d3/dd8/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_object_training_status" ]
     ] ],
@@ -70,6 +76,9 @@ var dir_c947c98380fc538e38f9573b367e72d4 =
     ] ],
     [ "TrainingStatus.cs", "d0/d64/_i_b_m_8_watson_8_visual_recognition_8v4_2_model_2_training_status_8cs.html", [
       [ "TrainingStatus", "db/d29/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_training_status.html", "db/d29/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_training_status" ]
+    ] ],
+    [ "UpdateObjectMetadata.cs", "da/db0/_update_object_metadata_8cs.html", [
+      [ "UpdateObjectMetadata", "d7/d9b/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_update_object_metadata.html", "d7/d9b/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_update_object_metadata" ]
     ] ],
     [ "Warning.cs", "df/dce/_i_b_m_8_watson_8_visual_recognition_8v4_2_model_2_warning_8cs.html", [
       [ "Warning", "d3/d03/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_warning.html", "d3/d03/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_warning" ],

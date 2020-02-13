@@ -282,8 +282,8 @@ Properties</h2></td></tr>
 <p>Get profile. </p>
 <p>Generates a personality profile for the author of the input text. The service accepts a maximum of 20 MB of input content, but it requires much less text to produce an accurate profile. The service can analyze text in Arabic, English, Japanese, Korean, or Spanish. It can return its results in a variety of languages.</p>
 <p><b>See also:</b></p><ul>
-<li><a href="https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-input#input">Requesting a profile</a></li>
-<li><a href="https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-input#sufficient">Providing sufficient input</a></li>
+<li><a href="https://cloud.ibm.com/docs/personality-insights?topic=personality-insights-input#input">Requesting a profile</a></li>
+<li><a href="https://cloud.ibm.com/docs/personality-insights?topic=personality-insights-input#sufficient">Providing sufficient input</a></li>
 </ul>
 <h3>Content types</h3>
 <p>You can provide input content as plain text (<code>text/plain</code>), HTML (<code>text/html</code>), or JSON (<code>application/json</code>) by specifying the <b>Content-Type</b> parameter. The default is <code>text/plain</code>.</p><ul>
@@ -291,16 +291,16 @@ Properties</h2></td></tr>
 <li>Per the HTTP specification, the default encoding for plain text and HTML is ISO-8859-1 (effectively, the ASCII character set).</li>
 </ul>
 <p>When specifying a content type of plain text or HTML, include the <code>charset</code> parameter to indicate the character encoding of the input text; for example, <code>Content-Type: text/plain;charset=utf-8</code>.</p>
-<p><b>See also:</b> <a href="https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-input#formats">Specifying request and response formats</a></p>
+<p><b>See also:</b> <a href="https://cloud.ibm.com/docs/personality-insights?topic=personality-insights-input#formats">Specifying request and response formats</a></p>
 <h3>Accept types</h3>
 <p>You must request a response as JSON (<code>application/json</code>) or comma-separated values (<code>text/csv</code>) by specifying the <b>Accept</b> parameter. CSV output includes a fixed number of columns. Set the <b>csv_headers</b> parameter to <code>true</code> to request optional column headers for CSV output.</p>
 <p><b>See also:</b></p><ul>
-<li><a href="https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-output#output">Understanding a JSON profile</a></li>
-<li><a href="https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-outputCSV#outputCSV">Understanding a CSV profile</a>. </li>
+<li><a href="https://cloud.ibm.com/docs/personality-insights?topic=personality-insights-output#output">Understanding a JSON profile</a></li>
+<li><a href="https://cloud.ibm.com/docs/personality-insights?topic=personality-insights-outputCSV#outputCSV">Understanding a CSV profile</a>. </li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">content</td><td>A maximum of 20 MB of content to analyze, though the service requires much less text; for more information, see <a href="https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-input#sufficient">Providing sufficient input</a>. For JSON input, provide an object of type <code>Content</code>.</td></tr>
+    <tr><td class="paramname">content</td><td>A maximum of 20 MB of content to analyze, though the service requires much less text; for more information, see <a href="https://cloud.ibm.com/docs/personality-insights?topic=personality-insights-input#sufficient">Providing sufficient input</a>. For JSON input, provide an object of type <code>Content</code>.</td></tr>
     <tr><td class="paramname">contentType</td><td>The type of the input. For more information, see <b>Content types</b> in the method description. (optional, default to text/plain)</td></tr>
     <tr><td class="paramname">contentLanguage</td><td>The language of the input text for the request: Arabic, English, Japanese, Korean, or Spanish. Regional variants are treated as their parent language; for example, <code>en-US</code> is interpreted as <code>en</code>.</td></tr>
   </table>
@@ -389,8 +389,8 @@ Properties</h2></td></tr>
 <p>Get profile as csv. </p>
 <p>Generates a personality profile for the author of the input text. The service accepts a maximum of 20 MB of input content, but it requires much less text to produce an accurate profile. The service can analyze text in Arabic, English, Japanese, Korean, or Spanish. It can return its results in a variety of languages.</p>
 <p><b>See also:</b></p><ul>
-<li><a href="https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-input#input">Requesting a profile</a></li>
-<li><a href="https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-input#sufficient">Providing sufficient input</a></li>
+<li><a href="https://cloud.ibm.com/docs/personality-insights?topic=personality-insights-input#input">Requesting a profile</a></li>
+<li><a href="https://cloud.ibm.com/docs/personality-insights?topic=personality-insights-input#sufficient">Providing sufficient input</a></li>
 </ul>
 <h3>Content types</h3>
 <p>You can provide input content as plain text (<code>text/plain</code>), HTML (<code>text/html</code>), or JSON (<code>application/json</code>) by specifying the <b>Content-Type</b> parameter. The default is <code>text/plain</code>.</p><ul>
@@ -398,16 +398,16 @@ Properties</h2></td></tr>
 <li>Per the HTTP specification, the default encoding for plain text and HTML is ISO-8859-1 (effectively, the ASCII character set).</li>
 </ul>
 <p>When specifying a content type of plain text or HTML, include the <code>charset</code> parameter to indicate the character encoding of the input text; for example, <code>Content-Type: text/plain;charset=utf-8</code>.</p>
-<p><b>See also:</b> <a href="https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-input#formats">Specifying request and response formats</a></p>
+<p><b>See also:</b> <a href="https://cloud.ibm.com/docs/personality-insights?topic=personality-insights-input#formats">Specifying request and response formats</a></p>
 <h3>Accept types</h3>
 <p>You must request a response as JSON (<code>application/json</code>) or comma-separated values (<code>text/csv</code>) by specifying the <b>Accept</b> parameter. CSV output includes a fixed number of columns. Set the <b>csv_headers</b> parameter to <code>true</code> to request optional column headers for CSV output.</p>
 <p><b>See also:</b></p><ul>
-<li><a href="https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-output#output">Understanding a JSON profile</a></li>
-<li><a href="https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-outputCSV#outputCSV">Understanding a CSV profile</a>. </li>
+<li><a href="https://cloud.ibm.com/docs/personality-insights?topic=personality-insights-output#output">Understanding a JSON profile</a></li>
+<li><a href="https://cloud.ibm.com/docs/personality-insights?topic=personality-insights-outputCSV#outputCSV">Understanding a CSV profile</a>. </li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">content</td><td>A maximum of 20 MB of content to analyze, though the service requires much less text; for more information, see <a href="https://cloud.ibm.com/docs/services/personality-insights?topic=personality-insights-input#sufficient">Providing sufficient input</a>. For JSON input, provide an object of type <code>Content</code>.</td></tr>
+    <tr><td class="paramname">content</td><td>A maximum of 20 MB of content to analyze, though the service requires much less text; for more information, see <a href="https://cloud.ibm.com/docs/personality-insights?topic=personality-insights-input#sufficient">Providing sufficient input</a>. For JSON input, provide an object of type <code>Content</code>.</td></tr>
     <tr><td class="paramname">contentType</td><td>The type of the input. For more information, see <b>Content types</b> in the method description. (optional, default to text/plain)</td></tr>
     <tr><td class="paramname">contentLanguage</td><td>The language of the input text for the request: Arabic, English, Japanese, Korean, or Spanish. Regional variants are treated as their parent language; for example, <code>en-US</code> is interpreted as <code>en</code>.</td></tr>
   </table>

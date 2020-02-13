@@ -88,6 +88,7 @@ $(document).ready(function(){initNavTree('da/d56/class_i_b_m_1_1_watson_1_1_assi
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#properties">Properties</a> &#124;
 <a href="../../d9/d4b/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global_system-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -98,8 +99,17 @@ $(document).ready(function(){initNavTree('da/d56/class_i_b_m_1_1_watson_1_1_assi
 <p>Built-in system properties that apply to all skills used by the assistant.  
  <a href="../../da/d56/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global_system.html#details">More...</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d21/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global_system_1_1_locale_enum_value.html">LocaleEnumValue</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The language code for localization in the user input. The specified locale overrides the default for the assistant, and is used for interpreting entity values in user input such as date values. For example, <code>04/03/2018</code> might be interpreted either as April 3 or March 4, depending on the locale.  <a href="../../d8/d21/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global_system_1_1_locale_enum_value.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
+<tr class="memitem:a1c906aeabafe2144e5ec04d8684e5801"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d56/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global_system.html#a1c906aeabafe2144e5ec04d8684e5801">Locale</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a1c906aeabafe2144e5ec04d8684e5801"><td class="mdescLeft">&#160;</td><td class="mdescRight">The language code for localization in the user input. The specified locale overrides the default for the assistant, and is used for interpreting entity values in user input such as date values. For example, <code>04/03/2018</code> might be interpreted either as April 3 or March 4, depending on the locale.  <a href="#a1c906aeabafe2144e5ec04d8684e5801">More...</a><br /></td></tr>
+<tr class="separator:a1c906aeabafe2144e5ec04d8684e5801"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d9a36836ac7dce43d8df183441d8ca3"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d56/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global_system.html#a7d9a36836ac7dce43d8df183441d8ca3">Timezone</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a7d9a36836ac7dce43d8df183441d8ca3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The user time zone. The assistant uses the time zone to correctly resolve relative time references.  <a href="#a7d9a36836ac7dce43d8df183441d8ca3">More...</a><br /></td></tr>
 <tr class="separator:a7d9a36836ac7dce43d8df183441d8ca3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -109,10 +119,64 @@ Properties</h2></td></tr>
 <tr class="memitem:a20968481a8146d6b5d96cb4598778d9f"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d56/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global_system.html#a20968481a8146d6b5d96cb4598778d9f">TurnCount</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a20968481a8146d6b5d96cb4598778d9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">A counter that is automatically incremented with each turn of the conversation. A value of 1 indicates that this is the the first turn of a new conversation, which can affect the behavior of some skills (for example, triggering the start node of a dialog).  <a href="#a20968481a8146d6b5d96cb4598778d9f">More...</a><br /></td></tr>
 <tr class="separator:a20968481a8146d6b5d96cb4598778d9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4bc9712cb95c97e15b669a98616b160"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d56/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global_system.html#af4bc9712cb95c97e15b669a98616b160">ReferenceTime</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:af4bc9712cb95c97e15b669a98616b160"><td class="mdescLeft">&#160;</td><td class="mdescRight">The base time for interpreting any relative time mentions in the user input. The specified time overrides the current server time, and is used to calculate times mentioned in relative terms such as <code>now</code> or <code>tomorrow</code>. This can be useful for simulating past or future times for testing purposes, or when analyzing documents such as news articles.  <a href="#af4bc9712cb95c97e15b669a98616b160">More...</a><br /></td></tr>
+<tr class="separator:af4bc9712cb95c97e15b669a98616b160"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Built-in system properties that apply to all skills used by the assistant. </p>
 </div><h2 class="groupheader">Property Documentation</h2>
+<a id="a1c906aeabafe2144e5ec04d8684e5801"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c906aeabafe2144e5ec04d8684e5801">&#9670;&nbsp;</a></span>Locale</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string IBM.Watson.Assistant.v2.Model.MessageContextGlobalSystem.Locale</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The language code for localization in the user input. The specified locale overrides the default for the assistant, and is used for interpreting entity values in user input such as date values. For example, <code>04/03/2018</code> might be interpreted either as April 3 or March 4, depending on the locale. </p>
+<p>This property is included only if the new system entities are enabled for the skill. Constants for possible values can be found using <a class="el" href="../../d8/d21/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global_system_1_1_locale_enum_value.html" title="The language code for localization in the user input. The specified locale overrides the default for ...">MessageContextGlobalSystem.LocaleEnumValue</a> </p>
+
+</div>
+</div>
+<a id="af4bc9712cb95c97e15b669a98616b160"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4bc9712cb95c97e15b669a98616b160">&#9670;&nbsp;</a></span>ReferenceTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string IBM.Watson.Assistant.v2.Model.MessageContextGlobalSystem.ReferenceTime</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The base time for interpreting any relative time mentions in the user input. The specified time overrides the current server time, and is used to calculate times mentioned in relative terms such as <code>now</code> or <code>tomorrow</code>. This can be useful for simulating past or future times for testing purposes, or when analyzing documents such as news articles. </p>
+<p>This value must be a UTC time value formatted according to ISO 8601 (for example, <code>2019-06-26T12:00:00Z</code> for noon on 26 June 2019.</p>
+<p>This property is included only if the new system entities are enabled for the skill. </p>
+
+</div>
+</div>
 <a id="a7d9a36836ac7dce43d8df183441d8ca3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7d9a36836ac7dce43d8df183441d8ca3">&#9670;&nbsp;</a></span>Timezone</h2>
 

@@ -33,7 +33,8 @@ var dir_e05cd18fe37823e65ffef40a75ea096b =
       [ "MessageContextGlobal", "d8/d9a/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global.html", "d8/d9a/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global" ]
     ] ],
     [ "MessageContextGlobalSystem.cs", "db/dc0/_message_context_global_system_8cs.html", [
-      [ "MessageContextGlobalSystem", "da/d56/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global_system.html", "da/d56/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global_system" ]
+      [ "MessageContextGlobalSystem", "da/d56/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global_system.html", "da/d56/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global_system" ],
+      [ "LocaleEnumValue", "d8/d21/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global_system_1_1_locale_enum_value.html", "d8/d21/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global_system_1_1_locale_enum_value" ]
     ] ],
     [ "MessageContextSkill.cs", "d4/d95/_message_context_skill_8cs.html", [
       [ "MessageContextSkill", "db/df3/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skill.html", "db/df3/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skill" ]
@@ -60,6 +61,17 @@ var dir_e05cd18fe37823e65ffef40a75ea096b =
     ] ],
     [ "RuntimeEntity.cs", "dc/db3/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_entity_8cs.html", [
       [ "RuntimeEntity", "d3/d1f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_entity.html", "d3/d1f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_entity" ]
+    ] ],
+    [ "RuntimeEntityAlternative.cs", "d2/df7/_runtime_entity_alternative_8cs.html", [
+      [ "RuntimeEntityAlternative", "d8/d1f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_entity_alternative.html", "d8/d1f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_entity_alternative" ]
+    ] ],
+    [ "RuntimeEntityInterpretation.cs", "da/d38/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_entity_interpretation_8cs.html", [
+      [ "RuntimeEntityInterpretation", "d9/d02/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_entity_interpretation.html", "d9/d02/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_entity_interpretation" ],
+      [ "GranularityEnumValue", "d3/d0a/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_entity_interpretation_1_1_granularity_enum_value.html", "d3/d0a/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_entity_interpretation_1_1_granularity_enum_value" ]
+    ] ],
+    [ "RuntimeEntityRole.cs", "d5/d8f/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_entity_role_8cs.html", [
+      [ "RuntimeEntityRole", "da/dfa/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_entity_role.html", "da/dfa/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_entity_role" ],
+      [ "TypeEnumValue", "d5/d7d/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_entity_role_1_1_type_enum_value.html", "d5/d7d/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_entity_role_1_1_type_enum_value" ]
     ] ],
     [ "RuntimeIntent.cs", "de/da7/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_intent_8cs.html", [
       [ "RuntimeIntent", "d5/d2b/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_intent.html", "d5/d2b/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_intent" ]

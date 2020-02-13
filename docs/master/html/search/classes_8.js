@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['iassistantservice',['IAssistantService',['../df/d56/interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service.html',1,'IBM.Watson.Assistant.v1.IAssistantService'],['../d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html',1,'IBM.Watson.Assistant.v2.IAssistantService']]],
+  ['iassistantservice',['IAssistantService',['../d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html',1,'IBM.Watson.Assistant.v2.IAssistantService'],['../df/d56/interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service.html',1,'IBM.Watson.Assistant.v1.IAssistantService']]],
   ['icomparecomplyservice',['ICompareComplyService',['../d8/d70/interface_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_i_compare_comply_service.html',1,'IBM::Watson::CompareComply::v1']]],
   ['identifiablelanguage',['IdentifiableLanguage',['../d0/d50/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_identifiable_language.html',1,'IBM::Watson::LanguageTranslator::v3::Model']]],
   ['identifiablelanguages',['IdentifiableLanguages',['../d8/dea/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_identifiable_languages.html',1,'IBM::Watson::LanguageTranslator::v3::Model']]],

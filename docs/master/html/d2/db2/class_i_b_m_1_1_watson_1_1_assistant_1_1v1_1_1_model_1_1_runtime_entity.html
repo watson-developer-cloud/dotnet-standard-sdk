@@ -118,6 +118,12 @@ Properties</h2></td></tr>
 <tr class="memitem:ad464826d25d4bfef208da066ccd0da47"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="../../d0/df0/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_capture_group.html">CaptureGroup</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/db2/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity.html#ad464826d25d4bfef208da066ccd0da47">Groups</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:ad464826d25d4bfef208da066ccd0da47"><td class="mdescLeft">&#160;</td><td class="mdescRight">The recognized capture groups for the entity, as defined by the entity pattern.  <a href="#ad464826d25d4bfef208da066ccd0da47">More...</a><br /></td></tr>
 <tr class="separator:ad464826d25d4bfef208da066ccd0da47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4735c2a0b81c911138bb0050b2ec94c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d7f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity_interpretation.html">RuntimeEntityInterpretation</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/db2/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity.html#a4735c2a0b81c911138bb0050b2ec94c4">Interpretation</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a4735c2a0b81c911138bb0050b2ec94c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">An object containing detailed information about the entity recognized in the user input. This property is included only if the new system entities are enabled for the workspace.  <a href="#a4735c2a0b81c911138bb0050b2ec94c4">More...</a><br /></td></tr>
+<tr class="separator:a4735c2a0b81c911138bb0050b2ec94c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a624ec21e0b6e0625b00c617f1538d6da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/ddf/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity_role.html">RuntimeEntityRole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/db2/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity.html#a624ec21e0b6e0625b00c617f1538d6da">Role</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a624ec21e0b6e0625b00c617f1538d6da"><td class="mdescLeft">&#160;</td><td class="mdescRight">An object describing the role played by a system entity that is specifies the beginning or end of a range recognized in the user input. This property is included only if the new system entities are enabled for the workspace.  <a href="#a624ec21e0b6e0625b00c617f1538d6da">More...</a><br /></td></tr>
+<tr class="separator:a624ec21e0b6e0625b00c617f1538d6da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A term from the request that was identified as an entity. </p>
@@ -194,6 +200,31 @@ Properties</h2></td></tr>
 
 </div>
 </div>
+<a id="a4735c2a0b81c911138bb0050b2ec94c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4735c2a0b81c911138bb0050b2ec94c4">&#9670;&nbsp;</a></span>Interpretation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/d7f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity_interpretation.html">RuntimeEntityInterpretation</a> IBM.Watson.Assistant.v1.Model.RuntimeEntity.Interpretation</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>An object containing detailed information about the entity recognized in the user input. This property is included only if the new system entities are enabled for the workspace. </p>
+<p>For more information about how the new system entities are interpreted, see the <a href="https://cloud.ibm.com/docs/assistant?topic=assistant-beta-system-entities">documentation</a>. </p>
+
+</div>
+</div>
 <a id="a1bfd66ac4c651188dc9ebe39d02b9036"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1bfd66ac4c651188dc9ebe39d02b9036">&#9670;&nbsp;</a></span>Location</h2>
 
@@ -239,6 +270,30 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Any metadata for the entity. </p>
+
+</div>
+</div>
+<a id="a624ec21e0b6e0625b00c617f1538d6da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a624ec21e0b6e0625b00c617f1538d6da">&#9670;&nbsp;</a></span>Role</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d5/ddf/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity_role.html">RuntimeEntityRole</a> IBM.Watson.Assistant.v1.Model.RuntimeEntity.Role</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>An object describing the role played by a system entity that is specifies the beginning or end of a range recognized in the user input. This property is included only if the new system entities are enabled for the workspace. </p>
 
 </div>
 </div>

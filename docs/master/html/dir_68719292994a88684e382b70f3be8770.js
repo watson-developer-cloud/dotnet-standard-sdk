@@ -142,6 +142,14 @@ var dir_68719292994a88684e382b70f3be8770 =
     [ "RuntimeEntity.cs", "d9/df0/_i_b_m_8_watson_8_assistant_8v1_2_model_2_runtime_entity_8cs.html", [
       [ "RuntimeEntity", "d2/db2/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity.html", "d2/db2/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity" ]
     ] ],
+    [ "RuntimeEntityInterpretation.cs", "dc/d91/_i_b_m_8_watson_8_assistant_8v1_2_model_2_runtime_entity_interpretation_8cs.html", [
+      [ "RuntimeEntityInterpretation", "de/d7f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity_interpretation.html", "de/d7f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity_interpretation" ],
+      [ "GranularityEnumValue", "d3/dbe/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity_interpretation_1_1_granularity_enum_value.html", "d3/dbe/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity_interpretation_1_1_granularity_enum_value" ]
+    ] ],
+    [ "RuntimeEntityRole.cs", "d7/d2d/_i_b_m_8_watson_8_assistant_8v1_2_model_2_runtime_entity_role_8cs.html", [
+      [ "RuntimeEntityRole", "d5/ddf/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity_role.html", "d5/ddf/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity_role" ],
+      [ "TypeEnumValue", "d8/dba/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity_role_1_1_type_enum_value.html", "d8/dba/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity_role_1_1_type_enum_value" ]
+    ] ],
     [ "RuntimeIntent.cs", "df/df3/_i_b_m_8_watson_8_assistant_8v1_2_model_2_runtime_intent_8cs.html", [
       [ "RuntimeIntent", "d6/d26/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_intent.html", "d6/d26/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_intent" ]
     ] ],
@@ -188,6 +196,9 @@ var dir_68719292994a88684e382b70f3be8770 =
     ] ],
     [ "WorkspaceSystemSettingsOffTopic.cs", "de/d3d/_workspace_system_settings_off_topic_8cs.html", [
       [ "WorkspaceSystemSettingsOffTopic", "d7/dd1/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings_off_topic.html", "d7/dd1/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings_off_topic" ]
+    ] ],
+    [ "WorkspaceSystemSettingsSystemEntities.cs", "da/d7e/_workspace_system_settings_system_entities_8cs.html", [
+      [ "WorkspaceSystemSettingsSystemEntities", "df/dff/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings_system_entities.html", "df/dff/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings_system_entities" ]
     ] ],
     [ "WorkspaceSystemSettingsTooling.cs", "da/d79/_workspace_system_settings_tooling_8cs.html", [
       [ "WorkspaceSystemSettingsTooling", "d9/d3b/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings_tooling.html", "d9/d3b/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings_tooling" ]

@@ -11,6 +11,13 @@ The .NET Standard SDK uses [Watson][wdc] services, a collection of REST APIs tha
 ## Table of Contents
 * [Before you begin](#before-you-begin)
 * [Installing the Watson .NET Standard SDK](#installing-the-watson-net-standard-sdk)
+* [.NET Standard 2.0](#net-standard-20)
+* [Authtentication](#authentication)
+* [Custom Request Headers](#custom-request-headers)
+* [Response Headers, Status Code and Raw Json](#response-headers-status-code-and-raw-json)
+* [Self signed certificates](#self-signed-certificates)
+* [Discovery V2](#discovery-v2)
+* [Transaction IDs](#transactio-ids)
 * [Documentation](#documentation)
 * [Questions](#questions)
 * [Open Source @ IBM](#open-source--ibm)
@@ -21,7 +28,7 @@ The .NET Standard SDK uses [Watson][wdc] services, a collection of REST APIs tha
 Ensure you have the following prerequisites:
 
 * You need an [IBM Cloud][ibm-cloud-onboarding] account.
-* Install [Visual Studio][visual-studio-download] for Windows or [Visual Studio Code][visual-studio-code-download] for OSX or Linux.
+* Install [Visual Studio][visual-studio-download] for Windows, OSX or Linux.
 * Install [.NET Core][dotnet-core-download].
 
 ## Installing the Watson .NET Standard SDK
@@ -40,6 +47,9 @@ This SDK provides classes and methods to access the following Watson services:
 * [Visual Recognition](https://www.ibm.com/watson/services/visual-recognition)
 
 You can get the latest SDK packages through [NuGet](https://www.nuget.org) or manually [here][latest_release].
+
+## .NET Standard 2.0
+The Watson .NET Standard SDK conforms to .NET Standard 2.0. It is implemented by .NET Core 2.0, .NET Framework 4.6.1 and Mono 5.4. See [Microsoft documentation](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) for details.
 
 ## Authentication
 Watson services are migrating to token-based Identity and Access Management (IAM) authentication.
@@ -277,6 +287,5 @@ We'd love to highlight cool open-source projects that use this SDK! If you'd lik
 
 [dotnet-core-download]: https://www.microsoft.com/net/download/core
 [visual-studio-download]: https://www.visualstudio.com/vs/community/
-[visual-studio-code-download]: https://code.visualstudio.com/
 [dotnet-standard-sdk-documentation]: https://watson-developer-cloud.github.io/dotnet-standard-sdk/
 [ibm-cloud-onboarding]: http://cloud.ibm.com/registration?target=/developer/watson&cm_sp=WatsonPlatform-WatsonServices-_-OnPageNavLink-IBMWatson_SDKs-_-DotNet

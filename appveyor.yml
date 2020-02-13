@@ -1,4 +1,4 @@
-version: 2.6.{build}
+version: 4.2.1.{build}
 branches:
   except:
   - gh-pages
@@ -25,11 +25,17 @@ install:
 - cmd: >-
     pip install git+git://github.com/smsearcy/bumpversion.git@issue-135
 
-    npm install @semantic-release/exec
+    npm install -g semantic-release
+    
+    npm install -g @semantic-release/exec
+    
+    npm install -g @semantic-release/git
+    
+    npm install -g @semantic-release/github
 
-    npm install @semantic-release/git
+    npm install -g @semantic-release/commit-analyzer
 
-    npm install @semantic-release/changelog
+    npm install -g @semantic-release/changelog
 
     rm -rf packages
 

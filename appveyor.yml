@@ -25,17 +25,21 @@ install:
 - cmd: >-
     pip install git+git://github.com/smsearcy/bumpversion.git@issue-135
 
-    npm install -g semantic-release
+    npm install semantic-release
     
-    npm install -g @semantic-release/exec
+    npm install @semantic-release/exec
     
-    npm install -g @semantic-release/git
+    npm install @semantic-release/git
     
-    npm install -g @semantic-release/github
+    npm install @semantic-release/github
 
-    npm install -g @semantic-release/commit-analyzer
+    npm install @semantic-release/commit-analyzer
 
-    npm install -g @semantic-release/changelog
+    npm install @semantic-release/changelog
+
+    npm install @semantic-release/release-notes-generator
+
+    pip install bumpversion
 
     rm -rf packages
 
@@ -244,7 +248,7 @@ test_script:
         
         Write-Output "branchName is master and not a pull request - running semantic release"
 
-        npx -q semantic-release@15.11.0
+        npx -q semantic-release
 
     }
 

@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -810,6 +810,260 @@ namespace IBM.Watson.VisualRecognition.v4
             return result;
         }
         /// <summary>
+        /// List object metadata.
+        ///
+        /// Retrieves a list of object names in a collection.
+        /// </summary>
+        /// <param name="collectionId">The identifier of the collection.</param>
+        /// <returns><see cref="ObjectMetadataList" />ObjectMetadataList</returns>
+        public DetailedResponse<ObjectMetadataList> ListObjectMetadata(string collectionId)
+        {
+            if (string.IsNullOrEmpty(collectionId))
+            {
+                throw new ArgumentNullException("`collectionId` is required for `ListObjectMetadata`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<ObjectMetadataList> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v4/collections/{collectionId}/objects");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v4", "ListObjectMetadata"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<ObjectMetadataList>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<ObjectMetadataList>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Update an object name.
+        ///
+        /// Update the name of an object. A successful request updates the training data for all images that use the
+        /// object.
+        /// </summary>
+        /// <param name="collectionId">The identifier of the collection.</param>
+        /// <param name="_object">The name of the object.</param>
+        /// <param name="updateObjectMetadata"></param>
+        /// <returns><see cref="UpdateObjectMetadata" />UpdateObjectMetadata</returns>
+        public DetailedResponse<UpdateObjectMetadata> UpdateObjectMetadata(string collectionId, string _object, string newObject)
+        {
+            if (string.IsNullOrEmpty(collectionId))
+            {
+                throw new ArgumentNullException("`collectionId` is required for `UpdateObjectMetadata`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
+            }
+            if (string.IsNullOrEmpty(_object))
+            {
+                throw new ArgumentNullException("`_object` is required for `UpdateObjectMetadata`");
+            }
+            else
+            {
+                _object = Uri.EscapeDataString(_object);
+            }
+            if (string.IsNullOrEmpty(newObject))
+            {
+                throw new ArgumentNullException("`newObject` is required for `UpdateObjectMetadata`");
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<UpdateObjectMetadata> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v4/collections/{collectionId}/objects/{_object}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(newObject))
+                {
+                    bodyObject["object"] = newObject;
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
+                restRequest.WithBodyContent(httpContent);
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v4", "UpdateObjectMetadata"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<UpdateObjectMetadata>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<UpdateObjectMetadata>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get object metadata.
+        ///
+        /// Get the number of bounding boxes for a single object in a collection.
+        /// </summary>
+        /// <param name="collectionId">The identifier of the collection.</param>
+        /// <param name="_object">The name of the object.</param>
+        /// <returns><see cref="ObjectMetadata" />ObjectMetadata</returns>
+        public DetailedResponse<ObjectMetadata> GetObjectMetadata(string collectionId, string _object)
+        {
+            if (string.IsNullOrEmpty(collectionId))
+            {
+                throw new ArgumentNullException("`collectionId` is required for `GetObjectMetadata`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
+            }
+            if (string.IsNullOrEmpty(_object))
+            {
+                throw new ArgumentNullException("`_object` is required for `GetObjectMetadata`");
+            }
+            else
+            {
+                _object = Uri.EscapeDataString(_object);
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<ObjectMetadata> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v4/collections/{collectionId}/objects/{_object}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v4", "GetObjectMetadata"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<ObjectMetadata>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<ObjectMetadata>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Delete an object.
+        ///
+        /// Delete one object from a collection. A successful request deletes the training data from all images that use
+        /// the object.
+        /// </summary>
+        /// <param name="collectionId">The identifier of the collection.</param>
+        /// <param name="_object">The name of the object.</param>
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteObject(string collectionId, string _object)
+        {
+            if (string.IsNullOrEmpty(collectionId))
+            {
+                throw new ArgumentNullException("`collectionId` is required for `DeleteObject`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
+            }
+            if (string.IsNullOrEmpty(_object))
+            {
+                throw new ArgumentNullException("`_object` is required for `DeleteObject`");
+            }
+            else
+            {
+                _object = Uri.EscapeDataString(_object);
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<object> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v4/collections/{collectionId}/objects/{_object}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v4", "DeleteObject"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<object>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<object>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        /// <summary>
         /// Train a collection.
         ///
         /// Start training on images in a collection. The collection must have enough training data and untrained data
@@ -1008,7 +1262,7 @@ namespace IBM.Watson.VisualRecognition.v4
         ///
         /// You associate a customer ID with data by passing the `X-Watson-Metadata` header with a request that passes
         /// data. For more information about personal data and customer IDs, see [Information
-        /// security](https://cloud.ibm.com/docs/services/visual-recognition?topic=visual-recognition-information-security).
+        /// security](https://cloud.ibm.com/docs/visual-recognition?topic=visual-recognition-information-security).
         /// </summary>
         /// <param name="customerId">The customer ID for which all data is to be deleted.</param>
         /// <returns><see cref="object" />object</returns>

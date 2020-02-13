@@ -1,6 +1,6 @@
 
 /**
-* (C) Copyright IBM Corp. 2017, 2019.
+* (C) Copyright IBM Corp. 2017, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -103,27 +103,31 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
         [TestMethod]
         public void Collections_Success()
         {
-
             string testCollectionName = "testCollection";
             string updatedTestCollectionName = "newTestCollection";
             string testCollectionDescription = ".NET test collection";
             string updatedTestCollectionDescription = "udpdated .NET test collection";
+            service.WithHeader("X-Watson-Test", "1");
             var listCollectionResult = service.ListCollections();
 
+            service.WithHeader("X-Watson-Test", "1");
             var createCollectionResult = service.CreateCollection(
                 name: Utility.ConvertToUtf8(testCollectionName),
                 description: Utility.ConvertToUtf8(testCollectionDescription));
 
             var collectionId = createCollectionResult.Result.CollectionId;
 
+            service.WithHeader("X-Watson-Test", "1");
             var getCollectionResult = service.GetCollection(
                 collectionId: collectionId);
 
+            service.WithHeader("X-Watson-Test", "1");
             var updateCollectionResult = service.UpdateCollection(
                 collectionId: collectionId,
                 name: Utility.ConvertToUtf8(updatedTestCollectionName),
                 description: Utility.ConvertToUtf8(updatedTestCollectionDescription));
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteCollectionResult = service.DeleteCollection(
                 collectionId: collectionId);
 
@@ -152,6 +156,7 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
             string testCollectionName = "testCollection";
             string testCollectionDescription = ".NET test collection";
 
+            service.WithHeader("X-Watson-Test", "1");
             var createCollectionResult = service.CreateCollection(
                 name: Utility.ConvertToUtf8(testCollectionName),
                 description: Utility.ConvertToUtf8(testCollectionDescription));
@@ -175,6 +180,7 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
                     };
                     imagesFile.Add(fileWithMetadata);
 
+                    service.WithHeader("X-Watson-Test", "1");
                     addImagesResult = service.AddImages(
                         collectionId: collectionId,
                         imagesFile: imagesFile);
@@ -182,17 +188,21 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
             }
             var imageId = addImagesResult.Result.Images[0].ImageId;
 
+            service.WithHeader("X-Watson-Test", "1");
             var addImageViaUrlResult = service.AddImages(
                 collectionId: collectionId,
                 imageUrl: new List<string>() { dogImageUrl, catImageUrl });
 
+            service.WithHeader("X-Watson-Test", "1");
             var listImageResult = service.ListImages(
                 collectionId: collectionId);
 
+            service.WithHeader("X-Watson-Test", "1");
             var getImageResult = service.GetImageDetails(
                 collectionId: collectionId,
                 imageId: imageId);
 
+            service.WithHeader("X-Watson-Test", "1");
             var getJpgImageResult = service.GetJpegImage(
                 collectionId: collectionId,
                 imageId: imageId, 
@@ -207,10 +217,12 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
                 getJpgImageResult.Result.Close();
             }
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteImageResult = service.DeleteImage(
                 collectionId: collectionId,
                 imageId: imageId);
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteCollectionResult = service.DeleteCollection(
                 collectionId: collectionId);
 
@@ -234,6 +246,7 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
             string testCollectionName = "testCollection";
             string testCollectionDescription = ".NET test collection";
 
+            service.WithHeader("X-Watson-Test", "1");
             var createCollectionResult = service.CreateCollection(
                 name: Utility.ConvertToUtf8(testCollectionName),
                 description: Utility.ConvertToUtf8(testCollectionDescription));
@@ -257,6 +270,7 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
                     };
                     imagesFile.Add(fileWithMetadata);
 
+                    service.WithHeader("X-Watson-Test", "1");
                     addImagesResult = service.AddImages(
                         collectionId: collectionId,
                         imagesFile: imagesFile);
@@ -282,14 +296,17 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
                 }
             };
 
+            service.WithHeader("X-Watson-Test", "1");
             var addTrainingDataResult = service.AddImageTrainingData(
                 collectionId: collectionId,
                 imageId: imageId,
                 objects: objects);
 
+            service.WithHeader("X-Watson-Test", "1");
             var trainCollectionResult = service.Train(
                 collectionId: collectionId);
 
+            service.WithHeader("X-Watson-Test", "1");
             var deleteCollectionResult = service.DeleteCollection(
                 collectionId: collectionId);
 
@@ -329,11 +346,118 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
         }
         #endregion
 
+        #region Objects
+        [TestMethod]
+        public void Objects_Success()
+        {
+            string testCollectionName = "testCollection";
+            string testCollectionDescription = ".NET test collection";
+            service.WithHeader("X-Watson-Test", "1");
+            var listCollectionResult = service.ListCollections();
+
+            service.WithHeader("X-Watson-Test", "1");
+            var createCollectionResult = service.CreateCollection(
+                name: Utility.ConvertToUtf8(testCollectionName),
+                description: Utility.ConvertToUtf8(testCollectionDescription));
+
+            var collectionId = createCollectionResult.Result.CollectionId;
+
+            DetailedResponse<ImageDetailsList> addImagesResult = null;
+            List<FileWithMetadata> imagesFile = new List<FileWithMetadata>();
+
+            using (FileStream fs = File.OpenRead(localGiraffePositiveExamplesFilePath))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    fs.CopyTo(ms);
+
+                    FileWithMetadata fileWithMetadata = new FileWithMetadata()
+                    {
+                        Data = ms,
+                        ContentType = "application/zip",
+                        Filename = Path.GetFileName(localGiraffePositiveExamplesFilePath)
+                    };
+                    imagesFile.Add(fileWithMetadata);
+
+                    service.WithHeader("X-Watson-Test", "1");
+                    addImagesResult = service.AddImages(
+                        collectionId: collectionId,
+                        imagesFile: imagesFile);
+                }
+            }
+
+            var imageId = addImagesResult.Result.Images[0].ImageId;
+
+            var objectName = giraffeClassname;
+            var updatedObjectName = "african giraffe";
+            List<TrainingDataObject> objects = new List<TrainingDataObject>()
+            {
+                new TrainingDataObject()
+                {
+                    _Object = objectName,
+                    Location = new Location()
+                    {
+                        Left = 270,
+                        Top = 64,
+                        Width = 755,
+                        Height = 784
+                    }
+
+                }
+            };
+
+            service.WithHeader("X-Watson-Test", "1");
+            var addTrainingDataResult = service.AddImageTrainingData(
+                collectionId: collectionId,
+                imageId: imageId,
+                objects: objects
+                );
+
+            service.WithHeader("X-Watson-Test", "1");
+            var listObjectMetadataResult = service.ListObjectMetadata(
+                collectionId: collectionId
+                );
+
+            service.WithHeader("X-Watson-Test", "1");
+            var updateObjectMetadataResult = service.UpdateObjectMetadata(
+                collectionId: collectionId, 
+                _object: objectName, 
+                newObject: updatedObjectName
+                );
+
+            service.WithHeader("X-Watson-Test", "1");
+            var getObjectMetadataResult = service.GetObjectMetadata(
+                collectionId: collectionId,
+                _object: updatedObjectName
+                );
+
+            service.WithHeader("X-Watson-Test", "1");
+            var deleteObjectResult = service.DeleteObject(
+                collectionId: collectionId,
+                _object: updatedObjectName
+                );
+
+            service.WithHeader("X-Watson-Test", "1");
+            var deleteCollectionResult = service.DeleteCollection(
+                collectionId: collectionId);
+
+            Assert.IsTrue(deleteObjectResult.StatusCode == 200);
+            Assert.IsTrue(updateObjectMetadataResult.Result._Object == updatedObjectName);
+            Assert.IsTrue(listObjectMetadataResult.Result.Objects[0]._Object == objectName);
+            Assert.IsTrue(listObjectMetadataResult.Result.ObjectCount > 0);
+            Assert.IsNotNull(listObjectMetadataResult.Result);
+            Assert.IsTrue(deleteCollectionResult.StatusCode == 200);
+            Assert.IsNotNull(createCollectionResult.Result);
+            Assert.IsTrue(!string.IsNullOrEmpty(collectionId));
+            Assert.IsTrue(createCollectionResult.Result.Name == testCollectionName);
+        }
+        #endregion
 
         #region Delete labeled data
         [TestMethod]
         public void DeleteUserData()
         {
+            service.WithHeader("X-Watson-Test", "1");
             var deleteLabeledDataResult = service.DeleteUserData(
                 customerId: "my_customer_ID");
 

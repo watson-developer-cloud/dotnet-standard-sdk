@@ -1,3 +1,10 @@
+## [4.3.1](https://github.com/watson-developer-cloud/dotnet-standard-sdk/compare/v4.3.0...v4.3.1) (2020-02-14)
+
+
+### Bug Fixes
+
+* **NSubstitute:** Restore dependency version ([9249310](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/9249310be8964616d4242c5d2b2fca645fa0ae31))
+
 # [4.3.0](https://github.com/watson-developer-cloud/dotnet-standard-sdk/compare/v4.2.1...v4.3.0) (2020-02-13)
 
 

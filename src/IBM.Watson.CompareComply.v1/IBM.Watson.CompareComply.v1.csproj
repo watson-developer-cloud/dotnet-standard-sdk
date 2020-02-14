@@ -3,7 +3,7 @@
     <PropertyGroup>
         <Description>IBM.Watson.CompareComply.v1 wraps the Watson Compare Comply service (http://www.ibm.com/watson/developercloud/compare-comply.html)</Description>
         <AssemblyTitle>IBM.Watson.CompareComply.v1</AssemblyTitle>
-        <VersionPrefix>4.3.0</VersionPrefix>
+        <VersionPrefix>4.3.1</VersionPrefix>
         <Authors>IBM Watson</Authors>
         <TargetFramework>netstandard2.0</TargetFramework>
         <AssemblyName>IBM.Watson.CompareComply.v1</AssemblyName>
@@ -11,7 +11,7 @@
         <PackageTags>watson;cognitive;speech;vision;machine-learning;ml;ai;artificial-intelligence;.NET;.NET-Standard</PackageTags>
         <PackageIconUrl>https://watson-developer-cloud.github.io/dotnet-standard-sdk/img/Watson_Avatar_Pos_RGB.png</PackageIconUrl>
         <PackageProjectUrl>https://github.com/watson-developer-cloud/dotnet-standard-sdk</PackageProjectUrl>
-        <Version>4.3.0</Version>
+        <Version>4.3.1</Version>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -26,7 +26,7 @@
 
     <ItemGroup>
         <PackageReference Include="IBM.Cloud.SDK.Core" Version="1.1.0" />
-        <PackageReference Include="IBM.Watson.Common" Version="4.3.0" />
+        <PackageReference Include="IBM.Watson.Common" Version="4.3.1" />
         <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
         <PackageReference Include="JsonSubTypes" Version="1.6.0" />
     </ItemGroup>

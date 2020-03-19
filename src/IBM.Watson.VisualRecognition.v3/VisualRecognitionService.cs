@@ -163,7 +163,7 @@ namespace IBM.Watson.VisualRecognition.v3
                 }
                 restRequest.WithBodyContent(formData);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "Classify"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v3", "Classify"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -389,7 +389,7 @@ namespace IBM.Watson.VisualRecognition.v3
                 }
                 restRequest.WithBodyContent(formData);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "CreateClassifier"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v3", "CreateClassifier"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -438,7 +438,7 @@ namespace IBM.Watson.VisualRecognition.v3
                     restRequest.WithArgument("verbose", verbose);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "ListClassifiers"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v3", "ListClassifiers"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -492,7 +492,7 @@ namespace IBM.Watson.VisualRecognition.v3
                     restRequest.WithArgument("version", Version);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "GetClassifier"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v3", "GetClassifier"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -604,7 +604,7 @@ namespace IBM.Watson.VisualRecognition.v3
                 }
                 restRequest.WithBodyContent(formData);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "UpdateClassifier"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v3", "UpdateClassifier"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -656,7 +656,7 @@ namespace IBM.Watson.VisualRecognition.v3
                     restRequest.WithArgument("version", Version);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "DeleteClassifier"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v3", "DeleteClassifier"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -710,7 +710,7 @@ namespace IBM.Watson.VisualRecognition.v3
                     restRequest.WithArgument("version", Version);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "GetCoreMlModel"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v3", "GetCoreMlModel"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -765,7 +765,7 @@ namespace IBM.Watson.VisualRecognition.v3
                     restRequest.WithArgument("customer_id", customerId);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "DeleteUserData"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v3", "DeleteUserData"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 

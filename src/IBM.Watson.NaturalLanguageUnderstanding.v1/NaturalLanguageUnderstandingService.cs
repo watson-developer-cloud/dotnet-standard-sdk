@@ -170,7 +170,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "Analyze"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "Analyze"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -216,7 +216,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
                     restRequest.WithArgument("version", Version);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListModels"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "ListModels"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -270,7 +270,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
                     restRequest.WithArgument("version", Version);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteModel"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "DeleteModel"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 

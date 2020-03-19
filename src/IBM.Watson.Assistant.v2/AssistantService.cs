@@ -97,7 +97,7 @@ namespace IBM.Watson.Assistant.v2
                     restRequest.WithArgument("version", Version);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v2", "CreateSession"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v2", "CreateSession"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -166,7 +166,7 @@ namespace IBM.Watson.Assistant.v2
                     restRequest.WithArgument("version", Version);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v2", "DeleteSession"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v2", "DeleteSession"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -252,7 +252,7 @@ namespace IBM.Watson.Assistant.v2
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v2", "Message"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v2", "Message"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 

@@ -147,7 +147,7 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 var httpContent = new StringContent(Encoding.UTF8.GetString(toneInput.ToArray()), Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "Tone"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v3", "Tone"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -479,7 +479,7 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "ToneChat"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v3", "ToneChat"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 

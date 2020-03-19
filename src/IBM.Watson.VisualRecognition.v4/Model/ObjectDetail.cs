@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2020.
+* (C) Copyright IBM Corp. 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ namespace IBM.Watson.VisualRecognition.v4.Model
         /// Defines the location of the bounding box around the object.
         /// </summary>
         [JsonProperty("location", NullValueHandling = NullValueHandling.Ignore)]
-        public Location Location { get; set; }
+        public ObjectDetailLocation Location { get; set; }
         /// <summary>
         /// Confidence score for the object in the range of 0 to 1. A higher score indicates greater likelihood that the
         /// object is depicted at this location in the image.

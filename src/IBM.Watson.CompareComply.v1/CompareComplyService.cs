@@ -108,7 +108,7 @@ namespace IBM.Watson.CompareComply.v1
                 }
                 restRequest.WithBodyContent(formData);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ConvertToHtml"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "ConvertToHtml"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -306,7 +306,7 @@ namespace IBM.Watson.CompareComply.v1
                 }
                 restRequest.WithBodyContent(formData);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ClassifyElements"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "ClassifyElements"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -496,7 +496,7 @@ namespace IBM.Watson.CompareComply.v1
                 }
                 restRequest.WithBodyContent(formData);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ExtractTables"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "ExtractTables"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -719,7 +719,7 @@ namespace IBM.Watson.CompareComply.v1
                 }
                 restRequest.WithBodyContent(formData);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "CompareDocuments"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "CompareDocuments"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1004,7 +1004,7 @@ namespace IBM.Watson.CompareComply.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "AddFeedback"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "AddFeedback"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1153,7 +1153,7 @@ namespace IBM.Watson.CompareComply.v1
                     restRequest.WithArgument("include_total", includeTotal);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListFeedback"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "ListFeedback"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1215,7 +1215,7 @@ namespace IBM.Watson.CompareComply.v1
                     restRequest.WithArgument("model", model);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetFeedback"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "GetFeedback"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1319,7 +1319,7 @@ namespace IBM.Watson.CompareComply.v1
                     restRequest.WithArgument("model", model);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteFeedback"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "DeleteFeedback"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1514,7 +1514,7 @@ namespace IBM.Watson.CompareComply.v1
                 }
                 restRequest.WithBodyContent(formData);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "CreateBatch"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "CreateBatch"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1639,7 +1639,7 @@ namespace IBM.Watson.CompareComply.v1
                     restRequest.WithArgument("version", Version);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListBatches"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "ListBatches"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1693,7 +1693,7 @@ namespace IBM.Watson.CompareComply.v1
                     restRequest.WithArgument("version", Version);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetBatch"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "GetBatch"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1765,7 +1765,7 @@ namespace IBM.Watson.CompareComply.v1
                     restRequest.WithArgument("model", model);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "UpdateBatch"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "UpdateBatch"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 

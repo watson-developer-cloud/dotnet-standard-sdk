@@ -247,3 +247,4 @@ npm-debug.log
 
 .pre-commit-config.yaml
 .secrets.baseline
+**/*test-outline.txt

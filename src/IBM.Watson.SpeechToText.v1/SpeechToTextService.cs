@@ -72,7 +72,7 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListModels"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "ListModels"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -123,7 +123,7 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetModel"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "GetModel"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -777,7 +777,7 @@ namespace IBM.Watson.SpeechToText.v1
                 httpContent.Headers.ContentType = audioContentType;
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "Recognize"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "Recognize"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1299,7 +1299,7 @@ namespace IBM.Watson.SpeechToText.v1
                     restRequest.WithArgument("user_secret", userSecret);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "RegisterCallback"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "RegisterCallback"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1349,7 +1349,7 @@ namespace IBM.Watson.SpeechToText.v1
                     restRequest.WithArgument("callback_url", callbackUrl);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "UnregisterCallback"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "UnregisterCallback"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1798,7 +1798,7 @@ namespace IBM.Watson.SpeechToText.v1
                 httpContent.Headers.ContentType = audioContentType;
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "CreateJob"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "CreateJob"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -2358,7 +2358,7 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "CheckJobs"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "CheckJobs"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -2416,7 +2416,7 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "CheckJob"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "CheckJob"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -2468,7 +2468,7 @@ namespace IBM.Watson.SpeechToText.v1
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/recognitions/{id}");
 
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteJob"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "DeleteJob"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -2572,7 +2572,7 @@ namespace IBM.Watson.SpeechToText.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "CreateLanguageModel"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "CreateLanguageModel"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -2622,7 +2622,7 @@ namespace IBM.Watson.SpeechToText.v1
                     restRequest.WithArgument("language", language);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListLanguageModels"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "ListLanguageModels"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -2674,7 +2674,7 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetLanguageModel"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "GetLanguageModel"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -2727,7 +2727,7 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteLanguageModel"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "DeleteLanguageModel"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -2829,7 +2829,7 @@ namespace IBM.Watson.SpeechToText.v1
                     restRequest.WithArgument("customization_weight", customizationWeight);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "TrainLanguageModel"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "TrainLanguageModel"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -2928,7 +2928,7 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ResetLanguageModel"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "ResetLanguageModel"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -2990,7 +2990,7 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "UpgradeLanguageModel"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "UpgradeLanguageModel"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3042,7 +3042,7 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListCorpora"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "ListCorpora"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3178,7 +3178,7 @@ namespace IBM.Watson.SpeechToText.v1
                 }
                 restRequest.WithBodyContent(formData);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "AddCorpus"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "AddCorpus"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3240,7 +3240,7 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetCorpus"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "GetCorpus"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3305,7 +3305,7 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteCorpus"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "DeleteCorpus"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3379,7 +3379,7 @@ namespace IBM.Watson.SpeechToText.v1
                     restRequest.WithArgument("sort", sort);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListWords"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "ListWords"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3587,7 +3587,7 @@ namespace IBM.Watson.SpeechToText.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "AddWords"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "AddWords"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3711,7 +3711,7 @@ namespace IBM.Watson.SpeechToText.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "AddWord"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "AddWord"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3774,7 +3774,7 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetWord"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "GetWord"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3841,7 +3841,7 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteWord"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "DeleteWord"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3893,7 +3893,7 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListGrammars"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "ListGrammars"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -3995,7 +3995,7 @@ namespace IBM.Watson.SpeechToText.v1
             {
                 grammarName = Uri.EscapeDataString(grammarName);
             }
-            if (grammarFile == null)
+            if (string.IsNullOrEmpty(grammarFile))
             {
                 throw new ArgumentNullException("`grammarFile` is required for `AddGrammar`");
             }
@@ -4022,13 +4022,9 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     restRequest.WithArgument("allow_overwrite", allowOverwrite);
                 }
-                var httpContent = new ByteArrayContent(grammarFile.ToArray());
-                System.Net.Http.Headers.MediaTypeHeaderValue grammarFileContentType;
-                System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out grammarFileContentType);
-                httpContent.Headers.ContentType = grammarFileContentType;
-                restRequest.WithBodyContent(httpContent);
+                var httpContent = new StringContent(Encoding.UTF8.GetString(grammarFile.ToArray()), Encoding.UTF8);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "AddGrammar"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "AddGrammar"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4133,7 +4129,7 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetGrammar"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "GetGrammar"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4198,7 +4194,7 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteGrammar"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "DeleteGrammar"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4279,7 +4275,7 @@ namespace IBM.Watson.SpeechToText.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "CreateAcousticModel"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "CreateAcousticModel"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4329,7 +4325,7 @@ namespace IBM.Watson.SpeechToText.v1
                     restRequest.WithArgument("language", language);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListAcousticModels"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "ListAcousticModels"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4381,7 +4377,7 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetAcousticModel"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "GetAcousticModel"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4434,7 +4430,7 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteAcousticModel"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "DeleteAcousticModel"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4533,7 +4529,7 @@ namespace IBM.Watson.SpeechToText.v1
                     restRequest.WithArgument("custom_language_model_id", customLanguageModelId);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "TrainAcousticModel"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "TrainAcousticModel"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4589,7 +4585,7 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ResetAcousticModel"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "ResetAcousticModel"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4676,7 +4672,7 @@ namespace IBM.Watson.SpeechToText.v1
                     restRequest.WithArgument("force", force);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "UpgradeAcousticModel"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "UpgradeAcousticModel"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4730,7 +4726,7 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListAudio"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "ListAudio"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -4928,7 +4924,7 @@ namespace IBM.Watson.SpeechToText.v1
                 httpContent.Headers.ContentType = audioResourceContentType;
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "AddAudio"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "AddAudio"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -5324,7 +5320,7 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetAudio"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "GetAudio"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -5391,7 +5387,7 @@ namespace IBM.Watson.SpeechToText.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteAudio"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "DeleteAudio"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -5444,7 +5440,7 @@ namespace IBM.Watson.SpeechToText.v1
                     restRequest.WithArgument("customer_id", customerId);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteUserData"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "DeleteUserData"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 

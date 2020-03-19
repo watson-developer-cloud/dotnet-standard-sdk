@@ -92,7 +92,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "Classify"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "Classify"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -155,7 +155,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ClassifyCollection"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "ClassifyCollection"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -229,7 +229,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
                 restRequest.WithHeader("Accept", "application/json");
                 restRequest.WithBodyContent(formData);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "CreateClassifier"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "CreateClassifier"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -266,7 +266,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "ListClassifiers"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "ListClassifiers"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -312,7 +312,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "GetClassifier"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "GetClassifier"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -356,7 +356,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
 
                 restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v1", "DeleteClassifier"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v1", "DeleteClassifier"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 

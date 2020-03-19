@@ -174,7 +174,7 @@ namespace IBM.Watson.PersonalityInsights.v3
                 var httpContent = new StringContent(Encoding.UTF8.GetString(content.ToArray()), Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "Profile"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v3", "Profile"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -536,7 +536,7 @@ namespace IBM.Watson.PersonalityInsights.v3
                 var httpContent = new StringContent(Encoding.UTF8.GetString(content.ToArray()), Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v3", "ProfileAsCsv"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v3", "ProfileAsCsv"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 

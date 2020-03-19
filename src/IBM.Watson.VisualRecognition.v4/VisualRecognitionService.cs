@@ -163,7 +163,7 @@ namespace IBM.Watson.VisualRecognition.v4
                 }
                 restRequest.WithBodyContent(formData);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v4", "Analyze"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v4", "Analyze"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -263,7 +263,7 @@ namespace IBM.Watson.VisualRecognition.v4
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v4", "CreateCollection"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v4", "CreateCollection"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -308,7 +308,7 @@ namespace IBM.Watson.VisualRecognition.v4
                     restRequest.WithArgument("version", Version);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v4", "ListCollections"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v4", "ListCollections"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -362,7 +362,7 @@ namespace IBM.Watson.VisualRecognition.v4
                     restRequest.WithArgument("version", Version);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v4", "GetCollection"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v4", "GetCollection"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -440,7 +440,7 @@ namespace IBM.Watson.VisualRecognition.v4
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v4", "UpdateCollection"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v4", "UpdateCollection"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -494,7 +494,7 @@ namespace IBM.Watson.VisualRecognition.v4
                     restRequest.WithArgument("version", Version);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v4", "DeleteCollection"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v4", "DeleteCollection"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -600,7 +600,7 @@ namespace IBM.Watson.VisualRecognition.v4
                 }
                 restRequest.WithBodyContent(formData);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v4", "AddImages"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v4", "AddImages"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -654,7 +654,7 @@ namespace IBM.Watson.VisualRecognition.v4
                     restRequest.WithArgument("version", Version);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v4", "ListImages"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v4", "ListImages"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -717,7 +717,7 @@ namespace IBM.Watson.VisualRecognition.v4
                     restRequest.WithArgument("version", Version);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v4", "GetImageDetails"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v4", "GetImageDetails"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -780,7 +780,7 @@ namespace IBM.Watson.VisualRecognition.v4
                     restRequest.WithArgument("version", Version);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v4", "DeleteImage"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v4", "DeleteImage"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -850,7 +850,7 @@ namespace IBM.Watson.VisualRecognition.v4
                     restRequest.WithArgument("size", size);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v4", "GetJpegImage"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v4", "GetJpegImage"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -941,7 +941,7 @@ namespace IBM.Watson.VisualRecognition.v4
                     restRequest.WithArgument("version", Version);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v4", "ListObjectMetadata"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v4", "ListObjectMetadata"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -968,9 +968,9 @@ namespace IBM.Watson.VisualRecognition.v4
         /// <param name="collectionId">The identifier of the collection.</param>
         /// <param name="_object">The name of the object.</param>
         /// <param name="newObject">The updated name of the object. The name can contain alphanumeric, underscore,
-        /// hyphen, space, and dot characters. It cannot begin with the reserved prefix `sys-`. (optional)</param>
+        /// hyphen, space, and dot characters. It cannot begin with the reserved prefix `sys-`.</param>
         /// <returns><see cref="UpdateObjectMetadata" />UpdateObjectMetadata</returns>
-        public DetailedResponse<UpdateObjectMetadata> UpdateObjectMetadata(string collectionId, string _object, string newObject = null)
+        public DetailedResponse<UpdateObjectMetadata> UpdateObjectMetadata(string collectionId, string _object, string newObject)
         {
             if (string.IsNullOrEmpty(Version))
             {
@@ -991,6 +991,10 @@ namespace IBM.Watson.VisualRecognition.v4
             else
             {
                 _object = Uri.EscapeDataString(_object);
+            }
+            if (string.IsNullOrEmpty(newObject))
+            {
+                throw new ArgumentNullException("`newObject` is required for `UpdateObjectMetadata`");
             }
             DetailedResponse<UpdateObjectMetadata> result = null;
 
@@ -1016,7 +1020,7 @@ namespace IBM.Watson.VisualRecognition.v4
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v4", "UpdateObjectMetadata"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v4", "UpdateObjectMetadata"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1079,7 +1083,7 @@ namespace IBM.Watson.VisualRecognition.v4
                     restRequest.WithArgument("version", Version);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v4", "GetObjectMetadata"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v4", "GetObjectMetadata"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1143,7 +1147,7 @@ namespace IBM.Watson.VisualRecognition.v4
                     restRequest.WithArgument("version", Version);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v4", "DeleteObject"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v4", "DeleteObject"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1198,7 +1202,7 @@ namespace IBM.Watson.VisualRecognition.v4
                     restRequest.WithArgument("version", Version);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v4", "Train"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v4", "Train"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1278,7 +1282,7 @@ namespace IBM.Watson.VisualRecognition.v4
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v4", "AddImageTrainingData"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v4", "AddImageTrainingData"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1337,7 +1341,7 @@ namespace IBM.Watson.VisualRecognition.v4
                     restRequest.WithArgument("end_time", endTime);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v4", "GetTrainingUsage"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v4", "GetTrainingUsage"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -1395,7 +1399,7 @@ namespace IBM.Watson.VisualRecognition.v4
                     restRequest.WithArgument("customer_id", customerId);
                 }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders(ServiceName, "v4", "DeleteUserData"));
+                restRequest.WithHeaders(Common.GetSdkHeaders(defaultServiceName, "v4", "DeleteUserData"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 

@@ -44,7 +44,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.0.2" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\IBM.Watson.Assistant.v1\IBM.Watson.Assistant.v1.csproj" />
+    <ProjectReference Include="..\..\IBM.Watson.Assistant.v1.csproj" />
   </ItemGroup>
 
 </Project>

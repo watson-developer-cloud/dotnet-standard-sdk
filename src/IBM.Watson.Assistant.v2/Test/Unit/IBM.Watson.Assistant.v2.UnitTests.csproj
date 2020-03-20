@@ -45,7 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\IBM.Watson.Assistant.v2\IBM.Watson.Assistant.v2.csproj" />
+    <ProjectReference Include="..\..\IBM.Watson.Assistant.v2.csproj" />
   </ItemGroup>
 
 </Project>

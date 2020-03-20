@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2020.
+* (C) Copyright IBM Corp. 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ namespace IBM.Watson.Assistant.v1
 {
     public partial class AssistantService : IBMService, IAssistantService
     {
-        const string defaultServiceName = "assistant";
+        const string defaultServiceName = "conversation";
         private const string defaultServiceUrl = "https://gateway.watsonplatform.net/assistant/api";
         public string Version { get; set; }
 

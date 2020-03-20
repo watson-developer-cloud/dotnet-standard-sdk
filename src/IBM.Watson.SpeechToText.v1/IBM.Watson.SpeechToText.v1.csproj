@@ -25,6 +25,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="Test\**" />
+      <EmbeddedResource Remove="Test\**" />
+      <None Remove="Test\**" />
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="IBM.Cloud.SDK.Core" Version="1.0.1" />
         <PackageReference Include="IBM.Watson.Common" Version="4.2.1" />
         <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />

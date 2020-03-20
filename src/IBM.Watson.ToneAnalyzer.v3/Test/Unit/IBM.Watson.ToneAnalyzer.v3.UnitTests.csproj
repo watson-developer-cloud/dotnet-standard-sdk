@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\IBM.Watson.ToneAnalyzer.v3\IBM.Watson.ToneAnalyzer.v3.csproj" />
+    <ProjectReference Include="..\..\IBM.Watson.ToneAnalyzer.v3.csproj" />
   </ItemGroup>
 
   <ItemGroup>

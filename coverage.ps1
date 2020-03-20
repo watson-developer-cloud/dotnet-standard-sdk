@@ -19,11 +19,11 @@ $reportGenerator = '.\packages\ReportGenerator.2.4.5.0\tools\ReportGenerator.exe
 
 New-Item -path . -name coverage -itemtype directory
 
-Copy-Item .\test\VisualRecognition.v4.IntegrationTests\VisualRecognitionTestData .\VisualRecognitionTestData -recurse
-Copy-Item .\test\SpeechToText.v1.IntegrationTests\SpeechToTextTestData .\SpeechToTextTestData -recurse
-Copy-Item .\test\Discovery.v1.IntegrationTests\DiscoveryTestData .\DiscoveryTestData -recurse
-Copy-Item .\test\CompareComply.v1.IntegrationTests\CompareComplyTestData .\CompareComplyTestData -recurse
-Copy-Item .\test\NaturalLanguageClassifier.v1.IntegrationTests\NaturalLanguageClassifierTestData .\NaturalLanguageClassifierTestData - recurse
+Copy-Item .\test\VisualRecognition.v4.IntegrationTests\TestData .\TestData -recurse
+Copy-Item .\test\SpeechToText.v1.IntegrationTests\TestData .\TestData -recurse
+Copy-Item .\test\Discovery.v1.IntegrationTests\TestData .\TestData -recurse
+Copy-Item .\test\CompareComply.v1.IntegrationTests\TestData .\CompareComplyTestData -recurse
+Copy-Item .\test\NaturalLanguageClassifier.v1.IntegrationTests\TestData .\NaturalLanguageClassifierTestData - recurse
 
 
 ForEach ($folder in (Get-ChildItem -Path .\test -Directory)) 
@@ -38,9 +38,9 @@ ForEach ($folder in (Get-ChildItem -Path .\test -Directory))
 
 & $reportGenerator -reports:coverage\coverage.xml -targetdir:coverage -verbosity:Error
 
-Remove-Item .\VisualRecognitionTestData -recurse
-Remove-Item .\SpeechToTextTestData -recurse
-Remove-Item .\DiscoveryTestData -recurse
+Remove-Item .\TestData -recurse
+Remove-Item .\TestData -recurse
+Remove-Item .\TestData -recurse
 Remove-Item .\CompareComplyTestData -recurse
 Remove-Item .\NaturalLanguageClassifierTestData -recurse
 Remove-Item .\packages -recurse

@@ -45,7 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\IBM.Watson.Discovery.v1\IBM.Watson.Discovery.v1.csproj" />
+    <ProjectReference Include="..\..\IBM.Watson.Discovery.v1.csproj" />
   </ItemGroup>
 
 </Project>

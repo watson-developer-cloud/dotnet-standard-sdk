@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\IBM.Watson.NaturalLanguageUnderstanding.v1\IBM.Watson.NaturalLanguageUnderstanding.v1.csproj" />
+    <ProjectReference Include="..\..\IBM.Watson.NaturalLanguageUnderstanding.v1.csproj" />
   </ItemGroup>
 
   <ItemGroup>

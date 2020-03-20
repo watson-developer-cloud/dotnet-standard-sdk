@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\IBM.Watson.VisualRecognition.v3\IBM.Watson.VisualRecognition.v3.csproj" />
+    <ProjectReference Include="..\..\IBM.Watson.VisualRecognition.v3.csproj" />
   </ItemGroup>
 
   <ItemGroup>

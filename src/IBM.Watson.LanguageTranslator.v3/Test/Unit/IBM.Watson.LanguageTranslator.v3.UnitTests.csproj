@@ -45,7 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\IBM.Watson.LanguageTranslator.v3\IBM.Watson.LanguageTranslator.v3.csproj" />
+    <ProjectReference Include="..\..\IBM.Watson.LanguageTranslator.v3.csproj" />
   </ItemGroup>
 
 </Project>

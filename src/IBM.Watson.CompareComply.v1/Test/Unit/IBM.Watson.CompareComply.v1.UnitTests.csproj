@@ -23,7 +23,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update=".\CompareComplyTestData\**\*;appsettings.json">
+    <None Update=".\TestData\**\*;appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -45,7 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\IBM.Watson.CompareComply.v1\IBM.Watson.CompareComply.v1.csproj" />
+    <ProjectReference Include="..\..\IBM.Watson.CompareComply.v1.csproj" />
   </ItemGroup>
 
 </Project>

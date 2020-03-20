@@ -131,17 +131,17 @@ after_build:
 
     }
 
-    Copy-Item C:\projects\dotnet-standard-sdk\test\VisualRecognition.v3.IntegrationTests\VisualRecognitionTestData C:\projects\dotnet-standard-sdk\VisualRecognitionTestData
+    Copy-Item C:\projects\dotnet-standard-sdk\src\IBM.Watson.VisualRecognition.v3\Test\Integration\TestData C:\projects\dotnet-standard-sdk\VisualRecognitionV3TestData
 
-    Copy-Item C:\projects\dotnet-standard-sdk\test\VisualRecognition.v4.IntegrationTests\VisualRecognitionTestData C:\projects\dotnet-standard-sdk\VisualRecognitionTestData
+    Copy-Item C:\projects\dotnet-standard-sdk\src\IBM.Watson.VisualRecognition.v4\Test\Integration\VisualRecognition.v4.IntegrationTests\TestData C:\projects\dotnet-standard-sdk\VisualRecognitionV4TestData
 
-    Copy-Item C:\projects\dotnet-standard-sdk\test\SpeechToText.v1.IntegrationTests\SpeechToTextTestData C:\projects\dotnet-standard-sdk\SpeechToTextTestData
+    Copy-Item C:\projects\dotnet-standard-sdk\src\IBM.Watson.SpeechToText.v1\Test\Integration\TestData C:\projects\dotnet-standard-sdk\SpeechToTextV1TestData
 
-    Copy-Item C:\projects\dotnet-standard-sdk\test\Discovery.v1.IntegrationTests\DiscoveryTestData C:\projects\dotnet-standard-sdk\DiscoveryTestData
+    Copy-Item C:\projects\dotnet-standard-sdk\src\IBM.Watson.Discovery.v1\Test\Integration\TestData C:\projects\dotnet-standard-sdk\DiscoveryV1TestData
     
-    Copy-Item C:\projects\dotnet-standard-sdk\test\CompareComply.v1.IntegrationTests\CompareComplyTestData C:\projects\dotnet-standard-sdk\CompareComplyTestData
+    Copy-Item C:\projects\dotnet-standard-sdk\src\IBM.Watson.CompareComply.v1\Test\Integration\TestData C:\projects\dotnet-standard-sdk\CompareComplyV1TestData
 
-    Copy-Item C:\projects\dotnet-standard-sdk\test\NaturalLanguageClassifier.v1.IntegrationTests\NaturalLanguageClassifierTestData C:\projects\dotnet-standard-sdk\NaturalLanguageClassifierTestData
+    Copy-Item C:\projects\dotnet-standard-sdk\src\IBM.Watson.NaturalLanguageClassifier.v1\Test\Integration\TestData C:\projects\dotnet-standard-sdk\NaturalLanguageClassifierV1TestData
 test_script:
 - ps: >-
     if(Test-Path -Path coverage)

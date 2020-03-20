@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2020.
+* (C) Copyright IBM Corp. 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ namespace IBM.Watson.VisualRecognition.v4
 {
     public partial class VisualRecognitionService : IBMService, IVisualRecognitionService
     {
-        const string defaultServiceName = "visual_recognition";
+        const string defaultServiceName = "watson_vision_combined";
         private const string defaultServiceUrl = "https://gateway.watsonplatform.net/visual-recognition/api";
         public string Version { get; set; }
 

@@ -12,7 +12,7 @@ The .NET Standard SDK uses [Watson][wdc] services, a collection of REST APIs tha
 * [Before you begin](#before-you-begin)
 * [Installing the Watson .NET Standard SDK](#installing-the-watson-net-standard-sdk)
 * [.NET Standard 2.0](#net-standard-20)
-* [Authtentication](#authentication)
+* [Authentication](#authentication)
 * [Custom Request Headers](#custom-request-headers)
 * [Response Headers, Status Code and Raw Json](#response-headers-status-code-and-raw-json)
 * [Self signed certificates](#self-signed-certificates)

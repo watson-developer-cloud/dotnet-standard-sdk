@@ -253,7 +253,7 @@ Click [here][dotnet-standard-sdk-documentation] for documentation by release and
 
 ## Questions
 
-If you are having difficulties using the APIs or have a question about the IBM Watson Services, please ask a question on [dW Answers][dw-answers] or [Stack Overflow][stack-overflow].
+If you have issues with the APIs or have a question about the Watson services, see [Stack Overflow](https://stackoverflow.com/questions/tagged/ibm-watson+dotnet).
 
 ## Open Source @ IBM
 Find more open source projects on the [IBM Github Page][ibm-github].

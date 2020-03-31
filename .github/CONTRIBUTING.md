@@ -1,6 +1,6 @@
 # Questions
 
-If you are having problems using the APIs or have a question about the IBM Watson Services, please ask a question on [dW Answers][dw-answers] or [Stack Overflow][stack-overflow].
+If you have issues with the APIs or have a question about the Watson services, see [Stack Overflow](https://stackoverflow.com/questions/tagged/ibm-watson+dotnet).
 
 # Coding Standard
 

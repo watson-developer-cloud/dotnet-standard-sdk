@@ -1089,7 +1089,7 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// Add a new user input example to an intent.
         ///
-        /// If you want to add multiple exaples with a single API call, consider using the **[Update
+        /// If you want to add multiple examples with a single API call, consider using the **[Update
         /// intent](#update-intent)** method instead.
         ///
         /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.

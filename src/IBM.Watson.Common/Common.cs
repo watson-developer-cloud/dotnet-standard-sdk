@@ -27,7 +27,7 @@ namespace IBM.Watson
         /// <summary>
         /// The SDK version.
         /// </summary>
-        public const string Version = "watson-apis-dotnet-standard-sdk-4.3.0";
+        public const string Version = "watson-apis-dotnet-standard-sdk-4.3.1";
         private static string os;
         private static string osVersion;
         private static string frameworkDescription;

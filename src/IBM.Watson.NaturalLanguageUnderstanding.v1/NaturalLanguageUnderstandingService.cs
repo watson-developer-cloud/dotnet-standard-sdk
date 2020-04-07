@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2017, 2020.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -69,7 +69,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         ///
         /// If a language for the input text is not specified with the `language` parameter, the service [automatically
         /// detects the
-        /// language](https://cloud.ibm.com/docs/services/natural-language-understanding?topic=natural-language-understanding-detectable-languages).
+        /// language](https://cloud.ibm.com/docs/natural-language-understanding?topic=natural-language-understanding-detectable-languages).
         /// </summary>
         /// <param name="parameters">An object containing request parameters. The `features` object and one of the
         /// `text`, `html`, or `url` attributes are required.</param>
@@ -164,7 +164,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// List models.
         ///
         /// Lists Watson Knowledge Studio [custom entities and relations
-        /// models](https://cloud.ibm.com/docs/services/natural-language-understanding?topic=natural-language-understanding-customizing)
+        /// models](https://cloud.ibm.com/docs/natural-language-understanding?topic=natural-language-understanding-customizing)
         /// that are deployed to your Natural Language Understanding service.
         /// </summary>
         /// <returns><see cref="ListModelsResults" />ListModelsResults</returns>

@@ -17,23 +17,23 @@
 
 using Newtonsoft.Json;
 
-namespace IBM.Watson.Discovery.v1.Model
+namespace IBM.Watson.Assistant.v1.Model
 {
     /// <summary>
-    /// Summary of the document usage statistics for the environment.
+    /// An alternative value for the recognized entity.
     /// </summary>
-    public class EnvironmentDocuments
+    public class RuntimeEntityAlternative
     {
         /// <summary>
-        /// Number of documents indexed for the environment.
+        /// The entity value that was recognized in the user input.
         /// </summary>
-        [JsonProperty("available", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual long? Available { get; private set; }
+        [JsonProperty("value", NullValueHandling = NullValueHandling.Ignore)]
+        public string Value { get; set; }
         /// <summary>
-        /// Total number of documents allowed in the environment's capacity.
+        /// A decimal percentage that represents Watson's confidence in the recognized entity.
         /// </summary>
-        [JsonProperty("maximum_allowed", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual long? MaximumAllowed { get; private set; }
+        [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
+        public float? Confidence { get; set; }
     }
 
 }

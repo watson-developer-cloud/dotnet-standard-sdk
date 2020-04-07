@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2016, 2020.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -212,9 +212,9 @@ namespace IBM.Watson.TextToSpeech.v1
         /// audio/ogg;codecs=opus)</param>
         /// <param name="voice">The voice to use for synthesis. (optional, default to en-US_MichaelVoice)</param>
         /// <param name="customizationId">The customization ID (GUID) of a custom voice model to use for the synthesis.
-        /// If a custom voice model is specified, it is guaranteed to work only if it matches the language of the
-        /// indicated voice. You must make the request with credentials for the instance of the service that owns the
-        /// custom model. Omit the parameter to use the specified voice with no customization. (optional)</param>
+        /// If a custom voice model is specified, it works only if it matches the language of the indicated voice. You
+        /// must make the request with credentials for the instance of the service that owns the custom model. Omit the
+        /// parameter to use the specified voice with no customization. (optional)</param>
         /// <returns><see cref="byte[]" />byte[]</returns>
         public DetailedResponse<System.IO.MemoryStream> Synthesize(string text, string accept = null, string voice = null, string customizationId = null)
         {
@@ -275,8 +275,7 @@ namespace IBM.Watson.TextToSpeech.v1
         /// format. You can also request the pronunciation for a specific voice to see the default translation for the
         /// language of that voice or for a specific custom voice model to see the translation for that voice model.
         ///
-        /// **Note:** This method is currently a beta release. The method does not support the Arabic, Chinese, and
-        /// Dutch languages.
+        /// **Note:** This method is currently a beta release.
         ///
         /// **See also:** [Querying a word from a
         /// language](https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-customWords#cuWordsQueryLanguage).
@@ -285,8 +284,9 @@ namespace IBM.Watson.TextToSpeech.v1
         /// <param name="voice">A voice that specifies the language in which the pronunciation is to be returned. All
         /// voices for the same language (for example, `en-US`) return the same translation. (optional, default to
         /// en-US_MichaelVoice)</param>
-        /// <param name="format">The phoneme format in which to return the pronunciation. Omit the parameter to obtain
-        /// the pronunciation in the default format. (optional, default to ipa)</param>
+        /// <param name="format">The phoneme format in which to return the pronunciation. The Arabic, Chinese, Dutch,
+        /// and Korean languages support only IPA. Omit the parameter to obtain the pronunciation in the default format.
+        /// (optional, default to ipa)</param>
         /// <param name="customizationId">The customization ID (GUID) of a custom voice model for which the
         /// pronunciation is to be returned. The language of a specified custom model must match the language of the
         /// specified voice. If the word is not defined in the specified custom model, the service returns the default
@@ -351,8 +351,7 @@ namespace IBM.Watson.TextToSpeech.v1
         /// specify the language and a description for the new model. The model is owned by the instance of the service
         /// whose credentials are used to create it.
         ///
-        /// **Note:** This method is currently a beta release. The service does not support voice model customization
-        /// for the Arabic, Chinese, and Dutch languages.
+        /// **Note:** This method is currently a beta release.
         ///
         /// **See also:** [Creating a custom
         /// model](https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-customModels#cuModelsCreate).

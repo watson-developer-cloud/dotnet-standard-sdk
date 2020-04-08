@@ -87,6 +87,21 @@ namespace IBM.Watson.LanguageTranslator.v3.IntegrationTests
         }
 
         [TestMethod]
+        public void TranslateAutodetect_Sucess()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var results = service.Translate(
+                text: new List<string>() { text },
+                target: "es"
+                );
+
+            Assert.IsNotNull(results);
+            Assert.IsTrue(results.Result.Translations.Count > 0);
+            Assert.IsTrue(results.Result.DetectedLanguage == "en");
+            Assert.IsTrue(results.Result.DetectedLanguageConfidence > 0);
+        }
+
+        [TestMethod]
         public void ListModels_Sucess()
         {
             service.WithHeader("X-Watson-Test", "1");
@@ -210,6 +225,68 @@ namespace IBM.Watson.LanguageTranslator.v3.IntegrationTests
             Assert.IsNotNull(getDocumentStatusResult.Result);
             Assert.IsTrue(getDocumentStatusResult.Result.DocumentId == documentId);
             Assert.IsNotNull(translateDocumentResult.Result);
+            Assert.IsNotNull(translateDocumentResult.Result.DocumentId);
+            Assert.IsNotNull(listDocumentsResult.Result);
+        }
+
+        [TestMethod]
+        public void DocumentsAutodetect_Success()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var listDocumentsResult = service.ListDocuments();
+
+            DetailedResponse<DocumentStatus> translateDocumentResult;
+            string documentId;
+            using (FileStream fs = File.OpenRead(documentToTranslatePath))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    fs.CopyTo(ms);
+                    service.WithHeader("X-Watson-Test", "1");
+                    translateDocumentResult = service.TranslateDocument(
+                        file: ms,
+                        filename: Path.GetFileName(documentToTranslatePath),
+                        fileContentType: "text/plain",
+                        target:"es"
+                        );
+
+                    documentId = translateDocumentResult.Result.DocumentId;
+                }
+            }
+
+            service.WithHeader("X-Watson-Test", "1");
+            var getDocumentStatusResult = service.GetDocumentStatus(
+                documentId: documentId
+                );
+
+            try
+            {
+                IsDocumentReady(
+                    documentId: documentId
+                    );
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Failed to get document...{0}", e.Message);
+            }
+            autoEvent.WaitOne();
+
+            service.WithHeader("X-Watson-Test", "1");
+            var getTranslatedDocumentResult = service.GetTranslatedDocument(
+                documentId: documentId
+                );
+
+            service.WithHeader("X-Watson-Test", "1");
+            var deleteDocumentResult = service.DeleteDocument(
+                documentId: documentId
+                );
+
+            Assert.IsTrue(deleteDocumentResult.StatusCode == 204);
+            Assert.IsNotNull(translateDocumentResult.Result);
+            Assert.IsNotNull(getDocumentStatusResult.Result);
+            Assert.IsTrue(getDocumentStatusResult.Result.DocumentId == documentId);
+            Assert.IsTrue(getDocumentStatusResult.Result.DetectedLanguageConfidence > 0);
+            Assert.IsTrue(getDocumentStatusResult.Result.Source == "en");
             Assert.IsNotNull(translateDocumentResult.Result.DocumentId);
             Assert.IsNotNull(listDocumentsResult.Result);
         }

@@ -57,10 +57,8 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <summary>
         /// Translate.
         ///
-        /// The translate request containing the text, and either using a model ID or the source/target fields to select
-        /// a language pair for translation. If present, the model ID takes precedence over source/target fields. If no
-        /// explicit model is selected via model ID and the source language is omitted, the service will try to
-        /// automatically detect the source language.
+        /// Translates the input text from the source language to the target language. A target language or translation
+        /// model ID is required. The service attempts to detect the language of the source text if it is not specified.
         /// </summary>
         /// <param name="request">The translate request containing the text, and either a model ID or source and target
         /// language pair.</param>

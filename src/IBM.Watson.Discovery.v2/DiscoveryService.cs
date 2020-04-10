@@ -105,7 +105,7 @@ namespace IBM.Watson.Discovery.v2
         /// Query a project.
         ///
         /// By using this method, you can construct queries. For details, see the [Discovery
-        /// documentation](https://cloud.ibm.com/docs/services/discovery-data?topic=discovery-data-query-concepts).
+        /// documentation](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-query-concepts).
         /// </summary>
         /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
         /// Discovery administrative tooling.</param>

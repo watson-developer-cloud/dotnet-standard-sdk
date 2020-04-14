@@ -112,10 +112,10 @@ namespace IBM.Watson.Assistant.v2.Examples
 
             MessageContextSkills skills = new MessageContextSkills();
             MessageContextSkill skill = new MessageContextSkill();
-            Dictionary<string, object> userDefinedDic = new Dictionary<string, object>();
+            Dictionary<string, object> userDefinedDictionary = new Dictionary<string, object>();
 
-            userDefinedDic.Add("account_number", "123456");
-            skill.UserDefined = userDefinedDic;
+            userDefinedDictionary.Add("account_number", "123456");
+            skill.UserDefined = userDefinedDictionary;
             skills.Add("main skill", skill);
 
             var result = service.Message(

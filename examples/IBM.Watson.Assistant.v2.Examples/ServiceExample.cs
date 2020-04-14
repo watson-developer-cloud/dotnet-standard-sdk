@@ -18,6 +18,7 @@
 
 using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Watson.Assistant.v2.Model;
+using System.Collections.Generic;
 using System;
 
 namespace IBM.Watson.Assistant.v2.Examples
@@ -106,12 +107,15 @@ namespace IBM.Watson.Assistant.v2.Examples
             IamAuthenticator authenticator = new IamAuthenticator(
                 apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", authenticator);
+            AssistantService service = new AssistantService("2020-04-01", authenticator);
             service.SetServiceUrl("{serviceUrl}");
 
             MessageContextSkills skills = new MessageContextSkills();
             MessageContextSkill skill = new MessageContextSkill();
-            skill.UserDefined.Add("account_number", "123456");
+            Dictionary<string, object> userDefinedDic = new Dictionary<string, object>();
+
+            userDefinedDic.Add("account_number", "123456");
+            skill.UserDefined = userDefinedDic;
             skills.Add("main skill", skill);
 
             var result = service.Message(

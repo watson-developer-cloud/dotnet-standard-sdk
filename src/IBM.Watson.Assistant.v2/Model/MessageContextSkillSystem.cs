@@ -15,26 +15,24 @@
 *
 */
 
-using System.Collections.Generic;
+using IBM.Cloud.SDK.Core.Model;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// Contains information specific to a particular skill used by the Assistant.
+    /// System context data used by the skill.
     /// </summary>
-    public class MessageContextSkill
+    public class MessageContextSkillSystem : DynamicModel<object>
     {
         /// <summary>
-        /// Arbitrary variables that can be read and written by a particular skill.
+        /// An encoded string representing the current conversation state. By saving this value and then sending it in
+        /// the context of a subsequent message request, you can restore the conversation to the same state. This can be
+        /// useful if you need to return to an earlier point in the conversation or resume a paused conversation after
+        /// the session has expired.
         /// </summary>
-        [JsonProperty("user_defined", NullValueHandling = NullValueHandling.Ignore)]
-        public Dictionary<string, object> UserDefined { get; set; }
-        /// <summary>
-        /// System context data used by the skill.
-        /// </summary>
-        [JsonProperty("system", NullValueHandling = NullValueHandling.Ignore)]
-        public MessageContextSkillSystem System { get; set; }
+        [JsonProperty("state", NullValueHandling = NullValueHandling.Ignore)]
+        public string State { get; set; }
     }
 
 }

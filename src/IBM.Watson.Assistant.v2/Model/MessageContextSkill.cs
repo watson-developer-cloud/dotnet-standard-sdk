@@ -34,7 +34,7 @@ namespace IBM.Watson.Assistant.v2.Model
         /// System context data used by the skill.
         /// </summary>
         [JsonProperty("system", NullValueHandling = NullValueHandling.Ignore)]
-        public MessageContextSkillSystem System { get; set; }
+        public Dictionary<string, object> System { get; set; }
     }
 
 }

@@ -142,6 +142,9 @@ var dir_68719292994a88684e382b70f3be8770 =
     [ "RuntimeEntity.cs", "d9/df0/_i_b_m_8_watson_8_assistant_8v1_2_model_2_runtime_entity_8cs.html", [
       [ "RuntimeEntity", "d2/db2/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity.html", "d2/db2/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity" ]
     ] ],
+    [ "RuntimeEntityAlternative.cs", "d2/df5/_i_b_m_8_watson_8_assistant_8v1_2_model_2_runtime_entity_alternative_8cs.html", [
+      [ "RuntimeEntityAlternative", "d5/d4a/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity_alternative.html", "d5/d4a/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity_alternative" ]
+    ] ],
     [ "RuntimeEntityInterpretation.cs", "dc/d91/_i_b_m_8_watson_8_assistant_8v1_2_model_2_runtime_entity_interpretation_8cs.html", [
       [ "RuntimeEntityInterpretation", "de/d7f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity_interpretation.html", "de/d7f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity_interpretation" ],
       [ "GranularityEnumValue", "d3/dbe/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity_interpretation_1_1_granularity_enum_value.html", "d3/dbe/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity_interpretation_1_1_granularity_enum_value" ]

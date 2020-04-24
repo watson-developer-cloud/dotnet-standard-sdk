@@ -13,6 +13,7 @@ var namespace_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model =
     [ "MessageContextGlobalSystem", "da/d56/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global_system.html", "da/d56/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global_system" ],
     [ "MessageContextSkill", "db/df3/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skill.html", "db/df3/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skill" ],
     [ "MessageContextSkills", "db/d4e/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skills.html", null ],
+    [ "MessageContextSkillSystem", "d4/df4/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skill_system.html", "d4/df4/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skill_system" ],
     [ "MessageInput", "d6/dd2/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input.html", "d6/dd2/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input" ],
     [ "MessageInputOptions", "de/d42/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_options.html", "de/d42/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_options" ],
     [ "MessageOutput", "d2/dcc/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_output.html", "d2/dcc/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_output" ],

@@ -34,6 +34,8 @@ var searchData=
   ['messagecontextskill_2ecs',['MessageContextSkill.cs',['../d4/d95/_message_context_skill_8cs.html',1,'']]],
   ['messagecontextskills',['MessageContextSkills',['../db/d4e/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skills.html',1,'IBM::Watson::Assistant::v2::Model']]],
   ['messagecontextskills_2ecs',['MessageContextSkills.cs',['../d5/d7d/_message_context_skills_8cs.html',1,'']]],
+  ['messagecontextskillsystem',['MessageContextSkillSystem',['../d4/df4/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skill_system.html',1,'IBM::Watson::Assistant::v2::Model']]],
+  ['messagecontextskillsystem_2ecs',['MessageContextSkillSystem.cs',['../d1/d37/_message_context_skill_system_8cs.html',1,'']]],
   ['messageinput',['MessageInput',['../d6/dd2/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input.html',1,'IBM.Watson.Assistant.v2.Model.MessageInput'],['../d0/d0f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_message_input.html',1,'IBM.Watson.Assistant.v1.Model.MessageInput']]],
   ['messageinput_2ecs',['MessageInput.cs',['../db/df0/_i_b_m_8_watson_8_assistant_8v1_2_model_2_message_input_8cs.html',1,'(Global Namespace)'],['../df/d4b/_i_b_m_8_watson_8_assistant_8v2_2_model_2_message_input_8cs.html',1,'(Global Namespace)']]],
   ['messageinputoptions',['MessageInputOptions',['../de/d42/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_options.html',1,'IBM::Watson::Assistant::v2::Model']]],

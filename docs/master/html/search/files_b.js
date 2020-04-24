@@ -8,6 +8,7 @@ var searchData=
   ['messagecontextmetadata_2ecs',['MessageContextMetadata.cs',['../d3/dd8/_message_context_metadata_8cs.html',1,'']]],
   ['messagecontextskill_2ecs',['MessageContextSkill.cs',['../d4/d95/_message_context_skill_8cs.html',1,'']]],
   ['messagecontextskills_2ecs',['MessageContextSkills.cs',['../d5/d7d/_message_context_skills_8cs.html',1,'']]],
+  ['messagecontextskillsystem_2ecs',['MessageContextSkillSystem.cs',['../d1/d37/_message_context_skill_system_8cs.html',1,'']]],
   ['messageinput_2ecs',['MessageInput.cs',['../db/df0/_i_b_m_8_watson_8_assistant_8v1_2_model_2_message_input_8cs.html',1,'(Global Namespace)'],['../df/d4b/_i_b_m_8_watson_8_assistant_8v2_2_model_2_message_input_8cs.html',1,'(Global Namespace)']]],
   ['messageinputoptions_2ecs',['MessageInputOptions.cs',['../d9/d49/_message_input_options_8cs.html',1,'']]],
   ['messageoutput_2ecs',['MessageOutput.cs',['../de/d8b/_message_output_8cs.html',1,'']]],

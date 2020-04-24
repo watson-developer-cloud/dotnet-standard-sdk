@@ -57,7 +57,8 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <summary>
         /// Translate.
         ///
-        /// Translates the input text from the source language to the target language.
+        /// Translates the input text from the source language to the target language. A target language or translation
+        /// model ID is required. The service attempts to detect the language of the source text if it is not specified.
         /// </summary>
         /// <param name="request">The translate request containing the text, and either a model ID or source and target
         /// language pair.</param>
@@ -544,15 +545,18 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <param name="file">The contents of the source file to translate.
         ///
         /// [Supported file
-        /// types](https://cloud.ibm.com/docs/services/language-translator?topic=language-translator-document-translator-tutorial#supported-file-formats)
+        /// types](https://cloud.ibm.com/docs/language-translator?topic=language-translator-document-translator-tutorial#supported-file-formats)
         ///
         /// Maximum file size: **20 MB**.</param>
         /// <param name="filename">The filename for file.</param>
         /// <param name="fileContentType">The content type of file. (optional)</param>
-        /// <param name="modelId">The model to use for translation. `model_id` or both `source` and `target` are
-        /// required. (optional)</param>
+        /// <param name="modelId">The model to use for translation. For example, `en-de` selects the IBM provided base
+        /// model for English to German translation. A model ID overrides the source and target parameters and is
+        /// required if you use a custom model. If no model ID is specified, you must specify a target language.
+        /// (optional)</param>
         /// <param name="source">Language code that specifies the language of the source document. (optional)</param>
-        /// <param name="target">Language code that specifies the target language for translation. (optional)</param>
+        /// <param name="target">Language code that specifies the target language for translation. Required if model ID
+        /// is not specified. (optional)</param>
         /// <param name="documentId">To use a previously submitted document as the source for a new translation, enter
         /// the `document_id` of the document. (optional)</param>
         /// <returns><see cref="DocumentStatus" />DocumentStatus</returns>

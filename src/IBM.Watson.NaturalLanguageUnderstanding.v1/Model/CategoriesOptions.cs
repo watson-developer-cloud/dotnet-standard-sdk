@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2019, 2020.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
         public long? Limit { get; set; }
         /// <summary>
         /// Enter a [custom
-        /// model](https://cloud.ibm.com/docs/services/natural-language-understanding?topic=natural-language-understanding-customizing)
+        /// model](https://cloud.ibm.com/docs/natural-language-understanding?topic=natural-language-understanding-customizing)
         /// ID to override the standard categories model.
         ///
         /// The custom categories experimental feature will be retired on 19 December 2019. On that date, deployed

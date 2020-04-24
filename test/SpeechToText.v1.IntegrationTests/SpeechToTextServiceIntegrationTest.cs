@@ -580,7 +580,9 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
                 audio: testAudio,
                 contentType: "audio/wav",
                 endOfPhraseSilenceTime: 0.4,
-                splitTranscriptAtPhraseEnd: true
+                splitTranscriptAtPhraseEnd: true,
+                speechDetectorSensitivity: 0.5f,
+                backgroundAudioSuppression: 0.5f
                 );
             Assert.IsNotNull(recognizeResult.Result);
             Assert.IsNotNull(recognizeResult.Result.Results);
@@ -598,7 +600,9 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
                 audio: testAudio,
                 contentType: "audio/mp3",
                 endOfPhraseSilenceTime: 2,
-                splitTranscriptAtPhraseEnd: true
+                splitTranscriptAtPhraseEnd: true,
+                speechDetectorSensitivity: 0.5f,
+                backgroundAudioSuppression: 0.5f
                 );
             var jobId = createJobResult.Result.Id;
 

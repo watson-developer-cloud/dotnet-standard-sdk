@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2017, 2019.
+* (C) Copyright IBM Corp. 2017, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -27,8 +27,8 @@ namespace IBM.Watson.Discovery.v1.Model
         /// <summary>
         /// Number of documents indexed for the environment.
         /// </summary>
-        [JsonProperty("indexed", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual long? Indexed { get; private set; }
+        [JsonProperty("available", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual long? Available { get; private set; }
         /// <summary>
         /// Total number of documents allowed in the environment's capacity.
         /// </summary>

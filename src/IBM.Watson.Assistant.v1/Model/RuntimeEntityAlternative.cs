@@ -17,28 +17,23 @@
 
 using Newtonsoft.Json;
 
-namespace IBM.Watson.Discovery.v2.Model
+namespace IBM.Watson.Assistant.v1.Model
 {
     /// <summary>
-    /// Returns the top documents ranked by the score of the query.
+    /// An alternative value for the recognized entity.
     /// </summary>
-    public class QueryTopHitsAggregation : QueryAggregation
+    public class RuntimeEntityAlternative
     {
         /// <summary>
-        /// The number of documents to return.
+        /// The entity value that was recognized in the user input.
         /// </summary>
-        [JsonProperty("size", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Size { get; set; }
+        [JsonProperty("value", NullValueHandling = NullValueHandling.Ignore)]
+        public string Value { get; set; }
         /// <summary>
-        /// Identifier specified in the query request of this aggregation.
+        /// A decimal percentage that represents Watson's confidence in the recognized entity.
         /// </summary>
-        [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
-        public string Name { get; set; }
-        /// <summary>
-        /// Gets or Sets Hits
-        /// </summary>
-        [JsonProperty("hits", NullValueHandling = NullValueHandling.Ignore)]
-        public QueryTopHitsAggregationResult Hits { get; set; }
+        [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
+        public float? Confidence { get; set; }
     }
 
 }

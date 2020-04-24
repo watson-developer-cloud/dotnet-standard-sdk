@@ -410,7 +410,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Create a custom model. </p>
 <p>Creates a new empty custom voice model. You must specify a name for the new custom model. You can optionally specify the language and a description for the new model. The model is owned by the instance of the service whose credentials are used to create it.</p>
-<p><b>Note:</b> This method is currently a beta release. The service does not support voice model customization for the Arabic, Chinese, and Dutch languages.</p>
+<p><b>Note:</b> This method is currently a beta release.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-customModels#cuModelsCreate">Creating a custom model</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -603,13 +603,13 @@ Public Member Functions</h2></td></tr>
 
 <p>Get pronunciation. </p>
 <p>Gets the phonetic pronunciation for the specified word. You can request the pronunciation for a specific format. You can also request the pronunciation for a specific voice to see the default translation for the language of that voice or for a specific custom voice model to see the translation for that voice model.</p>
-<p><b>Note:</b> This method is currently a beta release. The method does not support the Arabic, Chinese, and Dutch languages.</p>
+<p><b>Note:</b> This method is currently a beta release.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-customWords#cuWordsQueryLanguage">Querying a word from a language</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">text</td><td>The word for which the pronunciation is requested.</td></tr>
     <tr><td class="paramname">voice</td><td>A voice that specifies the language in which the pronunciation is to be returned. All voices for the same language (for example, <code>en-US</code>) return the same translation. (optional, default to en-US_MichaelVoice)</td></tr>
-    <tr><td class="paramname">format</td><td>The phoneme format in which to return the pronunciation. Omit the parameter to obtain the pronunciation in the default format. (optional, default to ipa)</td></tr>
+    <tr><td class="paramname">format</td><td>The phoneme format in which to return the pronunciation. The Arabic, Chinese, Dutch, and Korean languages support only IPA. Omit the parameter to obtain the pronunciation in the default format. (optional, default to ipa)</td></tr>
     <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of a custom voice model for which the pronunciation is to be returned. The language of a specified custom model must match the language of the specified voice. If the word is not defined in the specified custom model, the service returns the default translation for the custom model's language. You must make the request with credentials for the instance of the service that owns the custom model. Omit the parameter to see the translation for the specified voice with no customization. (optional)</td></tr>
   </table>
   </dd>
@@ -952,7 +952,7 @@ arguments:"</code> followed by a list of the form <code>"{invalid_arg_1}, {inval
     <tr><td class="paramname">text</td><td></td></tr>
     <tr><td class="paramname">accept</td><td>The requested format (MIME type) of the audio. You can use the <code>Accept</code> header or the <code>accept</code> parameter to specify the audio format. For more information about specifying an audio format, see <b>Audio formats (accept types)</b> in the method description. (optional, default to audio/ogg;codecs=opus)</td></tr>
     <tr><td class="paramname">voice</td><td>The voice to use for synthesis. (optional, default to en-US_MichaelVoice)</td></tr>
-    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of a custom voice model to use for the synthesis. If a custom voice model is specified, it is guaranteed to work only if it matches the language of the indicated voice. You must make the request with credentials for the instance of the service that owns the custom model. Omit the parameter to use the specified voice with no customization. (optional)</td></tr>
+    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of a custom voice model to use for the synthesis. If a custom voice model is specified, it works only if it matches the language of the indicated voice. You must make the request with credentials for the instance of the service that owns the custom model. Omit the parameter to use the specified voice with no customization. (optional)</td></tr>
   </table>
   </dd>
 </dl>

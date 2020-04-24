@@ -714,7 +714,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Translate. </p>
-<p>Translates the input text from the source language to the target language. </p>
+<p>Translates the input text from the source language to the target language. A target language or translation model ID is required. The service attempts to detect the language of the source text if it is not specified. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">request</td><td>The translate request containing the text, and either a model ID or source and target language pair.</td></tr>
@@ -799,15 +799,15 @@ Properties</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p><a href="https://cloud.ibm.com/docs/services/language-translator?topic=language-translator-document-translator-tutorial#supported-file-formats">Supported file types</a></p>
+<p><a href="https://cloud.ibm.com/docs/language-translator?topic=language-translator-document-translator-tutorial#supported-file-formats">Supported file types</a></p>
 <p>Maximum file size: <b>20 MB</b>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">filename</td><td>The filename for file.</td></tr>
     <tr><td class="paramname">fileContentType</td><td>The content type of file. (optional)</td></tr>
-    <tr><td class="paramname">modelId</td><td>The model to use for translation. <code>model_id</code> or both <code>source</code> and <code>target</code> are required. (optional)</td></tr>
+    <tr><td class="paramname">modelId</td><td>The model to use for translation. For example, <code>en-de</code> selects the <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> provided base model for English to German translation. A model ID overrides the source and target parameters and is required if you use a custom model. If no model ID is specified, you must specify a target language. (optional)</td></tr>
     <tr><td class="paramname">source</td><td>Language code that specifies the language of the source document. (optional)</td></tr>
-    <tr><td class="paramname">target</td><td>Language code that specifies the target language for translation. (optional)</td></tr>
+    <tr><td class="paramname">target</td><td>Language code that specifies the target language for translation. Required if model ID is not specified. (optional)</td></tr>
     <tr><td class="paramname">documentId</td><td>To use a previously submitted document as the source for a new translation, enter the <code>document_id</code> of the document. (optional)</td></tr>
   </table>
   </dd>

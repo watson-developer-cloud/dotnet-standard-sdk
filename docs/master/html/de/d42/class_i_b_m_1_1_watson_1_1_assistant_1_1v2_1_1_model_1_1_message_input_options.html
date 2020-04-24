@@ -101,7 +101,7 @@ $(document).ready(function(){initNavTree('de/d42/class_i_b_m_1_1_watson_1_1_assi
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a984a9d06f16d5b1bb74b4292ddea2a7e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d42/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_options.html#a984a9d06f16d5b1bb74b4292ddea2a7e">Debug</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a984a9d06f16d5b1bb74b4292ddea2a7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether to return additional diagnostic information. Set to <code>true</code> to return additional information under the <code>output.debug</code> key.  <a href="#a984a9d06f16d5b1bb74b4292ddea2a7e">More...</a><br /></td></tr>
+<tr class="memdesc:a984a9d06f16d5b1bb74b4292ddea2a7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether to return additional diagnostic information. Set to <code>true</code> to return additional information in the <code>output.debug</code> property. If you also specify <b>return_context</b>=<code>true</code>, the returned skill context includes the <code>system.state</code> property.  <a href="#a984a9d06f16d5b1bb74b4292ddea2a7e">More...</a><br /></td></tr>
 <tr class="separator:a984a9d06f16d5b1bb74b4292ddea2a7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7ff7114e7505178447beb4de311c2ee"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d42/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_options.html#aa7ff7114e7505178447beb4de311c2ee">Restart</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:aa7ff7114e7505178447beb4de311c2ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether to restart dialog processing at the root of the dialog, regardless of any previously visited nodes. <b>Note:</b> This does not affect <code>turn_count</code> or any other context variables.  <a href="#aa7ff7114e7505178447beb4de311c2ee">More...</a><br /></td></tr>
@@ -110,8 +110,11 @@ Properties</h2></td></tr>
 <tr class="memdesc:a3d65d7e05ea654567009440aae7f2890"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether to return more than one intent. Set to <code>true</code> to return all matching intents.  <a href="#a3d65d7e05ea654567009440aae7f2890">More...</a><br /></td></tr>
 <tr class="separator:a3d65d7e05ea654567009440aae7f2890"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a694b23fd30bf8828418a56a8d4c50480"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d42/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_options.html#a694b23fd30bf8828418a56a8d4c50480">ReturnContext</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a694b23fd30bf8828418a56a8d4c50480"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether to return session context with the response. If you specify <code>true</code>, the response will include the <code>context</code> property.  <a href="#a694b23fd30bf8828418a56a8d4c50480">More...</a><br /></td></tr>
+<tr class="memdesc:a694b23fd30bf8828418a56a8d4c50480"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether to return session context with the response. If you specify <code>true</code>, the response includes the <code>context</code> property. If you also specify <b>debug</b>=<code>true</code>, the returned skill context includes the <code>system.state</code> property.  <a href="#a694b23fd30bf8828418a56a8d4c50480">More...</a><br /></td></tr>
 <tr class="separator:a694b23fd30bf8828418a56a8d4c50480"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cdc87a401fa20783950dd36937b4972"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d42/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_options.html#a6cdc87a401fa20783950dd36937b4972">Export</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a6cdc87a401fa20783950dd36937b4972"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether to return session context, including full conversation state. If you specify <code>true</code>, the response includes the <code>context</code> property, and the skill context includes the <code>system.state</code> property.  <a href="#a6cdc87a401fa20783950dd36937b4972">More...</a><br /></td></tr>
+<tr class="separator:a6cdc87a401fa20783950dd36937b4972"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Optional properties that control how the assistant responds. </p>
@@ -160,7 +163,32 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Whether to return additional diagnostic information. Set to <code>true</code> to return additional information under the <code>output.debug</code> key. </p>
+<p>Whether to return additional diagnostic information. Set to <code>true</code> to return additional information in the <code>output.debug</code> property. If you also specify <b>return_context</b>=<code>true</code>, the returned skill context includes the <code>system.state</code> property. </p>
+
+</div>
+</div>
+<a id="a6cdc87a401fa20783950dd36937b4972"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cdc87a401fa20783950dd36937b4972">&#9670;&nbsp;</a></span>Export</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool IBM.Watson.Assistant.v2.Model.MessageInputOptions.Export</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether to return session context, including full conversation state. If you specify <code>true</code>, the response includes the <code>context</code> property, and the skill context includes the <code>system.state</code> property. </p>
+<p><b>Note:</b> If <b>export</b>=<code>true</code>, the context is returned regardless of the value of <b>return_context</b>. </p>
 
 </div>
 </div>
@@ -208,7 +236,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Whether to return session context with the response. If you specify <code>true</code>, the response will include the <code>context</code> property. </p>
+<p>Whether to return session context with the response. If you specify <code>true</code>, the response includes the <code>context</code> property. If you also specify <b>debug</b>=<code>true</code>, the returned skill context includes the <code>system.state</code> property. </p>
 
 </div>
 </div>

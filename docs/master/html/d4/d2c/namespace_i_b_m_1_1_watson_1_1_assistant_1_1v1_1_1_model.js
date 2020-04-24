@@ -42,6 +42,7 @@ var namespace_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model =
     [ "OutputData", "df/d42/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_output_data.html", "df/d42/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_output_data" ],
     [ "Pagination", "d0/d4b/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_pagination.html", "d0/d4b/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_pagination" ],
     [ "RuntimeEntity", "d2/db2/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity.html", "d2/db2/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity" ],
+    [ "RuntimeEntityAlternative", "d5/d4a/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity_alternative.html", "d5/d4a/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity_alternative" ],
     [ "RuntimeEntityInterpretation", "de/d7f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity_interpretation.html", "de/d7f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity_interpretation" ],
     [ "RuntimeEntityRole", "d5/ddf/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity_role.html", "d5/ddf/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_entity_role" ],
     [ "RuntimeIntent", "d6/d26/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_intent.html", "d6/d26/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_intent" ],

@@ -106,6 +106,12 @@ Properties</h2></td></tr>
 <tr class="memitem:a82a43b9c717bbf06b25425d34adc6626"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d8b/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_translation_result.html#a82a43b9c717bbf06b25425d34adc6626">CharacterCount</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a82a43b9c717bbf06b25425d34adc6626"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of characters in the input text.  <a href="#a82a43b9c717bbf06b25425d34adc6626">More...</a><br /></td></tr>
 <tr class="separator:a82a43b9c717bbf06b25425d34adc6626"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0abe80693e08c08ac972feea28edf55"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d8b/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_translation_result.html#af0abe80693e08c08ac972feea28edf55">DetectedLanguage</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:af0abe80693e08c08ac972feea28edf55"><td class="mdescLeft">&#160;</td><td class="mdescRight">The language code of the source text if the source language was automatically detected.  <a href="#af0abe80693e08c08ac972feea28edf55">More...</a><br /></td></tr>
+<tr class="separator:af0abe80693e08c08ac972feea28edf55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedbe52ff9cbe2facee93736e63aeb8cd"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d8b/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_translation_result.html#aedbe52ff9cbe2facee93736e63aeb8cd">DetectedLanguageConfidence</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:aedbe52ff9cbe2facee93736e63aeb8cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">A score between 0 and 1 indicating the confidence of source language detection. A higher value indicates greater confidence. This is returned only when the service automatically detects the source language.  <a href="#aedbe52ff9cbe2facee93736e63aeb8cd">More...</a><br /></td></tr>
+<tr class="separator:aedbe52ff9cbe2facee93736e63aeb8cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a623ecc9ef572465bdfe7a53233797560"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="../../dd/d16/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_translation.html">Translation</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d8b/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_translation_result.html#a623ecc9ef572465bdfe7a53233797560">Translations</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a623ecc9ef572465bdfe7a53233797560"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of translation output in UTF-8, corresponding to the input text entries.  <a href="#a623ecc9ef572465bdfe7a53233797560">More...</a><br /></td></tr>
 <tr class="separator:a623ecc9ef572465bdfe7a53233797560"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -134,6 +140,54 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Number of characters in the input text. </p>
+
+</div>
+</div>
+<a id="af0abe80693e08c08ac972feea28edf55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0abe80693e08c08ac972feea28edf55">&#9670;&nbsp;</a></span>DetectedLanguage</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string IBM.Watson.LanguageTranslator.v3.Model.TranslationResult.DetectedLanguage</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The language code of the source text if the source language was automatically detected. </p>
+
+</div>
+</div>
+<a id="aedbe52ff9cbe2facee93736e63aeb8cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedbe52ff9cbe2facee93736e63aeb8cd">&#9670;&nbsp;</a></span>DetectedLanguageConfidence</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double IBM.Watson.LanguageTranslator.v3.Model.TranslationResult.DetectedLanguageConfidence</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A score between 0 and 1 indicating the confidence of source language detection. A higher value indicates greater confidence. This is returned only when the service automatically detects the source language. </p>
 
 </div>
 </div>

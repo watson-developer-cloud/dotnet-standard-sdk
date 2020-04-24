@@ -42,6 +42,9 @@ var dir_e05cd18fe37823e65ffef40a75ea096b =
     [ "MessageContextSkills.cs", "d5/d7d/_message_context_skills_8cs.html", [
       [ "MessageContextSkills", "db/d4e/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skills.html", null ]
     ] ],
+    [ "MessageContextSkillSystem.cs", "d1/d37/_message_context_skill_system_8cs.html", [
+      [ "MessageContextSkillSystem", "d4/df4/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skill_system.html", "d4/df4/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skill_system" ]
+    ] ],
     [ "MessageInput.cs", "df/d4b/_i_b_m_8_watson_8_assistant_8v2_2_model_2_message_input_8cs.html", [
       [ "MessageInput", "d6/dd2/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input.html", "d6/dd2/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input" ],
       [ "MessageTypeEnumValue", "d5/d37/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_1_1_message_type_enum_value.html", "d5/d37/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_1_1_message_type_enum_value" ]
@@ -62,7 +65,7 @@ var dir_e05cd18fe37823e65ffef40a75ea096b =
     [ "RuntimeEntity.cs", "dc/db3/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_entity_8cs.html", [
       [ "RuntimeEntity", "d3/d1f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_entity.html", "d3/d1f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_entity" ]
     ] ],
-    [ "RuntimeEntityAlternative.cs", "d2/df7/_runtime_entity_alternative_8cs.html", [
+    [ "RuntimeEntityAlternative.cs", "d1/d9c/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_entity_alternative_8cs.html", [
       [ "RuntimeEntityAlternative", "d8/d1f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_entity_alternative.html", "d8/d1f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_entity_alternative" ]
     ] ],
     [ "RuntimeEntityInterpretation.cs", "da/d38/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_entity_interpretation_8cs.html", [

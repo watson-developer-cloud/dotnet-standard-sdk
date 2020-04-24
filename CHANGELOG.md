@@ -1,3 +1,13 @@
+# [4.4.0](https://github.com/watson-developer-cloud/dotnet-standard-sdk/compare/v4.3.1...v4.4.0) (2020-04-24)
+
+
+### Features
+
+* Regenerate using 2.2.5 and 1de49c12418c0baece9d6e81cad91142fdd201c9 ([5eeffe3](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/5eeffe35f201bcbdbb8e381aadc5c313a3d816f3))
+* Regenerate using sdk-2020-04-16 and generator 2.2.5 ([4fdf2c6](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/4fdf2c6ad1ea346c5c76e197307a5c4b13a105e4))
+* Regenerate with 2.2.5 and c13e63c37da6e360d26e73be35da3b34ae95a075 ([0efef30](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/0efef30ddb54b156f77ed7ccceb138689901273e))
+* Regenerated using 2.2.5 and 293b8fd00ce3041b7d899af4534b85a89f5b963f ([279978b](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/279978b6ad349681f8c1100558ca545ed216de94))
+
 ## [4.3.1](https://github.com/watson-developer-cloud/dotnet-standard-sdk/compare/v4.3.0...v4.3.1) (2020-02-14)
 
 

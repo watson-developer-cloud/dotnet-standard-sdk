@@ -115,36 +115,36 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
                 name: Utility.ConvertToUtf8(testCollectionName),
                 description: Utility.ConvertToUtf8(testCollectionDescription));
 
-            var collectionId = createCollectionResult.Result.CollectionId;
+            var createdCollectionId = createCollectionResult.Result.CollectionId;
 
             service.WithHeader("X-Watson-Test", "1");
             var getCollectionResult = service.GetCollection(
-                collectionId: collectionId);
+                collectionId: createdCollectionId);
 
             service.WithHeader("X-Watson-Test", "1");
             var updateCollectionResult = service.UpdateCollection(
-                collectionId: collectionId,
+                collectionId: createdCollectionId,
                 name: Utility.ConvertToUtf8(updatedTestCollectionName),
                 description: Utility.ConvertToUtf8(updatedTestCollectionDescription));
 
             service.WithHeader("X-Watson-Test", "1");
             var deleteCollectionResult = service.DeleteCollection(
-                collectionId: collectionId);
+                collectionId: createdCollectionId);
 
             Assert.IsTrue(deleteCollectionResult.StatusCode == 200);
             Assert.IsNotNull(updateCollectionResult.Result);
-            Assert.IsTrue(updateCollectionResult.Result.CollectionId == collectionId);
+            Assert.IsTrue(updateCollectionResult.Result.CollectionId == createdCollectionId);
             Assert.IsTrue(updateCollectionResult.Result.Name == updatedTestCollectionName);
             Assert.IsTrue(updateCollectionResult.Result.Description == updatedTestCollectionDescription);
             Assert.IsNotNull(getCollectionResult.Result);
-            Assert.IsTrue(getCollectionResult.Result.CollectionId == collectionId);
+            Assert.IsTrue(getCollectionResult.Result.CollectionId == createdCollectionId);
             Assert.IsTrue(getCollectionResult.Result.Name == testCollectionName);
             Assert.IsTrue(getCollectionResult.Result.Description == testCollectionDescription);
             Assert.IsNotNull(listCollectionResult.Result);
             Assert.IsNotNull(listCollectionResult.Result.Collections);
             Assert.IsTrue(listCollectionResult.Result.Collections.Count > 0);
             Assert.IsNotNull(createCollectionResult.Result);
-            Assert.IsTrue(!string.IsNullOrEmpty(collectionId));
+            Assert.IsTrue(!string.IsNullOrEmpty(createdCollectionId));
             Assert.IsTrue(createCollectionResult.Result.Name == testCollectionName);
         }
         #endregion
@@ -161,7 +161,7 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
                 name: Utility.ConvertToUtf8(testCollectionName),
                 description: Utility.ConvertToUtf8(testCollectionDescription));
 
-            var collectionId = createCollectionResult.Result.CollectionId;
+            var createdCollectionId = createCollectionResult.Result.CollectionId;
 
             DetailedResponse<ImageDetailsList> addImagesResult = null;
             List<FileWithMetadata> imagesFile = new List<FileWithMetadata>();
@@ -182,7 +182,7 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
 
                     service.WithHeader("X-Watson-Test", "1");
                     addImagesResult = service.AddImages(
-                        collectionId: collectionId,
+                        collectionId: createdCollectionId,
                         imagesFile: imagesFile);
                 }
             }
@@ -190,21 +190,21 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
 
             service.WithHeader("X-Watson-Test", "1");
             var addImageViaUrlResult = service.AddImages(
-                collectionId: collectionId,
+                collectionId: createdCollectionId,
                 imageUrl: new List<string>() { dogImageUrl, catImageUrl });
 
             service.WithHeader("X-Watson-Test", "1");
             var listImageResult = service.ListImages(
-                collectionId: collectionId);
+                collectionId: createdCollectionId);
 
             service.WithHeader("X-Watson-Test", "1");
             var getImageResult = service.GetImageDetails(
-                collectionId: collectionId,
+                collectionId: createdCollectionId,
                 imageId: imageId);
 
             service.WithHeader("X-Watson-Test", "1");
             var getJpgImageResult = service.GetJpegImage(
-                collectionId: collectionId,
+                collectionId: createdCollectionId,
                 imageId: imageId, 
                 size: "thumbnail"
                 );
@@ -219,12 +219,12 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
 
             service.WithHeader("X-Watson-Test", "1");
             var deleteImageResult = service.DeleteImage(
-                collectionId: collectionId,
+                collectionId: createdCollectionId,
                 imageId: imageId);
 
             service.WithHeader("X-Watson-Test", "1");
             var deleteCollectionResult = service.DeleteCollection(
-                collectionId: collectionId);
+                collectionId: createdCollectionId);
 
             Assert.IsTrue(deleteImageResult.StatusCode == 200);
             Assert.IsNotNull(getJpgImageResult.Result);
@@ -251,7 +251,7 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
                 name: Utility.ConvertToUtf8(testCollectionName),
                 description: Utility.ConvertToUtf8(testCollectionDescription));
 
-            var collectionId = createCollectionResult.Result.CollectionId;
+            var createdCollectionId = createCollectionResult.Result.CollectionId;
 
             DetailedResponse<ImageDetailsList> addImagesResult = null;
             List<FileWithMetadata> imagesFile = new List<FileWithMetadata>();
@@ -272,7 +272,7 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
 
                     service.WithHeader("X-Watson-Test", "1");
                     addImagesResult = service.AddImages(
-                        collectionId: collectionId,
+                        collectionId: createdCollectionId,
                         imagesFile: imagesFile);
                 }
             }
@@ -298,17 +298,17 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
 
             service.WithHeader("X-Watson-Test", "1");
             var addTrainingDataResult = service.AddImageTrainingData(
-                collectionId: collectionId,
+                collectionId: createdCollectionId,
                 imageId: imageId,
                 objects: objects);
 
             service.WithHeader("X-Watson-Test", "1");
             var trainCollectionResult = service.Train(
-                collectionId: collectionId);
+                collectionId: createdCollectionId);
 
             service.WithHeader("X-Watson-Test", "1");
             var deleteCollectionResult = service.DeleteCollection(
-                collectionId: collectionId);
+                collectionId: createdCollectionId);
 
             Assert.IsTrue(trainCollectionResult.StatusCode == 202);
             Assert.IsNotNull(trainCollectionResult.Result);
@@ -327,7 +327,7 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
         {
             service.WithHeader("X-Watson-Test", "1");
             var startTime = "2019-11-18";
-            var endTime = "2019-11-20";
+            var endTime = "2020-11-20";
             var getTrainingUsageResult = service.GetTrainingUsage(
                 startTime: startTime, 
                 endTime: endTime
@@ -337,7 +337,7 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
             Assert.IsTrue(getTrainingUsageResult.Result.StartTime.Value.Year == 2019);
             Assert.IsTrue(getTrainingUsageResult.Result.StartTime.Value.Month == 11);
             Assert.IsTrue(getTrainingUsageResult.Result.StartTime.Value.Day == 18);
-            Assert.IsTrue(getTrainingUsageResult.Result.EndTime.Value.Year == 2019);
+            Assert.IsTrue(getTrainingUsageResult.Result.EndTime.Value.Year == 2020);
             Assert.IsTrue(getTrainingUsageResult.Result.EndTime.Value.Month == 11);
             Assert.IsTrue(getTrainingUsageResult.Result.EndTime.Value.Day == 20);
             Assert.IsTrue(getTrainingUsageResult.Result.TrainedImages > 0);
@@ -360,7 +360,7 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
                 name: Utility.ConvertToUtf8(testCollectionName),
                 description: Utility.ConvertToUtf8(testCollectionDescription));
 
-            var collectionId = createCollectionResult.Result.CollectionId;
+            var createdCollectionId = createCollectionResult.Result.CollectionId;
 
             DetailedResponse<ImageDetailsList> addImagesResult = null;
             List<FileWithMetadata> imagesFile = new List<FileWithMetadata>();
@@ -381,7 +381,7 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
 
                     service.WithHeader("X-Watson-Test", "1");
                     addImagesResult = service.AddImages(
-                        collectionId: collectionId,
+                        collectionId: createdCollectionId,
                         imagesFile: imagesFile);
                 }
             }
@@ -408,38 +408,38 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
 
             service.WithHeader("X-Watson-Test", "1");
             var addTrainingDataResult = service.AddImageTrainingData(
-                collectionId: collectionId,
+                collectionId: createdCollectionId,
                 imageId: imageId,
                 objects: objects
                 );
 
             service.WithHeader("X-Watson-Test", "1");
             var listObjectMetadataResult = service.ListObjectMetadata(
-                collectionId: collectionId
+                collectionId: createdCollectionId
                 );
 
             service.WithHeader("X-Watson-Test", "1");
             var updateObjectMetadataResult = service.UpdateObjectMetadata(
-                collectionId: collectionId, 
+                collectionId: createdCollectionId, 
                 _object: objectName, 
                 newObject: updatedObjectName
                 );
 
             service.WithHeader("X-Watson-Test", "1");
             var getObjectMetadataResult = service.GetObjectMetadata(
-                collectionId: collectionId,
+                collectionId: createdCollectionId,
                 _object: updatedObjectName
                 );
 
             service.WithHeader("X-Watson-Test", "1");
             var deleteObjectResult = service.DeleteObject(
-                collectionId: collectionId,
+                collectionId: createdCollectionId,
                 _object: updatedObjectName
                 );
 
             service.WithHeader("X-Watson-Test", "1");
             var deleteCollectionResult = service.DeleteCollection(
-                collectionId: collectionId);
+                collectionId: createdCollectionId);
 
             Assert.IsTrue(deleteObjectResult.StatusCode == 200);
             Assert.IsTrue(updateObjectMetadataResult.Result._Object == updatedObjectName);
@@ -448,7 +448,7 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
             Assert.IsNotNull(listObjectMetadataResult.Result);
             Assert.IsTrue(deleteCollectionResult.StatusCode == 200);
             Assert.IsNotNull(createCollectionResult.Result);
-            Assert.IsTrue(!string.IsNullOrEmpty(collectionId));
+            Assert.IsTrue(!string.IsNullOrEmpty(createdCollectionId));
             Assert.IsTrue(createCollectionResult.Result.Name == testCollectionName);
         }
         #endregion

@@ -20,20 +20,22 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// Session context data that is shared by all skills used by the Assistant.
+    /// A stateless response from the Watson Assistant service.
     /// </summary>
-    public class MessageContextGlobal
+    public class MessageResponseStateless
     {
         /// <summary>
-        /// Built-in system properties that apply to all skills used by the assistant.
+        /// Assistant output to be rendered or processed by the client.
         /// </summary>
-        [JsonProperty("system", NullValueHandling = NullValueHandling.Ignore)]
-        public MessageContextGlobalSystem System { get; set; }
+        [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
+        public MessageOutput Output { get; set; }
         /// <summary>
-        /// The session ID.
+        /// Context data for the conversation. You can use this property to access context variables. The context is not
+        /// stored by the assistant; to maintain session state, include the context from the response in the next
+        /// message.
         /// </summary>
-        [JsonProperty("session_id", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string SessionId { get; private set; }
+        [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
+        public MessageContextStateless Context { get; set; }
     }
 
 }

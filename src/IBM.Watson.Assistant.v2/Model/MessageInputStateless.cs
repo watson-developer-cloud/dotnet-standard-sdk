@@ -23,7 +23,7 @@ namespace IBM.Watson.Assistant.v2.Model
     /// <summary>
     /// An input object that includes the input text.
     /// </summary>
-    public class MessageInput
+    public class MessageInputStateless
     {
         /// <summary>
         /// The type of user input. Currently, only text input is supported.
@@ -39,7 +39,7 @@ namespace IBM.Watson.Assistant.v2.Model
 
         /// <summary>
         /// The type of user input. Currently, only text input is supported.
-        /// Constants for possible values can be found using MessageInput.MessageTypeEnumValue
+        /// Constants for possible values can be found using MessageInputStateless.MessageTypeEnumValue
         /// </summary>
         [JsonProperty("message_type", NullValueHandling = NullValueHandling.Ignore)]
         public string MessageType { get; set; }
@@ -69,7 +69,7 @@ namespace IBM.Watson.Assistant.v2.Model
         /// Optional properties that control how the assistant responds.
         /// </summary>
         [JsonProperty("options", NullValueHandling = NullValueHandling.Ignore)]
-        public MessageInputOptions Options { get; set; }
+        public MessageInputOptionsStateless Options { get; set; }
     }
 
 }

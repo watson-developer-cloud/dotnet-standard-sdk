@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2017, 2019.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -52,6 +52,12 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
         public string WorkspaceId { get; set; }
         /// <summary>
         /// The model version, if it was manually provided in Watson Knowledge Studio.
+        /// </summary>
+        [JsonProperty("model_version", NullValueHandling = NullValueHandling.Ignore)]
+        public string ModelVersion { get; set; }
+        /// <summary>
+        /// (Deprecated — use `model_version`) The model version, if it was manually provided in Watson Knowledge
+        /// Studio.
         /// </summary>
         [JsonProperty("version", NullValueHandling = NullValueHandling.Ignore)]
         public string Version { get; set; }

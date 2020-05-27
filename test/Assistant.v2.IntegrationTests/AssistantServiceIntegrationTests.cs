@@ -111,5 +111,33 @@ namespace IBM.Watson.Assistant.v2.IntegrationTests
             Assert.IsTrue(!string.IsNullOrEmpty(createSessionResult.Result.SessionId));
         }
         #endregion
+
+        #region Stateless Message
+        [TestMethod]
+        public void StatelessMessage_Success()
+        {
+            MessageInputStateless input = new MessageInputStateless()
+            {
+                MessageType = MessageInput.MessageTypeEnumValue.TEXT,
+                Text = inputString,
+                Options = new MessageInputOptionsStateless()
+                {
+                    AlternateIntents = true
+                }
+            };
+
+            service.WithHeader("X-Watson-Test", "1");
+            var messageResult = service.MessageStateless(
+                assistantId: assistantId,
+                input: input
+                );
+
+            Assert.IsNotNull(messageResult.Response);
+            Assert.IsTrue(messageResult.Result.Output.Generic[0].ResponseType == "text");
+            Assert.IsTrue(messageResult.Result.Output.Generic[0].Text.Contains("Hello"));
+            Assert.IsTrue(messageResult.Result.Output.Intents[0].Intent == "General_Greetings");
+            Assert.IsNotNull(messageResult.Result.Context.Global.SessionId);
+        }
+        #endregion
     }
 }

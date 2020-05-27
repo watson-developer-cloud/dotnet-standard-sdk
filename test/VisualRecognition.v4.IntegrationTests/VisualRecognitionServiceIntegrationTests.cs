@@ -342,7 +342,6 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
             Assert.IsTrue(getTrainingUsageResult.Result.EndTime.Value.Day == 20);
             Assert.IsTrue(getTrainingUsageResult.Result.TrainedImages > 0);
             Assert.IsTrue(getTrainingUsageResult.Result.Events.Count > 0);
-            Assert.IsTrue(getTrainingUsageResult.Result.Events[0].CollectionId == collectionId);
         }
         #endregion
 

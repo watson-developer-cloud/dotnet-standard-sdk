@@ -464,5 +464,29 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
             Assert.IsTrue(deleteLabeledDataResult.StatusCode == 202);
         }
         #endregion
+
+        #region Get Model File
+        [TestMethod]
+        public void GetModelFile_Success()
+        {
+            DetailedResponse<MemoryStream> getModelFileResult = null;
+            try
+            {
+                service.WithHeader("X-Watson-Test", "1");
+                getModelFileResult = service.GetModelFile(
+                    collectionId: collectionId,
+                    feature: "objects",
+                    modelFormat: "rscnn"
+                    );
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Failed to get model file...{0}", e.Message);
+            }
+
+            Assert.IsNotNull(getModelFileResult);
+            Assert.IsNotNull(getModelFileResult.Result);
+        }
+        #endregion
     }
 }

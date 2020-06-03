@@ -109,6 +109,12 @@ Properties</h2></td></tr>
 <tr class="memitem:ac29354d750fdbbd94ab06ff3a905a7cc"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; string, object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d9f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings.html#ac29354d750fdbbd94ab06ff3a905a7cc">HumanAgentAssist</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:ac29354d750fdbbd94ab06ff3a905a7cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">For internal use only.  <a href="#ac29354d750fdbbd94ab06ff3a905a7cc">More...</a><br /></td></tr>
 <tr class="separator:ac29354d750fdbbd94ab06ff3a905a7cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48a91d05c96a632e7bb8ab04299a26ca"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d9f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings.html#a48a91d05c96a632e7bb8ab04299a26ca">SpellingSuggestions</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a48a91d05c96a632e7bb8ab04299a26ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether spelling correction is enabled for the workspace.  <a href="#a48a91d05c96a632e7bb8ab04299a26ca">More...</a><br /></td></tr>
+<tr class="separator:a48a91d05c96a632e7bb8ab04299a26ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aada9e815733b199d96461e716d1fd23e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d9f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings.html#aada9e815733b199d96461e716d1fd23e">SpellingAutoCorrect</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:aada9e815733b199d96461e716d1fd23e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether autocorrection is enabled for the workspace. If spelling correction is enabled and this property is <code>false</code>, any suggested corrections are returned in the <b>suggested_text</b> property of the message response. If this property is <code>true</code>, any corrections are automatically applied to the user input, and the original text is returned in the <b>original_text</b> property of the message response.  <a href="#aada9e815733b199d96461e716d1fd23e">More...</a><br /></td></tr>
+<tr class="separator:aada9e815733b199d96461e716d1fd23e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a340818d56a0ffec450267754a305fab7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dff/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings_system_entities.html">WorkspaceSystemSettingsSystemEntities</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d9f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings.html#a340818d56a0ffec450267754a305fab7">SystemEntities</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a340818d56a0ffec450267754a305fab7"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="../../d6/d2d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace.html" title="Workspace. ">Workspace</a> settings related to the behavior of system entities.  <a href="#a340818d56a0ffec450267754a305fab7">More...</a><br /></td></tr>
 <tr class="separator:a340818d56a0ffec450267754a305fab7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -189,6 +195,54 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p><a class="el" href="../../d6/d2d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace.html" title="Workspace. ">Workspace</a> settings related to detection of irrelevant input. </p>
+
+</div>
+</div>
+<a id="aada9e815733b199d96461e716d1fd23e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aada9e815733b199d96461e716d1fd23e">&#9670;&nbsp;</a></span>SpellingAutoCorrect</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool IBM.Watson.Assistant.v1.Model.WorkspaceSystemSettings.SpellingAutoCorrect</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether autocorrection is enabled for the workspace. If spelling correction is enabled and this property is <code>false</code>, any suggested corrections are returned in the <b>suggested_text</b> property of the message response. If this property is <code>true</code>, any corrections are automatically applied to the user input, and the original text is returned in the <b>original_text</b> property of the message response. </p>
+
+</div>
+</div>
+<a id="a48a91d05c96a632e7bb8ab04299a26ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48a91d05c96a632e7bb8ab04299a26ca">&#9670;&nbsp;</a></span>SpellingSuggestions</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool IBM.Watson.Assistant.v1.Model.WorkspaceSystemSettings.SpellingSuggestions</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether spelling correction is enabled for the workspace. </p>
 
 </div>
 </div>

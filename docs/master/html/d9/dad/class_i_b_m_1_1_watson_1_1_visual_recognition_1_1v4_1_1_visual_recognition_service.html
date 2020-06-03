@@ -131,6 +131,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:adb02198d419e48c719031220c8de7774"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dad/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_visual_recognition_service.html#adb02198d419e48c719031220c8de7774">DeleteCollection</a> (string collectionId)</td></tr>
 <tr class="memdesc:adb02198d419e48c719031220c8de7774"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete a collection.  <a href="#adb02198d419e48c719031220c8de7774">More...</a><br /></td></tr>
 <tr class="separator:adb02198d419e48c719031220c8de7774"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1259ec7fd1e72bd0b2dfe122bacafa45"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; System.IO.MemoryStream &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dad/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_visual_recognition_service.html#a1259ec7fd1e72bd0b2dfe122bacafa45">GetModelFile</a> (string collectionId, string feature, string modelFormat)</td></tr>
+<tr class="memdesc:a1259ec7fd1e72bd0b2dfe122bacafa45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a model.  <a href="#a1259ec7fd1e72bd0b2dfe122bacafa45">More...</a><br /></td></tr>
+<tr class="separator:a1259ec7fd1e72bd0b2dfe122bacafa45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33a2bacf3691fd56d90a9e114f592eb6"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d9/d9e/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_image_details_list.html">ImageDetailsList</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dad/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_visual_recognition_service.html#a33a2bacf3691fd56d90a9e114f592eb6">AddImages</a> (string collectionId, List&lt; FileWithMetadata &gt; imagesFile=null, List&lt; string &gt; imageUrl=null, string trainingData=null)</td></tr>
 <tr class="memdesc:a33a2bacf3691fd56d90a9e114f592eb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add images.  <a href="#a33a2bacf3691fd56d90a9e114f592eb6">More...</a><br /></td></tr>
 <tr class="separator:a33a2bacf3691fd56d90a9e114f592eb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -872,6 +875,63 @@ Properties</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>byte[]byte[]</dd></dl>
 
 <p>Implements <a class="el" href="../../d2/d37/interface_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_i_visual_recognition_service.html#a2d55d4117312881dd25c9fc7f63f79e5">IBM.Watson.VisualRecognition.v4.IVisualRecognitionService</a>.</p>
+
+</div>
+</div>
+<a id="a1259ec7fd1e72bd0b2dfe122bacafa45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1259ec7fd1e72bd0b2dfe122bacafa45">&#9670;&nbsp;</a></span>GetModelFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;System.IO.MemoryStream&gt; IBM.Watson.VisualRecognition.v4.VisualRecognitionService.GetModelFile </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>collectionId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>feature</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>modelFormat</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get a model. </p>
+<p>Download a model that you can deploy to detect objects in images. The collection must include a generated model, which is indicated in the response for the collection details as <code>"rscnn_ready": true</code>. If the value is <code>false</code>, train or retrain the collection to generate the model.</p>
+<p>Currently, the model format is specific to Android apps. For more information about how to deploy the model to your app, see the <a href="https://github.com/matt-ny/rscnn">Watson Visual Recognition on Android</a> project in GitHub. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">collectionId</td><td>The identifier of the collection.</td></tr>
+    <tr><td class="paramname">feature</td><td>The feature for the model.</td></tr>
+    <tr><td class="paramname">modelFormat</td><td>The format of the returned model.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>byte[]byte[]</dd></dl>
+
+<p>Implements <a class="el" href="../../d2/d37/interface_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_i_visual_recognition_service.html#a21cd3d0890a15a3f2d26926e82d13dc1">IBM.Watson.VisualRecognition.v4.IVisualRecognitionService</a>.</p>
 
 </div>
 </div>

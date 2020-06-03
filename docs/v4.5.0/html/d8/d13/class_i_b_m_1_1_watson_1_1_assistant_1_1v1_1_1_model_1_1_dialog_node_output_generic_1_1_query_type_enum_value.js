@@ -1,0 +1,5 @@
+var class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_1_1_query_type_enum_value =
+[
+    [ "DISCOVERY_QUERY_LANGUAGE", "d8/d13/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_1_1_query_type_enum_value.html#a7251c55e6f45641a39b4ca42f44fc9b7", null ],
+    [ "NATURAL_LANGUAGE", "d8/d13/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_1_1_query_type_enum_value.html#ab2b92343d197b540234025ae65be2d88", null ]
+];

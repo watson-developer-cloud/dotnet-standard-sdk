@@ -461,6 +461,80 @@ namespace IBM.Watson.VisualRecognition.v4
 
             return result;
         }
+
+        /// <summary>
+        /// Get a model.
+        ///
+        /// Download a model that you can deploy to detect objects in images. The collection must include a generated
+        /// model, which is indicated in the response for the collection details as `"rscnn_ready": true`. If the value
+        /// is `false`, train or retrain the collection to generate the model.
+        ///
+        /// Currently, the model format is specific to Android apps. For more information about how to deploy the model
+        /// to your app, see the [Watson Visual Recognition on Android](https://github.com/matt-ny/rscnn) project in
+        /// GitHub.
+        /// </summary>
+        /// <param name="collectionId">The identifier of the collection.</param>
+        /// <param name="feature">The feature for the model.</param>
+        /// <param name="modelFormat">The format of the returned model.</param>
+        /// <returns><see cref="byte[]" />byte[]</returns>
+        public DetailedResponse<System.IO.MemoryStream> GetModelFile(string collectionId, string feature, string modelFormat)
+        {
+            if (string.IsNullOrEmpty(collectionId))
+            {
+                throw new ArgumentNullException("`collectionId` is required for `GetModelFile`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
+            }
+            if (string.IsNullOrEmpty(feature))
+            {
+                throw new ArgumentNullException("`feature` is required for `GetModelFile`");
+            }
+            if (string.IsNullOrEmpty(modelFormat))
+            {
+                throw new ArgumentNullException("`modelFormat` is required for `GetModelFile`");
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<System.IO.MemoryStream> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v4/collections/{collectionId}/model");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/octet-stream");
+                if (!string.IsNullOrEmpty(feature))
+                {
+                    restRequest.WithArgument("feature", feature);
+                }
+                if (!string.IsNullOrEmpty(modelFormat))
+                {
+                    restRequest.WithArgument("model_format", modelFormat);
+                }
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v4", "GetModelFile"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = new DetailedResponse<System.IO.MemoryStream>();
+                result.Result = new System.IO.MemoryStream(restRequest.AsByteArray().Result);
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
         /// <summary>
         /// Add images.
         ///

@@ -198,8 +198,8 @@ namespace IBM.Watson.Assistant.v1.Model
         /// The text of the search query. This can be either a natural-language query or a query that uses the Discovery
         /// query language syntax, depending on the value of the **query_type** property. For more information, see the
         /// [Discovery service
-        /// documentation](https://cloud.ibm.com/docs/discovery?topic=discovery-query-operators#query-operators). Required when
-        /// **response_type**=`search_skill`.
+        /// documentation](https://cloud.ibm.com/docs/discovery?topic=discovery-query-operators#query-operators).
+        /// Required when **response_type**=`search_skill`.
         /// </summary>
         [JsonProperty("query", NullValueHandling = NullValueHandling.Ignore)]
         public string Query { get; set; }

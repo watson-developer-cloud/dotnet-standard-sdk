@@ -22,7 +22,7 @@ namespace IBM.Watson.Assistant.v2.Model
     /// <summary>
     /// Session context data that is shared by all skills used by the Assistant.
     /// </summary>
-    public class MessageContextGlobal
+    public class MessageContextGlobalStateless
     {
         /// <summary>
         /// Built-in system properties that apply to all skills used by the assistant.
@@ -30,10 +30,10 @@ namespace IBM.Watson.Assistant.v2.Model
         [JsonProperty("system", NullValueHandling = NullValueHandling.Ignore)]
         public MessageContextGlobalSystem System { get; set; }
         /// <summary>
-        /// The session ID.
+        /// The unique identifier of the session.
         /// </summary>
         [JsonProperty("session_id", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string SessionId { get; private set; }
+        public string SessionId { get; set; }
     }
 
 }

@@ -181,9 +181,10 @@ namespace IBM.Watson.Assistant.v2
             return result;
         }
         /// <summary>
-        /// Send user input to assistant.
+        /// Send user input to assistant (stateful).
         ///
-        /// Send user input to an assistant and receive a response.
+        /// Send user input to an assistant and receive a response, with conversation state (including context data)
+        /// stored by Watson Assistant for the duration of the session.
         ///
         /// There is no rate limit for this operation.
         /// </summary>
@@ -254,6 +255,82 @@ namespace IBM.Watson.Assistant.v2
                 if (result == null)
                 {
                     result = new DetailedResponse<MessageResponse>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Send user input to assistant (stateless).
+        ///
+        /// Send user input to an assistant and receive a response, with conversation state (including context data)
+        /// managed by your application.
+        ///
+        /// There is no rate limit for this operation.
+        /// </summary>
+        /// <param name="assistantId">Unique identifier of the assistant. To find the assistant ID in the Watson
+        /// Assistant user interface, open the assistant settings and click **API Details**. For information about
+        /// creating assistants, see the
+        /// [documentation](https://cloud.ibm.com/docs/assistant?topic=assistant-assistant-add#assistant-add-task).
+        ///
+        /// **Note:** Currently, the v2 API does not support creating assistants.</param>
+        /// <param name="request">The message to be sent. This includes the user's input, context data, and optional
+        /// content such as intents and entities. (optional)</param>
+        /// <returns><see cref="MessageResponseStateless" />MessageResponseStateless</returns>
+        public DetailedResponse<MessageResponseStateless> MessageStateless(string assistantId, MessageInputStateless input = null, MessageContextStateless context = null)
+        {
+            if (string.IsNullOrEmpty(assistantId))
+            {
+                throw new ArgumentNullException("`assistantId` is required for `MessageStateless`");
+            }
+            else
+            {
+                assistantId = Uri.EscapeDataString(assistantId);
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<MessageResponseStateless> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v2/assistants/{assistantId}/message");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+
+                JObject bodyObject = new JObject();
+                if (input != null)
+                {
+                    bodyObject["input"] = JToken.FromObject(input);
+                }
+                if (context != null)
+                {
+                    bodyObject["context"] = JToken.FromObject(context);
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
+                restRequest.WithBodyContent(httpContent);
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v2", "MessageStateless"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<MessageResponseStateless>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<MessageResponseStateless>();
                 }
             }
             catch (AggregateException ae)

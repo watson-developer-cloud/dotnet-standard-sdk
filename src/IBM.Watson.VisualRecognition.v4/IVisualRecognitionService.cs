@@ -30,6 +30,7 @@ namespace IBM.Watson.VisualRecognition.v4
         DetailedResponse<Collection> GetCollection(string collectionId);
         DetailedResponse<Collection> UpdateCollection(string collectionId, string name = null, string description = null);
         DetailedResponse<object> DeleteCollection(string collectionId);
+        DetailedResponse<System.IO.MemoryStream> GetModelFile(string collectionId, string feature, string modelFormat);
         DetailedResponse<ImageDetailsList> AddImages(string collectionId, List<FileWithMetadata> imagesFile = null, List<string> imageUrl = null, string trainingData = null);
         DetailedResponse<ImageSummaryList> ListImages(string collectionId);
         DetailedResponse<ImageDetails> GetImageDetails(string collectionId, string imageId);

@@ -454,7 +454,8 @@ Properties</h2></td></tr>
 
 <p>Delete a document. </p>
 <p>If the given document ID is invalid, or if the document is not found, then the a success response is returned (HTTP status code <code>200</code>) with the status set to 'deleted'.</p>
-<p><b>Note:</b> This operation only works on collections created to accept direct file uploads. It cannot be used to modify a collection that connects to an external source such as Microsoft SharePoint. </p>
+<p><b>Note:</b> This operation only works on collections created to accept direct file uploads. It cannot be used to modify a collection that connects to an external source such as Microsoft SharePoint.</p>
+<p><b>Note:</b> Segments of an uploaded document cannot be deleted individually. Delete all segments by deleting using the <code>parent_document_id</code> of a segment result. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
@@ -1068,7 +1069,8 @@ Properties</h2></td></tr>
 <p>Replace an existing document or add a document with a specified <b>document_id</b>. Starts ingesting a document with optional metadata.</p>
 <p>If the document is uploaded to a collection that has it's data shared with another collection, the <b>X-Watson-Discovery-Force</b> header must be set to <code>true</code>.</p>
 <p><b>Note:</b> When uploading a new document with this method it automatically replaces any document stored with the same <b>document_id</b> if it exists.</p>
-<p><b>Note:</b> This operation only works on collections created to accept direct file uploads. It cannot be used to modify a collection that connects to an external source such as Microsoft SharePoint. </p>
+<p><b>Note:</b> This operation only works on collections created to accept direct file uploads. It cannot be used to modify a collection that connects to an external source such as Microsoft SharePoint.</p>
+<p><b>Note:</b> If an uploaded document is segmented, all segments will be overwritten, even if the updated version of the document has fewer segments. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>

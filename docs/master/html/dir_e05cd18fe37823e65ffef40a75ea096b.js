@@ -32,6 +32,9 @@ var dir_e05cd18fe37823e65ffef40a75ea096b =
     [ "MessageContextGlobal.cs", "d9/db3/_message_context_global_8cs.html", [
       [ "MessageContextGlobal", "d8/d9a/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global.html", "d8/d9a/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global" ]
     ] ],
+    [ "MessageContextGlobalStateless.cs", "d8/df5/_message_context_global_stateless_8cs.html", [
+      [ "MessageContextGlobalStateless", "d1/d76/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global_stateless.html", "d1/d76/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global_stateless" ]
+    ] ],
     [ "MessageContextGlobalSystem.cs", "db/dc0/_message_context_global_system_8cs.html", [
       [ "MessageContextGlobalSystem", "da/d56/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global_system.html", "da/d56/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global_system" ],
       [ "LocaleEnumValue", "d8/d21/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global_system_1_1_locale_enum_value.html", "d8/d21/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global_system_1_1_locale_enum_value" ]
@@ -45,12 +48,25 @@ var dir_e05cd18fe37823e65ffef40a75ea096b =
     [ "MessageContextSkillSystem.cs", "d1/d37/_message_context_skill_system_8cs.html", [
       [ "MessageContextSkillSystem", "d4/df4/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skill_system.html", "d4/df4/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skill_system" ]
     ] ],
+    [ "MessageContextStateless.cs", "de/d20/_message_context_stateless_8cs.html", [
+      [ "MessageContextStateless", "d6/d62/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_stateless.html", "d6/d62/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_stateless" ]
+    ] ],
     [ "MessageInput.cs", "df/d4b/_i_b_m_8_watson_8_assistant_8v2_2_model_2_message_input_8cs.html", [
       [ "MessageInput", "d6/dd2/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input.html", "d6/dd2/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input" ],
       [ "MessageTypeEnumValue", "d5/d37/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_1_1_message_type_enum_value.html", "d5/d37/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_1_1_message_type_enum_value" ]
     ] ],
     [ "MessageInputOptions.cs", "d9/d49/_message_input_options_8cs.html", [
       [ "MessageInputOptions", "de/d42/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_options.html", "de/d42/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_options" ]
+    ] ],
+    [ "MessageInputOptionsSpelling.cs", "db/d5f/_message_input_options_spelling_8cs.html", [
+      [ "MessageInputOptionsSpelling", "da/d95/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_options_spelling.html", "da/d95/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_options_spelling" ]
+    ] ],
+    [ "MessageInputOptionsStateless.cs", "da/da6/_message_input_options_stateless_8cs.html", [
+      [ "MessageInputOptionsStateless", "dd/d53/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_options_stateless.html", "dd/d53/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_options_stateless" ]
+    ] ],
+    [ "MessageInputStateless.cs", "df/d99/_message_input_stateless_8cs.html", [
+      [ "MessageInputStateless", "de/d96/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_stateless.html", "de/d96/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_stateless" ],
+      [ "MessageTypeEnumValue", "d2/dd8/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_stateless_1_1_message_type_enum_value.html", "d2/dd8/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_stateless_1_1_message_type_enum_value" ]
     ] ],
     [ "MessageOutput.cs", "de/d8b/_message_output_8cs.html", [
       [ "MessageOutput", "d2/dcc/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_output.html", "d2/dcc/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_output" ]
@@ -59,8 +75,14 @@ var dir_e05cd18fe37823e65ffef40a75ea096b =
       [ "MessageOutputDebug", "d8/d84/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_output_debug.html", "d8/d84/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_output_debug" ],
       [ "BranchExitedReasonEnumValue", "d4/d61/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_output_debug_1_1_branch_exited_reason_enum_value.html", "d4/d61/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_output_debug_1_1_branch_exited_reason_enum_value" ]
     ] ],
+    [ "MessageOutputSpelling.cs", "d9/d95/_message_output_spelling_8cs.html", [
+      [ "MessageOutputSpelling", "d6/d70/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_output_spelling.html", "d6/d70/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_output_spelling" ]
+    ] ],
     [ "MessageResponse.cs", "d3/d42/_i_b_m_8_watson_8_assistant_8v2_2_model_2_message_response_8cs.html", [
       [ "MessageResponse", "d6/db2/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_response.html", "d6/db2/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_response" ]
+    ] ],
+    [ "MessageResponseStateless.cs", "db/d38/_message_response_stateless_8cs.html", [
+      [ "MessageResponseStateless", "d4/d28/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_response_stateless.html", "d4/d28/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_response_stateless" ]
     ] ],
     [ "RuntimeEntity.cs", "dc/db3/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_entity_8cs.html", [
       [ "RuntimeEntity", "d3/d1f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_entity.html", "d3/d1f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_entity" ]

@@ -101,10 +101,10 @@ $(document).ready(function(){initNavTree('d3/ddf/class_i_b_m_1_1_watson_1_1_assi
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:aa7531defa47d82ded0fc27e2634a880b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/d9a/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global.html">MessageContextGlobal</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/ddf/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context.html#aa7531defa47d82ded0fc27e2634a880b">Global</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:aa7531defa47d82ded0fc27e2634a880b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Information that is shared by all skills used by the <a class="el" href="../../d7/d94/namespace_i_b_m_1_1_watson_1_1_assistant.html">Assistant</a>.  <a href="#aa7531defa47d82ded0fc27e2634a880b">More...</a><br /></td></tr>
+<tr class="memdesc:aa7531defa47d82ded0fc27e2634a880b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Session context data that is shared by all skills used by the <a class="el" href="../../d7/d94/namespace_i_b_m_1_1_watson_1_1_assistant.html">Assistant</a>.  <a href="#aa7531defa47d82ded0fc27e2634a880b">More...</a><br /></td></tr>
 <tr class="separator:aa7531defa47d82ded0fc27e2634a880b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8743d1593e5db50ed2656b3d7de3c41"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d4e/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skills.html">MessageContextSkills</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/ddf/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context.html#ad8743d1593e5db50ed2656b3d7de3c41">Skills</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:ad8743d1593e5db50ed2656b3d7de3c41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Information specific to particular skills used by the <a class="el" href="../../d7/d94/namespace_i_b_m_1_1_watson_1_1_assistant.html">Assistant</a>.  <a href="#ad8743d1593e5db50ed2656b3d7de3c41">More...</a><br /></td></tr>
+<tr class="memdesc:ad8743d1593e5db50ed2656b3d7de3c41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Information specific to particular skills used by the assistant.  <a href="#ad8743d1593e5db50ed2656b3d7de3c41">More...</a><br /></td></tr>
 <tr class="separator:ad8743d1593e5db50ed2656b3d7de3c41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -130,7 +130,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Information that is shared by all skills used by the <a class="el" href="../../d7/d94/namespace_i_b_m_1_1_watson_1_1_assistant.html">Assistant</a>. </p>
+<p>Session context data that is shared by all skills used by the <a class="el" href="../../d7/d94/namespace_i_b_m_1_1_watson_1_1_assistant.html">Assistant</a>. </p>
 
 </div>
 </div>
@@ -154,8 +154,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Information specific to particular skills used by the <a class="el" href="../../d7/d94/namespace_i_b_m_1_1_watson_1_1_assistant.html">Assistant</a>. </p>
-<p><b>Note:</b> Currently, only a single property named <code>main skill</code> is supported. This object contains variables that apply to the dialog skill used by the assistant. </p>
+<p>Information specific to particular skills used by the assistant. </p>
+<p><b>Note:</b> Currently, only a single child property is supported, containing variables that apply to the dialog skill used by the assistant. </p>
 
 </div>
 </div>

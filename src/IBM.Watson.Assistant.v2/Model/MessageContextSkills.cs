@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -20,10 +20,10 @@ using IBM.Cloud.SDK.Core.Model;
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// Information specific to particular skills used by the Assistant.
+    /// Information specific to particular skills used by the assistant.
     ///
-    /// **Note:** Currently, only a single property named `main skill` is supported. This object contains variables that
-    /// apply to the dialog skill used by the assistant.
+    /// **Note:** Currently, only a single child property is supported, containing variables that apply to the dialog
+    /// skill used by the assistant.
     /// </summary>
     public class MessageContextSkills : DynamicModel<MessageContextSkill>
     {

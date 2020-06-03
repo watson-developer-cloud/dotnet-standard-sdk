@@ -50,7 +50,7 @@ namespace IBM.Watson.Assistant.v2.Examples
             IamAuthenticator authenticator = new IamAuthenticator(
                 apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", authenticator);
+            AssistantService service = new AssistantService("2020-04-01", authenticator);
             service.SetServiceUrl("{serviceUrl}");
 
             var result = service.CreateSession(
@@ -67,7 +67,7 @@ namespace IBM.Watson.Assistant.v2.Examples
             IamAuthenticator authenticator = new IamAuthenticator(
                 apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", authenticator);
+            AssistantService service = new AssistantService("2020-04-01", authenticator);
             service.SetServiceUrl("{serviceUrl}");
 
             var result = service.DeleteSession(
@@ -85,7 +85,7 @@ namespace IBM.Watson.Assistant.v2.Examples
             IamAuthenticator authenticator = new IamAuthenticator(
                 apikey: "{apikey}");
 
-            AssistantService service = new AssistantService("2019-02-28", authenticator);
+            AssistantService service = new AssistantService("2020-04-01", authenticator);
             service.SetServiceUrl("{serviceUrl}");
 
             var result = service.Message(
@@ -135,6 +135,27 @@ namespace IBM.Watson.Assistant.v2.Examples
                         }
                     },
                     Skills = skills
+                }
+                );
+
+            Console.WriteLine(result.Response);
+        }
+        #endregion
+
+        #region Message Stateless
+        public void MessageStateless()
+        {
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
+
+            AssistantService service = new AssistantService("2020-04-01", authenticator);
+            service.SetServiceUrl("{serviceUrl}");
+
+            var result = service.MessageStateless(
+                assistantId: "{assistantId}",
+                input: new MessageInputStateless()
+                {
+                    Text = "Hello"
                 }
                 );
 

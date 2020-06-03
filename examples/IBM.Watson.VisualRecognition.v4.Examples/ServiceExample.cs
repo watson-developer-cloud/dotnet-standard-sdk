@@ -414,5 +414,29 @@ namespace IBM.Watson.VisualRecognition.v4.Examples
             Console.WriteLine(result.Response);
         }
         #endregion
+
+        #region Get Model File
+        public void GetModelFile()
+        {
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}"
+                );
+
+            VisualRecognitionService service = new VisualRecognitionService("2019-02-11", authenticator);
+
+            var result = service.GetModelFile(
+                collectionId: "5826c5ec-6f86-44b1-ab2b-cca6c75f2fc7",
+                feature: "object",
+                modelFormat: "rscnn"
+                );
+
+            using (FileStream fs = File.Create("mymodel.zip"))
+            {
+                result.Result.WriteTo(fs);
+                fs.Close();
+                result.Result.Close();
+            }
+        }
+        #endregion
     }
 }

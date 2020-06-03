@@ -20,20 +20,23 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// Session context data that is shared by all skills used by the Assistant.
+    /// MessageContextStateless.
     /// </summary>
-    public class MessageContextGlobal
+    public class MessageContextStateless
     {
         /// <summary>
-        /// Built-in system properties that apply to all skills used by the assistant.
+        /// Session context data that is shared by all skills used by the Assistant.
         /// </summary>
-        [JsonProperty("system", NullValueHandling = NullValueHandling.Ignore)]
-        public MessageContextGlobalSystem System { get; set; }
+        [JsonProperty("global", NullValueHandling = NullValueHandling.Ignore)]
+        public MessageContextGlobalStateless Global { get; set; }
         /// <summary>
-        /// The session ID.
+        /// Information specific to particular skills used by the assistant.
+        ///
+        /// **Note:** Currently, only a single child property is supported, containing variables that apply to the
+        /// dialog skill used by the assistant.
         /// </summary>
-        [JsonProperty("session_id", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual string SessionId { get; private set; }
+        [JsonProperty("skills", NullValueHandling = NullValueHandling.Ignore)]
+        public MessageContextSkills Skills { get; set; }
     }
 
 }

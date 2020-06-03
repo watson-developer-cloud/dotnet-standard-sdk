@@ -1,3 +1,10 @@
+# [4.5.0](https://github.com/watson-developer-cloud/dotnet-standard-sdk/compare/v4.4.0...v4.5.0) (2020-06-03)
+
+
+### Features
+
+* Regenerated with support for Assistant v2 stateless messaging and Visual Recognition v4 local models ([97a2e72](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/97a2e72142f7f37d533eff7488e72f0763102cdd))
+
 # [4.4.0](https://github.com/watson-developer-cloud/dotnet-standard-sdk/compare/v4.3.1...v4.4.0) (2020-04-24)
 
 

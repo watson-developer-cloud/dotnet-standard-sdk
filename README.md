@@ -18,7 +18,7 @@ The .NET Standard SDK uses [Watson][wdc] services, a collection of REST APIs tha
 * [Self signed certificates](#self-signed-certificates)
 * [Discovery V2](#discovery-v2)
 * [Transaction IDs](#transactio-ids)
-* [Use behind a corporate proxy](#use-behind-a-corporate-proxy)
+* [Use behind a proxy](#use-behind-a-proxy)
 * [Documentation](#documentation)
 * [Questions](#questions)
 * [Open Source @ IBM](#open-source--ibm)
@@ -248,10 +248,18 @@ catch(Exception e)
 }
 ```
 
-## Use behind a corporate proxy
+## Use behind a proxy
 To use the SDK behind an HTTP proxy, you need to set either the `http_proxy` or `https_proxy` environment variable.
-You can set this in the application environment using `set http_proxy=http://proxy.server.com:3128` from the cmd.
-You can also set this in the application using `Environment.SetEnvironmentVariable("http_proxy", "http://proxy.server.com:3128");`
+You can set this in the application environment using:
+```
+set http_proxy=http://proxy.server.com:3128
+```
+from the cmd.
+
+You can also set this in the application using:
+```cs
+Environment.SetEnvironmentVariable("http_proxy", "http://proxy.server.com:3128");
+```
 
 ## Documentation
 Click [here][dotnet-standard-sdk-documentation] for documentation by release and branch.

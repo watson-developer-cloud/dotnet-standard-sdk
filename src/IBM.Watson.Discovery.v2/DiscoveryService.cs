@@ -33,6 +33,7 @@ namespace IBM.Watson.Discovery.v2
     public partial class DiscoveryService : IBMService, IDiscoveryService
     {
         const string serviceName = "discovery";
+        private const string defaultServiceUrl = "https://api.us-south.discovery.watson.cloud.ibm.com";
         public string VersionDate { get; set; }
 
         public DiscoveryService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
@@ -46,6 +47,11 @@ namespace IBM.Watson.Discovery.v2
             }
 
             VersionDate = versionDate;
+
+            if (string.IsNullOrEmpty(ServiceUrl))
+            {
+                SetServiceUrl(defaultServiceUrl);
+            }
         }
 
         /// <summary>

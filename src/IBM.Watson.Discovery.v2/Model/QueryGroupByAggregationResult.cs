@@ -23,7 +23,7 @@ namespace IBM.Watson.Discovery.v2.Model
     /// <summary>
     /// Top value result for the term aggregation.
     /// </summary>
-    public class QueryTermAggregationResult
+    public class QueryGroupByAggregationResult
     {
         /// <summary>
         /// Value of the field with a non-zero frequency in the document set.
@@ -36,13 +36,13 @@ namespace IBM.Watson.Discovery.v2.Model
         [JsonProperty("matching_results", NullValueHandling = NullValueHandling.Ignore)]
         public long? MatchingResults { get; set; }
         /// <summary>
-        /// The relevancy for this term.
+        /// The relevancy for this group.
         /// </summary>
         [JsonProperty("relevancy", NullValueHandling = NullValueHandling.Ignore)]
         public double? Relevancy { get; set; }
         /// <summary>
-        /// The number of documents which have the term as the value of specified field in the whole set of documents in
-        /// this collection. Returned only when the `relevancy` parameter is set to `true`.
+        /// The number of documents which have the group as the value of specified field in the whole set of documents
+        /// in this collection. Returned only when the `relevancy` parameter is set to `true`.
         /// </summary>
         [JsonProperty("total_matching_documents", NullValueHandling = NullValueHandling.Ignore)]
         public long? TotalMatchingDocuments { get; set; }

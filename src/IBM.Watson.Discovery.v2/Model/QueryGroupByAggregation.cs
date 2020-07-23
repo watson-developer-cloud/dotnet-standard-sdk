@@ -18,23 +18,18 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace IBM.Watson.Discovery.v1.Model
+namespace IBM.Watson.Discovery.v2.Model
 {
     /// <summary>
-    /// TopHits.
+    /// Returns the top values for the field specified.
     /// </summary>
-    public class TopHits
+    public class QueryGroupByAggregation
     {
         /// <summary>
-        /// Number of top hits returned by the aggregation.
+        /// Array of top values for the field.
         /// </summary>
-        [JsonProperty("size", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Size { get; set; }
-        /// <summary>
-        /// Gets or Sets Hits
-        /// </summary>
-        [JsonProperty("hits", NullValueHandling = NullValueHandling.Ignore)]
-        public TopHitsResults Hits { get; set; }
+        [JsonProperty("results", NullValueHandling = NullValueHandling.Ignore)]
+        public List<QueryGroupByAggregationResult> Results { get; set; }
     }
 
 }

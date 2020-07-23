@@ -105,7 +105,11 @@ namespace IBM.Watson.Discovery.v2
         /// Query a project.
         ///
         /// By using this method, you can construct queries. For details, see the [Discovery
-        /// documentation](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-query-concepts).
+        /// documentation](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-query-concepts). The default
+        /// query parameters are defined by the settings for this project, see the [Discovery
+        /// documentation](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-project-defaults) for an
+        /// overview of the standard default settings, and see [the Projects API documentation](#create-project) for
+        /// details about how to set custom default query settings.
         /// </summary>
         /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
         /// Discovery administrative tooling.</param>
@@ -446,7 +450,7 @@ namespace IBM.Watson.Discovery.v2
             return result;
         }
         /// <summary>
-        /// Configuration settings for components.
+        /// List component settings.
         ///
         /// Returns default configuration settings for components.
         /// </summary>
@@ -482,6 +486,87 @@ namespace IBM.Watson.Discovery.v2
                 restRequest.WithHeader("Accept", "application/json");
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "GetComponentSettings"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<ComponentSettingsResponse>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<ComponentSettingsResponse>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Update component settings.
+        ///
+        /// Updates the default configuration settings for components.
+        /// </summary>
+        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
+        /// Discovery administrative tooling.</param>
+        /// <param name="componentSettingsResponse">An object that represents the component settings to modify.
+        /// (optional)</param>
+        /// <returns><see cref="ComponentSettingsResponse" />ComponentSettingsResponse</returns>
+        public DetailedResponse<ComponentSettingsResponse> UpdateComponentSettings(string projectId, ComponentSettingsFieldsShown fieldsShown = null, bool? autocomplete = null, bool? structuredSearch = null, long? resultsPerPage = null, List<ComponentSettingsAggregation> aggregations = null)
+        {
+            if (string.IsNullOrEmpty(projectId))
+            {
+                throw new ArgumentNullException("`projectId` is required for `UpdateComponentSettings`");
+            }
+            else
+            {
+                projectId = Uri.EscapeDataString(projectId);
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<ComponentSettingsResponse> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.PutAsync($"{this.Endpoint}/v2/projects/{projectId}/component_settings");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+
+                JObject bodyObject = new JObject();
+                if (fieldsShown != null)
+                {
+                    bodyObject["fields_shown"] = JToken.FromObject(fieldsShown);
+                }
+                if (autocomplete != null)
+                {
+                    bodyObject["autocomplete"] = JToken.FromObject(autocomplete);
+                }
+                if (structuredSearch != null)
+                {
+                    bodyObject["structured_search"] = JToken.FromObject(structuredSearch);
+                }
+                if (resultsPerPage != null)
+                {
+                    bodyObject["results_per_page"] = JToken.FromObject(resultsPerPage);
+                }
+                if (aggregations != null && aggregations.Count > 0)
+                {
+                    bodyObject["aggregations"] = JToken.FromObject(aggregations);
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
+                restRequest.WithBodyContent(httpContent);
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "UpdateComponentSettings"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -538,7 +623,10 @@ namespace IBM.Watson.Discovery.v2
         /// <param name="filename">The filename for file. (optional)</param>
         /// <param name="fileContentType">The content type of file. (optional)</param>
         /// <param name="metadata">The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are
-        /// rejected. Example:  ``` {
+        /// rejected.
+        ///
+        ///
+        /// Example:  ``` {
         ///   "Creator": "Johnny Appleseed",
         ///   "Subject": "Apples"
         /// } ```. (optional)</param>
@@ -651,7 +739,10 @@ namespace IBM.Watson.Discovery.v2
         /// <param name="filename">The filename for file. (optional)</param>
         /// <param name="fileContentType">The content type of file. (optional)</param>
         /// <param name="metadata">The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are
-        /// rejected. Example:  ``` {
+        /// rejected.
+        ///
+        ///
+        /// Example:  ``` {
         ///   "Creator": "Johnny Appleseed",
         ///   "Subject": "Apples"
         /// } ```. (optional)</param>

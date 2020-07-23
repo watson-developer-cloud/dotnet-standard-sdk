@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -21,8 +21,6 @@ namespace IBM.Watson.Assistant.v1.Model
 {
     /// <summary>
     /// Workspace settings related to the disambiguation feature.
-    ///
-    /// **Note:** This feature is available only to Plus and Premium users.
     /// </summary>
     public class WorkspaceSystemSettingsDisambiguation
     {

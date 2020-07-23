@@ -185,8 +185,6 @@ namespace IBM.Watson.Assistant.v2
         ///
         /// Send user input to an assistant and receive a response, with conversation state (including context data)
         /// stored by Watson Assistant for the duration of the session.
-        ///
-        /// There is no rate limit for this operation.
         /// </summary>
         /// <param name="assistantId">Unique identifier of the assistant. To find the assistant ID in the Watson
         /// Assistant user interface, open the assistant settings and click **API Details**. For information about
@@ -270,8 +268,6 @@ namespace IBM.Watson.Assistant.v2
         ///
         /// Send user input to an assistant and receive a response, with conversation state (including context data)
         /// managed by your application.
-        ///
-        /// There is no rate limit for this operation.
         /// </summary>
         /// <param name="assistantId">Unique identifier of the assistant. To find the assistant ID in the Watson
         /// Assistant user interface, open the assistant settings and click **API Details**. For information about

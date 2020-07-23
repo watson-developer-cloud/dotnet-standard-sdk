@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ namespace IBM.Watson.Discovery.v2.Model
     /// A restriction that alter the document set used for sub aggregations it precedes to nested documents found in the
     /// field specified.
     /// </summary>
-    public class QueryNestedAggregation : QueryAggregation
+    public class QueryNestedAggregation
     {
         /// <summary>
         /// The path to the document field to scope sub aggregations to.

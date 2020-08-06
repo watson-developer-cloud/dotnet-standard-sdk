@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2017, 2020.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ namespace IBM.Watson.ToneAnalyzer.v3
     public partial class ToneAnalyzerService : IBMService, IToneAnalyzerService
     {
         const string serviceName = "tone_analyzer";
-        private const string defaultServiceUrl = "https://gateway.watsonplatform.net/tone-analyzer/api";
+        private const string defaultServiceUrl = "https://api.us-south.tone-analyzer.watson.cloud.ibm.com";
         public string VersionDate { get; set; }
 
         public ToneAnalyzerService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }

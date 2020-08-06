@@ -23,7 +23,7 @@ namespace IBM.Watson.Discovery.v2.Model
     /// <summary>
     /// A specialized histogram aggregation that uses dates to create interval segments.
     /// </summary>
-    public class QueryTimesliceAggregation : QueryAggregation
+    public class QueryTimesliceAggregation
     {
         /// <summary>
         /// The date field name used to create the timeslice.

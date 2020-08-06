@@ -21,7 +21,8 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// Contains information specific to a particular skill used by the Assistant.
+    /// Contains information specific to a particular skill used by the Assistant. The property name must be the same as
+    /// the name of the skill (for example, `main skill`).
     /// </summary>
     public class MessageContextSkill
     {
@@ -34,7 +35,7 @@ namespace IBM.Watson.Assistant.v2.Model
         /// System context data used by the skill.
         /// </summary>
         [JsonProperty("system", NullValueHandling = NullValueHandling.Ignore)]
-        public Dictionary<string, object> System { get; set; }
+        public MessageContextSkillSystem System { get; set; }
     }
 
 }

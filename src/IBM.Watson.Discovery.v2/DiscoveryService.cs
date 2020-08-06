@@ -101,11 +101,302 @@ namespace IBM.Watson.Discovery.v2
 
             return result;
         }
+
+        /// <summary>
+        /// Create a collection.
+        ///
+        /// Create a new collection in the specified project.
+        /// </summary>
+        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
+        /// Discovery administrative tooling.</param>
+        /// <param name="collectionDetails">An object that represents the collection to be created. (optional)</param>
+        /// <returns><see cref="CollectionDetails" />CollectionDetails</returns>
+        public DetailedResponse<CollectionDetails> CreateCollection(string projectId, string name = null, string description = null, string language = null, List<CollectionEnrichment> enrichments = null)
+        {
+            if (string.IsNullOrEmpty(projectId))
+            {
+                throw new ArgumentNullException("`projectId` is required for `CreateCollection`");
+            }
+            else
+            {
+                projectId = Uri.EscapeDataString(projectId);
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<CollectionDetails> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v2/projects/{projectId}/collections");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(name))
+                {
+                    bodyObject["name"] = name;
+                }
+                if (!string.IsNullOrEmpty(description))
+                {
+                    bodyObject["description"] = description;
+                }
+                if (!string.IsNullOrEmpty(language))
+                {
+                    bodyObject["language"] = language;
+                }
+                if (enrichments != null && enrichments.Count > 0)
+                {
+                    bodyObject["enrichments"] = JToken.FromObject(enrichments);
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
+                restRequest.WithBodyContent(httpContent);
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "CreateCollection"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<CollectionDetails>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<CollectionDetails>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get collection.
+        ///
+        /// Get details about the specified collection.
+        /// </summary>
+        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
+        /// Discovery administrative tooling.</param>
+        /// <param name="collectionId">The ID of the collection.</param>
+        /// <returns><see cref="CollectionDetails" />CollectionDetails</returns>
+        public DetailedResponse<CollectionDetails> GetCollection(string projectId, string collectionId)
+        {
+            if (string.IsNullOrEmpty(projectId))
+            {
+                throw new ArgumentNullException("`projectId` is required for `GetCollection`");
+            }
+            else
+            {
+                projectId = Uri.EscapeDataString(projectId);
+            }
+            if (string.IsNullOrEmpty(collectionId))
+            {
+                throw new ArgumentNullException("`collectionId` is required for `GetCollection`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<CollectionDetails> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v2/projects/{projectId}/collections/{collectionId}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "GetCollection"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<CollectionDetails>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<CollectionDetails>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Update a collection.
+        ///
+        /// Updates the specified collection's name, description, and enrichments.
+        /// </summary>
+        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
+        /// Discovery administrative tooling.</param>
+        /// <param name="collectionId">The ID of the collection.</param>
+        /// <param name="collectionDetails">An object that represents the collection to be created. (optional)</param>
+        /// <returns><see cref="CollectionDetails" />CollectionDetails</returns>
+        public DetailedResponse<CollectionDetails> UpdateCollection(string projectId, string collectionId, string name = null, string description = null, string language = null, List<CollectionEnrichment> enrichments = null)
+        {
+            if (string.IsNullOrEmpty(projectId))
+            {
+                throw new ArgumentNullException("`projectId` is required for `UpdateCollection`");
+            }
+            else
+            {
+                projectId = Uri.EscapeDataString(projectId);
+            }
+            if (string.IsNullOrEmpty(collectionId))
+            {
+                throw new ArgumentNullException("`collectionId` is required for `UpdateCollection`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<CollectionDetails> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v2/projects/{projectId}/collections/{collectionId}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(name))
+                {
+                    bodyObject["name"] = name;
+                }
+                if (!string.IsNullOrEmpty(description))
+                {
+                    bodyObject["description"] = description;
+                }
+                if (!string.IsNullOrEmpty(language))
+                {
+                    bodyObject["language"] = language;
+                }
+                if (enrichments != null && enrichments.Count > 0)
+                {
+                    bodyObject["enrichments"] = JToken.FromObject(enrichments);
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
+                restRequest.WithBodyContent(httpContent);
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "UpdateCollection"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<CollectionDetails>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<CollectionDetails>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Delete a collection.
+        ///
+        /// Deletes the specified collection from the project. All documents stored in the specified collection and not
+        /// shared is also deleted.
+        /// </summary>
+        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
+        /// Discovery administrative tooling.</param>
+        /// <param name="collectionId">The ID of the collection.</param>
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteCollection(string projectId, string collectionId)
+        {
+            if (string.IsNullOrEmpty(projectId))
+            {
+                throw new ArgumentNullException("`projectId` is required for `DeleteCollection`");
+            }
+            else
+            {
+                projectId = Uri.EscapeDataString(projectId);
+            }
+            if (string.IsNullOrEmpty(collectionId))
+            {
+                throw new ArgumentNullException("`collectionId` is required for `DeleteCollection`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<object> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v2/projects/{projectId}/collections/{collectionId}");
+
+                restRequest.WithArgument("version", VersionDate);
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "DeleteCollection"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<object>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<object>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
         /// <summary>
         /// Query a project.
         ///
         /// By using this method, you can construct queries. For details, see the [Discovery
-        /// documentation](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-query-concepts).
+        /// documentation](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-query-concepts). The default
+        /// query parameters are defined by the settings for this project, see the [Discovery
+        /// documentation](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-project-defaults) for an
+        /// overview of the standard default settings, and see [the Projects API documentation](#create-project) for
+        /// details about how to set custom default query settings.
         /// </summary>
         /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
         /// Discovery administrative tooling.</param>
@@ -446,7 +737,7 @@ namespace IBM.Watson.Discovery.v2
             return result;
         }
         /// <summary>
-        /// Configuration settings for components.
+        /// List component settings.
         ///
         /// Returns default configuration settings for components.
         /// </summary>
@@ -482,6 +773,87 @@ namespace IBM.Watson.Discovery.v2
                 restRequest.WithHeader("Accept", "application/json");
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "GetComponentSettings"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<ComponentSettingsResponse>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<ComponentSettingsResponse>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Update component settings.
+        ///
+        /// Updates the default configuration settings for components.
+        /// </summary>
+        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
+        /// Discovery administrative tooling.</param>
+        /// <param name="componentSettingsResponse">An object that represents the component settings to modify.
+        /// (optional)</param>
+        /// <returns><see cref="ComponentSettingsResponse" />ComponentSettingsResponse</returns>
+        public DetailedResponse<ComponentSettingsResponse> UpdateComponentSettings(string projectId, ComponentSettingsFieldsShown fieldsShown = null, bool? autocomplete = null, bool? structuredSearch = null, long? resultsPerPage = null, List<ComponentSettingsAggregation> aggregations = null)
+        {
+            if (string.IsNullOrEmpty(projectId))
+            {
+                throw new ArgumentNullException("`projectId` is required for `UpdateComponentSettings`");
+            }
+            else
+            {
+                projectId = Uri.EscapeDataString(projectId);
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<ComponentSettingsResponse> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.PutAsync($"{this.Endpoint}/v2/projects/{projectId}/component_settings");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+
+                JObject bodyObject = new JObject();
+                if (fieldsShown != null)
+                {
+                    bodyObject["fields_shown"] = JToken.FromObject(fieldsShown);
+                }
+                if (autocomplete != null)
+                {
+                    bodyObject["autocomplete"] = JToken.FromObject(autocomplete);
+                }
+                if (structuredSearch != null)
+                {
+                    bodyObject["structured_search"] = JToken.FromObject(structuredSearch);
+                }
+                if (resultsPerPage != null)
+                {
+                    bodyObject["results_per_page"] = JToken.FromObject(resultsPerPage);
+                }
+                if (aggregations != null && aggregations.Count > 0)
+                {
+                    bodyObject["aggregations"] = JToken.FromObject(aggregations);
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
+                restRequest.WithBodyContent(httpContent);
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "UpdateComponentSettings"));
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
@@ -538,7 +910,10 @@ namespace IBM.Watson.Discovery.v2
         /// <param name="filename">The filename for file. (optional)</param>
         /// <param name="fileContentType">The content type of file. (optional)</param>
         /// <param name="metadata">The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are
-        /// rejected. Example:  ``` {
+        /// rejected.
+        ///
+        ///
+        /// Example:  ``` {
         ///   "Creator": "Johnny Appleseed",
         ///   "Subject": "Apples"
         /// } ```. (optional)</param>
@@ -651,7 +1026,10 @@ namespace IBM.Watson.Discovery.v2
         /// <param name="filename">The filename for file. (optional)</param>
         /// <param name="fileContentType">The content type of file. (optional)</param>
         /// <param name="metadata">The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are
-        /// rejected. Example:  ``` {
+        /// rejected.
+        ///
+        ///
+        /// Example:  ``` {
         ///   "Creator": "Johnny Appleseed",
         ///   "Subject": "Apples"
         /// } ```. (optional)</param>
@@ -1159,6 +1537,779 @@ namespace IBM.Watson.Discovery.v2
                 if (result == null)
                 {
                     result = new DetailedResponse<TrainingQuery>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// Analyze a Document.
+        ///
+        /// Process a document using the specified collection's settings and return it for realtime use.
+        ///
+        /// **Note:** Documents processed using this method are not added to the specified collection.
+        ///
+        /// **Note:** This method is only supported on IBM Cloud Pak for Data instances of Discovery.
+        /// </summary>
+        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
+        /// Discovery administrative tooling.</param>
+        /// <param name="collectionId">The ID of the collection.</param>
+        /// <param name="file">The content of the document to ingest. The maximum supported file size when adding a file
+        /// to a collection is 50 megabytes, the maximum supported file size when testing a configuration is 1 megabyte.
+        /// Files larger than the supported size are rejected. (optional)</param>
+        /// <param name="filename">The filename for file. (optional)</param>
+        /// <param name="fileContentType">The content type of file. (optional)</param>
+        /// <param name="metadata">The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are
+        /// rejected.
+        ///
+        ///
+        /// Example:  ``` {
+        ///   "Creator": "Johnny Appleseed",
+        ///   "Subject": "Apples"
+        /// } ```. (optional)</param>
+        /// <returns><see cref="AnalyzedDocument" />AnalyzedDocument</returns>
+        public DetailedResponse<AnalyzedDocument> AnalyzeDocument(string projectId, string collectionId, System.IO.MemoryStream file = null, string filename = null, string fileContentType = null, string metadata = null)
+        {
+            if (string.IsNullOrEmpty(projectId))
+            {
+                throw new ArgumentNullException("`projectId` is required for `AnalyzeDocument`");
+            }
+            else
+            {
+                projectId = Uri.EscapeDataString(projectId);
+            }
+            if (string.IsNullOrEmpty(collectionId))
+            {
+                throw new ArgumentNullException("`collectionId` is required for `AnalyzeDocument`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<AnalyzedDocument> result = null;
+
+            try
+            {
+                var formData = new MultipartFormDataContent();
+
+                if (file != null)
+                {
+                    var fileContent = new ByteArrayContent(file.ToArray());
+                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
+                    fileContent.Headers.ContentType = contentType;
+                    formData.Add(fileContent, "file", filename);
+                }
+
+                if (metadata != null)
+                {
+                    var metadataContent = new StringContent(metadata, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                    metadataContent.Headers.ContentType = null;
+                    formData.Add(metadataContent, "metadata");
+                }
+
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v2/projects/{projectId}/collections/{collectionId}/analyze");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithBodyContent(formData);
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "AnalyzeDocument"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<AnalyzedDocument>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<AnalyzedDocument>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// List Enrichments.
+        ///
+        /// List the enrichments available to this project.
+        /// </summary>
+        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
+        /// Discovery administrative tooling.</param>
+        /// <returns><see cref="Enrichments" />Enrichments</returns>
+        public DetailedResponse<Enrichments> ListEnrichments(string projectId)
+        {
+            if (string.IsNullOrEmpty(projectId))
+            {
+                throw new ArgumentNullException("`projectId` is required for `ListEnrichments`");
+            }
+            else
+            {
+                projectId = Uri.EscapeDataString(projectId);
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<Enrichments> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v2/projects/{projectId}/enrichments");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "ListEnrichments"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<Enrichments>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<Enrichments>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Create an enrichment.
+        ///
+        /// Create an enrichment for use with the specified project/.
+        /// </summary>
+        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
+        /// Discovery administrative tooling.</param>
+        /// <param name="file">The enrichment file to upload. (optional)</param>
+        /// <param name="enrichment">Object describing the uploaded enrichment. (optional)</param>
+        /// <returns><see cref="Enrichment" />Enrichment</returns>
+        public DetailedResponse<Enrichment> CreateEnrichment(string projectId, System.IO.MemoryStream file = null, string enrichment = null)
+        {
+            if (string.IsNullOrEmpty(projectId))
+            {
+                throw new ArgumentNullException("`projectId` is required for `CreateEnrichment`");
+            }
+            else
+            {
+                projectId = Uri.EscapeDataString(projectId);
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<Enrichment> result = null;
+
+            try
+            {
+                var formData = new MultipartFormDataContent();
+
+                if (file != null)
+                {
+                    var fileContent = new ByteArrayContent(file.ToArray());
+                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("application/octet-stream", out contentType);
+                    fileContent.Headers.ContentType = contentType;
+                    formData.Add(fileContent, "file", "filename");
+                }
+
+                if (enrichment != null)
+                {
+                    var enrichmentContent = new StringContent(enrichment, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                    enrichmentContent.Headers.ContentType = null;
+                    formData.Add(enrichmentContent, "enrichment");
+                }
+
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v2/projects/{projectId}/enrichments");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithBodyContent(formData);
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "CreateEnrichment"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<Enrichment>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<Enrichment>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get enrichment.
+        ///
+        /// Get details about a specific enrichment.
+        /// </summary>
+        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
+        /// Discovery administrative tooling.</param>
+        /// <param name="enrichmentId">The ID of the enrichment.</param>
+        /// <returns><see cref="Enrichment" />Enrichment</returns>
+        public DetailedResponse<Enrichment> GetEnrichment(string projectId, string enrichmentId)
+        {
+            if (string.IsNullOrEmpty(projectId))
+            {
+                throw new ArgumentNullException("`projectId` is required for `GetEnrichment`");
+            }
+            else
+            {
+                projectId = Uri.EscapeDataString(projectId);
+            }
+            if (string.IsNullOrEmpty(enrichmentId))
+            {
+                throw new ArgumentNullException("`enrichmentId` is required for `GetEnrichment`");
+            }
+            else
+            {
+                enrichmentId = Uri.EscapeDataString(enrichmentId);
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<Enrichment> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v2/projects/{projectId}/enrichments/{enrichmentId}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "GetEnrichment"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<Enrichment>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<Enrichment>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Update an enrichment.
+        ///
+        /// Updates an existing enrichment's name and description.
+        /// </summary>
+        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
+        /// Discovery administrative tooling.</param>
+        /// <param name="enrichmentId">The ID of the enrichment.</param>
+        /// <param name="updateEnrichment">An object that lists the new name and description for an enrichment.
+        /// (optional)</param>
+        /// <returns><see cref="Enrichment" />Enrichment</returns>
+        public DetailedResponse<Enrichment> UpdateEnrichment(string projectId, string enrichmentId, string name = null, string description = null)
+        {
+            if (string.IsNullOrEmpty(projectId))
+            {
+                throw new ArgumentNullException("`projectId` is required for `UpdateEnrichment`");
+            }
+            else
+            {
+                projectId = Uri.EscapeDataString(projectId);
+            }
+            if (string.IsNullOrEmpty(enrichmentId))
+            {
+                throw new ArgumentNullException("`enrichmentId` is required for `UpdateEnrichment`");
+            }
+            else
+            {
+                enrichmentId = Uri.EscapeDataString(enrichmentId);
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<Enrichment> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v2/projects/{projectId}/enrichments/{enrichmentId}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(name))
+                {
+                    bodyObject["name"] = name;
+                }
+                if (!string.IsNullOrEmpty(description))
+                {
+                    bodyObject["description"] = description;
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
+                restRequest.WithBodyContent(httpContent);
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "UpdateEnrichment"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<Enrichment>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<Enrichment>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Delete an enrichment.
+        ///
+        /// Deletes an existing enrichment from the specified project.
+        ///
+        /// **Note:** Only enrichments that have been manually created can be deleted.
+        /// </summary>
+        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
+        /// Discovery administrative tooling.</param>
+        /// <param name="enrichmentId">The ID of the enrichment.</param>
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteEnrichment(string projectId, string enrichmentId)
+        {
+            if (string.IsNullOrEmpty(projectId))
+            {
+                throw new ArgumentNullException("`projectId` is required for `DeleteEnrichment`");
+            }
+            else
+            {
+                projectId = Uri.EscapeDataString(projectId);
+            }
+            if (string.IsNullOrEmpty(enrichmentId))
+            {
+                throw new ArgumentNullException("`enrichmentId` is required for `DeleteEnrichment`");
+            }
+            else
+            {
+                enrichmentId = Uri.EscapeDataString(enrichmentId);
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<object> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v2/projects/{projectId}/enrichments/{enrichmentId}");
+
+                restRequest.WithArgument("version", VersionDate);
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "DeleteEnrichment"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<object>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<object>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// List projects.
+        ///
+        /// Lists existing projects for this instance.
+        /// </summary>
+        /// <returns><see cref="ListProjectsResponse" />ListProjectsResponse</returns>
+        public DetailedResponse<ListProjectsResponse> ListProjects()
+        {
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<ListProjectsResponse> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v2/projects");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "ListProjects"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<ListProjectsResponse>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<ListProjectsResponse>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Create a Project.
+        ///
+        /// Create a new project for this instance.
+        /// </summary>
+        /// <param name="projectDetails">An object that represents the project to be created. (optional)</param>
+        /// <returns><see cref="ProjectDetails" />ProjectDetails</returns>
+        public DetailedResponse<ProjectDetails> CreateProject(string name = null, string type = null, ProjectRelTrainStatus relevancyTrainingStatus = null, DefaultQueryParams defaultQueryParameters = null)
+        {
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<ProjectDetails> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v2/projects");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(name))
+                {
+                    bodyObject["name"] = name;
+                }
+                if (!string.IsNullOrEmpty(type))
+                {
+                    bodyObject["type"] = type;
+                }
+                if (relevancyTrainingStatus != null)
+                {
+                    bodyObject["relevancy_training_status"] = JToken.FromObject(relevancyTrainingStatus);
+                }
+                if (defaultQueryParameters != null)
+                {
+                    bodyObject["default_query_parameters"] = JToken.FromObject(defaultQueryParameters);
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
+                restRequest.WithBodyContent(httpContent);
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "CreateProject"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<ProjectDetails>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<ProjectDetails>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get project.
+        ///
+        /// Get details on the specified project.
+        /// </summary>
+        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
+        /// Discovery administrative tooling.</param>
+        /// <returns><see cref="ProjectDetails" />ProjectDetails</returns>
+        public DetailedResponse<ProjectDetails> GetProject(string projectId)
+        {
+            if (string.IsNullOrEmpty(projectId))
+            {
+                throw new ArgumentNullException("`projectId` is required for `GetProject`");
+            }
+            else
+            {
+                projectId = Uri.EscapeDataString(projectId);
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<ProjectDetails> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v2/projects/{projectId}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "GetProject"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<ProjectDetails>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<ProjectDetails>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Update a project.
+        ///
+        /// Update the specified project's name.
+        /// </summary>
+        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
+        /// Discovery administrative tooling.</param>
+        /// <param name="projectName">An object that represents the new name of the project. (optional)</param>
+        /// <returns><see cref="ProjectDetails" />ProjectDetails</returns>
+        public DetailedResponse<ProjectDetails> UpdateProject(string projectId, string name = null)
+        {
+            if (string.IsNullOrEmpty(projectId))
+            {
+                throw new ArgumentNullException("`projectId` is required for `UpdateProject`");
+            }
+            else
+            {
+                projectId = Uri.EscapeDataString(projectId);
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<ProjectDetails> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v2/projects/{projectId}");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                restRequest.WithHeader("Content-Type", "application/json");
+
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(name))
+                {
+                    bodyObject["name"] = name;
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
+                restRequest.WithBodyContent(httpContent);
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "UpdateProject"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<ProjectDetails>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<ProjectDetails>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Delete a project.
+        ///
+        /// Deletes the specified project.
+        ///
+        /// **Important:** Deleting a project deletes everything that is part of the specified project, including all
+        /// collections.
+        /// </summary>
+        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
+        /// Discovery administrative tooling.</param>
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteProject(string projectId)
+        {
+            if (string.IsNullOrEmpty(projectId))
+            {
+                throw new ArgumentNullException("`projectId` is required for `DeleteProject`");
+            }
+            else
+            {
+                projectId = Uri.EscapeDataString(projectId);
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<object> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v2/projects/{projectId}");
+
+                restRequest.WithArgument("version", VersionDate);
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "DeleteProject"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<object>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<object>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// Delete labeled data.
+        ///
+        /// Deletes all data associated with a specified customer ID. The method has no effect if no data is associated
+        /// with the customer ID.
+        ///
+        /// You associate a customer ID with data by passing the **X-Watson-Metadata** header with a request that passes
+        /// data. For more information about personal data and customer IDs, see [Information
+        /// security](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-information-security#information-security).
+        ///
+        ///
+        /// **Note:** This method is only supported on IBM Cloud instances of Discovery.
+        /// </summary>
+        /// <param name="customerId">The customer ID for which all data is to be deleted.</param>
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteUserData(string customerId)
+        {
+            if (string.IsNullOrEmpty(customerId))
+            {
+                throw new ArgumentNullException("`customerId` is required for `DeleteUserData`");
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<object> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v2/user_data");
+
+                restRequest.WithArgument("version", VersionDate);
+                if (!string.IsNullOrEmpty(customerId))
+                {
+                    restRequest.WithArgument("customer_id", customerId);
+                }
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "DeleteUserData"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<object>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<object>();
                 }
             }
             catch (AggregateException ae)

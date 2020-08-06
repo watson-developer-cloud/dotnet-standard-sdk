@@ -22,7 +22,7 @@ namespace IBM.Watson.Discovery.v2.Model
     /// <summary>
     /// Returns the top documents ranked by the score of the query.
     /// </summary>
-    public class QueryTopHitsAggregation : QueryAggregation
+    public class QueryTopHitsAggregation
     {
         /// <summary>
         /// The number of documents to return.

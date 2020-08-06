@@ -31,7 +31,7 @@ namespace IBM.Watson.Assistant.v2
     public partial class AssistantService : IBMService, IAssistantService
     {
         const string serviceName = "assistant";
-        private const string defaultServiceUrl = "https://gateway.watsonplatform.net/assistant/api";
+        private const string defaultServiceUrl = "https://api.us-south.assistant.watson.cloud.ibm.com";
         public string VersionDate { get; set; }
 
         public AssistantService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
@@ -185,8 +185,6 @@ namespace IBM.Watson.Assistant.v2
         ///
         /// Send user input to an assistant and receive a response, with conversation state (including context data)
         /// stored by Watson Assistant for the duration of the session.
-        ///
-        /// There is no rate limit for this operation.
         /// </summary>
         /// <param name="assistantId">Unique identifier of the assistant. To find the assistant ID in the Watson
         /// Assistant user interface, open the assistant settings and click **API Details**. For information about
@@ -270,8 +268,6 @@ namespace IBM.Watson.Assistant.v2
         ///
         /// Send user input to an assistant and receive a response, with conversation state (including context data)
         /// managed by your application.
-        ///
-        /// There is no rate limit for this operation.
         /// </summary>
         /// <param name="assistantId">Unique identifier of the assistant. To find the assistant ID in the Watson
         /// Assistant user interface, open the assistant settings and click **API Details**. For information about
@@ -331,6 +327,149 @@ namespace IBM.Watson.Assistant.v2
                 if (result == null)
                 {
                     result = new DetailedResponse<MessageResponseStateless>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// List log events for an assistant.
+        ///
+        /// List the events from the log of an assistant.
+        ///
+        /// If **cursor** is not specified, this operation is limited to 40 requests per 30 minutes. If **cursor** is
+        /// specified, the limit is 120 requests per minute. For more information, see **Rate limiting**.
+        /// </summary>
+        /// <param name="assistantId">Unique identifier of the assistant. To find the assistant ID in the Watson
+        /// Assistant user interface, open the assistant settings and click **API Details**. For information about
+        /// creating assistants, see the
+        /// [documentation](https://cloud.ibm.com/docs/assistant?topic=assistant-assistant-add#assistant-add-task).
+        ///
+        /// **Note:** Currently, the v2 API does not support creating assistants.</param>
+        /// <param name="sort">How to sort the returned log events. You can sort by **request_timestamp**. To reverse
+        /// the sort order, prefix the parameter value with a minus sign (`-`). (optional)</param>
+        /// <param name="filter">A cacheable parameter that limits the results to those matching the specified filter.
+        /// For more information, see the
+        /// [documentation](https://cloud.ibm.com/docs/assistant?topic=assistant-filter-reference#filter-reference).
+        /// (optional)</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
+        /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
+        /// <returns><see cref="LogCollection" />LogCollection</returns>
+        public DetailedResponse<LogCollection> ListLogs(string assistantId, string sort = null, string filter = null, long? pageLimit = null, string cursor = null)
+        {
+            if (string.IsNullOrEmpty(assistantId))
+            {
+                throw new ArgumentNullException("`assistantId` is required for `ListLogs`");
+            }
+            else
+            {
+                assistantId = Uri.EscapeDataString(assistantId);
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<LogCollection> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v2/assistants/{assistantId}/logs");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(sort))
+                {
+                    restRequest.WithArgument("sort", sort);
+                }
+                if (!string.IsNullOrEmpty(filter))
+                {
+                    restRequest.WithArgument("filter", filter);
+                }
+                if (pageLimit != null)
+                {
+                    restRequest.WithArgument("page_limit", pageLimit);
+                }
+                if (!string.IsNullOrEmpty(cursor))
+                {
+                    restRequest.WithArgument("cursor", cursor);
+                }
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v2", "ListLogs"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<LogCollection>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<LogCollection>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// Delete labeled data.
+        ///
+        /// Deletes all data associated with a specified customer ID. The method has no effect if no data is associated
+        /// with the customer ID.
+        ///
+        /// You associate a customer ID with data by passing the `X-Watson-Metadata` header with a request that passes
+        /// data. For more information about personal data and customer IDs, see [Information
+        /// security](https://cloud.ibm.com/docs/assistant?topic=assistant-information-security#information-security).
+        ///
+        /// This operation is limited to 4 requests per minute. For more information, see **Rate limiting**.
+        /// </summary>
+        /// <param name="customerId">The customer ID for which all data is to be deleted.</param>
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteUserData(string customerId)
+        {
+            if (string.IsNullOrEmpty(customerId))
+            {
+                throw new ArgumentNullException("`customerId` is required for `DeleteUserData`");
+            }
+
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException("versionDate cannot be null.");
+            }
+
+            DetailedResponse<object> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.DeleteAsync($"{this.Endpoint}/v2/user_data");
+
+                restRequest.WithArgument("version", VersionDate);
+                restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(customerId))
+                {
+                    restRequest.WithArgument("customer_id", customerId);
+                }
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v2", "DeleteUserData"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<object>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<object>();
                 }
             }
             catch (AggregateException ae)

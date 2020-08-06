@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2017, 2020.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -20,7 +20,8 @@ using Newtonsoft.Json;
 namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
 {
     /// <summary>
-    /// Identifies people, cities, organizations, and other entities in the content. See [Entity types and
+    /// Identifies people, cities, organizations, and other entities in the content. For more information, see [Entity
+    /// types and
     /// subtypes](https://cloud.ibm.com/docs/natural-language-understanding?topic=natural-language-understanding-entity-types).
     ///
     /// Supported languages: English, French, German, Italian, Japanese, Korean, Portuguese, Russian, Spanish, Swedish.

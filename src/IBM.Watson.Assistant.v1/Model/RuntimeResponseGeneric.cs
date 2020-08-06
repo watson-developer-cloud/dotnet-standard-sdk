@@ -28,9 +28,6 @@ namespace IBM.Watson.Assistant.v1.Model
         /// <summary>
         /// The type of response returned by the dialog node. The specified response type must be supported by the
         /// client application or channel.
-        ///
-        /// **Note:** The **suggestion** response type is part of the disambiguation feature, which is only available
-        /// for Plus and Premium users.
         /// </summary>
         public class ResponseTypeEnumValue
         {
@@ -80,9 +77,6 @@ namespace IBM.Watson.Assistant.v1.Model
         /// <summary>
         /// The type of response returned by the dialog node. The specified response type must be supported by the
         /// client application or channel.
-        ///
-        /// **Note:** The **suggestion** response type is part of the disambiguation feature, which is only available
-        /// for Plus and Premium users.
         /// Constants for possible values can be found using RuntimeResponseGeneric.ResponseTypeEnumValue
         /// </summary>
         [JsonProperty("response_type", NullValueHandling = NullValueHandling.Ignore)]
@@ -146,9 +140,6 @@ namespace IBM.Watson.Assistant.v1.Model
         public string DialogNode { get; set; }
         /// <summary>
         /// An array of objects describing the possible matching dialog nodes from which the user can choose.
-        ///
-        /// **Note:** The **suggestions** property is part of the disambiguation feature, which is only available for
-        /// Plus and Premium users.
         /// </summary>
         [JsonProperty("suggestions", NullValueHandling = NullValueHandling.Ignore)]
         public List<DialogSuggestion> Suggestions { get; set; }

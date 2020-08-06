@@ -48,9 +48,9 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         private string createdConfigurationName;
         private string updatedConfigurationName;
         private string createdConfigurationDescription = "configDescription - safe to delete";
-        private string filepathToIngest = @"DiscoveryTestData\watson_beats_jeopardy.html";
+        private string filepathToIngest = @"DiscoveryTestData/watson_beats_jeopardy.html";
         private string metadata = "{\"Creator\": \".NET SDK Test\",\"Subject\": \"Discovery service\"}";
-        private string stopwordFileToIngest = @"DiscoveryTestData\stopwords.txt";
+        private string stopwordFileToIngest = @"DiscoveryTestData/stopwords.txt";
 
         private string createdCollectionName;
         private string createdCollectionLanguage = "en";

@@ -58,7 +58,8 @@ namespace IBM.Watson.CompareComply.v1.IntegrationTests
             }
             else
             {
-
+                objectStorageCredentialsInputFilepath = Environment.GetEnvironmentVariable("HOME") + "/sdk-credentials/cloud-object-storage-credentials-input.json";
+                objectStorageCredentialsOutputFilepath = Environment.GetEnvironmentVariable("HOME") + "/sdk-credentials/cloud-object-storage-credentials-output.json";
             }
         }
 

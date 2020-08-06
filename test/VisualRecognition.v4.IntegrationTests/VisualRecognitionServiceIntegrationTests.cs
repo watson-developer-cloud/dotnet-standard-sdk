@@ -92,7 +92,7 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
             }
 
             Assert.IsNotNull(analyzeResult.Result);
-            Assert.IsTrue(analyzeResult.Result.Images[0].Objects.Collections[0].Objects[0]._Object == giraffeClassname);
+            Assert.IsTrue(analyzeResult.Result.Images[1].Objects.Collections[0].Objects[0]._Object == giraffeClassname);
             Assert.IsTrue(analyzeResult.Result.Images.Count == 2);
             Assert.IsTrue(analyzeResult.Result.Images[0].Source.Filename == Path.GetFileName(localGiraffeFilePath));
             Assert.IsTrue(analyzeResult.Result.Images[1].Source.Filename == Path.GetFileName(localTurtleFilePath));

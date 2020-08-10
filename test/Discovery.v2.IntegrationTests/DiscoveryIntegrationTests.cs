@@ -33,7 +33,7 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
         private DiscoveryService service;
         private string versionDate = "2019-11-20";
         private string filepathToIngest = @"DiscoveryTestData/watson_beats_jeopardy.html";
-        private string enrichmentFile = @"DiscoveryTestData/categories-hierarchy.xlsx";
+        private string enrichmentFile = @"DiscoveryTestData/test.csv";
         private string metadata = "{\"Creator\": \".NET SDK Test\",\"Subject\": \"Discovery service\"}";
         private string bearerToken = "";
         private string serviceUrl = "";
@@ -402,7 +402,7 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
         #endregion
 
         #region Create Collection
-        [TestMethod]
+        //[TestMethod]
         public void TestCreateCollection()
         {
             service.WithHeader("X-Watson-Test", "1");
@@ -421,8 +421,34 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
         }
         #endregion
 
+        #region Get Collection
+        //[TestMethod]
+        public void TestGetCollection()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var listCollectionsResult = service.ListCollections(
+                projectId: projectId
+                );
+
+            var collections = listCollectionsResult.Result.Collections;
+            if (collections.Count > 0)
+            {
+
+                var createCollectionResult = service.GetCollection(
+                    projectId: projectId,
+                    collectionId:collections[0].CollectionId
+    
+                    );
+
+                Assert.IsNotNull(createCollectionResult.Response);
+                Assert.IsNotNull(createCollectionResult.Result.CollectionId);
+                Assert.IsTrue(createCollectionResult.Result.Name == collections[0].Name);
+            }
+        }
+        #endregion
+
         #region Update Collection
-        [TestMethod]
+        //[TestMethod]
         public void TestUpdateCollection()
         {
             service.WithHeader("X-Watson-Test", "1");
@@ -458,7 +484,7 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
         #endregion
 
         #region Update Component Settings
-        [TestMethod]
+        //[TestMethod]
         public void TestUpdateComponentSettings()
         {
             service.WithHeader("X-Watson-Test", "1");
@@ -474,7 +500,7 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
         #endregion
 
         #region Analyze Document
-        [TestMethod]
+        //[TestMethod]
         public void TestAnalyzeDocument()
         {
             service.WithHeader("X-Watson-Test", "1");
@@ -499,7 +525,7 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
         #endregion
 
         #region List Enrichments
-        [TestMethod]
+        //[TestMethod]
         public void TestListEnrichments()
         {
             service.WithHeader("X-Watson-Test", "1");
@@ -513,9 +539,18 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
         #endregion
 
         #region Create Enrichment
-        [TestMethod]
+        //[TestMethod]
         public void TestCreateEnrichment()
         {
+            Enrichment enrichmentObj = new Enrichment();
+            enrichmentObj.Name = "Dictionary 1";
+            enrichmentObj.Description = "test dictionary";
+            enrichmentObj.Type = "dictionary";
+            enrichmentObj.Options = new EnrichmentOptions();
+            enrichmentObj.Options.Languages = new List<string>();
+            enrichmentObj.Options.Languages.Add("en");
+            enrichmentObj.Options.EntityType = "keyword";
+
             service.WithHeader("X-Watson-Test", "1");
             using (FileStream fs = File.OpenRead(enrichmentFile))
             {
@@ -525,7 +560,7 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
                     var createEnrichmentResult = service.CreateEnrichment(
                         projectId: projectId,
                         file: ms,
-                        enrichment: "{'name': 'My keywords', 'type': 'dictionary'}"
+                        enrichment: enrichmentObj
                         );
 
                     Assert.IsNotNull(createEnrichmentResult.Response);
@@ -535,7 +570,7 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
         #endregion
 
         #region Get Enrichment
-        [TestMethod]
+        //[TestMethod]
         public void TestGetEnrichment()
         {
             service.WithHeader("X-Watson-Test", "1");
@@ -565,7 +600,7 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
         #endregion
 
         #region Update Enrichment
-        [TestMethod]
+        //[TestMethod]
         public void TestUpdateEnrichment()
         {
             service.WithHeader("X-Watson-Test", "1");
@@ -624,7 +659,7 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
         #endregion
 
         #region List Projects
-        [TestMethod]
+        //[TestMethod]
         public void TestListProjects()
         {
             service.WithHeader("X-Watson-Test", "1");
@@ -636,7 +671,7 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
         #endregion
 
         #region Create Project
-        [TestMethod]
+        //[TestMethod]
         public void TestCreateProject()
         {
             service.WithHeader("X-Watson-Test", "1");
@@ -652,7 +687,7 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
         #endregion
 
         #region Get Project
-        [TestMethod]
+        //[TestMethod]
         public void TestGetProject()
         {
             service.WithHeader("X-Watson-Test", "1");
@@ -671,7 +706,7 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
         #endregion
 
         #region Update Project
-        [TestMethod]
+        //[TestMethod]
         public void TestUpdateProject()
         {
             service.WithHeader("X-Watson-Test", "1");

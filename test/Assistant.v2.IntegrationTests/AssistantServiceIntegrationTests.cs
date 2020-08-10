@@ -159,6 +159,7 @@ namespace IBM.Watson.Assistant.v2.IntegrationTests
         #endregion
 
         #region Delete User Data
+        //[TestMethod]
         public void DeleteUserData_Success()
         {
             service.WithHeader("X-Watson-Test", "1");

@@ -1747,6 +1747,7 @@ namespace IBM.Watson.Discovery.v2
 
                 if (enrichment != null)
                 {
+                    var enrichmentContent = new StringContent(JsonConvert.SerializeObject(enrichment), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                     enrichmentContent.Headers.ContentType = null;
                     formData.Add(enrichmentContent, "enrichment");
                 }

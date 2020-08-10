@@ -321,7 +321,7 @@ namespace IBM.Watson.LanguageTranslator.v3.IntegrationTests
             }
         }
 
-        [TestMethod]
+        //[TestMethod]
         public void ListLanguages_Success()
         {
             service.WithHeader("X-Watson-Test", "1");

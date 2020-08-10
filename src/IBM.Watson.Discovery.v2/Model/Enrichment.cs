@@ -28,7 +28,7 @@ namespace IBM.Watson.Discovery.v2.Model
         /// The unique identifier of this enrichment.
         /// </summary>
         [JsonProperty("enrichment_id", NullValueHandling = NullValueHandling.Ignore)]
-        public string EnrichmentId { get; set; }
+        public virtual string EnrichmentId { get; private set; }
         /// <summary>
         /// The human readable name for this enrichment.
         /// </summary>

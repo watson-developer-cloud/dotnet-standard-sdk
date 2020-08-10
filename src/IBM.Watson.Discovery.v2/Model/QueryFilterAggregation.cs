@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ namespace IBM.Watson.Discovery.v2.Model
     /// <summary>
     /// A modifier that will narrow down the document set of the sub aggregations it precedes.
     /// </summary>
-    public class QueryFilterAggregation : QueryAggregation
+    public class QueryFilterAggregation
     {
         /// <summary>
         /// The filter written in Discovery Query Language syntax applied to the documents before sub aggregations are

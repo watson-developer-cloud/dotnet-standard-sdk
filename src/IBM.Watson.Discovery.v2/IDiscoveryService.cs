@@ -44,7 +44,7 @@ namespace IBM.Watson.Discovery.v2
         DetailedResponse<TrainingQuery> UpdateTrainingQuery(string projectId, string queryId, string naturalLanguageQuery, List<TrainingExample> examples, string filter = null);
         DetailedResponse<AnalyzedDocument> AnalyzeDocument(string projectId, string collectionId, System.IO.MemoryStream file = null, string filename = null, string fileContentType = null, string metadata = null);
         DetailedResponse<Enrichments> ListEnrichments(string projectId);
-        DetailedResponse<Enrichment> CreateEnrichment(string projectId, System.IO.MemoryStream file = null, string enrichment = null);
+        DetailedResponse<Enrichment> CreateEnrichment(string projectId, System.IO.MemoryStream file = null, Enrichment enrichment = null);
         DetailedResponse<Enrichment> GetEnrichment(string projectId, string enrichmentId);
         DetailedResponse<Enrichment> UpdateEnrichment(string projectId, string enrichmentId, string name = null, string description = null);
         DetailedResponse<object> DeleteEnrichment(string projectId, string enrichmentId);

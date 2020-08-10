@@ -1712,9 +1712,9 @@ namespace IBM.Watson.Discovery.v2
         /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
         /// Discovery administrative tooling.</param>
         /// <param name="file">The enrichment file to upload. (optional)</param>
-        /// <param name="enrichment">Object describing the uploaded enrichment. (optional)</param>
+        /// <param name="enrichment"> (optional)</param>
         /// <returns><see cref="Enrichment" />Enrichment</returns>
-        public DetailedResponse<Enrichment> CreateEnrichment(string projectId, System.IO.MemoryStream file = null, string enrichment = null)
+        public DetailedResponse<Enrichment> CreateEnrichment(string projectId, System.IO.MemoryStream file = null, Enrichment enrichment = null)
         {
             if (string.IsNullOrEmpty(projectId))
             {
@@ -1747,7 +1747,6 @@ namespace IBM.Watson.Discovery.v2
 
                 if (enrichment != null)
                 {
-                    var enrichmentContent = new StringContent(enrichment, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
                     enrichmentContent.Headers.ContentType = null;
                     formData.Add(enrichmentContent, "enrichment");
                 }

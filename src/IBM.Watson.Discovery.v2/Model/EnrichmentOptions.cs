@@ -30,6 +30,24 @@ namespace IBM.Watson.Discovery.v2.Model
         /// </summary>
         [JsonProperty("languages", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Languages { get; set; }
+        /// <summary>
+        /// The type of entity. Required when creating `dictionary` and `regular_expression` **type** enrichment. Not
+        /// valid when creating any other type of enrichment.
+        /// </summary>
+        [JsonProperty("entity_type", NullValueHandling = NullValueHandling.Ignore)]
+        public string EntityType { get; set; }
+        /// <summary>
+        /// The regular expression to apply for this enrichment. Required only when the **type** of enrichment being
+        /// created is a `regular_expression`. Not valid when creating any other type of enrichment.
+        /// </summary>
+        [JsonProperty("regular_expression", NullValueHandling = NullValueHandling.Ignore)]
+        public string RegularExpression { get; set; }
+        /// <summary>
+        /// The name of the result document field that this enrichment creates. Required only when the enrichment
+        /// **type** is `rule_based`. Not valid when creating any other type of enrichment.
+        /// </summary>
+        [JsonProperty("result_field", NullValueHandling = NullValueHandling.Ignore)]
+        public string ResultField { get; set; }
     }
 
 }

@@ -23,7 +23,7 @@ namespace IBM.Watson.Discovery.v2.Model
     /// <summary>
     /// Returns the top values for the field specified.
     /// </summary>
-    public class QueryTermAggregation : QueryAggregation
+    public class QueryTermAggregation
     {
         /// <summary>
         /// The field in the document used to generate top values from.

@@ -101,8 +101,11 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <summary>
         /// Translate.
         ///
-        /// Translates the input text from the source language to the target language. A target language or translation
-        /// model ID is required. The service attempts to detect the language of the source text if it is not specified.
+        /// Translates the input text from the source language to the target language. Specify a model ID that indicates
+        /// the source and target languages, or specify the source and target languages individually. You can omit the
+        /// source language to have the service attempt to detect the language from the input text. If you omit the
+        /// source language, the request must contain sufficient input text for the service to identify the source
+        /// language.
         /// </summary>
         /// <param name="request">The translate request containing the text, and either a model ID or source and target
         /// language pair.</param>
@@ -245,7 +248,7 @@ namespace IBM.Watson.LanguageTranslator.v3
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
                 restRequest.WithHeader("Content-Type", "text/plain");
-                var httpContent = new StringContent(text, Encoding.UTF8);
+                var httpContent = new StringContent(JsonConvert.SerializeObject(text), Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "Identify"));
@@ -272,10 +275,10 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// </summary>
         /// <param name="source">Specify a language code to filter results by source language. (optional)</param>
         /// <param name="target">Specify a language code to filter results by target language. (optional)</param>
-        /// <param name="_default">If the default parameter isn't specified, the service will return all models (default
-        /// and non-default) for each language pair. To return only default models, set this to `true`. To return only
-        /// non-default models, set this to `false`. There is exactly one default model per language pair, the IBM
-        /// provided base model. (optional)</param>
+        /// <param name="_default">If the `default` parameter isn't specified, the service returns all models (default
+        /// and non-default) for each language pair. To return only default models, set this parameter to `true`. To
+        /// return only non-default models, set this parameter to `false`. There is exactly one default model, the
+        /// IBM-provided base model, per language pair. (optional)</param>
         /// <returns><see cref="TranslationModels" />TranslationModels</returns>
         public DetailedResponse<TranslationModels> ListModels(string source = null, string target = null, bool? _default = null)
         {
@@ -545,7 +548,7 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// Get model details.
         ///
         /// Gets information about a translation model, including training status for custom models. Use this API call
-        /// to poll the status of your customization request. A successfully completed training will have a status of
+        /// to poll the status of your customization request. A successfully completed training has a status of
         /// `available`.
         /// </summary>
         /// <param name="modelId">Model ID of the model to get.</param>
@@ -653,12 +656,13 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// Maximum file size: **20 MB**.</param>
         /// <param name="filename">The filename for file.</param>
         /// <param name="fileContentType">The content type of file. (optional)</param>
-        /// <param name="modelId">The model to use for translation. For example, `en-de` selects the IBM provided base
-        /// model for English to German translation. A model ID overrides the source and target parameters and is
-        /// required if you use a custom model. If no model ID is specified, you must specify a target language.
-        /// (optional)</param>
+        /// <param name="modelId">The model to use for translation. For example, `en-de` selects the IBM-provided base
+        /// model for English-to-German translation. A model ID overrides the `source` and `target` parameters and is
+        /// required if you use a custom model. If no model ID is specified, you must specify at least a target
+        /// language. (optional)</param>
         /// <param name="source">Language code that specifies the language of the source document. If omitted, the
-        /// service derives the source language from the input text. (optional)</param>
+        /// service derives the source language from the input text. The input must contain sufficient text for the
+        /// service to identify the language reliably. (optional)</param>
         /// <param name="target">Language code that specifies the target language for translation. Required if model ID
         /// is not specified. (optional)</param>
         /// <param name="documentId">To use a previously submitted document as the source for a new translation, enter

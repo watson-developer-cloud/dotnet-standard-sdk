@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2017, 2019.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ namespace IBM.Watson.Discovery.v1.Model
     /// <summary>
     /// Histogram.
     /// </summary>
-    public class Histogram : QueryAggregation
+    public class Histogram
     {
         /// <summary>
         /// The field where the aggregation is located in the document.

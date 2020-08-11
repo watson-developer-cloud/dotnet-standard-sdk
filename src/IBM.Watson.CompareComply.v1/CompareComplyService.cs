@@ -495,11 +495,11 @@ namespace IBM.Watson.CompareComply.v1
                 }
                 if (before != null)
                 {
-                    restRequest.WithArgument("before", before?.ToString("yyyy-MM-dd"));
+                    restRequest.WithArgument("before", before);
                 }
                 if (after != null)
                 {
-                    restRequest.WithArgument("after", after?.ToString("yyyy-MM-dd"));
+                    restRequest.WithArgument("after", after);
                 }
                 if (!string.IsNullOrEmpty(documentTitle))
                 {

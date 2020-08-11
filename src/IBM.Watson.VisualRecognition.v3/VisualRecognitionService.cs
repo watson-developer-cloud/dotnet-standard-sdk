@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2016, 2020.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ namespace IBM.Watson.VisualRecognition.v3
     public partial class VisualRecognitionService : IBMService, IVisualRecognitionService
     {
         const string serviceName = "visual_recognition";
-        private const string defaultServiceUrl = "https://gateway.watsonplatform.net/visual-recognition/api";
+        private const string defaultServiceUrl = "https://api.us-south.visual-recognition.watson.cloud.ibm.com";
         public string VersionDate { get; set; }
 
         public VisualRecognitionService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
@@ -129,16 +129,22 @@ namespace IBM.Watson.VisualRecognition.v3
 
                 if (owners != null)
                 {
-                    var ownersContent = new StringContent(string.Join(", ", owners.ToArray()), Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    ownersContent.Headers.ContentType = null;
-                    formData.Add(ownersContent, "owners");
+                    foreach (string item in owners)
+                    {
+                        var ownersContent = new StringContent(item, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                        ownersContent.Headers.ContentType = null;
+                        formData.Add(ownersContent, "owners");
+                    }
                 }
 
                 if (classifierIds != null)
                 {
-                    var classifierIdsContent = new StringContent(string.Join(", ", classifierIds.ToArray()), Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    classifierIdsContent.Headers.ContentType = null;
-                    formData.Add(classifierIdsContent, "classifier_ids");
+                    foreach (string item in classifierIds)
+                    {
+                        var classifierIdsContent = new StringContent(item, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                        classifierIdsContent.Headers.ContentType = null;
+                        formData.Add(classifierIdsContent, "classifier_ids");
+                    }
                 }
 
                 IClient client = this.Client;

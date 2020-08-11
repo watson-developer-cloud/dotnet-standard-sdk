@@ -483,22 +483,6 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
         }
         #endregion
 
-        #region Update Component Settings
-        //[TestMethod]
-        public void TestUpdateComponentSettings()
-        {
-            service.WithHeader("X-Watson-Test", "1");
-            var updateComponentSettingsResult = service.UpdateComponentSettings(
-                projectId: projectId,
-                autocomplete: true,
-                structuredSearch: true,
-                resultsPerPage: 5
-                );
-
-            Assert.IsNotNull(updateComponentSettingsResult.Response);
-        }
-        #endregion
-
         #region Analyze Document
         //[TestMethod]
         public void TestAnalyzeDocument()

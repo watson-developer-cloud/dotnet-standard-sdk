@@ -23,7 +23,7 @@ namespace IBM.Watson.Discovery.v1.Model
     /// <summary>
     /// Nested.
     /// </summary>
-    public class Nested : QueryAggregation
+    public class Nested
     {
         /// <summary>
         /// The area of the results the aggregation was restricted to.

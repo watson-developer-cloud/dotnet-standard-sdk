@@ -23,7 +23,7 @@ namespace IBM.Watson.Discovery.v1.Model
     /// <summary>
     /// Timeslice.
     /// </summary>
-    public class Timeslice : QueryAggregation
+    public class Timeslice
     {
         /// <summary>
         /// The field where the aggregation is located in the document.

@@ -24,7 +24,7 @@ namespace IBM.Watson.Discovery.v2.Model
     /// Numeric interval segments to categorize documents by using field values from a single numeric field to describe
     /// the category.
     /// </summary>
-    public class QueryHistogramAggregation : QueryAggregation
+    public class QueryHistogramAggregation
     {
         /// <summary>
         /// The numeric field name used to create the histogram.

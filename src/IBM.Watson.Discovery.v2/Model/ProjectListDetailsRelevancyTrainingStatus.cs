@@ -22,7 +22,7 @@ namespace IBM.Watson.Discovery.v2.Model
     /// <summary>
     /// Relevancy training status information for this project.
     /// </summary>
-    public class ProjectRelTrainStatus
+    public class ProjectListDetailsRelevancyTrainingStatus
     {
         /// <summary>
         /// When the training data was updated.

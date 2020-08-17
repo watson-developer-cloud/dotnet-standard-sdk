@@ -23,7 +23,7 @@ namespace IBM.Watson.Discovery.v1.Model
     /// <summary>
     /// Calculation.
     /// </summary>
-    public class Calculation : QueryAggregation
+    public class Calculation
     {
         /// <summary>
         /// The field where the aggregation is located in the document.

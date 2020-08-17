@@ -23,7 +23,7 @@ namespace IBM.Watson.Discovery.v2.Model
     /// Returns a scalar calculation across all documents for the field specified. Possible calculations include min,
     /// max, sum, average, and unique_count.
     /// </summary>
-    public class QueryCalculationAggregation : QueryAggregation
+    public class QueryCalculationAggregation
     {
         /// <summary>
         /// The field to perform the calculation on.

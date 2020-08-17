@@ -24,9 +24,9 @@ namespace IBM.Watson.Discovery.v2
     public partial interface IDiscoveryService
     {
         DetailedResponse<ListCollectionsResponse> ListCollections(string projectId);
-        DetailedResponse<CollectionDetails> CreateCollection(string projectId, string name = null, string description = null, string language = null, List<CollectionEnrichment> enrichments = null);
+        DetailedResponse<CollectionDetails> CreateCollection(string projectId, string name, string description = null, string language = null, List<CollectionEnrichment> enrichments = null);
         DetailedResponse<CollectionDetails> GetCollection(string projectId, string collectionId);
-        DetailedResponse<CollectionDetails> UpdateCollection(string projectId, string collectionId, string name = null, string description = null, string language = null, List<CollectionEnrichment> enrichments = null);
+        DetailedResponse<CollectionDetails> UpdateCollection(string projectId, string collectionId, string name = null, string description = null, List<CollectionEnrichment> enrichments = null);
         DetailedResponse<object> DeleteCollection(string projectId, string collectionId);
         DetailedResponse<QueryResponse> Query(string projectId, List<string> collectionIds = null, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> _return = null, long? offset = null, string sort = null, bool? highlight = null, bool? spellingSuggestions = null, QueryLargeTableResults tableResults = null, QueryLargeSuggestedRefinements suggestedRefinements = null, QueryLargePassages passages = null);
         DetailedResponse<Completions> GetAutocompletion(string projectId, string prefix, List<string> collectionIds = null, string field = null, long? count = null);
@@ -41,14 +41,13 @@ namespace IBM.Watson.Discovery.v2
         DetailedResponse<TrainingQuery> CreateTrainingQuery(string projectId, string naturalLanguageQuery, List<TrainingExample> examples, string filter = null);
         DetailedResponse<TrainingQuery> GetTrainingQuery(string projectId, string queryId);
         DetailedResponse<TrainingQuery> UpdateTrainingQuery(string projectId, string queryId, string naturalLanguageQuery, List<TrainingExample> examples, string filter = null);
-        DetailedResponse<AnalyzedDocument> AnalyzeDocument(string projectId, string collectionId, System.IO.MemoryStream file = null, string filename = null, string fileContentType = null, string metadata = null);
         DetailedResponse<Enrichments> ListEnrichments(string projectId);
-        DetailedResponse<Enrichment> CreateEnrichment(string projectId, System.IO.MemoryStream file = null, Enrichment enrichment = null);
+        DetailedResponse<Enrichment> CreateEnrichment(string projectId, System.IO.MemoryStream file = null, CreateEnrichment enrichment = null);
         DetailedResponse<Enrichment> GetEnrichment(string projectId, string enrichmentId);
         DetailedResponse<Enrichment> UpdateEnrichment(string projectId, string enrichmentId, string name = null, string description = null);
         DetailedResponse<object> DeleteEnrichment(string projectId, string enrichmentId);
         DetailedResponse<ListProjectsResponse> ListProjects();
-        DetailedResponse<ProjectDetails> CreateProject(string name = null, string type = null, ProjectRelTrainStatus relevancyTrainingStatus = null, DefaultQueryParams defaultQueryParameters = null);
+        DetailedResponse<ProjectDetails> CreateProject(string name, string type, DefaultQueryParams defaultQueryParameters = null);
         DetailedResponse<ProjectDetails> GetProject(string projectId);
         DetailedResponse<ProjectDetails> UpdateProject(string projectId, string name = null);
         DetailedResponse<object> DeleteProject(string projectId);

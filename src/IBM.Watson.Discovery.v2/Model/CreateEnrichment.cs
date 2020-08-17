@@ -20,25 +20,30 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Discovery.v2.Model
 {
     /// <summary>
-    /// Default project query settings for table results.
+    /// Information about a specific enrichment.
     /// </summary>
-    public class DefaultQueryParamsTableResults
+    public class CreateEnrichment
     {
         /// <summary>
-        /// When `true`, a table results for the query are retuned by default.
+        /// The human readable name for this enrichment.
         /// </summary>
-        [JsonProperty("enabled", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? Enabled { get; set; }
+        [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
+        public string Name { get; set; }
         /// <summary>
-        /// The number of table results to return by default.
+        /// The description of this enrichment.
         /// </summary>
-        [JsonProperty("count", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Count { get; set; }
+        [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
+        public string Description { get; set; }
         /// <summary>
-        /// The number of table results to include in each result document.
+        /// The type of this enrichment.
         /// </summary>
-        [JsonProperty("per_document", NullValueHandling = NullValueHandling.Ignore)]
-        public long? PerDocument { get; set; }
+        [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
+        public string Type { get; set; }
+        /// <summary>
+        /// A object containing options for the current enrichment.
+        /// </summary>
+        [JsonProperty("options", NullValueHandling = NullValueHandling.Ignore)]
+        public EnrichmentOptions Options { get; set; }
     }
 
 }

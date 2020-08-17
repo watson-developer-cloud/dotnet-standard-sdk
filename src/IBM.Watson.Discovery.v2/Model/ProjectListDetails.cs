@@ -68,7 +68,7 @@ namespace IBM.Watson.Discovery.v2.Model
         /// Relevancy training status information for this project.
         /// </summary>
         [JsonProperty("relevancy_training_status", NullValueHandling = NullValueHandling.Ignore)]
-        public ProjectRelTrainStatus RelevancyTrainingStatus { get; set; }
+        public ProjectListDetailsRelevancyTrainingStatus RelevancyTrainingStatus { get; set; }
         /// <summary>
         /// The number of collections configured in this project.
         /// </summary>

@@ -115,9 +115,9 @@ namespace IBM.Watson.Discovery.v2
         /// </summary>
         /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
         /// Discovery administrative tooling.</param>
-        /// <param name="collectionDetails">An object that represents the collection to be created. (optional)</param>
+        /// <param name="collectionDetails">An object that represents the collection to be created.</param>
         /// <returns><see cref="CollectionDetails" />CollectionDetails</returns>
-        public DetailedResponse<CollectionDetails> CreateCollection(string projectId, string name = null, string description = null, string language = null, List<CollectionEnrichment> enrichments = null)
+        public DetailedResponse<CollectionDetails> CreateCollection(string projectId, string name, string description = null, string language = null, List<CollectionEnrichment> enrichments = null)
         {
             if (string.IsNullOrEmpty(projectId))
             {
@@ -126,6 +126,10 @@ namespace IBM.Watson.Discovery.v2
             else
             {
                 projectId = Uri.EscapeDataString(projectId);
+            }
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new ArgumentNullException("`name` is required for `CreateCollection`");
             }
 
             if (string.IsNullOrEmpty(VersionDate))
@@ -255,9 +259,9 @@ namespace IBM.Watson.Discovery.v2
         /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
         /// Discovery administrative tooling.</param>
         /// <param name="collectionId">The ID of the collection.</param>
-        /// <param name="collectionDetails">An object that represents the collection to be created. (optional)</param>
+        /// <param name="updateCollection">An object that represents the collection to be created.</param>
         /// <returns><see cref="CollectionDetails" />CollectionDetails</returns>
-        public DetailedResponse<CollectionDetails> UpdateCollection(string projectId, string collectionId, string name = null, string description = null, string language = null, List<CollectionEnrichment> enrichments = null)
+        public DetailedResponse<CollectionDetails> UpdateCollection(string projectId, string collectionId, string name = null, string description = null, List<CollectionEnrichment> enrichments = null)
         {
             if (string.IsNullOrEmpty(projectId))
             {
@@ -302,10 +306,6 @@ namespace IBM.Watson.Discovery.v2
                 if (!string.IsNullOrEmpty(description))
                 {
                     bodyObject["description"] = description;
-                }
-                if (!string.IsNullOrEmpty(language))
-                {
-                    bodyObject["language"] = language;
                 }
                 if (enrichments != null && enrichments.Count > 0)
                 {
@@ -1472,104 +1472,6 @@ namespace IBM.Watson.Discovery.v2
             return result;
         }
         /// <summary>
-        /// Analyze a Document.
-        ///
-        /// Process a document using the specified collection's settings and return it for realtime use.
-        ///
-        /// **Note:** Documents processed using this method are not added to the specified collection.
-        ///
-        /// **Note:** This method is only supported on IBM Cloud Pak for Data instances of Discovery.
-        /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
-        /// <param name="collectionId">The ID of the collection.</param>
-        /// <param name="file">The content of the document to ingest. The maximum supported file size when adding a file
-        /// to a collection is 50 megabytes, the maximum supported file size when testing a configuration is 1 megabyte.
-        /// Files larger than the supported size are rejected. (optional)</param>
-        /// <param name="filename">The filename for file. (optional)</param>
-        /// <param name="fileContentType">The content type of file. (optional)</param>
-        /// <param name="metadata">The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are
-        /// rejected.
-        ///
-        ///
-        /// Example:  ``` {
-        ///   "Creator": "Johnny Appleseed",
-        ///   "Subject": "Apples"
-        /// } ```. (optional)</param>
-        /// <returns><see cref="AnalyzedDocument" />AnalyzedDocument</returns>
-        public DetailedResponse<AnalyzedDocument> AnalyzeDocument(string projectId, string collectionId, System.IO.MemoryStream file = null, string filename = null, string fileContentType = null, string metadata = null)
-        {
-            if (string.IsNullOrEmpty(projectId))
-            {
-                throw new ArgumentNullException("`projectId` is required for `AnalyzeDocument`");
-            }
-            else
-            {
-                projectId = Uri.EscapeDataString(projectId);
-            }
-            if (string.IsNullOrEmpty(collectionId))
-            {
-                throw new ArgumentNullException("`collectionId` is required for `AnalyzeDocument`");
-            }
-            else
-            {
-                collectionId = Uri.EscapeDataString(collectionId);
-            }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
-            DetailedResponse<AnalyzedDocument> result = null;
-
-            try
-            {
-                var formData = new MultipartFormDataContent();
-
-                if (file != null)
-                {
-                    var fileContent = new ByteArrayContent(file.ToArray());
-                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
-                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
-                    fileContent.Headers.ContentType = contentType;
-                    formData.Add(fileContent, "file", filename);
-                }
-
-                if (metadata != null)
-                {
-                    var metadataContent = new StringContent(metadata, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
-                    metadataContent.Headers.ContentType = null;
-                    formData.Add(metadataContent, "metadata");
-                }
-
-                IClient client = this.Client;
-                SetAuthentication();
-
-                var restRequest = client.PostAsync($"{this.Endpoint}/v2/projects/{projectId}/collections/{collectionId}/analyze");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                restRequest.WithBodyContent(formData);
-
-                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "AnalyzeDocument"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
-
-                result = restRequest.As<AnalyzedDocument>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<AnalyzedDocument>();
-                }
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-        /// <summary>
         /// List Enrichments.
         ///
         /// List the enrichments available to this project.
@@ -1633,7 +1535,7 @@ namespace IBM.Watson.Discovery.v2
         /// <param name="file">The enrichment file to upload. (optional)</param>
         /// <param name="enrichment"> (optional)</param>
         /// <returns><see cref="Enrichment" />Enrichment</returns>
-        public DetailedResponse<Enrichment> CreateEnrichment(string projectId, System.IO.MemoryStream file = null, Enrichment enrichment = null)
+        public DetailedResponse<Enrichment> CreateEnrichment(string projectId, System.IO.MemoryStream file = null, CreateEnrichment enrichment = null)
         {
             if (string.IsNullOrEmpty(projectId))
             {
@@ -1951,10 +1853,18 @@ namespace IBM.Watson.Discovery.v2
         ///
         /// Create a new project for this instance.
         /// </summary>
-        /// <param name="projectDetails">An object that represents the project to be created. (optional)</param>
+        /// <param name="projectCreation">An object that represents the project to be created.</param>
         /// <returns><see cref="ProjectDetails" />ProjectDetails</returns>
-        public DetailedResponse<ProjectDetails> CreateProject(string name = null, string type = null, ProjectRelTrainStatus relevancyTrainingStatus = null, DefaultQueryParams defaultQueryParameters = null)
+        public DetailedResponse<ProjectDetails> CreateProject(string name, string type, DefaultQueryParams defaultQueryParameters = null)
         {
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new ArgumentNullException("`name` is required for `CreateProject`");
+            }
+            if (string.IsNullOrEmpty(type))
+            {
+                throw new ArgumentNullException("`type` is required for `CreateProject`");
+            }
 
             if (string.IsNullOrEmpty(VersionDate))
             {
@@ -1982,10 +1892,6 @@ namespace IBM.Watson.Discovery.v2
                 if (!string.IsNullOrEmpty(type))
                 {
                     bodyObject["type"] = type;
-                }
-                if (relevancyTrainingStatus != null)
-                {
-                    bodyObject["relevancy_training_status"] = JToken.FromObject(relevancyTrainingStatus);
                 }
                 if (defaultQueryParameters != null)
                 {

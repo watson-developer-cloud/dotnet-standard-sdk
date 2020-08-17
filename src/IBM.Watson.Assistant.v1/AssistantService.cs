@@ -407,8 +407,8 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="Workspace" />Workspace</returns>
-        public DetailedResponse<Workspace> UpdateWorkspace(string workspaceId, string name = null, string description = null, string language = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null, List<Webhook> webhooks = null, bool? append = null, bool? includeAudit = null)
-        {
+        public DetailedResponse<Workspace> UpdateWorkspace(string workspaceId, string name = null, string description = null, string language = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null, bool? append = null, List<Webhook> webhooks = null, bool? includeAudit = null)
+        { 
             if (string.IsNullOrEmpty(workspaceId))
             {
                 throw new ArgumentNullException("`workspaceId` is required for `UpdateWorkspace`");

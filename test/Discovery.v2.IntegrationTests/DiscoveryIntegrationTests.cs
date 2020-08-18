@@ -31,7 +31,7 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
     public class DiscoveryIntegrationTests
     {
         private DiscoveryService service;
-        private string versionDate = "2019-11-20";
+        private string versionDate = "2019-11-22";
         private string filepathToIngest = @"DiscoveryTestData/watson_beats_jeopardy.html";
         private string enrichmentFile = @"DiscoveryTestData/test.csv";
         private string metadata = "{\"Creator\": \".NET SDK Test\",\"Subject\": \"Discovery service\"}";
@@ -456,8 +456,7 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
                 projectId: projectId,
                 collectionId: collectionId,
                 name: "name updated",
-                description: "description updated",
-                language: "fr"
+                description: "description updated"
                 );
 
             Assert.IsNotNull(updateCollectionResult.Response);
@@ -483,31 +482,6 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
         }
         #endregion
 
-        #region Analyze Document
-        //[TestMethod]
-        public void TestAnalyzeDocument()
-        {
-            service.WithHeader("X-Watson-Test", "1");
-            using (FileStream fs = File.OpenRead(filepathToIngest))
-            {
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    fs.CopyTo(ms);
-                    var analyzeDocumentResult = service.AnalyzeDocument(
-                        projectId: projectId,
-                        collectionId: collectionId,
-                        file: ms,
-                        filename: "watson_beats_jeopardy.html",
-                        fileContentType: "text/html",
-                        metadata: metadata
-                        );
-
-                    Assert.IsNotNull(analyzeDocumentResult.Response);
-                }
-            }
-        }
-        #endregion
-
         #region List Enrichments
         //[TestMethod]
         public void TestListEnrichments()
@@ -526,14 +500,14 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
         //[TestMethod]
         public void TestCreateEnrichment()
         {
-            Enrichment enrichmentObj = new Enrichment();
-            enrichmentObj.Name = "Dictionary 1";
-            enrichmentObj.Description = "test dictionary";
-            enrichmentObj.Type = "dictionary";
-            enrichmentObj.Options = new EnrichmentOptions();
-            enrichmentObj.Options.Languages = new List<string>();
-            enrichmentObj.Options.Languages.Add("en");
-            enrichmentObj.Options.EntityType = "keyword";
+            CreateEnrichment createEnrichment = new CreateEnrichment();
+            createEnrichment.Name = "Dictionary 1";
+            createEnrichment.Description = "test dictionary";
+            createEnrichment.Type = "dictionary";
+            createEnrichment.Options = new EnrichmentOptions();
+            createEnrichment.Options.Languages = new List<string>();
+            createEnrichment.Options.Languages.Add("en");
+            createEnrichment.Options.EntityType = "keyword";
 
             service.WithHeader("X-Watson-Test", "1");
             using (FileStream fs = File.OpenRead(enrichmentFile))
@@ -544,7 +518,7 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
                     var createEnrichmentResult = service.CreateEnrichment(
                         projectId: projectId,
                         file: ms,
-                        enrichment: enrichmentObj
+                        enrichment: createEnrichment
                         );
 
                     Assert.IsNotNull(createEnrichmentResult.Response);

@@ -20,7 +20,7 @@ environment:
     IBM_CREDENTIALS_FILE: C:\projects\sdk-credentials\ibm-credentials.env
 install:
 # Get the latest stable version of Node.js or io.js
-- ps: Install-Product node $env:nodejs_version
+- ps: Install-Product node 12.13.0
 
 - cmd: >-
     pip install git+git://github.com/smsearcy/bumpversion.git@issue-135

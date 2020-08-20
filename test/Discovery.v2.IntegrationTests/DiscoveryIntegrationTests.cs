@@ -1,5 +1,5 @@
 ﻿/**
-* Copyright 2019 IBM Corp. All Rights Reserved.
+* (C) Copyright IBM Corp. 2019, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -18,19 +18,22 @@
 using IBM.Cloud.SDK.Core.Authentication;
 using IBM.Cloud.SDK.Core.Authentication.Bearer;
 using IBM.Cloud.SDK.Core.Http;
+using IBM.Cloud.SDK.Core.Util;
 using IBM.Watson.Discovery.v2.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
 namespace IBM.Watson.Discovery.v2.IntegrationTests
 {
-    //[TestClass]
+    [TestClass]
     public class DiscoveryIntegrationTests
     {
         private DiscoveryService service;
-        private string versionDate = "2019-11-20";
-        private string filepathToIngest = @"DiscoveryTestData\watson_beats_jeopardy.html";
+        private string versionDate = "2019-11-22";
+        private string filepathToIngest = @"DiscoveryTestData/watson_beats_jeopardy.html";
+        private string enrichmentFile = @"DiscoveryTestData/test.csv";
         private string metadata = "{\"Creator\": \".NET SDK Test\",\"Subject\": \"Discovery service\"}";
         private string bearerToken = "";
         private string serviceUrl = "";
@@ -40,10 +43,14 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
-            Authenticator discoveryAuthenticator = new BearerTokenAuthenticator(bearerToken: bearerToken);
-            service = new DiscoveryService(versionDate: versionDate, authenticator: discoveryAuthenticator);
-            service.SetServiceUrl(serviceUrl: serviceUrl);
-            service.DisableSslVerification(true);
+            //Authenticator discoveryAuthenticator = new BearerTokenAuthenticator(bearerToken: bearerToken);
+            //service = new DiscoveryService(versionDate: versionDate, authenticator: discoveryAuthenticator);
+            //service.SetServiceUrl(serviceUrl: serviceUrl);
+            //service.DisableSslVerification(true);
+            service = new DiscoveryService(versionDate);
+            var creds = CredentialUtils.GetServiceProperties("discovery");
+            creds.TryGetValue("PROJECT_ID", out projectId);
+            creds.TryGetValue("COLLECTION_ID", out collectionId);
         }
 
         #region Collections
@@ -391,6 +398,379 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
                 documentId: documentId,
                 xWatsonDiscoveryForce: false
                 );
+        }
+        #endregion
+
+        #region Create Collection
+        //[TestMethod]
+        public void TestCreateCollection()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var createCollectionResult = service.CreateCollection(
+                projectId: projectId,
+                name: "name test",
+                description: "description test",
+                language: "en"
+                );
+
+            Assert.IsNotNull(createCollectionResult.Response);
+            Assert.IsNotNull(createCollectionResult.Result.CollectionId);
+            Assert.IsTrue(createCollectionResult.Result.Name == "name test");
+            Assert.IsTrue(createCollectionResult.Result.Description == "description test");
+            Assert.IsTrue(createCollectionResult.Result.Language == "en");
+
+            // Delete collection
+            service.WithHeader("X-Watson-Test", "1");
+            var deleteCollectionResult = service.DeleteCollection(
+                projectId: projectId,
+                collectionId: createCollectionResult.Result.CollectionId
+                );
+
+            Assert.IsNotNull(deleteCollectionResult.Response);
+            Assert.IsTrue(deleteCollectionResult.StatusCode == 204);
+        }
+        #endregion
+
+        #region Get Collection
+        //[TestMethod]
+        public void TestGetCollection()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var listCollectionsResult = service.ListCollections(
+                projectId: projectId
+                );
+
+            var collections = listCollectionsResult.Result.Collections;
+            if (collections.Count > 0)
+            {
+
+                var getCollectionResult = service.GetCollection(
+                    projectId: projectId,
+                    collectionId: collections[0].CollectionId
+
+                    );
+
+                Assert.IsNotNull(getCollectionResult.Response);
+                Assert.IsNotNull(getCollectionResult.Result.CollectionId);
+                Assert.IsTrue(getCollectionResult.Result.Name == collections[0].Name);
+            }
+        }
+        #endregion
+
+        #region Update Collection
+        //[TestMethod]
+        public void TestUpdateCollection()
+        {
+            // Get collection
+            service.WithHeader("X-Watson-Test", "1");
+            var getCollectionResult = service.GetCollection(
+                projectId: projectId,
+                collectionId: collectionId
+                );
+
+            Assert.IsNotNull(getCollectionResult.Response);
+            Assert.IsNotNull(getCollectionResult.Result.CollectionId);
+
+            // Update collection
+            var updateCollectionResult = service.UpdateCollection(
+                projectId: projectId,
+                collectionId: collectionId,
+                name: "name updated",
+                description: "description updated"
+                );
+
+            Assert.IsNotNull(updateCollectionResult.Response);
+            Assert.IsNotNull(updateCollectionResult.Result.CollectionId);
+            Assert.IsTrue(updateCollectionResult.Result.Name == "name updated");
+            Assert.IsTrue(updateCollectionResult.Result.Description == "description updated");
+
+            // Rollback collection
+            var rollbackCollectionResult = service.UpdateCollection(
+                projectId: projectId,
+                collectionId: collectionId,
+                name: getCollectionResult.Result.Name,
+                description: getCollectionResult.Result.Description
+                );
+
+            Assert.IsNotNull(updateCollectionResult.Response);
+            Assert.IsNotNull(updateCollectionResult.Result.CollectionId);
+        }
+        #endregion
+
+        #region Delete Collection
+        //[TestMethod]
+        public void TestDeleteCollection()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var deleteCollectionResult = service.DeleteCollection(
+                projectId: projectId,
+                collectionId: "{collectionId}"
+                );
+
+            Assert.IsNotNull(deleteCollectionResult.Response);
+            Assert.IsTrue(deleteCollectionResult.StatusCode == 204);
+        }
+        #endregion
+
+        #region List Enrichments
+        //[TestMethod]
+        public void TestListEnrichments()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var listEnrichmentsResult = service.ListEnrichments(
+                projectId: projectId
+                );
+
+            Assert.IsNotNull(listEnrichmentsResult.Response);
+            Assert.IsTrue(listEnrichmentsResult.Result._Enrichments.Count > 0);
+        }
+        #endregion
+
+        #region Create Enrichment
+        //[TestMethod]
+        public void TestCreateEnrichment()
+        {
+            // Create Enrichment
+            CreateEnrichment createEnrichment = new CreateEnrichment();
+            createEnrichment.Name = "Dictionary1";
+            createEnrichment.Description = "test dictionary";
+            createEnrichment.Type = CreateEnrichment.TypeEnumValue.DICTIONARY;
+            createEnrichment.Options = new EnrichmentOptions();
+            createEnrichment.Options.Languages = new List<string>();
+            createEnrichment.Options.Languages.Add("en");
+            createEnrichment.Options.EntityType = "keyword";
+
+            service.WithHeader("X-Watson-Test", "1");
+            using (FileStream fs = File.OpenRead(enrichmentFile))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    fs.CopyTo(ms);
+                    var createEnrichmentResult = service.CreateEnrichment(
+                        projectId: projectId,
+                        createEnrichment,
+                        file: ms
+                        );
+
+                    Assert.IsNotNull(createEnrichmentResult.Response);
+
+                    // Delete Enrichment
+                    var deleteEnrichmentResult = service.DeleteEnrichment(
+                        projectId: projectId,
+                        enrichmentId: createEnrichmentResult.Result.EnrichmentId
+                        );
+
+                    Assert.IsNotNull(deleteEnrichmentResult);
+                    Assert.IsTrue(deleteEnrichmentResult.StatusCode == 204);
+                }
+            }
+        }
+        #endregion
+
+        #region Get Enrichment
+        //[TestMethod]
+        public void TestGetEnrichment()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var listEnrichmentsResult = service.ListEnrichments(
+                projectId: projectId
+                );
+
+            List<Enrichment> availableEnrichments = listEnrichmentsResult.Result._Enrichments;
+
+            if (availableEnrichments.Count == 0)
+            {
+                Console.WriteLine("No enrichments available.");
+            }
+            else
+            {
+                var getEnrichmentResult = service.GetEnrichment(
+                    projectId: projectId,
+                    enrichmentId: availableEnrichments[0].EnrichmentId
+                    );
+
+                Assert.IsNotNull(getEnrichmentResult.Response);
+                Assert.IsTrue(getEnrichmentResult.Result.Name == availableEnrichments[0].Name);
+                Assert.IsTrue(getEnrichmentResult.Result.Description == availableEnrichments[0].Description);
+                Assert.IsTrue(getEnrichmentResult.Result.Type == availableEnrichments[0].Type);
+            }
+        }
+        #endregion
+
+        #region Update Enrichment
+        //[TestMethod]
+        public void TestUpdateEnrichment()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var listEnrichmentsResult = service.ListEnrichments(
+                projectId: projectId
+                );
+
+            List<Enrichment> availableEnrichments = listEnrichmentsResult.Result._Enrichments;
+
+            if (availableEnrichments.Count == 0)
+            {
+                Console.WriteLine("No enrichments available.");
+            }
+            else
+            {
+                // Update Enrichment
+                var updateEnrichmentResult = service.UpdateEnrichment(
+                    projectId: projectId,
+                    enrichmentId: availableEnrichments[0].EnrichmentId,
+                    name: "name updated",
+                    description: "description updated"
+                    );
+
+                Assert.IsNotNull(updateEnrichmentResult.Response);
+                Assert.IsTrue(updateEnrichmentResult.Result.Name == "name updated");
+                Assert.IsTrue(updateEnrichmentResult.Result.Description == "description updated");
+
+                // Rollback Enrichment
+                var rollbackEnrichmentResult = service.UpdateEnrichment(
+                    projectId: projectId,
+                    enrichmentId: availableEnrichments[0].EnrichmentId,
+                    name: availableEnrichments[0].Name,
+                    description: availableEnrichments[0].Description
+                    );
+
+                Assert.IsNotNull(rollbackEnrichmentResult.Response);
+            }
+        }
+        #endregion
+
+        #region Delete Enrichment
+        //[TestMethod]
+        public void TestDeleteEnrichment()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var deleteEnrichmentResult = service.DeleteEnrichment(
+                projectId: projectId,
+                enrichmentId: "{enrichmentId}"
+                );
+
+            Assert.IsNotNull(deleteEnrichmentResult.Response);
+            Assert.IsTrue(deleteEnrichmentResult.StatusCode == 204);
+        }
+        #endregion
+
+        #region List Projects
+        //[TestMethod]
+        public void TestListProjects()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var listProjectsResult = service.ListProjects();
+
+            Assert.IsNotNull(listProjectsResult.Response);
+            Assert.IsNotNull(listProjectsResult.Result.Projects);
+        }
+        #endregion
+
+        #region Create Project
+        //[TestMethod]
+        public void TestCreateProject()
+        {
+            // Create Project
+            service.WithHeader("X-Watson-Test", "1");
+            var createProjectResult = service.CreateProject(
+                name: "name test",
+                type: "other"
+                );
+
+            Assert.IsNotNull(createProjectResult.Response);
+            Assert.IsTrue(createProjectResult.Result.Name == "name test");
+            Assert.IsTrue(createProjectResult.Result.Type == "other");
+
+            // Delete Project
+            service.WithHeader("X-Watson-Test", "1");
+            var deleteProjectResult = service.DeleteProject(
+                projectId: createProjectResult.Result.ProjectId
+                );
+
+            Assert.IsNotNull(deleteProjectResult.Response);
+            Assert.IsTrue(deleteProjectResult.StatusCode == 204);
+        }
+        #endregion
+
+        #region Get Project
+        //[TestMethod]
+        public void TestGetProject()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var listProjectsResult = service.ListProjects();
+
+            var projects = listProjectsResult.Result.Projects;
+            if (projects.Count > 0)
+            {
+                var getProjectResult = service.GetProject(
+                    projectId: projects[0].ProjectId
+                    );
+
+                Assert.IsNotNull(getProjectResult.Response);
+                Assert.IsTrue(getProjectResult.Result.Name == projects[0].Name);
+                Assert.IsTrue(getProjectResult.Result.Type == projects[0].Type);
+            }
+        }
+        #endregion
+
+        #region Update Project
+        //[TestMethod]
+        public void TestUpdateProject()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var listProjectsResult = service.ListProjects();
+
+            var projects = listProjectsResult.Result.Projects;
+
+            if (projects.Count > 0)
+            {
+                // Update Project
+                var updateProjectResult = service.UpdateProject(
+                    projectId: projects[0].ProjectId,
+                    name: "name updated"
+                    );
+
+                Assert.IsNotNull(updateProjectResult.Response);
+                Assert.IsTrue(updateProjectResult.Result.Name == "name updated");
+                Assert.IsTrue(updateProjectResult.Result.ProjectId == projects[0].ProjectId);
+
+                // Rollback Project
+                var rollbackProjectResult = service.UpdateProject(
+                    projectId: projects[0].ProjectId,
+                    name: projects[0].Name
+                    );
+
+                Assert.IsNotNull(rollbackProjectResult.Response);
+            }
+
+        }
+        #endregion
+
+        #region Delete Project
+        //[TestMethod]
+        public void TestDeleteProject()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var deleteProjectResult = service.DeleteProject(
+                projectId: "{projectId}"
+                );
+
+            Assert.IsNotNull(deleteProjectResult.Response);
+            Assert.IsTrue(deleteProjectResult.StatusCode == 204);
+        }
+        #endregion
+
+        #region Delete User Data
+        //[TestMethod]
+        public void TestDeleteUserData()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var deleteUserDataResults = service.DeleteUserData(
+                customerId: "{customerId}"
+                );
+
+            Assert.IsNotNull(deleteUserDataResults.Response);
+            Assert.IsTrue(deleteUserDataResults.StatusCode == 204);
         }
         #endregion
     }

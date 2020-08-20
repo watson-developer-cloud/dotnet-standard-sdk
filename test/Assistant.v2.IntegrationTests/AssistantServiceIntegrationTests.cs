@@ -139,5 +139,35 @@ namespace IBM.Watson.Assistant.v2.IntegrationTests
             Assert.IsNotNull(messageResult.Result.Context.Global.SessionId);
         }
         #endregion
+
+        #region List Logs
+        //[TestMethod]
+        public void ListLogs_Success()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var listLogsResults = service.ListLogs(
+                assistantId: assistantId,
+                sort: "request_timestamp",
+                filter: "request.input.text::\"Hello\"",
+                pageLimit: 5
+                );
+
+            Assert.IsNotNull(listLogsResults.Response);
+            Assert.IsTrue(listLogsResults.Result.Logs[0].Request.Input.Text.Contains("Hello"));
+            Assert.IsTrue(listLogsResults.Result.Logs[0].Language == "en");
+        }
+        #endregion
+
+        #region Delete User Data
+        public void DeleteUserData_Success()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var deleteUserDataResults = service.DeleteUserData(
+                customerId: "{customerId}"
+                );
+
+            Assert.IsNotNull(deleteUserDataResults.Response);
+        }
+        #endregion
     }
 }

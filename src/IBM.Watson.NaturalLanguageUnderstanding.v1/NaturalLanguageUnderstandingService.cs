@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2017, 2020.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
     public partial class NaturalLanguageUnderstandingService : IBMService, INaturalLanguageUnderstandingService
     {
         const string serviceName = "natural_language_understanding";
-        private const string defaultServiceUrl = "https://gateway.watsonplatform.net/natural-language-understanding/api";
+        private const string defaultServiceUrl = "https://api.us-south.natural-language-understanding.watson.cloud.ibm.com";
         public string VersionDate { get; set; }
 
         public NaturalLanguageUnderstandingService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
@@ -65,7 +65,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// - Relations
         /// - Semantic roles
         /// - Sentiment
-        /// - Syntax (Experimental).
+        /// - Syntax.
         ///
         /// If a language for the input text is not specified with the `language` parameter, the service [automatically
         /// detects the

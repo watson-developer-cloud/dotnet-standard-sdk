@@ -33,7 +33,7 @@ namespace IBM.Watson.CompareComply.v1
     public partial class CompareComplyService : IBMService, ICompareComplyService
     {
         const string serviceName = "compare_comply";
-        private const string defaultServiceUrl = "https://gateway.watsonplatform.net/compare-comply/api";
+        private const string defaultServiceUrl = "https://api.us-south.compare-comply.watson.cloud.ibm.com";
         public string VersionDate { get; set; }
 
         public CompareComplyService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
@@ -495,11 +495,11 @@ namespace IBM.Watson.CompareComply.v1
                 }
                 if (before != null)
                 {
-                    restRequest.WithArgument("before", before?.ToString("yyyy-MM-dd"));
+                    restRequest.WithArgument("before", before);
                 }
                 if (after != null)
                 {
-                    restRequest.WithArgument("after", after?.ToString("yyyy-MM-dd"));
+                    restRequest.WithArgument("after", after);
                 }
                 if (!string.IsNullOrEmpty(documentTitle))
                 {

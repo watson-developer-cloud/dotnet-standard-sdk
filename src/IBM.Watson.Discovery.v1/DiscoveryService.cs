@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2017, 2020.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ namespace IBM.Watson.Discovery.v1
     public partial class DiscoveryService : IBMService, IDiscoveryService
     {
         const string serviceName = "discovery";
-        private const string defaultServiceUrl = "https://gateway.watsonplatform.net/discovery/api";
+        private const string defaultServiceUrl = "https://api.us-south.discovery.watson.cloud.ibm.com";
         public string VersionDate { get; set; }
 
         public DiscoveryService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }

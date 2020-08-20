@@ -34,7 +34,7 @@ namespace IBM.Watson.VisualRecognition.v4
     public partial class VisualRecognitionService : IBMService, IVisualRecognitionService
     {
         const string serviceName = "visual_recognition";
-        private const string defaultServiceUrl = "https://gateway.watsonplatform.net/visual-recognition/api";
+        private const string defaultServiceUrl = "https://api.us-south.visual-recognition.watson.cloud.ibm.com";
         public string VersionDate { get; set; }
 
         public VisualRecognitionService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }

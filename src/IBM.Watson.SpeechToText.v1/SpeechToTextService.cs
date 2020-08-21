@@ -2674,7 +2674,7 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     restRequest.WithArgument("allow_overwrite", allowOverwrite);
                 }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(grammarFile));
+                var httpContent = new StringContent(grammarFile);
                 System.Net.Http.Headers.MediaTypeHeaderValue grammarFileContentType;
                 System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out grammarFileContentType);
                 httpContent.Headers.ContentType = grammarFileContentType;

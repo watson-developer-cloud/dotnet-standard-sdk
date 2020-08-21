@@ -548,7 +548,7 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
                     fs.CopyTo(ms);
                     var createEnrichmentResult = service.CreateEnrichment(
                         projectId: projectId,
-                        createEnrichment,
+                        enrichment: createEnrichment,
                         file: ms
                         );
 

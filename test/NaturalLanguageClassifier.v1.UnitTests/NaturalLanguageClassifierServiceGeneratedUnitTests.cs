@@ -82,7 +82,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
             var url = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_URL");
             System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_URL", null);
             NaturalLanguageClassifierService service = Substitute.For<NaturalLanguageClassifierService>();
-            Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/natural-language-classifier/api");
+            Assert.IsTrue(service.ServiceUrl == "https://api.us-south.assistant.watson.cloud.ibm.com/natural-language-classifier/api");
             System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_URL", url);
             System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_APIKEY", apikey);
         }

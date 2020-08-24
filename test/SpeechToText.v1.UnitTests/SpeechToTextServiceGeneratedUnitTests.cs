@@ -82,7 +82,7 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
             var url = System.Environment.GetEnvironmentVariable("SPEECH_TO_TEXT_URL");
             System.Environment.SetEnvironmentVariable("SPEECH_TO_TEXT_URL", null);
             SpeechToTextService service = Substitute.For<SpeechToTextService>();
-            Assert.IsTrue(service.ServiceUrl == "https://stream.watsonplatform.net/speech-to-text/api");
+            Assert.IsTrue(service.ServiceUrl == "https://api.us-south.speech-to-text.watson.cloud.ibm.com");
             System.Environment.SetEnvironmentVariable("SPEECH_TO_TEXT_URL", url);
             System.Environment.SetEnvironmentVariable("SPEECH_TO_TEXT_APIKEY", apikey);
         }

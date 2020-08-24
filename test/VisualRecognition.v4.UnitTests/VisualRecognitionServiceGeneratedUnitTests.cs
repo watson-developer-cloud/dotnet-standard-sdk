@@ -88,7 +88,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
             var url = System.Environment.GetEnvironmentVariable("VISUAL_RECOGNITION_URL");
             System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_URL", null);
             VisualRecognitionService service = Substitute.For<VisualRecognitionService>("versionDate");
-            Assert.IsTrue(service.ServiceUrl == "https://api.us-south.assistant.watson.cloud.ibm.com/visual-recognition/api");
+            Assert.IsTrue(service.ServiceUrl == "https://api.us-south.visual-recognition.watson.cloud.ibm.com");
             System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_URL", url);
             System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY", apikey);
         }

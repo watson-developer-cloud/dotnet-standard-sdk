@@ -88,7 +88,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
             var url = System.Environment.GetEnvironmentVariable("LANGUAGE_TRANSLATOR_URL");
             System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_URL", null);
             LanguageTranslatorService service = Substitute.For<LanguageTranslatorService>("versionDate");
-            Assert.IsTrue(service.ServiceUrl == "https://api.us-south.assistant.watson.cloud.ibm.com/language-translator/api");
+            Assert.IsTrue(service.ServiceUrl == "https://api.us-south.language-translator.watson.cloud.ibm.com");
             System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_URL", url);
             System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_APIKEY", apikey);
         }

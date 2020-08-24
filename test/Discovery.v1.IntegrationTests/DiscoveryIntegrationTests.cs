@@ -1237,6 +1237,26 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
         }
         #endregion
 
+        //[TestMethod]
+        //public void RemoveGateways()
+        //{
+        //    service.WithHeader("X-Watson-Test", "1");
+        //    var listGatewaysResult = service.ListGateways(
+        //        environmentId: environmentId
+        //        );
+            
+        //    foreach(Gateway gateway in listGatewaysResult.Result.Gateways)
+        //    {
+        //        if (gateway.Name.Contains("test"))
+        //        {
+        //            Console.WriteLine(gateway.Name);
+        //            var deleteGatewayResult = service.DeleteGateway(
+        //                environmentId: environmentId,
+        //                gatewayId: gateway.GatewayId
+        //                );
+        //        }
+        //    }
+        //}
         #region IsEnvironmentReady
         private void IsEnvironmentReady(string environmentId)
         {

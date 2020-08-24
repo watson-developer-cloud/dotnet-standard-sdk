@@ -58,7 +58,9 @@ namespace IBM.Watson.CompareComply.v1.IntegrationTests
             }
             else
             {
-
+                // overwrite if you are using a different OS.
+                objectStorageCredentialsInputFilepath = "C:\\projects\\sdk-credentials\\cloud-object-storage-credentials-input.json";
+                objectStorageCredentialsOutputFilepath = "C:\\projects\\sdk-credentials\\cloud-object-storage-credentials-output.json";
             }
         }
 

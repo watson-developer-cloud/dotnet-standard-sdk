@@ -88,7 +88,7 @@ namespace IBM.Watson.PersonalityInsights.v3.UnitTests
             var url = System.Environment.GetEnvironmentVariable("PERSONALITY_INSIGHTS_URL");
             System.Environment.SetEnvironmentVariable("PERSONALITY_INSIGHTS_URL", null);
             PersonalityInsightsService service = Substitute.For<PersonalityInsightsService>("versionDate");
-            Assert.IsTrue(service.ServiceUrl == "https://api.us-east.personality-insights.watson.cloud.ibm.com");
+            Assert.IsTrue(service.ServiceUrl == "https://api.us-south.personality-insights.watson.cloud.ibm.com");
             System.Environment.SetEnvironmentVariable("PERSONALITY_INSIGHTS_URL", url);
             System.Environment.SetEnvironmentVariable("PERSONALITY_INSIGHTS_APIKEY", apikey);
         }

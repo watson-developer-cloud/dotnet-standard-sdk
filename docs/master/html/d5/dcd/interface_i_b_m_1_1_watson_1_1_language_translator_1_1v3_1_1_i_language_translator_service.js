@@ -9,6 +9,7 @@ var interface_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_i_language_tran
     [ "Identify", "d5/dcd/interface_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_i_language_translator_service.html#ae57378296df661053bdcde45fc09ab5d", null ],
     [ "ListDocuments", "d5/dcd/interface_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_i_language_translator_service.html#abc86227d41b0d54ef4069bf9307eadc2", null ],
     [ "ListIdentifiableLanguages", "d5/dcd/interface_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_i_language_translator_service.html#a2b187962cc8da2e11b38738d5e87f50e", null ],
+    [ "ListLanguages", "d5/dcd/interface_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_i_language_translator_service.html#a45d7721b0ec1988eb00e9fb4bb8c709e", null ],
     [ "ListModels", "d5/dcd/interface_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_i_language_translator_service.html#abb999bad60b0c7da9c16847cd75bfcf1", null ],
     [ "Translate", "d5/dcd/interface_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_i_language_translator_service.html#a18360410287b80727b155a2de08455e7", null ],
     [ "TranslateDocument", "d5/dcd/interface_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_i_language_translator_service.html#abafe749e76b12eb0cb4fdded1d8a6916", null ]

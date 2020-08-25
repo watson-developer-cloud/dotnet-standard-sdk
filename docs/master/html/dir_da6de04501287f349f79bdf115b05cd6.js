@@ -22,6 +22,12 @@ var dir_da6de04501287f349f79bdf115b05cd6 =
     [ "IdentifiedLanguages.cs", "dd/dea/_identified_languages_8cs.html", [
       [ "IdentifiedLanguages", "d2/dca/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_identified_languages.html", "d2/dca/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_identified_languages" ]
     ] ],
+    [ "Language.cs", "d8/d82/_language_8cs.html", [
+      [ "Language", "d6/df7/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_language.html", "d6/df7/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_language" ]
+    ] ],
+    [ "Languages.cs", "d9/d28/_languages_8cs.html", [
+      [ "Languages", "d4/dba/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_languages.html", "d4/dba/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_languages" ]
+    ] ],
     [ "Translation.cs", "d3/d08/_i_b_m_8_watson_8_language_translator_8v3_2_model_2_translation_8cs.html", [
       [ "Translation", "dd/d16/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_translation.html", "dd/d16/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_translation" ]
     ] ],

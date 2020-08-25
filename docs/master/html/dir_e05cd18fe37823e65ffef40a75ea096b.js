@@ -26,6 +26,15 @@ var dir_e05cd18fe37823e65ffef40a75ea096b =
     [ "DialogSuggestionValue.cs", "df/dda/_i_b_m_8_watson_8_assistant_8v2_2_model_2_dialog_suggestion_value_8cs.html", [
       [ "DialogSuggestionValue", "dc/d07/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_suggestion_value.html", "dc/d07/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_suggestion_value" ]
     ] ],
+    [ "Log.cs", "df/de6/_i_b_m_8_watson_8_assistant_8v2_2_model_2_log_8cs.html", [
+      [ "Log", "df/d1f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_log.html", "df/d1f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_log" ]
+    ] ],
+    [ "LogCollection.cs", "d7/d69/_i_b_m_8_watson_8_assistant_8v2_2_model_2_log_collection_8cs.html", [
+      [ "LogCollection", "d0/d81/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_log_collection.html", "d0/d81/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_log_collection" ]
+    ] ],
+    [ "LogPagination.cs", "d2/dc4/_i_b_m_8_watson_8_assistant_8v2_2_model_2_log_pagination_8cs.html", [
+      [ "LogPagination", "dc/d6e/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_log_pagination.html", "dc/d6e/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_log_pagination" ]
+    ] ],
     [ "MessageContext.cs", "d0/d00/_message_context_8cs.html", [
       [ "MessageContext", "d3/ddf/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context.html", "d3/ddf/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context" ]
     ] ],
@@ -77,6 +86,9 @@ var dir_e05cd18fe37823e65ffef40a75ea096b =
     ] ],
     [ "MessageOutputSpelling.cs", "d9/d95/_message_output_spelling_8cs.html", [
       [ "MessageOutputSpelling", "d6/d70/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_output_spelling.html", "d6/d70/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_output_spelling" ]
+    ] ],
+    [ "MessageRequest.cs", "d5/d72/_i_b_m_8_watson_8_assistant_8v2_2_model_2_message_request_8cs.html", [
+      [ "MessageRequest", "de/d2f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_request.html", "de/d2f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_request" ]
     ] ],
     [ "MessageResponse.cs", "d3/d42/_i_b_m_8_watson_8_assistant_8v2_2_model_2_message_response_8cs.html", [
       [ "MessageResponse", "d6/db2/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_response.html", "d6/db2/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_response" ]

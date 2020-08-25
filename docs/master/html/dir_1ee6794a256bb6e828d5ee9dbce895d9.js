@@ -82,7 +82,8 @@ var dir_1ee6794a256bb6e828d5ee9dbce895d9 =
       [ "MetadataOptions", "d0/dbe/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_metadata_options.html", null ]
     ] ],
     [ "Model.cs", "db/d88/_model_8cs.html", [
-      [ "Model", "de/ddd/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_model.html", "de/ddd/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_model" ]
+      [ "Model", "de/ddd/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_model.html", "de/ddd/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_model" ],
+      [ "StatusEnumValue", "d9/d8f/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_model_1_1_status_enum_value.html", "d9/d8f/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_model_1_1_status_enum_value" ]
     ] ],
     [ "RelationArgument.cs", "d7/dc8/_relation_argument_8cs.html", [
       [ "RelationArgument", "d5/d06/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_relation_argument.html", "d5/d06/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_relation_argument" ]

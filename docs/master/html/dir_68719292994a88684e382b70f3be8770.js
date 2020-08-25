@@ -105,17 +105,17 @@ var dir_68719292994a88684e382b70f3be8770 =
     [ "IntentCollection.cs", "d6/daf/_intent_collection_8cs.html", [
       [ "IntentCollection", "dd/d5f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_intent_collection.html", "dd/d5f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_intent_collection" ]
     ] ],
-    [ "Log.cs", "d5/d20/_log_8cs.html", [
+    [ "Log.cs", "da/d2e/_i_b_m_8_watson_8_assistant_8v1_2_model_2_log_8cs.html", [
       [ "Log", "db/df4/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_log.html", "db/df4/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_log" ]
     ] ],
-    [ "LogCollection.cs", "d3/d50/_log_collection_8cs.html", [
+    [ "LogCollection.cs", "de/d88/_i_b_m_8_watson_8_assistant_8v1_2_model_2_log_collection_8cs.html", [
       [ "LogCollection", "d6/d16/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_log_collection.html", "d6/d16/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_log_collection" ]
     ] ],
     [ "LogMessage.cs", "df/d26/_log_message_8cs.html", [
       [ "LogMessage", "d6/de8/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_log_message.html", "d6/de8/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_log_message" ],
       [ "LevelEnumValue", "d3/d76/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_log_message_1_1_level_enum_value.html", "d3/d76/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_log_message_1_1_level_enum_value" ]
     ] ],
-    [ "LogPagination.cs", "d1/d1c/_log_pagination_8cs.html", [
+    [ "LogPagination.cs", "d7/d55/_i_b_m_8_watson_8_assistant_8v1_2_model_2_log_pagination_8cs.html", [
       [ "LogPagination", "dd/d7f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_log_pagination.html", "dd/d7f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_log_pagination" ]
     ] ],
     [ "Mention.cs", "d4/d35/_i_b_m_8_watson_8_assistant_8v1_2_model_2_mention_8cs.html", [
@@ -127,7 +127,7 @@ var dir_68719292994a88684e382b70f3be8770 =
     [ "MessageInput.cs", "db/df0/_i_b_m_8_watson_8_assistant_8v1_2_model_2_message_input_8cs.html", [
       [ "MessageInput", "d0/d0f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_message_input.html", "d0/d0f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_message_input" ]
     ] ],
-    [ "MessageRequest.cs", "d6/d1d/_message_request_8cs.html", [
+    [ "MessageRequest.cs", "d5/d4f/_i_b_m_8_watson_8_assistant_8v1_2_model_2_message_request_8cs.html", [
       [ "MessageRequest", "d4/d63/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_message_request.html", "d4/d63/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_message_request" ]
     ] ],
     [ "MessageResponse.cs", "d6/d29/_i_b_m_8_watson_8_assistant_8v1_2_model_2_message_response_8cs.html", [

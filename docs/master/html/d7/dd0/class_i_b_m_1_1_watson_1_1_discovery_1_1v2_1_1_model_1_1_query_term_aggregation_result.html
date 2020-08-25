@@ -106,6 +106,15 @@ Properties</h2></td></tr>
 <tr class="memitem:a6ac7c62ec08f1613922b757034bca724"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dd0/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_term_aggregation_result.html#a6ac7c62ec08f1613922b757034bca724">MatchingResults</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a6ac7c62ec08f1613922b757034bca724"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of documents containing the 'key'.  <a href="#a6ac7c62ec08f1613922b757034bca724">More...</a><br /></td></tr>
 <tr class="separator:a6ac7c62ec08f1613922b757034bca724"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc0eaa3ebad6f90a3fd4638ddd478501"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dd0/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_term_aggregation_result.html#acc0eaa3ebad6f90a3fd4638ddd478501">Relevancy</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:acc0eaa3ebad6f90a3fd4638ddd478501"><td class="mdescLeft">&#160;</td><td class="mdescRight">The relevancy for this term.  <a href="#acc0eaa3ebad6f90a3fd4638ddd478501">More...</a><br /></td></tr>
+<tr class="separator:acc0eaa3ebad6f90a3fd4638ddd478501"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcbf86133788cf3d3d91e40e894971fc"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dd0/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_term_aggregation_result.html#adcbf86133788cf3d3d91e40e894971fc">TotalMatchingDocuments</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:adcbf86133788cf3d3d91e40e894971fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of documents which have the term as the value of specified field in the whole set of documents in this collection. Returned only when the <code>relevancy</code> parameter is set to <code>true</code>.  <a href="#adcbf86133788cf3d3d91e40e894971fc">More...</a><br /></td></tr>
+<tr class="separator:adcbf86133788cf3d3d91e40e894971fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba08170ce542e7c1c93c9820dc9b6b91"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dd0/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_term_aggregation_result.html#aba08170ce542e7c1c93c9820dc9b6b91">EstimatedMatchingDocuments</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:aba08170ce542e7c1c93c9820dc9b6b91"><td class="mdescLeft">&#160;</td><td class="mdescRight">The estimated number of documents which would match the query and also meet the condition. Returned only when the <code>relevancy</code> parameter is set to <code>true</code>.  <a href="#aba08170ce542e7c1c93c9820dc9b6b91">More...</a><br /></td></tr>
+<tr class="separator:aba08170ce542e7c1c93c9820dc9b6b91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7fe8582868eb2cc5e89e009608221c9"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="../../db/d4c/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_aggregation.html">QueryAggregation</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dd0/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_term_aggregation_result.html#af7fe8582868eb2cc5e89e009608221c9">Aggregations</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:af7fe8582868eb2cc5e89e009608221c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">An array of sub aggregations.  <a href="#af7fe8582868eb2cc5e89e009608221c9">More...</a><br /></td></tr>
 <tr class="separator:af7fe8582868eb2cc5e89e009608221c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -134,6 +143,30 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>An array of sub aggregations. </p>
+
+</div>
+</div>
+<a id="aba08170ce542e7c1c93c9820dc9b6b91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba08170ce542e7c1c93c9820dc9b6b91">&#9670;&nbsp;</a></span>EstimatedMatchingDocuments</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long IBM.Watson.Discovery.v2.Model.QueryTermAggregationResult.EstimatedMatchingDocuments</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The estimated number of documents which would match the query and also meet the condition. Returned only when the <code>relevancy</code> parameter is set to <code>true</code>. </p>
 
 </div>
 </div>
@@ -182,6 +215,54 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Number of documents containing the 'key'. </p>
+
+</div>
+</div>
+<a id="acc0eaa3ebad6f90a3fd4638ddd478501"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc0eaa3ebad6f90a3fd4638ddd478501">&#9670;&nbsp;</a></span>Relevancy</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double IBM.Watson.Discovery.v2.Model.QueryTermAggregationResult.Relevancy</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The relevancy for this term. </p>
+
+</div>
+</div>
+<a id="adcbf86133788cf3d3d91e40e894971fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcbf86133788cf3d3d91e40e894971fc">&#9670;&nbsp;</a></span>TotalMatchingDocuments</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long IBM.Watson.Discovery.v2.Model.QueryTermAggregationResult.TotalMatchingDocuments</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The number of documents which have the term as the value of specified field in the whole set of documents in this collection. Returned only when the <code>relevancy</code> parameter is set to <code>true</code>. </p>
 
 </div>
 </div>

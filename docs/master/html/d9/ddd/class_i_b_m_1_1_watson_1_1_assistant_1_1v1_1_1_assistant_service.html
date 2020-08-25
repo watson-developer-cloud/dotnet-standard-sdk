@@ -386,8 +386,7 @@ Properties</h2></td></tr>
 
 <p>Create counterexample. </p>
 <p>Add a new counterexample to a workspace. Counterexamples are examples that have been marked as irrelevant input.</p>
-<p>If you want to add multiple counterexamples with a single API call, consider using the <b><a href="../../#update-workspace">Update workspace</a></b> method instead.</p>
-<p>This operation is limited to 1000 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>If you want to add multiple counterexamples with a single API call, consider using the <b><a href="../../#update-workspace">Update workspace</a></b> method instead. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -552,8 +551,7 @@ Properties</h2></td></tr>
 
 <p>Create dialog node. </p>
 <p>Create a new dialog node.</p>
-<p>If you want to create multiple dialog nodes with a single API call, consider using the <b><a href="../../#update-workspace">Update workspace</a></b> method instead.</p>
-<p>This operation is limited to 500 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>If you want to create multiple dialog nodes with a single API call, consider using the <b><a href="../../#update-workspace">Update workspace</a></b> method instead. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -634,8 +632,7 @@ Properties</h2></td></tr>
 
 <p>Create entity. </p>
 <p>Create a new entity, or enable a system entity.</p>
-<p>If you want to create multiple entities with a single API call, consider using the <b><a href="../../#update-workspace">Update workspace</a></b> method instead.</p>
-<p>This operation is limited to 1000 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>If you want to create multiple entities with a single API call, consider using the <b><a href="../../#update-workspace">Update workspace</a></b> method instead. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -704,8 +701,7 @@ Properties</h2></td></tr>
 
 <p>Create user input example. </p>
 <p>Add a new user input example to an intent.</p>
-<p>If you want to add multiple examples with a single API call, consider using the <b><a href="../../#update-intent">Update intent</a></b> method instead.</p>
-<p>This operation is limited to 1000 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>If you want to add multiple examples with a single API call, consider using the <b><a href="../../#update-intent">Update intent</a></b> method instead. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -775,8 +771,7 @@ Properties</h2></td></tr>
 
 <p>Create intent. </p>
 <p>Create a new intent.</p>
-<p>If you want to create multiple intents with a single API call, consider using the <b><a href="../../#update-workspace">Update workspace</a></b> method instead.</p>
-<p>This operation is limited to 2000 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>If you want to create multiple intents with a single API call, consider using the <b><a href="../../#update-workspace">Update workspace</a></b> method instead. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -845,8 +840,7 @@ Properties</h2></td></tr>
 
 <p>Create entity value synonym. </p>
 <p>Add a new synonym to an entity value.</p>
-<p>If you want to create multiple synonyms with a single API call, consider using the <b><a href="../../#update-entity">Update entity</a></b> or <b><a href="../../#update-entity-value">Update entity value</a></b> method instead.</p>
-<p>This operation is limited to 1000 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>If you want to create multiple synonyms with a single API call, consider using the <b><a href="../../#update-entity">Update entity</a></b> or <b><a href="../../#update-entity-value">Update entity value</a></b> method instead. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -935,8 +929,7 @@ Properties</h2></td></tr>
 
 <p>Create entity value. </p>
 <p>Create a new value for an entity.</p>
-<p>If you want to create multiple entity values with a single API call, consider using the <b><a href="../../#update-entity">Update entity</a></b> method instead.</p>
-<p>This operation is limited to 1000 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>If you want to create multiple entity values with a single API call, consider using the <b><a href="../../#update-entity">Update entity</a></b> method instead. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -1047,17 +1040,10 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Create workspace. </p>
-<p>Create a workspace based on component objects. You must provide workspace components defining the content of the new workspace.</p>
-<p>This operation is limited to 30 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>Create a workspace based on component objects. You must provide workspace components defining the content of the new workspace. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">body</td><td>The content of the new workspace.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>The maximum size for this data is 50MB. If you need to import a larger workspace, consider importing the workspace without intents and entities and then adding them separately. (optional)</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
+    <tr><td class="paramname">body</td><td>(optional)</td></tr>
     <tr><td class="paramname">includeAudit</td><td>Whether to include the audit properties (<code>created</code> and <code>updated</code> timestamps) in the response. (optional, default to false)</td></tr>
   </table>
   </dd>
@@ -1103,8 +1089,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Delete counterexample. </p>
-<p>Delete a counterexample from a workspace. Counterexamples are examples that have been marked as irrelevant input.</p>
-<p>This operation is limited to 1000 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>Delete a counterexample from a workspace. Counterexamples are examples that have been marked as irrelevant input. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -1153,8 +1138,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Delete dialog node. </p>
-<p>Delete a dialog node from a workspace.</p>
-<p>This operation is limited to 500 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>Delete a dialog node from a workspace. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -1203,8 +1187,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Delete entity. </p>
-<p>Delete an entity from a workspace, or disable a system entity.</p>
-<p>This operation is limited to 1000 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>Delete an entity from a workspace, or disable a system entity. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -1259,8 +1242,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Delete user input example. </p>
-<p>Delete a user input example from an intent.</p>
-<p>This operation is limited to 1000 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>Delete a user input example from an intent. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -1310,8 +1292,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Delete intent. </p>
-<p>Delete an intent from a workspace.</p>
-<p>This operation is limited to 2000 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>Delete an intent from a workspace. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -1372,8 +1353,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Delete entity value synonym. </p>
-<p>Delete a synonym from an entity value.</p>
-<p>This operation is limited to 1000 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>Delete a synonym from an entity value. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -1415,8 +1395,7 @@ Properties</h2></td></tr>
 
 <p>Delete labeled data. </p>
 <p>Deletes all data associated with a specified customer ID. The method has no effect if no data is associated with the customer ID.</p>
-<p>You associate a customer ID with data by passing the <code>X-Watson-Metadata</code> header with a request that passes data. For more information about personal data and customer IDs, see <a href="https://cloud.ibm.com/docs/assistant?topic=assistant-information-security#information-security">Information security</a>.</p>
-<p>This operation is limited to 4 requests per minute. For more information, see <b>Rate limiting</b>. </p>
+<p>You associate a customer ID with data by passing the <code>X-Watson-Metadata</code> header with a request that passes data. For more information about personal data and customer IDs, see <a href="https://cloud.ibm.com/docs/assistant?topic=assistant-information-security#information-security">Information security</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">customerId</td><td>The customer ID for which all data is to be deleted.</td></tr>
@@ -1470,8 +1449,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Delete entity value. </p>
-<p>Delete a value from an entity.</p>
-<p>This operation is limited to 1000 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>Delete a value from an entity. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -1511,8 +1489,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Delete workspace. </p>
-<p>Delete a workspace from the service instance.</p>
-<p>This operation is limited to 30 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>Delete a workspace from the service instance. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -1566,8 +1543,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get counterexample. </p>
-<p>Get information about a counterexample. Counterexamples are examples that have been marked as irrelevant input.</p>
-<p>This operation is limited to 6000 requests per 5 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>Get information about a counterexample. Counterexamples are examples that have been marked as irrelevant input. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -1623,8 +1599,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get dialog node. </p>
-<p>Get information about a dialog node.</p>
-<p>This operation is limited to 6000 requests per 5 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>Get information about a dialog node. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -1686,8 +1661,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get entity. </p>
-<p>Get information about an entity, optionally including all entity content.</p>
-<p>With <b>export</b>=<code>false</code>, this operation is limited to 6000 requests per 5 minutes. With <b>export</b>=<code>true</code>, the limit is 200 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>Get information about an entity, optionally including all entity content. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -1750,8 +1724,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get user input example. </p>
-<p>Get information about a user input example.</p>
-<p>This operation is limited to 6000 requests per 5 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>Get information about a user input example. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -1814,8 +1787,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get intent. </p>
-<p>Get information about an intent, optionally including all intent content.</p>
-<p>With <b>export</b>=<code>false</code>, this operation is limited to 6000 requests per 5 minutes. With <b>export</b>=<code>true</code>, the limit is 400 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>Get information about an intent, optionally including all intent content. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -1884,8 +1856,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get entity value synonym. </p>
-<p>Get information about a synonym of an entity value.</p>
-<p>This operation is limited to 6000 requests per 5 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>Get information about a synonym of an entity value. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -1955,8 +1926,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get entity value. </p>
-<p>Get information about an entity value.</p>
-<p>This operation is limited to 6000 requests per 5 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>Get information about an entity value. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -2020,8 +1990,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get information about a workspace. </p>
-<p>Get information about a workspace, optionally including all workspace content.</p>
-<p>With <b>export</b>=<code>false</code>, this operation is limited to 6000 requests per 5 minutes. With <b>export</b>=<code>true</code>, the limit is 20 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>Get information about a workspace, optionally including all workspace content. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -2084,8 +2053,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>List log events in all workspaces. </p>
-<p>List the events from the logs of all workspaces in the service instance.</p>
-<p>If <b>cursor</b> is not specified, this operation is limited to 40 requests per 30 minutes. If <b>cursor</b> is specified, the limit is 120 requests per minute. For more information, see <b>Rate limiting</b>. </p>
+<p>List the events from the logs of all workspaces in the service instance. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">filter</td><td>A cacheable parameter that limits the results to those matching the specified filter. You must specify a filter query that includes a value for <code>language</code>, as well as a value for <code>request.context.system.assistant_id</code>, <code>workspace_id</code>, or <code>request.context.metadata.deployment</code>. For more information, see the <a href="https://cloud.ibm.com/docs/assistant?topic=assistant-filter-reference#filter-reference">documentation</a>.</td></tr>
@@ -2154,8 +2122,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>List counterexamples. </p>
-<p>List the counterexamples for a workspace. Counterexamples are examples that have been marked as irrelevant input.</p>
-<p>This operation is limited to 2500 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>List the counterexamples for a workspace. Counterexamples are examples that have been marked as irrelevant input. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -2225,8 +2192,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>List dialog nodes. </p>
-<p>List the dialog nodes for a workspace.</p>
-<p>This operation is limited to 2500 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>List the dialog nodes for a workspace. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -2302,8 +2268,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>List entities. </p>
-<p>List the entities for a workspace.</p>
-<p>With <b>export</b>=<code>false</code>, this operation is limited to 1000 requests per 30 minutes. With <b>export</b>=<code>true</code>, the limit is 200 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>List the entities for a workspace. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -2380,8 +2345,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>List user input examples. </p>
-<p>List the user input examples for an intent, optionally including contextual entity mentions.</p>
-<p>This operation is limited to 2500 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>List the user input examples for an intent, optionally including contextual entity mentions. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -2458,8 +2422,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>List intents. </p>
-<p>List the intents for a workspace.</p>
-<p>With <b>export</b>=<code>false</code>, this operation is limited to 2000 requests per 30 minutes. With <b>export</b>=<code>true</code>, the limit is 400 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>List the intents for a workspace. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -2530,8 +2493,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>List log events in a workspace. </p>
-<p>List the events from the log of a specific workspace.</p>
-<p>If <b>cursor</b> is not specified, this operation is limited to 40 requests per 30 minutes. If <b>cursor</b> is specified, the limit is 120 requests per minute. For more information, see <b>Rate limiting</b>. </p>
+<p>List the events from the log of a specific workspace. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -2595,8 +2557,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>List entity mentions. </p>
-<p>List mentions for a contextual entity. An entity mention is an occurrence of a contextual entity in the context of an intent user input example.</p>
-<p>This operation is limited to 200 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>List mentions for a contextual entity. An entity mention is an occurrence of a contextual entity in the context of an intent user input example. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -2677,8 +2638,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>List entity value synonyms. </p>
-<p>List the synonyms for an entity value.</p>
-<p>This operation is limited to 2500 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>List the synonyms for an entity value. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -2762,8 +2722,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>List entity values. </p>
-<p>List the values for an entity.</p>
-<p>This operation is limited to 2500 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>List the values for an entity. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -2829,8 +2788,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>List workspaces. </p>
-<p>List the workspaces associated with a <a class="el" href="../../d2/d15/namespace_i_b_m_1_1_watson.html">Watson</a> <a class="el" href="../../d7/d94/namespace_i_b_m_1_1_watson_1_1_assistant.html">Assistant</a> service instance.</p>
-<p>This operation is limited to 500 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>List the workspaces associated with a <a class="el" href="../../d2/d15/namespace_i_b_m_1_1_watson.html">Watson</a> <a class="el" href="../../d7/d94/namespace_i_b_m_1_1_watson_1_1_assistant.html">Assistant</a> service instance. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pageLimit</td><td>The number of records to return in each page of results. (optional)</td></tr>
@@ -2918,8 +2876,7 @@ Properties</h2></td></tr>
 
 <p>Get response to user input. </p>
 <p>Send user input to a workspace and receive a response.</p>
-<p><b>Important:</b> This method has been superseded by the new <a class="el" href="../../d8/d61/namespace_i_b_m_1_1_watson_1_1_assistant_1_1v2.html">v2</a> runtime API. The <a class="el" href="../../d8/d61/namespace_i_b_m_1_1_watson_1_1_assistant_1_1v2.html">v2</a> API offers significant advantages, including ease of deployment, automatic state management, versioning, and search capabilities. For more information, see the <a href="https://cloud.ibm.com/docs/assistant?topic=assistant-api-overview">documentation</a>.</p>
-<p>There is no rate limit for this operation. </p>
+<p><b>Important:</b> This method has been superseded by the new <a class="el" href="../../d8/d61/namespace_i_b_m_1_1_watson_1_1_assistant_1_1v2.html">v2</a> runtime API. The <a class="el" href="../../d8/d61/namespace_i_b_m_1_1_watson_1_1_assistant_1_1v2.html">v2</a> API offers significant advantages, including ease of deployment, automatic state management, versioning, and search capabilities. For more information, see the <a href="https://cloud.ibm.com/docs/assistant?topic=assistant-api-overview">documentation</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -2981,9 +2938,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Update counterexample. </p>
-<p>Update the text of a counterexample. Counterexamples are examples that have been marked as irrelevant input.</p>
-<p>If you want to update multiple counterexamples with a single API call, consider using the <b><a href="../../#update-workspace">Update workspace</a></b> method instead.</p>
-<p>This operation is limited to 1000 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>Update the text of a counterexample. Counterexamples are examples that have been marked as irrelevant input. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -3155,8 +3110,7 @@ Properties</h2></td></tr>
 
 <p>Update dialog node. </p>
 <p>Update an existing dialog node with new or modified data.</p>
-<p>If you want to update multiple dialog nodes with a single API call, consider using the <b><a href="../../#update-workspace">Update workspace</a></b> method instead.</p>
-<p>This operation is limited to 500 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>If you want to update multiple dialog nodes with a single API call, consider using the <b><a href="../../#update-workspace">Update workspace</a></b> method instead. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -3256,8 +3210,7 @@ Properties</h2></td></tr>
 
 <p>Update entity. </p>
 <p>Update an existing entity with new or modified data. You must provide component objects defining the content of the updated entity.</p>
-<p>If you want to update multiple entities with a single API call, consider using the <b><a href="../../#update-workspace">Update workspace</a></b> method instead.</p>
-<p>This operation is limited to 1000 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>If you want to update multiple entities with a single API call, consider using the <b><a href="../../#update-workspace">Update workspace</a></b> method instead. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -3340,8 +3293,7 @@ Properties</h2></td></tr>
 
 <p>Update user input example. </p>
 <p>Update the text of a user input example.</p>
-<p>If you want to update multiple examples with a single API call, consider using the <b><a href="../../#update-intent">Update intent</a></b> method instead.</p>
-<p>This operation is limited to 1000 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>If you want to update multiple examples with a single API call, consider using the <b><a href="../../#update-intent">Update intent</a></b> method instead. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -3424,8 +3376,7 @@ Properties</h2></td></tr>
 
 <p>Update intent. </p>
 <p>Update an existing intent with new or modified data. You must provide component objects defining the content of the updated intent.</p>
-<p>If you want to update multiple intents with a single API call, consider using the <b><a href="../../#update-workspace">Update workspace</a></b> method instead.</p>
-<p>This operation is limited to 2000 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>If you want to update multiple intents with a single API call, consider using the <b><a href="../../#update-workspace">Update workspace</a></b> method instead. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -3514,8 +3465,7 @@ Properties</h2></td></tr>
 
 <p>Update entity value synonym. </p>
 <p>Update an existing entity value synonym with new text.</p>
-<p>If you want to update multiple synonyms with a single API call, consider using the <b><a href="../../#update-entity">Update entity</a></b> or <b><a href="../../#update-entity-value">Update entity value</a></b> method instead.</p>
-<p>This operation is limited to 1000 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>If you want to update multiple synonyms with a single API call, consider using the <b><a href="../../#update-entity">Update entity</a></b> or <b><a href="../../#update-entity-value">Update entity value</a></b> method instead. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -3617,8 +3567,7 @@ Properties</h2></td></tr>
 
 <p>Update entity value. </p>
 <p>Update an existing entity value with new or modified data. You must provide component objects defining the content of the updated entity value.</p>
-<p>If you want to update multiple entity values with a single API call, consider using the <b><a href="../../#update-entity">Update entity</a></b> method instead.</p>
-<p>This operation is limited to 1000 requests per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>If you want to update multiple entity values with a single API call, consider using the <b><a href="../../#update-entity">Update entity</a></b> method instead. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>
@@ -3755,8 +3704,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Update workspace. </p>
-<p>Update an existing workspace with new or modified data. You must provide component objects defining the content of the updated workspace.</p>
-<p>This operation is limited to 30 request per 30 minutes. For more information, see <b>Rate limiting</b>. </p>
+<p>Update an existing workspace with new or modified data. You must provide component objects defining the content of the updated workspace. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workspaceId</td><td>Unique identifier of the workspace.</td></tr>

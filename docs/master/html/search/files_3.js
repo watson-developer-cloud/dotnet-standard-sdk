@@ -1,5 +1,9 @@
 var searchData=
 [
+  ['defaultqueryparams_2ecs',['DefaultQueryParams.cs',['../d9/d60/_default_query_params_8cs.html',1,'']]],
+  ['defaultqueryparamspassages_2ecs',['DefaultQueryParamsPassages.cs',['../d7/d10/_default_query_params_passages_8cs.html',1,'']]],
+  ['defaultqueryparamssuggestedrefinements_2ecs',['DefaultQueryParamsSuggestedRefinements.cs',['../d5/de1/_default_query_params_suggested_refinements_8cs.html',1,'']]],
+  ['defaultqueryparamstableresults_2ecs',['DefaultQueryParamsTableResults.cs',['../d9/dca/_default_query_params_table_results_8cs.html',1,'']]],
   ['deletecollectionresponse_2ecs',['DeleteCollectionResponse.cs',['../d0/d8b/_delete_collection_response_8cs.html',1,'']]],
   ['deleteconfigurationresponse_2ecs',['DeleteConfigurationResponse.cs',['../d2/d88/_delete_configuration_response_8cs.html',1,'']]],
   ['deletecredentials_2ecs',['DeleteCredentials.cs',['../da/dd7/_delete_credentials_8cs.html',1,'']]],

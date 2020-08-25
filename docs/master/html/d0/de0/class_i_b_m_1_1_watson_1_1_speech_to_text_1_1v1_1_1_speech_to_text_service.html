@@ -1163,7 +1163,7 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">audio</td><td>The audio to transcribe.</td></tr>
     <tr><td class="paramname">contentType</td><td>The format (MIME type) of the audio. For more information about specifying an audio format, see <b>Audio formats (content types)</b> in the method description. (optional)</td></tr>
     <tr><td class="paramname">model</td><td>The identifier of the model that is to be used for the recognition request. See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models#models">Languages and models</a>. (optional, default to en-US_BroadbandModel)</td></tr>
-    <tr><td class="paramname">callbackUrl</td><td>A URL to which callback notifications are to be sent. The URL must already be successfully white-listed by using the <b>Register a callback</b> method. You can include the same callback URL with any number of job creation requests. Omit the parameter to poll the service for job completion and results.</td></tr>
+    <tr><td class="paramname">callbackUrl</td><td>A URL to which callback notifications are to be sent. The URL must already be successfully allowlisted by using the <b>Register a callback</b> method. You can include the same callback URL with any number of job creation requests. Omit the parameter to poll the service for job completion and results.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1231,7 +1231,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p><b>Note:</b> Applies to US English, German, Japanese, Korean, and Spanish (both broadband and narrowband models) and UK English (narrowband model) transcription only. To determine whether a language model supports speaker labels, you can also use the <b>Get a model</b> method and check that the attribute <code>speaker_labels</code> is set to <code>true</code>.</p>
+<p><b>Note:</b> Applies to US English, Australian English, German, Japanese, Korean, and Spanish (both broadband and narrowband models) and UK English (narrowband model) transcription only.</p>
 <p>See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-output#speaker_labels">Speaker labels</a>. (optional, default to false)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1671,8 +1671,8 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Delete labeled data. </p>
-<p>Deletes all data that is associated with a specified customer ID. The method deletes all data for the customer ID, regardless of the method by which the information was added. The method has no effect if no data is associated with the customer ID. You must issue the request with credentials for the same instance of the service that was used to associate the customer ID with the data.</p>
-<p>You associate a customer ID with data by passing the <code>X-Watson-Metadata</code> header with a request that passes the data.</p>
+<p>Deletes all data that is associated with a specified customer ID. The method deletes all data for the customer ID, regardless of the method by which the information was added. The method has no effect if no data is associated with the customer ID. You must issue the request with credentials for the same instance of the service that was used to associate the customer ID with the data. You associate a customer ID with data by passing the <code>X-Watson-Metadata</code> header with a request that passes the data.</p>
+<p><b>Note:</b> If you delete an instance of the service from the service console, all data associated with that service instance is automatically deleted. This includes all custom language models, corpora, grammars, and words; all custom acoustic models and audio resources; all registered endpoints for the asynchronous HTTP interface; and all data related to speech recognition requests.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-information-security#information-security">Information security</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2090,7 +2090,7 @@ Public Member Functions</h2></td></tr>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageAcousticModels#listModels-acoustic">Listing custom acoustic models</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">language</td><td>The identifier of the language for which custom language or custom acoustic models are to be returned (for example, <code>en-US</code>). Omit the parameter to see all custom language or custom acoustic models that are owned by the requesting credentials. (optional)</td></tr>
+    <tr><td class="paramname">language</td><td>The identifier of the language for which custom language or custom acoustic models are to be returned. Omit the parameter to see all custom language or custom acoustic models that are owned by the requesting credentials. <b>Note:</b> The <code>ar-AR</code> (Modern Standard Arabic) and <code>zh-CN</code> (Mandarin Chinese) languages are not available for language model customization. (optional)</td></tr>
   </table>
   </dd>
 </dl>
@@ -2246,7 +2246,7 @@ Public Member Functions</h2></td></tr>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageLanguageModels#listModels-language">Listing custom language models</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">language</td><td>The identifier of the language for which custom language or custom acoustic models are to be returned (for example, <code>en-US</code>). Omit the parameter to see all custom language or custom acoustic models that are owned by the requesting credentials. (optional)</td></tr>
+    <tr><td class="paramname">language</td><td>The identifier of the language for which custom language or custom acoustic models are to be returned. Omit the parameter to see all custom language or custom acoustic models that are owned by the requesting credentials. <b>Note:</b> The <code>ar-AR</code> (Modern Standard Arabic) and <code>zh-CN</code> (Mandarin Chinese) languages are not available for language model customization. (optional)</td></tr>
   </table>
   </dd>
 </dl>
@@ -2280,7 +2280,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>List models. </p>
-<p>Lists all language models that are available for use with the service. The information includes the name of the model and its minimum sampling rate in Hertz, among other things.</p>
+<p>Lists all language models that are available for use with the service. The information includes the name of the model and its minimum sampling rate in Hertz, among other things. The ordering of the list of models can change from call to call; do not rely on an alphabetized or static list of models.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models#models">Languages and models</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>SpeechModelsSpeechModels</dd></dl>
 
@@ -2611,7 +2611,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p><b>Note:</b> Applies to US English, German, Japanese, Korean, and Spanish (both broadband and narrowband models) and UK English (narrowband model) transcription only. To determine whether a language model supports speaker labels, you can also use the <b>Get a model</b> method and check that the attribute <code>speaker_labels</code> is set to <code>true</code>.</p>
+<p><b>Note:</b> Applies to US English, Australian English, German, Japanese, Korean, and Spanish (both broadband and narrowband models) and UK English (narrowband model) transcription only.</p>
 <p>See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-output#speaker_labels">Speaker labels</a>. (optional, default to false)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2715,15 +2715,15 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Register a callback. </p>
-<p>Registers a callback URL with the service for use with subsequent asynchronous recognition requests. The service attempts to register, or white-list, the callback URL if it is not already registered by sending a <code>GET</code> request to the callback URL. The service passes a random alphanumeric challenge string via the <code>challenge_string</code> parameter of the request. The request includes an <code>Accept</code> header that specifies <code>text/plain</code> as the required response type.</p>
+<p>Registers a callback URL with the service for use with subsequent asynchronous recognition requests. The service attempts to register, or allowlist, the callback URL if it is not already registered by sending a <code>GET</code> request to the callback URL. The service passes a random alphanumeric challenge string via the <code>challenge_string</code> parameter of the request. The request includes an <code>Accept</code> header that specifies <code>text/plain</code> as the required response type.</p>
 <p>To be registered successfully, the callback URL must respond to the <code>GET</code> request from the service. The response must send status code 200 and must include the challenge string in its body. Set the <code>Content-Type</code> response header to <code>text/plain</code>. Upon receiving this response, the service responds to the original registration request with response code 201.</p>
-<p>The service sends only a single <code>GET</code> request to the callback URL. If the service does not receive a reply with a response code of 200 and a body that echoes the challenge string sent by the service within five seconds, it does not white-list the URL; it instead sends status code 400 in response to the <b>Register a callback</b> request. If the requested callback URL is already white-listed, the service responds to the initial registration request with response code 200.</p>
+<p>The service sends only a single <code>GET</code> request to the callback URL. If the service does not receive a reply with a response code of 200 and a body that echoes the challenge string sent by the service within five seconds, it does not allowlist the URL; it instead sends status code 400 in response to the <b>Register a callback</b> request. If the requested callback URL is already allowlisted, the service responds to the initial registration request with response code 200.</p>
 <p>If you specify a user secret with the request, the service uses it as a key to calculate an HMAC-SHA1 signature of the challenge string in its response to the <code>POST</code> request. It sends this signature in the <code>X-Callback-Signature</code> header of its <code>GET</code> request to the URL during registration. It also uses the secret to calculate a signature over the payload of every callback notification that uses the URL. The signature provides authentication and data integrity for HTTP communications.</p>
 <p>After you successfully register a callback URL, you can use it with an indefinite number of recognition requests. You can register a maximum of 20 callback URLS in a one-hour span of time.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-async#register">Registering a callback URL</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">callbackUrl</td><td>An HTTP or HTTPS URL to which callback notifications are to be sent. To be white-listed, the URL must successfully echo the challenge string during URL verification. During verification, the client can also check the signature that the service sends in the <code>X-Callback-Signature</code> header to verify the origin of the request.</td></tr>
+    <tr><td class="paramname">callbackUrl</td><td>An HTTP or HTTPS URL to which callback notifications are to be sent. To be allowlisted, the URL must successfully echo the challenge string during URL verification. During verification, the client can also check the signature that the service sends in the <code>X-Callback-Signature</code> header to verify the origin of the request.</td></tr>
     <tr><td class="paramname">userSecret</td><td>A user-specified string that the service uses to generate the HMAC-SHA1 signature that it sends via the <code>X-Callback-Signature</code> header. The service includes the header during URL verification and with every notification sent to the callback URL. It calculates the signature over the payload of the notification. If you omit the parameter, the service does not send the header. (optional)</td></tr>
   </table>
   </dd>
@@ -2972,7 +2972,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Unregister a callback. </p>
-<p>Unregisters a callback URL that was previously white-listed with a <b>Register a callback</b> request for use with the asynchronous interface. Once unregistered, the URL can no longer be used with asynchronous recognition requests.</p>
+<p>Unregisters a callback URL that was previously allowlisted with a <b>Register a callback</b> request for use with the asynchronous interface. Once unregistered, the URL can no longer be used with asynchronous recognition requests.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-async#unregister">Unregistering a callback URL</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

@@ -19,7 +19,7 @@ var searchData=
   ['messageoutput_2ecs',['MessageOutput.cs',['../de/d8b/_message_output_8cs.html',1,'']]],
   ['messageoutputdebug_2ecs',['MessageOutputDebug.cs',['../d2/d10/_message_output_debug_8cs.html',1,'']]],
   ['messageoutputspelling_2ecs',['MessageOutputSpelling.cs',['../d9/d95/_message_output_spelling_8cs.html',1,'']]],
-  ['messagerequest_2ecs',['MessageRequest.cs',['../d6/d1d/_message_request_8cs.html',1,'']]],
+  ['messagerequest_2ecs',['MessageRequest.cs',['../d5/d4f/_i_b_m_8_watson_8_assistant_8v1_2_model_2_message_request_8cs.html',1,'(Global Namespace)'],['../d5/d72/_i_b_m_8_watson_8_assistant_8v2_2_model_2_message_request_8cs.html',1,'(Global Namespace)']]],
   ['messageresponse_2ecs',['MessageResponse.cs',['../d6/d29/_i_b_m_8_watson_8_assistant_8v1_2_model_2_message_response_8cs.html',1,'(Global Namespace)'],['../d3/d42/_i_b_m_8_watson_8_assistant_8v2_2_model_2_message_response_8cs.html',1,'(Global Namespace)']]],
   ['messageresponsestateless_2ecs',['MessageResponseStateless.cs',['../db/d38/_message_response_stateless_8cs.html',1,'']]],
   ['metadataoptions_2ecs',['MetadataOptions.cs',['../d8/dd5/_metadata_options_8cs.html',1,'']]],

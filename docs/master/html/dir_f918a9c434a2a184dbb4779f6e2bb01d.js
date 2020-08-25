@@ -80,10 +80,10 @@ var dir_f918a9c434a2a184dbb4779f6e2bb01d =
       [ "StatusEnumValue", "de/de8/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_document_status_1_1_status_enum_value.html", "de/de8/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_document_status_1_1_status_enum_value" ],
       [ "FileTypeEnumValue", "df/de3/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_document_status_1_1_file_type_enum_value.html", "df/de3/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_document_status_1_1_file_type_enum_value" ]
     ] ],
-    [ "Enrichment.cs", "d5/d6a/_enrichment_8cs.html", [
+    [ "Enrichment.cs", "da/d59/_i_b_m_8_watson_8_discovery_8v1_2_model_2_enrichment_8cs.html", [
       [ "Enrichment", "d6/d2b/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_enrichment.html", "d6/d2b/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_enrichment" ]
     ] ],
-    [ "EnrichmentOptions.cs", "d7/dbe/_enrichment_options_8cs.html", [
+    [ "EnrichmentOptions.cs", "dd/dd2/_i_b_m_8_watson_8_discovery_8v1_2_model_2_enrichment_options_8cs.html", [
       [ "EnrichmentOptions", "d3/dfe/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_enrichment_options.html", "d3/dfe/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_enrichment_options" ],
       [ "LanguageEnumValue", "d4/d8e/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_enrichment_options_1_1_language_enum_value.html", "d4/d8e/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_enrichment_options_1_1_language_enum_value" ]
     ] ],

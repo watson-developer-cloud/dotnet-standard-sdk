@@ -1,3 +1,10 @@
+# [4.6.0](https://github.com/watson-developer-cloud/dotnet-standard-sdk/compare/v4.5.0...v4.6.0) (2020-08-25)
+
+
+### Features
+
+* **generation:** api def commit '5da1939e280efa7018a4ea31adf574f9d8db4c5b' and gen tag '2.3.1' ([4c90711](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/4c907119540d9c1f09170a9b910cc827dd97d4c5))
+
 # [4.5.0](https://github.com/watson-developer-cloud/dotnet-standard-sdk/compare/v4.4.0...v4.5.0) (2020-06-03)
 
 

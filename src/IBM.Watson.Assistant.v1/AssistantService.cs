@@ -31,7 +31,7 @@ namespace IBM.Watson.Assistant.v1
     public partial class AssistantService : IBMService, IAssistantService
     {
         const string serviceName = "assistant";
-        private const string defaultServiceUrl = "https://gateway.watsonplatform.net/assistant/api";
+        private const string defaultServiceUrl = "https://api.us-south.assistant.watson.cloud.ibm.com";
         public string VersionDate { get; set; }
 
         public AssistantService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
@@ -61,8 +61,6 @@ namespace IBM.Watson.Assistant.v1
         /// advantages, including ease of deployment, automatic state management, versioning, and search capabilities.
         /// For more information, see the
         /// [documentation](https://cloud.ibm.com/docs/assistant?topic=assistant-api-overview).
-        ///
-        /// There is no rate limit for this operation.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="body">The message to be sent. This includes the user's input, along with optional intents,
@@ -152,8 +150,6 @@ namespace IBM.Watson.Assistant.v1
         /// List workspaces.
         ///
         /// List the workspaces associated with a Watson Assistant service instance.
-        ///
-        /// This operation is limited to 500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
         /// <param name="sort">The attribute by which returned workspaces will be sorted. To reverse the sort order,
@@ -221,13 +217,8 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// Create a workspace based on component objects. You must provide workspace components defining the content of
         /// the new workspace.
-        ///
-        /// This operation is limited to 30 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
-        /// <param name="body">The content of the new workspace.
-        ///
-        /// The maximum size for this data is 50MB. If you need to import a larger workspace, consider importing the
-        /// workspace without intents and entities and then adding them separately. (optional)</param>
+        /// <param name="body"> (optional)</param>
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="Workspace" />Workspace</returns>
@@ -326,9 +317,6 @@ namespace IBM.Watson.Assistant.v1
         /// Get information about a workspace.
         ///
         /// Get information about a workspace, optionally including all workspace content.
-        ///
-        /// With **export**=`false`, this operation is limited to 6000 requests per 5 minutes. With **export**=`true`,
-        /// the limit is 20 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="export">Whether to include all element content in the returned data. If **export**=`false`, the
@@ -403,8 +391,6 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// Update an existing workspace with new or modified data. You must provide component objects defining the
         /// content of the updated workspace.
-        ///
-        /// This operation is limited to 30 request per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="body">Valid data defining the new and updated workspace content.
@@ -422,7 +408,7 @@ namespace IBM.Watson.Assistant.v1
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="Workspace" />Workspace</returns>
         public DetailedResponse<Workspace> UpdateWorkspace(string workspaceId, string name = null, string description = null, string language = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null, bool? append = null, List<Webhook> webhooks = null, bool? includeAudit = null)
-        {
+        { 
             if (string.IsNullOrEmpty(workspaceId))
             {
                 throw new ArgumentNullException("`workspaceId` is required for `UpdateWorkspace`");
@@ -528,8 +514,6 @@ namespace IBM.Watson.Assistant.v1
         /// Delete workspace.
         ///
         /// Delete a workspace from the service instance.
-        ///
-        /// This operation is limited to 30 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <returns><see cref="object" />object</returns>
@@ -582,9 +566,6 @@ namespace IBM.Watson.Assistant.v1
         /// List intents.
         ///
         /// List the intents for a workspace.
-        ///
-        /// With **export**=`false`, this operation is limited to 2000 requests per 30 minutes. With **export**=`true`,
-        /// the limit is 400 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="export">Whether to include all element content in the returned data. If **export**=`false`, the
@@ -670,8 +651,6 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// If you want to create multiple intents with a single API call, consider using the **[Update
         /// workspace](#update-workspace)** method instead.
-        ///
-        /// This operation is limited to 2000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="body">The content of the new intent.</param>
@@ -753,9 +732,6 @@ namespace IBM.Watson.Assistant.v1
         /// Get intent.
         ///
         /// Get information about an intent, optionally including all intent content.
-        ///
-        /// With **export**=`false`, this operation is limited to 6000 requests per 5 minutes. With **export**=`true`,
-        /// the limit is 400 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="intent">The intent name.</param>
@@ -835,8 +811,6 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// If you want to update multiple intents with a single API call, consider using the **[Update
         /// workspace](#update-workspace)** method instead.
-        ///
-        /// This operation is limited to 2000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="intent">The intent name.</param>
@@ -939,8 +913,6 @@ namespace IBM.Watson.Assistant.v1
         /// Delete intent.
         ///
         /// Delete an intent from a workspace.
-        ///
-        /// This operation is limited to 2000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="intent">The intent name.</param>
@@ -1002,8 +974,6 @@ namespace IBM.Watson.Assistant.v1
         /// List user input examples.
         ///
         /// List the user input examples for an intent, optionally including contextual entity mentions.
-        ///
-        /// This operation is limited to 2500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="intent">The intent name.</param>
@@ -1091,8 +1061,6 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// If you want to add multiple examples with a single API call, consider using the **[Update
         /// intent](#update-intent)** method instead.
-        ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="intent">The intent name.</param>
@@ -1179,8 +1147,6 @@ namespace IBM.Watson.Assistant.v1
         /// Get user input example.
         ///
         /// Get information about a user input example.
-        ///
-        /// This operation is limited to 6000 requests per 5 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="intent">The intent name.</param>
@@ -1261,8 +1227,6 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// If you want to update multiple examples with a single API call, consider using the **[Update
         /// intent](#update-intent)** method instead.
-        ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="intent">The intent name.</param>
@@ -1354,8 +1318,6 @@ namespace IBM.Watson.Assistant.v1
         /// Delete user input example.
         ///
         /// Delete a user input example from an intent.
-        ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="intent">The intent name.</param>
@@ -1427,8 +1389,6 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// List the counterexamples for a workspace. Counterexamples are examples that have been marked as irrelevant
         /// input.
-        ///
-        /// This operation is limited to 2500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
@@ -1508,8 +1468,6 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// If you want to add multiple counterexamples with a single API call, consider using the **[Update
         /// workspace](#update-workspace)** method instead.
-        ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="body">The content of the new counterexample.</param>
@@ -1584,8 +1542,6 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// Get information about a counterexample. Counterexamples are examples that have been marked as irrelevant
         /// input.
-        ///
-        /// This operation is limited to 6000 requests per 5 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="text">The text of a user input counterexample (for example, `What are you wearing?`).</param>
@@ -1654,11 +1610,6 @@ namespace IBM.Watson.Assistant.v1
         /// Update counterexample.
         ///
         /// Update the text of a counterexample. Counterexamples are examples that have been marked as irrelevant input.
-        ///
-        /// If you want to update multiple counterexamples with a single API call, consider using the **[Update
-        /// workspace](#update-workspace)** method instead.
-        ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="text">The text of a user input counterexample (for example, `What are you wearing?`).</param>
@@ -1738,8 +1689,6 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// Delete a counterexample from a workspace. Counterexamples are examples that have been marked as irrelevant
         /// input.
-        ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="text">The text of a user input counterexample (for example, `What are you wearing?`).</param>
@@ -1801,9 +1750,6 @@ namespace IBM.Watson.Assistant.v1
         /// List entities.
         ///
         /// List the entities for a workspace.
-        ///
-        /// With **export**=`false`, this operation is limited to 1000 requests per 30 minutes. With **export**=`true`,
-        /// the limit is 200 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="export">Whether to include all element content in the returned data. If **export**=`false`, the
@@ -1889,8 +1835,6 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// If you want to create multiple entities with a single API call, consider using the **[Update
         /// workspace](#update-workspace)** method instead.
-        ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="body">The content of the new entity.</param>
@@ -1980,9 +1924,6 @@ namespace IBM.Watson.Assistant.v1
         /// Get entity.
         ///
         /// Get information about an entity, optionally including all entity content.
-        ///
-        /// With **export**=`false`, this operation is limited to 6000 requests per 5 minutes. With **export**=`true`,
-        /// the limit is 200 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
@@ -2062,8 +2003,6 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// If you want to update multiple entities with a single API call, consider using the **[Update
         /// workspace](#update-workspace)** method instead.
-        ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
@@ -2173,8 +2112,6 @@ namespace IBM.Watson.Assistant.v1
         /// Delete entity.
         ///
         /// Delete an entity from a workspace, or disable a system entity.
-        ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
@@ -2237,8 +2174,6 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// List mentions for a contextual entity. An entity mention is an occurrence of a contextual entity in the
         /// context of an intent user input example.
-        ///
-        /// This operation is limited to 200 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
@@ -2313,8 +2248,6 @@ namespace IBM.Watson.Assistant.v1
         /// List entity values.
         ///
         /// List the values for an entity.
-        ///
-        /// This operation is limited to 2500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
@@ -2409,8 +2342,6 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// If you want to create multiple entity values with a single API call, consider using the **[Update
         /// entity](#update-entity)** method instead.
-        ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
@@ -2509,8 +2440,6 @@ namespace IBM.Watson.Assistant.v1
         /// Get entity value.
         ///
         /// Get information about an entity value.
-        ///
-        /// This operation is limited to 6000 requests per 5 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
@@ -2599,8 +2528,6 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// If you want to update multiple entity values with a single API call, consider using the **[Update
         /// entity](#update-entity)** method instead.
-        ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
@@ -2721,8 +2648,6 @@ namespace IBM.Watson.Assistant.v1
         /// Delete entity value.
         ///
         /// Delete a value from an entity.
-        ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
@@ -2793,8 +2718,6 @@ namespace IBM.Watson.Assistant.v1
         /// List entity value synonyms.
         ///
         /// List the synonyms for an entity value.
-        ///
-        /// This operation is limited to 2500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
@@ -2891,8 +2814,6 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// If you want to create multiple synonyms with a single API call, consider using the **[Update
         /// entity](#update-entity)** or **[Update entity value](#update-entity-value)** method instead.
-        ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
@@ -2984,8 +2905,6 @@ namespace IBM.Watson.Assistant.v1
         /// Get entity value synonym.
         ///
         /// Get information about a synonym of an entity value.
-        ///
-        /// This operation is limited to 6000 requests per 5 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
@@ -3075,8 +2994,6 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// If you want to update multiple synonyms with a single API call, consider using the **[Update
         /// entity](#update-entity)** or **[Update entity value](#update-entity-value)** method instead.
-        ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
@@ -3173,8 +3090,6 @@ namespace IBM.Watson.Assistant.v1
         /// Delete entity value synonym.
         ///
         /// Delete a synonym from an entity value.
-        ///
-        /// This operation is limited to 1000 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="entity">The name of the entity.</param>
@@ -3254,8 +3169,6 @@ namespace IBM.Watson.Assistant.v1
         /// List dialog nodes.
         ///
         /// List the dialog nodes for a workspace.
-        ///
-        /// This operation is limited to 2500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
@@ -3334,8 +3247,6 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// If you want to create multiple dialog nodes with a single API call, consider using the **[Update
         /// workspace](#update-workspace)** method instead.
-        ///
-        /// This operation is limited to 500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="body">A CreateDialogNode object defining the content of the new dialog node.</param>
@@ -3481,8 +3392,6 @@ namespace IBM.Watson.Assistant.v1
         /// Get dialog node.
         ///
         /// Get information about a dialog node.
-        ///
-        /// This operation is limited to 6000 requests per 5 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="dialogNode">The dialog node ID (for example, `get_order`).</param>
@@ -3554,8 +3463,6 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// If you want to update multiple dialog nodes with a single API call, consider using the **[Update
         /// workspace](#update-workspace)** method instead.
-        ///
-        /// This operation is limited to 500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="dialogNode">The dialog node ID (for example, `get_order`).</param>
@@ -3711,8 +3618,6 @@ namespace IBM.Watson.Assistant.v1
         /// Delete dialog node.
         ///
         /// Delete a dialog node from a workspace.
-        ///
-        /// This operation is limited to 500 requests per 30 minutes. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="dialogNode">The dialog node ID (for example, `get_order`).</param>
@@ -3774,9 +3679,6 @@ namespace IBM.Watson.Assistant.v1
         /// List log events in a workspace.
         ///
         /// List the events from the log of a specific workspace.
-        ///
-        /// If **cursor** is not specified, this operation is limited to 40 requests per 30 minutes. If **cursor** is
-        /// specified, the limit is 120 requests per minute. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="sort">How to sort the returned log events. You can sort by **request_timestamp**. To reverse
@@ -3854,9 +3756,6 @@ namespace IBM.Watson.Assistant.v1
         /// List log events in all workspaces.
         ///
         /// List the events from the logs of all workspaces in the service instance.
-        ///
-        /// If **cursor** is not specified, this operation is limited to 40 requests per 30 minutes. If **cursor** is
-        /// specified, the limit is 120 requests per minute. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="filter">A cacheable parameter that limits the results to those matching the specified filter.
         /// You must specify a filter query that includes a value for `language`, as well as a value for
@@ -3934,8 +3833,6 @@ namespace IBM.Watson.Assistant.v1
         /// You associate a customer ID with data by passing the `X-Watson-Metadata` header with a request that passes
         /// data. For more information about personal data and customer IDs, see [Information
         /// security](https://cloud.ibm.com/docs/assistant?topic=assistant-information-security#information-security).
-        ///
-        /// This operation is limited to 4 requests per minute. For more information, see **Rate limiting**.
         /// </summary>
         /// <param name="customerId">The customer ID for which all data is to be deleted.</param>
         /// <returns><see cref="object" />object</returns>

@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ namespace IBM.Watson.Discovery.v2.Model
     /// <summary>
     /// An abstract aggregation type produced by Discovery to analyze the input provided.
     /// </summary>
-    [JsonConverter(typeof(JsonSubtypes), "Type")]
+    [JsonConverter(typeof(JsonSubtypes), "type")]
     [JsonSubtypes.KnownSubType(typeof(QueryHistogramAggregation), "histogram")]
     [JsonSubtypes.KnownSubType(typeof(QueryCalculationAggregation), "max")]
     [JsonSubtypes.KnownSubType(typeof(QueryCalculationAggregation), "min")]

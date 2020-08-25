@@ -88,7 +88,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
             var url = System.Environment.GetEnvironmentVariable("COMPARE_COMPLY_URL");
             System.Environment.SetEnvironmentVariable("COMPARE_COMPLY_URL", null);
             CompareComplyService service = Substitute.For<CompareComplyService>("versionDate");
-            Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/compare-comply/api");
+            Assert.IsTrue(service.ServiceUrl == "https://api.us-south.compare-comply.watson.cloud.ibm.com");
             System.Environment.SetEnvironmentVariable("COMPARE_COMPLY_URL", url);
         }
         #endregion

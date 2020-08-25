@@ -88,7 +88,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
             var url = System.Environment.GetEnvironmentVariable("ASSISTANT_SERVICE_URL");
             System.Environment.SetEnvironmentVariable("ASSISTANT_SERVICE_URL", null);
             AssistantService service = Substitute.For<AssistantService>("versionDate");
-            Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/assistant/api");
+            Assert.IsTrue(service.ServiceUrl == "https://api.us-south.assistant.watson.cloud.ibm.com");
             System.Environment.SetEnvironmentVariable("ASSISTANT_SERVICE_URL", url);
             System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", apikey);
         }

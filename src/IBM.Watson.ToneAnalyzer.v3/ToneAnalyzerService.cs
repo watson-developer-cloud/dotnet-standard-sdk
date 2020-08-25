@@ -31,7 +31,7 @@ namespace IBM.Watson.ToneAnalyzer.v3
     public partial class ToneAnalyzerService : IBMService, IToneAnalyzerService
     {
         const string serviceName = "tone_analyzer";
-        private const string defaultServiceUrl = "https://gateway.watsonplatform.net/tone-analyzer/api";
+        private const string defaultServiceUrl = "https://api.us-south.tone-analyzer.watson.cloud.ibm.com";
         public string VersionDate { get; set; }
 
         public ToneAnalyzerService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }

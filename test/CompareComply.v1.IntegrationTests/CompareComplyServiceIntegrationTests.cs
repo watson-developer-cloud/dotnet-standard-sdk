@@ -23,6 +23,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace IBM.Watson.CompareComply.v1.IntegrationTests
 {
@@ -48,8 +49,19 @@ namespace IBM.Watson.CompareComply.v1.IntegrationTests
         {
             service = new CompareComplyService(versionDate);
 
-            objectStorageCredentialsInputFilepath = "C:\\projects\\sdk-credentials\\cloud-object-storage-credentials-input.json";
-            objectStorageCredentialsOutputFilepath = "C:\\projects\\sdk-credentials\\cloud-object-storage-credentials-output.json";
+            bool isWindows = System.Runtime.InteropServices.RuntimeInformation
+                                               .IsOSPlatform(OSPlatform.Windows);
+            if (isWindows)
+            {
+                objectStorageCredentialsInputFilepath = "C:\\projects\\sdk-credentials\\cloud-object-storage-credentials-input.json";
+                objectStorageCredentialsOutputFilepath = "C:\\projects\\sdk-credentials\\cloud-object-storage-credentials-output.json";
+            }
+            else
+            {
+                // overwrite if you are using a different OS.
+                objectStorageCredentialsInputFilepath = "C:\\projects\\sdk-credentials\\cloud-object-storage-credentials-input.json";
+                objectStorageCredentialsOutputFilepath = "C:\\projects\\sdk-credentials\\cloud-object-storage-credentials-output.json";
+            }
         }
 
         #region HTML Conversion

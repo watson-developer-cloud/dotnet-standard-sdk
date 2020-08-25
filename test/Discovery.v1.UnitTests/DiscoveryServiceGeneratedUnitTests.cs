@@ -89,7 +89,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var url = System.Environment.GetEnvironmentVariable("DISCOVERY_URL");
             System.Environment.SetEnvironmentVariable("DISCOVERY_URL", null);
             DiscoveryService service = Substitute.For<DiscoveryService>("versionDate");
-            Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/discovery/api");
+            Assert.IsTrue(service.ServiceUrl == "https://api.us-south.discovery.watson.cloud.ibm.com");
             System.Environment.SetEnvironmentVariable("DISCOVERY_APIKEY", apikey);
         }
         #endregion

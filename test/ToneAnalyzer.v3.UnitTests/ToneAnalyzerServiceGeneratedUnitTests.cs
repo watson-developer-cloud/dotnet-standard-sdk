@@ -88,7 +88,7 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
             var url = System.Environment.GetEnvironmentVariable("TONE_ANALYZER_URL");
             System.Environment.SetEnvironmentVariable("TONE_ANALYZER_URL", null);
             ToneAnalyzerService service = Substitute.For<ToneAnalyzerService>("versionDate");
-            Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/tone-analyzer/api");
+            Assert.IsTrue(service.ServiceUrl == "https://api.us-south.tone-analyzer.watson.cloud.ibm.com");
             System.Environment.SetEnvironmentVariable("TONE_ANALYZER_URL", url);
             System.Environment.SetEnvironmentVariable("TONE_ANALYZER_APIKEY", apikey);
         }

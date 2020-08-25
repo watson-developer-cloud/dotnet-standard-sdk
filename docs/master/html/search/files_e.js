@@ -10,5 +10,8 @@ var searchData=
   ['processedaudio_2ecs',['ProcessedAudio.cs',['../db/d84/_processed_audio_8cs.html',1,'']]],
   ['processingmetrics_2ecs',['ProcessingMetrics.cs',['../de/df8/_processing_metrics_8cs.html',1,'']]],
   ['profile_2ecs',['Profile.cs',['../d4/d13/_profile_8cs.html',1,'']]],
+  ['projectdetails_2ecs',['ProjectDetails.cs',['../d7/d8d/_project_details_8cs.html',1,'']]],
+  ['projectlistdetails_2ecs',['ProjectListDetails.cs',['../d8/dbb/_project_list_details_8cs.html',1,'']]],
+  ['projectlistdetailsrelevancytrainingstatus_2ecs',['ProjectListDetailsRelevancyTrainingStatus.cs',['../d5/d33/_project_list_details_relevancy_training_status_8cs.html',1,'']]],
   ['pronunciation_2ecs',['Pronunciation.cs',['../d9/d37/_pronunciation_8cs.html',1,'']]]
 ];

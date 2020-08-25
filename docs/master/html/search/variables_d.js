@@ -1,6 +1,7 @@
 var searchData=
 [
   ['natural_5flanguage',['NATURAL_LANGUAGE',['../d8/d13/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_1_1_query_type_enum_value.html#ab2b92343d197b540234025ae65be2d88',1,'IBM::Watson::Assistant::v1::Model::DialogNodeOutputGeneric::QueryTypeEnumValue']]],
+  ['natural_5flanguage_5funderstanding',['NATURAL_LANGUAGE_UNDERSTANDING',['../db/d68/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_enrichment_1_1_type_enum_value.html#a1015c9e83d127bace37dcc0025bf95da',1,'IBM::Watson::Discovery::v2::Model::Enrichment::TypeEnumValue']]],
   ['needs',['NEEDS',['../d6/d97/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_model_1_1_trait_1_1_category_enum_value.html#ab5afe57b2346b9bf2be4eaf0f29930a9',1,'IBM::Watson::PersonalityInsights::v3::Model::Trait::CategoryEnumValue']]],
   ['nested',['NESTED',['../d1/dd6/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_field_1_1_type_enum_value.html#a740cfa82407645dc71c9cf18c808bd40',1,'IBM.Watson.Discovery.v1.Model.Field.TypeEnumValue.NESTED()'],['../d1/ddb/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_field_1_1_type_enum_value.html#aeb132b82ddfcdd56e5f119187fe2d65f',1,'IBM.Watson.Discovery.v2.Model.Field.TypeEnumValue.NESTED()']]],
   ['nl_5fnl',['NL_NL',['../d8/d21/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global_system_1_1_locale_enum_value.html#a0b048520cf2955df066d640849d12769',1,'IBM::Watson::Assistant::v2::Model::MessageContextGlobalSystem::LocaleEnumValue']]],

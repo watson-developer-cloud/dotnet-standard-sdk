@@ -1,5 +1,9 @@
 var searchData=
 [
+  ['defaultqueryparams',['DefaultQueryParams',['../d5/df2/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_default_query_params.html',1,'IBM::Watson::Discovery::v2::Model']]],
+  ['defaultqueryparamspassages',['DefaultQueryParamsPassages',['../d9/df4/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_default_query_params_passages.html',1,'IBM::Watson::Discovery::v2::Model']]],
+  ['defaultqueryparamssuggestedrefinements',['DefaultQueryParamsSuggestedRefinements',['../d4/dfe/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_default_query_params_suggested_refinements.html',1,'IBM::Watson::Discovery::v2::Model']]],
+  ['defaultqueryparamstableresults',['DefaultQueryParamsTableResults',['../d0/d17/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_default_query_params_table_results.html',1,'IBM::Watson::Discovery::v2::Model']]],
   ['deletecollectionresponse',['DeleteCollectionResponse',['../dd/d15/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_delete_collection_response.html',1,'IBM::Watson::Discovery::v1::Model']]],
   ['deleteconfigurationresponse',['DeleteConfigurationResponse',['../d3/de0/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_delete_configuration_response.html',1,'IBM::Watson::Discovery::v1::Model']]],
   ['deletecredentials',['DeleteCredentials',['../d7/d58/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_delete_credentials.html',1,'IBM::Watson::Discovery::v1::Model']]],

@@ -3,6 +3,8 @@ var searchData=
   ['queryaggregation_2ecs',['QueryAggregation.cs',['../dc/db8/_i_b_m_8_watson_8_discovery_8v1_2_model_2_query_aggregation_8cs.html',1,'(Global Namespace)'],['../d3/ddc/_i_b_m_8_watson_8_discovery_8v2_2_model_2_query_aggregation_8cs.html',1,'(Global Namespace)']]],
   ['querycalculationaggregation_2ecs',['QueryCalculationAggregation.cs',['../d1/d41/_query_calculation_aggregation_8cs.html',1,'']]],
   ['queryfilteraggregation_2ecs',['QueryFilterAggregation.cs',['../da/d10/_query_filter_aggregation_8cs.html',1,'']]],
+  ['querygroupbyaggregation_2ecs',['QueryGroupByAggregation.cs',['../db/d08/_query_group_by_aggregation_8cs.html',1,'']]],
+  ['querygroupbyaggregationresult_2ecs',['QueryGroupByAggregationResult.cs',['../dd/dd1/_query_group_by_aggregation_result_8cs.html',1,'']]],
   ['queryhistogramaggregation_2ecs',['QueryHistogramAggregation.cs',['../d1/d63/_query_histogram_aggregation_8cs.html',1,'']]],
   ['queryhistogramaggregationresult_2ecs',['QueryHistogramAggregationResult.cs',['../d6/db4/_query_histogram_aggregation_result_8cs.html',1,'']]],
   ['querylargepassages_2ecs',['QueryLargePassages.cs',['../de/dda/_query_large_passages_8cs.html',1,'']]],

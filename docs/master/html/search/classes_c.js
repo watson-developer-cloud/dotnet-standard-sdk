@@ -13,5 +13,5 @@ var searchData=
   ['nluenrichmentsemanticroles',['NluEnrichmentSemanticRoles',['../de/d41/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_semantic_roles.html',1,'IBM::Watson::Discovery::v1::Model']]],
   ['nluenrichmentsentiment',['NluEnrichmentSentiment',['../de/df0/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_sentiment.html',1,'IBM::Watson::Discovery::v1::Model']]],
   ['normalizationoperation',['NormalizationOperation',['../da/d95/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_normalization_operation.html',1,'IBM::Watson::Discovery::v1::Model']]],
-  ['notice',['Notice',['../db/dcf/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_notice.html',1,'IBM.Watson.Discovery.v2.Model.Notice'],['../d9/d5d/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_notice.html',1,'IBM.Watson.Discovery.v1.Model.Notice']]]
+  ['notice',['Notice',['../d9/d5d/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_notice.html',1,'IBM.Watson.Discovery.v1.Model.Notice'],['../db/dcf/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_notice.html',1,'IBM.Watson.Discovery.v2.Model.Notice']]]
 ];

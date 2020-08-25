@@ -108,6 +108,14 @@ Inheritance diagram for IBM.Watson.Discovery.v2.IDiscoveryService:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a07faec9c07f55483a1afb19e4846f9ef"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d7/d64/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_list_collections_response.html">ListCollectionsResponse</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a07faec9c07f55483a1afb19e4846f9ef">ListCollections</a> (string projectId)</td></tr>
 <tr class="separator:a07faec9c07f55483a1afb19e4846f9ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd3df52d8d70eab2da62486645999393"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d1/dcf/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_details.html">CollectionDetails</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#abd3df52d8d70eab2da62486645999393">CreateCollection</a> (string projectId, string name, string description=null, string language=null, List&lt; <a class="el" href="../../d4/dd5/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_enrichment.html">CollectionEnrichment</a> &gt; enrichments=null)</td></tr>
+<tr class="separator:abd3df52d8d70eab2da62486645999393"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a192dcbb61ecceba6461986fd24e0384a"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d1/dcf/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_details.html">CollectionDetails</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a192dcbb61ecceba6461986fd24e0384a">GetCollection</a> (string projectId, string collectionId)</td></tr>
+<tr class="separator:a192dcbb61ecceba6461986fd24e0384a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36d1f6c3d569a12bd9d0dff75be3a949"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d1/dcf/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_details.html">CollectionDetails</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a36d1f6c3d569a12bd9d0dff75be3a949">UpdateCollection</a> (string projectId, string collectionId, string name=null, string description=null, List&lt; <a class="el" href="../../d4/dd5/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_enrichment.html">CollectionEnrichment</a> &gt; enrichments=null)</td></tr>
+<tr class="separator:a36d1f6c3d569a12bd9d0dff75be3a949"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8374f3551c562bca4c547ee0c1819fb7"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a8374f3551c562bca4c547ee0c1819fb7">DeleteCollection</a> (string projectId, string collectionId)</td></tr>
+<tr class="separator:a8374f3551c562bca4c547ee0c1819fb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93c49c49da50da7d6ffe4e0e76daaa83"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../dc/d2f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_response.html">QueryResponse</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a93c49c49da50da7d6ffe4e0e76daaa83">Query</a> (string projectId, List&lt; string &gt; collectionIds=null, string filter=null, string query=null, string naturalLanguageQuery=null, string aggregation=null, long? count=null, List&lt; string &gt; _return=null, long? offset=null, string sort=null, bool? highlight=null, bool? spellingSuggestions=null, <a class="el" href="../../db/dc0/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_large_table_results.html">QueryLargeTableResults</a> tableResults=null, <a class="el" href="../../d7/dc9/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_large_suggested_refinements.html">QueryLargeSuggestedRefinements</a> suggestedRefinements=null, <a class="el" href="../../da/d1a/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_large_passages.html">QueryLargePassages</a> passages=null)</td></tr>
 <tr class="separator:a93c49c49da50da7d6ffe4e0e76daaa83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a79ee6b07f2e9c6e3625eb82689a072ac"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d4/d9f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_completions.html">Completions</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a79ee6b07f2e9c6e3625eb82689a072ac">GetAutocompletion</a> (string projectId, string prefix, List&lt; string &gt; collectionIds=null, string field=null, long? count=null)</td></tr>
@@ -134,6 +142,28 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:acba8f7d74cfd4df28e5f6e3476671e98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa19e8beb04e799849341f161bf27b2b2"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d2/de7/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_training_query.html">TrainingQuery</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#aa19e8beb04e799849341f161bf27b2b2">UpdateTrainingQuery</a> (string projectId, string queryId, string naturalLanguageQuery, List&lt; <a class="el" href="../../d7/d91/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_training_example.html">TrainingExample</a> &gt; examples, string filter=null)</td></tr>
 <tr class="separator:aa19e8beb04e799849341f161bf27b2b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab97dc48d01feef63c9eccfd9f7fa7e9d"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../dd/d1e/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_enrichments.html">Enrichments</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#ab97dc48d01feef63c9eccfd9f7fa7e9d">ListEnrichments</a> (string projectId)</td></tr>
+<tr class="separator:ab97dc48d01feef63c9eccfd9f7fa7e9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0db82adef8cd4c3015222bfc9e38103"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../dd/d84/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_enrichment.html">Enrichment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#ac0db82adef8cd4c3015222bfc9e38103">CreateEnrichment</a> (string projectId, <a class="el" href="../../d0/dfe/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_create_enrichment.html">CreateEnrichment</a> enrichment, System.IO.MemoryStream file=null)</td></tr>
+<tr class="separator:ac0db82adef8cd4c3015222bfc9e38103"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85560cf33247e2c2a4e2e79fd1aa9fc3"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../dd/d84/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_enrichment.html">Enrichment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a85560cf33247e2c2a4e2e79fd1aa9fc3">GetEnrichment</a> (string projectId, string enrichmentId)</td></tr>
+<tr class="separator:a85560cf33247e2c2a4e2e79fd1aa9fc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a910ac514eecafa795bcb479eb28f950c"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../dd/d84/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_enrichment.html">Enrichment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a910ac514eecafa795bcb479eb28f950c">UpdateEnrichment</a> (string projectId, string enrichmentId, string name, string description=null)</td></tr>
+<tr class="separator:a910ac514eecafa795bcb479eb28f950c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41084838a17754003d3021ddf3065acc"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a41084838a17754003d3021ddf3065acc">DeleteEnrichment</a> (string projectId, string enrichmentId)</td></tr>
+<tr class="separator:a41084838a17754003d3021ddf3065acc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9112fd28ad5734d2fb5a1c60f01ff08"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d8/d8f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_list_projects_response.html">ListProjectsResponse</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#ad9112fd28ad5734d2fb5a1c60f01ff08">ListProjects</a> ()</td></tr>
+<tr class="separator:ad9112fd28ad5734d2fb5a1c60f01ff08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6eca30c37d7d1b3ab0d0b21c640220f0"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d5/ddf/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_project_details.html">ProjectDetails</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a6eca30c37d7d1b3ab0d0b21c640220f0">CreateProject</a> (string name, string type, <a class="el" href="../../d5/df2/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_default_query_params.html">DefaultQueryParams</a> defaultQueryParameters=null)</td></tr>
+<tr class="separator:a6eca30c37d7d1b3ab0d0b21c640220f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ef06b7a9fa010cc3cbe1dc0dbbfe558"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d5/ddf/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_project_details.html">ProjectDetails</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a9ef06b7a9fa010cc3cbe1dc0dbbfe558">GetProject</a> (string projectId)</td></tr>
+<tr class="separator:a9ef06b7a9fa010cc3cbe1dc0dbbfe558"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a568154f17a2a8eeaebba7d766d2b4ebc"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d5/ddf/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_project_details.html">ProjectDetails</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a568154f17a2a8eeaebba7d766d2b4ebc">UpdateProject</a> (string projectId, string name=null)</td></tr>
+<tr class="separator:a568154f17a2a8eeaebba7d766d2b4ebc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c8a23d1f3ccc294e1a53cfbcc1890b3"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a9c8a23d1f3ccc294e1a53cfbcc1890b3">DeleteProject</a> (string projectId)</td></tr>
+<tr class="separator:a9c8a23d1f3ccc294e1a53cfbcc1890b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe0acca2da10d06da9c9b85dd272ef30"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#abe0acca2da10d06da9c9b85dd272ef30">DeleteUserData</a> (string customerId)</td></tr>
+<tr class="separator:abe0acca2da10d06da9c9b85dd272ef30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a9cc1959c9c3be4173af1334d90562889"></a>
@@ -196,6 +226,126 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="abd3df52d8d70eab2da62486645999393"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd3df52d8d70eab2da62486645999393">&#9670;&nbsp;</a></span>CreateCollection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../d1/dcf/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_details.html">CollectionDetails</a>&gt; IBM.Watson.Discovery.v2.IDiscoveryService.CreateCollection </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>description</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>language</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">List&lt; <a class="el" href="../../d4/dd5/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_enrichment.html">CollectionEnrichment</a> &gt;&#160;</td>
+          <td class="paramname"><em>enrichments</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a580753bc961355f7150e92fb331d5dde">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
+<a id="ac0db82adef8cd4c3015222bfc9e38103"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0db82adef8cd4c3015222bfc9e38103">&#9670;&nbsp;</a></span>CreateEnrichment()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../dd/d84/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_enrichment.html">Enrichment</a>&gt; IBM.Watson.Discovery.v2.IDiscoveryService.CreateEnrichment </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d0/dfe/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_create_enrichment.html">CreateEnrichment</a>&#160;</td>
+          <td class="paramname"><em>enrichment</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">System.IO.MemoryStream&#160;</td>
+          <td class="paramname"><em>file</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a3f55bbe42c88ab63eefa01583ed5a92f">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
+<a id="a6eca30c37d7d1b3ab0d0b21c640220f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6eca30c37d7d1b3ab0d0b21c640220f0">&#9670;&nbsp;</a></span>CreateProject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../d5/ddf/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_project_details.html">ProjectDetails</a>&gt; IBM.Watson.Discovery.v2.IDiscoveryService.CreateProject </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d5/df2/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_default_query_params.html">DefaultQueryParams</a>&#160;</td>
+          <td class="paramname"><em>defaultQueryParameters</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#aa1810f0a0c3b6fe8a81ad5710aae2090">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
 <a id="ab31dfb61266e0f4568512a311d2c0568"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab31dfb61266e0f4568512a311d2c0568">&#9670;&nbsp;</a></span>CreateTrainingQuery()</h2>
 
@@ -235,6 +385,36 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a7aad84e24329e611ee66ed36faf55ef4">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
+<a id="a8374f3551c562bca4c547ee0c1819fb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8374f3551c562bca4c547ee0c1819fb7">&#9670;&nbsp;</a></span>DeleteCollection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;object&gt; IBM.Watson.Discovery.v2.IDiscoveryService.DeleteCollection </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>collectionId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#ab2c6437b7486031b2af5f4b4928c6395">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
 
 </div>
 </div>
@@ -280,6 +460,56 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a41084838a17754003d3021ddf3065acc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41084838a17754003d3021ddf3065acc">&#9670;&nbsp;</a></span>DeleteEnrichment()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;object&gt; IBM.Watson.Discovery.v2.IDiscoveryService.DeleteEnrichment </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>enrichmentId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a29f8ecdbec11af708f07da7816e6cde8">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
+<a id="a9c8a23d1f3ccc294e1a53cfbcc1890b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c8a23d1f3ccc294e1a53cfbcc1890b3">&#9670;&nbsp;</a></span>DeleteProject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;object&gt; IBM.Watson.Discovery.v2.IDiscoveryService.DeleteProject </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a863d4c83c16102d5ab94431860afff99">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
 <a id="a46e8f20a5c42f17ddfe4e28d5df9de29"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a46e8f20a5c42f17ddfe4e28d5df9de29">&#9670;&nbsp;</a></span>DeleteTrainingQueries()</h2>
 
@@ -297,6 +527,26 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#ac7e41c231a5038025fce36e17f6b0816">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
+<a id="abe0acca2da10d06da9c9b85dd272ef30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe0acca2da10d06da9c9b85dd272ef30">&#9670;&nbsp;</a></span>DeleteUserData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;object&gt; IBM.Watson.Discovery.v2.IDiscoveryService.DeleteUserData </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>customerId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a8324229af96daf64960a73a4f788a079">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
 
 </div>
 </div>
@@ -348,6 +598,36 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a192dcbb61ecceba6461986fd24e0384a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a192dcbb61ecceba6461986fd24e0384a">&#9670;&nbsp;</a></span>GetCollection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../d1/dcf/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_details.html">CollectionDetails</a>&gt; IBM.Watson.Discovery.v2.IDiscoveryService.GetCollection </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>collectionId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#adb46e7394e9b2dc40db0868c8cec5a0c">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
 <a id="acc4c36bedfb0f41b7610853e9391e4d5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acc4c36bedfb0f41b7610853e9391e4d5">&#9670;&nbsp;</a></span>GetComponentSettings()</h2>
 
@@ -365,6 +645,56 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a3d3a98526523beeca370d69df1b3b6b2">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
+<a id="a85560cf33247e2c2a4e2e79fd1aa9fc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85560cf33247e2c2a4e2e79fd1aa9fc3">&#9670;&nbsp;</a></span>GetEnrichment()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../dd/d84/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_enrichment.html">Enrichment</a>&gt; IBM.Watson.Discovery.v2.IDiscoveryService.GetEnrichment </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>enrichmentId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a279103063cf0e435a8d7498f4c6c3797">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
+<a id="a9ef06b7a9fa010cc3cbe1dc0dbbfe558"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ef06b7a9fa010cc3cbe1dc0dbbfe558">&#9670;&nbsp;</a></span>GetProject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../d5/ddf/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_project_details.html">ProjectDetails</a>&gt; IBM.Watson.Discovery.v2.IDiscoveryService.GetProject </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#aefe268d3a52f00f856a4ee14b2487c80">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
 
 </div>
 </div>
@@ -418,6 +748,26 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ab97dc48d01feef63c9eccfd9f7fa7e9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab97dc48d01feef63c9eccfd9f7fa7e9d">&#9670;&nbsp;</a></span>ListEnrichments()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../dd/d1e/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_enrichments.html">Enrichments</a>&gt; IBM.Watson.Discovery.v2.IDiscoveryService.ListEnrichments </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#adfa0275b5e161067194491c6e0773bcd">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
 <a id="a897feb55935e396e9dbb85dc3b1b3c88"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a897feb55935e396e9dbb85dc3b1b3c88">&#9670;&nbsp;</a></span>ListFields()</h2>
 
@@ -445,6 +795,25 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a2a7a1fc51f1c30d0ac5288049fe1c777">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
+<a id="ad9112fd28ad5734d2fb5a1c60f01ff08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9112fd28ad5734d2fb5a1c60f01ff08">&#9670;&nbsp;</a></span>ListProjects()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../d8/d8f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_list_projects_response.html">ListProjectsResponse</a>&gt; IBM.Watson.Discovery.v2.IDiscoveryService.ListProjects </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a8eae76668895324335e6272effebd388">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
 
 </div>
 </div>
@@ -630,6 +999,54 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a36d1f6c3d569a12bd9d0dff75be3a949"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36d1f6c3d569a12bd9d0dff75be3a949">&#9670;&nbsp;</a></span>UpdateCollection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../d1/dcf/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_details.html">CollectionDetails</a>&gt; IBM.Watson.Discovery.v2.IDiscoveryService.UpdateCollection </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>collectionId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>description</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">List&lt; <a class="el" href="../../d4/dd5/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_enrichment.html">CollectionEnrichment</a> &gt;&#160;</td>
+          <td class="paramname"><em>enrichments</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#ada5da214ac2e430aed04263c2555e97a">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
 <a id="ad4b2afb5110b9524640ff370652b5fac"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad4b2afb5110b9524640ff370652b5fac">&#9670;&nbsp;</a></span>UpdateDocument()</h2>
 
@@ -693,6 +1110,78 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a65f6b2f6faa6312b6d165378d556e0b6">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
+<a id="a910ac514eecafa795bcb479eb28f950c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a910ac514eecafa795bcb479eb28f950c">&#9670;&nbsp;</a></span>UpdateEnrichment()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../dd/d84/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_enrichment.html">Enrichment</a>&gt; IBM.Watson.Discovery.v2.IDiscoveryService.UpdateEnrichment </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>enrichmentId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>description</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a58205d5d895c4c8d1cb2fec958db5edd">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
+<a id="a568154f17a2a8eeaebba7d766d2b4ebc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a568154f17a2a8eeaebba7d766d2b4ebc">&#9670;&nbsp;</a></span>UpdateProject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../d5/ddf/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_project_details.html">ProjectDetails</a>&gt; IBM.Watson.Discovery.v2.IDiscoveryService.UpdateProject </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#aee8c7e7016cdb42bb8856a9788fae254">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
 
 </div>
 </div>

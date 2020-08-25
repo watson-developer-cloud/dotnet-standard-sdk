@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
     public class TokenResult
     {
         /// <summary>
-        /// The part of speech of the token. For descriptions of the values, see [Universal Dependencies POS
+        /// The part of speech of the token. For more information about the values, see [Universal Dependencies POS
         /// tags](https://universaldependencies.org/u/pos/).
         /// </summary>
         public class PartOfSpeechEnumValue
@@ -103,7 +103,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
         }
 
         /// <summary>
-        /// The part of speech of the token. For descriptions of the values, see [Universal Dependencies POS
+        /// The part of speech of the token. For more information about the values, see [Universal Dependencies POS
         /// tags](https://universaldependencies.org/u/pos/).
         /// Constants for possible values can be found using TokenResult.PartOfSpeechEnumValue
         /// </summary>

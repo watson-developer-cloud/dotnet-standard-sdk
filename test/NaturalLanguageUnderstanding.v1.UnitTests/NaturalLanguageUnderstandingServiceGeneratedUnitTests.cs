@@ -88,7 +88,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
             var url = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_URL");
             System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_URL", null);
             NaturalLanguageUnderstandingService service = Substitute.For<NaturalLanguageUnderstandingService>("versionDate");
-            Assert.IsTrue(service.ServiceUrl == "https://gateway.watsonplatform.net/natural-language-understanding/api");
+            Assert.IsTrue(service.ServiceUrl == "https://api.us-south.natural-language-understanding.watson.cloud.ibm.com");
             System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_URL", url);
             System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_APIKEY", apikey);
         }

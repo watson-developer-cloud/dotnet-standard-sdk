@@ -320,5 +320,15 @@ namespace IBM.Watson.LanguageTranslator.v3.IntegrationTests
                 });
             }
         }
+
+        // [TestMethod]
+        public void ListLanguages_Success()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var listLanguagesResult = service.ListLanguages();
+
+            Assert.IsNotNull(listLanguagesResult.Response);
+            Assert.IsTrue(listLanguagesResult.Result._Languages.Count > 0);
+        }
     }
 }

@@ -17,7 +17,7 @@ environment:
         secure: Zkh0ZB9E5PB/Kq5maKln+aKSH0xqDjR2LTDaJRmMaUYVOV7nzYsON4KlkqCKCgGs #pragma: whitelist secret
     GITHUB_TOKEN:
         secure: +B2bs86RVtJtlbkB+cTf9bkqnNlFJi/PbBBPzR5jlUlLLZoOc+ZgqgQLwee4tCT+ #pragma: whitelist secret
-    IBM_CREDENTIALS_FILE: C:\projects\sdk-credentials\ibm-credentials.env
+    IBM_CREDENTIALS_FILE: C:/projects/sdk-credentials/ibm-credentials.env
 install:
 # Get the latest stable version of Node.js or io.js
 - ps: Install-Product node 12.13.0
@@ -59,7 +59,7 @@ before_build:
 - ps: >-
     if($env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null)
     {
-      git clone https://$env:CREDENTIALS_GITHUB_TOKEN@github.ibm.com/germanatt/sdk-credentials.git C:\projects\sdk-credentials -q
+      git clone https://$env:CREDENTIALS_GITHUB_TOKEN@github.ibm.com/germanatt/sdk-credentials.git C:/projects/sdk-credentials -q
     }
 
     dotnet restore

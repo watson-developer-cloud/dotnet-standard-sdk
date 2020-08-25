@@ -34,7 +34,7 @@ namespace IBM.Watson.Discovery.v1
     public partial class DiscoveryService : IBMService, IDiscoveryService
     {
         const string serviceName = "discovery";
-        private const string defaultServiceUrl = "https://gateway.watsonplatform.net/discovery/api";
+        private const string defaultServiceUrl = "https://api.us-south.discovery.watson.cloud.ibm.com";
         public string VersionDate { get; set; }
 
         public DiscoveryService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }

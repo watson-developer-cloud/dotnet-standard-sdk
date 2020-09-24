@@ -79,19 +79,6 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
         {
             VisualRecognitionService service = new VisualRecognitionService(null, new NoAuthAuthenticator());
         }
-
-        [TestMethod]
-        public void ConstructorNoUrl()
-        {
-            var apikey = System.Environment.GetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY");
-            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY", "apikey");
-            var url = System.Environment.GetEnvironmentVariable("VISUAL_RECOGNITION_URL");
-            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_URL", null);
-            VisualRecognitionService service = Substitute.For<VisualRecognitionService>("versionDate");
-            Assert.IsTrue(service.ServiceUrl == "https://api.us-south.visual-recognition.watson.cloud.ibm.com");
-            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_URL", url);
-            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY", apikey);
-        }
         #endregion
 
         [TestMethod]
@@ -104,7 +91,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var collectionIds = new List<string>() { "collectionIds0", "collectionIds1" };
             var features = new List<string>() { "features0", "features1" };
@@ -134,7 +121,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var name = "name";
             var description = "description";
@@ -164,7 +151,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
 
             var result = service.ListCollections();
@@ -181,7 +168,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var collectionId = "collectionId";
 
@@ -200,7 +187,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var collectionId = "collectionId";
             var name = "name";
@@ -232,7 +219,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var collectionId = "collectionId";
 
@@ -251,7 +238,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var collectionId = "collectionId";
             var imagesFile = new List<FileWithMetadata>()
@@ -281,7 +268,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var collectionId = "collectionId";
 
@@ -300,7 +287,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var collectionId = "collectionId";
             var imageId = "imageId";
@@ -320,7 +307,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var collectionId = "collectionId";
             var imageId = "imageId";
@@ -340,7 +327,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var collectionId = "collectionId";
             var imageId = "imageId";
@@ -361,7 +348,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var collectionId = "collectionId";
 
@@ -380,7 +367,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var collectionId = "collectionId";
             var imageId = "imageId";
@@ -408,7 +395,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var startTime = "startTime";
             var endTime = "endTime";
@@ -427,7 +414,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var customerId = "customerId";
 

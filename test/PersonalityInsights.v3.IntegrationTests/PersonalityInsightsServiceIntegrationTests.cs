@@ -23,6 +23,7 @@ using System.IO;
 using Newtonsoft.Json.Linq;
 using IBM.Cloud.SDK.Core.Util;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace IBM.Watson.PersonalityInsights.v3.IntegrationTests
 {
@@ -46,18 +47,8 @@ namespace IBM.Watson.PersonalityInsights.v3.IntegrationTests
         {
             string contentToProfile = "The IBM Watson™ Personality Insights service provides a Representational State Transfer (REST) Application Programming Interface (API) that enables applications to derive insights from social media, enterprise data, or other digital communications. The service uses linguistic analytics to infer individuals' intrinsic personality characteristics, including Big Five, Needs, and Values, from digital communications such as email, text messages, tweets, and forum posts. The service can automatically infer, from potentially noisy social media, portraits of individuals that reflect their personality characteristics. The service can report consumption preferences based on the results of its analysis, and for JSON content that is timestamped, it can report temporal behavior.";
 
-            Content content = new Content()
-            {
-                ContentItems = new List<ContentItem>()
-                {
-                    new ContentItem()
-                    {
-                        Contenttype = ContentItem.ContenttypeEnumValue.TEXT_PLAIN,
-                        Language = ContentItem.LanguageEnumValue.EN,
-                        Content = contentToProfile
-                    }
-                }
-            };
+            byte[] byteArray = Encoding.ASCII.GetBytes(contentToProfile);
+            MemoryStream content = new MemoryStream(byteArray);
 
             service.WithHeader("X-Watson-Test", "1");
             var result = service.Profile(
@@ -79,7 +70,7 @@ namespace IBM.Watson.PersonalityInsights.v3.IntegrationTests
         {
             string contentToProfile = "The IBM Watson™ Personality Insights service provides a Representational State Transfer (REST) Application Programming Interface (API) that enables applications to derive insights from social media, enterprise data, or other digital communications. The service uses linguistic analytics to infer individuals' intrinsic personality characteristics, including Big Five, Needs, and Values, from digital communications such as email, text messages, tweets, and forum posts. The service can automatically infer, from potentially noisy social media, portraits of individuals that reflect their personality characteristics. The service can report consumption preferences based on the results of its analysis, and for JSON content that is timestamped, it can report temporal behavior.";
 
-            Content content = new Content()
+            Content contentObj = new Content()
             {
                 ContentItems = new List<ContentItem>()
                 {
@@ -91,6 +82,9 @@ namespace IBM.Watson.PersonalityInsights.v3.IntegrationTests
                     }
                 }
             };
+
+            byte[] byteArray = Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(contentObj));
+            MemoryStream content = new MemoryStream(byteArray);
 
             service.WithHeader("X-Watson-Test", "1");
             var result = service.ProfileAsCsv(

@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2017, 2020.
+* (C) Copyright IBM Corp. 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ namespace IBM.Watson.SpeechToText.v1.Model
         /// `[["hello",0.0,1.2],["world",1.2,2.5]]`. Timestamps are returned only for the best alternative.
         /// </summary>
         [JsonProperty("timestamps", NullValueHandling = NullValueHandling.Ignore)]
-        public List<List<string>> Timestamps { get; set; }
+        public List<string> Timestamps { get; set; }
         /// <summary>
         /// A confidence score for each word of the transcript as a list of lists. Each inner list consists of two
         /// elements: the word and its confidence score in the range of 0.0 to 1.0, for example:
@@ -50,7 +50,7 @@ namespace IBM.Watson.SpeechToText.v1.Model
         /// with results marked as final.
         /// </summary>
         [JsonProperty("word_confidence", NullValueHandling = NullValueHandling.Ignore)]
-        public List<List<string>> WordConfidence { get; set; }
+        public List<string> WordConfidence { get; set; }
     }
 
 }

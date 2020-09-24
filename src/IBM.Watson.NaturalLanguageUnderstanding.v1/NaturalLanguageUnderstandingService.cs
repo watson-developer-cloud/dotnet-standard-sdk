@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2017, 2020.
+* (C) Copyright IBM Corp. 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,6 +15,10 @@
 *
 */
 
+/**
+* IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-7197cce3-20200922-152803
+*/
+ 
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -30,21 +34,22 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
 {
     public partial class NaturalLanguageUnderstandingService : IBMService, INaturalLanguageUnderstandingService
     {
-        const string serviceName = "natural_language_understanding";
+        const string defaultServiceName = "natural_language_understanding";
         private const string defaultServiceUrl = "https://api.us-south.natural-language-understanding.watson.cloud.ibm.com";
-        public string VersionDate { get; set; }
+        public string Version { get; set; }
 
-        public NaturalLanguageUnderstandingService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
-        public NaturalLanguageUnderstandingService(IClient httpClient) : base(serviceName, httpClient) { }
+        public NaturalLanguageUnderstandingService(string version) : this(version, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public NaturalLanguageUnderstandingService(string version, IAuthenticator authenticator) : this(version, defaultServiceName, authenticator) {}
+        public NaturalLanguageUnderstandingService(string version, string serviceName) : this(version, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public NaturalLanguageUnderstandingService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public NaturalLanguageUnderstandingService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
+        public NaturalLanguageUnderstandingService(string version, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
-            if (string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`version` is required");
             }
-
-            VersionDate = versionDate;
+            Version = version;
 
             if (string.IsNullOrEmpty(ServiceUrl))
             {
@@ -71,21 +76,44 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// detects the
         /// language](https://cloud.ibm.com/docs/natural-language-understanding?topic=natural-language-understanding-detectable-languages).
         /// </summary>
-        /// <param name="parameters">An object containing request parameters. The `features` object and one of the
-        /// `text`, `html`, or `url` attributes are required.</param>
+        /// <param name="features">Specific features to analyze the document for.</param>
+        /// <param name="text">The plain text to analyze. One of the `text`, `html`, or `url` parameters is required.
+        /// (optional)</param>
+        /// <param name="html">The HTML file to analyze. One of the `text`, `html`, or `url` parameters is required.
+        /// (optional)</param>
+        /// <param name="url">The webpage to analyze. One of the `text`, `html`, or `url` parameters is required.
+        /// (optional)</param>
+        /// <param name="clean">Set this to `false` to disable webpage cleaning. For more information about webpage
+        /// cleaning, see [Analyzing
+        /// webpages](https://cloud.ibm.com/docs/natural-language-understanding?topic=natural-language-understanding-analyzing-webpages).
+        /// (optional, default to true)</param>
+        /// <param name="xpath">An [XPath
+        /// query](https://cloud.ibm.com/docs/natural-language-understanding?topic=natural-language-understanding-analyzing-webpages#xpath)
+        /// to perform on `html` or `url` input. Results of the query will be appended to the cleaned webpage text
+        /// before it is analyzed. To analyze only the results of the XPath query, set the `clean` parameter to `false`.
+        /// (optional)</param>
+        /// <param name="fallbackToRaw">Whether to use raw HTML content if text cleaning fails. (optional, default to
+        /// true)</param>
+        /// <param name="returnAnalyzedText">Whether or not to return the analyzed text. (optional, default to
+        /// false)</param>
+        /// <param name="language">ISO 639-1 code that specifies the language of your text. This overrides automatic
+        /// language detection. Language support differs depending on the features you include in your analysis. For
+        /// more information, see [Language
+        /// support](https://cloud.ibm.com/docs/natural-language-understanding?topic=natural-language-understanding-language-support).
+        /// (optional)</param>
+        /// <param name="limitTextCharacters">Sets the maximum number of characters that are processed by the service.
+        /// (optional)</param>
         /// <returns><see cref="AnalysisResults" />AnalysisResults</returns>
         public DetailedResponse<AnalysisResults> Analyze(Features features, string text = null, string html = null, string url = null, bool? clean = null, string xpath = null, bool? fallbackToRaw = null, bool? returnAnalyzedText = null, string language = null, long? limitTextCharacters = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (features == null)
             {
                 throw new ArgumentNullException("`features` is required for `Analyze`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<AnalysisResults> result = null;
 
             try
@@ -95,8 +123,11 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/analyze");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -170,12 +201,10 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// <returns><see cref="ListModelsResults" />ListModelsResults</returns>
         public DetailedResponse<ListModelsResults> ListModels()
         {
-
-            if (string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(Version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`Version` is required");
             }
-
             DetailedResponse<ListModelsResults> result = null;
 
             try
@@ -185,8 +214,11 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/models");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("natural-language-understanding", "v1", "ListModels"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -215,6 +247,10 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// <returns><see cref="DeleteModelResults" />DeleteModelResults</returns>
         public DetailedResponse<DeleteModelResults> DeleteModel(string modelId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(modelId))
             {
                 throw new ArgumentNullException("`modelId` is required for `DeleteModel`");
@@ -223,12 +259,6 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
             {
                 modelId = Uri.EscapeDataString(modelId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<DeleteModelResults> result = null;
 
             try
@@ -238,8 +268,11 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/models/{modelId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("natural-language-understanding", "v1", "DeleteModel"));
                 restRequest.WithHeaders(customRequestHeaders);

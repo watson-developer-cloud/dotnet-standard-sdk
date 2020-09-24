@@ -226,26 +226,6 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Examples
             Console.WriteLine(result.Response);
         }
 
-        public void AnalyzeWithMetadata()
-        {
-            IamAuthenticator authenticator = new IamAuthenticator(
-                   apikey: "{apikey}"
-                   );
-
-            NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService("2019-07-12", authenticator);
-            service.SetServiceUrl("{serviceUrl}");
-
-            var result = service.Analyze(
-                url: "www.ibm.com",
-                features: new Features()
-                {
-                    Metadata = new MetadataOptions()
-                }
-                );
-
-            Console.WriteLine(result.Response);
-        }
-
         public void AnalyzeWithRelations()
         {
             IamAuthenticator authenticator = new IamAuthenticator(

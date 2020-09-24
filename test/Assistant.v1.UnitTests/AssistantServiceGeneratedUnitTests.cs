@@ -79,19 +79,6 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         {
             AssistantService service = new AssistantService(null, new NoAuthAuthenticator());
         }
-
-        [TestMethod]
-        public void ConstructorNoUrl()
-        {
-            var apikey = System.Environment.GetEnvironmentVariable("ASSISTANT_APIKEY");
-            System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", "apikey");
-            var url = System.Environment.GetEnvironmentVariable("ASSISTANT_SERVICE_URL");
-            System.Environment.SetEnvironmentVariable("ASSISTANT_SERVICE_URL", null);
-            AssistantService service = Substitute.For<AssistantService>("versionDate");
-            Assert.IsTrue(service.ServiceUrl == "https://api.us-south.assistant.watson.cloud.ibm.com");
-            System.Environment.SetEnvironmentVariable("ASSISTANT_SERVICE_URL", url);
-            System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", apikey);
-        }
         #endregion
 
         [TestMethod]
@@ -104,7 +91,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var input = new MessageInput();
@@ -154,7 +141,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             long? pageLimit = 1;
             var sort = "sort";
@@ -175,7 +162,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var name = "name";
             var description = "description";
@@ -248,7 +235,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var export = false;
@@ -270,7 +257,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var name = "name";
@@ -346,7 +333,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
 
@@ -365,7 +352,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var export = false;
@@ -389,7 +376,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var intent = "intent";
@@ -426,7 +413,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var intent = "intent";
@@ -448,7 +435,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var intent = "intent";
@@ -486,7 +473,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var intent = "intent";
@@ -506,7 +493,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var intent = "intent";
@@ -530,7 +517,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var intent = "intent";
@@ -563,7 +550,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var intent = "intent";
@@ -585,7 +572,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var intent = "intent";
@@ -619,7 +606,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var intent = "intent";
@@ -640,7 +627,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             long? pageLimit = 1;
@@ -663,7 +650,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var text = "text";
@@ -690,7 +677,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var text = "text";
@@ -711,7 +698,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var text = "text";
@@ -739,7 +726,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var text = "text";
@@ -759,7 +746,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var export = false;
@@ -783,7 +770,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var entity = "entity";
@@ -828,7 +815,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var entity = "entity";
@@ -850,7 +837,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var entity = "entity";
@@ -896,7 +883,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var entity = "entity";
@@ -916,7 +903,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var entity = "entity";
@@ -938,7 +925,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var entity = "entity";
@@ -963,7 +950,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var entity = "entity";
@@ -1012,7 +999,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var entity = "entity";
@@ -1035,7 +1022,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var entity = "entity";
@@ -1085,7 +1072,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var entity = "entity";
@@ -1106,7 +1093,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var entity = "entity";
@@ -1131,7 +1118,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var entity = "entity";
@@ -1160,7 +1147,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var entity = "entity";
@@ -1183,7 +1170,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var entity = "entity";
@@ -1213,7 +1200,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var entity = "entity";
@@ -1235,7 +1222,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             long? pageLimit = 1;
@@ -1258,7 +1245,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var dialogNode = "dialogNode";
@@ -1374,7 +1361,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var dialogNode = "dialogNode";
@@ -1395,7 +1382,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var dialogNode = "dialogNode";
@@ -1512,7 +1499,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var dialogNode = "dialogNode";
@@ -1532,7 +1519,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var workspaceId = "workspaceId";
             var sort = "sort";
@@ -1555,7 +1542,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var filter = "filter";
             var sort = "sort";
@@ -1576,7 +1563,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var customerId = "customerId";
 

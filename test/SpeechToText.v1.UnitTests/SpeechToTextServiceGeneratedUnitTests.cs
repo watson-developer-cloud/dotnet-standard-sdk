@@ -73,19 +73,6 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
             SpeechToTextService service = new SpeechToTextService(new NoAuthAuthenticator());
             Assert.IsNotNull(service);
         }
-
-        [TestMethod]
-        public void ConstructorNoUrl()
-        {
-            var apikey = System.Environment.GetEnvironmentVariable("SPEECH_TO_TEXT_APIKEY");
-            System.Environment.SetEnvironmentVariable("SPEECH_TO_TEXT_APIKEY", "apikey");
-            var url = System.Environment.GetEnvironmentVariable("SPEECH_TO_TEXT_URL");
-            System.Environment.SetEnvironmentVariable("SPEECH_TO_TEXT_URL", null);
-            SpeechToTextService service = Substitute.For<SpeechToTextService>();
-            Assert.IsTrue(service.ServiceUrl == "https://api.us-south.speech-to-text.watson.cloud.ibm.com");
-            System.Environment.SetEnvironmentVariable("SPEECH_TO_TEXT_URL", url);
-            System.Environment.SetEnvironmentVariable("SPEECH_TO_TEXT_APIKEY", apikey);
-        }
         #endregion
 
         [TestMethod]
@@ -128,7 +115,7 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var audio = new byte[4];
+            var audio = new MemoryStream();
             var contentType = "contentType";
             var model = "model";
             var languageCustomizationId = "languageCustomizationId";
@@ -152,7 +139,8 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             var result = service.Recognize(audio: audio, contentType: contentType, model: model, languageCustomizationId: languageCustomizationId, acousticCustomizationId: acousticCustomizationId, baseModelVersion: baseModelVersion, customizationWeight: customizationWeight, inactivityTimeout: inactivityTimeout, keywords: keywords, keywordsThreshold: keywordsThreshold, maxAlternatives: maxAlternatives, wordAlternativesThreshold: wordAlternativesThreshold, wordConfidence: wordConfidence, timestamps: timestamps, profanityFilter: profanityFilter, smartFormatting: smartFormatting, speakerLabels: speakerLabels, customizationId: customizationId, grammarName: grammarName, redaction: redaction, audioMetrics: audioMetrics);
 
-            var audioString = System.Text.Encoding.Default.GetString(audio);
+            StreamReader reader = new StreamReader(audio);
+            string audioString = reader.ReadToEnd();
             request.Received().WithBodyContent(Arg.Is<ByteArrayContent>(x => x.ReadAsStringAsync().Result.Equals(audioString)));
         }
         [TestMethod]
@@ -196,7 +184,7 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             SpeechToTextService service = new SpeechToTextService(client);
 
-            var audio = new byte[4];
+            var audio = new MemoryStream();
             var contentType = "contentType";
             var model = "model";
             var callbackUrl = "callbackUrl";
@@ -226,7 +214,8 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             var result = service.CreateJob(audio: audio, contentType: contentType, model: model, callbackUrl: callbackUrl, events: events, userToken: userToken, resultsTtl: resultsTtl, languageCustomizationId: languageCustomizationId, acousticCustomizationId: acousticCustomizationId, baseModelVersion: baseModelVersion, customizationWeight: customizationWeight, inactivityTimeout: inactivityTimeout, keywords: keywords, keywordsThreshold: keywordsThreshold, maxAlternatives: maxAlternatives, wordAlternativesThreshold: wordAlternativesThreshold, wordConfidence: wordConfidence, timestamps: timestamps, profanityFilter: profanityFilter, smartFormatting: smartFormatting, speakerLabels: speakerLabels, customizationId: customizationId, grammarName: grammarName, redaction: redaction, processingMetrics: processingMetrics, processingMetricsInterval: processingMetricsInterval, audioMetrics: audioMetrics);
 
-            var audioString = System.Text.Encoding.Default.GetString(audio);
+            StreamReader reader = new StreamReader(audio);
+            string audioString = reader.ReadToEnd();
             request.Received().WithBodyContent(Arg.Is<ByteArrayContent>(x => x.ReadAsStringAsync().Result.Equals(audioString)));
         }
         [TestMethod]
@@ -617,7 +606,7 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             var customizationId = "customizationId";
             var grammarName = "grammarName";
-            var grammarFile = "grammarFile";
+            var grammarFile = new MemoryStream();
             var contentType = "contentType";
             var allowOverwrite = false;
 
@@ -818,14 +807,15 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
 
             var customizationId = "customizationId";
             var audioName = "audioName";
-            var audioResource = new byte[4];
+            var audioResource = new MemoryStream();
             var contentType = "contentType";
             var containedContentType = "containedContentType";
             var allowOverwrite = false;
 
             var result = service.AddAudio(customizationId: customizationId, audioName: audioName, audioResource: audioResource, contentType: contentType, containedContentType: containedContentType, allowOverwrite: allowOverwrite);
 
-            var audioResourceString = System.Text.Encoding.Default.GetString(audioResource);
+            StreamReader reader = new StreamReader(audioResource);
+            var audioResourceString = reader.ReadToEnd();
             request.Received().WithBodyContent(Arg.Is<ByteArrayContent>(x => x.ReadAsStringAsync().Result.Equals(audioResourceString)));
             client.Received().PostAsync($"{service.ServiceUrl}/v1/acoustic_customizations/{customizationId}/audio/{audioName}");
         }

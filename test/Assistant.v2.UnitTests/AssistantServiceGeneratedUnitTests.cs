@@ -79,19 +79,6 @@ namespace IBM.Watson.Assistant.v2.UnitTests
         {
             AssistantService service = new AssistantService(null, new NoAuthAuthenticator());
         }
-
-        [TestMethod]
-        public void ConstructorNoUrl()
-        {
-            var url = System.Environment.GetEnvironmentVariable("ASSISTANT_URL");
-            var apikey = System.Environment.GetEnvironmentVariable("ASSISTANT_APIKEY");
-            System.Environment.SetEnvironmentVariable("ASSISTANT_URL", null);
-            System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", "apikey");
-            AssistantService service = Substitute.For<AssistantService>("versionDate");
-            Assert.IsTrue(service.ServiceUrl == "https://api.us-south.assistant.watson.cloud.ibm.com");
-            System.Environment.SetEnvironmentVariable("ASSISTANT_URL", url);
-            System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", apikey);
-        }
         #endregion
 
         [TestMethod]
@@ -104,7 +91,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var assistantId = "assistantId";
 
@@ -123,7 +110,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var assistantId = "assistantId";
             var sessionId = "sessionId";
@@ -143,7 +130,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var assistantId = "assistantId";
             var sessionId = "sessionId";

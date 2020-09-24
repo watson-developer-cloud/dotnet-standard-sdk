@@ -91,7 +91,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var projectId = "projectId";
 
@@ -110,7 +110,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var projectId = "projectId";
             var collectionIds = new List<string>();
@@ -196,7 +196,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var projectId = "projectId";
             var prefix = "prefix";
@@ -219,7 +219,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var projectId = "projectId";
             var filter = "filter";
@@ -243,7 +243,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var projectId = "projectId";
             var collectionIds = new List<string>() { "collectionIds0", "collectionIds1" };
@@ -263,7 +263,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var projectId = "projectId";
 
@@ -282,7 +282,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var projectId = "projectId";
             var collectionId = "collectionId";
@@ -307,7 +307,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var projectId = "projectId";
             var collectionId = "collectionId";
@@ -333,7 +333,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var projectId = "projectId";
             var collectionId = "collectionId";
@@ -355,7 +355,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var projectId = "projectId";
 
@@ -374,7 +374,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var projectId = "projectId";
 
@@ -393,7 +393,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var projectId = "projectId";
             var naturalLanguageQuery = "naturalLanguageQuery";
@@ -430,7 +430,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var projectId = "projectId";
             var queryId = "queryId";
@@ -450,7 +450,7 @@ namespace IBM.Watson.Discovery.v2.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var projectId = "projectId";
             var queryId = "queryId";

@@ -149,20 +149,27 @@ namespace IBM.Watson.SpeechToText.v1.Examples
             SpeechToTextService service = new SpeechToTextService(authenticator);
             service.SetServiceUrl("{serviceUrl}");
 
-            var result = service.Recognize(
-                audio: File.ReadAllBytes("audio-file2.flac"),
-                contentType: "audio/flac",
-                wordAlternativesThreshold: 0.9f,
-                keywords: new List<string>()
+            using (FileStream fs = File.OpenRead("audio-file2.flac"))
+            {
+                using (MemoryStream ms = new MemoryStream())
                 {
-                    "colorado",
-                    "tornado",
-                    "tornadoes"
-                },
-                keywordsThreshold: 0.5f
-                );
+                    fs.CopyTo(ms);
+                    var result = service.Recognize(
+                        audio: ms,
+                        contentType: "audio/flac",
+                        wordAlternativesThreshold: 0.9f,
+                        keywords: new List<string>()
+                        {
+                            "colorado",
+                            "tornado",
+                            "tornadoes"
+                        },
+                        keywordsThreshold: 0.5f
+                        );
 
-            Console.WriteLine(result.Response);
+                    Console.WriteLine(result.Response);
+                }
+            }
         }
         #endregion
 
@@ -206,17 +213,25 @@ namespace IBM.Watson.SpeechToText.v1.Examples
             SpeechToTextService service = new SpeechToTextService(authenticator);
             service.SetServiceUrl("{serviceUrl}");
 
-            var result = service.CreateJob(
-                callbackUrl: "http://{user_callback_path}/job_results",
-                userToken: "job25",
-                audio: File.ReadAllBytes("audio-file.flac"),
-                contentType: "audio/flac",
-                timestamps: true
-                );
+            using (FileStream fs = File.OpenRead("list.abnf"))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    fs.CopyTo(ms);
 
-            Console.WriteLine(result.Response);
+                    var result = service.CreateJob(
+                        callbackUrl: "http://{user_callback_path}/job_results",
+                        userToken: "job25",
+                        audio: ms,
+                        contentType: "audio/flac",
+                        timestamps: true
+                        );
 
-            jobId = result.Result.Id;
+                    Console.WriteLine(result.Response);
+
+                    jobId = result.Result.Id;
+                }
+            }
         }
 
         public void CheckJobs()
@@ -584,14 +599,22 @@ namespace IBM.Watson.SpeechToText.v1.Examples
             SpeechToTextService service = new SpeechToTextService(authenticator);
             service.SetServiceUrl("{serviceUrl}");
 
-            var result = service.AddGrammar(
-                customizationId: "{customizationId}",
-                grammarFile: File.ReadAllText("list.abnf"),
-                grammarName: "list-abnf",
-                contentType: "application/srgs"
-                );
+            using (FileStream fs = File.OpenRead("list.abnf"))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    fs.CopyTo(ms);
 
-            Console.WriteLine(result.Response);
+                    var result = service.AddGrammar(
+                        customizationId: "{customizationId}",
+                        grammarFile: ms,
+                        grammarName: "list-abnf",
+                        contentType: "application/srgs"
+                        );
+
+                    Console.WriteLine(result.Response);
+                }
+            }
             // Poll for language model status.
         }
 
@@ -765,14 +788,22 @@ namespace IBM.Watson.SpeechToText.v1.Examples
             SpeechToTextService service = new SpeechToTextService(authenticator);
             service.SetServiceUrl("{serviceUrl}");
 
-            var result = service.AddAudio(
-                customizationId: "{customizationId}",
-                contentType: "audio/wav",
-                audioResource: File.ReadAllBytes("audio1.wav"),
-                audioName: "audio1"
-                );
+            using (FileStream fs = File.OpenRead("list.abnf"))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    fs.CopyTo(ms);
+                    var result = service.AddAudio(
+                        customizationId: "{customizationId}",
+                        contentType: "audio/wav",
+                        audioResource: ms,
+                        audioName: "audio1"
+                        );
 
-            Console.WriteLine(result.Response);
+                    Console.WriteLine(result.Response);
+                }
+            }
+
             // Poll for language model status.
         }
 

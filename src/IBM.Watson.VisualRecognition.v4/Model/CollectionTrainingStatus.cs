@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,14 +15,20 @@
 *
 */
 
-namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
+using Newtonsoft.Json;
+
+namespace IBM.Watson.VisualRecognition.v4.Model
 {
     /// <summary>
-    /// Returns information from the document, including author name, title, RSS/ATOM feeds, prominent page image, and
-    /// publication date. Supports URL and HTML input types only.
+    /// Training status information for the collection.
     /// </summary>
-    public class MetadataOptions
+    public class CollectionTrainingStatus
     {
+        /// <summary>
+        /// Training status for the objects in the collection.
+        /// </summary>
+        [JsonProperty("objects", NullValueHandling = NullValueHandling.Ignore)]
+        public ObjectTrainingStatus Objects { get; set; }
     }
 
 }

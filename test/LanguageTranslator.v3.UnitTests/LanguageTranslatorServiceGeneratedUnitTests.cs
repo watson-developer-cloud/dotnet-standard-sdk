@@ -79,19 +79,6 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
         {
             LanguageTranslatorService service = new LanguageTranslatorService(null, new NoAuthAuthenticator());
         }
-
-        [TestMethod]
-        public void ConstructorNoUrl()
-        {
-            var apikey = System.Environment.GetEnvironmentVariable("LANGUAGE_TRANSLATOR_APIKEY");
-            System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_APIKEY", "apikey");
-            var url = System.Environment.GetEnvironmentVariable("LANGUAGE_TRANSLATOR_URL");
-            System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_URL", null);
-            LanguageTranslatorService service = Substitute.For<LanguageTranslatorService>("versionDate");
-            Assert.IsTrue(service.ServiceUrl == "https://api.us-south.language-translator.watson.cloud.ibm.com");
-            System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_URL", url);
-            System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_APIKEY", apikey);
-        }
         #endregion
 
         [TestMethod]
@@ -104,7 +91,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             LanguageTranslatorService service = new LanguageTranslatorService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var text = new List<string>();
             var modelId = "modelId";
@@ -144,7 +131,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             LanguageTranslatorService service = new LanguageTranslatorService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
 
             var result = service.ListIdentifiableLanguages();
@@ -161,14 +148,13 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             LanguageTranslatorService service = new LanguageTranslatorService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var text = "text";
 
             var result = service.Identify(text: text);
 
             request.Received().WithArgument("version", versionDate);
-            request.Received().WithBodyContent(Arg.Is<StringContent>(x => x.ReadAsStringAsync().Result.Equals(text)));
         }
         [TestMethod]
         public void ListModels_Success()
@@ -180,7 +166,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             LanguageTranslatorService service = new LanguageTranslatorService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var source = "source";
             var target = "target";
@@ -200,7 +186,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             LanguageTranslatorService service = new LanguageTranslatorService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var baseModelId = "baseModelId";
             var forcedGlossary = new MemoryStream();
@@ -221,7 +207,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             LanguageTranslatorService service = new LanguageTranslatorService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var modelId = "modelId";
 
@@ -240,7 +226,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             LanguageTranslatorService service = new LanguageTranslatorService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var modelId = "modelId";
 
@@ -259,7 +245,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             LanguageTranslatorService service = new LanguageTranslatorService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
 
             var result = service.ListDocuments();
@@ -276,7 +262,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             LanguageTranslatorService service = new LanguageTranslatorService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var file = new MemoryStream();
             var filename = "filename";
@@ -300,7 +286,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             LanguageTranslatorService service = new LanguageTranslatorService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var documentId = "documentId";
 
@@ -319,7 +305,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             LanguageTranslatorService service = new LanguageTranslatorService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var documentId = "documentId";
 
@@ -338,7 +324,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             LanguageTranslatorService service = new LanguageTranslatorService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var documentId = "documentId";
             var accept = "accept";

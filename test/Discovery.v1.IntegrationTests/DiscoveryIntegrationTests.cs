@@ -422,7 +422,6 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             Assert.IsNotNull(queryResultTimeslice.Result.Aggregations);
             Assert.IsTrue((queryResultTimeslice.Result.Aggregations[0] as Timeslice).Field == "product.sales");
             Assert.IsTrue((queryResultTimeslice.Result.Aggregations[0] as Timeslice).Interval == "2d");
-            Assert.IsTrue((queryResultTimeslice.Result.Aggregations[0] as Timeslice).Anomaly == true);
 
             service.WithHeader("X-Watson-Test", "1");
             var queryResultTerm = service.Query(

@@ -73,19 +73,6 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1.UnitTests
             NaturalLanguageClassifierService service = new NaturalLanguageClassifierService(new NoAuthAuthenticator());
             Assert.IsNotNull(service);
         }
-
-        [TestMethod]
-        public void ConstructorNoUrl()
-        {
-            var apikey = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_APIKEY");
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_APIKEY", "apikey");
-            var url = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_URL");
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_URL", null);
-            NaturalLanguageClassifierService service = Substitute.For<NaturalLanguageClassifierService>();
-            Assert.IsTrue(service.ServiceUrl == "https://api.us-south.natural-language-classifier.watson.cloud.ibm.com");
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_URL", url);
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_CLASSIFIER_APIKEY", apikey);
-        }
         #endregion
 
         [TestMethod]

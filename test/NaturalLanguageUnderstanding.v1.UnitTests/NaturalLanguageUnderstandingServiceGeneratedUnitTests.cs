@@ -79,19 +79,6 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
         {
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(null, new NoAuthAuthenticator());
         }
-
-        [TestMethod]
-        public void ConstructorNoUrl()
-        {
-            var apikey = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_APIKEY");
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_APIKEY", "apikey");
-            var url = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_URL");
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_URL", null);
-            NaturalLanguageUnderstandingService service = Substitute.For<NaturalLanguageUnderstandingService>("versionDate");
-            Assert.IsTrue(service.ServiceUrl == "https://api.us-south.natural-language-understanding.watson.cloud.ibm.com");
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_URL", url);
-            System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_APIKEY", apikey);
-        }
         #endregion
 
         [TestMethod]
@@ -104,7 +91,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
 
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var features = new Features();
             var text = "text";
@@ -165,7 +152,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
 
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
 
             var result = service.ListModels();
@@ -182,7 +169,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
 
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var modelId = "modelId";
 

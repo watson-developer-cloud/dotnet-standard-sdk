@@ -30,6 +30,7 @@ using IBM.Cloud.SDK.Core.Http.Exceptions;
 using IBM.Cloud.SDK.Core.Authentication.NoAuth;
 using IBM.Watson.ToneAnalyzer.v3.Model;
 using IBM.Cloud.SDK.Core.Model;
+using System.Text;
 
 namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
 {
@@ -79,19 +80,6 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
         {
             ToneAnalyzerService service = new ToneAnalyzerService(null, new NoAuthAuthenticator());
         }
-
-        [TestMethod]
-        public void ConstructorNoUrl()
-        {
-            var apikey = System.Environment.GetEnvironmentVariable("TONE_ANALYZER_APIKEY");
-            System.Environment.SetEnvironmentVariable("TONE_ANALYZER_APIKEY", "apikey");
-            var url = System.Environment.GetEnvironmentVariable("TONE_ANALYZER_URL");
-            System.Environment.SetEnvironmentVariable("TONE_ANALYZER_URL", null);
-            ToneAnalyzerService service = Substitute.For<ToneAnalyzerService>("versionDate");
-            Assert.IsTrue(service.ServiceUrl == "https://api.us-south.tone-analyzer.watson.cloud.ibm.com");
-            System.Environment.SetEnvironmentVariable("TONE_ANALYZER_URL", url);
-            System.Environment.SetEnvironmentVariable("TONE_ANALYZER_APIKEY", apikey);
-        }
         #endregion
 
         [TestMethod]
@@ -104,9 +92,10 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
 
             ToneAnalyzerService service = new ToneAnalyzerService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
-            var toneInput = new ToneInput();
+            byte[] byteArray = Encoding.ASCII.GetBytes("tone input");
+            MemoryStream toneInput = new MemoryStream(byteArray);
             var contentType = "contentType";
             var sentences = false;
             var tones = new List<string>() { "tones0", "tones1" };
@@ -118,7 +107,6 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
             JObject bodyObject = new JObject();
             var json = JsonConvert.SerializeObject(bodyObject);
             request.Received().WithArgument("version", versionDate);
-            request.Received().WithBodyContent(Arg.Is<StringContent>(x => x.ReadAsStringAsync().Result.Equals(json)));
         }
         [TestMethod]
         public void ToneChat_Success()
@@ -130,7 +118,7 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
 
             ToneAnalyzerService service = new ToneAnalyzerService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var utterances = new List<Utterance>();
             var contentLanguage = "contentLanguage";

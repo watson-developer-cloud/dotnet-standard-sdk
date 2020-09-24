@@ -79,19 +79,6 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
         {
             VisualRecognitionService service = new VisualRecognitionService(null, new NoAuthAuthenticator());
         }
-
-        [TestMethod]
-        public void ConstructorNoUrl()
-        {
-            var apikey = System.Environment.GetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY");
-            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY", "apikey");
-            var url = System.Environment.GetEnvironmentVariable("VISUAL_RECOGNITION_URL");
-            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_URL", null);
-            VisualRecognitionService service = Substitute.For<VisualRecognitionService>("versionDate");
-            Assert.IsTrue(service.ServiceUrl == "https://api.us-south.visual-recognition.watson.cloud.ibm.com");
-            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_URL", url);
-            System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY", apikey);
-        }
         #endregion
 
         [TestMethod]
@@ -104,7 +91,7 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var imagesFile = new MemoryStream();
             var imagesFilename = "imagesFilename";
@@ -129,7 +116,7 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var name = "name";
             var positiveExamples = new Dictionary<string, System.IO.MemoryStream>();
@@ -151,7 +138,7 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var verbose = false;
 
@@ -169,7 +156,7 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var classifierId = "classifierId";
 
@@ -188,7 +175,7 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var classifierId = "classifierId";
             var positiveExamples = new Dictionary<string, System.IO.MemoryStream>();
@@ -211,7 +198,7 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var classifierId = "classifierId";
 
@@ -230,7 +217,7 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var classifierId = "classifierId";
 
@@ -249,7 +236,7 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var customerId = "customerId";
 

@@ -248,79 +248,87 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
             //    );
             //Assert.IsNotNull(upgradeLanguageModelResult);
 
-            service.WithHeader("X-Watson-Test", "1");
-            var listGrammarsResult = service.ListGrammars(customizationId: customizationId);
-            service.WithHeader("X-Watson-Test", "1");
-            var addGrammarResult = service.AddGrammar(
-                customizationId: customizationId,
-                grammarName: grammarName,
-                grammarFile: File.ReadAllText(grammarPath),
-                contentType: grammarsContentType
-                );
-            service.WithHeader("X-Watson-Test", "1");
-            var getGrammarResult = service.GetGrammar(
-                customizationId: customizationId,
-                grammarName: grammarName
-                );
+            using (FileStream fs = File.OpenRead(grammarPath))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    fs.CopyTo(ms);
 
-            CheckCustomizationStatus(
-                customizationId: customizationId
-                );
-            autoEvent.WaitOne();
+                    service.WithHeader("X-Watson-Test", "1");
+                    var listGrammarsResult = service.ListGrammars(customizationId: customizationId);
+                    service.WithHeader("X-Watson-Test", "1");
+                    var addGrammarResult = service.AddGrammar(
+                        customizationId: customizationId,
+                        grammarName: grammarName,
+                        grammarFile: ms,
+                        contentType: grammarsContentType
+                        );
+                    service.WithHeader("X-Watson-Test", "1");
+                    var getGrammarResult = service.GetGrammar(
+                        customizationId: customizationId,
+                        grammarName: grammarName
+                        );
 
-            service.WithHeader("X-Watson-Test", "1");
-            var deleteGrammarResult = service.DeleteGrammar(
-                customizationId: customizationId,
-                grammarName: grammarName
-                );
+                    CheckCustomizationStatus(
+                        customizationId: customizationId
+                        );
+                    autoEvent.WaitOne();
 
-            service.WithHeader("X-Watson-Test", "1");
-            var deleteCustomWordResults = service.DeleteWord(
-                customizationId: customizationId,
-                wordName: "csharp"
-                );
+                    service.WithHeader("X-Watson-Test", "1");
+                    var deleteGrammarResult = service.DeleteGrammar(
+                        customizationId: customizationId,
+                        grammarName: grammarName
+                        );
 
-            service.WithHeader("X-Watson-Test", "1");
-            var deleteCorpusResults = service.DeleteCorpus(
-                customizationId: customizationId,
-                corpusName: corpusName
-                );
+                    service.WithHeader("X-Watson-Test", "1");
+                    var deleteCustomWordResults = service.DeleteWord(
+                        customizationId: customizationId,
+                        wordName: "csharp"
+                        );
 
-            service.WithHeader("X-Watson-Test", "1");
-            var resetLanguageModelResult = service.ResetLanguageModel(
-                customizationId: customizationId
-                );
-            Assert.IsNotNull(resetLanguageModelResult);
+                    service.WithHeader("X-Watson-Test", "1");
+                    var deleteCorpusResults = service.DeleteCorpus(
+                        customizationId: customizationId,
+                        corpusName: corpusName
+                        );
 
-            service.WithHeader("X-Watson-Test", "1");
-            var deleteLanguageModelResults = service.DeleteLanguageModel(
-                customizationId: customizationId
-                );
+                    service.WithHeader("X-Watson-Test", "1");
+                    var resetLanguageModelResult = service.ResetLanguageModel(
+                        customizationId: customizationId
+                        );
+                    Assert.IsNotNull(resetLanguageModelResult);
 
-            Assert.IsNotNull(deleteGrammarResult);
-            Assert.IsNotNull(getGrammarResult);
-            Assert.IsTrue(getGrammarResult.Result.Name == grammarName);
-            Assert.IsNotNull(addGrammarResult);
-            Assert.IsNotNull(listGrammarsResult);
-            Assert.IsNotNull(deleteCustomWordResults);
-            Assert.IsNotNull(deleteCorpusResults);
-            Assert.IsNotNull(deleteLanguageModelResults);
-            Assert.IsNotNull(getCustomWordResult);
-            Assert.IsTrue(getCustomWordResult.Result._Word == "dotnet");
-            Assert.IsNotNull(addCustomWordResult);
-            Assert.IsNotNull(addCustomWordsResult);
-            Assert.IsNotNull(listCustomWordsResult);
-            Assert.IsNotNull(listCustomWordsResult.Result._Words);
-            Assert.IsNotNull(getCorpusResults);
-            Assert.IsTrue(getCorpusResults.Result.Name == corpusName);
-            Assert.IsNotNull(addCorpusResults);
-            Assert.IsNotNull(listCorporaResults);
-            Assert.IsNotNull(listCorporaResults.Result._Corpora);
-            Assert.IsNotNull(getLanguageModelResult);
-            Assert.IsTrue(getLanguageModelResult.Result.CustomizationId == customizationId);
-            Assert.IsNotNull(createLanguageModelResult);
-            Assert.IsNotNull(listLanguageModelsResult);
-            Assert.IsNotNull(listLanguageModelsResult.Result.Customizations);
+                    service.WithHeader("X-Watson-Test", "1");
+                    var deleteLanguageModelResults = service.DeleteLanguageModel(
+                        customizationId: customizationId
+                        );
+
+                    Assert.IsNotNull(deleteGrammarResult);
+                    Assert.IsNotNull(getGrammarResult);
+                    Assert.IsTrue(getGrammarResult.Result.Name == grammarName);
+                    Assert.IsNotNull(addGrammarResult);
+                    Assert.IsNotNull(listGrammarsResult);
+                    Assert.IsNotNull(deleteCustomWordResults);
+                    Assert.IsNotNull(deleteCorpusResults);
+                    Assert.IsNotNull(deleteLanguageModelResults);
+                    Assert.IsNotNull(getCustomWordResult);
+                    Assert.IsTrue(getCustomWordResult.Result._Word == "dotnet");
+                    Assert.IsNotNull(addCustomWordResult);
+                    Assert.IsNotNull(addCustomWordsResult);
+                    Assert.IsNotNull(listCustomWordsResult);
+                    Assert.IsNotNull(listCustomWordsResult.Result._Words);
+                    Assert.IsNotNull(getCorpusResults);
+                    Assert.IsTrue(getCorpusResults.Result.Name == corpusName);
+                    Assert.IsNotNull(addCorpusResults);
+                    Assert.IsNotNull(listCorporaResults);
+                    Assert.IsNotNull(listCorporaResults.Result._Corpora);
+                    Assert.IsNotNull(getLanguageModelResult);
+                    Assert.IsTrue(getLanguageModelResult.Result.CustomizationId == customizationId);
+                    Assert.IsNotNull(createLanguageModelResult);
+                    Assert.IsNotNull(listLanguageModelsResult);
+                    Assert.IsNotNull(listLanguageModelsResult.Result.Customizations);
+                }
+            }
         }
         #endregion
 
@@ -501,7 +509,7 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
             addAudioResult = service.AddAudio(
                 customizationId: acousticCustomizationId,
                 audioName: acousticResourceName,
-                audioResource: acousticResourceData,
+                audioResource: new MemoryStream(acousticResourceData),
                 contentType: acousticResourceMimeType,
                 allowOverwrite: true
                 );
@@ -574,19 +582,25 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void TestRecognize_Success()
         {
-            var testAudio = File.ReadAllBytes(testAudioPath);
-            service.WithHeader("X-Watson-Test", "1");
-            var recognizeResult = service.Recognize(
-                audio: testAudio,
-                contentType: "audio/wav",
-                endOfPhraseSilenceTime: 0.4,
-                splitTranscriptAtPhraseEnd: true,
-                speechDetectorSensitivity: 0.5f,
-                backgroundAudioSuppression: 0.5f
-                );
-            Assert.IsNotNull(recognizeResult.Result);
-            Assert.IsNotNull(recognizeResult.Result.Results);
-            Assert.IsTrue(recognizeResult.Result.Results.Count > 1);
+            using (FileStream fs = File.OpenRead(testAudioPath))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    fs.CopyTo(ms);
+                    service.WithHeader("X-Watson-Test", "1");
+                    var recognizeResult = service.Recognize(
+                        audio: ms,
+                        contentType: "audio/wav",
+                        endOfPhraseSilenceTime: 0.4,
+                        splitTranscriptAtPhraseEnd: true,
+                        speechDetectorSensitivity: 0.5f,
+                        backgroundAudioSuppression: 0.5f
+                        );
+                    Assert.IsNotNull(recognizeResult.Result);
+                    Assert.IsNotNull(recognizeResult.Result.Results);
+                    Assert.IsTrue(recognizeResult.Result.Results.Count > 1);
+                }
+            }
         }
         #endregion
 
@@ -594,34 +608,40 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
         [TestMethod]
         public void TestJobs_Success()
         {
-            var testAudio = File.ReadAllBytes(testAudioPath);
-            service.WithHeader("X-Watson-Test", "1");
-            var createJobResult = service.CreateJob(
-                audio: testAudio,
-                contentType: "audio/mp3",
-                endOfPhraseSilenceTime: 2,
-                splitTranscriptAtPhraseEnd: true,
-                speechDetectorSensitivity: 0.5f,
-                backgroundAudioSuppression: 0.5f
-                );
-            var jobId = createJobResult.Result.Id;
+            using (FileStream fs = File.OpenRead(testAudioPath))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    fs.CopyTo(ms);
+                    service.WithHeader("X-Watson-Test", "1");
+                    var createJobResult = service.CreateJob(
+                        audio: ms,
+                        contentType: "audio/mp3",
+                        endOfPhraseSilenceTime: 2,
+                        splitTranscriptAtPhraseEnd: true,
+                        speechDetectorSensitivity: 0.5f,
+                        backgroundAudioSuppression: 0.5f
+                        );
+                    var jobId = createJobResult.Result.Id;
 
-            service.WithHeader("X-Watson-Test", "1");
-            var checkJobsResult = service.CheckJobs();
-            service.WithHeader("X-Watson-Test", "1");
-            var checkJobResult = service.CheckJob(
-                id: jobId
-                );
+                    service.WithHeader("X-Watson-Test", "1");
+                    var checkJobsResult = service.CheckJobs();
+                    service.WithHeader("X-Watson-Test", "1");
+                    var checkJobResult = service.CheckJob(
+                        id: jobId
+                        );
 
-            service.WithHeader("X-Watson-Test", "1");
-            var deleteJobResult = service.DeleteJob(
-                id: jobId
-                );
-            Assert.IsNotNull(checkJobsResult);
-            Assert.IsNotNull(checkJobResult);
-            Assert.IsNotNull(createJobResult);
-            Assert.IsTrue(!string.IsNullOrEmpty(createJobResult.Result.Id));
-            Assert.IsNotNull(deleteJobResult);
+                    service.WithHeader("X-Watson-Test", "1");
+                    var deleteJobResult = service.DeleteJob(
+                        id: jobId
+                        );
+                    Assert.IsNotNull(checkJobsResult);
+                    Assert.IsNotNull(checkJobResult);
+                    Assert.IsNotNull(createJobResult);
+                    Assert.IsTrue(!string.IsNullOrEmpty(createJobResult.Result.Id));
+                    Assert.IsNotNull(deleteJobResult);
+                }
+            }
         }
         #endregion
 

@@ -24,6 +24,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using System.Text;
 
 namespace IBM.Watson.ToneAnalyzer.v3.IntegrationTests
 {
@@ -48,10 +49,8 @@ namespace IBM.Watson.ToneAnalyzer.v3.IntegrationTests
         [TestMethod]
         public void PostTone_Success()
         {
-            ToneInput toneInput = new ToneInput()
-            {
-                Text = inputText
-            };
+            byte[] byteArray = Encoding.ASCII.GetBytes(inputText);
+            MemoryStream toneInput = new MemoryStream(byteArray);
 
             service.WithHeader("X-Watson-Test", "1");
             var result = service.Tone(

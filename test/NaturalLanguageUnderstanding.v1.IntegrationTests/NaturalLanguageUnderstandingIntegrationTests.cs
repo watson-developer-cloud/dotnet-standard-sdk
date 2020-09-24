@@ -201,25 +201,6 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.IntegrationTests
         }
 
         [TestMethod]
-        public void AnalyzeWithMetadata()
-        {
-            service.WithHeader("X-Watson-Test", "1");
-            var result = service.Analyze(
-                url: "www.ibm.com",
-                features: new Features()
-                {
-                    Metadata = new MetadataOptions()
-                }
-                );
-
-            Assert.IsNotNull(result.Result);
-            Assert.IsNotNull(result.Result.Metadata);
-            Assert.IsNotNull(result.Result.Metadata.Title);
-            Assert.IsNotNull(result.Result.Metadata.PublicationDate);
-            Assert.IsTrue(result.Result.RetrievedUrl.Contains("www.ibm.com"));
-        }
-
-        [TestMethod]
         public void AnalyzeWithRelations()
         {
             service.WithHeader("X-Watson-Test", "1");
@@ -261,12 +242,12 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.IntegrationTests
         {
             service.WithHeader("X-Watson-Test", "1");
             var result = service.Analyze(
-                url: "www.wsj.com/news/markets",
+                url: "https://www.cnn.com/2020/09/08/tech/ibm-schlumberger-hybrid-cloud-partnership/index.html",
                 features: new Features()
                 {
                     Sentiment = new SentimentOptions()
                     {
-                        Targets = new List<string>() { "stocks" }
+                        Targets = new List<string>() { "ibm" }
                     }
                 }
                 );
@@ -275,9 +256,9 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.IntegrationTests
             Assert.IsNotNull(result.Result.Sentiment);
             Assert.IsNotNull(result.Result.Sentiment.Targets);
             Assert.IsTrue(result.Result.Sentiment.Targets.Count == 1);
-            Assert.IsTrue(result.Result.Sentiment.Targets[0].Text == "stocks");
+            Assert.IsTrue(result.Result.Sentiment.Targets[0].Text == "ibm");
             Assert.IsNotNull(result.Result.Sentiment.Document);
-            Assert.IsTrue(result.Result.RetrievedUrl.Contains("www.wsj.com"));
+            Assert.IsTrue(result.Result.RetrievedUrl.Contains("www.cnn.com"));
         }
 
         [TestMethod]

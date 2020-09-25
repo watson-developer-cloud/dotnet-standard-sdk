@@ -53,6 +53,36 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
             creds.TryGetValue("COLLECTION_ID", out collectionId);
         }
 
+        #region QueryPassages
+        [TestMethod]
+        public void TestQueryPassagesPerDocument()
+        {
+            var queryResult = service.Query(
+                projectId: projectId,
+                collectionIds: new List<string> { collectionId },
+                passages: new QueryLargePassages() { PerDocument = true },
+                query: "text:IBM",
+                count: 2);
+
+            Assert.IsNotNull(queryResult.Result.Results[0].DocumentPassages[0].PassageText);
+        }
+
+        [TestMethod]
+        public void TestQueryPassages()
+        {
+            var queryResult = service.Query(
+                projectId: projectId,
+                collectionIds: new List<string> { collectionId },
+                passages: new QueryLargePassages() { PerDocument = false },
+                query: "text:IBM",
+                count: 2);
+
+            Assert.IsNotNull(queryResult.Result.Passages[0].CollectionId);
+            Assert.IsNotNull(queryResult.Result.Passages[0].PassageText);
+            Assert.IsNotNull(queryResult.Result.Passages[0].DocumentId);
+        }
+        #endregion
+
         #region Collections
         [TestMethod]
         public void TestListCollections()

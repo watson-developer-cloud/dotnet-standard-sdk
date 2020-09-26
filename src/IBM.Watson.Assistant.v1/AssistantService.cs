@@ -25,6 +25,7 @@ using IBM.Watson.Assistant.v1.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Threading.Tasks;
 
 namespace IBM.Watson.Assistant.v1
 {
@@ -34,14 +35,20 @@ namespace IBM.Watson.Assistant.v1
         private const string defaultServiceUrl = "https://api.us-south.assistant.watson.cloud.ibm.com";
         public string VersionDate { get; set; }
 
-        public AssistantService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
-        public AssistantService(IClient httpClient) : base(serviceName, httpClient) { }
+        public AssistantService(string versionDate) : this(versionDate,
+            ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName))
+        {
+        }
+
+        public AssistantService(IClient httpClient) : base(serviceName, httpClient)
+        {
+        }
 
         public AssistantService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
             if (string.IsNullOrEmpty(versionDate))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException(nameof(versionDate));
             }
 
             VersionDate = versionDate;
@@ -79,73 +86,113 @@ namespace IBM.Watson.Assistant.v1
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
-            DetailedResponse<MessageResponse> result = null;
+            ValidateVersionDate();
 
             try
             {
-                IClient client = this.Client;
-                SetAuthentication();
-
-                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/message");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (nodesVisitedDetails != null)
-                {
-                    restRequest.WithArgument("nodes_visited_details", nodesVisitedDetails);
-                }
-                restRequest.WithHeader("Content-Type", "application/json");
-
-                JObject bodyObject = new JObject();
-                if (input != null)
-                {
-                    bodyObject["input"] = JToken.FromObject(input);
-                }
-                if (intents != null && intents.Count > 0)
-                {
-                    bodyObject["intents"] = JToken.FromObject(intents);
-                }
-                if (entities != null && entities.Count > 0)
-                {
-                    bodyObject["entities"] = JToken.FromObject(entities);
-                }
-                if (alternateIntents != null)
-                {
-                    bodyObject["alternate_intents"] = JToken.FromObject(alternateIntents);
-                }
-                if (context != null)
-                {
-                    bodyObject["context"] = JToken.FromObject(context);
-                }
-                if (output != null)
-                {
-                    bodyObject["output"] = JToken.FromObject(output);
-                }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
-                restRequest.WithBodyContent(httpContent);
-
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "Message"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
-
-                result = restRequest.As<MessageResponse>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<MessageResponse>();
-                }
+                return MessageAsync(workspaceId, input, intents, entities, alternateIntents, context, output,
+                    nodesVisitedDetails).Result;
             }
             catch (AggregateException ae)
             {
                 throw ae.Flatten();
             }
+        }
+
+        /// <summary>
+        /// Get response to user input.
+        ///
+        /// Send user input to a workspace and receive a response.
+        ///
+        /// **Important:** This method has been superseded by the new v2 runtime API. The v2 API offers significant
+        /// advantages, including ease of deployment, automatic state management, versioning, and search capabilities.
+        /// For more information, see the
+        /// [documentation](https://cloud.ibm.com/docs/assistant?topic=assistant-api-overview).
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="body">The message to be sent. This includes the user's input, along with optional intents,
+        /// entities, and context from the last response. (optional)</param>
+        /// <param name="nodesVisitedDetails">Whether to include additional diagnostic information about the dialog
+        /// nodes that were visited during processing of the message. (optional, default to false)</param>
+        /// <returns><see cref="MessageResponse" />MessageResponse</returns>
+        public async Task<DetailedResponse<MessageResponse>> MessageAsync(string workspaceId, MessageInput input = null, List<RuntimeIntent> intents = null, List<RuntimeEntity> entities = null, bool? alternateIntents = null, Context context = null, OutputData output = null, bool? nodesVisitedDetails = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+            {
+                throw new ArgumentNullException("`workspaceId` is required for `Message`");
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
+
+            ValidateVersionDate();
+
+            DetailedResponse<MessageResponse> result = null;
+
+            IClient client = this.Client;
+            SetAuthentication();
+
+            var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/message");
+
+            restRequest.WithArgument("version", VersionDate);
+            restRequest.WithHeader("Accept", "application/json");
+            if (nodesVisitedDetails != null)
+            {
+                restRequest.WithArgument("nodes_visited_details", nodesVisitedDetails);
+            }
+
+            restRequest.WithHeader("Content-Type", "application/json");
+
+            JObject bodyObject = new JObject();
+            if (input != null)
+            {
+                bodyObject["input"] = JToken.FromObject(input);
+            }
+
+            if (intents != null && intents.Count > 0)
+            {
+                bodyObject["intents"] = JToken.FromObject(intents);
+            }
+
+            if (entities != null && entities.Count > 0)
+            {
+                bodyObject["entities"] = JToken.FromObject(entities);
+            }
+
+            if (alternateIntents != null)
+            {
+                bodyObject["alternate_intents"] = JToken.FromObject(alternateIntents);
+            }
+
+            if (context != null)
+            {
+                bodyObject["context"] = JToken.FromObject(context);
+            }
+
+            if (output != null)
+            {
+                bodyObject["output"] = JToken.FromObject(output);
+            }
+
+            var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8,
+                HttpMediaType.APPLICATION_JSON);
+            restRequest.WithBodyContent(httpContent);
+
+            restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "Message"));
+            restRequest.WithHeaders(customRequestHeaders);
+            ClearCustomRequestHeaders();
+
+            result = await restRequest.As<MessageResponse>();
+            if (result == null)
+            {
+                result = new DetailedResponse<MessageResponse>();
+            }
 
             return result;
         }
+
+
         /// <summary>
         /// List workspaces.
         ///
@@ -160,49 +207,97 @@ namespace IBM.Watson.Assistant.v1
         /// <returns><see cref="WorkspaceCollection" />WorkspaceCollection</returns>
         public DetailedResponse<WorkspaceCollection> ListWorkspaces(long? pageLimit = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<WorkspaceCollection> result = null;
 
             try
             {
-                IClient client = this.Client;
-                SetAuthentication();
+                return ListWorkspacesAsync(pageLimit, sort, cursor, includeAudit).Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+        }
 
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces");
+        /// <summary>
+        /// List workspaces.
+        ///
+        /// List the workspaces associated with a Watson Assistant service instance.
+        /// </summary>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
+        /// <param name="sort">The attribute by which returned workspaces will be sorted. To reverse the sort order,
+        /// prefix the value with a minus sign (`-`). (optional)</param>
+        /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="WorkspaceCollection" />WorkspaceCollection</returns>
+        public async Task<DetailedResponse<WorkspaceCollection>> ListWorkspacesAsync(long? pageLimit = null, string sort = null, string cursor = null, bool? includeAudit = null)
+        {
+            ValidateVersionDate();
 
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (pageLimit != null)
-                {
-                    restRequest.WithArgument("page_limit", pageLimit);
-                }
-                if (!string.IsNullOrEmpty(sort))
-                {
-                    restRequest.WithArgument("sort", sort);
-                }
-                if (!string.IsNullOrEmpty(cursor))
-                {
-                    restRequest.WithArgument("cursor", cursor);
-                }
-                if (includeAudit != null)
-                {
-                    restRequest.WithArgument("include_audit", includeAudit);
-                }
+            DetailedResponse<WorkspaceCollection> result = null;
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListWorkspaces"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
+            IClient client = this.Client;
+            SetAuthentication();
 
-                result = restRequest.As<WorkspaceCollection>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<WorkspaceCollection>();
-                }
+            var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces");
+
+            restRequest.WithArgument("version", VersionDate);
+            restRequest.WithHeader("Accept", "application/json");
+            if (pageLimit != null)
+            {
+                restRequest.WithArgument("page_limit", pageLimit);
+            }
+
+            if (!string.IsNullOrEmpty(sort))
+            {
+                restRequest.WithArgument("sort", sort);
+            }
+
+            if (!string.IsNullOrEmpty(cursor))
+            {
+                restRequest.WithArgument("cursor", cursor);
+            }
+
+            if (includeAudit != null)
+            {
+                restRequest.WithArgument("include_audit", includeAudit);
+            }
+
+            restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListWorkspaces"));
+            restRequest.WithHeaders(customRequestHeaders);
+            ClearCustomRequestHeaders();
+
+            result = await restRequest.As<WorkspaceCollection>();
+            if (result == null)
+            {
+                result = new DetailedResponse<WorkspaceCollection>();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Create workspace.
+        ///
+        /// Create a workspace based on component objects. You must provide workspace components defining the content of
+        /// the new workspace.
+        /// </summary>
+        /// <param name="body"> (optional)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="Workspace" />Workspace</returns>
+        public DetailedResponse<Workspace> CreateWorkspace(string name = null, string description = null, string language = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null, List<Webhook> webhooks = null, bool? includeAudit = null)
+        {
+            ValidateVersionDate();
+
+            DetailedResponse<Workspace> result = null;
+
+            try
+            {
+                result = CreateWorkspaceAsync(name, description, language, metadata, learningOptOut, systemSettings, intents, entities, dialogNodes, counterexamples, webhooks, includeAudit).Result;
             }
             catch (AggregateException ae)
             {
@@ -222,92 +317,94 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="Workspace" />Workspace</returns>
-        public DetailedResponse<Workspace> CreateWorkspace(string name = null, string description = null, string language = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null, List<Webhook> webhooks = null, bool? includeAudit = null)
+        public async Task<DetailedResponse<Workspace>> CreateWorkspaceAsync(string name = null, string description = null, string language = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null, List<Webhook> webhooks = null, bool? includeAudit = null)
         {
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<Workspace> result = null;
 
-            try
+            IClient client = this.Client;
+            SetAuthentication();
+
+            var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces");
+
+            restRequest.WithArgument("version", VersionDate);
+            restRequest.WithHeader("Accept", "application/json");
+            if (includeAudit != null)
             {
-                IClient client = this.Client;
-                SetAuthentication();
-
-                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (includeAudit != null)
-                {
-                    restRequest.WithArgument("include_audit", includeAudit);
-                }
-                restRequest.WithHeader("Content-Type", "application/json");
-
-                JObject bodyObject = new JObject();
-                if (!string.IsNullOrEmpty(name))
-                {
-                    bodyObject["name"] = name;
-                }
-                if (!string.IsNullOrEmpty(description))
-                {
-                    bodyObject["description"] = description;
-                }
-                if (!string.IsNullOrEmpty(language))
-                {
-                    bodyObject["language"] = language;
-                }
-                if (metadata != null)
-                {
-                    bodyObject["metadata"] = JToken.FromObject(metadata);
-                }
-                if (learningOptOut != null)
-                {
-                    bodyObject["learning_opt_out"] = JToken.FromObject(learningOptOut);
-                }
-                if (systemSettings != null)
-                {
-                    bodyObject["system_settings"] = JToken.FromObject(systemSettings);
-                }
-                if (intents != null && intents.Count > 0)
-                {
-                    bodyObject["intents"] = JToken.FromObject(intents);
-                }
-                if (entities != null && entities.Count > 0)
-                {
-                    bodyObject["entities"] = JToken.FromObject(entities);
-                }
-                if (dialogNodes != null && dialogNodes.Count > 0)
-                {
-                    bodyObject["dialog_nodes"] = JToken.FromObject(dialogNodes);
-                }
-                if (counterexamples != null && counterexamples.Count > 0)
-                {
-                    bodyObject["counterexamples"] = JToken.FromObject(counterexamples);
-                }
-                if (webhooks != null && webhooks.Count > 0)
-                {
-                    bodyObject["webhooks"] = JToken.FromObject(webhooks);
-                }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
-                restRequest.WithBodyContent(httpContent);
-
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateWorkspace"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
-
-                result = restRequest.As<Workspace>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<Workspace>();
-                }
+                restRequest.WithArgument("include_audit", includeAudit);
             }
-            catch (AggregateException ae)
+
+            restRequest.WithHeader("Content-Type", "application/json");
+
+            JObject bodyObject = new JObject();
+            if (!string.IsNullOrEmpty(name))
             {
-                throw ae.Flatten();
+                bodyObject["name"] = name;
+            }
+
+            if (!string.IsNullOrEmpty(description))
+            {
+                bodyObject["description"] = description;
+            }
+
+            if (!string.IsNullOrEmpty(language))
+            {
+                bodyObject["language"] = language;
+            }
+
+            if (metadata != null)
+            {
+                bodyObject["metadata"] = JToken.FromObject(metadata);
+            }
+
+            if (learningOptOut != null)
+            {
+                bodyObject["learning_opt_out"] = JToken.FromObject(learningOptOut);
+            }
+
+            if (systemSettings != null)
+            {
+                bodyObject["system_settings"] = JToken.FromObject(systemSettings);
+            }
+
+            if (intents != null && intents.Count > 0)
+            {
+                bodyObject["intents"] = JToken.FromObject(intents);
+            }
+
+            if (entities != null && entities.Count > 0)
+            {
+                bodyObject["entities"] = JToken.FromObject(entities);
+            }
+
+            if (dialogNodes != null && dialogNodes.Count > 0)
+            {
+                bodyObject["dialog_nodes"] = JToken.FromObject(dialogNodes);
+            }
+
+            if (counterexamples != null && counterexamples.Count > 0)
+            {
+                bodyObject["counterexamples"] = JToken.FromObject(counterexamples);
+            }
+
+            if (webhooks != null && webhooks.Count > 0)
+            {
+                bodyObject["webhooks"] = JToken.FromObject(webhooks);
+            }
+
+            var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8,
+                HttpMediaType.APPLICATION_JSON);
+            restRequest.WithBodyContent(httpContent);
+
+            restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateWorkspace"));
+            restRequest.WithHeaders(customRequestHeaders);
+            ClearCustomRequestHeaders();
+
+            result = await restRequest.As<Workspace>();
+            if (result == null)
+            {
+                result = new DetailedResponse<Workspace>();
             }
 
             return result;
@@ -332,51 +429,134 @@ namespace IBM.Watson.Assistant.v1
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
-                throw new ArgumentNullException("`workspaceId` is required for `GetWorkspace`");
+                throw new ArgumentNullException(nameof(workspaceId));
             }
             else
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<Workspace> result = null;
 
             try
             {
-                IClient client = this.Client;
-                SetAuthentication();
+                result = GetWorkspaceAsync(workspaceId, export, includeAudit, sort).Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
 
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}");
+            return result;
+        }
 
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (export != null)
-                {
-                    restRequest.WithArgument("export", export);
-                }
-                if (includeAudit != null)
-                {
-                    restRequest.WithArgument("include_audit", includeAudit);
-                }
-                if (!string.IsNullOrEmpty(sort))
-                {
-                    restRequest.WithArgument("sort", sort);
-                }
+        // <summary>
+        /// Get information about a workspace.
+        ///
+        /// Get information about a workspace, optionally including all workspace content.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="export">Whether to include all element content in the returned data. If **export**=`false`, the
+        /// returned data includes only information about the element itself. If **export**=`true`, all content,
+        /// including subelements, is included. (optional, default to false)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <param name="sort">Indicates how the returned workspace data will be sorted. This parameter is valid only if
+        /// **export**=`true`. Specify `sort=stable` to sort all workspace objects by unique identifier, in ascending
+        /// alphabetical order. (optional)</param>
+        /// <returns><see cref="Workspace" />Workspace</returns>
+        public async Task<DetailedResponse<Workspace>> GetWorkspaceAsync(string workspaceId, bool? export = null, bool? includeAudit = null, string sort = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+            {
+                throw new ArgumentNullException(nameof(workspaceId));
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "GetWorkspace"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
+            ValidateVersionDate();
 
-                result = restRequest.As<Workspace>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<Workspace>();
-                }
+            DetailedResponse<Workspace> result = null;
+
+            IClient client = this.Client;
+            SetAuthentication();
+
+            var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}");
+
+            restRequest.WithArgument("version", VersionDate);
+            restRequest.WithHeader("Accept", "application/json");
+            if (export != null)
+            {
+                restRequest.WithArgument("export", export);
+            }
+
+            if (includeAudit != null)
+            {
+                restRequest.WithArgument("include_audit", includeAudit);
+            }
+
+            if (!string.IsNullOrEmpty(sort))
+            {
+                restRequest.WithArgument("sort", sort);
+            }
+
+            restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "GetWorkspace"));
+            restRequest.WithHeaders(customRequestHeaders);
+            ClearCustomRequestHeaders();
+
+            result = await restRequest.As<Workspace>();
+            if (result == null)
+            {
+                result = new DetailedResponse<Workspace>();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Update workspace.
+        ///
+        /// Update an existing workspace with new or modified data. You must provide component objects defining the
+        /// content of the updated workspace.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="body">Valid data defining the new and updated workspace content.
+        ///
+        /// The maximum size for this data is 50MB. If you need to import a larger amount of workspace data, consider
+        /// importing components such as intents and entities using separate operations. (optional)</param>
+        /// <param name="append">Whether the new data is to be appended to the existing data in the object. If
+        /// **append**=`false`, elements included in the new data completely replace the corresponding existing
+        /// elements, including all subelements. For example, if the new data for a workspace includes **entities** and
+        /// **append**=`false`, all existing entities in the workspace are discarded and replaced with the new entities.
+        ///
+        /// If **append**=`true`, existing elements are preserved, and the new elements are added. If any elements in
+        /// the new data collide with existing elements, the update request fails. (optional, default to false)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="Workspace" />Workspace</returns>
+        public DetailedResponse<Workspace> UpdateWorkspace(string workspaceId, string name = null, string description = null, string language = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null, bool? append = null, List<Webhook> webhooks = null, bool? includeAudit = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+            {
+                throw new ArgumentNullException("`workspaceId` is required for `UpdateWorkspace`");
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
+
+            ValidateVersionDate();
+
+            DetailedResponse<Workspace> result = null;
+
+            try
+            {
+                result = UpdateWorkspaceAsync(workspaceId, name, description, language, metadata, learningOptOut,
+                        systemSettings, intents, entities, dialogNodes, counterexamples, append, webhooks, includeAudit).Result;
             }
             catch (AggregateException ae)
             {
@@ -407,104 +587,108 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="Workspace" />Workspace</returns>
-        public DetailedResponse<Workspace> UpdateWorkspace(string workspaceId, string name = null, string description = null, string language = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null, bool? append = null, List<Webhook> webhooks = null, bool? includeAudit = null)
-        { 
+        public async Task<DetailedResponse<Workspace>> UpdateWorkspaceAsync(string workspaceId, string name = null, string description = null, string language = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null, bool? append = null, List<Webhook> webhooks = null, bool? includeAudit = null)
+        {
             if (string.IsNullOrEmpty(workspaceId))
             {
-                throw new ArgumentNullException("`workspaceId` is required for `UpdateWorkspace`");
+                throw new ArgumentNullException(nameof(workspaceId));
             }
             else
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<Workspace> result = null;
 
-            try
+            IClient client = this.Client;
+            SetAuthentication();
+
+            var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}");
+
+            restRequest.WithArgument("version", VersionDate);
+            restRequest.WithHeader("Accept", "application/json");
+            if (append != null)
             {
-                IClient client = this.Client;
-                SetAuthentication();
-
-                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (append != null)
-                {
-                    restRequest.WithArgument("append", append);
-                }
-                if (includeAudit != null)
-                {
-                    restRequest.WithArgument("include_audit", includeAudit);
-                }
-                restRequest.WithHeader("Content-Type", "application/json");
-
-                JObject bodyObject = new JObject();
-                if (!string.IsNullOrEmpty(name))
-                {
-                    bodyObject["name"] = name;
-                }
-                if (!string.IsNullOrEmpty(description))
-                {
-                    bodyObject["description"] = description;
-                }
-                if (!string.IsNullOrEmpty(language))
-                {
-                    bodyObject["language"] = language;
-                }
-                if (metadata != null)
-                {
-                    bodyObject["metadata"] = JToken.FromObject(metadata);
-                }
-                if (learningOptOut != null)
-                {
-                    bodyObject["learning_opt_out"] = JToken.FromObject(learningOptOut);
-                }
-                if (systemSettings != null)
-                {
-                    bodyObject["system_settings"] = JToken.FromObject(systemSettings);
-                }
-                if (intents != null && intents.Count > 0)
-                {
-                    bodyObject["intents"] = JToken.FromObject(intents);
-                }
-                if (entities != null && entities.Count > 0)
-                {
-                    bodyObject["entities"] = JToken.FromObject(entities);
-                }
-                if (dialogNodes != null && dialogNodes.Count > 0)
-                {
-                    bodyObject["dialog_nodes"] = JToken.FromObject(dialogNodes);
-                }
-                if (counterexamples != null && counterexamples.Count > 0)
-                {
-                    bodyObject["counterexamples"] = JToken.FromObject(counterexamples);
-                }
-                if (webhooks != null && webhooks.Count > 0)
-                {
-                    bodyObject["webhooks"] = JToken.FromObject(webhooks);
-                }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
-                restRequest.WithBodyContent(httpContent);
-
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateWorkspace"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
-
-                result = restRequest.As<Workspace>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<Workspace>();
-                }
+                restRequest.WithArgument("append", append);
             }
-            catch (AggregateException ae)
+
+            if (includeAudit != null)
             {
-                throw ae.Flatten();
+                restRequest.WithArgument("include_audit", includeAudit);
+            }
+
+            restRequest.WithHeader("Content-Type", "application/json");
+
+            JObject bodyObject = new JObject();
+            if (!string.IsNullOrEmpty(name))
+            {
+                bodyObject["name"] = name;
+            }
+
+            if (!string.IsNullOrEmpty(description))
+            {
+                bodyObject["description"] = description;
+            }
+
+            if (!string.IsNullOrEmpty(language))
+            {
+                bodyObject["language"] = language;
+            }
+
+            if (metadata != null)
+            {
+                bodyObject["metadata"] = JToken.FromObject(metadata);
+            }
+
+            if (learningOptOut != null)
+            {
+                bodyObject["learning_opt_out"] = JToken.FromObject(learningOptOut);
+            }
+
+            if (systemSettings != null)
+            {
+                bodyObject["system_settings"] = JToken.FromObject(systemSettings);
+            }
+
+            if (intents != null && intents.Count > 0)
+            {
+                bodyObject["intents"] = JToken.FromObject(intents);
+            }
+
+            if (entities != null && entities.Count > 0)
+            {
+                bodyObject["entities"] = JToken.FromObject(entities);
+            }
+
+            if (dialogNodes != null && dialogNodes.Count > 0)
+            {
+                bodyObject["dialog_nodes"] = JToken.FromObject(dialogNodes);
+            }
+
+            if (counterexamples != null && counterexamples.Count > 0)
+            {
+                bodyObject["counterexamples"] = JToken.FromObject(counterexamples);
+            }
+
+            if (webhooks != null && webhooks.Count > 0)
+            {
+                bodyObject["webhooks"] = JToken.FromObject(webhooks);
+            }
+
+            var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8,
+                HttpMediaType.APPLICATION_JSON);
+            restRequest.WithBodyContent(httpContent);
+
+            restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateWorkspace"));
+            restRequest.WithHeaders(customRequestHeaders);
+            ClearCustomRequestHeaders();
+
+            result = await restRequest.As<Workspace>();
+            if (result == null)
+            {
+                result = new DetailedResponse<Workspace>();
             }
 
             return result;
@@ -521,39 +705,20 @@ namespace IBM.Watson.Assistant.v1
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
-                throw new ArgumentNullException("`workspaceId` is required for `DeleteWorkspace`");
+                throw new ArgumentNullException(nameof(workspaceId));
             }
             else
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<object> result = null;
 
             try
             {
-                IClient client = this.Client;
-                SetAuthentication();
-
-                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "DeleteWorkspace"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
-
-                result = restRequest.As<object>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<object>();
-                }
+                result = DeleteWorkspaceAsync(workspaceId).Result;
             }
             catch (AggregateException ae)
             {
@@ -562,6 +727,50 @@ namespace IBM.Watson.Assistant.v1
 
             return result;
         }
+
+        /// <summary>
+        /// Delete workspace.
+        ///
+        /// Delete a workspace from the service instance.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <returns><see cref="object" />object</returns>
+        public async Task<DetailedResponse<object>> DeleteWorkspaceAsync(string workspaceId)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+            {
+                throw new ArgumentNullException(nameof(workspaceId));
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
+
+            ValidateVersionDate();
+
+            DetailedResponse<object> result = null;
+
+            IClient client = this.Client;
+            SetAuthentication();
+
+            var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}");
+
+            restRequest.WithArgument("version", VersionDate);
+            restRequest.WithHeader("Accept", "application/json");
+
+            restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "DeleteWorkspace"));
+            restRequest.WithHeaders(customRequestHeaders);
+            ClearCustomRequestHeaders();
+
+            result = await restRequest.As<object>();
+            if (result == null)
+            {
+                result = new DetailedResponse<object>();
+            }
+
+            return result;
+        }
+
         /// <summary>
         /// List intents.
         ///
@@ -582,6 +791,57 @@ namespace IBM.Watson.Assistant.v1
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
+                throw new ArgumentNullException(nameof(workspaceId));
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
+
+            ValidateVersionDate();
+
+            DetailedResponse<IntentCollection> result = null;
+
+            try
+            {
+                result = ListIntentsAsync(workspaceId, export, pageLimit, sort, cursor, includeAudit).Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        private void ValidateVersionDate()
+        {
+            if (string.IsNullOrEmpty(VersionDate))
+            {
+                throw new ArgumentNullException(nameof(VersionDate));
+            }
+        }
+
+        /// <summary>
+        /// List intents.
+        ///
+        /// List the intents for a workspace.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="export">Whether to include all element content in the returned data. If **export**=`false`, the
+        /// returned data includes only information about the element itself. If **export**=`true`, all content,
+        /// including subelements, is included. (optional, default to false)</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
+        /// <param name="sort">The attribute by which returned intents will be sorted. To reverse the sort order, prefix
+        /// the value with a minus sign (`-`). (optional)</param>
+        /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="IntentCollection" />IntentCollection</returns>
+        public async Task<DetailedResponse<IntentCollection>> ListIntentsAsync(string workspaceId, bool? export = null, long? pageLimit = null, string sort = null, string cursor = null, bool? includeAudit = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+            {
                 throw new ArgumentNullException("`workspaceId` is required for `ListIntents`");
             }
             else
@@ -589,52 +849,92 @@ namespace IBM.Watson.Assistant.v1
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<IntentCollection> result = null;
 
+            IClient client = this.Client;
+            SetAuthentication();
+
+            var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents");
+
+            restRequest.WithArgument("version", VersionDate);
+            restRequest.WithHeader("Accept", "application/json");
+            if (export != null)
+            {
+                restRequest.WithArgument("export", export);
+            }
+
+            if (pageLimit != null)
+            {
+                restRequest.WithArgument("page_limit", pageLimit);
+            }
+
+            if (!string.IsNullOrEmpty(sort))
+            {
+                restRequest.WithArgument("sort", sort);
+            }
+
+            if (!string.IsNullOrEmpty(cursor))
+            {
+                restRequest.WithArgument("cursor", cursor);
+            }
+
+            if (includeAudit != null)
+            {
+                restRequest.WithArgument("include_audit", includeAudit);
+            }
+
+            restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListIntents"));
+            restRequest.WithHeaders(customRequestHeaders);
+            ClearCustomRequestHeaders();
+
+            result = await restRequest.As<IntentCollection>();
+            if (result == null)
+            {
+                result = new DetailedResponse<IntentCollection>();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Create intent.
+        ///
+        /// Create a new intent.
+        ///
+        /// If you want to create multiple intents with a single API call, consider using the **[Update
+        /// workspace](#update-workspace)** method instead.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="body">The content of the new intent.</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="Intent" />Intent</returns>
+        public DetailedResponse<Intent> CreateIntent(string workspaceId, string intent, string description = null,
+            List<Example> examples = null, bool? includeAudit = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+            {
+                throw new ArgumentNullException("`workspaceId` is required for `CreateIntent`");
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
+
+            if (string.IsNullOrEmpty(intent))
+            {
+                throw new ArgumentNullException("`intent` is required for `CreateIntent`");
+            }
+
+            ValidateVersionDate();
+
+            DetailedResponse<Intent> result = null;
+
             try
             {
-                IClient client = this.Client;
-                SetAuthentication();
-
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (export != null)
-                {
-                    restRequest.WithArgument("export", export);
-                }
-                if (pageLimit != null)
-                {
-                    restRequest.WithArgument("page_limit", pageLimit);
-                }
-                if (!string.IsNullOrEmpty(sort))
-                {
-                    restRequest.WithArgument("sort", sort);
-                }
-                if (!string.IsNullOrEmpty(cursor))
-                {
-                    restRequest.WithArgument("cursor", cursor);
-                }
-                if (includeAudit != null)
-                {
-                    restRequest.WithArgument("include_audit", includeAudit);
-                }
-
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListIntents"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
-
-                result = restRequest.As<IntentCollection>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<IntentCollection>();
-                }
+                result = CreateIntentAsync(workspaceId, intent, description, examples, includeAudit).Result;
             }
             catch (AggregateException ae)
             {
@@ -657,68 +957,112 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="Intent" />Intent</returns>
-        public DetailedResponse<Intent> CreateIntent(string workspaceId, string intent, string description = null, List<Example> examples = null, bool? includeAudit = null)
+        public async Task<DetailedResponse<Intent>> CreateIntentAsync(string workspaceId, string intent, string description = null, List<Example> examples = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
-                throw new ArgumentNullException("`workspaceId` is required for `CreateIntent`");
+                throw new ArgumentNullException(nameof(workspaceId));
             }
             else
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(intent))
             {
-                throw new ArgumentNullException("`intent` is required for `CreateIntent`");
+                throw new ArgumentNullException(nameof(intent));
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
+            ValidateVersionDate();
+
+            DetailedResponse<Intent> result = null;
+
+            IClient client = this.Client;
+            SetAuthentication();
+
+            var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents");
+
+            restRequest.WithArgument("version", VersionDate);
+            restRequest.WithHeader("Accept", "application/json");
+            if (includeAudit != null)
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                restRequest.WithArgument("include_audit", includeAudit);
             }
+
+            restRequest.WithHeader("Content-Type", "application/json");
+
+            JObject bodyObject = new JObject();
+            if (!string.IsNullOrEmpty(intent))
+            {
+                bodyObject["intent"] = intent;
+            }
+
+            if (!string.IsNullOrEmpty(description))
+            {
+                bodyObject["description"] = description;
+            }
+
+            if (examples != null && examples.Count > 0)
+            {
+                bodyObject["examples"] = JToken.FromObject(examples);
+            }
+
+            var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8,
+                HttpMediaType.APPLICATION_JSON);
+            restRequest.WithBodyContent(httpContent);
+
+            restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateIntent"));
+            restRequest.WithHeaders(customRequestHeaders);
+            ClearCustomRequestHeaders();
+
+            result = await restRequest.As<Intent>();
+            if (result == null)
+            {
+                result = new DetailedResponse<Intent>();
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Get intent.
+        ///
+        /// Get information about an intent, optionally including all intent content.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="intent">The intent name.</param>
+        /// <param name="export">Whether to include all element content in the returned data. If **export**=`false`, the
+        /// returned data includes only information about the element itself. If **export**=`true`, all content,
+        /// including subelements, is included. (optional, default to false)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="Intent" />Intent</returns>
+        public DetailedResponse<Intent> GetIntent(string workspaceId, string intent, bool? export = null, bool? includeAudit = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+            {
+                throw new ArgumentNullException(nameof(workspaceId));
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
+
+            if (string.IsNullOrEmpty(intent))
+            {
+                throw new ArgumentNullException(nameof(intent));
+            }
+            else
+            {
+                intent = Uri.EscapeDataString(intent);
+            }
+
+            ValidateVersionDate();
 
             DetailedResponse<Intent> result = null;
 
             try
             {
-                IClient client = this.Client;
-                SetAuthentication();
-
-                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (includeAudit != null)
-                {
-                    restRequest.WithArgument("include_audit", includeAudit);
-                }
-                restRequest.WithHeader("Content-Type", "application/json");
-
-                JObject bodyObject = new JObject();
-                if (!string.IsNullOrEmpty(intent))
-                {
-                    bodyObject["intent"] = intent;
-                }
-                if (!string.IsNullOrEmpty(description))
-                {
-                    bodyObject["description"] = description;
-                }
-                if (examples != null && examples.Count > 0)
-                {
-                    bodyObject["examples"] = JToken.FromObject(examples);
-                }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
-                restRequest.WithBodyContent(httpContent);
-
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateIntent"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
-
-                result = restRequest.As<Intent>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<Intent>();
-                }
+                result = GetIntentAsync(workspaceId, intent, export, includeAudit).Result;
             }
             catch (AggregateException ae)
             {
@@ -741,63 +1085,55 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="Intent" />Intent</returns>
-        public DetailedResponse<Intent> GetIntent(string workspaceId, string intent, bool? export = null, bool? includeAudit = null)
+        public async Task<DetailedResponse<Intent>> GetIntentAsync(string workspaceId, string intent, bool? export = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
-                throw new ArgumentNullException("`workspaceId` is required for `GetIntent`");
+                throw new ArgumentNullException(nameof(workspaceId));
             }
             else
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(intent))
             {
-                throw new ArgumentNullException("`intent` is required for `GetIntent`");
+                throw new ArgumentNullException(nameof(intent));
             }
             else
             {
                 intent = Uri.EscapeDataString(intent);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<Intent> result = null;
 
-            try
+            IClient client = this.Client;
+            SetAuthentication();
+
+            var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}");
+
+            restRequest.WithArgument("version", VersionDate);
+            restRequest.WithHeader("Accept", "application/json");
+            if (export != null)
             {
-                IClient client = this.Client;
-                SetAuthentication();
-
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (export != null)
-                {
-                    restRequest.WithArgument("export", export);
-                }
-                if (includeAudit != null)
-                {
-                    restRequest.WithArgument("include_audit", includeAudit);
-                }
-
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "GetIntent"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
-
-                result = restRequest.As<Intent>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<Intent>();
-                }
+                restRequest.WithArgument("export", export);
             }
-            catch (AggregateException ae)
+
+            if (includeAudit != null)
             {
-                throw ae.Flatten();
+                restRequest.WithArgument("include_audit", includeAudit);
+            }
+
+            restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "GetIntent"));
+            restRequest.WithHeaders(customRequestHeaders);
+            ClearCustomRequestHeaders();
+
+            result = await restRequest.As<Intent>();
+            if (result == null)
+            {
+                result = new DetailedResponse<Intent>();
             }
 
             return result;
@@ -834,76 +1170,137 @@ namespace IBM.Watson.Assistant.v1
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
-                throw new ArgumentNullException("`workspaceId` is required for `UpdateIntent`");
+                throw new ArgumentNullException(nameof(workspaceId));
             }
             else
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(intent))
             {
-                throw new ArgumentNullException("`intent` is required for `UpdateIntent`");
+                throw new ArgumentNullException(nameof(intent));
             }
             else
             {
                 intent = Uri.EscapeDataString(intent);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<Intent> result = null;
 
             try
             {
-                IClient client = this.Client;
-                SetAuthentication();
-
-                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (append != null)
-                {
-                    restRequest.WithArgument("append", append);
-                }
-                if (includeAudit != null)
-                {
-                    restRequest.WithArgument("include_audit", includeAudit);
-                }
-                restRequest.WithHeader("Content-Type", "application/json");
-
-                JObject bodyObject = new JObject();
-                if (!string.IsNullOrEmpty(newIntent))
-                {
-                    bodyObject["intent"] = newIntent;
-                }
-                if (!string.IsNullOrEmpty(newDescription))
-                {
-                    bodyObject["description"] = newDescription;
-                }
-                if (newExamples != null && newExamples.Count > 0)
-                {
-                    bodyObject["examples"] = JToken.FromObject(newExamples);
-                }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
-                restRequest.WithBodyContent(httpContent);
-
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateIntent"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
-
-                result = restRequest.As<Intent>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<Intent>();
-                }
+                result = UpdateIntentAsync(workspaceId, intent, newIntent, newDescription, newExamples, append,
+                    includeAudit).Result;
             }
             catch (AggregateException ae)
             {
                 throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Update intent.
+        ///
+        /// Update an existing intent with new or modified data. You must provide component objects defining the content
+        /// of the updated intent.
+        ///
+        /// If you want to update multiple intents with a single API call, consider using the **[Update
+        /// workspace](#update-workspace)** method instead.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="intent">The intent name.</param>
+        /// <param name="body">The updated content of the intent.
+        ///
+        /// Any elements included in the new data will completely replace the equivalent existing elements, including
+        /// all subelements. (Previously existing subelements are not retained unless they are also included in the new
+        /// data.) For example, if you update the user input examples for an intent, the previously existing examples
+        /// are discarded and replaced with the new examples specified in the update.</param>
+        /// <param name="append">Whether the new data is to be appended to the existing data in the object. If
+        /// **append**=`false`, elements included in the new data completely replace the corresponding existing
+        /// elements, including all subelements. For example, if the new data for the intent includes **examples** and
+        /// **append**=`false`, all existing examples for the intent are discarded and replaced with the new examples.
+        ///
+        /// If **append**=`true`, existing elements are preserved, and the new elements are added. If any elements in
+        /// the new data collide with existing elements, the update request fails. (optional, default to false)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="Intent" />Intent</returns>
+        public async Task<DetailedResponse<Intent>> UpdateIntentAsync(string workspaceId, string intent, string newIntent = null, string newDescription = null, List<Example> newExamples = null, bool? append = null, bool? includeAudit = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+            {
+                throw new ArgumentNullException(nameof(workspaceId));
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
+
+            if (string.IsNullOrEmpty(intent))
+            {
+                throw new ArgumentNullException(nameof(intent));
+            }
+            else
+            {
+                intent = Uri.EscapeDataString(intent);
+            }
+
+            ValidateVersionDate();
+
+            DetailedResponse<Intent> result = null;
+
+            IClient client = this.Client;
+            SetAuthentication();
+
+            var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}");
+
+            restRequest.WithArgument("version", VersionDate);
+            restRequest.WithHeader("Accept", "application/json");
+            if (append != null)
+            {
+                restRequest.WithArgument("append", append);
+            }
+
+            if (includeAudit != null)
+            {
+                restRequest.WithArgument("include_audit", includeAudit);
+            }
+
+            restRequest.WithHeader("Content-Type", "application/json");
+
+            JObject bodyObject = new JObject();
+            if (!string.IsNullOrEmpty(newIntent))
+            {
+                bodyObject["intent"] = newIntent;
+            }
+
+            if (!string.IsNullOrEmpty(newDescription))
+            {
+                bodyObject["description"] = newDescription;
+            }
+
+            if (newExamples != null && newExamples.Count > 0)
+            {
+                bodyObject["examples"] = JToken.FromObject(newExamples);
+            }
+
+            var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8,
+                HttpMediaType.APPLICATION_JSON);
+            restRequest.WithBodyContent(httpContent);
+
+            restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateIntent"));
+            restRequest.WithHeaders(customRequestHeaders);
+            ClearCustomRequestHeaders();
+
+            result = await restRequest.As<Intent>();
+            if (result == null)
+            {
+                result = new DetailedResponse<Intent>();
             }
 
             return result;
@@ -921,47 +1318,29 @@ namespace IBM.Watson.Assistant.v1
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
-                throw new ArgumentNullException("`workspaceId` is required for `DeleteIntent`");
+                throw new ArgumentNullException(nameof(workspaceId));
             }
             else
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(intent))
             {
-                throw new ArgumentNullException("`intent` is required for `DeleteIntent`");
+                throw new ArgumentNullException(nameof(intent));
             }
             else
             {
                 intent = Uri.EscapeDataString(intent);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<object> result = null;
 
             try
             {
-                IClient client = this.Client;
-                SetAuthentication();
-
-                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "DeleteIntent"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
-
-                result = restRequest.As<object>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<object>();
-                }
+                result = DeleteIntentAsync(workspaceId, intent).Result;
             }
             catch (AggregateException ae)
             {
@@ -970,6 +1349,60 @@ namespace IBM.Watson.Assistant.v1
 
             return result;
         }
+
+        /// <summary>
+        /// Delete intent.
+        ///
+        /// Delete an intent from a workspace.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="intent">The intent name.</param>
+        /// <returns><see cref="object" />object</returns>
+        public async Task<DetailedResponse<object>> DeleteIntentAsync(string workspaceId, string intent)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+            {
+                throw new ArgumentNullException(nameof(workspaceId));
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
+
+            if (string.IsNullOrEmpty(intent))
+            {
+                throw new ArgumentNullException(nameof(intent));
+            }
+            else
+            {
+                intent = Uri.EscapeDataString(intent);
+            }
+
+            ValidateVersionDate();
+
+            DetailedResponse<object> result = null;
+
+            IClient client = this.Client;
+            SetAuthentication();
+
+            var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}");
+
+            restRequest.WithArgument("version", VersionDate);
+            restRequest.WithHeader("Accept", "application/json");
+
+            restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "DeleteIntent"));
+            restRequest.WithHeaders(customRequestHeaders);
+            ClearCustomRequestHeaders();
+
+            result = await restRequest.As<object>();
+            if (result == null)
+            {
+                result = new DetailedResponse<object>();
+            }
+
+            return result;
+        }
+
         /// <summary>
         /// List user input examples.
         ///
@@ -988,67 +1421,112 @@ namespace IBM.Watson.Assistant.v1
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
-                throw new ArgumentNullException("`workspaceId` is required for `ListExamples`");
+                throw new ArgumentNullException(nameof(workspaceId));
             }
             else
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(intent))
             {
-                throw new ArgumentNullException("`intent` is required for `ListExamples`");
+                throw new ArgumentNullException(nameof(intent));
             }
             else
             {
                 intent = Uri.EscapeDataString(intent);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<ExampleCollection> result = null;
 
             try
             {
-                IClient client = this.Client;
-                SetAuthentication();
-
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (pageLimit != null)
-                {
-                    restRequest.WithArgument("page_limit", pageLimit);
-                }
-                if (!string.IsNullOrEmpty(sort))
-                {
-                    restRequest.WithArgument("sort", sort);
-                }
-                if (!string.IsNullOrEmpty(cursor))
-                {
-                    restRequest.WithArgument("cursor", cursor);
-                }
-                if (includeAudit != null)
-                {
-                    restRequest.WithArgument("include_audit", includeAudit);
-                }
-
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListExamples"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
-
-                result = restRequest.As<ExampleCollection>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<ExampleCollection>();
-                }
+                result = ListExamplesAsync(workspaceId, intent, pageLimit, sort, cursor, includeAudit).Result;
             }
             catch (AggregateException ae)
             {
                 throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// List user input examples.
+        ///
+        /// List the user input examples for an intent, optionally including contextual entity mentions.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="intent">The intent name.</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
+        /// <param name="sort">The attribute by which returned examples will be sorted. To reverse the sort order,
+        /// prefix the value with a minus sign (`-`). (optional)</param>
+        /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="ExampleCollection" />ExampleCollection</returns>
+        public async Task<DetailedResponse<ExampleCollection>> ListExamplesAsync(string workspaceId, string intent, long? pageLimit = null, string sort = null, string cursor = null, bool? includeAudit = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+            {
+                throw new ArgumentNullException(nameof(workspaceId));
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
+
+            if (string.IsNullOrEmpty(intent))
+            {
+                throw new ArgumentNullException(nameof(intent));
+            }
+            else
+            {
+                intent = Uri.EscapeDataString(intent);
+            }
+
+            ValidateVersionDate();
+
+            DetailedResponse<ExampleCollection> result = null;
+
+            IClient client = this.Client;
+            SetAuthentication();
+
+            var restRequest =
+                client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples");
+
+            restRequest.WithArgument("version", VersionDate);
+            restRequest.WithHeader("Accept", "application/json");
+            if (pageLimit != null)
+            {
+                restRequest.WithArgument("page_limit", pageLimit);
+            }
+
+            if (!string.IsNullOrEmpty(sort))
+            {
+                restRequest.WithArgument("sort", sort);
+            }
+
+            if (!string.IsNullOrEmpty(cursor))
+            {
+                restRequest.WithArgument("cursor", cursor);
+            }
+
+            if (includeAudit != null)
+            {
+                restRequest.WithArgument("include_audit", includeAudit);
+            }
+
+            restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListExamples"));
+            restRequest.WithHeaders(customRequestHeaders);
+            ClearCustomRequestHeaders();
+
+            result = await restRequest.As<ExampleCollection>();
+            if (result == null)
+            {
+                result = new DetailedResponse<ExampleCollection>();
             }
 
             return result;
@@ -1072,72 +1550,123 @@ namespace IBM.Watson.Assistant.v1
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
-                throw new ArgumentNullException("`workspaceId` is required for `CreateExample`");
+                throw new ArgumentNullException(nameof(workspaceId));
             }
             else
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(intent))
             {
-                throw new ArgumentNullException("`intent` is required for `CreateExample`");
+                throw new ArgumentNullException(nameof(intent));
             }
             else
             {
                 intent = Uri.EscapeDataString(intent);
             }
+
             if (string.IsNullOrEmpty(text))
             {
-                throw new ArgumentNullException("`text` is required for `CreateExample`");
+                throw new ArgumentNullException(nameof(text));
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<Example> result = null;
 
             try
             {
-                IClient client = this.Client;
-                SetAuthentication();
-
-                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (includeAudit != null)
-                {
-                    restRequest.WithArgument("include_audit", includeAudit);
-                }
-                restRequest.WithHeader("Content-Type", "application/json");
-
-                JObject bodyObject = new JObject();
-                if (!string.IsNullOrEmpty(text))
-                {
-                    bodyObject["text"] = text;
-                }
-                if (mentions != null && mentions.Count > 0)
-                {
-                    bodyObject["mentions"] = JToken.FromObject(mentions);
-                }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
-                restRequest.WithBodyContent(httpContent);
-
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateExample"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
-
-                result = restRequest.As<Example>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<Example>();
-                }
+                result = CreateExampleAsync(workspaceId, intent, text, mentions, includeAudit).Result;
             }
             catch (AggregateException ae)
             {
                 throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Create user input example.
+        ///
+        /// Add a new user input example to an intent.
+        ///
+        /// If you want to add multiple examples with a single API call, consider using the **[Update
+        /// intent](#update-intent)** method instead.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="intent">The intent name.</param>
+        /// <param name="body">The content of the new user input example.</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="Example" />Example</returns>
+        public async Task<DetailedResponse<Example>> CreateExampleAsync(string workspaceId, string intent, string text, List<Mention> mentions = null, bool? includeAudit = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+            {
+                throw new ArgumentNullException(nameof(workspaceId));
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
+
+            if (string.IsNullOrEmpty(intent))
+            {
+                throw new ArgumentNullException(nameof(intent));
+            }
+            else
+            {
+                intent = Uri.EscapeDataString(intent);
+            }
+
+            if (string.IsNullOrEmpty(text))
+            {
+                throw new ArgumentNullException(nameof(text));
+            }
+
+            ValidateVersionDate();
+
+            DetailedResponse<Example> result = null;
+
+            IClient client = this.Client;
+            SetAuthentication();
+
+            var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples");
+
+            restRequest.WithArgument("version", VersionDate);
+            restRequest.WithHeader("Accept", "application/json");
+            if (includeAudit != null)
+            {
+                restRequest.WithArgument("include_audit", includeAudit);
+            }
+
+            restRequest.WithHeader("Content-Type", "application/json");
+
+            JObject bodyObject = new JObject();
+            if (!string.IsNullOrEmpty(text))
+            {
+                bodyObject["text"] = text;
+            }
+
+            if (mentions != null && mentions.Count > 0)
+            {
+                bodyObject["mentions"] = JToken.FromObject(mentions);
+            }
+
+            var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8,
+                HttpMediaType.APPLICATION_JSON);
+            restRequest.WithBodyContent(httpContent);
+
+            restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateExample"));
+            restRequest.WithHeaders(customRequestHeaders);
+            ClearCustomRequestHeaders();
+
+            result = await restRequest.As<Example>();
+            if (result == null)
+            {
+                result = new DetailedResponse<Example>();
             }
 
             return result;
@@ -1158,59 +1687,169 @@ namespace IBM.Watson.Assistant.v1
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
-                throw new ArgumentNullException("`workspaceId` is required for `GetExample`");
+                throw new ArgumentNullException(nameof(workspaceId));
             }
             else
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(intent))
             {
-                throw new ArgumentNullException("`intent` is required for `GetExample`");
+                throw new ArgumentNullException(nameof(intent));
             }
             else
             {
                 intent = Uri.EscapeDataString(intent);
             }
+
             if (string.IsNullOrEmpty(text))
             {
-                throw new ArgumentNullException("`text` is required for `GetExample`");
+                throw new ArgumentNullException(nameof(text));
             }
             else
             {
                 text = Uri.EscapeDataString(text);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<Example> result = null;
 
             try
             {
-                IClient client = this.Client;
-                SetAuthentication();
+                result = GetExampleAsync(workspaceId, intent, text, includeAudit).Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
 
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
+            return result;
+        }
 
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (includeAudit != null)
-                {
-                    restRequest.WithArgument("include_audit", includeAudit);
-                }
+         /// <summary>
+        /// Get user input example.
+        ///
+        /// Get information about a user input example.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="intent">The intent name.</param>
+        /// <param name="text">The text of the user input example.</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="Example" />Example</returns>
+        public async Task<DetailedResponse<Example>> GetExampleAsync(string workspaceId, string intent, string text, bool? includeAudit = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+            {
+                throw new ArgumentNullException(nameof(workspaceId));
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "GetExample"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
+            if (string.IsNullOrEmpty(intent))
+            {
+                throw new ArgumentNullException(nameof(intent));
+            }
+            else
+            {
+                intent = Uri.EscapeDataString(intent);
+            }
 
-                result = restRequest.As<Example>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<Example>();
-                }
+            if (string.IsNullOrEmpty(text))
+            {
+                throw new ArgumentNullException(nameof(text));
+            }
+            else
+            {
+                text = Uri.EscapeDataString(text);
+            }
+
+            ValidateVersionDate();
+
+            DetailedResponse<Example> result = null;
+
+            IClient client = this.Client;
+            SetAuthentication();
+
+            var restRequest =
+                client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
+
+            restRequest.WithArgument("version", VersionDate);
+            restRequest.WithHeader("Accept", "application/json");
+            if (includeAudit != null)
+            {
+                restRequest.WithArgument("include_audit", includeAudit);
+            }
+
+            restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "GetExample"));
+            restRequest.WithHeaders(customRequestHeaders);
+            ClearCustomRequestHeaders();
+
+            result = await restRequest.As<Example>();
+            if (result == null)
+            {
+                result = new DetailedResponse<Example>();
+            }
+
+            return result;
+        }
+
+
+        /// <summary>
+        /// Update user input example.
+        ///
+        /// Update the text of a user input example.
+        ///
+        /// If you want to update multiple examples with a single API call, consider using the **[Update
+        /// intent](#update-intent)** method instead.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="intent">The intent name.</param>
+        /// <param name="text">The text of the user input example.</param>
+        /// <param name="body">The new text of the user input example.</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="Example" />Example</returns>
+        public DetailedResponse<Example> UpdateExample(string workspaceId, string intent, string text, string newText = null, List<Mention> newMentions = null, bool? includeAudit = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+            {
+                throw new ArgumentNullException(nameof(workspaceId));
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
+
+            if (string.IsNullOrEmpty(intent))
+            {
+                throw new ArgumentNullException(nameof(intent));
+            }
+            else
+            {
+                intent = Uri.EscapeDataString(intent);
+            }
+
+            if (string.IsNullOrEmpty(text))
+            {
+                throw new ArgumentNullException(nameof(text));
+            }
+            else
+            {
+                text = Uri.EscapeDataString(text);
+            }
+
+            ValidateVersionDate();
+
+            DetailedResponse<Example> result = null;
+
+            try
+            {
+                result = UpdateExampleAsync(workspaceId, intent, text, newText, newMentions, includeAudit).Result;
             }
             catch (AggregateException ae)
             {
@@ -1235,76 +1874,122 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="Example" />Example</returns>
-        public DetailedResponse<Example> UpdateExample(string workspaceId, string intent, string text, string newText = null, List<Mention> newMentions = null, bool? includeAudit = null)
+        public async Task<DetailedResponse<Example>> UpdateExampleAsync(string workspaceId, string intent, string text, string newText = null, List<Mention> newMentions = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
-                throw new ArgumentNullException("`workspaceId` is required for `UpdateExample`");
+                throw new ArgumentNullException(nameof(workspaceId));
             }
             else
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(intent))
             {
-                throw new ArgumentNullException("`intent` is required for `UpdateExample`");
+                throw new ArgumentNullException(nameof(intent));
             }
             else
             {
                 intent = Uri.EscapeDataString(intent);
             }
+
             if (string.IsNullOrEmpty(text))
             {
-                throw new ArgumentNullException("`text` is required for `UpdateExample`");
+                throw new ArgumentNullException(nameof(text));
             }
             else
             {
                 text = Uri.EscapeDataString(text);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<Example> result = null;
 
+            IClient client = this.Client;
+            SetAuthentication();
+
+            var restRequest =
+                client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
+
+            restRequest.WithArgument("version", VersionDate);
+            restRequest.WithHeader("Accept", "application/json");
+            if (includeAudit != null)
+            {
+                restRequest.WithArgument("include_audit", includeAudit);
+            }
+
+            restRequest.WithHeader("Content-Type", "application/json");
+
+            JObject bodyObject = new JObject();
+            if (!string.IsNullOrEmpty(newText))
+            {
+                bodyObject["text"] = newText;
+            }
+
+            if (newMentions != null && newMentions.Count > 0)
+            {
+                bodyObject["mentions"] = JToken.FromObject(newMentions);
+            }
+
+            var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8,
+                HttpMediaType.APPLICATION_JSON);
+            restRequest.WithBodyContent(httpContent);
+
+            restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateExample"));
+            restRequest.WithHeaders(customRequestHeaders);
+            ClearCustomRequestHeaders();
+
+            result = await restRequest.As<Example>() ?? new DetailedResponse<Example>();
+            return result;
+        }
+
+        /// <summary>
+        /// Delete user input example.
+        ///
+        /// Delete a user input example from an intent.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="intent">The intent name.</param>
+        /// <param name="text">The text of the user input example.</param>
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteExample(string workspaceId, string intent, string text)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+            {
+                throw new ArgumentNullException(nameof(workspaceId));
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
+
+            if (string.IsNullOrEmpty(intent))
+            {
+                throw new ArgumentNullException(nameof(intent));
+            }
+            else
+            {
+                intent = Uri.EscapeDataString(intent);
+            }
+
+            if (string.IsNullOrEmpty(text))
+            {
+                throw new ArgumentNullException(nameof(text));
+            }
+            else
+            {
+                text = Uri.EscapeDataString(text);
+            }
+
+            ValidateVersionDate();
+
+            DetailedResponse<object> result = null;
+
             try
             {
-                IClient client = this.Client;
-                SetAuthentication();
-
-                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (includeAudit != null)
-                {
-                    restRequest.WithArgument("include_audit", includeAudit);
-                }
-                restRequest.WithHeader("Content-Type", "application/json");
-
-                JObject bodyObject = new JObject();
-                if (!string.IsNullOrEmpty(newText))
-                {
-                    bodyObject["text"] = newText;
-                }
-                if (newMentions != null && newMentions.Count > 0)
-                {
-                    bodyObject["mentions"] = JToken.FromObject(newMentions);
-                }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
-                restRequest.WithBodyContent(httpContent);
-
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateExample"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
-
-                result = restRequest.As<Example>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<Example>();
-                }
+                result = DeleteExampleAsync(workspaceId, intent, text).Result;
             }
             catch (AggregateException ae)
             {
@@ -1323,67 +2008,61 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="intent">The intent name.</param>
         /// <param name="text">The text of the user input example.</param>
         /// <returns><see cref="object" />object</returns>
-        public DetailedResponse<object> DeleteExample(string workspaceId, string intent, string text)
+        public async Task<DetailedResponse<object>> DeleteExampleAsync(string workspaceId, string intent, string text)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
-                throw new ArgumentNullException("`workspaceId` is required for `DeleteExample`");
+                throw new ArgumentNullException(nameof(workspaceId));
             }
             else
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(intent))
             {
-                throw new ArgumentNullException("`intent` is required for `DeleteExample`");
+                throw new ArgumentNullException(nameof(intent));
             }
             else
             {
                 intent = Uri.EscapeDataString(intent);
             }
+
             if (string.IsNullOrEmpty(text))
             {
-                throw new ArgumentNullException("`text` is required for `DeleteExample`");
+                throw new ArgumentNullException(nameof(text));
             }
             else
             {
                 text = Uri.EscapeDataString(text);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<object> result = null;
 
-            try
+            IClient client = this.Client;
+            SetAuthentication();
+
+            var restRequest =
+                client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
+
+            restRequest.WithArgument("version", VersionDate);
+            restRequest.WithHeader("Accept", "application/json");
+
+            restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "DeleteExample"));
+            restRequest.WithHeaders(customRequestHeaders);
+            ClearCustomRequestHeaders();
+
+            result = await restRequest.As<object>();
+            if (result == null)
             {
-                IClient client = this.Client;
-                SetAuthentication();
-
-                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/intents/{intent}/examples/{text}");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "DeleteExample"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
-
-                result = restRequest.As<object>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<object>();
-                }
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
+                result = new DetailedResponse<object>();
             }
 
             return result;
         }
+
         /// <summary>
         /// List counterexamples.
         ///
@@ -1402,59 +2081,93 @@ namespace IBM.Watson.Assistant.v1
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
-                throw new ArgumentNullException("`workspaceId` is required for `ListCounterexamples`");
+                throw new ArgumentNullException(nameof(workspaceId));
             }
             else
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<CounterexampleCollection> result = null;
 
             try
             {
-                IClient client = this.Client;
-                SetAuthentication();
-
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (pageLimit != null)
-                {
-                    restRequest.WithArgument("page_limit", pageLimit);
-                }
-                if (!string.IsNullOrEmpty(sort))
-                {
-                    restRequest.WithArgument("sort", sort);
-                }
-                if (!string.IsNullOrEmpty(cursor))
-                {
-                    restRequest.WithArgument("cursor", cursor);
-                }
-                if (includeAudit != null)
-                {
-                    restRequest.WithArgument("include_audit", includeAudit);
-                }
-
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListCounterexamples"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
-
-                result = restRequest.As<CounterexampleCollection>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<CounterexampleCollection>();
-                }
+                result = ListCounterexamplesAsync(workspaceId, pageLimit, sort, cursor, includeAudit).Result;
             }
             catch (AggregateException ae)
             {
                 throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+         /// <summary>
+        /// List counterexamples.
+        ///
+        /// List the counterexamples for a workspace. Counterexamples are examples that have been marked as irrelevant
+        /// input.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
+        /// <param name="sort">The attribute by which returned counterexamples will be sorted. To reverse the sort
+        /// order, prefix the value with a minus sign (`-`). (optional)</param>
+        /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="CounterexampleCollection" />CounterexampleCollection</returns>
+        public async Task<DetailedResponse<CounterexampleCollection>> ListCounterexamplesAsync(string workspaceId, long? pageLimit = null, string sort = null, string cursor = null, bool? includeAudit = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+            {
+                throw new ArgumentNullException(nameof(workspaceId));
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
+
+            ValidateVersionDate();
+
+            DetailedResponse<CounterexampleCollection> result = null;
+
+            IClient client = this.Client;
+            SetAuthentication();
+
+            var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples");
+
+            restRequest.WithArgument("version", VersionDate);
+            restRequest.WithHeader("Accept", "application/json");
+            if (pageLimit != null)
+            {
+                restRequest.WithArgument("page_limit", pageLimit);
+            }
+
+            if (!string.IsNullOrEmpty(sort))
+            {
+                restRequest.WithArgument("sort", sort);
+            }
+
+            if (!string.IsNullOrEmpty(cursor))
+            {
+                restRequest.WithArgument("cursor", cursor);
+            }
+
+            if (includeAudit != null)
+            {
+                restRequest.WithArgument("include_audit", includeAudit);
+            }
+
+            restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListCounterexamples"));
+            restRequest.WithHeaders(customRequestHeaders);
+            ClearCustomRequestHeaders();
+
+            result = await restRequest.As<CounterexampleCollection>();
+            if (result == null)
+            {
+                result = new DetailedResponse<CounterexampleCollection>();
             }
 
             return result;
@@ -1478,56 +2191,139 @@ namespace IBM.Watson.Assistant.v1
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
-                throw new ArgumentNullException("`workspaceId` is required for `CreateCounterexample`");
+                throw new ArgumentNullException(nameof(workspaceId));
             }
             else
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(text))
             {
-                throw new ArgumentNullException("`text` is required for `CreateCounterexample`");
+                throw new ArgumentNullException(nameof(text));
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<Counterexample> result = null;
 
             try
             {
-                IClient client = this.Client;
-                SetAuthentication();
+                result = CreateCounterexampleAsync(workspaceId, text, includeAudit).Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
 
-                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples");
+            return result;
+        }
 
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (includeAudit != null)
-                {
-                    restRequest.WithArgument("include_audit", includeAudit);
-                }
-                restRequest.WithHeader("Content-Type", "application/json");
+        /// <summary>
+        /// Create counterexample.
+        ///
+        /// Add a new counterexample to a workspace. Counterexamples are examples that have been marked as irrelevant
+        /// input.
+        ///
+        /// If you want to add multiple counterexamples with a single API call, consider using the **[Update
+        /// workspace](#update-workspace)** method instead.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="body">The content of the new counterexample.</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="Counterexample" />Counterexample</returns>
+        public async Task<DetailedResponse<Counterexample>> CreateCounterexampleAsync(string workspaceId, string text, bool? includeAudit = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+            {
+                throw new ArgumentNullException(nameof(workspaceId));
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
 
-                JObject bodyObject = new JObject();
-                if (!string.IsNullOrEmpty(text))
-                {
-                    bodyObject["text"] = text;
-                }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
-                restRequest.WithBodyContent(httpContent);
+            if (string.IsNullOrEmpty(text))
+            {
+                throw new ArgumentNullException(nameof(text));
+            }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateCounterexample"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
+            ValidateVersionDate();
 
-                result = restRequest.As<Counterexample>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<Counterexample>();
-                }
+            DetailedResponse<Counterexample> result = null;
+
+            IClient client = this.Client;
+            SetAuthentication();
+
+            var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples");
+
+            restRequest.WithArgument("version", VersionDate);
+            restRequest.WithHeader("Accept", "application/json");
+            if (includeAudit != null)
+            {
+                restRequest.WithArgument("include_audit", includeAudit);
+            }
+
+            restRequest.WithHeader("Content-Type", "application/json");
+
+            JObject bodyObject = new JObject();
+            if (!string.IsNullOrEmpty(text))
+            {
+                bodyObject["text"] = text;
+            }
+
+            var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8,
+                HttpMediaType.APPLICATION_JSON);
+            restRequest.WithBodyContent(httpContent);
+
+            restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateCounterexample"));
+            restRequest.WithHeaders(customRequestHeaders);
+            ClearCustomRequestHeaders();
+
+            result = await restRequest.As<Counterexample>() ?? new DetailedResponse<Counterexample>();
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get counterexample.
+        ///
+        /// Get information about a counterexample. Counterexamples are examples that have been marked as irrelevant
+        /// input.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="text">The text of a user input counterexample (for example, `What are you wearing?`).</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="Counterexample" />Counterexample</returns>
+        public DetailedResponse<Counterexample> GetCounterexample(string workspaceId, string text, bool? includeAudit = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+            {
+                throw new ArgumentNullException(nameof(workspaceId));
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
+
+            if (string.IsNullOrEmpty(text))
+            {
+                throw new ArgumentNullException(nameof(text));
+            }
+            else
+            {
+                text = Uri.EscapeDataString(text);
+            }
+
+            ValidateVersionDate();
+
+            DetailedResponse<Counterexample> result = null;
+
+            try
+            {
+                result = GetCounterexampleAsync(workspaceId, text, includeAudit).Result;
             }
             catch (AggregateException ae)
             {
@@ -1548,55 +2344,90 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="Counterexample" />Counterexample</returns>
-        public DetailedResponse<Counterexample> GetCounterexample(string workspaceId, string text, bool? includeAudit = null)
+        public async Task<DetailedResponse<Counterexample>> GetCounterexampleAsync(string workspaceId, string text, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
-                throw new ArgumentNullException("`workspaceId` is required for `GetCounterexample`");
+                throw new ArgumentNullException(nameof(workspaceId));
             }
             else
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(text))
             {
-                throw new ArgumentNullException("`text` is required for `GetCounterexample`");
+                throw new ArgumentNullException(nameof(text));
             }
             else
             {
                 text = Uri.EscapeDataString(text);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
+            ValidateVersionDate();
+
+            DetailedResponse<Counterexample> result = null;
+
+            IClient client = this.Client;
+            SetAuthentication();
+
+            var restRequest =
+                client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}");
+
+            restRequest.WithArgument("version", VersionDate);
+            restRequest.WithHeader("Accept", "application/json");
+            if (includeAudit != null)
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                restRequest.WithArgument("include_audit", includeAudit);
             }
+
+            restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "GetCounterexample"));
+            restRequest.WithHeaders(customRequestHeaders);
+            ClearCustomRequestHeaders();
+
+            result = await restRequest.As<Counterexample>() ?? new DetailedResponse<Counterexample>();
+
+            return result;
+        }
+
+        /// <summary>
+        /// Update counterexample.
+        ///
+        /// Update the text of a counterexample. Counterexamples are examples that have been marked as irrelevant input.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="text">The text of a user input counterexample (for example, `What are you wearing?`).</param>
+        /// <param name="body">The text of the counterexample.</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="Counterexample" />Counterexample</returns>
+        public DetailedResponse<Counterexample> UpdateCounterexample(string workspaceId, string text, string newText = null, bool? includeAudit = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+            {
+                throw new ArgumentNullException(nameof(workspaceId));
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
+
+            if (string.IsNullOrEmpty(text))
+            {
+                throw new ArgumentNullException(nameof(text));
+            }
+            else
+            {
+                text = Uri.EscapeDataString(text);
+            }
+
+            ValidateVersionDate();
 
             DetailedResponse<Counterexample> result = null;
 
             try
             {
-                IClient client = this.Client;
-                SetAuthentication();
-
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (includeAudit != null)
-                {
-                    restRequest.WithArgument("include_audit", includeAudit);
-                }
-
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "GetCounterexample"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
-
-                result = restRequest.As<Counterexample>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<Counterexample>();
-                }
+                result = UpdateCounterexampleAsync(workspaceId, text, newText, includeAudit).Result;
             }
             catch (AggregateException ae)
             {
@@ -1617,64 +2448,100 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="Counterexample" />Counterexample</returns>
-        public DetailedResponse<Counterexample> UpdateCounterexample(string workspaceId, string text, string newText = null, bool? includeAudit = null)
+        public async Task<DetailedResponse<Counterexample>> UpdateCounterexampleAsync(string workspaceId, string text, string newText = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
-                throw new ArgumentNullException("`workspaceId` is required for `UpdateCounterexample`");
+                throw new ArgumentNullException(nameof(workspaceId));
             }
             else
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(text))
             {
-                throw new ArgumentNullException("`text` is required for `UpdateCounterexample`");
+                throw new ArgumentNullException(nameof(text));
             }
             else
             {
                 text = Uri.EscapeDataString(text);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<Counterexample> result = null;
 
+            IClient client = this.Client;
+            SetAuthentication();
+
+            var restRequest =
+                client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}");
+
+            restRequest.WithArgument("version", VersionDate);
+            restRequest.WithHeader("Accept", "application/json");
+            if (includeAudit != null)
+            {
+                restRequest.WithArgument("include_audit", includeAudit);
+            }
+
+            restRequest.WithHeader("Content-Type", "application/json");
+
+            JObject bodyObject = new JObject();
+            if (!string.IsNullOrEmpty(newText))
+            {
+                bodyObject["text"] = newText;
+            }
+
+            var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8,
+                HttpMediaType.APPLICATION_JSON);
+            restRequest.WithBodyContent(httpContent);
+
+            restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateCounterexample"));
+            restRequest.WithHeaders(customRequestHeaders);
+            ClearCustomRequestHeaders();
+
+            result = restRequest.As<Counterexample>().Result ?? new DetailedResponse<Counterexample>();
+
+            return result;
+        }
+
+        /// <summary>
+        /// Delete counterexample.
+        ///
+        /// Delete a counterexample from a workspace. Counterexamples are examples that have been marked as irrelevant
+        /// input.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="text">The text of a user input counterexample (for example, `What are you wearing?`).</param>
+        /// <returns><see cref="object" />object</returns>
+        public DetailedResponse<object> DeleteCounterexample(string workspaceId, string text)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+            {
+                throw new ArgumentNullException(nameof(workspaceId));
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
+
+            if (string.IsNullOrEmpty(text))
+            {
+                throw new ArgumentNullException(nameof(text));
+            }
+            else
+            {
+                text = Uri.EscapeDataString(text);
+            }
+
+            ValidateVersionDate();
+
+            DetailedResponse<object> result = null;
+
             try
             {
-                IClient client = this.Client;
-                SetAuthentication();
-
-                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (includeAudit != null)
-                {
-                    restRequest.WithArgument("include_audit", includeAudit);
-                }
-                restRequest.WithHeader("Content-Type", "application/json");
-
-                JObject bodyObject = new JObject();
-                if (!string.IsNullOrEmpty(newText))
-                {
-                    bodyObject["text"] = newText;
-                }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
-                restRequest.WithBodyContent(httpContent);
-
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateCounterexample"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
-
-                result = restRequest.As<Counterexample>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<Counterexample>();
-                }
+                result = DeleteCounterexampleAsync(workspaceId, text).Result;
             }
             catch (AggregateException ae)
             {
@@ -1693,59 +2560,47 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="text">The text of a user input counterexample (for example, `What are you wearing?`).</param>
         /// <returns><see cref="object" />object</returns>
-        public DetailedResponse<object> DeleteCounterexample(string workspaceId, string text)
+        public async Task<DetailedResponse<object>> DeleteCounterexampleAsync(string workspaceId, string text)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
-                throw new ArgumentNullException("`workspaceId` is required for `DeleteCounterexample`");
+                throw new ArgumentNullException(nameof(workspaceId));
             }
             else
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(text))
             {
-                throw new ArgumentNullException("`text` is required for `DeleteCounterexample`");
+                throw new ArgumentNullException(nameof(text));
             }
             else
             {
                 text = Uri.EscapeDataString(text);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<object> result = null;
 
-            try
-            {
-                IClient client = this.Client;
-                SetAuthentication();
+            IClient client = this.Client;
+            SetAuthentication();
 
-                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}");
+            var restRequest =
+                client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/counterexamples/{text}");
 
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
+            restRequest.WithArgument("version", VersionDate);
+            restRequest.WithHeader("Accept", "application/json");
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "DeleteCounterexample"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
+            restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "DeleteCounterexample"));
+            restRequest.WithHeaders(customRequestHeaders);
+            ClearCustomRequestHeaders();
 
-                result = restRequest.As<object>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<object>();
-                }
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
+            result = await restRequest.As<object>() ?? new DetailedResponse<object>();
             return result;
         }
+
         /// <summary>
         /// List entities.
         ///
@@ -1766,59 +2621,137 @@ namespace IBM.Watson.Assistant.v1
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
-                throw new ArgumentNullException("`workspaceId` is required for `ListEntities`");
+                throw new ArgumentNullException(nameof(workspaceId));
             }
             else
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<EntityCollection> result = null;
 
             try
             {
-                IClient client = this.Client;
-                SetAuthentication();
+                result = ListEntitiesAsync(workspaceId, export, pageLimit, sort, cursor, includeAudit).Result;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
 
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities");
+            return result;
+        }
 
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (export != null)
-                {
-                    restRequest.WithArgument("export", export);
-                }
-                if (pageLimit != null)
-                {
-                    restRequest.WithArgument("page_limit", pageLimit);
-                }
-                if (!string.IsNullOrEmpty(sort))
-                {
-                    restRequest.WithArgument("sort", sort);
-                }
-                if (!string.IsNullOrEmpty(cursor))
-                {
-                    restRequest.WithArgument("cursor", cursor);
-                }
-                if (includeAudit != null)
-                {
-                    restRequest.WithArgument("include_audit", includeAudit);
-                }
+        /// <summary>
+        /// List entities.
+        ///
+        /// List the entities for a workspace.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="export">Whether to include all element content in the returned data. If **export**=`false`, the
+        /// returned data includes only information about the element itself. If **export**=`true`, all content,
+        /// including subelements, is included. (optional, default to false)</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
+        /// <param name="sort">The attribute by which returned entities will be sorted. To reverse the sort order,
+        /// prefix the value with a minus sign (`-`). (optional)</param>
+        /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="EntityCollection" />EntityCollection</returns>
+        public async Task<DetailedResponse<EntityCollection>> ListEntitiesAsync(string workspaceId, bool? export = null, long? pageLimit = null, string sort = null, string cursor = null, bool? includeAudit = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+            {
+                throw new ArgumentNullException(nameof(workspaceId));
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
 
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListEntities"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
+            ValidateVersionDate();
 
-                result = restRequest.As<EntityCollection>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<EntityCollection>();
-                }
+            DetailedResponse<EntityCollection> result = null;
+
+            IClient client = this.Client;
+            SetAuthentication();
+
+            var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities");
+
+            restRequest.WithArgument("version", VersionDate);
+            restRequest.WithHeader("Accept", "application/json");
+            if (export != null)
+            {
+                restRequest.WithArgument("export", export);
+            }
+
+            if (pageLimit != null)
+            {
+                restRequest.WithArgument("page_limit", pageLimit);
+            }
+
+            if (!string.IsNullOrEmpty(sort))
+            {
+                restRequest.WithArgument("sort", sort);
+            }
+
+            if (!string.IsNullOrEmpty(cursor))
+            {
+                restRequest.WithArgument("cursor", cursor);
+            }
+
+            if (includeAudit != null)
+            {
+                restRequest.WithArgument("include_audit", includeAudit);
+            }
+
+            restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ListEntities"));
+            restRequest.WithHeaders(customRequestHeaders);
+            ClearCustomRequestHeaders();
+
+            result = await restRequest.As<EntityCollection>() ?? new DetailedResponse<EntityCollection>();
+
+            return result;
+        }
+
+        /// <summary>
+        /// Create entity.
+        ///
+        /// Create a new entity, or enable a system entity.
+        ///
+        /// If you want to create multiple entities with a single API call, consider using the **[Update
+        /// workspace](#update-workspace)** method instead.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="body">The content of the new entity.</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="Entity" />Entity</returns>
+        public DetailedResponse<Entity> CreateEntity(string workspaceId, string entity, string description = null, Dictionary<string, object> metadata = null, bool? fuzzyMatch = null, List<CreateValue> values = null, bool? includeAudit = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+            {
+                throw new ArgumentNullException(nameof(workspaceId));
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
+
+            if (string.IsNullOrEmpty(entity))
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
+            ValidateVersionDate();
+
+            DetailedResponse<Entity> result = null;
+
+            try
+            {
+                result = CreateEntityAsync(workspaceId, entity, description, metadata, fuzzyMatch, values, includeAudit).Result;
             }
             catch (AggregateException ae)
             {
@@ -1841,82 +2774,75 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="Entity" />Entity</returns>
-        public DetailedResponse<Entity> CreateEntity(string workspaceId, string entity, string description = null, Dictionary<string, object> metadata = null, bool? fuzzyMatch = null, List<CreateValue> values = null, bool? includeAudit = null)
+        public async Task<DetailedResponse<Entity>> CreateEntityAsync(string workspaceId, string entity, string description = null, Dictionary<string, object> metadata = null, bool? fuzzyMatch = null, List<CreateValue> values = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
-                throw new ArgumentNullException("`workspaceId` is required for `CreateEntity`");
+                throw new ArgumentNullException(nameof(workspaceId));
             }
             else
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(entity))
             {
-                throw new ArgumentNullException("`entity` is required for `CreateEntity`");
+                throw new ArgumentNullException(nameof(entity));
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<Entity> result = null;
 
-            try
+            IClient client = this.Client;
+            SetAuthentication();
+
+            var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities");
+
+            restRequest.WithArgument("version", VersionDate);
+            restRequest.WithHeader("Accept", "application/json");
+            if (includeAudit != null)
             {
-                IClient client = this.Client;
-                SetAuthentication();
-
-                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities");
-
-                restRequest.WithArgument("version", VersionDate);
-                restRequest.WithHeader("Accept", "application/json");
-                if (includeAudit != null)
-                {
-                    restRequest.WithArgument("include_audit", includeAudit);
-                }
-                restRequest.WithHeader("Content-Type", "application/json");
-
-                JObject bodyObject = new JObject();
-                if (!string.IsNullOrEmpty(entity))
-                {
-                    bodyObject["entity"] = entity;
-                }
-                if (!string.IsNullOrEmpty(description))
-                {
-                    bodyObject["description"] = description;
-                }
-                if (metadata != null)
-                {
-                    bodyObject["metadata"] = JToken.FromObject(metadata);
-                }
-                if (fuzzyMatch != null)
-                {
-                    bodyObject["fuzzy_match"] = JToken.FromObject(fuzzyMatch);
-                }
-                if (values != null && values.Count > 0)
-                {
-                    bodyObject["values"] = JToken.FromObject(values);
-                }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
-                restRequest.WithBodyContent(httpContent);
-
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateEntity"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
-
-                result = restRequest.As<Entity>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<Entity>();
-                }
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
+                restRequest.WithArgument("include_audit", includeAudit);
             }
 
+            restRequest.WithHeader("Content-Type", "application/json");
+
+            JObject bodyObject = new JObject();
+            if (!string.IsNullOrEmpty(entity))
+            {
+                bodyObject["entity"] = entity;
+            }
+
+            if (!string.IsNullOrEmpty(description))
+            {
+                bodyObject["description"] = description;
+            }
+
+            if (metadata != null)
+            {
+                bodyObject["metadata"] = JToken.FromObject(metadata);
+            }
+
+            if (fuzzyMatch != null)
+            {
+                bodyObject["fuzzy_match"] = JToken.FromObject(fuzzyMatch);
+            }
+
+            if (values != null && values.Count > 0)
+            {
+                bodyObject["values"] = JToken.FromObject(values);
+            }
+
+            var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8,
+                HttpMediaType.APPLICATION_JSON);
+            restRequest.WithBodyContent(httpContent);
+
+            restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateEntity"));
+            restRequest.WithHeaders(customRequestHeaders);
+            ClearCustomRequestHeaders();
+
+            result = await restRequest.As<Entity>() ?? new DetailedResponse<Entity>();
             return result;
         }
 
@@ -1933,7 +2859,8 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="Entity" />Entity</returns>
-        public DetailedResponse<Entity> GetEntity(string workspaceId, string entity, bool? export = null, bool? includeAudit = null)
+        public DetailedResponse<Entity> GetEntity(string workspaceId, string entity, bool? export = null,
+            bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -1943,6 +2870,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(entity))
             {
                 throw new ArgumentNullException("`entity` is required for `GetEntity`");
@@ -1952,10 +2880,7 @@ namespace IBM.Watson.Assistant.v1
                 entity = Uri.EscapeDataString(entity);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<Entity> result = null;
 
@@ -1972,6 +2897,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     restRequest.WithArgument("export", export);
                 }
+
                 if (includeAudit != null)
                 {
                     restRequest.WithArgument("include_audit", includeAudit);
@@ -2021,7 +2947,9 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="Entity" />Entity</returns>
-        public DetailedResponse<Entity> UpdateEntity(string workspaceId, string entity, string newEntity = null, string newDescription = null, Dictionary<string, object> newMetadata = null, bool? newFuzzyMatch = null, List<CreateValue> newValues = null, bool? append = null, bool? includeAudit = null)
+        public DetailedResponse<Entity> UpdateEntity(string workspaceId, string entity, string newEntity = null,
+            string newDescription = null, Dictionary<string, object> newMetadata = null, bool? newFuzzyMatch = null,
+            List<CreateValue> newValues = null, bool? append = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -2031,6 +2959,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(entity))
             {
                 throw new ArgumentNullException("`entity` is required for `UpdateEntity`");
@@ -2040,10 +2969,7 @@ namespace IBM.Watson.Assistant.v1
                 entity = Uri.EscapeDataString(entity);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<Entity> result = null;
 
@@ -2060,10 +2986,12 @@ namespace IBM.Watson.Assistant.v1
                 {
                     restRequest.WithArgument("append", append);
                 }
+
                 if (includeAudit != null)
                 {
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
+
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -2071,23 +2999,29 @@ namespace IBM.Watson.Assistant.v1
                 {
                     bodyObject["entity"] = newEntity;
                 }
+
                 if (!string.IsNullOrEmpty(newDescription))
                 {
                     bodyObject["description"] = newDescription;
                 }
+
                 if (newMetadata != null)
                 {
                     bodyObject["metadata"] = JToken.FromObject(newMetadata);
                 }
+
                 if (newFuzzyMatch != null)
                 {
                     bodyObject["fuzzy_match"] = JToken.FromObject(newFuzzyMatch);
                 }
+
                 if (newValues != null && newValues.Count > 0)
                 {
                     bodyObject["values"] = JToken.FromObject(newValues);
                 }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
+
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8,
+                    HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateEntity"));
@@ -2126,6 +3060,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(entity))
             {
                 throw new ArgumentNullException("`entity` is required for `DeleteEntity`");
@@ -2135,10 +3070,7 @@ namespace IBM.Watson.Assistant.v1
                 entity = Uri.EscapeDataString(entity);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<object> result = null;
 
@@ -2169,6 +3101,7 @@ namespace IBM.Watson.Assistant.v1
 
             return result;
         }
+
         /// <summary>
         /// List entity mentions.
         ///
@@ -2183,7 +3116,8 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="EntityMentionCollection" />EntityMentionCollection</returns>
-        public DetailedResponse<EntityMentionCollection> ListMentions(string workspaceId, string entity, bool? export = null, bool? includeAudit = null)
+        public DetailedResponse<EntityMentionCollection> ListMentions(string workspaceId, string entity,
+            bool? export = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -2193,6 +3127,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(entity))
             {
                 throw new ArgumentNullException("`entity` is required for `ListMentions`");
@@ -2202,10 +3137,7 @@ namespace IBM.Watson.Assistant.v1
                 entity = Uri.EscapeDataString(entity);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<EntityMentionCollection> result = null;
 
@@ -2214,7 +3146,8 @@ namespace IBM.Watson.Assistant.v1
                 IClient client = this.Client;
                 SetAuthentication();
 
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/mentions");
+                var restRequest =
+                    client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/mentions");
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
@@ -2222,6 +3155,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     restRequest.WithArgument("export", export);
                 }
+
                 if (includeAudit != null)
                 {
                     restRequest.WithArgument("include_audit", includeAudit);
@@ -2244,6 +3178,7 @@ namespace IBM.Watson.Assistant.v1
 
             return result;
         }
+
         /// <summary>
         /// List entity values.
         ///
@@ -2261,7 +3196,8 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="ValueCollection" />ValueCollection</returns>
-        public DetailedResponse<ValueCollection> ListValues(string workspaceId, string entity, bool? export = null, long? pageLimit = null, string sort = null, string cursor = null, bool? includeAudit = null)
+        public DetailedResponse<ValueCollection> ListValues(string workspaceId, string entity, bool? export = null,
+            long? pageLimit = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -2271,6 +3207,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(entity))
             {
                 throw new ArgumentNullException("`entity` is required for `ListValues`");
@@ -2280,10 +3217,7 @@ namespace IBM.Watson.Assistant.v1
                 entity = Uri.EscapeDataString(entity);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<ValueCollection> result = null;
 
@@ -2292,7 +3226,8 @@ namespace IBM.Watson.Assistant.v1
                 IClient client = this.Client;
                 SetAuthentication();
 
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values");
+                var restRequest =
+                    client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values");
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
@@ -2300,18 +3235,22 @@ namespace IBM.Watson.Assistant.v1
                 {
                     restRequest.WithArgument("export", export);
                 }
+
                 if (pageLimit != null)
                 {
                     restRequest.WithArgument("page_limit", pageLimit);
                 }
+
                 if (!string.IsNullOrEmpty(sort))
                 {
                     restRequest.WithArgument("sort", sort);
                 }
+
                 if (!string.IsNullOrEmpty(cursor))
                 {
                     restRequest.WithArgument("cursor", cursor);
                 }
+
                 if (includeAudit != null)
                 {
                     restRequest.WithArgument("include_audit", includeAudit);
@@ -2349,7 +3288,9 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="Value" />Value</returns>
-        public DetailedResponse<Value> CreateValue(string workspaceId, string entity, string value, Dictionary<string, object> metadata = null, string type = null, List<string> synonyms = null, List<string> patterns = null, bool? includeAudit = null)
+        public DetailedResponse<Value> CreateValue(string workspaceId, string entity, string value,
+            Dictionary<string, object> metadata = null, string type = null, List<string> synonyms = null,
+            List<string> patterns = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -2359,6 +3300,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(entity))
             {
                 throw new ArgumentNullException("`entity` is required for `CreateValue`");
@@ -2367,15 +3309,13 @@ namespace IBM.Watson.Assistant.v1
             {
                 entity = Uri.EscapeDataString(entity);
             }
+
             if (string.IsNullOrEmpty(value))
             {
                 throw new ArgumentNullException("`value` is required for `CreateValue`");
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<Value> result = null;
 
@@ -2384,7 +3324,8 @@ namespace IBM.Watson.Assistant.v1
                 IClient client = this.Client;
                 SetAuthentication();
 
-                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values");
+                var restRequest =
+                    client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values");
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
@@ -2392,6 +3333,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
+
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -2399,23 +3341,29 @@ namespace IBM.Watson.Assistant.v1
                 {
                     bodyObject["value"] = value;
                 }
+
                 if (metadata != null)
                 {
                     bodyObject["metadata"] = JToken.FromObject(metadata);
                 }
+
                 if (!string.IsNullOrEmpty(type))
                 {
                     bodyObject["type"] = type;
                 }
+
                 if (synonyms != null && synonyms.Count > 0)
                 {
                     bodyObject["synonyms"] = JToken.FromObject(synonyms);
                 }
+
                 if (patterns != null && patterns.Count > 0)
                 {
                     bodyObject["patterns"] = JToken.FromObject(patterns);
                 }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
+
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8,
+                    HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateValue"));
@@ -2450,7 +3398,8 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="Value" />Value</returns>
-        public DetailedResponse<Value> GetValue(string workspaceId, string entity, string value, bool? export = null, bool? includeAudit = null)
+        public DetailedResponse<Value> GetValue(string workspaceId, string entity, string value, bool? export = null,
+            bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -2460,6 +3409,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(entity))
             {
                 throw new ArgumentNullException("`entity` is required for `GetValue`");
@@ -2468,6 +3418,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 entity = Uri.EscapeDataString(entity);
             }
+
             if (string.IsNullOrEmpty(value))
             {
                 throw new ArgumentNullException("`value` is required for `GetValue`");
@@ -2477,10 +3428,7 @@ namespace IBM.Watson.Assistant.v1
                 value = Uri.EscapeDataString(value);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<Value> result = null;
 
@@ -2489,7 +3437,8 @@ namespace IBM.Watson.Assistant.v1
                 IClient client = this.Client;
                 SetAuthentication();
 
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
+                var restRequest =
+                    client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
@@ -2497,6 +3446,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     restRequest.WithArgument("export", export);
                 }
+
                 if (includeAudit != null)
                 {
                     restRequest.WithArgument("include_audit", includeAudit);
@@ -2549,7 +3499,10 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="Value" />Value</returns>
-        public DetailedResponse<Value> UpdateValue(string workspaceId, string entity, string value, string newValue = null, Dictionary<string, object> newMetadata = null, string newType = null, List<string> newSynonyms = null, List<string> newPatterns = null, bool? append = null, bool? includeAudit = null)
+        public DetailedResponse<Value> UpdateValue(string workspaceId, string entity, string value,
+            string newValue = null, Dictionary<string, object> newMetadata = null, string newType = null,
+            List<string> newSynonyms = null, List<string> newPatterns = null, bool? append = null,
+            bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -2559,6 +3512,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(entity))
             {
                 throw new ArgumentNullException("`entity` is required for `UpdateValue`");
@@ -2567,6 +3521,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 entity = Uri.EscapeDataString(entity);
             }
+
             if (string.IsNullOrEmpty(value))
             {
                 throw new ArgumentNullException("`value` is required for `UpdateValue`");
@@ -2576,10 +3531,7 @@ namespace IBM.Watson.Assistant.v1
                 value = Uri.EscapeDataString(value);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<Value> result = null;
 
@@ -2588,7 +3540,8 @@ namespace IBM.Watson.Assistant.v1
                 IClient client = this.Client;
                 SetAuthentication();
 
-                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
+                var restRequest =
+                    client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
@@ -2596,10 +3549,12 @@ namespace IBM.Watson.Assistant.v1
                 {
                     restRequest.WithArgument("append", append);
                 }
+
                 if (includeAudit != null)
                 {
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
+
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -2607,23 +3562,29 @@ namespace IBM.Watson.Assistant.v1
                 {
                     bodyObject["value"] = newValue;
                 }
+
                 if (newMetadata != null)
                 {
                     bodyObject["metadata"] = JToken.FromObject(newMetadata);
                 }
+
                 if (!string.IsNullOrEmpty(newType))
                 {
                     bodyObject["type"] = newType;
                 }
+
                 if (newSynonyms != null && newSynonyms.Count > 0)
                 {
                     bodyObject["synonyms"] = JToken.FromObject(newSynonyms);
                 }
+
                 if (newPatterns != null && newPatterns.Count > 0)
                 {
                     bodyObject["patterns"] = JToken.FromObject(newPatterns);
                 }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
+
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8,
+                    HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateValue"));
@@ -2663,6 +3624,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(entity))
             {
                 throw new ArgumentNullException("`entity` is required for `DeleteValue`");
@@ -2671,6 +3633,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 entity = Uri.EscapeDataString(entity);
             }
+
             if (string.IsNullOrEmpty(value))
             {
                 throw new ArgumentNullException("`value` is required for `DeleteValue`");
@@ -2680,10 +3643,7 @@ namespace IBM.Watson.Assistant.v1
                 value = Uri.EscapeDataString(value);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<object> result = null;
 
@@ -2692,7 +3652,8 @@ namespace IBM.Watson.Assistant.v1
                 IClient client = this.Client;
                 SetAuthentication();
 
-                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
+                var restRequest =
+                    client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}");
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
@@ -2714,6 +3675,7 @@ namespace IBM.Watson.Assistant.v1
 
             return result;
         }
+
         /// <summary>
         /// List entity value synonyms.
         ///
@@ -2729,7 +3691,8 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="SynonymCollection" />SynonymCollection</returns>
-        public DetailedResponse<SynonymCollection> ListSynonyms(string workspaceId, string entity, string value, long? pageLimit = null, string sort = null, string cursor = null, bool? includeAudit = null)
+        public DetailedResponse<SynonymCollection> ListSynonyms(string workspaceId, string entity, string value,
+            long? pageLimit = null, string sort = null, string cursor = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -2739,6 +3702,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(entity))
             {
                 throw new ArgumentNullException("`entity` is required for `ListSynonyms`");
@@ -2747,6 +3711,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 entity = Uri.EscapeDataString(entity);
             }
+
             if (string.IsNullOrEmpty(value))
             {
                 throw new ArgumentNullException("`value` is required for `ListSynonyms`");
@@ -2756,10 +3721,7 @@ namespace IBM.Watson.Assistant.v1
                 value = Uri.EscapeDataString(value);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<SynonymCollection> result = null;
 
@@ -2768,7 +3730,9 @@ namespace IBM.Watson.Assistant.v1
                 IClient client = this.Client;
                 SetAuthentication();
 
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms");
+                var restRequest =
+                    client.GetAsync(
+                        $"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms");
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
@@ -2776,14 +3740,17 @@ namespace IBM.Watson.Assistant.v1
                 {
                     restRequest.WithArgument("page_limit", pageLimit);
                 }
+
                 if (!string.IsNullOrEmpty(sort))
                 {
                     restRequest.WithArgument("sort", sort);
                 }
+
                 if (!string.IsNullOrEmpty(cursor))
                 {
                     restRequest.WithArgument("cursor", cursor);
                 }
+
                 if (includeAudit != null)
                 {
                     restRequest.WithArgument("include_audit", includeAudit);
@@ -2822,7 +3789,8 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="Synonym" />Synonym</returns>
-        public DetailedResponse<Synonym> CreateSynonym(string workspaceId, string entity, string value, string synonym, bool? includeAudit = null)
+        public DetailedResponse<Synonym> CreateSynonym(string workspaceId, string entity, string value, string synonym,
+            bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -2832,6 +3800,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(entity))
             {
                 throw new ArgumentNullException("`entity` is required for `CreateSynonym`");
@@ -2840,6 +3809,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 entity = Uri.EscapeDataString(entity);
             }
+
             if (string.IsNullOrEmpty(value))
             {
                 throw new ArgumentNullException("`value` is required for `CreateSynonym`");
@@ -2848,15 +3818,13 @@ namespace IBM.Watson.Assistant.v1
             {
                 value = Uri.EscapeDataString(value);
             }
+
             if (string.IsNullOrEmpty(synonym))
             {
                 throw new ArgumentNullException("`synonym` is required for `CreateSynonym`");
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<Synonym> result = null;
 
@@ -2865,7 +3833,9 @@ namespace IBM.Watson.Assistant.v1
                 IClient client = this.Client;
                 SetAuthentication();
 
-                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms");
+                var restRequest =
+                    client.PostAsync(
+                        $"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms");
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
@@ -2873,6 +3843,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
+
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -2880,7 +3851,9 @@ namespace IBM.Watson.Assistant.v1
                 {
                     bodyObject["synonym"] = synonym;
                 }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
+
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8,
+                    HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateSynonym"));
@@ -2913,7 +3886,8 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="Synonym" />Synonym</returns>
-        public DetailedResponse<Synonym> GetSynonym(string workspaceId, string entity, string value, string synonym, bool? includeAudit = null)
+        public DetailedResponse<Synonym> GetSynonym(string workspaceId, string entity, string value, string synonym,
+            bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -2923,6 +3897,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(entity))
             {
                 throw new ArgumentNullException("`entity` is required for `GetSynonym`");
@@ -2931,6 +3906,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 entity = Uri.EscapeDataString(entity);
             }
+
             if (string.IsNullOrEmpty(value))
             {
                 throw new ArgumentNullException("`value` is required for `GetSynonym`");
@@ -2939,6 +3915,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 value = Uri.EscapeDataString(value);
             }
+
             if (string.IsNullOrEmpty(synonym))
             {
                 throw new ArgumentNullException("`synonym` is required for `GetSynonym`");
@@ -2948,10 +3925,7 @@ namespace IBM.Watson.Assistant.v1
                 synonym = Uri.EscapeDataString(synonym);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<Synonym> result = null;
 
@@ -2960,7 +3934,9 @@ namespace IBM.Watson.Assistant.v1
                 IClient client = this.Client;
                 SetAuthentication();
 
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
+                var restRequest =
+                    client.GetAsync(
+                        $"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
@@ -3003,7 +3979,8 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="Synonym" />Synonym</returns>
-        public DetailedResponse<Synonym> UpdateSynonym(string workspaceId, string entity, string value, string synonym, string newSynonym = null, bool? includeAudit = null)
+        public DetailedResponse<Synonym> UpdateSynonym(string workspaceId, string entity, string value, string synonym,
+            string newSynonym = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -3013,6 +3990,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(entity))
             {
                 throw new ArgumentNullException("`entity` is required for `UpdateSynonym`");
@@ -3021,6 +3999,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 entity = Uri.EscapeDataString(entity);
             }
+
             if (string.IsNullOrEmpty(value))
             {
                 throw new ArgumentNullException("`value` is required for `UpdateSynonym`");
@@ -3029,6 +4008,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 value = Uri.EscapeDataString(value);
             }
+
             if (string.IsNullOrEmpty(synonym))
             {
                 throw new ArgumentNullException("`synonym` is required for `UpdateSynonym`");
@@ -3038,10 +4018,7 @@ namespace IBM.Watson.Assistant.v1
                 synonym = Uri.EscapeDataString(synonym);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<Synonym> result = null;
 
@@ -3050,7 +4027,9 @@ namespace IBM.Watson.Assistant.v1
                 IClient client = this.Client;
                 SetAuthentication();
 
-                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
+                var restRequest =
+                    client.PostAsync(
+                        $"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
@@ -3058,6 +4037,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
+
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -3065,7 +4045,9 @@ namespace IBM.Watson.Assistant.v1
                 {
                     bodyObject["synonym"] = newSynonym;
                 }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
+
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8,
+                    HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateSynonym"));
@@ -3106,6 +4088,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(entity))
             {
                 throw new ArgumentNullException("`entity` is required for `DeleteSynonym`");
@@ -3114,6 +4097,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 entity = Uri.EscapeDataString(entity);
             }
+
             if (string.IsNullOrEmpty(value))
             {
                 throw new ArgumentNullException("`value` is required for `DeleteSynonym`");
@@ -3122,6 +4106,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 value = Uri.EscapeDataString(value);
             }
+
             if (string.IsNullOrEmpty(synonym))
             {
                 throw new ArgumentNullException("`synonym` is required for `DeleteSynonym`");
@@ -3131,10 +4116,7 @@ namespace IBM.Watson.Assistant.v1
                 synonym = Uri.EscapeDataString(synonym);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<object> result = null;
 
@@ -3143,7 +4125,9 @@ namespace IBM.Watson.Assistant.v1
                 IClient client = this.Client;
                 SetAuthentication();
 
-                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
+                var restRequest =
+                    client.DeleteAsync(
+                        $"{this.Endpoint}/v1/workspaces/{workspaceId}/entities/{entity}/values/{value}/synonyms/{synonym}");
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
@@ -3165,6 +4149,7 @@ namespace IBM.Watson.Assistant.v1
 
             return result;
         }
+
         /// <summary>
         /// List dialog nodes.
         ///
@@ -3178,7 +4163,8 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="DialogNodeCollection" />DialogNodeCollection</returns>
-        public DetailedResponse<DialogNodeCollection> ListDialogNodes(string workspaceId, long? pageLimit = null, string sort = null, string cursor = null, bool? includeAudit = null)
+        public DetailedResponse<DialogNodeCollection> ListDialogNodes(string workspaceId, long? pageLimit = null,
+            string sort = null, string cursor = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -3189,10 +4175,7 @@ namespace IBM.Watson.Assistant.v1
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<DialogNodeCollection> result = null;
 
@@ -3209,14 +4192,17 @@ namespace IBM.Watson.Assistant.v1
                 {
                     restRequest.WithArgument("page_limit", pageLimit);
                 }
+
                 if (!string.IsNullOrEmpty(sort))
                 {
                     restRequest.WithArgument("sort", sort);
                 }
+
                 if (!string.IsNullOrEmpty(cursor))
                 {
                     restRequest.WithArgument("cursor", cursor);
                 }
+
                 if (includeAudit != null)
                 {
                     restRequest.WithArgument("include_audit", includeAudit);
@@ -3253,7 +4239,13 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="DialogNode" />DialogNode</returns>
-        public DetailedResponse<DialogNode> CreateDialogNode(string workspaceId, string dialogNode, string description = null, string conditions = null, string parent = null, string previousSibling = null, DialogNodeOutput output = null, Dictionary<string, object> context = null, Dictionary<string, object> metadata = null, DialogNodeNextStep nextStep = null, string title = null, string type = null, string eventName = null, string variable = null, List<DialogNodeAction> actions = null, string digressIn = null, string digressOut = null, string digressOutSlots = null, string userLabel = null, bool? disambiguationOptOut = null, bool? includeAudit = null)
+        public DetailedResponse<DialogNode> CreateDialogNode(string workspaceId, string dialogNode,
+            string description = null, string conditions = null, string parent = null, string previousSibling = null,
+            DialogNodeOutput output = null, Dictionary<string, object> context = null,
+            Dictionary<string, object> metadata = null, DialogNodeNextStep nextStep = null, string title = null,
+            string type = null, string eventName = null, string variable = null, List<DialogNodeAction> actions = null,
+            string digressIn = null, string digressOut = null, string digressOutSlots = null, string userLabel = null,
+            bool? disambiguationOptOut = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -3263,15 +4255,13 @@ namespace IBM.Watson.Assistant.v1
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(dialogNode))
             {
                 throw new ArgumentNullException("`dialogNode` is required for `CreateDialogNode`");
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<DialogNode> result = null;
 
@@ -3288,6 +4278,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
+
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -3295,79 +4286,99 @@ namespace IBM.Watson.Assistant.v1
                 {
                     bodyObject["dialog_node"] = dialogNode;
                 }
+
                 if (!string.IsNullOrEmpty(description))
                 {
                     bodyObject["description"] = description;
                 }
+
                 if (!string.IsNullOrEmpty(conditions))
                 {
                     bodyObject["conditions"] = conditions;
                 }
+
                 if (!string.IsNullOrEmpty(parent))
                 {
                     bodyObject["parent"] = parent;
                 }
+
                 if (!string.IsNullOrEmpty(previousSibling))
                 {
                     bodyObject["previous_sibling"] = previousSibling;
                 }
+
                 if (output != null)
                 {
                     bodyObject["output"] = JToken.FromObject(output);
                 }
+
                 if (context != null)
                 {
                     bodyObject["context"] = JToken.FromObject(context);
                 }
+
                 if (metadata != null)
                 {
                     bodyObject["metadata"] = JToken.FromObject(metadata);
                 }
+
                 if (nextStep != null)
                 {
                     bodyObject["next_step"] = JToken.FromObject(nextStep);
                 }
+
                 if (!string.IsNullOrEmpty(title))
                 {
                     bodyObject["title"] = title;
                 }
+
                 if (!string.IsNullOrEmpty(type))
                 {
                     bodyObject["type"] = type;
                 }
+
                 if (!string.IsNullOrEmpty(eventName))
                 {
                     bodyObject["event_name"] = eventName;
                 }
+
                 if (!string.IsNullOrEmpty(variable))
                 {
                     bodyObject["variable"] = variable;
                 }
+
                 if (actions != null && actions.Count > 0)
                 {
                     bodyObject["actions"] = JToken.FromObject(actions);
                 }
+
                 if (!string.IsNullOrEmpty(digressIn))
                 {
                     bodyObject["digress_in"] = digressIn;
                 }
+
                 if (!string.IsNullOrEmpty(digressOut))
                 {
                     bodyObject["digress_out"] = digressOut;
                 }
+
                 if (!string.IsNullOrEmpty(digressOutSlots))
                 {
                     bodyObject["digress_out_slots"] = digressOutSlots;
                 }
+
                 if (!string.IsNullOrEmpty(userLabel))
                 {
                     bodyObject["user_label"] = userLabel;
                 }
+
                 if (disambiguationOptOut != null)
                 {
                     bodyObject["disambiguation_opt_out"] = JToken.FromObject(disambiguationOptOut);
                 }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
+
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8,
+                    HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateDialogNode"));
@@ -3398,7 +4409,8 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="DialogNode" />DialogNode</returns>
-        public DetailedResponse<DialogNode> GetDialogNode(string workspaceId, string dialogNode, bool? includeAudit = null)
+        public DetailedResponse<DialogNode> GetDialogNode(string workspaceId, string dialogNode,
+            bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -3408,6 +4420,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(dialogNode))
             {
                 throw new ArgumentNullException("`dialogNode` is required for `GetDialogNode`");
@@ -3417,10 +4430,7 @@ namespace IBM.Watson.Assistant.v1
                 dialogNode = Uri.EscapeDataString(dialogNode);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<DialogNode> result = null;
 
@@ -3429,7 +4439,8 @@ namespace IBM.Watson.Assistant.v1
                 IClient client = this.Client;
                 SetAuthentication();
 
-                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
+                var restRequest =
+                    client.GetAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
@@ -3475,7 +4486,14 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
         /// the response. (optional, default to false)</param>
         /// <returns><see cref="DialogNode" />DialogNode</returns>
-        public DetailedResponse<DialogNode> UpdateDialogNode(string workspaceId, string dialogNode, string newDialogNode = null, string newDescription = null, string newConditions = null, string newParent = null, string newPreviousSibling = null, DialogNodeOutput newOutput = null, Dictionary<string, object> newContext = null, Dictionary<string, object> newMetadata = null, DialogNodeNextStep newNextStep = null, string newTitle = null, string newType = null, string newEventName = null, string newVariable = null, List<DialogNodeAction> newActions = null, string newDigressIn = null, string newDigressOut = null, string newDigressOutSlots = null, string newUserLabel = null, bool? newDisambiguationOptOut = null, bool? includeAudit = null)
+        public DetailedResponse<DialogNode> UpdateDialogNode(string workspaceId, string dialogNode,
+            string newDialogNode = null, string newDescription = null, string newConditions = null,
+            string newParent = null, string newPreviousSibling = null, DialogNodeOutput newOutput = null,
+            Dictionary<string, object> newContext = null, Dictionary<string, object> newMetadata = null,
+            DialogNodeNextStep newNextStep = null, string newTitle = null, string newType = null,
+            string newEventName = null, string newVariable = null, List<DialogNodeAction> newActions = null,
+            string newDigressIn = null, string newDigressOut = null, string newDigressOutSlots = null,
+            string newUserLabel = null, bool? newDisambiguationOptOut = null, bool? includeAudit = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -3485,6 +4503,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(dialogNode))
             {
                 throw new ArgumentNullException("`dialogNode` is required for `UpdateDialogNode`");
@@ -3494,10 +4513,7 @@ namespace IBM.Watson.Assistant.v1
                 dialogNode = Uri.EscapeDataString(dialogNode);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<DialogNode> result = null;
 
@@ -3506,7 +4522,8 @@ namespace IBM.Watson.Assistant.v1
                 IClient client = this.Client;
                 SetAuthentication();
 
-                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
+                var restRequest =
+                    client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
@@ -3514,6 +4531,7 @@ namespace IBM.Watson.Assistant.v1
                 {
                     restRequest.WithArgument("include_audit", includeAudit);
                 }
+
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -3521,79 +4539,99 @@ namespace IBM.Watson.Assistant.v1
                 {
                     bodyObject["dialog_node"] = newDialogNode;
                 }
+
                 if (!string.IsNullOrEmpty(newDescription))
                 {
                     bodyObject["description"] = newDescription;
                 }
+
                 if (!string.IsNullOrEmpty(newConditions))
                 {
                     bodyObject["conditions"] = newConditions;
                 }
+
                 if (!string.IsNullOrEmpty(newParent))
                 {
                     bodyObject["parent"] = newParent;
                 }
+
                 if (!string.IsNullOrEmpty(newPreviousSibling))
                 {
                     bodyObject["previous_sibling"] = newPreviousSibling;
                 }
+
                 if (newOutput != null)
                 {
                     bodyObject["output"] = JToken.FromObject(newOutput);
                 }
+
                 if (newContext != null)
                 {
                     bodyObject["context"] = JToken.FromObject(newContext);
                 }
+
                 if (newMetadata != null)
                 {
                     bodyObject["metadata"] = JToken.FromObject(newMetadata);
                 }
+
                 if (newNextStep != null)
                 {
                     bodyObject["next_step"] = JToken.FromObject(newNextStep);
                 }
+
                 if (!string.IsNullOrEmpty(newTitle))
                 {
                     bodyObject["title"] = newTitle;
                 }
+
                 if (!string.IsNullOrEmpty(newType))
                 {
                     bodyObject["type"] = newType;
                 }
+
                 if (!string.IsNullOrEmpty(newEventName))
                 {
                     bodyObject["event_name"] = newEventName;
                 }
+
                 if (!string.IsNullOrEmpty(newVariable))
                 {
                     bodyObject["variable"] = newVariable;
                 }
+
                 if (newActions != null && newActions.Count > 0)
                 {
                     bodyObject["actions"] = JToken.FromObject(newActions);
                 }
+
                 if (!string.IsNullOrEmpty(newDigressIn))
                 {
                     bodyObject["digress_in"] = newDigressIn;
                 }
+
                 if (!string.IsNullOrEmpty(newDigressOut))
                 {
                     bodyObject["digress_out"] = newDigressOut;
                 }
+
                 if (!string.IsNullOrEmpty(newDigressOutSlots))
                 {
                     bodyObject["digress_out_slots"] = newDigressOutSlots;
                 }
+
                 if (!string.IsNullOrEmpty(newUserLabel))
                 {
                     bodyObject["user_label"] = newUserLabel;
                 }
+
                 if (newDisambiguationOptOut != null)
                 {
                     bodyObject["disambiguation_opt_out"] = JToken.FromObject(newDisambiguationOptOut);
                 }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
+
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8,
+                    HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateDialogNode"));
@@ -3632,6 +4670,7 @@ namespace IBM.Watson.Assistant.v1
             {
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
+
             if (string.IsNullOrEmpty(dialogNode))
             {
                 throw new ArgumentNullException("`dialogNode` is required for `DeleteDialogNode`");
@@ -3641,10 +4680,7 @@ namespace IBM.Watson.Assistant.v1
                 dialogNode = Uri.EscapeDataString(dialogNode);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<object> result = null;
 
@@ -3653,7 +4689,8 @@ namespace IBM.Watson.Assistant.v1
                 IClient client = this.Client;
                 SetAuthentication();
 
-                var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
+                var restRequest =
+                    client.DeleteAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/dialog_nodes/{dialogNode}");
 
                 restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
@@ -3675,6 +4712,7 @@ namespace IBM.Watson.Assistant.v1
 
             return result;
         }
+
         /// <summary>
         /// List log events in a workspace.
         ///
@@ -3690,7 +4728,8 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <returns><see cref="LogCollection" />LogCollection</returns>
-        public DetailedResponse<LogCollection> ListLogs(string workspaceId, string sort = null, string filter = null, long? pageLimit = null, string cursor = null)
+        public DetailedResponse<LogCollection> ListLogs(string workspaceId, string sort = null, string filter = null,
+            long? pageLimit = null, string cursor = null)
         {
             if (string.IsNullOrEmpty(workspaceId))
             {
@@ -3701,10 +4740,7 @@ namespace IBM.Watson.Assistant.v1
                 workspaceId = Uri.EscapeDataString(workspaceId);
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<LogCollection> result = null;
 
@@ -3721,14 +4757,17 @@ namespace IBM.Watson.Assistant.v1
                 {
                     restRequest.WithArgument("sort", sort);
                 }
+
                 if (!string.IsNullOrEmpty(filter))
                 {
                     restRequest.WithArgument("filter", filter);
                 }
+
                 if (pageLimit != null)
                 {
                     restRequest.WithArgument("page_limit", pageLimit);
                 }
+
                 if (!string.IsNullOrEmpty(cursor))
                 {
                     restRequest.WithArgument("cursor", cursor);
@@ -3767,17 +4806,15 @@ namespace IBM.Watson.Assistant.v1
         /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
         /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
         /// <returns><see cref="LogCollection" />LogCollection</returns>
-        public DetailedResponse<LogCollection> ListAllLogs(string filter, string sort = null, long? pageLimit = null, string cursor = null)
+        public DetailedResponse<LogCollection> ListAllLogs(string filter, string sort = null, long? pageLimit = null,
+            string cursor = null)
         {
             if (string.IsNullOrEmpty(filter))
             {
                 throw new ArgumentNullException("`filter` is required for `ListAllLogs`");
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<LogCollection> result = null;
 
@@ -3794,14 +4831,17 @@ namespace IBM.Watson.Assistant.v1
                 {
                     restRequest.WithArgument("filter", filter);
                 }
+
                 if (!string.IsNullOrEmpty(sort))
                 {
                     restRequest.WithArgument("sort", sort);
                 }
+
                 if (pageLimit != null)
                 {
                     restRequest.WithArgument("page_limit", pageLimit);
                 }
+
                 if (!string.IsNullOrEmpty(cursor))
                 {
                     restRequest.WithArgument("cursor", cursor);
@@ -3824,6 +4864,7 @@ namespace IBM.Watson.Assistant.v1
 
             return result;
         }
+
         /// <summary>
         /// Delete labeled data.
         ///
@@ -3843,10 +4884,7 @@ namespace IBM.Watson.Assistant.v1
                 throw new ArgumentNullException("`customerId` is required for `DeleteUserData`");
             }
 
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
+            ValidateVersionDate();
 
             DetailedResponse<object> result = null;
 

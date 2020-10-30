@@ -228,7 +228,7 @@ void Example()
 Discovery v2 is only available on Cloud Pak for Data.
 
 ## Transaction IDs
-Every SDK call returns a response with a transaction ID in the X-Global-Transaction-Id header. Together the service instance region, this ID helps support teams troubleshoot issues from relevant logs.
+Every SDK call returns a response with a transaction ID in the `X-Global-Transaction-Id` header. Together the service instance region, this ID helps support teams troubleshoot issues from relevant logs.
 
 ```cs
 AssistantService service = new AssistantService("{version-date}");
@@ -248,7 +248,7 @@ catch(Exception e)
 }
 ```
 
-However, the transaction ID isn't available when the API doesn't return a response for some reason. In that case, you can set your own transaction ID in the request. For example, replace <my-unique-transaction-id> in the following example with a unique transaction ID.
+However, the transaction ID isn't available when the API doesn't return a response for some reason. In that case, you can set your own transaction ID in the request. For example, replace `<my-unique-transaction-id>` in the following example with a unique transaction ID.
 
 ```cs
 void Example()

@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -25,6 +25,32 @@ namespace IBM.Watson.CompareComply.v1.Model
     /// </summary>
     public class TypeLabel
     {
+        /// <summary>
+        /// The type of modification of the feedback entry in the updated labels response.
+        /// </summary>
+        public class ModificationEnumValue
+        {
+            /// <summary>
+            /// Constant ADDED for added
+            /// </summary>
+            public const string ADDED = "added";
+            /// <summary>
+            /// Constant UNCHANGED for unchanged
+            /// </summary>
+            public const string UNCHANGED = "unchanged";
+            /// <summary>
+            /// Constant REMOVED for removed
+            /// </summary>
+            public const string REMOVED = "removed";
+            
+        }
+
+        /// <summary>
+        /// The type of modification of the feedback entry in the updated labels response.
+        /// Constants for possible values can be found using TypeLabel.ModificationEnumValue
+        /// </summary>
+        [JsonProperty("modification", NullValueHandling = NullValueHandling.Ignore)]
+        public string Modification { get; set; }
         /// <summary>
         /// A pair of `nature` and `party` objects. The `nature` object identifies the effect of the element on the
         /// identified `party`, and the `party` object identifies the affected party.

@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2020.
+* (C) Copyright IBM Corp. 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,18 +15,20 @@
 *
 */
 
-using IBM.Cloud.SDK.Core.Model;
+using Newtonsoft.Json;
 
-namespace IBM.Watson.Assistant.v2.Model
+namespace IBM.Watson.Assistant.v1.Model
 {
     /// <summary>
-    /// Information specific to particular skills used by the assistant.
-    ///
-    /// **Note:** Currently, only a single child property is supported, containing variables that apply to the dialog
-    /// skill used by the assistant.
+    /// The user input utterance to classify.
     /// </summary>
-    public class MessageContextSkills : DynamicModel<MessageContextSkill>
+    public class BulkClassifyUtterance
     {
+        /// <summary>
+        /// The text of the input utterance.
+        /// </summary>
+        [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
+        public string Text { get; set; }
     }
 
 }

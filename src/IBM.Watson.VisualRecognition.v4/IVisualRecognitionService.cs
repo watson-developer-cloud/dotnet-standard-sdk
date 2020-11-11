@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2020.
+* (C) Copyright IBM Corp. 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@
 using System.Collections.Generic;
 using IBM.Cloud.SDK.Core.Model;
 using IBM.Cloud.SDK.Core.Http;
+using System;
 using IBM.Watson.VisualRecognition.v4.Model;
 
 namespace IBM.Watson.VisualRecognition.v4
@@ -25,10 +26,10 @@ namespace IBM.Watson.VisualRecognition.v4
     public partial interface IVisualRecognitionService
     {
         DetailedResponse<AnalyzeResponse> Analyze(List<string> collectionIds, List<string> features, List<FileWithMetadata> imagesFile = null, List<string> imageUrl = null, float? threshold = null);
-        DetailedResponse<Collection> CreateCollection(string name = null, string description = null);
+        DetailedResponse<Collection> CreateCollection(string name = null, string description = null, TrainingStatus trainingStatus = null);
         DetailedResponse<CollectionsList> ListCollections();
         DetailedResponse<Collection> GetCollection(string collectionId);
-        DetailedResponse<Collection> UpdateCollection(string collectionId, string name = null, string description = null);
+        DetailedResponse<Collection> UpdateCollection(string collectionId, string name = null, string description = null, TrainingStatus trainingStatus = null);
         DetailedResponse<object> DeleteCollection(string collectionId);
         DetailedResponse<System.IO.MemoryStream> GetModelFile(string collectionId, string feature, string modelFormat);
         DetailedResponse<ImageDetailsList> AddImages(string collectionId, List<FileWithMetadata> imagesFile = null, List<string> imageUrl = null, string trainingData = null);
@@ -42,7 +43,7 @@ namespace IBM.Watson.VisualRecognition.v4
         DetailedResponse<object> DeleteObject(string collectionId, string _object);
         DetailedResponse<Collection> Train(string collectionId);
         DetailedResponse<TrainingDataObjects> AddImageTrainingData(string collectionId, string imageId, List<TrainingDataObject> objects = null);
-        DetailedResponse<TrainingEvents> GetTrainingUsage(string startTime = null, string endTime = null);
+        DetailedResponse<TrainingEvents> GetTrainingUsage(DateTime? startTime = null, DateTime? endTime = null);
         DetailedResponse<object> DeleteUserData(string customerId);
     }
 }

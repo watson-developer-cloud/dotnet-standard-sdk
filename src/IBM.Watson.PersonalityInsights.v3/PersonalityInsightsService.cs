@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2016, 2020.
+* (C) Copyright IBM Corp. 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,6 +15,10 @@
 *
 */
 
+/**
+* IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-8d569e8f-20201109-230115
+*/
+ 
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -29,21 +33,22 @@ namespace IBM.Watson.PersonalityInsights.v3
 {
     public partial class PersonalityInsightsService : IBMService, IPersonalityInsightsService
     {
-        const string serviceName = "personality_insights";
+        const string defaultServiceName = "personality_insights";
         private const string defaultServiceUrl = "https://api.us-south.personality-insights.watson.cloud.ibm.com";
-        public string VersionDate { get; set; }
+        public string Version { get; set; }
 
-        public PersonalityInsightsService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
-        public PersonalityInsightsService(IClient httpClient) : base(serviceName, httpClient) { }
+        public PersonalityInsightsService(string version) : this(version, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public PersonalityInsightsService(string version, IAuthenticator authenticator) : this(version, defaultServiceName, authenticator) {}
+        public PersonalityInsightsService(string version, string serviceName) : this(version, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public PersonalityInsightsService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public PersonalityInsightsService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
+        public PersonalityInsightsService(string version, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
-            if (string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`version` is required");
             }
-
-            VersionDate = versionDate;
+            Version = version;
 
             if (string.IsNullOrEmpty(ServiceUrl))
             {
@@ -119,18 +124,16 @@ namespace IBM.Watson.PersonalityInsights.v3
         /// <param name="consumptionPreferences">Indicates whether consumption preferences are returned with the
         /// results. By default, no consumption preferences are returned. (optional, default to false)</param>
         /// <returns><see cref="Profile" />Profile</returns>
-        public DetailedResponse<Profile> Profile(Content content, string contentType = null, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null)
+        public DetailedResponse<Profile> Profile(System.IO.MemoryStream content, string contentType = null, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (content == null)
             {
                 throw new ArgumentNullException("`content` is required for `Profile`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<Profile> result = null;
 
             try
@@ -140,7 +143,6 @@ namespace IBM.Watson.PersonalityInsights.v3
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/profile");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
                 if (!string.IsNullOrEmpty(contentType))
@@ -157,6 +159,10 @@ namespace IBM.Watson.PersonalityInsights.v3
                 {
                     restRequest.WithHeader("Accept-Language", acceptLanguage);
                 }
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (rawScores != null)
                 {
                     restRequest.WithArgument("raw_scores", rawScores);
@@ -169,7 +175,7 @@ namespace IBM.Watson.PersonalityInsights.v3
                 {
                     restRequest.WithArgument("consumption_preferences", consumptionPreferences);
                 }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8);
+                var httpContent = new StringContent(Encoding.UTF8.GetString(content.ToArray()), Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("personality_insights", "v3", "Profile"));
@@ -188,6 +194,121 @@ namespace IBM.Watson.PersonalityInsights.v3
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Enum values for Profile.
+        /// </summary>
+        public class ProfileEnums
+        {
+            /// <summary>
+            /// The type of the input. For more information, see **Content types** in the method description.
+            /// </summary>
+            public class ContentTypeValue
+            {
+                /// <summary>
+                /// Constant APPLICATION_JSON for application/json
+                /// </summary>
+                public const string APPLICATION_JSON = "application/json";
+                /// <summary>
+                /// Constant TEXT_HTML for text/html
+                /// </summary>
+                public const string TEXT_HTML = "text/html";
+                /// <summary>
+                /// Constant TEXT_PLAIN for text/plain
+                /// </summary>
+                public const string TEXT_PLAIN = "text/plain";
+                
+            }
+            /// <summary>
+            /// The language of the input text for the request: Arabic, English, Japanese, Korean, or Spanish. Regional
+            /// variants are treated as their parent language; for example, `en-US` is interpreted as `en`.
+            ///
+            /// The effect of the **Content-Language** parameter depends on the **Content-Type** parameter. When
+            /// **Content-Type** is `text/plain` or `text/html`, **Content-Language** is the only way to specify the
+            /// language. When **Content-Type** is `application/json`, **Content-Language** overrides a language
+            /// specified with the `language` parameter of a `ContentItem` object, and content items that specify a
+            /// different language are ignored; omit this parameter to base the language on the specification of the
+            /// content items. You can specify any combination of languages for **Content-Language** and
+            /// **Accept-Language**.
+            /// </summary>
+            public class ContentLanguageValue
+            {
+                /// <summary>
+                /// Constant AR for ar
+                /// </summary>
+                public const string AR = "ar";
+                /// <summary>
+                /// Constant EN for en
+                /// </summary>
+                public const string EN = "en";
+                /// <summary>
+                /// Constant ES for es
+                /// </summary>
+                public const string ES = "es";
+                /// <summary>
+                /// Constant JA for ja
+                /// </summary>
+                public const string JA = "ja";
+                /// <summary>
+                /// Constant KO for ko
+                /// </summary>
+                public const string KO = "ko";
+                
+            }
+            /// <summary>
+            /// The desired language of the response. For two-character arguments, regional variants are treated as
+            /// their parent language; for example, `en-US` is interpreted as `en`. You can specify any combination of
+            /// languages for the input and response content.
+            /// </summary>
+            public class AcceptLanguageValue
+            {
+                /// <summary>
+                /// Constant AR for ar
+                /// </summary>
+                public const string AR = "ar";
+                /// <summary>
+                /// Constant DE for de
+                /// </summary>
+                public const string DE = "de";
+                /// <summary>
+                /// Constant EN for en
+                /// </summary>
+                public const string EN = "en";
+                /// <summary>
+                /// Constant ES for es
+                /// </summary>
+                public const string ES = "es";
+                /// <summary>
+                /// Constant FR for fr
+                /// </summary>
+                public const string FR = "fr";
+                /// <summary>
+                /// Constant IT for it
+                /// </summary>
+                public const string IT = "it";
+                /// <summary>
+                /// Constant JA for ja
+                /// </summary>
+                public const string JA = "ja";
+                /// <summary>
+                /// Constant KO for ko
+                /// </summary>
+                public const string KO = "ko";
+                /// <summary>
+                /// Constant PT_BR for pt-br
+                /// </summary>
+                public const string PT_BR = "pt-br";
+                /// <summary>
+                /// Constant ZH_CN for zh-cn
+                /// </summary>
+                public const string ZH_CN = "zh-cn";
+                /// <summary>
+                /// Constant ZH_TW for zh-tw
+                /// </summary>
+                public const string ZH_TW = "zh-tw";
+                
+            }
         }
 
         /// <summary>
@@ -258,18 +379,16 @@ namespace IBM.Watson.PersonalityInsights.v3
         /// <param name="consumptionPreferences">Indicates whether consumption preferences are returned with the
         /// results. By default, no consumption preferences are returned. (optional, default to false)</param>
         /// <returns><see cref="System.IO.MemoryStream" />System.IO.MemoryStream</returns>
-        public DetailedResponse<System.IO.MemoryStream> ProfileAsCsv(Content content, string contentType = null, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null)
+        public DetailedResponse<System.IO.MemoryStream> ProfileAsCsv(System.IO.MemoryStream content, string contentType = null, string contentLanguage = null, string acceptLanguage = null, bool? rawScores = null, bool? csvHeaders = null, bool? consumptionPreferences = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (content == null)
             {
                 throw new ArgumentNullException("`content` is required for `ProfileAsCsv`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<System.IO.MemoryStream> result = null;
 
             try
@@ -279,7 +398,6 @@ namespace IBM.Watson.PersonalityInsights.v3
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/profile");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "text/csv");
 
                 if (!string.IsNullOrEmpty(contentType))
@@ -296,6 +414,10 @@ namespace IBM.Watson.PersonalityInsights.v3
                 {
                     restRequest.WithHeader("Accept-Language", acceptLanguage);
                 }
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (rawScores != null)
                 {
                     restRequest.WithArgument("raw_scores", rawScores);
@@ -308,7 +430,7 @@ namespace IBM.Watson.PersonalityInsights.v3
                 {
                     restRequest.WithArgument("consumption_preferences", consumptionPreferences);
                 }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8);
+                var httpContent = new StringContent(Encoding.UTF8.GetString(content.ToArray()), Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("personality_insights", "v3", "ProfileAsCsv"));
@@ -324,6 +446,121 @@ namespace IBM.Watson.PersonalityInsights.v3
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Enum values for ProfileAsCsv.
+        /// </summary>
+        public class ProfileAsCsvEnums
+        {
+            /// <summary>
+            /// The type of the input. For more information, see **Content types** in the method description.
+            /// </summary>
+            public class ContentTypeValue
+            {
+                /// <summary>
+                /// Constant APPLICATION_JSON for application/json
+                /// </summary>
+                public const string APPLICATION_JSON = "application/json";
+                /// <summary>
+                /// Constant TEXT_HTML for text/html
+                /// </summary>
+                public const string TEXT_HTML = "text/html";
+                /// <summary>
+                /// Constant TEXT_PLAIN for text/plain
+                /// </summary>
+                public const string TEXT_PLAIN = "text/plain";
+                
+            }
+            /// <summary>
+            /// The language of the input text for the request: Arabic, English, Japanese, Korean, or Spanish. Regional
+            /// variants are treated as their parent language; for example, `en-US` is interpreted as `en`.
+            ///
+            /// The effect of the **Content-Language** parameter depends on the **Content-Type** parameter. When
+            /// **Content-Type** is `text/plain` or `text/html`, **Content-Language** is the only way to specify the
+            /// language. When **Content-Type** is `application/json`, **Content-Language** overrides a language
+            /// specified with the `language` parameter of a `ContentItem` object, and content items that specify a
+            /// different language are ignored; omit this parameter to base the language on the specification of the
+            /// content items. You can specify any combination of languages for **Content-Language** and
+            /// **Accept-Language**.
+            /// </summary>
+            public class ContentLanguageValue
+            {
+                /// <summary>
+                /// Constant AR for ar
+                /// </summary>
+                public const string AR = "ar";
+                /// <summary>
+                /// Constant EN for en
+                /// </summary>
+                public const string EN = "en";
+                /// <summary>
+                /// Constant ES for es
+                /// </summary>
+                public const string ES = "es";
+                /// <summary>
+                /// Constant JA for ja
+                /// </summary>
+                public const string JA = "ja";
+                /// <summary>
+                /// Constant KO for ko
+                /// </summary>
+                public const string KO = "ko";
+                
+            }
+            /// <summary>
+            /// The desired language of the response. For two-character arguments, regional variants are treated as
+            /// their parent language; for example, `en-US` is interpreted as `en`. You can specify any combination of
+            /// languages for the input and response content.
+            /// </summary>
+            public class AcceptLanguageValue
+            {
+                /// <summary>
+                /// Constant AR for ar
+                /// </summary>
+                public const string AR = "ar";
+                /// <summary>
+                /// Constant DE for de
+                /// </summary>
+                public const string DE = "de";
+                /// <summary>
+                /// Constant EN for en
+                /// </summary>
+                public const string EN = "en";
+                /// <summary>
+                /// Constant ES for es
+                /// </summary>
+                public const string ES = "es";
+                /// <summary>
+                /// Constant FR for fr
+                /// </summary>
+                public const string FR = "fr";
+                /// <summary>
+                /// Constant IT for it
+                /// </summary>
+                public const string IT = "it";
+                /// <summary>
+                /// Constant JA for ja
+                /// </summary>
+                public const string JA = "ja";
+                /// <summary>
+                /// Constant KO for ko
+                /// </summary>
+                public const string KO = "ko";
+                /// <summary>
+                /// Constant PT_BR for pt-br
+                /// </summary>
+                public const string PT_BR = "pt-br";
+                /// <summary>
+                /// Constant ZH_CN for zh-cn
+                /// </summary>
+                public const string ZH_CN = "zh-cn";
+                /// <summary>
+                /// Constant ZH_TW for zh-tw
+                /// </summary>
+                public const string ZH_TW = "zh-tw";
+                
+            }
         }
     }
 }

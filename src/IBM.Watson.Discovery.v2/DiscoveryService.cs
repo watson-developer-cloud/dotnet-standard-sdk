@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2020.
+* (C) Copyright IBM Corp. 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,6 +15,10 @@
 *
 */
 
+/**
+* IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-8d569e8f-20201109-230115
+*/
+ 
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
@@ -32,21 +36,22 @@ namespace IBM.Watson.Discovery.v2
 {
     public partial class DiscoveryService : IBMService, IDiscoveryService
     {
-        const string serviceName = "discovery";
+        const string defaultServiceName = "discovery";
         private const string defaultServiceUrl = "https://api.us-south.discovery.watson.cloud.ibm.com";
-        public string VersionDate { get; set; }
+        public string Version { get; set; }
 
-        public DiscoveryService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
-        public DiscoveryService(IClient httpClient) : base(serviceName, httpClient) { }
+        public DiscoveryService(string version) : this(version, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public DiscoveryService(string version, IAuthenticator authenticator) : this(version, defaultServiceName, authenticator) {}
+        public DiscoveryService(string version, string serviceName) : this(version, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public DiscoveryService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public DiscoveryService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
+        public DiscoveryService(string version, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
-            if (string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`version` is required");
             }
-
-            VersionDate = versionDate;
+            Version = version;
 
             if (string.IsNullOrEmpty(ServiceUrl))
             {
@@ -72,12 +77,10 @@ namespace IBM.Watson.Discovery.v2
             {
                 projectId = Uri.EscapeDataString(projectId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(Version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`Version` is required");
             }
-
             DetailedResponse<ListCollectionsResponse> result = null;
 
             try
@@ -87,8 +90,11 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v2/projects/{projectId}/collections");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "ListCollections"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -115,10 +121,17 @@ namespace IBM.Watson.Discovery.v2
         /// </summary>
         /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
         /// Discovery administrative tooling.</param>
-        /// <param name="collectionDetails">An object that represents the collection to be created.</param>
+        /// <param name="name">The name of the collection.</param>
+        /// <param name="description">A description of the collection. (optional)</param>
+        /// <param name="language">The language of the collection. (optional, default to en)</param>
+        /// <param name="enrichments">An array of enrichments that are applied to this collection. (optional)</param>
         /// <returns><see cref="CollectionDetails" />CollectionDetails</returns>
         public DetailedResponse<CollectionDetails> CreateCollection(string projectId, string name, string description = null, string language = null, List<CollectionEnrichment> enrichments = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(projectId))
             {
                 throw new ArgumentNullException("`projectId` is required for `CreateCollection`");
@@ -131,12 +144,6 @@ namespace IBM.Watson.Discovery.v2
             {
                 throw new ArgumentNullException("`name` is required for `CreateCollection`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<CollectionDetails> result = null;
 
             try
@@ -146,8 +153,11 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v2/projects/{projectId}/collections");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -199,6 +209,10 @@ namespace IBM.Watson.Discovery.v2
         /// <returns><see cref="CollectionDetails" />CollectionDetails</returns>
         public DetailedResponse<CollectionDetails> GetCollection(string projectId, string collectionId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(projectId))
             {
                 throw new ArgumentNullException("`projectId` is required for `GetCollection`");
@@ -215,12 +229,6 @@ namespace IBM.Watson.Discovery.v2
             {
                 collectionId = Uri.EscapeDataString(collectionId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<CollectionDetails> result = null;
 
             try
@@ -230,8 +238,11 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v2/projects/{projectId}/collections/{collectionId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "GetCollection"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -259,10 +270,16 @@ namespace IBM.Watson.Discovery.v2
         /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
         /// Discovery administrative tooling.</param>
         /// <param name="collectionId">The ID of the collection.</param>
-        /// <param name="updateCollection">An object that represents the collection to be created.</param>
+        /// <param name="name">The name of the collection. (optional)</param>
+        /// <param name="description">A description of the collection. (optional)</param>
+        /// <param name="enrichments">An array of enrichments that are applied to this collection. (optional)</param>
         /// <returns><see cref="CollectionDetails" />CollectionDetails</returns>
         public DetailedResponse<CollectionDetails> UpdateCollection(string projectId, string collectionId, string name = null, string description = null, List<CollectionEnrichment> enrichments = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(projectId))
             {
                 throw new ArgumentNullException("`projectId` is required for `UpdateCollection`");
@@ -279,12 +296,6 @@ namespace IBM.Watson.Discovery.v2
             {
                 collectionId = Uri.EscapeDataString(collectionId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<CollectionDetails> result = null;
 
             try
@@ -294,8 +305,11 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v2/projects/{projectId}/collections/{collectionId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -344,6 +358,10 @@ namespace IBM.Watson.Discovery.v2
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteCollection(string projectId, string collectionId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(projectId))
             {
                 throw new ArgumentNullException("`projectId` is required for `DeleteCollection`");
@@ -360,12 +378,6 @@ namespace IBM.Watson.Discovery.v2
             {
                 collectionId = Uri.EscapeDataString(collectionId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<object> result = null;
 
             try
@@ -375,7 +387,10 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v2/projects/{projectId}/collections/{collectionId}");
 
-                restRequest.WithArgument("version", VersionDate);
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "DeleteCollection"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -406,7 +421,36 @@ namespace IBM.Watson.Discovery.v2
         /// </summary>
         /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
         /// Discovery administrative tooling.</param>
-        /// <param name="queryLong">An object that represents the query to be submitted. (optional)</param>
+        /// <param name="collectionIds">A comma-separated list of collection IDs to be queried against.
+        /// (optional)</param>
+        /// <param name="filter">A cacheable query that excludes documents that don't mention the query content. Filter
+        /// searches are better for metadata-type searches and for assessing the concepts in the data set.
+        /// (optional)</param>
+        /// <param name="query">A query search returns all documents in your data set with full enrichments and full
+        /// text, but with the most relevant documents listed first. Use a query search when you want to find the most
+        /// relevant search results. (optional)</param>
+        /// <param name="naturalLanguageQuery">A natural language query that returns relevant documents by utilizing
+        /// training data and natural language understanding. (optional)</param>
+        /// <param name="aggregation">An aggregation search that returns an exact answer by combining query search with
+        /// filters. Useful for applications to build lists, tables, and time series. For a full list of possible
+        /// aggregations, see the Query reference. (optional)</param>
+        /// <param name="count">Number of results to return. (optional)</param>
+        /// <param name="_return">A list of the fields in the document hierarchy to return. If this parameter not
+        /// specified, then all top-level fields are returned. (optional)</param>
+        /// <param name="offset">The number of query results to skip at the beginning. For example, if the total number
+        /// of results that are returned is 10 and the offset is 8, it returns the last two results. (optional)</param>
+        /// <param name="sort">A comma-separated list of fields in the document to sort on. You can optionally specify a
+        /// sort direction by prefixing the field with `-` for descending or `+` for ascending. Ascending is the default
+        /// sort direction if no prefix is specified. This parameter cannot be used in the same query as the **bias**
+        /// parameter. (optional)</param>
+        /// <param name="highlight">When `true`, a highlight field is returned for each result which contains the fields
+        /// which match the query with `<em></em>` tags around the matching query terms. (optional)</param>
+        /// <param name="spellingSuggestions">When `true` and the **natural_language_query** parameter is used, the
+        /// **natural_language_query** parameter is spell checked. The most likely correction is returned in the
+        /// **suggested_query** field of the response (if one exists). (optional)</param>
+        /// <param name="tableResults">Configuration for table retrieval. (optional)</param>
+        /// <param name="suggestedRefinements">Configuration for suggested refinements. (optional)</param>
+        /// <param name="passages">Configuration for passage retrieval. (optional)</param>
         /// <returns><see cref="QueryResponse" />QueryResponse</returns>
         public DetailedResponse<QueryResponse> Query(string projectId, List<string> collectionIds = null, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> _return = null, long? offset = null, string sort = null, bool? highlight = null, bool? spellingSuggestions = null, QueryLargeTableResults tableResults = null, QueryLargeSuggestedRefinements suggestedRefinements = null, QueryLargePassages passages = null)
         {
@@ -418,12 +462,10 @@ namespace IBM.Watson.Discovery.v2
             {
                 projectId = Uri.EscapeDataString(projectId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(Version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`Version` is required");
             }
-
             DetailedResponse<QueryResponse> result = null;
 
             try
@@ -433,8 +475,11 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v2/projects/{projectId}/query");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -540,16 +585,14 @@ namespace IBM.Watson.Discovery.v2
             {
                 projectId = Uri.EscapeDataString(projectId);
             }
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(prefix))
             {
                 throw new ArgumentNullException("`prefix` is required for `GetAutocompletion`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<Completions> result = null;
 
             try
@@ -559,8 +602,11 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v2/projects/{projectId}/autocompletion");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(prefix))
                 {
                     restRequest.WithArgument("prefix", prefix);
@@ -619,6 +665,10 @@ namespace IBM.Watson.Discovery.v2
         /// <returns><see cref="QueryNoticesResponse" />QueryNoticesResponse</returns>
         public DetailedResponse<QueryNoticesResponse> QueryNotices(string projectId, string filter = null, string query = null, string naturalLanguageQuery = null, long? count = null, long? offset = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(projectId))
             {
                 throw new ArgumentNullException("`projectId` is required for `QueryNotices`");
@@ -627,12 +677,6 @@ namespace IBM.Watson.Discovery.v2
             {
                 projectId = Uri.EscapeDataString(projectId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<QueryNoticesResponse> result = null;
 
             try
@@ -642,8 +686,11 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v2/projects/{projectId}/notices");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(filter))
                 {
                     restRequest.WithArgument("filter", filter);
@@ -695,6 +742,10 @@ namespace IBM.Watson.Discovery.v2
         /// <returns><see cref="ListFieldsResponse" />ListFieldsResponse</returns>
         public DetailedResponse<ListFieldsResponse> ListFields(string projectId, List<string> collectionIds = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(projectId))
             {
                 throw new ArgumentNullException("`projectId` is required for `ListFields`");
@@ -703,12 +754,6 @@ namespace IBM.Watson.Discovery.v2
             {
                 projectId = Uri.EscapeDataString(projectId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<ListFieldsResponse> result = null;
 
             try
@@ -718,8 +763,11 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v2/projects/{projectId}/fields");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (collectionIds != null && collectionIds.Count > 0)
                 {
                     restRequest.WithArgument("collection_ids", string.Join(",", collectionIds.ToArray()));
@@ -760,12 +808,10 @@ namespace IBM.Watson.Discovery.v2
             {
                 projectId = Uri.EscapeDataString(projectId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(Version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`Version` is required");
             }
-
             DetailedResponse<ComponentSettingsResponse> result = null;
 
             try
@@ -775,8 +821,11 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v2/projects/{projectId}/component_settings");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "GetComponentSettings"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -847,6 +896,10 @@ namespace IBM.Watson.Discovery.v2
         /// <returns><see cref="DocumentAccepted" />DocumentAccepted</returns>
         public DetailedResponse<DocumentAccepted> AddDocument(string projectId, string collectionId, System.IO.MemoryStream file = null, string filename = null, string fileContentType = null, string metadata = null, bool? xWatsonDiscoveryForce = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(projectId))
             {
                 throw new ArgumentNullException("`projectId` is required for `AddDocument`");
@@ -863,12 +916,6 @@ namespace IBM.Watson.Discovery.v2
             {
                 collectionId = Uri.EscapeDataString(collectionId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<DocumentAccepted> result = null;
 
             try
@@ -896,12 +943,15 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v2/projects/{projectId}/collections/{collectionId}/documents");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
                 if (xWatsonDiscoveryForce != null)
                 {
                     restRequest.WithHeader("X-Watson-Discovery-Force", (bool)xWatsonDiscoveryForce ? "true" : "false");
+                }
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
                 }
                 restRequest.WithBodyContent(formData);
 
@@ -921,6 +971,44 @@ namespace IBM.Watson.Discovery.v2
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Enum values for AddDocument.
+        /// </summary>
+        public class AddDocumentEnums
+        {
+            /// <summary>
+            /// The content type of file.
+            /// </summary>
+            public class FileContentTypeValue
+            {
+                /// <summary>
+                /// Constant APPLICATION_JSON for application/json
+                /// </summary>
+                public const string APPLICATION_JSON = "application/json";
+                /// <summary>
+                /// Constant APPLICATION_MSWORD for application/msword
+                /// </summary>
+                public const string APPLICATION_MSWORD = "application/msword";
+                /// <summary>
+                /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
+                /// </summary>
+                public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                /// <summary>
+                /// Constant APPLICATION_PDF for application/pdf
+                /// </summary>
+                public const string APPLICATION_PDF = "application/pdf";
+                /// <summary>
+                /// Constant TEXT_HTML for text/html
+                /// </summary>
+                public const string TEXT_HTML = "text/html";
+                /// <summary>
+                /// Constant APPLICATION_XHTML_XML for application/xhtml+xml
+                /// </summary>
+                public const string APPLICATION_XHTML_XML = "application/xhtml+xml";
+                
+            }
         }
 
         /// <summary>
@@ -963,6 +1051,10 @@ namespace IBM.Watson.Discovery.v2
         /// <returns><see cref="DocumentAccepted" />DocumentAccepted</returns>
         public DetailedResponse<DocumentAccepted> UpdateDocument(string projectId, string collectionId, string documentId, System.IO.MemoryStream file = null, string filename = null, string fileContentType = null, string metadata = null, bool? xWatsonDiscoveryForce = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(projectId))
             {
                 throw new ArgumentNullException("`projectId` is required for `UpdateDocument`");
@@ -987,12 +1079,6 @@ namespace IBM.Watson.Discovery.v2
             {
                 documentId = Uri.EscapeDataString(documentId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<DocumentAccepted> result = null;
 
             try
@@ -1020,12 +1106,15 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v2/projects/{projectId}/collections/{collectionId}/documents/{documentId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
                 if (xWatsonDiscoveryForce != null)
                 {
                     restRequest.WithHeader("X-Watson-Discovery-Force", (bool)xWatsonDiscoveryForce ? "true" : "false");
+                }
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
                 }
                 restRequest.WithBodyContent(formData);
 
@@ -1045,6 +1134,44 @@ namespace IBM.Watson.Discovery.v2
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Enum values for UpdateDocument.
+        /// </summary>
+        public class UpdateDocumentEnums
+        {
+            /// <summary>
+            /// The content type of file.
+            /// </summary>
+            public class FileContentTypeValue
+            {
+                /// <summary>
+                /// Constant APPLICATION_JSON for application/json
+                /// </summary>
+                public const string APPLICATION_JSON = "application/json";
+                /// <summary>
+                /// Constant APPLICATION_MSWORD for application/msword
+                /// </summary>
+                public const string APPLICATION_MSWORD = "application/msword";
+                /// <summary>
+                /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
+                /// </summary>
+                public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                /// <summary>
+                /// Constant APPLICATION_PDF for application/pdf
+                /// </summary>
+                public const string APPLICATION_PDF = "application/pdf";
+                /// <summary>
+                /// Constant TEXT_HTML for text/html
+                /// </summary>
+                public const string TEXT_HTML = "text/html";
+                /// <summary>
+                /// Constant APPLICATION_XHTML_XML for application/xhtml+xml
+                /// </summary>
+                public const string APPLICATION_XHTML_XML = "application/xhtml+xml";
+                
+            }
         }
 
         /// <summary>
@@ -1068,6 +1195,10 @@ namespace IBM.Watson.Discovery.v2
         /// <returns><see cref="DeleteDocumentResponse" />DeleteDocumentResponse</returns>
         public DetailedResponse<DeleteDocumentResponse> DeleteDocument(string projectId, string collectionId, string documentId, bool? xWatsonDiscoveryForce = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(projectId))
             {
                 throw new ArgumentNullException("`projectId` is required for `DeleteDocument`");
@@ -1092,12 +1223,6 @@ namespace IBM.Watson.Discovery.v2
             {
                 documentId = Uri.EscapeDataString(documentId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<DeleteDocumentResponse> result = null;
 
             try
@@ -1107,12 +1232,15 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v2/projects/{projectId}/collections/{collectionId}/documents/{documentId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
                 if (xWatsonDiscoveryForce != null)
                 {
                     restRequest.WithHeader("X-Watson-Discovery-Force", (bool)xWatsonDiscoveryForce ? "true" : "false");
+                }
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
                 }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "DeleteDocument"));
@@ -1142,6 +1270,10 @@ namespace IBM.Watson.Discovery.v2
         /// <returns><see cref="TrainingQuerySet" />TrainingQuerySet</returns>
         public DetailedResponse<TrainingQuerySet> ListTrainingQueries(string projectId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(projectId))
             {
                 throw new ArgumentNullException("`projectId` is required for `ListTrainingQueries`");
@@ -1150,12 +1282,6 @@ namespace IBM.Watson.Discovery.v2
             {
                 projectId = Uri.EscapeDataString(projectId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<TrainingQuerySet> result = null;
 
             try
@@ -1165,8 +1291,11 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v2/projects/{projectId}/training_data/queries");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "ListTrainingQueries"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -1196,6 +1325,10 @@ namespace IBM.Watson.Discovery.v2
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteTrainingQueries(string projectId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(projectId))
             {
                 throw new ArgumentNullException("`projectId` is required for `DeleteTrainingQueries`");
@@ -1204,12 +1337,6 @@ namespace IBM.Watson.Discovery.v2
             {
                 projectId = Uri.EscapeDataString(projectId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<object> result = null;
 
             try
@@ -1219,7 +1346,10 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v2/projects/{projectId}/training_data/queries");
 
-                restRequest.WithArgument("version", VersionDate);
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "DeleteTrainingQueries"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -1247,10 +1377,17 @@ namespace IBM.Watson.Discovery.v2
         /// </summary>
         /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
         /// Discovery administrative tooling.</param>
-        /// <param name="trainingQuery">An object that represents the query to be submitted.</param>
+        /// <param name="naturalLanguageQuery">The natural text query for the training query.</param>
+        /// <param name="examples">Array of training examples.</param>
+        /// <param name="filter">The filter used on the collection before the **natural_language_query** is applied.
+        /// (optional)</param>
         /// <returns><see cref="TrainingQuery" />TrainingQuery</returns>
         public DetailedResponse<TrainingQuery> CreateTrainingQuery(string projectId, string naturalLanguageQuery, List<TrainingExample> examples, string filter = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(projectId))
             {
                 throw new ArgumentNullException("`projectId` is required for `CreateTrainingQuery`");
@@ -1267,12 +1404,6 @@ namespace IBM.Watson.Discovery.v2
             {
                 throw new ArgumentNullException("`examples` is required for `CreateTrainingQuery`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<TrainingQuery> result = null;
 
             try
@@ -1282,8 +1413,11 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v2/projects/{projectId}/training_data/queries");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -1331,6 +1465,10 @@ namespace IBM.Watson.Discovery.v2
         /// <returns><see cref="TrainingQuery" />TrainingQuery</returns>
         public DetailedResponse<TrainingQuery> GetTrainingQuery(string projectId, string queryId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(projectId))
             {
                 throw new ArgumentNullException("`projectId` is required for `GetTrainingQuery`");
@@ -1347,12 +1485,6 @@ namespace IBM.Watson.Discovery.v2
             {
                 queryId = Uri.EscapeDataString(queryId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<TrainingQuery> result = null;
 
             try
@@ -1362,8 +1494,11 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v2/projects/{projectId}/training_data/queries/{queryId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "GetTrainingQuery"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -1391,10 +1526,17 @@ namespace IBM.Watson.Discovery.v2
         /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
         /// Discovery administrative tooling.</param>
         /// <param name="queryId">The ID of the query used for training.</param>
-        /// <param name="body">The body of the example that is to be added to the specified query.</param>
+        /// <param name="naturalLanguageQuery">The natural text query for the training query.</param>
+        /// <param name="examples">Array of training examples.</param>
+        /// <param name="filter">The filter used on the collection before the **natural_language_query** is applied.
+        /// (optional)</param>
         /// <returns><see cref="TrainingQuery" />TrainingQuery</returns>
         public DetailedResponse<TrainingQuery> UpdateTrainingQuery(string projectId, string queryId, string naturalLanguageQuery, List<TrainingExample> examples, string filter = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(projectId))
             {
                 throw new ArgumentNullException("`projectId` is required for `UpdateTrainingQuery`");
@@ -1419,12 +1561,6 @@ namespace IBM.Watson.Discovery.v2
             {
                 throw new ArgumentNullException("`examples` is required for `UpdateTrainingQuery`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<TrainingQuery> result = null;
 
             try
@@ -1434,8 +1570,11 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v2/projects/{projectId}/training_data/queries/{queryId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -1472,6 +1611,143 @@ namespace IBM.Watson.Discovery.v2
             return result;
         }
         /// <summary>
+        /// Analyze a Document.
+        ///
+        /// Process a document using the specified collection's settings and return it for realtime use.
+        ///
+        /// **Note:** Documents processed using this method are not added to the specified collection.
+        ///
+        /// **Note:** This method is only supported on IBM Cloud Pak for Data instances of Discovery.
+        /// </summary>
+        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
+        /// Discovery administrative tooling.</param>
+        /// <param name="collectionId">The ID of the collection.</param>
+        /// <param name="file">The content of the document to ingest. The maximum supported file size when adding a file
+        /// to a collection is 50 megabytes, the maximum supported file size when testing a configuration is 1 megabyte.
+        /// Files larger than the supported size are rejected. (optional)</param>
+        /// <param name="filename">The filename for file. (optional)</param>
+        /// <param name="fileContentType">The content type of file. (optional)</param>
+        /// <param name="metadata">The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are
+        /// rejected.
+        ///
+        ///
+        /// Example:  ``` {
+        ///   "Creator": "Johnny Appleseed",
+        ///   "Subject": "Apples"
+        /// } ```. (optional)</param>
+        /// <returns><see cref="AnalyzedDocument" />AnalyzedDocument</returns>
+        public DetailedResponse<AnalyzedDocument> AnalyzeDocument(string projectId, string collectionId, System.IO.MemoryStream file = null, string filename = null, string fileContentType = null, string metadata = null)
+        {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
+            if (string.IsNullOrEmpty(projectId))
+            {
+                throw new ArgumentNullException("`projectId` is required for `AnalyzeDocument`");
+            }
+            else
+            {
+                projectId = Uri.EscapeDataString(projectId);
+            }
+            if (string.IsNullOrEmpty(collectionId))
+            {
+                throw new ArgumentNullException("`collectionId` is required for `AnalyzeDocument`");
+            }
+            else
+            {
+                collectionId = Uri.EscapeDataString(collectionId);
+            }
+            DetailedResponse<AnalyzedDocument> result = null;
+
+            try
+            {
+                var formData = new MultipartFormDataContent();
+
+                if (file != null)
+                {
+                    var fileContent = new ByteArrayContent(file.ToArray());
+                    System.Net.Http.Headers.MediaTypeHeaderValue contentType;
+                    System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
+                    fileContent.Headers.ContentType = contentType;
+                    formData.Add(fileContent, "file", filename);
+                }
+
+                if (metadata != null)
+                {
+                    var metadataContent = new StringContent(metadata, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
+                    metadataContent.Headers.ContentType = null;
+                    formData.Add(metadataContent, "metadata");
+                }
+
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v2/projects/{projectId}/collections/{collectionId}/analyze");
+
+                restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
+                restRequest.WithBodyContent(formData);
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "AnalyzeDocument"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<AnalyzedDocument>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<AnalyzedDocument>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Enum values for AnalyzeDocument.
+        /// </summary>
+        public class AnalyzeDocumentEnums
+        {
+            /// <summary>
+            /// The content type of file.
+            /// </summary>
+            public class FileContentTypeValue
+            {
+                /// <summary>
+                /// Constant APPLICATION_JSON for application/json
+                /// </summary>
+                public const string APPLICATION_JSON = "application/json";
+                /// <summary>
+                /// Constant APPLICATION_MSWORD for application/msword
+                /// </summary>
+                public const string APPLICATION_MSWORD = "application/msword";
+                /// <summary>
+                /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
+                /// </summary>
+                public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                /// <summary>
+                /// Constant APPLICATION_PDF for application/pdf
+                /// </summary>
+                public const string APPLICATION_PDF = "application/pdf";
+                /// <summary>
+                /// Constant TEXT_HTML for text/html
+                /// </summary>
+                public const string TEXT_HTML = "text/html";
+                /// <summary>
+                /// Constant APPLICATION_XHTML_XML for application/xhtml+xml
+                /// </summary>
+                public const string APPLICATION_XHTML_XML = "application/xhtml+xml";
+                
+            }
+        }
+        /// <summary>
         /// List Enrichments.
         ///
         /// List the enrichments available to this project.
@@ -1481,6 +1757,10 @@ namespace IBM.Watson.Discovery.v2
         /// <returns><see cref="Enrichments" />Enrichments</returns>
         public DetailedResponse<Enrichments> ListEnrichments(string projectId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(projectId))
             {
                 throw new ArgumentNullException("`projectId` is required for `ListEnrichments`");
@@ -1489,12 +1769,6 @@ namespace IBM.Watson.Discovery.v2
             {
                 projectId = Uri.EscapeDataString(projectId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<Enrichments> result = null;
 
             try
@@ -1504,8 +1778,11 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v2/projects/{projectId}/enrichments");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "ListEnrichments"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -1537,6 +1814,10 @@ namespace IBM.Watson.Discovery.v2
         /// <returns><see cref="Enrichment" />Enrichment</returns>
         public DetailedResponse<Enrichment> CreateEnrichment(string projectId, CreateEnrichment enrichment, System.IO.MemoryStream file = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(projectId))
             {
                 throw new ArgumentNullException("`projectId` is required for `CreateEnrichment`");
@@ -1549,12 +1830,6 @@ namespace IBM.Watson.Discovery.v2
             {
                 throw new ArgumentNullException("`enrichment` is required for `CreateEnrichment`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<Enrichment> result = null;
 
             try
@@ -1582,8 +1857,11 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v2/projects/{projectId}/enrichments");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithBodyContent(formData);
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "CreateEnrichment"));
@@ -1615,6 +1893,10 @@ namespace IBM.Watson.Discovery.v2
         /// <returns><see cref="Enrichment" />Enrichment</returns>
         public DetailedResponse<Enrichment> GetEnrichment(string projectId, string enrichmentId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(projectId))
             {
                 throw new ArgumentNullException("`projectId` is required for `GetEnrichment`");
@@ -1631,12 +1913,6 @@ namespace IBM.Watson.Discovery.v2
             {
                 enrichmentId = Uri.EscapeDataString(enrichmentId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<Enrichment> result = null;
 
             try
@@ -1646,8 +1922,11 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v2/projects/{projectId}/enrichments/{enrichmentId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "GetEnrichment"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -1675,10 +1954,15 @@ namespace IBM.Watson.Discovery.v2
         /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
         /// Discovery administrative tooling.</param>
         /// <param name="enrichmentId">The ID of the enrichment.</param>
-        /// <param name="updateEnrichment">An object that lists the new name and description for an enrichment.</param>
+        /// <param name="name">A new name for the enrichment.</param>
+        /// <param name="description">A new description for the enrichment. (optional)</param>
         /// <returns><see cref="Enrichment" />Enrichment</returns>
         public DetailedResponse<Enrichment> UpdateEnrichment(string projectId, string enrichmentId, string name, string description = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(projectId))
             {
                 throw new ArgumentNullException("`projectId` is required for `UpdateEnrichment`");
@@ -1699,12 +1983,6 @@ namespace IBM.Watson.Discovery.v2
             {
                 throw new ArgumentNullException("`name` is required for `UpdateEnrichment`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<Enrichment> result = null;
 
             try
@@ -1714,8 +1992,11 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v2/projects/{projectId}/enrichments/{enrichmentId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -1761,6 +2042,10 @@ namespace IBM.Watson.Discovery.v2
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteEnrichment(string projectId, string enrichmentId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(projectId))
             {
                 throw new ArgumentNullException("`projectId` is required for `DeleteEnrichment`");
@@ -1777,12 +2062,6 @@ namespace IBM.Watson.Discovery.v2
             {
                 enrichmentId = Uri.EscapeDataString(enrichmentId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<object> result = null;
 
             try
@@ -1792,7 +2071,10 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v2/projects/{projectId}/enrichments/{enrichmentId}");
 
-                restRequest.WithArgument("version", VersionDate);
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "DeleteEnrichment"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -1819,12 +2101,10 @@ namespace IBM.Watson.Discovery.v2
         /// <returns><see cref="ListProjectsResponse" />ListProjectsResponse</returns>
         public DetailedResponse<ListProjectsResponse> ListProjects()
         {
-
-            if (string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(Version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`Version` is required");
             }
-
             DetailedResponse<ListProjectsResponse> result = null;
 
             try
@@ -1834,8 +2114,11 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v2/projects");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "ListProjects"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -1860,10 +2143,16 @@ namespace IBM.Watson.Discovery.v2
         ///
         /// Create a new project for this instance.
         /// </summary>
-        /// <param name="projectCreation">An object that represents the project to be created.</param>
+        /// <param name="name">The human readable name of this project.</param>
+        /// <param name="type">The project type of this project.</param>
+        /// <param name="defaultQueryParameters">Default query parameters for this project. (optional)</param>
         /// <returns><see cref="ProjectDetails" />ProjectDetails</returns>
         public DetailedResponse<ProjectDetails> CreateProject(string name, string type, DefaultQueryParams defaultQueryParameters = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(name))
             {
                 throw new ArgumentNullException("`name` is required for `CreateProject`");
@@ -1872,12 +2161,6 @@ namespace IBM.Watson.Discovery.v2
             {
                 throw new ArgumentNullException("`type` is required for `CreateProject`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<ProjectDetails> result = null;
 
             try
@@ -1887,8 +2170,11 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v2/projects");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -1935,6 +2221,10 @@ namespace IBM.Watson.Discovery.v2
         /// <returns><see cref="ProjectDetails" />ProjectDetails</returns>
         public DetailedResponse<ProjectDetails> GetProject(string projectId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(projectId))
             {
                 throw new ArgumentNullException("`projectId` is required for `GetProject`");
@@ -1943,12 +2233,6 @@ namespace IBM.Watson.Discovery.v2
             {
                 projectId = Uri.EscapeDataString(projectId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<ProjectDetails> result = null;
 
             try
@@ -1958,8 +2242,11 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v2/projects/{projectId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "GetProject"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -1986,10 +2273,14 @@ namespace IBM.Watson.Discovery.v2
         /// </summary>
         /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
         /// Discovery administrative tooling.</param>
-        /// <param name="projectName">An object that represents the new name of the project. (optional)</param>
+        /// <param name="name">The new name to give this project. (optional)</param>
         /// <returns><see cref="ProjectDetails" />ProjectDetails</returns>
         public DetailedResponse<ProjectDetails> UpdateProject(string projectId, string name = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(projectId))
             {
                 throw new ArgumentNullException("`projectId` is required for `UpdateProject`");
@@ -1998,12 +2289,6 @@ namespace IBM.Watson.Discovery.v2
             {
                 projectId = Uri.EscapeDataString(projectId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<ProjectDetails> result = null;
 
             try
@@ -2013,8 +2298,11 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v2/projects/{projectId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -2056,6 +2344,10 @@ namespace IBM.Watson.Discovery.v2
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteProject(string projectId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(projectId))
             {
                 throw new ArgumentNullException("`projectId` is required for `DeleteProject`");
@@ -2064,12 +2356,6 @@ namespace IBM.Watson.Discovery.v2
             {
                 projectId = Uri.EscapeDataString(projectId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<object> result = null;
 
             try
@@ -2079,7 +2365,10 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v2/projects/{projectId}");
 
-                restRequest.WithArgument("version", VersionDate);
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("discovery", "v2", "DeleteProject"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -2115,16 +2404,14 @@ namespace IBM.Watson.Discovery.v2
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteUserData(string customerId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(customerId))
             {
                 throw new ArgumentNullException("`customerId` is required for `DeleteUserData`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<object> result = null;
 
             try
@@ -2134,7 +2421,10 @@ namespace IBM.Watson.Discovery.v2
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v2/user_data");
 
-                restRequest.WithArgument("version", VersionDate);
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(customerId))
                 {
                     restRequest.WithArgument("customer_id", customerId);

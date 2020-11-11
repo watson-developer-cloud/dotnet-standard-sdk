@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
     /// <summary>
     /// Webpage metadata, such as the author and the title of the page.
     /// </summary>
-    public class AnalysisResultsMetadata
+    public class FeaturesResultsMetadata
     {
         /// <summary>
         /// The authors of the document.

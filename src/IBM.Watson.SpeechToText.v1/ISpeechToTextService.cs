@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2016, 2020.
+* (C) Copyright IBM Corp. 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -25,10 +25,10 @@ namespace IBM.Watson.SpeechToText.v1
     {
         DetailedResponse<SpeechModels> ListModels();
         DetailedResponse<SpeechModel> GetModel(string modelId);
-        DetailedResponse<SpeechRecognitionResults> Recognize(byte[] audio, string contentType = null, string model = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, bool? audioMetrics = null, double? endOfPhraseSilenceTime = null, bool? splitTranscriptAtPhraseEnd = null, float? speechDetectorSensitivity = null, float? backgroundAudioSuppression = null);
+        DetailedResponse<SpeechRecognitionResults> Recognize(System.IO.MemoryStream audio, string contentType = null, string model = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, bool? audioMetrics = null, double? endOfPhraseSilenceTime = null, bool? splitTranscriptAtPhraseEnd = null, float? speechDetectorSensitivity = null, float? backgroundAudioSuppression = null);
         DetailedResponse<RegisterStatus> RegisterCallback(string callbackUrl, string userSecret = null);
         DetailedResponse<object> UnregisterCallback(string callbackUrl);
-        DetailedResponse<RecognitionJob> CreateJob(byte[] audio, string contentType = null, string model = null, string callbackUrl = null, string events = null, string userToken = null, long? resultsTtl = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, bool? processingMetrics = null, float? processingMetricsInterval = null, bool? audioMetrics = null, double? endOfPhraseSilenceTime = null, bool? splitTranscriptAtPhraseEnd = null, float? speechDetectorSensitivity = null, float? backgroundAudioSuppression = null);
+        DetailedResponse<RecognitionJob> CreateJob(System.IO.MemoryStream audio, string contentType = null, string model = null, string callbackUrl = null, string events = null, string userToken = null, long? resultsTtl = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, bool? processingMetrics = null, float? processingMetricsInterval = null, bool? audioMetrics = null, double? endOfPhraseSilenceTime = null, bool? splitTranscriptAtPhraseEnd = null, float? speechDetectorSensitivity = null, float? backgroundAudioSuppression = null);
         DetailedResponse<RecognitionJobs> CheckJobs();
         DetailedResponse<RecognitionJob> CheckJob(string id);
         DetailedResponse<object> DeleteJob(string id);
@@ -49,7 +49,7 @@ namespace IBM.Watson.SpeechToText.v1
         DetailedResponse<Word> GetWord(string customizationId, string wordName);
         DetailedResponse<object> DeleteWord(string customizationId, string wordName);
         DetailedResponse<Grammars> ListGrammars(string customizationId);
-        DetailedResponse<object> AddGrammar(string customizationId, string grammarName, string grammarFile, string contentType, bool? allowOverwrite = null);
+        DetailedResponse<object> AddGrammar(string customizationId, string grammarName, System.IO.MemoryStream grammarFile, string contentType, bool? allowOverwrite = null);
         DetailedResponse<Grammar> GetGrammar(string customizationId, string grammarName);
         DetailedResponse<object> DeleteGrammar(string customizationId, string grammarName);
         DetailedResponse<AcousticModel> CreateAcousticModel(string name, string baseModelName, string description = null);
@@ -60,7 +60,7 @@ namespace IBM.Watson.SpeechToText.v1
         DetailedResponse<object> ResetAcousticModel(string customizationId);
         DetailedResponse<object> UpgradeAcousticModel(string customizationId, string customLanguageModelId = null, bool? force = null);
         DetailedResponse<AudioResources> ListAudio(string customizationId);
-        DetailedResponse<object> AddAudio(string customizationId, string audioName, byte[] audioResource, string contentType = null, string containedContentType = null, bool? allowOverwrite = null);
+        DetailedResponse<object> AddAudio(string customizationId, string audioName, System.IO.MemoryStream audioResource, string contentType = null, string containedContentType = null, bool? allowOverwrite = null);
         DetailedResponse<AudioListing> GetAudio(string customizationId, string audioName);
         DetailedResponse<object> DeleteAudio(string customizationId, string audioName);
         DetailedResponse<object> DeleteUserData(string customerId);

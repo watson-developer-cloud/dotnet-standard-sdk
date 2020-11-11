@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -18,20 +18,18 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace IBM.Watson.TextToSpeech.v1.Model
+namespace IBM.Watson.Assistant.v1.Model
 {
     /// <summary>
-    /// Information about existing custom voice models.
+    /// BulkClassifyResponse.
     /// </summary>
-    public class VoiceModels
+    public class BulkClassifyResponse
     {
         /// <summary>
-        /// An array of `VoiceModel` objects that provides information about each available custom voice model. The
-        /// array is empty if the requesting credentials own no custom voice models (if no language is specified) or own
-        /// no custom voice models for the specified language.
+        /// An array of objects that contain classification information for the submitted input utterances.
         /// </summary>
-        [JsonProperty("customizations", NullValueHandling = NullValueHandling.Ignore)]
-        public List<VoiceModel> Customizations { get; set; }
+        [JsonProperty("output", NullValueHandling = NullValueHandling.Ignore)]
+        public List<BulkClassifyOutput> Output { get; set; }
     }
 
 }

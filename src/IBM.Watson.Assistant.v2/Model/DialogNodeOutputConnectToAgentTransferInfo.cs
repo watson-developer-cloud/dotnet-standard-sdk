@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,15 +15,21 @@
 *
 */
 
-using IBM.Cloud.SDK.Core.Model;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
-namespace IBM.Watson.Assistant.v1.Model
+namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// For internal use only.
+    /// Routing or other contextual information to be used by target service desk systems.
     /// </summary>
-    public class SystemResponse : DynamicModel<object>
+    public class DialogNodeOutputConnectToAgentTransferInfo
     {
+        /// <summary>
+        /// Gets or Sets Target
+        /// </summary>
+        [JsonProperty("target", NullValueHandling = NullValueHandling.Ignore)]
+        public Dictionary<string, Dictionary<string, object>> Target { get; set; }
     }
 
 }

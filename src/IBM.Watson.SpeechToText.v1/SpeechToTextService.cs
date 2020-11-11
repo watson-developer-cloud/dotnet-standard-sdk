@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2016, 2020.
+* (C) Copyright IBM Corp. 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,6 +15,10 @@
 *
 */
 
+/**
+* IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-8d569e8f-20201109-230115
+*/
+ 
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
@@ -32,13 +36,15 @@ namespace IBM.Watson.SpeechToText.v1
 {
     public partial class SpeechToTextService : IBMService, ISpeechToTextService
     {
-        const string serviceName = "speech_to_text";
+        const string defaultServiceName = "speech_to_text";
         private const string defaultServiceUrl = "https://api.us-south.speech-to-text.watson.cloud.ibm.com";
 
-        public SpeechToTextService() : this(ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
-        public SpeechToTextService(IClient httpClient) : base(serviceName, httpClient) { }
+        public SpeechToTextService() : this(defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public SpeechToTextService(IAuthenticator authenticator) : this(defaultServiceName, authenticator) {}
+        public SpeechToTextService(string serviceName) : this(serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public SpeechToTextService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public SpeechToTextService(IAuthenticator authenticator) : base(serviceName, authenticator)
+        public SpeechToTextService(string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
 
             if (string.IsNullOrEmpty(ServiceUrl))
@@ -138,6 +144,172 @@ namespace IBM.Watson.SpeechToText.v1
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Enum values for GetModel.
+        /// </summary>
+        public class GetModelEnums
+        {
+            /// <summary>
+            /// The identifier of the model in the form of its name from the output of the **Get a model** method.
+            /// </summary>
+            public class ModelIdValue
+            {
+                /// <summary>
+                /// Constant AR_AR_BROADBANDMODEL for ar-AR_BroadbandModel
+                /// </summary>
+                public const string AR_AR_BROADBANDMODEL = "ar-AR_BroadbandModel";
+                /// <summary>
+                /// Constant DE_DE_BROADBANDMODEL for de-DE_BroadbandModel
+                /// </summary>
+                public const string DE_DE_BROADBANDMODEL = "de-DE_BroadbandModel";
+                /// <summary>
+                /// Constant DE_DE_NARROWBANDMODEL for de-DE_NarrowbandModel
+                /// </summary>
+                public const string DE_DE_NARROWBANDMODEL = "de-DE_NarrowbandModel";
+                /// <summary>
+                /// Constant EN_AU_BROADBANDMODEL for en-AU_BroadbandModel
+                /// </summary>
+                public const string EN_AU_BROADBANDMODEL = "en-AU_BroadbandModel";
+                /// <summary>
+                /// Constant EN_AU_NARROWBANDMODEL for en-AU_NarrowbandModel
+                /// </summary>
+                public const string EN_AU_NARROWBANDMODEL = "en-AU_NarrowbandModel";
+                /// <summary>
+                /// Constant EN_GB_BROADBANDMODEL for en-GB_BroadbandModel
+                /// </summary>
+                public const string EN_GB_BROADBANDMODEL = "en-GB_BroadbandModel";
+                /// <summary>
+                /// Constant EN_GB_NARROWBANDMODEL for en-GB_NarrowbandModel
+                /// </summary>
+                public const string EN_GB_NARROWBANDMODEL = "en-GB_NarrowbandModel";
+                /// <summary>
+                /// Constant EN_US_BROADBANDMODEL for en-US_BroadbandModel
+                /// </summary>
+                public const string EN_US_BROADBANDMODEL = "en-US_BroadbandModel";
+                /// <summary>
+                /// Constant EN_US_NARROWBANDMODEL for en-US_NarrowbandModel
+                /// </summary>
+                public const string EN_US_NARROWBANDMODEL = "en-US_NarrowbandModel";
+                /// <summary>
+                /// Constant EN_US_SHORTFORM_NARROWBANDMODEL for en-US_ShortForm_NarrowbandModel
+                /// </summary>
+                public const string EN_US_SHORTFORM_NARROWBANDMODEL = "en-US_ShortForm_NarrowbandModel";
+                /// <summary>
+                /// Constant ES_AR_BROADBANDMODEL for es-AR_BroadbandModel
+                /// </summary>
+                public const string ES_AR_BROADBANDMODEL = "es-AR_BroadbandModel";
+                /// <summary>
+                /// Constant ES_AR_NARROWBANDMODEL for es-AR_NarrowbandModel
+                /// </summary>
+                public const string ES_AR_NARROWBANDMODEL = "es-AR_NarrowbandModel";
+                /// <summary>
+                /// Constant ES_CL_BROADBANDMODEL for es-CL_BroadbandModel
+                /// </summary>
+                public const string ES_CL_BROADBANDMODEL = "es-CL_BroadbandModel";
+                /// <summary>
+                /// Constant ES_CL_NARROWBANDMODEL for es-CL_NarrowbandModel
+                /// </summary>
+                public const string ES_CL_NARROWBANDMODEL = "es-CL_NarrowbandModel";
+                /// <summary>
+                /// Constant ES_CO_BROADBANDMODEL for es-CO_BroadbandModel
+                /// </summary>
+                public const string ES_CO_BROADBANDMODEL = "es-CO_BroadbandModel";
+                /// <summary>
+                /// Constant ES_CO_NARROWBANDMODEL for es-CO_NarrowbandModel
+                /// </summary>
+                public const string ES_CO_NARROWBANDMODEL = "es-CO_NarrowbandModel";
+                /// <summary>
+                /// Constant ES_ES_BROADBANDMODEL for es-ES_BroadbandModel
+                /// </summary>
+                public const string ES_ES_BROADBANDMODEL = "es-ES_BroadbandModel";
+                /// <summary>
+                /// Constant ES_ES_NARROWBANDMODEL for es-ES_NarrowbandModel
+                /// </summary>
+                public const string ES_ES_NARROWBANDMODEL = "es-ES_NarrowbandModel";
+                /// <summary>
+                /// Constant ES_MX_BROADBANDMODEL for es-MX_BroadbandModel
+                /// </summary>
+                public const string ES_MX_BROADBANDMODEL = "es-MX_BroadbandModel";
+                /// <summary>
+                /// Constant ES_MX_NARROWBANDMODEL for es-MX_NarrowbandModel
+                /// </summary>
+                public const string ES_MX_NARROWBANDMODEL = "es-MX_NarrowbandModel";
+                /// <summary>
+                /// Constant ES_PE_BROADBANDMODEL for es-PE_BroadbandModel
+                /// </summary>
+                public const string ES_PE_BROADBANDMODEL = "es-PE_BroadbandModel";
+                /// <summary>
+                /// Constant ES_PE_NARROWBANDMODEL for es-PE_NarrowbandModel
+                /// </summary>
+                public const string ES_PE_NARROWBANDMODEL = "es-PE_NarrowbandModel";
+                /// <summary>
+                /// Constant FR_CA_BROADBANDMODEL for fr-CA_BroadbandModel
+                /// </summary>
+                public const string FR_CA_BROADBANDMODEL = "fr-CA_BroadbandModel";
+                /// <summary>
+                /// Constant FR_CA_NARROWBANDMODEL for fr-CA_NarrowbandModel
+                /// </summary>
+                public const string FR_CA_NARROWBANDMODEL = "fr-CA_NarrowbandModel";
+                /// <summary>
+                /// Constant FR_FR_BROADBANDMODEL for fr-FR_BroadbandModel
+                /// </summary>
+                public const string FR_FR_BROADBANDMODEL = "fr-FR_BroadbandModel";
+                /// <summary>
+                /// Constant FR_FR_NARROWBANDMODEL for fr-FR_NarrowbandModel
+                /// </summary>
+                public const string FR_FR_NARROWBANDMODEL = "fr-FR_NarrowbandModel";
+                /// <summary>
+                /// Constant IT_IT_BROADBANDMODEL for it-IT_BroadbandModel
+                /// </summary>
+                public const string IT_IT_BROADBANDMODEL = "it-IT_BroadbandModel";
+                /// <summary>
+                /// Constant IT_IT_NARROWBANDMODEL for it-IT_NarrowbandModel
+                /// </summary>
+                public const string IT_IT_NARROWBANDMODEL = "it-IT_NarrowbandModel";
+                /// <summary>
+                /// Constant JA_JP_BROADBANDMODEL for ja-JP_BroadbandModel
+                /// </summary>
+                public const string JA_JP_BROADBANDMODEL = "ja-JP_BroadbandModel";
+                /// <summary>
+                /// Constant JA_JP_NARROWBANDMODEL for ja-JP_NarrowbandModel
+                /// </summary>
+                public const string JA_JP_NARROWBANDMODEL = "ja-JP_NarrowbandModel";
+                /// <summary>
+                /// Constant KO_KR_BROADBANDMODEL for ko-KR_BroadbandModel
+                /// </summary>
+                public const string KO_KR_BROADBANDMODEL = "ko-KR_BroadbandModel";
+                /// <summary>
+                /// Constant KO_KR_NARROWBANDMODEL for ko-KR_NarrowbandModel
+                /// </summary>
+                public const string KO_KR_NARROWBANDMODEL = "ko-KR_NarrowbandModel";
+                /// <summary>
+                /// Constant NL_NL_BROADBANDMODEL for nl-NL_BroadbandModel
+                /// </summary>
+                public const string NL_NL_BROADBANDMODEL = "nl-NL_BroadbandModel";
+                /// <summary>
+                /// Constant NL_NL_NARROWBANDMODEL for nl-NL_NarrowbandModel
+                /// </summary>
+                public const string NL_NL_NARROWBANDMODEL = "nl-NL_NarrowbandModel";
+                /// <summary>
+                /// Constant PT_BR_BROADBANDMODEL for pt-BR_BroadbandModel
+                /// </summary>
+                public const string PT_BR_BROADBANDMODEL = "pt-BR_BroadbandModel";
+                /// <summary>
+                /// Constant PT_BR_NARROWBANDMODEL for pt-BR_NarrowbandModel
+                /// </summary>
+                public const string PT_BR_NARROWBANDMODEL = "pt-BR_NarrowbandModel";
+                /// <summary>
+                /// Constant ZH_CN_BROADBANDMODEL for zh-CN_BroadbandModel
+                /// </summary>
+                public const string ZH_CN_BROADBANDMODEL = "zh-CN_BroadbandModel";
+                /// <summary>
+                /// Constant ZH_CN_NARROWBANDMODEL for zh-CN_NarrowbandModel
+                /// </summary>
+                public const string ZH_CN_NARROWBANDMODEL = "zh-CN_NarrowbandModel";
+                
+            }
         }
         /// <summary>
         /// Recognize audio.
@@ -402,7 +574,7 @@ namespace IBM.Watson.SpeechToText.v1
         /// Detection](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-input#detection).
         /// (optional)</param>
         /// <returns><see cref="SpeechRecognitionResults" />SpeechRecognitionResults</returns>
-        public DetailedResponse<SpeechRecognitionResults> Recognize(byte[] audio, string contentType = null, string model = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, bool? audioMetrics = null, double? endOfPhraseSilenceTime = null, bool? splitTranscriptAtPhraseEnd = null, float? speechDetectorSensitivity = null, float? backgroundAudioSuppression = null)
+        public DetailedResponse<SpeechRecognitionResults> Recognize(System.IO.MemoryStream audio, string contentType = null, string model = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, bool? audioMetrics = null, double? endOfPhraseSilenceTime = null, bool? splitTranscriptAtPhraseEnd = null, float? speechDetectorSensitivity = null, float? backgroundAudioSuppression = null)
         {
             if (audio == null)
             {
@@ -515,7 +687,7 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     restRequest.WithArgument("background_audio_suppression", backgroundAudioSuppression);
                 }
-                var httpContent = new ByteArrayContent(audio);
+                var httpContent = new ByteArrayContent(audio.ToArray());
                 System.Net.Http.Headers.MediaTypeHeaderValue audioContentType;
                 System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out audioContentType);
                 httpContent.Headers.ContentType = audioContentType;
@@ -537,6 +709,245 @@ namespace IBM.Watson.SpeechToText.v1
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Enum values for Recognize.
+        /// </summary>
+        public class RecognizeEnums
+        {
+            /// <summary>
+            /// The format (MIME type) of the audio. For more information about specifying an audio format, see **Audio
+            /// formats (content types)** in the method description.
+            /// </summary>
+            public class ContentTypeValue
+            {
+                /// <summary>
+                /// Constant APPLICATION_OCTET_STREAM for application/octet-stream
+                /// </summary>
+                public const string APPLICATION_OCTET_STREAM = "application/octet-stream";
+                /// <summary>
+                /// Constant AUDIO_ALAW for audio/alaw
+                /// </summary>
+                public const string AUDIO_ALAW = "audio/alaw";
+                /// <summary>
+                /// Constant AUDIO_BASIC for audio/basic
+                /// </summary>
+                public const string AUDIO_BASIC = "audio/basic";
+                /// <summary>
+                /// Constant AUDIO_FLAC for audio/flac
+                /// </summary>
+                public const string AUDIO_FLAC = "audio/flac";
+                /// <summary>
+                /// Constant AUDIO_G729 for audio/g729
+                /// </summary>
+                public const string AUDIO_G729 = "audio/g729";
+                /// <summary>
+                /// Constant AUDIO_L16 for audio/l16
+                /// </summary>
+                public const string AUDIO_L16 = "audio/l16";
+                /// <summary>
+                /// Constant AUDIO_MP3 for audio/mp3
+                /// </summary>
+                public const string AUDIO_MP3 = "audio/mp3";
+                /// <summary>
+                /// Constant AUDIO_MPEG for audio/mpeg
+                /// </summary>
+                public const string AUDIO_MPEG = "audio/mpeg";
+                /// <summary>
+                /// Constant AUDIO_MULAW for audio/mulaw
+                /// </summary>
+                public const string AUDIO_MULAW = "audio/mulaw";
+                /// <summary>
+                /// Constant AUDIO_OGG for audio/ogg
+                /// </summary>
+                public const string AUDIO_OGG = "audio/ogg";
+                /// <summary>
+                /// Constant AUDIO_OGG_CODECS_OPUS for audio/ogg;codecs=opus
+                /// </summary>
+                public const string AUDIO_OGG_CODECS_OPUS = "audio/ogg;codecs=opus";
+                /// <summary>
+                /// Constant AUDIO_OGG_CODECS_VORBIS for audio/ogg;codecs=vorbis
+                /// </summary>
+                public const string AUDIO_OGG_CODECS_VORBIS = "audio/ogg;codecs=vorbis";
+                /// <summary>
+                /// Constant AUDIO_WAV for audio/wav
+                /// </summary>
+                public const string AUDIO_WAV = "audio/wav";
+                /// <summary>
+                /// Constant AUDIO_WEBM for audio/webm
+                /// </summary>
+                public const string AUDIO_WEBM = "audio/webm";
+                /// <summary>
+                /// Constant AUDIO_WEBM_CODECS_OPUS for audio/webm;codecs=opus
+                /// </summary>
+                public const string AUDIO_WEBM_CODECS_OPUS = "audio/webm;codecs=opus";
+                /// <summary>
+                /// Constant AUDIO_WEBM_CODECS_VORBIS for audio/webm;codecs=vorbis
+                /// </summary>
+                public const string AUDIO_WEBM_CODECS_VORBIS = "audio/webm;codecs=vorbis";
+                
+            }
+            /// <summary>
+            /// The identifier of the model that is to be used for the recognition request. See [Languages and
+            /// models](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models#models).
+            /// </summary>
+            public class ModelValue
+            {
+                /// <summary>
+                /// Constant AR_AR_BROADBANDMODEL for ar-AR_BroadbandModel
+                /// </summary>
+                public const string AR_AR_BROADBANDMODEL = "ar-AR_BroadbandModel";
+                /// <summary>
+                /// Constant DE_DE_BROADBANDMODEL for de-DE_BroadbandModel
+                /// </summary>
+                public const string DE_DE_BROADBANDMODEL = "de-DE_BroadbandModel";
+                /// <summary>
+                /// Constant DE_DE_NARROWBANDMODEL for de-DE_NarrowbandModel
+                /// </summary>
+                public const string DE_DE_NARROWBANDMODEL = "de-DE_NarrowbandModel";
+                /// <summary>
+                /// Constant EN_AU_BROADBANDMODEL for en-AU_BroadbandModel
+                /// </summary>
+                public const string EN_AU_BROADBANDMODEL = "en-AU_BroadbandModel";
+                /// <summary>
+                /// Constant EN_AU_NARROWBANDMODEL for en-AU_NarrowbandModel
+                /// </summary>
+                public const string EN_AU_NARROWBANDMODEL = "en-AU_NarrowbandModel";
+                /// <summary>
+                /// Constant EN_GB_BROADBANDMODEL for en-GB_BroadbandModel
+                /// </summary>
+                public const string EN_GB_BROADBANDMODEL = "en-GB_BroadbandModel";
+                /// <summary>
+                /// Constant EN_GB_NARROWBANDMODEL for en-GB_NarrowbandModel
+                /// </summary>
+                public const string EN_GB_NARROWBANDMODEL = "en-GB_NarrowbandModel";
+                /// <summary>
+                /// Constant EN_US_BROADBANDMODEL for en-US_BroadbandModel
+                /// </summary>
+                public const string EN_US_BROADBANDMODEL = "en-US_BroadbandModel";
+                /// <summary>
+                /// Constant EN_US_NARROWBANDMODEL for en-US_NarrowbandModel
+                /// </summary>
+                public const string EN_US_NARROWBANDMODEL = "en-US_NarrowbandModel";
+                /// <summary>
+                /// Constant EN_US_SHORTFORM_NARROWBANDMODEL for en-US_ShortForm_NarrowbandModel
+                /// </summary>
+                public const string EN_US_SHORTFORM_NARROWBANDMODEL = "en-US_ShortForm_NarrowbandModel";
+                /// <summary>
+                /// Constant ES_AR_BROADBANDMODEL for es-AR_BroadbandModel
+                /// </summary>
+                public const string ES_AR_BROADBANDMODEL = "es-AR_BroadbandModel";
+                /// <summary>
+                /// Constant ES_AR_NARROWBANDMODEL for es-AR_NarrowbandModel
+                /// </summary>
+                public const string ES_AR_NARROWBANDMODEL = "es-AR_NarrowbandModel";
+                /// <summary>
+                /// Constant ES_CL_BROADBANDMODEL for es-CL_BroadbandModel
+                /// </summary>
+                public const string ES_CL_BROADBANDMODEL = "es-CL_BroadbandModel";
+                /// <summary>
+                /// Constant ES_CL_NARROWBANDMODEL for es-CL_NarrowbandModel
+                /// </summary>
+                public const string ES_CL_NARROWBANDMODEL = "es-CL_NarrowbandModel";
+                /// <summary>
+                /// Constant ES_CO_BROADBANDMODEL for es-CO_BroadbandModel
+                /// </summary>
+                public const string ES_CO_BROADBANDMODEL = "es-CO_BroadbandModel";
+                /// <summary>
+                /// Constant ES_CO_NARROWBANDMODEL for es-CO_NarrowbandModel
+                /// </summary>
+                public const string ES_CO_NARROWBANDMODEL = "es-CO_NarrowbandModel";
+                /// <summary>
+                /// Constant ES_ES_BROADBANDMODEL for es-ES_BroadbandModel
+                /// </summary>
+                public const string ES_ES_BROADBANDMODEL = "es-ES_BroadbandModel";
+                /// <summary>
+                /// Constant ES_ES_NARROWBANDMODEL for es-ES_NarrowbandModel
+                /// </summary>
+                public const string ES_ES_NARROWBANDMODEL = "es-ES_NarrowbandModel";
+                /// <summary>
+                /// Constant ES_MX_BROADBANDMODEL for es-MX_BroadbandModel
+                /// </summary>
+                public const string ES_MX_BROADBANDMODEL = "es-MX_BroadbandModel";
+                /// <summary>
+                /// Constant ES_MX_NARROWBANDMODEL for es-MX_NarrowbandModel
+                /// </summary>
+                public const string ES_MX_NARROWBANDMODEL = "es-MX_NarrowbandModel";
+                /// <summary>
+                /// Constant ES_PE_BROADBANDMODEL for es-PE_BroadbandModel
+                /// </summary>
+                public const string ES_PE_BROADBANDMODEL = "es-PE_BroadbandModel";
+                /// <summary>
+                /// Constant ES_PE_NARROWBANDMODEL for es-PE_NarrowbandModel
+                /// </summary>
+                public const string ES_PE_NARROWBANDMODEL = "es-PE_NarrowbandModel";
+                /// <summary>
+                /// Constant FR_CA_BROADBANDMODEL for fr-CA_BroadbandModel
+                /// </summary>
+                public const string FR_CA_BROADBANDMODEL = "fr-CA_BroadbandModel";
+                /// <summary>
+                /// Constant FR_CA_NARROWBANDMODEL for fr-CA_NarrowbandModel
+                /// </summary>
+                public const string FR_CA_NARROWBANDMODEL = "fr-CA_NarrowbandModel";
+                /// <summary>
+                /// Constant FR_FR_BROADBANDMODEL for fr-FR_BroadbandModel
+                /// </summary>
+                public const string FR_FR_BROADBANDMODEL = "fr-FR_BroadbandModel";
+                /// <summary>
+                /// Constant FR_FR_NARROWBANDMODEL for fr-FR_NarrowbandModel
+                /// </summary>
+                public const string FR_FR_NARROWBANDMODEL = "fr-FR_NarrowbandModel";
+                /// <summary>
+                /// Constant IT_IT_BROADBANDMODEL for it-IT_BroadbandModel
+                /// </summary>
+                public const string IT_IT_BROADBANDMODEL = "it-IT_BroadbandModel";
+                /// <summary>
+                /// Constant IT_IT_NARROWBANDMODEL for it-IT_NarrowbandModel
+                /// </summary>
+                public const string IT_IT_NARROWBANDMODEL = "it-IT_NarrowbandModel";
+                /// <summary>
+                /// Constant JA_JP_BROADBANDMODEL for ja-JP_BroadbandModel
+                /// </summary>
+                public const string JA_JP_BROADBANDMODEL = "ja-JP_BroadbandModel";
+                /// <summary>
+                /// Constant JA_JP_NARROWBANDMODEL for ja-JP_NarrowbandModel
+                /// </summary>
+                public const string JA_JP_NARROWBANDMODEL = "ja-JP_NarrowbandModel";
+                /// <summary>
+                /// Constant KO_KR_BROADBANDMODEL for ko-KR_BroadbandModel
+                /// </summary>
+                public const string KO_KR_BROADBANDMODEL = "ko-KR_BroadbandModel";
+                /// <summary>
+                /// Constant KO_KR_NARROWBANDMODEL for ko-KR_NarrowbandModel
+                /// </summary>
+                public const string KO_KR_NARROWBANDMODEL = "ko-KR_NarrowbandModel";
+                /// <summary>
+                /// Constant NL_NL_BROADBANDMODEL for nl-NL_BroadbandModel
+                /// </summary>
+                public const string NL_NL_BROADBANDMODEL = "nl-NL_BroadbandModel";
+                /// <summary>
+                /// Constant NL_NL_NARROWBANDMODEL for nl-NL_NarrowbandModel
+                /// </summary>
+                public const string NL_NL_NARROWBANDMODEL = "nl-NL_NarrowbandModel";
+                /// <summary>
+                /// Constant PT_BR_BROADBANDMODEL for pt-BR_BroadbandModel
+                /// </summary>
+                public const string PT_BR_BROADBANDMODEL = "pt-BR_BroadbandModel";
+                /// <summary>
+                /// Constant PT_BR_NARROWBANDMODEL for pt-BR_NarrowbandModel
+                /// </summary>
+                public const string PT_BR_NARROWBANDMODEL = "pt-BR_NarrowbandModel";
+                /// <summary>
+                /// Constant ZH_CN_BROADBANDMODEL for zh-CN_BroadbandModel
+                /// </summary>
+                public const string ZH_CN_BROADBANDMODEL = "zh-CN_BroadbandModel";
+                /// <summary>
+                /// Constant ZH_CN_NARROWBANDMODEL for zh-CN_NarrowbandModel
+                /// </summary>
+                public const string ZH_CN_NARROWBANDMODEL = "zh-CN_NarrowbandModel";
+                
+            }
         }
         /// <summary>
         /// Register a callback.
@@ -998,7 +1409,7 @@ namespace IBM.Watson.SpeechToText.v1
         /// Detection](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-input#detection).
         /// (optional)</param>
         /// <returns><see cref="RecognitionJob" />RecognitionJob</returns>
-        public DetailedResponse<RecognitionJob> CreateJob(byte[] audio, string contentType = null, string model = null, string callbackUrl = null, string events = null, string userToken = null, long? resultsTtl = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, bool? processingMetrics = null, float? processingMetricsInterval = null, bool? audioMetrics = null, double? endOfPhraseSilenceTime = null, bool? splitTranscriptAtPhraseEnd = null, float? speechDetectorSensitivity = null, float? backgroundAudioSuppression = null)
+        public DetailedResponse<RecognitionJob> CreateJob(System.IO.MemoryStream audio, string contentType = null, string model = null, string callbackUrl = null, string events = null, string userToken = null, long? resultsTtl = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, bool? processingMetrics = null, float? processingMetricsInterval = null, bool? audioMetrics = null, double? endOfPhraseSilenceTime = null, bool? splitTranscriptAtPhraseEnd = null, float? speechDetectorSensitivity = null, float? backgroundAudioSuppression = null)
         {
             if (audio == null)
             {
@@ -1135,7 +1546,7 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     restRequest.WithArgument("background_audio_suppression", backgroundAudioSuppression);
                 }
-                var httpContent = new ByteArrayContent(audio);
+                var httpContent = new ByteArrayContent(audio.ToArray());
                 System.Net.Http.Headers.MediaTypeHeaderValue audioContentType;
                 System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out audioContentType);
                 httpContent.Headers.ContentType = audioContentType;
@@ -1157,6 +1568,283 @@ namespace IBM.Watson.SpeechToText.v1
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Enum values for CreateJob.
+        /// </summary>
+        public class CreateJobEnums
+        {
+            /// <summary>
+            /// The format (MIME type) of the audio. For more information about specifying an audio format, see **Audio
+            /// formats (content types)** in the method description.
+            /// </summary>
+            public class ContentTypeValue
+            {
+                /// <summary>
+                /// Constant APPLICATION_OCTET_STREAM for application/octet-stream
+                /// </summary>
+                public const string APPLICATION_OCTET_STREAM = "application/octet-stream";
+                /// <summary>
+                /// Constant AUDIO_ALAW for audio/alaw
+                /// </summary>
+                public const string AUDIO_ALAW = "audio/alaw";
+                /// <summary>
+                /// Constant AUDIO_BASIC for audio/basic
+                /// </summary>
+                public const string AUDIO_BASIC = "audio/basic";
+                /// <summary>
+                /// Constant AUDIO_FLAC for audio/flac
+                /// </summary>
+                public const string AUDIO_FLAC = "audio/flac";
+                /// <summary>
+                /// Constant AUDIO_G729 for audio/g729
+                /// </summary>
+                public const string AUDIO_G729 = "audio/g729";
+                /// <summary>
+                /// Constant AUDIO_L16 for audio/l16
+                /// </summary>
+                public const string AUDIO_L16 = "audio/l16";
+                /// <summary>
+                /// Constant AUDIO_MP3 for audio/mp3
+                /// </summary>
+                public const string AUDIO_MP3 = "audio/mp3";
+                /// <summary>
+                /// Constant AUDIO_MPEG for audio/mpeg
+                /// </summary>
+                public const string AUDIO_MPEG = "audio/mpeg";
+                /// <summary>
+                /// Constant AUDIO_MULAW for audio/mulaw
+                /// </summary>
+                public const string AUDIO_MULAW = "audio/mulaw";
+                /// <summary>
+                /// Constant AUDIO_OGG for audio/ogg
+                /// </summary>
+                public const string AUDIO_OGG = "audio/ogg";
+                /// <summary>
+                /// Constant AUDIO_OGG_CODECS_OPUS for audio/ogg;codecs=opus
+                /// </summary>
+                public const string AUDIO_OGG_CODECS_OPUS = "audio/ogg;codecs=opus";
+                /// <summary>
+                /// Constant AUDIO_OGG_CODECS_VORBIS for audio/ogg;codecs=vorbis
+                /// </summary>
+                public const string AUDIO_OGG_CODECS_VORBIS = "audio/ogg;codecs=vorbis";
+                /// <summary>
+                /// Constant AUDIO_WAV for audio/wav
+                /// </summary>
+                public const string AUDIO_WAV = "audio/wav";
+                /// <summary>
+                /// Constant AUDIO_WEBM for audio/webm
+                /// </summary>
+                public const string AUDIO_WEBM = "audio/webm";
+                /// <summary>
+                /// Constant AUDIO_WEBM_CODECS_OPUS for audio/webm;codecs=opus
+                /// </summary>
+                public const string AUDIO_WEBM_CODECS_OPUS = "audio/webm;codecs=opus";
+                /// <summary>
+                /// Constant AUDIO_WEBM_CODECS_VORBIS for audio/webm;codecs=vorbis
+                /// </summary>
+                public const string AUDIO_WEBM_CODECS_VORBIS = "audio/webm;codecs=vorbis";
+                
+            }
+            /// <summary>
+            /// The identifier of the model that is to be used for the recognition request. See [Languages and
+            /// models](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models#models).
+            /// </summary>
+            public class ModelValue
+            {
+                /// <summary>
+                /// Constant AR_AR_BROADBANDMODEL for ar-AR_BroadbandModel
+                /// </summary>
+                public const string AR_AR_BROADBANDMODEL = "ar-AR_BroadbandModel";
+                /// <summary>
+                /// Constant DE_DE_BROADBANDMODEL for de-DE_BroadbandModel
+                /// </summary>
+                public const string DE_DE_BROADBANDMODEL = "de-DE_BroadbandModel";
+                /// <summary>
+                /// Constant DE_DE_NARROWBANDMODEL for de-DE_NarrowbandModel
+                /// </summary>
+                public const string DE_DE_NARROWBANDMODEL = "de-DE_NarrowbandModel";
+                /// <summary>
+                /// Constant EN_AU_BROADBANDMODEL for en-AU_BroadbandModel
+                /// </summary>
+                public const string EN_AU_BROADBANDMODEL = "en-AU_BroadbandModel";
+                /// <summary>
+                /// Constant EN_AU_NARROWBANDMODEL for en-AU_NarrowbandModel
+                /// </summary>
+                public const string EN_AU_NARROWBANDMODEL = "en-AU_NarrowbandModel";
+                /// <summary>
+                /// Constant EN_GB_BROADBANDMODEL for en-GB_BroadbandModel
+                /// </summary>
+                public const string EN_GB_BROADBANDMODEL = "en-GB_BroadbandModel";
+                /// <summary>
+                /// Constant EN_GB_NARROWBANDMODEL for en-GB_NarrowbandModel
+                /// </summary>
+                public const string EN_GB_NARROWBANDMODEL = "en-GB_NarrowbandModel";
+                /// <summary>
+                /// Constant EN_US_BROADBANDMODEL for en-US_BroadbandModel
+                /// </summary>
+                public const string EN_US_BROADBANDMODEL = "en-US_BroadbandModel";
+                /// <summary>
+                /// Constant EN_US_NARROWBANDMODEL for en-US_NarrowbandModel
+                /// </summary>
+                public const string EN_US_NARROWBANDMODEL = "en-US_NarrowbandModel";
+                /// <summary>
+                /// Constant EN_US_SHORTFORM_NARROWBANDMODEL for en-US_ShortForm_NarrowbandModel
+                /// </summary>
+                public const string EN_US_SHORTFORM_NARROWBANDMODEL = "en-US_ShortForm_NarrowbandModel";
+                /// <summary>
+                /// Constant ES_AR_BROADBANDMODEL for es-AR_BroadbandModel
+                /// </summary>
+                public const string ES_AR_BROADBANDMODEL = "es-AR_BroadbandModel";
+                /// <summary>
+                /// Constant ES_AR_NARROWBANDMODEL for es-AR_NarrowbandModel
+                /// </summary>
+                public const string ES_AR_NARROWBANDMODEL = "es-AR_NarrowbandModel";
+                /// <summary>
+                /// Constant ES_CL_BROADBANDMODEL for es-CL_BroadbandModel
+                /// </summary>
+                public const string ES_CL_BROADBANDMODEL = "es-CL_BroadbandModel";
+                /// <summary>
+                /// Constant ES_CL_NARROWBANDMODEL for es-CL_NarrowbandModel
+                /// </summary>
+                public const string ES_CL_NARROWBANDMODEL = "es-CL_NarrowbandModel";
+                /// <summary>
+                /// Constant ES_CO_BROADBANDMODEL for es-CO_BroadbandModel
+                /// </summary>
+                public const string ES_CO_BROADBANDMODEL = "es-CO_BroadbandModel";
+                /// <summary>
+                /// Constant ES_CO_NARROWBANDMODEL for es-CO_NarrowbandModel
+                /// </summary>
+                public const string ES_CO_NARROWBANDMODEL = "es-CO_NarrowbandModel";
+                /// <summary>
+                /// Constant ES_ES_BROADBANDMODEL for es-ES_BroadbandModel
+                /// </summary>
+                public const string ES_ES_BROADBANDMODEL = "es-ES_BroadbandModel";
+                /// <summary>
+                /// Constant ES_ES_NARROWBANDMODEL for es-ES_NarrowbandModel
+                /// </summary>
+                public const string ES_ES_NARROWBANDMODEL = "es-ES_NarrowbandModel";
+                /// <summary>
+                /// Constant ES_MX_BROADBANDMODEL for es-MX_BroadbandModel
+                /// </summary>
+                public const string ES_MX_BROADBANDMODEL = "es-MX_BroadbandModel";
+                /// <summary>
+                /// Constant ES_MX_NARROWBANDMODEL for es-MX_NarrowbandModel
+                /// </summary>
+                public const string ES_MX_NARROWBANDMODEL = "es-MX_NarrowbandModel";
+                /// <summary>
+                /// Constant ES_PE_BROADBANDMODEL for es-PE_BroadbandModel
+                /// </summary>
+                public const string ES_PE_BROADBANDMODEL = "es-PE_BroadbandModel";
+                /// <summary>
+                /// Constant ES_PE_NARROWBANDMODEL for es-PE_NarrowbandModel
+                /// </summary>
+                public const string ES_PE_NARROWBANDMODEL = "es-PE_NarrowbandModel";
+                /// <summary>
+                /// Constant FR_CA_BROADBANDMODEL for fr-CA_BroadbandModel
+                /// </summary>
+                public const string FR_CA_BROADBANDMODEL = "fr-CA_BroadbandModel";
+                /// <summary>
+                /// Constant FR_CA_NARROWBANDMODEL for fr-CA_NarrowbandModel
+                /// </summary>
+                public const string FR_CA_NARROWBANDMODEL = "fr-CA_NarrowbandModel";
+                /// <summary>
+                /// Constant FR_FR_BROADBANDMODEL for fr-FR_BroadbandModel
+                /// </summary>
+                public const string FR_FR_BROADBANDMODEL = "fr-FR_BroadbandModel";
+                /// <summary>
+                /// Constant FR_FR_NARROWBANDMODEL for fr-FR_NarrowbandModel
+                /// </summary>
+                public const string FR_FR_NARROWBANDMODEL = "fr-FR_NarrowbandModel";
+                /// <summary>
+                /// Constant IT_IT_BROADBANDMODEL for it-IT_BroadbandModel
+                /// </summary>
+                public const string IT_IT_BROADBANDMODEL = "it-IT_BroadbandModel";
+                /// <summary>
+                /// Constant IT_IT_NARROWBANDMODEL for it-IT_NarrowbandModel
+                /// </summary>
+                public const string IT_IT_NARROWBANDMODEL = "it-IT_NarrowbandModel";
+                /// <summary>
+                /// Constant JA_JP_BROADBANDMODEL for ja-JP_BroadbandModel
+                /// </summary>
+                public const string JA_JP_BROADBANDMODEL = "ja-JP_BroadbandModel";
+                /// <summary>
+                /// Constant JA_JP_NARROWBANDMODEL for ja-JP_NarrowbandModel
+                /// </summary>
+                public const string JA_JP_NARROWBANDMODEL = "ja-JP_NarrowbandModel";
+                /// <summary>
+                /// Constant KO_KR_BROADBANDMODEL for ko-KR_BroadbandModel
+                /// </summary>
+                public const string KO_KR_BROADBANDMODEL = "ko-KR_BroadbandModel";
+                /// <summary>
+                /// Constant KO_KR_NARROWBANDMODEL for ko-KR_NarrowbandModel
+                /// </summary>
+                public const string KO_KR_NARROWBANDMODEL = "ko-KR_NarrowbandModel";
+                /// <summary>
+                /// Constant NL_NL_BROADBANDMODEL for nl-NL_BroadbandModel
+                /// </summary>
+                public const string NL_NL_BROADBANDMODEL = "nl-NL_BroadbandModel";
+                /// <summary>
+                /// Constant NL_NL_NARROWBANDMODEL for nl-NL_NarrowbandModel
+                /// </summary>
+                public const string NL_NL_NARROWBANDMODEL = "nl-NL_NarrowbandModel";
+                /// <summary>
+                /// Constant PT_BR_BROADBANDMODEL for pt-BR_BroadbandModel
+                /// </summary>
+                public const string PT_BR_BROADBANDMODEL = "pt-BR_BroadbandModel";
+                /// <summary>
+                /// Constant PT_BR_NARROWBANDMODEL for pt-BR_NarrowbandModel
+                /// </summary>
+                public const string PT_BR_NARROWBANDMODEL = "pt-BR_NarrowbandModel";
+                /// <summary>
+                /// Constant ZH_CN_BROADBANDMODEL for zh-CN_BroadbandModel
+                /// </summary>
+                public const string ZH_CN_BROADBANDMODEL = "zh-CN_BroadbandModel";
+                /// <summary>
+                /// Constant ZH_CN_NARROWBANDMODEL for zh-CN_NarrowbandModel
+                /// </summary>
+                public const string ZH_CN_NARROWBANDMODEL = "zh-CN_NarrowbandModel";
+                
+            }
+            /// <summary>
+            /// If the job includes a callback URL, a comma-separated list of notification events to which to subscribe.
+            /// Valid events are
+            /// * `recognitions.started` generates a callback notification when the service begins to process the job.
+            /// * `recognitions.completed` generates a callback notification when the job is complete. You must use the
+            /// **Check a job** method to retrieve the results before they time out or are deleted.
+            /// * `recognitions.completed_with_results` generates a callback notification when the job is complete. The
+            /// notification includes the results of the request.
+            /// * `recognitions.failed` generates a callback notification if the service experiences an error while
+            /// processing the job.
+            ///
+            /// The `recognitions.completed` and `recognitions.completed_with_results` events are incompatible. You can
+            /// specify only of the two events.
+            ///
+            /// If the job includes a callback URL, omit the parameter to subscribe to the default events:
+            /// `recognitions.started`, `recognitions.completed`, and `recognitions.failed`. If the job does not include
+            /// a callback URL, omit the parameter.
+            /// </summary>
+            public class EventsValue
+            {
+                /// <summary>
+                /// Constant RECOGNITIONS_STARTED for recognitions.started
+                /// </summary>
+                public const string RECOGNITIONS_STARTED = "recognitions.started";
+                /// <summary>
+                /// Constant RECOGNITIONS_COMPLETED for recognitions.completed
+                /// </summary>
+                public const string RECOGNITIONS_COMPLETED = "recognitions.completed";
+                /// <summary>
+                /// Constant RECOGNITIONS_COMPLETED_WITH_RESULTS for recognitions.completed_with_results
+                /// </summary>
+                public const string RECOGNITIONS_COMPLETED_WITH_RESULTS = "recognitions.completed_with_results";
+                /// <summary>
+                /// Constant RECOGNITIONS_FAILED for recognitions.failed
+                /// </summary>
+                public const string RECOGNITIONS_FAILED = "recognitions.failed";
+                
+            }
         }
 
         /// <summary>
@@ -1327,8 +2015,36 @@ namespace IBM.Watson.SpeechToText.v1
         /// **See also:** [Create a custom language
         /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-languageCreate#createModel-language).
         /// </summary>
-        /// <param name="createLanguageModel">A `CreateLanguageModel` object that provides basic information about the
-        /// new custom language model.</param>
+        /// <param name="name">A user-defined name for the new custom language model. Use a name that is unique among
+        /// all custom language models that you own. Use a localized name that matches the language of the custom model.
+        /// Use a name that describes the domain of the custom model, such as `Medical custom model` or `Legal custom
+        /// model`.</param>
+        /// <param name="baseModelName">The name of the base language model that is to be customized by the new custom
+        /// language model. The new custom model can be used only with the base model that it customizes.
+        ///
+        /// To determine whether a base model supports language model customization, use the **Get a model** method and
+        /// check that the attribute `custom_language_model` is set to `true`. You can also refer to [Language support
+        /// for
+        /// customization](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-customization#languageSupport).</param>
+        /// <param name="dialect">The dialect of the specified language that is to be used with the custom language
+        /// model. For most languages, the dialect matches the language of the base model by default. For example,
+        /// `en-US` is used for either of the US English language models.
+        ///
+        /// For a Spanish language, the service creates a custom language model that is suited for speech in one of the
+        /// following dialects:
+        /// * `es-ES` for Castilian Spanish (`es-ES` models)
+        /// * `es-LA` for Latin American Spanish (`es-AR`, `es-CL`, `es-CO`, and `es-PE` models)
+        /// * `es-US` for Mexican (North American) Spanish (`es-MX` models)
+        ///
+        /// The parameter is meaningful only for Spanish models, for which you can always safely omit the parameter to
+        /// have the service create the correct mapping.
+        ///
+        /// If you specify the `dialect` parameter for non-Spanish language models, its value must match the language of
+        /// the base model. If you specify the `dialect` for Spanish language models, its value must match one of the
+        /// defined mappings as indicated (`es-ES`, `es-LA`, or `es-MX`). All dialect values are case-insensitive.
+        /// (optional)</param>
+        /// <param name="description">A description of the new custom language model. Use a localized description that
+        /// matches the language of the custom model. (optional)</param>
         /// <returns><see cref="LanguageModel" />LanguageModel</returns>
         public DetailedResponse<LanguageModel> CreateLanguageModel(string name, string baseModelName, string dialect = null, string description = null)
         {
@@ -1403,8 +2119,11 @@ namespace IBM.Watson.SpeechToText.v1
         /// </summary>
         /// <param name="language">The identifier of the language for which custom language or custom acoustic models
         /// are to be returned. Omit the parameter to see all custom language or custom acoustic models that are owned
-        /// by the requesting credentials. **Note:** The `ar-AR` (Modern Standard Arabic) and `zh-CN` (Mandarin Chinese)
-        /// languages are not available for language model customization. (optional)</param>
+        /// by the requesting credentials.
+        ///
+        /// To determine the languages for which customization is available, see [Language support for
+        /// customization](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-customization#languageSupport).
+        /// (optional)</param>
         /// <returns><see cref="LanguageModels" />LanguageModels</returns>
         public DetailedResponse<LanguageModels> ListLanguageModels(string language = null)
         {
@@ -1439,6 +2158,97 @@ namespace IBM.Watson.SpeechToText.v1
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Enum values for ListLanguageModels.
+        /// </summary>
+        public class ListLanguageModelsEnums
+        {
+            /// <summary>
+            /// The identifier of the language for which custom language or custom acoustic models are to be returned.
+            /// Omit the parameter to see all custom language or custom acoustic models that are owned by the requesting
+            /// credentials.
+            ///
+            /// To determine the languages for which customization is available, see [Language support for
+            /// customization](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-customization#languageSupport).
+            /// </summary>
+            public class LanguageValue
+            {
+                /// <summary>
+                /// Constant AR_AR for ar-AR
+                /// </summary>
+                public const string AR_AR = "ar-AR";
+                /// <summary>
+                /// Constant DE_DE for de-DE
+                /// </summary>
+                public const string DE_DE = "de-DE";
+                /// <summary>
+                /// Constant EN_AU for en-AU
+                /// </summary>
+                public const string EN_AU = "en-AU";
+                /// <summary>
+                /// Constant EN_GB for en-GB
+                /// </summary>
+                public const string EN_GB = "en-GB";
+                /// <summary>
+                /// Constant EN_US for en-US
+                /// </summary>
+                public const string EN_US = "en-US";
+                /// <summary>
+                /// Constant ES_AR for es-AR
+                /// </summary>
+                public const string ES_AR = "es-AR";
+                /// <summary>
+                /// Constant ES_ES for es-ES
+                /// </summary>
+                public const string ES_ES = "es-ES";
+                /// <summary>
+                /// Constant ES_CL for es-CL
+                /// </summary>
+                public const string ES_CL = "es-CL";
+                /// <summary>
+                /// Constant ES_CO for es-CO
+                /// </summary>
+                public const string ES_CO = "es-CO";
+                /// <summary>
+                /// Constant ES_MX for es-MX
+                /// </summary>
+                public const string ES_MX = "es-MX";
+                /// <summary>
+                /// Constant ES_PE for es-PE
+                /// </summary>
+                public const string ES_PE = "es-PE";
+                /// <summary>
+                /// Constant FR_FR for fr-FR
+                /// </summary>
+                public const string FR_FR = "fr-FR";
+                /// <summary>
+                /// Constant IT_IT for it-IT
+                /// </summary>
+                public const string IT_IT = "it-IT";
+                /// <summary>
+                /// Constant JA_JP for ja-JP
+                /// </summary>
+                public const string JA_JP = "ja-JP";
+                /// <summary>
+                /// Constant KO_KR for ko-KR
+                /// </summary>
+                public const string KO_KR = "ko-KR";
+                /// <summary>
+                /// Constant NL_NL for nl-NL
+                /// </summary>
+                public const string NL_NL = "nl-NL";
+                /// <summary>
+                /// Constant PT_BR for pt-BR
+                /// </summary>
+                public const string PT_BR = "pt-BR";
+                /// <summary>
+                /// Constant ZH_CN for zh-CN
+                /// </summary>
+                public const string ZH_CN = "zh-CN";
+                
+            }
         }
 
         /// <summary>
@@ -1646,6 +2456,32 @@ namespace IBM.Watson.SpeechToText.v1
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Enum values for TrainLanguageModel.
+        /// </summary>
+        public class TrainLanguageModelEnums
+        {
+            /// <summary>
+            /// The type of words from the custom language model's words resource on which to train the model:
+            /// * `all` (the default) trains the model on all new words, regardless of whether they were extracted from
+            /// corpora or grammars or were added or modified by the user.
+            /// * `user` trains the model only on new words that were added or modified by the user directly. The model
+            /// is not trained on new words extracted from corpora or grammars.
+            /// </summary>
+            public class WordTypeToAddValue
+            {
+                /// <summary>
+                /// Constant ALL for all
+                /// </summary>
+                public const string ALL = "all";
+                /// <summary>
+                /// Constant USER for user
+                /// </summary>
+                public const string USER = "user";
+                
+            }
         }
 
         /// <summary>
@@ -2157,6 +2993,60 @@ namespace IBM.Watson.SpeechToText.v1
         }
 
         /// <summary>
+        /// Enum values for ListWords.
+        /// </summary>
+        public class ListWordsEnums
+        {
+            /// <summary>
+            /// The type of words to be listed from the custom language model's words resource:
+            /// * `all` (the default) shows all words.
+            /// * `user` shows only custom words that were added or modified by the user directly.
+            /// * `corpora` shows only OOV that were extracted from corpora.
+            /// * `grammars` shows only OOV words that are recognized by grammars.
+            /// </summary>
+            public class WordTypeValue
+            {
+                /// <summary>
+                /// Constant ALL for all
+                /// </summary>
+                public const string ALL = "all";
+                /// <summary>
+                /// Constant USER for user
+                /// </summary>
+                public const string USER = "user";
+                /// <summary>
+                /// Constant CORPORA for corpora
+                /// </summary>
+                public const string CORPORA = "corpora";
+                /// <summary>
+                /// Constant GRAMMARS for grammars
+                /// </summary>
+                public const string GRAMMARS = "grammars";
+                
+            }
+            /// <summary>
+            /// Indicates the order in which the words are to be listed, `alphabetical` or by `count`. You can prepend
+            /// an optional `+` or `-` to an argument to indicate whether the results are to be sorted in ascending or
+            /// descending order. By default, words are sorted in ascending alphabetical order. For alphabetical
+            /// ordering, the lexicographical precedence is numeric values, uppercase letters, and lowercase letters.
+            /// For count ordering, values with the same count are ordered alphabetically. With the `curl` command,
+            /// URL-encode the `+` symbol as `%2B`.
+            /// </summary>
+            public class SortValue
+            {
+                /// <summary>
+                /// Constant ALPHABETICAL for alphabetical
+                /// </summary>
+                public const string ALPHABETICAL = "alphabetical";
+                /// <summary>
+                /// Constant COUNT for count
+                /// </summary>
+                public const string COUNT = "count";
+                
+            }
+        }
+
+        /// <summary>
         /// Add custom words.
         ///
         /// Adds one or more custom words to a custom language model. The service populates the words resource for a
@@ -2213,8 +3103,8 @@ namespace IBM.Watson.SpeechToText.v1
         /// <param name="customizationId">The customization ID (GUID) of the custom language model that is to be used
         /// for the request. You must make the request with credentials for the instance of the service that owns the
         /// custom model.</param>
-        /// <param name="customWords">A `CustomWords` object that provides information about one or more custom words
-        /// that are to be added to or updated in the custom language model.</param>
+        /// <param name="words">An array of `CustomWord` objects that provides information about each custom word that
+        /// is to be added to or updated in the custom language model.</param>
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> AddWords(string customizationId, List<CustomWord> words)
         {
@@ -2314,8 +3204,24 @@ namespace IBM.Watson.SpeechToText.v1
         /// not include spaces in the word. Use a `-` (dash) or `_` (underscore) to connect the tokens of compound
         /// words. URL-encode the word if it includes non-ASCII characters. For more information, see [Character
         /// encoding](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-corporaWords#charEncoding).</param>
-        /// <param name="customWord">A `CustomWord` object that provides information about the specified custom word.
-        /// Specify an empty object to add a word with no sounds-like or display-as information.</param>
+        /// <param name="word">For the **Add custom words** method, you must specify the custom word that is to be added
+        /// to or updated in the custom model. Do not include spaces in the word. Use a `-` (dash) or `_` (underscore)
+        /// to connect the tokens of compound words.
+        ///
+        /// Omit this parameter for the **Add a custom word** method. (optional)</param>
+        /// <param name="soundsLike">An array of sounds-like pronunciations for the custom word. Specify how words that
+        /// are difficult to pronounce, foreign words, acronyms, and so on can be pronounced by users.
+        /// * For a word that is not in the service's base vocabulary, omit the parameter to have the service
+        /// automatically generate a sounds-like pronunciation for the word.
+        /// * For a word that is in the service's base vocabulary, use the parameter to specify additional
+        /// pronunciations for the word. You cannot override the default pronunciation of a word; pronunciations you add
+        /// augment the pronunciation from the base vocabulary.
+        ///
+        /// A word can have at most five sounds-like pronunciations. A pronunciation can include at most 40 characters
+        /// not including spaces. (optional)</param>
+        /// <param name="displayAs">An alternative spelling for the custom word when it appears in a transcript. Use the
+        /// parameter when you want the word to have a spelling that is different from its usual representation or from
+        /// its spelling in corpora training data. (optional)</param>
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> AddWord(string customizationId, string wordName, string word = null, List<string> soundsLike = null, string displayAs = null)
         {
@@ -2629,7 +3535,7 @@ namespace IBM.Watson.SpeechToText.v1
         /// name. If `false`, the request fails if a grammar with the same name already exists. The parameter has no
         /// effect if a grammar with the same name does not already exist. (optional, default to false)</param>
         /// <returns><see cref="object" />object</returns>
-        public DetailedResponse<object> AddGrammar(string customizationId, string grammarName, string grammarFile, string contentType, bool? allowOverwrite = null)
+        public DetailedResponse<object> AddGrammar(string customizationId, string grammarName, System.IO.MemoryStream grammarFile, string contentType, bool? allowOverwrite = null)
         {
             if (string.IsNullOrEmpty(customizationId))
             {
@@ -2674,7 +3580,7 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     restRequest.WithArgument("allow_overwrite", allowOverwrite);
                 }
-                var httpContent = new StringContent(grammarFile);
+                var httpContent = new StringContent(Encoding.UTF8.GetString(grammarFile.ToArray()), Encoding.UTF8);
                 System.Net.Http.Headers.MediaTypeHeaderValue grammarFileContentType;
                 System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out grammarFileContentType);
                 httpContent.Headers.ContentType = grammarFileContentType;
@@ -2696,6 +3602,31 @@ namespace IBM.Watson.SpeechToText.v1
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Enum values for AddGrammar.
+        /// </summary>
+        public class AddGrammarEnums
+        {
+            /// <summary>
+            /// The format (MIME type) of the grammar file:
+            /// * `application/srgs` for Augmented Backus-Naur Form (ABNF), which uses a plain-text representation that
+            /// is similar to traditional BNF grammars.
+            /// * `application/srgs+xml` for XML Form, which uses XML elements to represent the grammar.
+            /// </summary>
+            public class ContentTypeValue
+            {
+                /// <summary>
+                /// Constant APPLICATION_SRGS for application/srgs
+                /// </summary>
+                public const string APPLICATION_SRGS = "application/srgs";
+                /// <summary>
+                /// Constant APPLICATION_SRGS_XML for application/srgs+xml
+                /// </summary>
+                public const string APPLICATION_SRGS_XML = "application/srgs+xml";
+                
+            }
         }
 
         /// <summary>
@@ -2838,8 +3769,17 @@ namespace IBM.Watson.SpeechToText.v1
         /// **See also:** [Create a custom acoustic
         /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-acoustic#createModel-acoustic).
         /// </summary>
-        /// <param name="createAcousticModel">A `CreateAcousticModel` object that provides basic information about the
-        /// new custom acoustic model.</param>
+        /// <param name="name">A user-defined name for the new custom acoustic model. Use a name that is unique among
+        /// all custom acoustic models that you own. Use a localized name that matches the language of the custom model.
+        /// Use a name that describes the acoustic environment of the custom model, such as `Mobile custom model` or
+        /// `Noisy car custom model`.</param>
+        /// <param name="baseModelName">The name of the base language model that is to be customized by the new custom
+        /// acoustic model. The new custom model can be used only with the base model that it customizes.
+        ///
+        /// To determine whether a base model supports acoustic model customization, refer to [Language support for
+        /// customization](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-customization#languageSupport).</param>
+        /// <param name="description">A description of the new custom acoustic model. Use a localized description that
+        /// matches the language of the custom model. (optional)</param>
         /// <returns><see cref="AcousticModel" />AcousticModel</returns>
         public DetailedResponse<AcousticModel> CreateAcousticModel(string name, string baseModelName, string description = null)
         {
@@ -2910,8 +3850,11 @@ namespace IBM.Watson.SpeechToText.v1
         /// </summary>
         /// <param name="language">The identifier of the language for which custom language or custom acoustic models
         /// are to be returned. Omit the parameter to see all custom language or custom acoustic models that are owned
-        /// by the requesting credentials. **Note:** The `ar-AR` (Modern Standard Arabic) and `zh-CN` (Mandarin Chinese)
-        /// languages are not available for language model customization. (optional)</param>
+        /// by the requesting credentials.
+        ///
+        /// To determine the languages for which customization is available, see [Language support for
+        /// customization](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-customization#languageSupport).
+        /// (optional)</param>
         /// <returns><see cref="AcousticModels" />AcousticModels</returns>
         public DetailedResponse<AcousticModels> ListAcousticModels(string language = null)
         {
@@ -2946,6 +3889,97 @@ namespace IBM.Watson.SpeechToText.v1
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Enum values for ListAcousticModels.
+        /// </summary>
+        public class ListAcousticModelsEnums
+        {
+            /// <summary>
+            /// The identifier of the language for which custom language or custom acoustic models are to be returned.
+            /// Omit the parameter to see all custom language or custom acoustic models that are owned by the requesting
+            /// credentials.
+            ///
+            /// To determine the languages for which customization is available, see [Language support for
+            /// customization](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-customization#languageSupport).
+            /// </summary>
+            public class LanguageValue
+            {
+                /// <summary>
+                /// Constant AR_AR for ar-AR
+                /// </summary>
+                public const string AR_AR = "ar-AR";
+                /// <summary>
+                /// Constant DE_DE for de-DE
+                /// </summary>
+                public const string DE_DE = "de-DE";
+                /// <summary>
+                /// Constant EN_AU for en-AU
+                /// </summary>
+                public const string EN_AU = "en-AU";
+                /// <summary>
+                /// Constant EN_GB for en-GB
+                /// </summary>
+                public const string EN_GB = "en-GB";
+                /// <summary>
+                /// Constant EN_US for en-US
+                /// </summary>
+                public const string EN_US = "en-US";
+                /// <summary>
+                /// Constant ES_AR for es-AR
+                /// </summary>
+                public const string ES_AR = "es-AR";
+                /// <summary>
+                /// Constant ES_ES for es-ES
+                /// </summary>
+                public const string ES_ES = "es-ES";
+                /// <summary>
+                /// Constant ES_CL for es-CL
+                /// </summary>
+                public const string ES_CL = "es-CL";
+                /// <summary>
+                /// Constant ES_CO for es-CO
+                /// </summary>
+                public const string ES_CO = "es-CO";
+                /// <summary>
+                /// Constant ES_MX for es-MX
+                /// </summary>
+                public const string ES_MX = "es-MX";
+                /// <summary>
+                /// Constant ES_PE for es-PE
+                /// </summary>
+                public const string ES_PE = "es-PE";
+                /// <summary>
+                /// Constant FR_FR for fr-FR
+                /// </summary>
+                public const string FR_FR = "fr-FR";
+                /// <summary>
+                /// Constant IT_IT for it-IT
+                /// </summary>
+                public const string IT_IT = "it-IT";
+                /// <summary>
+                /// Constant JA_JP for ja-JP
+                /// </summary>
+                public const string JA_JP = "ja-JP";
+                /// <summary>
+                /// Constant KO_KR for ko-KR
+                /// </summary>
+                public const string KO_KR = "ko-KR";
+                /// <summary>
+                /// Constant NL_NL for nl-NL
+                /// </summary>
+                public const string NL_NL = "nl-NL";
+                /// <summary>
+                /// Constant PT_BR for pt-BR
+                /// </summary>
+                public const string PT_BR = "pt-BR";
+                /// <summary>
+                /// Constant ZH_CN for zh-CN
+                /// </summary>
+                public const string ZH_CN = "zh-CN";
+                
+            }
         }
 
         /// <summary>
@@ -3061,12 +4095,12 @@ namespace IBM.Watson.SpeechToText.v1
         /// model on the latest audio data. The custom acoustic model does not reflect its changed data until you train
         /// it. You must use credentials for the instance of the service that owns a model to train it.
         ///
-        /// The training method is asynchronous. It can take on the order of minutes or hours to complete depending on
-        /// the total amount of audio data on which the custom acoustic model is being trained and the current load on
-        /// the service. Typically, training a custom acoustic model takes approximately two to four times the length of
-        /// its audio data. The actual time depends on the model being trained and the nature of the audio, such as
-        /// whether the audio is clean or noisy. The method returns an HTTP 200 response code to indicate that the
-        /// training process has begun.
+        /// The training method is asynchronous. Training time depends on the cumulative amount of audio data that the
+        /// custom acoustic model contains and the current load on the service. When you train or retrain a model, the
+        /// service uses all of the model's audio data in the training. Training a custom acoustic model takes
+        /// approximately as long as the length of its cumulative audio data. For example, it takes approximately 2
+        /// hours to train a model that contains a total of 2 hours of audio. The method returns an HTTP 200 response
+        /// code to indicate that the training process has begun.
         ///
         /// You can monitor the status of the training by using the **Get a custom acoustic model** method to poll the
         /// model's status. Use a loop to check the status once a minute. The method returns an `AcousticModel` object
@@ -3481,7 +4515,7 @@ namespace IBM.Watson.SpeechToText.v1
         /// The parameter has no effect if an audio resource with the same name does not already exist. (optional,
         /// default to false)</param>
         /// <returns><see cref="object" />object</returns>
-        public DetailedResponse<object> AddAudio(string customizationId, string audioName, byte[] audioResource, string contentType = null, string containedContentType = null, bool? allowOverwrite = null)
+        public DetailedResponse<object> AddAudio(string customizationId, string audioName, System.IO.MemoryStream audioResource, string contentType = null, string containedContentType = null, bool? allowOverwrite = null)
         {
             if (string.IsNullOrEmpty(customizationId))
             {
@@ -3527,7 +4561,7 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     restRequest.WithArgument("allow_overwrite", allowOverwrite);
                 }
-                var httpContent = new ByteArrayContent(audioResource);
+                var httpContent = new ByteArrayContent(audioResource.ToArray());
                 System.Net.Http.Headers.MediaTypeHeaderValue audioResourceContentType;
                 System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out audioResourceContentType);
                 httpContent.Headers.ContentType = audioResourceContentType;
@@ -3549,6 +4583,170 @@ namespace IBM.Watson.SpeechToText.v1
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Enum values for AddAudio.
+        /// </summary>
+        public class AddAudioEnums
+        {
+            /// <summary>
+            /// For an audio-type resource, the format (MIME type) of the audio. For more information, see **Content
+            /// types for audio-type resources** in the method description.
+            ///
+            /// For an archive-type resource, the media type of the archive file. For more information, see **Content
+            /// types for archive-type resources** in the method description.
+            /// </summary>
+            public class ContentTypeValue
+            {
+                /// <summary>
+                /// Constant APPLICATION_ZIP for application/zip
+                /// </summary>
+                public const string APPLICATION_ZIP = "application/zip";
+                /// <summary>
+                /// Constant APPLICATION_GZIP for application/gzip
+                /// </summary>
+                public const string APPLICATION_GZIP = "application/gzip";
+                /// <summary>
+                /// Constant AUDIO_ALAW for audio/alaw
+                /// </summary>
+                public const string AUDIO_ALAW = "audio/alaw";
+                /// <summary>
+                /// Constant AUDIO_BASIC for audio/basic
+                /// </summary>
+                public const string AUDIO_BASIC = "audio/basic";
+                /// <summary>
+                /// Constant AUDIO_FLAC for audio/flac
+                /// </summary>
+                public const string AUDIO_FLAC = "audio/flac";
+                /// <summary>
+                /// Constant AUDIO_G729 for audio/g729
+                /// </summary>
+                public const string AUDIO_G729 = "audio/g729";
+                /// <summary>
+                /// Constant AUDIO_L16 for audio/l16
+                /// </summary>
+                public const string AUDIO_L16 = "audio/l16";
+                /// <summary>
+                /// Constant AUDIO_MP3 for audio/mp3
+                /// </summary>
+                public const string AUDIO_MP3 = "audio/mp3";
+                /// <summary>
+                /// Constant AUDIO_MPEG for audio/mpeg
+                /// </summary>
+                public const string AUDIO_MPEG = "audio/mpeg";
+                /// <summary>
+                /// Constant AUDIO_MULAW for audio/mulaw
+                /// </summary>
+                public const string AUDIO_MULAW = "audio/mulaw";
+                /// <summary>
+                /// Constant AUDIO_OGG for audio/ogg
+                /// </summary>
+                public const string AUDIO_OGG = "audio/ogg";
+                /// <summary>
+                /// Constant AUDIO_OGG_CODECS_OPUS for audio/ogg;codecs=opus
+                /// </summary>
+                public const string AUDIO_OGG_CODECS_OPUS = "audio/ogg;codecs=opus";
+                /// <summary>
+                /// Constant AUDIO_OGG_CODECS_VORBIS for audio/ogg;codecs=vorbis
+                /// </summary>
+                public const string AUDIO_OGG_CODECS_VORBIS = "audio/ogg;codecs=vorbis";
+                /// <summary>
+                /// Constant AUDIO_WAV for audio/wav
+                /// </summary>
+                public const string AUDIO_WAV = "audio/wav";
+                /// <summary>
+                /// Constant AUDIO_WEBM for audio/webm
+                /// </summary>
+                public const string AUDIO_WEBM = "audio/webm";
+                /// <summary>
+                /// Constant AUDIO_WEBM_CODECS_OPUS for audio/webm;codecs=opus
+                /// </summary>
+                public const string AUDIO_WEBM_CODECS_OPUS = "audio/webm;codecs=opus";
+                /// <summary>
+                /// Constant AUDIO_WEBM_CODECS_VORBIS for audio/webm;codecs=vorbis
+                /// </summary>
+                public const string AUDIO_WEBM_CODECS_VORBIS = "audio/webm;codecs=vorbis";
+                
+            }
+            /// <summary>
+            /// **For an archive-type resource,** specify the format of the audio files that are contained in the
+            /// archive file if they are of type `audio/alaw`, `audio/basic`, `audio/l16`, or `audio/mulaw`. Include the
+            /// `rate`, `channels`, and `endianness` parameters where necessary. In this case, all audio files that are
+            /// contained in the archive file must be of the indicated type.
+            ///
+            /// For all other audio formats, you can omit the header. In this case, the audio files can be of multiple
+            /// types as long as they are not of the types listed in the previous paragraph.
+            ///
+            /// The parameter accepts all of the audio formats that are supported for use with speech recognition. For
+            /// more information, see **Content types for audio-type resources** in the method description.
+            ///
+            /// **For an audio-type resource,** omit the header.
+            /// </summary>
+            public class ContainedContentTypeValue
+            {
+                /// <summary>
+                /// Constant AUDIO_ALAW for audio/alaw
+                /// </summary>
+                public const string AUDIO_ALAW = "audio/alaw";
+                /// <summary>
+                /// Constant AUDIO_BASIC for audio/basic
+                /// </summary>
+                public const string AUDIO_BASIC = "audio/basic";
+                /// <summary>
+                /// Constant AUDIO_FLAC for audio/flac
+                /// </summary>
+                public const string AUDIO_FLAC = "audio/flac";
+                /// <summary>
+                /// Constant AUDIO_G729 for audio/g729
+                /// </summary>
+                public const string AUDIO_G729 = "audio/g729";
+                /// <summary>
+                /// Constant AUDIO_L16 for audio/l16
+                /// </summary>
+                public const string AUDIO_L16 = "audio/l16";
+                /// <summary>
+                /// Constant AUDIO_MP3 for audio/mp3
+                /// </summary>
+                public const string AUDIO_MP3 = "audio/mp3";
+                /// <summary>
+                /// Constant AUDIO_MPEG for audio/mpeg
+                /// </summary>
+                public const string AUDIO_MPEG = "audio/mpeg";
+                /// <summary>
+                /// Constant AUDIO_MULAW for audio/mulaw
+                /// </summary>
+                public const string AUDIO_MULAW = "audio/mulaw";
+                /// <summary>
+                /// Constant AUDIO_OGG for audio/ogg
+                /// </summary>
+                public const string AUDIO_OGG = "audio/ogg";
+                /// <summary>
+                /// Constant AUDIO_OGG_CODECS_OPUS for audio/ogg;codecs=opus
+                /// </summary>
+                public const string AUDIO_OGG_CODECS_OPUS = "audio/ogg;codecs=opus";
+                /// <summary>
+                /// Constant AUDIO_OGG_CODECS_VORBIS for audio/ogg;codecs=vorbis
+                /// </summary>
+                public const string AUDIO_OGG_CODECS_VORBIS = "audio/ogg;codecs=vorbis";
+                /// <summary>
+                /// Constant AUDIO_WAV for audio/wav
+                /// </summary>
+                public const string AUDIO_WAV = "audio/wav";
+                /// <summary>
+                /// Constant AUDIO_WEBM for audio/webm
+                /// </summary>
+                public const string AUDIO_WEBM = "audio/webm";
+                /// <summary>
+                /// Constant AUDIO_WEBM_CODECS_OPUS for audio/webm;codecs=opus
+                /// </summary>
+                public const string AUDIO_WEBM_CODECS_OPUS = "audio/webm;codecs=opus";
+                /// <summary>
+                /// Constant AUDIO_WEBM_CODECS_VORBIS for audio/webm;codecs=vorbis
+                /// </summary>
+                public const string AUDIO_WEBM_CODECS_VORBIS = "audio/webm;codecs=vorbis";
+                
+            }
         }
 
         /// <summary>

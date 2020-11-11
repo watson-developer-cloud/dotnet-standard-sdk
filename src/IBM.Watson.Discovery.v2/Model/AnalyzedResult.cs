@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,14 +15,22 @@
 *
 */
 
-namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
+using System.Collections.Generic;
+using IBM.Cloud.SDK.Core.Model;
+using Newtonsoft.Json;
+
+namespace IBM.Watson.Discovery.v2.Model
 {
     /// <summary>
-    /// Returns information from the document, including author name, title, RSS/ATOM feeds, prominent page image, and
-    /// publication date. Supports URL and HTML input types only.
+    /// Result of the document analysis.
     /// </summary>
-    public class MetadataOptions
+    public class AnalyzedResult : DynamicModel<object>
     {
+        /// <summary>
+        /// Metadata of the document.
+        /// </summary>
+        [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
+        public Dictionary<string, object> Metadata { get; set; }
     }
 
 }

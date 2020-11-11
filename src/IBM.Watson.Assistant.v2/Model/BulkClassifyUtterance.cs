@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,15 +15,20 @@
 *
 */
 
-using IBM.Cloud.SDK.Core.Model;
+using Newtonsoft.Json;
 
-namespace IBM.Watson.Discovery.v1.Model
+namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// An object that indicates the Categories enrichment will be applied to the specified field.
+    /// The user input utterance to classify.
     /// </summary>
-    public class NluEnrichmentCategories : DynamicModel<object>
+    public class BulkClassifyUtterance
     {
+        /// <summary>
+        /// The text of the input utterance.
+        /// </summary>
+        [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
+        public string Text { get; set; }
     }
 
 }

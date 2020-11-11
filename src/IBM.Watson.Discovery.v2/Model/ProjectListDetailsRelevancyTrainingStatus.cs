@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2020.
+* (C) Copyright IBM Corp. 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ namespace IBM.Watson.Discovery.v2.Model
         [JsonProperty("total_examples", NullValueHandling = NullValueHandling.Ignore)]
         public long? TotalExamples { get; set; }
         /// <summary>
-        /// When `true`, sufficent label diversity is present to allow training for this project.
+        /// When `true`, sufficient label diversity is present to allow training for this project.
         /// </summary>
         [JsonProperty("sufficient_label_diversity", NullValueHandling = NullValueHandling.Ignore)]
         public bool? SufficientLabelDiversity { get; set; }
@@ -50,7 +50,7 @@ namespace IBM.Watson.Discovery.v2.Model
         [JsonProperty("minimum_examples_added", NullValueHandling = NullValueHandling.Ignore)]
         public bool? MinimumExamplesAdded { get; set; }
         /// <summary>
-        /// The time that the most recent successful training occured.
+        /// The time that the most recent successful training occurred.
         /// </summary>
         [JsonProperty("successfully_trained", NullValueHandling = NullValueHandling.Ignore)]
         public string SuccessfullyTrained { get; set; }

@@ -150,7 +150,7 @@ namespace IBM.Watson.SpeechToText.v1.Examples
             service.SetServiceUrl("{serviceUrl}");
 
             var result = service.Recognize(
-                audio: File.ReadAllBytes("audio-file2.flac"),
+                audio: new MemoryStream(File.ReadAllBytes("audio-file2.flac")),
                 contentType: "audio/flac",
                 wordAlternativesThreshold: 0.9f,
                 keywords: new List<string>()
@@ -209,7 +209,7 @@ namespace IBM.Watson.SpeechToText.v1.Examples
             var result = service.CreateJob(
                 callbackUrl: "http://{user_callback_path}/job_results",
                 userToken: "job25",
-                audio: File.ReadAllBytes("audio-file.flac"),
+                audio: new MemoryStream(File.ReadAllBytes("audio-file.flac")),
                 contentType: "audio/flac",
                 timestamps: true
                 );
@@ -586,7 +586,7 @@ namespace IBM.Watson.SpeechToText.v1.Examples
 
             var result = service.AddGrammar(
                 customizationId: "{customizationId}",
-                grammarFile: File.ReadAllText("list.abnf"),
+                grammarFile: new MemoryStream(File.ReadAllBytes("list.abnf")),
                 grammarName: "list-abnf",
                 contentType: "application/srgs"
                 );
@@ -768,7 +768,7 @@ namespace IBM.Watson.SpeechToText.v1.Examples
             var result = service.AddAudio(
                 customizationId: "{customizationId}",
                 contentType: "audio/wav",
-                audioResource: File.ReadAllBytes("audio1.wav"),
+                audioResource: new MemoryStream(File.ReadAllBytes("audio1.wav")),
                 audioName: "audio1"
                 );
 

@@ -139,7 +139,7 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
             TextToSpeechService service = new TextToSpeechService(authenticator);
             service.SetServiceUrl("{serviceUrl}");
 
-            var result = service.ListVoiceModels();
+            var result = service.ListCustomModels();
 
             Console.WriteLine(result.Result);
         }
@@ -152,7 +152,7 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
             TextToSpeechService service = new TextToSpeechService(authenticator);
             service.SetServiceUrl("{serviceUrl}");
 
-            var result = service.CreateVoiceModel(
+            var result = service.CreateCustomModel(
                 name: "First Model",
                 language: "en-US",
                 description: "First custom voice model"
@@ -171,7 +171,7 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
             TextToSpeechService service = new TextToSpeechService(authenticator);
             service.SetServiceUrl("{serviceUrl}");
 
-            var result = service.GetVoiceModel(
+            var result = service.GetCustomModel(
                 customizationId: "{customizationId}"
                 );
 
@@ -200,7 +200,7 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
                 }
             };
 
-            var result = service.UpdateVoiceModel(
+            var result = service.UpdateCustomModel(
                 customizationId: "{customizationId}",
                 name: "First Model Update",
                 description: "First custom voice model update",
@@ -218,7 +218,7 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
             TextToSpeechService service = new TextToSpeechService(authenticator);
             service.SetServiceUrl("{serviceUrl}");
 
-            var result = service.DeleteVoiceModel(
+            var result = service.DeleteCustomModel(
                 customizationId: "{customizationId}"
                 );
 

@@ -110,7 +110,7 @@ namespace IBM.Watson.Assistant.v2.Examples
             AssistantService service = new AssistantService("2020-04-01", authenticator);
             service.SetServiceUrl("{serviceUrl}");
 
-            MessageContextSkills skills = new MessageContextSkills();
+            Dictionary<string, MessageContextSkill> skills = new Dictionary<string, MessageContextSkill>();
             MessageContextSkill skill = new MessageContextSkill();
             Dictionary<string, object> userDefinedDictionary = new Dictionary<string, object>();
 

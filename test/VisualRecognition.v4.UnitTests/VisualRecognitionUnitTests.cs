@@ -112,7 +112,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
                                         new ObjectDetail()
                                         {
                                             _Object = "object",
-                                            Location = new Location()
+                                            Location = new ObjectDetailLocation()
                                             {
                                                 Top = 0,
                                                 Left = 1,
@@ -141,7 +141,7 @@ namespace IBM.Watson.VisualRecognition.v4.UnitTests
 
             NoAuthAuthenticator authenticator = new NoAuthAuthenticator();
             VisualRecognitionService service = new VisualRecognitionService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
             service.Analyze(
                 collectionIds: new List<string> { "colletionIds" },
                 features: new List<string> { "features" });

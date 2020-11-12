@@ -104,7 +104,7 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var imagesFile = new MemoryStream();
             var imagesFilename = "imagesFilename";
@@ -129,7 +129,7 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var name = "name";
             var positiveExamples = new Dictionary<string, System.IO.MemoryStream>();
@@ -151,7 +151,7 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var verbose = false;
 
@@ -169,7 +169,7 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var classifierId = "classifierId";
 
@@ -188,7 +188,7 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var classifierId = "classifierId";
             var positiveExamples = new Dictionary<string, System.IO.MemoryStream>();
@@ -211,7 +211,7 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var classifierId = "classifierId";
 
@@ -230,7 +230,7 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var classifierId = "classifierId";
 
@@ -249,7 +249,7 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
 
             VisualRecognitionService service = new VisualRecognitionService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var customerId = "customerId";
 

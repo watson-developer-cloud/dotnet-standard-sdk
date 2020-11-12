@@ -93,7 +93,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             LanguageTranslatorService service =
                 new LanguageTranslatorService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var translationModels = service.ListModels("ar", "en");
 
@@ -121,7 +121,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             LanguageTranslatorService service =
                 new LanguageTranslatorService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var translationModels = service.ListModels("ar", "en");
         }
@@ -152,7 +152,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             LanguageTranslatorService service =
                new LanguageTranslatorService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var customModel = service.CreateModel("model_unit_test");
 
@@ -204,7 +204,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             LanguageTranslatorService service =
                new LanguageTranslatorService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var customModel = service.CreateModel("model_unit_test");
         }
@@ -229,7 +229,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             LanguageTranslatorService service =
                new LanguageTranslatorService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var deletedModel = service.DeleteModel("model_id");
 
@@ -264,7 +264,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             LanguageTranslatorService service =
                new LanguageTranslatorService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var deletedModel = service.DeleteModel("model_id");
         }
@@ -289,7 +289,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             LanguageTranslatorService service =
                new LanguageTranslatorService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var modelDetails = service.GetModel("model_id");
 
@@ -333,7 +333,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             LanguageTranslatorService service =
                new LanguageTranslatorService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             service.GetModel("model_id");
         }
@@ -371,7 +371,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             LanguageTranslatorService service =
                 new LanguageTranslatorService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var translation = service.Translate(new List<string>() { "text in any language" });
 
@@ -411,7 +411,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             LanguageTranslatorService service =
                 new LanguageTranslatorService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var translation = service.Translate(new List<string>() { "text in any language" }, source: "source", target: "target");
 
@@ -451,7 +451,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             LanguageTranslatorService service =
                 new LanguageTranslatorService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var translation = service.Translate(new List<string>() { "text in any language" }, "modelId", "source", "target");
 
@@ -479,7 +479,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             LanguageTranslatorService service =
                 new LanguageTranslatorService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             service.Translate(new List<string>() { "text in any language" });
         }
@@ -513,7 +513,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             LanguageTranslatorService service =
                 new LanguageTranslatorService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var identifiableLanguages = service.ListIdentifiableLanguages();
 
@@ -534,7 +534,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             LanguageTranslatorService service =
                 new LanguageTranslatorService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             service.ListIdentifiableLanguages();
         }
@@ -571,7 +571,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
 
             LanguageTranslatorService service =
                 new LanguageTranslatorService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             DetailedResponse<IdentifiedLanguages> identifiedLanguages = service.Identify("any text");
 
@@ -596,7 +596,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
                   });
 
             LanguageTranslatorService service = new LanguageTranslatorService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             service.Identify("any text");
         }

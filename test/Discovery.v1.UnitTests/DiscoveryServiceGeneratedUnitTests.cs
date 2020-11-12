@@ -104,7 +104,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var name = "name";
             var description = "description";
@@ -139,7 +139,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var name = "name";
 
@@ -157,7 +157,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
 
@@ -176,7 +176,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var name = "name";
@@ -213,7 +213,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
 
@@ -232,7 +232,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionIds = new List<string>() { "collectionIds0", "collectionIds1" };
@@ -252,7 +252,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var name = "name";
@@ -304,7 +304,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var name = "name";
@@ -324,7 +324,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var configurationId = "configurationId";
@@ -344,7 +344,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var configurationId = "configurationId";
@@ -397,7 +397,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var configurationId = "configurationId";
@@ -417,7 +417,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var name = "name";
@@ -459,7 +459,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var name = "name";
@@ -479,7 +479,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -499,7 +499,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -537,7 +537,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -557,7 +557,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -577,7 +577,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -597,7 +597,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -625,7 +625,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -645,7 +645,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -665,7 +665,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -693,7 +693,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -713,7 +713,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -733,7 +733,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -755,7 +755,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -775,7 +775,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -799,7 +799,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -820,7 +820,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -845,7 +845,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -866,7 +866,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -975,7 +975,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -1012,7 +1012,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionIds = "collectionIds";
@@ -1123,7 +1123,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionIds = new List<string>() { "collectionIds0", "collectionIds1" };
@@ -1156,7 +1156,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -1179,7 +1179,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -1199,7 +1199,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -1237,7 +1237,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -1257,7 +1257,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -1278,7 +1278,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -1299,7 +1299,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -1320,7 +1320,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -1359,7 +1359,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -1381,7 +1381,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -1416,7 +1416,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var collectionId = "collectionId";
@@ -1438,7 +1438,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var customerId = "customerId";
 
@@ -1456,7 +1456,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var type = "type";
             var data = new EventData();
@@ -1486,7 +1486,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var filter = "filter";
             var query = "query";
@@ -1508,7 +1508,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             DateTime? startTime = DateTime.MaxValue;
             DateTime? endTime = DateTime.MaxValue;
@@ -1528,7 +1528,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             DateTime? startTime = DateTime.MaxValue;
             DateTime? endTime = DateTime.MaxValue;
@@ -1548,7 +1548,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             DateTime? startTime = DateTime.MaxValue;
             DateTime? endTime = DateTime.MaxValue;
@@ -1568,7 +1568,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             DateTime? startTime = DateTime.MaxValue;
             DateTime? endTime = DateTime.MaxValue;
@@ -1588,7 +1588,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             long? count = 1;
 
@@ -1606,7 +1606,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
 
@@ -1625,7 +1625,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var sourceType = "sourceType";
@@ -1662,7 +1662,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var credentialId = "credentialId";
@@ -1682,7 +1682,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var credentialId = "credentialId";
@@ -1720,7 +1720,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var credentialId = "credentialId";
@@ -1740,7 +1740,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
 
@@ -1759,7 +1759,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var name = "name";
@@ -1786,7 +1786,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var gatewayId = "gatewayId";
@@ -1806,7 +1806,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
 
             DiscoveryService service = new DiscoveryService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var environmentId = "environmentId";
             var gatewayId = "gatewayId";

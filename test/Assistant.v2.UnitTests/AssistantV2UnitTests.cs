@@ -76,7 +76,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
         public void CreateSession_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
 
             service.CreateSession("assistantId");
         }
@@ -103,7 +103,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
                 });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
             service.CreateSession("assistantId");
         }
 
@@ -128,7 +128,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.CreateSession("assistantId");
 
@@ -141,7 +141,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
         public void DeleteSession_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
 
             service.DeleteSession("assistantId", "sessionId");
         }
@@ -175,7 +175,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
                 });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
             service.DeleteSession("assistantId", "sessionId");
         }
 
@@ -200,7 +200,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.DeleteSession("assistantId", "sessionId");
 
@@ -214,7 +214,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
         public void Message_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
 
             service.Message("assistantId", "sessionId");
         }
@@ -248,7 +248,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
                 });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
             service.Message("assistantId", "sessionId");
         }
 
@@ -264,76 +264,93 @@ namespace IBM.Watson.Assistant.v2.UnitTests
             #region Response
             var response = Substitute.For<DetailedResponse<MessageResponse>>();
             response.Result = new MessageResponse();
+
+            RuntimeResponseGenericRuntimeResponseTypeText typeText =
+                new RuntimeResponseGenericRuntimeResponseTypeText();
+            typeText.Text = "text";
+            typeText.ResponseType =
+                RuntimeResponseGeneric.ResponseTypeEnumValue.TEXT;
+            typeText.Preference =
+                RuntimeResponseGeneric.PreferenceEnumValue.BUTTON;
+
+            RuntimeResponseGenericRuntimeResponseTypePause typePause =
+                new RuntimeResponseGenericRuntimeResponseTypePause();
+            typePause.Time = 1;
+            typePause.Typing = true;
+
+            RuntimeResponseGenericRuntimeResponseTypeImage typeImage =
+                new RuntimeResponseGenericRuntimeResponseTypeImage();
+            typeImage.Source = "source";
+            typeImage.Title = "title";
+            typeImage.Description = "description";
+
+            RuntimeResponseGenericRuntimeResponseTypeOption typeOption =
+                new RuntimeResponseGenericRuntimeResponseTypeOption();
+            typeOption.Options = new List<DialogNodeOutputOptionsElement>()
+            {
+                new DialogNodeOutputOptionsElement()
+                {
+                    Label = "label",
+                    Value = new DialogNodeOutputOptionsElementValue()
+                    {
+                        Input = new MessageInput()
+                        {
+                            MessageType = MessageInput.MessageTypeEnumValue.TEXT,
+                            Text = "text",
+                            Options = new MessageInputOptions()
+                            {
+                                Debug = false,
+                                Restart = false,
+                                AlternateIntents = false,
+                                ReturnContext = false
+                            },
+                            Intents = new List<RuntimeIntent>()
+                            {
+                                new RuntimeIntent()
+                                {
+                                    Intent = "intent",
+                                    Confidence = 0.5
+                                }
+                            },
+                            Entities = new List<RuntimeEntity>()
+                            {
+                                new RuntimeEntity()
+                                {
+                                    Entity = "entity",
+                                    Location = new List<long?>()
+                                    {
+                                        1
+                                    },
+                                    Value = "value",
+                                    Confidence = 0.5f,
+                                    Groups = new List<CaptureGroup>()
+                                    {
+                                        new CaptureGroup()
+                                        {
+                                            Group = "group",
+                                            Location = new List<long?>()
+                                            {
+                                                1
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            SuggestionId = "suggestionid"
+                        }
+                    }
+                }
+            };
+
+
             response.Result.Output = new MessageOutput()
             {
                 Generic = new List<RuntimeResponseGeneric>()
                 {
-                    new RuntimeResponseGeneric()
-                    {
-                        ResponseType = RuntimeResponseGeneric.ResponseTypeEnumValue.TEXT,
-                        Preference = RuntimeResponseGeneric.PreferenceEnumValue.BUTTON,
-                        Text = "text",
-                        Time = 1,
-                        Typing = true,
-                        Source = "source",
-                        Title = "title",
-                        Description = "description",
-                        Options = new List<DialogNodeOutputOptionsElement>()
-                        {
-                            new DialogNodeOutputOptionsElement()
-                            {
-                                Label = "label",
-                                Value = new DialogNodeOutputOptionsElementValue()
-                                {
-                                    Input = new MessageInput()
-                                    {
-                                        MessageType = MessageInput.MessageTypeEnumValue.TEXT,
-                                        Text = "text",
-                                        Options = new MessageInputOptions()
-                                        {
-                                            Debug = false,
-                                            Restart = false,
-                                            AlternateIntents = false,
-                                            ReturnContext = false
-                                        },
-                                        Intents = new List<RuntimeIntent>()
-                                        {
-                                            new RuntimeIntent()
-                                            {
-                                                Intent = "intent",
-                                                Confidence = 0.5
-                                            }
-                                        },
-                                        Entities = new List<RuntimeEntity>()
-                                        {
-                                            new RuntimeEntity()
-                                            {
-                                                Entity = "entity",
-                                                Location = new List<long?>()
-                                                {
-                                                    1
-                                                },
-                                                Value = "value",
-                                                Confidence = 0.5f,
-                                                Groups = new List<CaptureGroup>()
-                                                {
-                                                    new CaptureGroup()
-                                                    {
-                                                        Group = "group",
-                                                        Location = new List<long?>()
-                                                        {
-                                                            1
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        },
-                                        SuggestionId = "suggestionid"
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    typeText,
+                    typePause,
+                    typeImage,
+                    typeOption
                 },
                 Intents = new List<RuntimeIntent>()
                 {
@@ -396,10 +413,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
                         TurnCount = 2
                     }
                 },
-                Skills = new MessageContextSkills()
-                {
-
-                }
+                Skills = new Dictionary<string, MessageContextSkill>()
             };
             #endregion
 
@@ -411,7 +425,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.Message("assistantId", "sessionId");
 

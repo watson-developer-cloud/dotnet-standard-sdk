@@ -174,6 +174,11 @@ No changes
 * Changed `content` parameter type from `Content` to `System.IO.MemoryStream` in `Profile()` method
 * Changed `content` parameter type from `Content` to `System.IO.MemoryStream` in `ProfileAsCsv()` method
 
+##### Models Removed
+
+`Content`,
+`ContentItem`
+
 #### Speech To Text v1
 
 * Changed `audio` parameter type from `byte[]` to `System.IO.MemoryStream` in `Recognize()` method

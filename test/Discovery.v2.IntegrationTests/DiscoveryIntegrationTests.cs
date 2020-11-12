@@ -53,6 +53,36 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
             creds.TryGetValue("COLLECTION_ID", out collectionId);
         }
 
+        #region QueryPassages
+        [TestMethod]
+        public void TestQueryPassagesPerDocument()
+        {
+            var queryResult = service.Query(
+                projectId: projectId,
+                collectionIds: new List<string> { collectionId },
+                passages: new QueryLargePassages() { PerDocument = true },
+                query: "text:IBM",
+                count: 2);
+
+            Assert.IsNotNull(queryResult.Result.Results[0].DocumentPassages[0].PassageText);
+        }
+
+        [TestMethod]
+        public void TestQueryPassages()
+        {
+            var queryResult = service.Query(
+                projectId: projectId,
+                collectionIds: new List<string> { collectionId },
+                passages: new QueryLargePassages() { PerDocument = false },
+                query: "text:IBM",
+                count: 2);
+
+            Assert.IsNotNull(queryResult.Result.Passages[0].CollectionId);
+            Assert.IsNotNull(queryResult.Result.Passages[0].PassageText);
+            Assert.IsNotNull(queryResult.Result.Passages[0].DocumentId);
+        }
+        #endregion
+
         #region Collections
         [TestMethod]
         public void TestListCollections()
@@ -280,6 +310,30 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
             Assert.IsNotNull(deleteDocumentResult.Result);
             Assert.IsNotNull(deleteDocumentResult.Result.DocumentId);
             Assert.IsNotNull(deleteDocumentResult.Result.Status);
+        }
+
+        [TestMethod]
+        public void TestAnalyzeDocument()
+        {
+            using (FileStream fs = File.OpenRead(filepathToIngest))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    fs.CopyTo(ms);
+
+                    service.WithHeader("X-Watson-Test", "1");
+                    var response = service.AnalyzeDocument(
+                        projectId: projectId,
+                        collectionId: collectionId,
+                        file: ms,
+                        filename: "watson_beats_jeopardy.html",
+                        fileContentType: DiscoveryService.AnalyzeDocumentEnums.FileContentTypeValue.TEXT_HTML,
+                        metadata: "{ \"metadata\": \"value\" }"
+                        );
+                    Assert.IsNotNull(response);
+                    Assert.IsNotNull(response.Result);
+                }
+            }
         }
         #endregion
 

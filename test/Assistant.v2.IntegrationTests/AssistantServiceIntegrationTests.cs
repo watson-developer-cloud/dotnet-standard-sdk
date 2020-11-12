@@ -22,13 +22,13 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
+using System.Collections.Generic;
 
 namespace IBM.Watson.Assistant.v2.IntegrationTests
 {
     [TestClass]
     public class AssistantServiceIntegrationTests
     {
-        private static string apikey;
         private static string endpoint;
         private AssistantService service;
         private static string credentials = string.Empty;
@@ -167,6 +167,21 @@ namespace IBM.Watson.Assistant.v2.IntegrationTests
                 );
 
             Assert.IsNotNull(deleteUserDataResults.Response);
+        }
+        #endregion
+
+        #region Bulk Classify
+        //[TestMethod]
+        public void TestBulk_Classify()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            List<BulkClassifyUtterance> bulkClassifyUtterances = new List<BulkClassifyUtterance>();
+            BulkClassifyUtterance bulkClassifyUtterance = new BulkClassifyUtterance();
+            bulkClassifyUtterance.Text = "text text";
+            bulkClassifyUtterances.Add(bulkClassifyUtterance);
+            var bulkClassifyResponse = service.BulkClassify("{skillId}", bulkClassifyUtterances);
+
+            Assert.IsNotNull(bulkClassifyResponse);
         }
         #endregion
     }

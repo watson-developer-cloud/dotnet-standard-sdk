@@ -254,7 +254,7 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
             var addGrammarResult = service.AddGrammar(
                 customizationId: customizationId,
                 grammarName: grammarName,
-                grammarFile: File.ReadAllText(grammarPath),
+                grammarFile: new MemoryStream(File.ReadAllBytes(grammarPath)),
                 contentType: grammarsContentType
                 );
             service.WithHeader("X-Watson-Test", "1");
@@ -501,7 +501,7 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
             addAudioResult = service.AddAudio(
                 customizationId: acousticCustomizationId,
                 audioName: acousticResourceName,
-                audioResource: acousticResourceData,
+                audioResource: new MemoryStream(acousticResourceData),
                 contentType: acousticResourceMimeType,
                 allowOverwrite: true
                 );
@@ -577,7 +577,7 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
             var testAudio = File.ReadAllBytes(testAudioPath);
             service.WithHeader("X-Watson-Test", "1");
             var recognizeResult = service.Recognize(
-                audio: testAudio,
+                audio: new MemoryStream(testAudio),
                 contentType: "audio/wav",
                 endOfPhraseSilenceTime: 0.4,
                 splitTranscriptAtPhraseEnd: true,
@@ -597,7 +597,7 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
             var testAudio = File.ReadAllBytes(testAudioPath);
             service.WithHeader("X-Watson-Test", "1");
             var createJobResult = service.CreateJob(
-                audio: testAudio,
+                audio: new MemoryStream(testAudio),
                 contentType: "audio/mp3",
                 endOfPhraseSilenceTime: 2,
                 splitTranscriptAtPhraseEnd: true,

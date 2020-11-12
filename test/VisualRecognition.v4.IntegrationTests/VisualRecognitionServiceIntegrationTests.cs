@@ -328,9 +328,12 @@ namespace IBM.Watson.VisualRecognition.v4.IntegrationTests
             service.WithHeader("X-Watson-Test", "1");
             var startTime = "2019-11-18";
             var endTime = "2020-11-20";
+            var dateStartTime = DateTime.Parse(startTime);
+            var dateEndTime = DateTime.Parse(endTime);
+
             var getTrainingUsageResult = service.GetTrainingUsage(
-                startTime: startTime, 
-                endTime: endTime
+                startTime: dateStartTime,
+                endTime: dateEndTime
                 );
 
             Assert.IsNotNull(getTrainingUsageResult.Result);

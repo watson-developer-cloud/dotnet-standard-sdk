@@ -23,6 +23,7 @@ using System;
 using IBM.Watson.Assistant.v1.Model;
 using System.Collections.Generic;
 using IBM.Cloud.SDK.Core.Util;
+using IBM.Cloud.SDK.Core.Authentication.Iam;
 
 namespace IBM.Watson.Assistant.v1.IntegrationTests
 {
@@ -34,6 +35,8 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
         private static string versionDate = "2019-02-28";
 
         private static string workspaceId;
+        private static string apikey;
+
         private string inputString = "Hello";
         private string assistantString0 = "Are you open on christmas?";
         private string assistantString1 = "Can you connect me to a real person?";
@@ -56,9 +59,10 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
-            service = new AssistantService(versionDate);
             var creds = CredentialUtils.GetServiceProperties("assistant");
             creds.TryGetValue("WORKSPACE_ID", out workspaceId);
+            service = new AssistantService(versionDate);
+
 
 #if DELETE_DOTNET_WORKSPACES
             service.WithHeader("X-Watson-Test", "1");
@@ -1038,6 +1042,21 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
             Assert.IsFalse(string.IsNullOrEmpty(createEntityResult.Result._Entity));
             Assert.IsNotNull(ListMentionsResult.Result);
             Assert.IsNotNull(ListMentionsResult.Result.Examples);
+        }
+        #endregion
+
+        #region Bulk Classify
+        //[TestMethod]
+        public void TestBulk_Classify()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            List<BulkClassifyUtterance> bulkClassifyUtterances = new List<BulkClassifyUtterance>();
+            BulkClassifyUtterance bulkClassifyUtterance = new BulkClassifyUtterance();
+            bulkClassifyUtterance.Text = "help I need help";
+            bulkClassifyUtterances.Add(bulkClassifyUtterance);
+            var bulkClassifyResponse = service.BulkClassify(workspaceId, bulkClassifyUtterances);
+
+            Assert.IsNotNull(bulkClassifyResponse);
         }
         #endregion
     }

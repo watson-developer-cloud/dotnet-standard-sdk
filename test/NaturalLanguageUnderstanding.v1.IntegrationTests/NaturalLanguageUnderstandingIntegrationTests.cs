@@ -208,7 +208,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.IntegrationTests
                 url: "www.ibm.com",
                 features: new Features()
                 {
-                    Metadata = new MetadataOptions()
+                    Metadata = new FeaturesResultsMetadata()
                 }
                 );
 
@@ -238,7 +238,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.IntegrationTests
         }
 
         [TestMethod]
-        public void AnalyzeWithSematnicRoles()
+        public void AnalyzeWithSemanticRoles()
         {
             service.WithHeader("X-Watson-Test", "1");
             var result = service.Analyze(
@@ -260,13 +260,16 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.IntegrationTests
         public void AnalyzeWithSentiment()
         {
             service.WithHeader("X-Watson-Test", "1");
+            string text =
+                "In 2009, Elliot Turner launched AlchemyAPI to process the written word,"
+                  + " with all of its quirks and nuances, and got immediate traction.";
             var result = service.Analyze(
-                url: "www.wsj.com/news/markets",
+                text: text,
                 features: new Features()
                 {
                     Sentiment = new SentimentOptions()
                     {
-                        Targets = new List<string>() { "stocks" }
+                        Targets = new List<string>() { "Elliot Turner" }
                     }
                 }
                 );
@@ -275,9 +278,8 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.IntegrationTests
             Assert.IsNotNull(result.Result.Sentiment);
             Assert.IsNotNull(result.Result.Sentiment.Targets);
             Assert.IsTrue(result.Result.Sentiment.Targets.Count == 1);
-            Assert.IsTrue(result.Result.Sentiment.Targets[0].Text == "stocks");
+            Assert.IsTrue(result.Result.Sentiment.Targets[0].Text == "Elliot Turner");
             Assert.IsNotNull(result.Result.Sentiment.Document);
-            Assert.IsTrue(result.Result.RetrievedUrl.Contains("www.wsj.com"));
         }
 
         [TestMethod]

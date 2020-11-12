@@ -3557,7 +3557,7 @@ namespace IBM.Watson.SpeechToText.v1
             {
                 grammarName = Uri.EscapeDataString(grammarName);
             }
-            if (string.IsNullOrEmpty(grammarFile))
+            if (grammarFile == null)
             {
                 throw new ArgumentNullException("`grammarFile` is required for `AddGrammar`");
             }

@@ -103,7 +103,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
 
             CompareComplyService service = new CompareComplyService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var file = new MemoryStream();
             var fileContentType = "fileContentType";
@@ -123,7 +123,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
 
             CompareComplyService service = new CompareComplyService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var file = new MemoryStream();
             var fileContentType = "fileContentType";
@@ -143,7 +143,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
 
             CompareComplyService service = new CompareComplyService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var file = new MemoryStream();
             var fileContentType = "fileContentType";
@@ -163,7 +163,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
 
             CompareComplyService service = new CompareComplyService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var file1 = new MemoryStream();
             var file2 = new MemoryStream();
@@ -187,7 +187,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
 
             CompareComplyService service = new CompareComplyService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var feedbackData = new FeedbackDataInput();
             var userId = "userId";
@@ -222,7 +222,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
 
             CompareComplyService service = new CompareComplyService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var feedbackType = "feedbackType";
             DateTime? before = DateTime.MaxValue;
@@ -241,7 +241,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
             var sort = "sort";
             var includeTotal = false;
 
-            var result = service.ListFeedback(feedbackType: feedbackType, before: before, after: after, documentTitle: documentTitle, modelId: modelId, modelVersion: modelVersion, categoryRemoved: categoryRemoved, categoryAdded: categoryAdded, categoryNotChanged: categoryNotChanged, typeRemoved: typeRemoved, typeAdded: typeAdded, typeNotChanged: typeNotChanged, pageLimit: pageLimit, cursor: cursor, sort: sort, includeTotal: includeTotal);
+            var result = service.ListFeedback(feedbackType: feedbackType, documentTitle: documentTitle, modelId: modelId, modelVersion: modelVersion, categoryRemoved: categoryRemoved, categoryAdded: categoryAdded, categoryNotChanged: categoryNotChanged, typeRemoved: typeRemoved, typeAdded: typeAdded, typeNotChanged: typeNotChanged, pageLimit: pageLimit, cursor: cursor, sort: sort, includeTotal: includeTotal);
 
             request.Received().WithArgument("version", versionDate);
         }
@@ -255,7 +255,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
 
             CompareComplyService service = new CompareComplyService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var feedbackId = "feedbackId";
             var model = "model";
@@ -275,7 +275,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
 
             CompareComplyService service = new CompareComplyService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var feedbackId = "feedbackId";
             var model = "model";
@@ -295,7 +295,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
 
             CompareComplyService service = new CompareComplyService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var function = "function";
             var inputCredentialsFile = new MemoryStream();
@@ -320,7 +320,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
 
             CompareComplyService service = new CompareComplyService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
 
             var result = service.ListBatches();
@@ -337,7 +337,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
 
             CompareComplyService service = new CompareComplyService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var batchId = "batchId";
 
@@ -356,7 +356,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
 
             CompareComplyService service = new CompareComplyService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var batchId = "batchId";
             var action = "action";

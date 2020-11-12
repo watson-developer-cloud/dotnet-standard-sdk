@@ -104,7 +104,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
 
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var features = new Features();
             var text = "text";
@@ -165,7 +165,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
 
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
 
             var result = service.ListModels();
@@ -182,7 +182,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
 
             NaturalLanguageUnderstandingService service = new NaturalLanguageUnderstandingService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var modelId = "modelId";
 

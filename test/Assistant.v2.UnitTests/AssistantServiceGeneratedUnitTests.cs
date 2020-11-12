@@ -104,7 +104,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var assistantId = "assistantId";
 
@@ -123,7 +123,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var assistantId = "assistantId";
             var sessionId = "sessionId";
@@ -143,7 +143,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
 
             AssistantService service = new AssistantService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var assistantId = "assistantId";
             var sessionId = "sessionId";

@@ -176,7 +176,7 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
             var language = "language";
             var description = "description";
 
-            var result = service.CreateVoiceModel(name: name, language: language, description: description);
+            var result = service.CreateCustomModel(name: name, language: language, description: description);
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(name))
@@ -206,7 +206,7 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
 
             var language = "language";
 
-            var result = service.ListVoiceModels(language: language);
+            var result = service.ListCustomModels(language: language);
 
         }
         [TestMethod]
@@ -224,7 +224,7 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
             var description = "description";
             var words = new List<Word>();
 
-            var result = service.UpdateVoiceModel(customizationId: customizationId, name: name, description: description, words: words);
+            var result = service.UpdateCustomModel(customizationId: customizationId, name: name, description: description, words: words);
 
             JObject bodyObject = new JObject();
             if (!string.IsNullOrEmpty(name))
@@ -255,7 +255,7 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
 
             var customizationId = "customizationId";
 
-            var result = service.GetVoiceModel(customizationId: customizationId);
+            var result = service.GetCustomModel(customizationId: customizationId);
 
             client.Received().GetAsync($"{service.ServiceUrl}/v1/customizations/{customizationId}");
         }
@@ -271,7 +271,7 @@ namespace IBM.Watson.TextToSpeech.v1.UnitTests
 
             var customizationId = "customizationId";
 
-            var result = service.DeleteVoiceModel(customizationId: customizationId);
+            var result = service.DeleteCustomModel(customizationId: customizationId);
 
             client.Received().DeleteAsync($"{service.ServiceUrl}/v1/customizations/{customizationId}");
         }

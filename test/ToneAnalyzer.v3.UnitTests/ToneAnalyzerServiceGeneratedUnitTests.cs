@@ -103,10 +103,10 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
                 .Returns(request);
 
             ToneAnalyzerService service = new ToneAnalyzerService(client);
-            var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            var versionDate = "version";
+            service.Version = versionDate;
 
-            var toneInput = new ToneInput();
+            var toneInput = new MemoryStream();
             var contentType = "contentType";
             var sentences = false;
             var tones = new List<string>() { "tones0", "tones1" };
@@ -118,8 +118,9 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
             JObject bodyObject = new JObject();
             var json = JsonConvert.SerializeObject(bodyObject);
             request.Received().WithArgument("version", versionDate);
-            request.Received().WithBodyContent(Arg.Is<StringContent>(x => x.ReadAsStringAsync().Result.Equals(json)));
+            request.Received().WithBodyContent(Arg.Is<StringContent>(x => x.ReadAsStringAsync().Result.Equals("")));
         }
+
         [TestMethod]
         public void ToneChat_Success()
         {
@@ -130,7 +131,7 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
 
             ToneAnalyzerService service = new ToneAnalyzerService(client);
             var versionDate = "versionDate";
-            service.VersionDate = versionDate;
+            service.Version = versionDate;
 
             var utterances = new List<Utterance>();
             var contentLanguage = "contentLanguage";

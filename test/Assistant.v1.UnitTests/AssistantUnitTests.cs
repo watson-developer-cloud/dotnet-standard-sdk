@@ -93,7 +93,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void CreateCounterExample_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
 
             service.CreateCounterexample("workspaceId", "text");
         }
@@ -113,7 +113,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
 
             service.CreateCounterexample("workspaceId", "text");
         }
@@ -143,7 +143,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.CreateCounterexample("workspaceId", "text");
 
@@ -172,7 +172,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void DeleteCounterExample_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.DeleteCounterexample("workspaceId", "example");
         }
 
@@ -191,7 +191,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
 
             service.DeleteCounterexample("workspaceId", "example");
         }
@@ -215,7 +215,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.DeleteCounterexample("workspaceId", "example");
 
@@ -243,7 +243,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void GetCounterExample_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.GetCounterexample("workspaceId", "text");
         }
 
@@ -262,7 +262,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
             service.GetCounterexample("workspaceId", "text");
         }
 
@@ -289,7 +289,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.GetCounterexample("workspaceId", "text");
 
@@ -311,7 +311,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void ListCounterExamples_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.ListCounterexamples("workspaceId");
         }
 
@@ -330,7 +330,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
             service.ListCounterexamples("workspaceId");
         }
 
@@ -375,7 +375,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.ListCounterexamples("workspaceId");
 
@@ -409,7 +409,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void UpdateCounterExample_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
 
             service.UpdateCounterexample("workspaceId", "text", "text");
         }
@@ -429,7 +429,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
 
             service.UpdateCounterexample("workspaceId", "text", "text");
         }
@@ -459,7 +459,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.UpdateCounterexample("workspaceId", "text", "text");
 
@@ -490,7 +490,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void CreateEntity_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
 
             service.CreateEntity("workspaceId", "entity");
         }
@@ -510,7 +510,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
 
             service.CreateEntity("workspaceId", "entity");
         }
@@ -547,7 +547,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.CreateEntity("workspaceId", "entity");
 
@@ -579,7 +579,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void DeleteEntity_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.DeleteEntity("workspaceId", "entity");
         }
 
@@ -598,7 +598,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
 
             service.DeleteEntity("workspaceId", "entity");
         }
@@ -622,7 +622,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.DeleteEntity("workspaceId", "entity");
 
@@ -650,7 +650,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void GetEntity_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.GetEntity("workspaceId", "entity");
         }
 
@@ -669,7 +669,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
             service.GetEntity("workspaceId", "entity");
         }
 
@@ -697,7 +697,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.GetEntity("workspaceId", "entity");
 
@@ -722,7 +722,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void ListEntities_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.ListEntities("workspaceId");
         }
 
@@ -741,7 +741,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
             service.ListEntities("workspaceId");
         }
 
@@ -808,7 +808,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.ListEntities("workspaceId");
 
@@ -853,7 +853,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void UpdateEntity_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.UpdateEntity("workspaceId", "text", "newEntity");
         }
 
@@ -872,7 +872,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
 
             service.UpdateEntity("workspaceId", "text", "newEntity");
         }
@@ -910,7 +910,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.UpdateEntity("workspaceId", "text");
 
@@ -955,7 +955,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void CreateExample_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.CreateExample("workspaceId", "intent", "text");
         }
 
@@ -974,7 +974,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
 
             service.CreateExample("workspaceId", "intent", "text");
         }
@@ -1004,7 +1004,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.CreateExample("workspaceId", "intent", "text");
 
@@ -1043,7 +1043,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void DeleteExample_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.DeleteExample("workspaceId", "intent", "example");
         }
 
@@ -1062,7 +1062,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
 
             service.DeleteExample("workspaceId", "intent", "example");
         }
@@ -1086,7 +1086,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.DeleteExample("workspaceId", "intent", "example");
 
@@ -1121,7 +1121,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void GetExample_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.GetExample("workspaceId", "intent", "example");
         }
 
@@ -1140,7 +1140,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
             service.GetExample("workspaceId", "intent", "example");
         }
 
@@ -1167,7 +1167,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.GetExample("workspaceId", "intent", "example");
 
@@ -1196,7 +1196,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void ListExamples_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.ListExamples("workspaceId", "intent");
         }
 
@@ -1215,7 +1215,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
             service.ListExamples("workspaceId", "intent");
         }
 
@@ -1260,7 +1260,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.ListExamples("workspaceId", "intent");
 
@@ -1301,7 +1301,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void UpdateExample_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.UpdateExample("workspaceId", "intent", "text", "text2");
         }
 
@@ -1320,7 +1320,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
 
             service.UpdateExample("workspaceId", "intent", "text", "text2");
         }
@@ -1350,7 +1350,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.UpdateExample("workspaceId", "intent", "text", "text2");
 
@@ -1383,7 +1383,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void CreateIntent_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.CreateIntent("workspaceId", "intent");
         }
 
@@ -1402,7 +1402,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
 
             service.CreateIntent("workspaceId", "intent");
         }
@@ -1433,7 +1433,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.CreateIntent("workspaceId", "intent");
 
@@ -1465,7 +1465,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void DeleteIntent_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.DeleteIntent("workspaceId", "intent");
         }
 
@@ -1484,7 +1484,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
 
             service.DeleteIntent("workspaceId", "intent");
         }
@@ -1508,7 +1508,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.DeleteIntent("workspaceId", "intent");
 
@@ -1536,7 +1536,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void GetIntent_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.GetIntent("workspaceId", "text");
         }
 
@@ -1555,7 +1555,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
             service.GetIntent("workspaceId", "text");
         }
 
@@ -1594,7 +1594,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.GetIntent("workspaceId", "text");
 
@@ -1624,7 +1624,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void ListIntents_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.ListIntents("workspaceId");
         }
 
@@ -1643,7 +1643,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
             service.ListIntents("workspaceId");
         }
 
@@ -1701,7 +1701,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.ListIntents("workspaceId");
 
@@ -1742,7 +1742,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void UpdateIntent_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.UpdateIntent("workspaceId", "text");
         }
 
@@ -1761,7 +1761,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
 
             service.UpdateIntent("workspaceId", "text");
         }
@@ -1792,7 +1792,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.UpdateIntent("workspaceId", "text");
 
@@ -1816,7 +1816,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void ListLogs_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.ListLogs("workspaceId");
         }
 
@@ -1835,7 +1835,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
             service.ListLogs("workspaceId");
         }
 
@@ -1884,7 +1884,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.ListLogs("workspaceId");
 
@@ -1913,7 +1913,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void Message_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.Message("workspaceId");
         }
 
@@ -1932,7 +1932,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
 
             service.Message("workspaceId");
         }
@@ -1980,7 +1980,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 Context = new Context()
                 {
                     ConversationId = "conversationId",
-                    System = new SystemResponse()
+                    System = new Dictionary<string, object>()
                 },
                 Output = new OutputData()
                 {
@@ -2014,7 +2014,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.Message("workspaceId");
 
@@ -2063,7 +2063,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void CreateSynonym_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.CreateSynonym("workspaceId", "entity", "value", "synonym");
         }
 
@@ -2082,7 +2082,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
 
             service.CreateSynonym("workspaceId", "entity", "value", "synonym");
         }
@@ -2112,7 +2112,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.CreateSynonym("workspaceId", "entity", "value", "synonym");
 
@@ -2158,7 +2158,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void DeleteSynonym_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.DeleteSynonym("workspaceId", "entity", "value", "synonym");
         }
 
@@ -2177,7 +2177,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
 
             service.DeleteSynonym("workspaceId", "entity", "value", "synonym");
         }
@@ -2201,7 +2201,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.DeleteSynonym("workspaceId", "entity", "value", "synonym");
 
@@ -2243,7 +2243,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void GetSynonym_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.GetSynonym("workspaceId", "entity", "value", "synonym");
         }
 
@@ -2262,7 +2262,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
             service.GetSynonym("workspaceId", "entity", "value", "synonym");
         }
 
@@ -2289,7 +2289,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.GetSynonym("workspaceId", "entity", "value", "synonym");
 
@@ -2328,7 +2328,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void ListSynonyms_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.ListSynonyms("workspaceId", "entity", "value");
         }
 
@@ -2347,7 +2347,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
             service.ListSynonyms("workspaceId", "entity", "value");
         }
 
@@ -2401,7 +2401,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.ListSynonyms("workspaceId", "entity", "value");
 
@@ -2453,7 +2453,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void UpdateSynonym_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
 
             service.UpdateSynonym("workspaceId", "entity", "value", "synonym", "synonym2");
         }
@@ -2473,7 +2473,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
 
             service.UpdateSynonym("workspaceId", "entity", "value", "synonym", "synonym2");
         }
@@ -2503,7 +2503,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.UpdateSynonym("workspaceId", "entity", "value", "synonym");
 
@@ -2542,7 +2542,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void CreateValue_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.CreateValue("workspaceId", "entity", "value");
         }
 
@@ -2561,7 +2561,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
 
             service.CreateValue("workspaceId", "entity", "value");
         }
@@ -2592,7 +2592,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.CreateValue("workspaceId", "entity", "value");
 
@@ -2631,7 +2631,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void DeleteValue_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.DeleteValue("workspaceId", "entity", "value");
         }
 
@@ -2650,7 +2650,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
 
             service.DeleteValue("workspaceId", "entity", "example");
         }
@@ -2674,7 +2674,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.DeleteValue("workspaceId", "entity", "example");
 
@@ -2709,7 +2709,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void GetValue_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.GetValue("workspaceId", "entity", "value");
         }
 
@@ -2728,7 +2728,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
             service.GetValue("workspaceId", "entity", "value");
         }
 
@@ -2760,7 +2760,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.GetValue("workspaceId", "entity", "value");
 
@@ -2795,7 +2795,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void ListValues_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.ListValues("workspaceId", "entity");
         }
 
@@ -2814,7 +2814,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
             service.ListValues("workspaceId", "entity");
         }
 
@@ -2874,7 +2874,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.ListValues("workspaceId", "entity");
 
@@ -2922,7 +2922,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void UpdateValue_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
 
             service.UpdateValue("workspaceId", "entity", "value");
         }
@@ -2942,7 +2942,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
 
             service.UpdateValue("workspaceId", "entity", "value");
         }
@@ -2973,7 +2973,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.UpdateValue("workspaceId", "entity", "value");
 
@@ -2994,7 +2994,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void CreateWorkspace_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.CreateWorkspace();
         }
 
@@ -3013,7 +3013,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
 
             service.CreateWorkspace();
         }
@@ -3047,7 +3047,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.CreateWorkspace();
 
@@ -3076,7 +3076,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void DeleteWorkspace_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.DeleteWorkspace("workspaceId");
         }
 
@@ -3095,7 +3095,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
 
             service.DeleteWorkspace("workspaceId");
         }
@@ -3119,7 +3119,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.DeleteWorkspace("workspaceId");
 
@@ -3140,7 +3140,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void GetWorkspace_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.GetWorkspace("workspaceId");
         }
 
@@ -3159,7 +3159,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
             service.GetWorkspace("workspaceId");
         }
 
@@ -3250,7 +3250,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.GetWorkspace("workspaceId");
 
@@ -3272,7 +3272,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void ListWorkspaces_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
             service.ListWorkspaces();
         }
 
@@ -3291,7 +3291,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
             service.ListWorkspaces();
         }
 
@@ -3347,7 +3347,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.ListWorkspaces();
 
@@ -3380,7 +3380,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
         public void UpdateWorkspace_No_VersionDate()
         {
             AssistantService service = new AssistantService("versionDate", new NoAuthAuthenticator());
-            service.VersionDate = null;
+            service.Version = null;
 
             service.UpdateWorkspace("workspaceId");
         }
@@ -3400,7 +3400,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                  });
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "2018-02-16";
+            service.Version = "2018-02-16";
 
             service.UpdateWorkspace("workspaceId");
         }
@@ -3434,7 +3434,7 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                 .Returns(Task.FromResult(response));
 
             AssistantService service = new AssistantService(client);
-            service.VersionDate = "versionDate";
+            service.Version = "versionDate";
 
             var result = service.UpdateWorkspace("workspaceId");
 

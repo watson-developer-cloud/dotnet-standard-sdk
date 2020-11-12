@@ -110,17 +110,17 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
         public void CustomVoiceModels_Success()
         {
             service.WithHeader("X-Watson-Test", "1");
-            var listVoiceModelsResult = service.ListVoiceModels();
+            var listVoiceModelsResult = service.ListCustomModels();
 
             service.WithHeader("X-Watson-Test", "1");
-            var createVoiceModelResult = service.CreateVoiceModel(
+            var createVoiceModelResult = service.CreateCustomModel(
                 name: voiceModelName,
                 language: "en-US",
                 description: voiceModelDescription);
             var customizationId = createVoiceModelResult.Result.CustomizationId;
 
             service.WithHeader("X-Watson-Test", "1");
-            var getVoiceModelResult = service.GetVoiceModel(
+            var getVoiceModelResult = service.GetCustomModel(
                 customizationId: customizationId
                 );
 
@@ -144,7 +144,7 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
             };
 
             service.WithHeader("X-Watson-Test", "1");
-            var updateVoiceModelResult = service.UpdateVoiceModel(
+            var updateVoiceModelResult = service.UpdateCustomModel(
                 customizationId: customizationId,
                 name: voiceModelUpdatedName,
                 description: voiceModelUpdatedDescription,
@@ -152,12 +152,12 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
                 );
 
             service.WithHeader("X-Watson-Test", "1");
-            var getVoiceModelResult2 = service.GetVoiceModel(
+            var getVoiceModelResult2 = service.GetCustomModel(
                 customizationId: customizationId
                 );
 
             service.WithHeader("X-Watson-Test", "1");
-            var deleteVoiceModelResult = service.DeleteVoiceModel(
+            var deleteVoiceModelResult = service.DeleteCustomModel(
                 customizationId: customizationId
                 );
 
@@ -180,7 +180,7 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
         public void Words_Success()
         {
             service.WithHeader("X-Watson-Test", "1");
-            var createVoiceModelResult = service.CreateVoiceModel(
+            var createVoiceModelResult = service.CreateCustomModel(
                 name: voiceModelName,
                 language: "en-US",
                 description: voiceModelDescription
@@ -248,7 +248,7 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
                 );
 
             service.WithHeader("X-Watson-Test", "1");
-            var deleteVoiceModelResult = service.DeleteVoiceModel(
+            var deleteVoiceModelResult = service.DeleteCustomModel(
                 customizationId: customizationId
                 );
 

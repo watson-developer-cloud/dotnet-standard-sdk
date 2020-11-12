@@ -180,8 +180,6 @@ namespace IBM.Watson.CompareComply.v1.IntegrationTests
             service.WithHeader("X-Watson-Test", "1");
             var ListFeedbackResult = service.ListFeedback(
                 feedbackType: "element_classification",
-                before: before,
-                after: after,
                 documentTitle: "doc title",
                 modelId: "contracts",
                 modelVersion: "11.00",

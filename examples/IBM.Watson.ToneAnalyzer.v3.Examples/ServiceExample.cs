@@ -19,6 +19,8 @@ using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Watson.ToneAnalyzer.v3.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 
 namespace IBM.Watson.ToneAnalyzer.v3.Examples
 {
@@ -48,10 +50,11 @@ namespace IBM.Watson.ToneAnalyzer.v3.Examples
             ToneAnalyzerService service = new ToneAnalyzerService("2017-09-21", authenticator);
             service.SetServiceUrl("{serviceUrl}");
 
-            ToneInput toneInput = new ToneInput()
-            {
-                Text = "Team, I know that times are tough! Product sales have been disappointing for the past three quarters. We have a competitive product, but we need to do a better job of selling it!"
-            };
+            byte[] bytes = Encoding.ASCII.GetBytes("Team, I know that times are tough! " +
+                "Product sales have been disappointing for the past three quarters. " +
+                "We have a competitive product, but we need to do a better job of selling it!");
+            MemoryStream toneInput = new MemoryStream(bytes);
+
 
             var result = service.Tone(
                 toneInput: toneInput

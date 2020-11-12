@@ -321,9 +321,12 @@ namespace IBM.Watson.VisualRecognition.v4.Examples
 
             VisualRecognitionService service = new VisualRecognitionService("2019-02-11", authenticator);
 
+            var dateStartTime = DateTime.Parse("2019-01-01");
+            var dateEndTime = DateTime.Parse("2019-01-31");
+
             var result = service.GetTrainingUsage(
-                startTime: "2019-01-01",
-                endTime: "2019-01-31"
+                startTime: dateStartTime,
+                endTime: dateEndTime
                 );
 
             Console.WriteLine(result.Response);

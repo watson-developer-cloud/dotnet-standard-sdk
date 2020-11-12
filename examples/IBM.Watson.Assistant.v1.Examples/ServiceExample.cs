@@ -852,6 +852,19 @@ namespace IBM.Watson.Assistant.v1.Examples
             AssistantService service = new AssistantService("2019-02-28", authenticator);
             service.SetServiceUrl("{serviceUrl}");
 
+            DialogNodeOutputGenericDialogNodeOutputResponseTypeText typeText =
+                new DialogNodeOutputGenericDialogNodeOutputResponseTypeText();
+            typeText.ResponseType = "text";
+            typeText.Values = new List<DialogNodeOutputTextValuesElement>()
+            {
+                new DialogNodeOutputTextValuesElement()
+                {
+                    Text = "Hello! What can I do for you?"
+                }
+            };
+
+
+
             var result = service.UpdateDialogNode(
                 workspaceId: "{workspaceId}",
                 dialogNode: "greeting",
@@ -859,17 +872,7 @@ namespace IBM.Watson.Assistant.v1.Examples
                 {
                     Generic = new List<DialogNodeOutputGeneric>()
                     {
-                        new DialogNodeOutputGeneric()
-                        {
-                            ResponseType = "text",
-                            Values = new List<DialogNodeOutputTextValuesElement>()
-                            {
-                                new DialogNodeOutputTextValuesElement()
-                                {
-                                    Text = "Hello! What can I do for you?"
-                                }
-                            }
-                        }
+                        typeText
                     }
                 }
                 );

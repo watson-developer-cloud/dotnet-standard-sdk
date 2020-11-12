@@ -34,7 +34,7 @@ namespace IBM.Watson.Assistant.v1
 {
     public partial class AssistantService : IBMService, IAssistantService
     {
-        const string defaultServiceName = "conversation";
+        const string defaultServiceName = "assistant";
         private const string defaultServiceUrl = "https://api.us-south.assistant.watson.cloud.ibm.com";
         public string Version { get; set; }
 

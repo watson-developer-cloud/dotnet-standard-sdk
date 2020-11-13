@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "3Zie9NsOHs/tf2MjL+BG0JSboibg1iNSkf8dkuSdWDjdBEzI3u9Rn+X4k1nYh6Yf64TUD0qC7n8k4Y1ihhDfgw==",
+  "dgSpecHash": "1FEszOu85Rq6NEIGqHS+DbwPEXyZXcJhEHgm8htEM6jkD0Pe/kfa+uHE4GMiFflVZxJJ1FeTH4EsCoy+zrLaNA==",
   "success": true,
   "projectFilePath": "/Users/kevinkowalski/Documents/sdk-generation/dotnet-standard-sdk/watson-dotnet-standard-sdk/src/IBM.Watson.LanguageTranslator.v3/Test/Unit/IBM.Watson.LanguageTranslator.v3.UnitTests.csproj",
   "expectedPackageFiles": [
     "/Users/kevinkowalski/.nuget/packages/castle.core/4.4.0/castle.core.4.4.0.nupkg.sha512",
     "/Users/kevinkowalski/.nuget/packages/coveralls.net/0.7.0/coveralls.net.0.7.0.nupkg.sha512",
     "/Users/kevinkowalski/.nuget/packages/ibm.cloud.sdk.core/1.1.0/ibm.cloud.sdk.core.1.1.0.nupkg.sha512",
+    "/Users/kevinkowalski/.nuget/packages/ibm.watson.common/5.0.0/ibm.watson.common.5.0.0.nupkg.sha512",
+    "/Users/kevinkowalski/.nuget/packages/jsonsubtypes/1.6.0/jsonsubtypes.1.6.0.nupkg.sha512",
     "/Users/kevinkowalski/.nuget/packages/jwt/5.1.1/jwt.5.1.1.nupkg.sha512",
     "/Users/kevinkowalski/.nuget/packages/microsoft.codecoverage/1.0.3/microsoft.codecoverage.1.0.3.nupkg.sha512",
     "/Users/kevinkowalski/.nuget/packages/microsoft.dotnet.platformabstractions/1.0.3/microsoft.dotnet.platformabstractions.1.0.3.nupkg.sha512",

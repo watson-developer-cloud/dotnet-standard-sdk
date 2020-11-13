@@ -218,7 +218,7 @@ namespace IBM.Watson.VisualRecognition.v4
         /// <param name="description">The description of the collection. (optional)</param>
         /// <param name="trainingStatus">Training status information for the collection. (optional)</param>
         /// <returns><see cref="Collection" />Collection</returns>
-        public DetailedResponse<Collection> CreateCollection(string name = null, string description = null, TrainingStatus trainingStatus = null)
+        public DetailedResponse<Collection> CreateCollection(string name = null, string description = null)
         {
             if (string.IsNullOrEmpty(Version))
             {
@@ -248,10 +248,6 @@ namespace IBM.Watson.VisualRecognition.v4
                 if (!string.IsNullOrEmpty(description))
                 {
                     bodyObject["description"] = description;
-                }
-                if (trainingStatus != null)
-                {
-                    bodyObject["training_status"] = JToken.FromObject(trainingStatus);
                 }
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
@@ -387,7 +383,7 @@ namespace IBM.Watson.VisualRecognition.v4
         /// <param name="description">The description of the collection. (optional)</param>
         /// <param name="trainingStatus">Training status information for the collection. (optional)</param>
         /// <returns><see cref="Collection" />Collection</returns>
-        public DetailedResponse<Collection> UpdateCollection(string collectionId, string name = null, string description = null, TrainingStatus trainingStatus = null)
+        public DetailedResponse<Collection> UpdateCollection(string collectionId, string name = null, string description = null)
         {
             if (string.IsNullOrEmpty(Version))
             {
@@ -425,10 +421,6 @@ namespace IBM.Watson.VisualRecognition.v4
                 if (!string.IsNullOrEmpty(description))
                 {
                     bodyObject["description"] = description;
-                }
-                if (trainingStatus != null)
-                {
-                    bodyObject["training_status"] = JToken.FromObject(trainingStatus);
                 }
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);

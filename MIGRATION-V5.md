@@ -32,7 +32,14 @@
 `BulkClassifyResponse`, 
 `BulkClassifyUtterance`, 
 `DialogNodeContext`, 
-`DialogNodeOutputConnectToAgentTransferInfo`, `DialogNodeOutputGenericDialogNodeOutputResponseTypeConnectToAgent`, `DialogNodeOutputGenericDialogNodeOutputResponseTypeImage`, `DialogNodeOutputGenericDialogNodeOutputResponseTypeOption`, `DialogNodeOutputGenericDialogNodeOutputResponseTypePause`, `DialogNodeOutputGenericDialogNodeOutputResponseTypeSearchSkill`, `DialogNodeOutputGenericDialogNodeOutputResponseTypeText`, `RuntimeResponseGenericRuntimeResponseTypeConnectToAgent`, 
+`DialogNodeOutputConnectToAgentTransferInfo`, 
+`DialogNodeOutputGenericDialogNodeOutputResponseTypeConnectToAgent`, 
+`DialogNodeOutputGenericDialogNodeOutputResponseTypeImage`, 
+`DialogNodeOutputGenericDialogNodeOutputResponseTypeOption`, 
+`DialogNodeOutputGenericDialogNodeOutputResponseTypePause`, 
+`DialogNodeOutputGenericDialogNodeOutputResponseTypeSearchSkill`, 
+`DialogNodeOutputGenericDialogNodeOutputResponseTypeText`, 
+`RuntimeResponseGenericRuntimeResponseTypeConnectToAgent`, 
 `RuntimeResponseGenericRuntimeResponseTypeImage`, 
 `RuntimeResponseGenericRuntimeResponseTypeOption`, 
 `RuntimeResponseGenericRuntimeResponseTypePause`, 
@@ -225,10 +232,6 @@ No changes
 No changes
 
 #### Visual Recognition v4
-
-* Added `trainingStatus` parameter to `CreateCollection()` method
-
-* Added `trainingStatus` parameter to `UpdateCollection()` method
 
 * Changed `startTime` and `endTime` parameter types from `string` to `DateTime` in `GetTrainingUsage()` method
 

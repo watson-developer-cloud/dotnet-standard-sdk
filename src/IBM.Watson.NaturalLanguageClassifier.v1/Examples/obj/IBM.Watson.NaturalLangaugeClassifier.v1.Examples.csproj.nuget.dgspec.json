@@ -1,0 +1,61 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/kevinkowalski/Documents/sdk-generation/dotnet-standard-sdk/watson-dotnet-standard-sdk/src/IBM.Watson.NaturalLanguageClassifier.v1/Examples/IBM.Watson.NaturalLangaugeClassifier.v1.Examples.csproj": {}
+  },
+  "projects": {
+    "/Users/kevinkowalski/Documents/sdk-generation/dotnet-standard-sdk/watson-dotnet-standard-sdk/src/IBM.Watson.NaturalLanguageClassifier.v1/Examples/IBM.Watson.NaturalLangaugeClassifier.v1.Examples.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/kevinkowalski/Documents/sdk-generation/dotnet-standard-sdk/watson-dotnet-standard-sdk/src/IBM.Watson.NaturalLanguageClassifier.v1/Examples/IBM.Watson.NaturalLangaugeClassifier.v1.Examples.csproj",
+        "projectName": "IBM.Watson.NaturalLangaugeClassifier.v1.Examples",
+        "projectPath": "/Users/kevinkowalski/Documents/sdk-generation/dotnet-standard-sdk/watson-dotnet-standard-sdk/src/IBM.Watson.NaturalLanguageClassifier.v1/Examples/IBM.Watson.NaturalLangaugeClassifier.v1.Examples.csproj",
+        "packagesPath": "/Users/kevinkowalski/.nuget/packages/",
+        "outputPath": "/Users/kevinkowalski/Documents/sdk-generation/dotnet-standard-sdk/watson-dotnet-standard-sdk/src/IBM.Watson.NaturalLanguageClassifier.v1/Examples/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/Users/kevinkowalski/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "IBM.Cloud.SDK.Core": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

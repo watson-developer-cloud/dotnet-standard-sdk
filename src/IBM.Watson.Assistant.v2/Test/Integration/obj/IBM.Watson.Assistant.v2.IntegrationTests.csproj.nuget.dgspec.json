@@ -1,0 +1,98 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/kevinkowalski/Documents/sdk-generation/dotnet-standard-sdk/watson-dotnet-standard-sdk/src/IBM.Watson.Assistant.v2/Test/Integration/IBM.Watson.Assistant.v2.IntegrationTests.csproj": {}
+  },
+  "projects": {
+    "/Users/kevinkowalski/Documents/sdk-generation/dotnet-standard-sdk/watson-dotnet-standard-sdk/src/IBM.Watson.Assistant.v2/Test/Integration/IBM.Watson.Assistant.v2.IntegrationTests.csproj": {
+      "version": "4.6.0",
+      "restore": {
+        "projectUniqueName": "/Users/kevinkowalski/Documents/sdk-generation/dotnet-standard-sdk/watson-dotnet-standard-sdk/src/IBM.Watson.Assistant.v2/Test/Integration/IBM.Watson.Assistant.v2.IntegrationTests.csproj",
+        "projectName": "IBM.Watson.Assistant.v2.IntTests",
+        "projectPath": "/Users/kevinkowalski/Documents/sdk-generation/dotnet-standard-sdk/watson-dotnet-standard-sdk/src/IBM.Watson.Assistant.v2/Test/Integration/IBM.Watson.Assistant.v2.IntegrationTests.csproj",
+        "packagesPath": "/Users/kevinkowalski/.nuget/packages/",
+        "outputPath": "/Users/kevinkowalski/Documents/sdk-generation/dotnet-standard-sdk/watson-dotnet-standard-sdk/src/IBM.Watson.Assistant.v2/Test/Integration/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/Users/kevinkowalski/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.0": {
+          "dependencies": {
+            "MSTest.TestAdapter": {
+              "target": "Package",
+              "version": "[1.1.8-rc, )"
+            },
+            "MSTest.TestFramework": {
+              "target": "Package",
+              "version": "[1.0.8-rc, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[1.0.2, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[1.0.2, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[15.5.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.0, )",
+              "autoReferenced": true
+            },
+            "NSubstitute": {
+              "target": "Package",
+              "version": "[4.2.1, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            },
+            "OpenCover": {
+              "target": "Package",
+              "version": "[4.7.922, )"
+            },
+            "ReportGenerator": {
+              "target": "Package",
+              "version": "[4.1.5, )"
+            },
+            "coveralls.net": {
+              "target": "Package",
+              "version": "[0.7.0, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

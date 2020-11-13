@@ -1,0 +1,6 @@
+var class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_response_type_suggestion =
+[
+    [ "ResponseTypeEnumValue", "da/d50/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_responcf1c804b8df2b88d2d95dde2ec5e3754.html", "da/d50/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_responcf1c804b8df2b88d2d95dde2ec5e3754" ],
+    [ "Suggestions", "df/d65/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_response_type_suggestion.html#ac0ebea6bada24279787a24645ada595b", null ],
+    [ "Title", "df/d65/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_response_type_suggestion.html#a044b8dc585ec3d5a01c8245cfb3b3ee7", null ]
+];

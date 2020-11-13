@@ -1,0 +1,4 @@
+var class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_get_workspace_enums_1_1_sort_value =
+[
+    [ "STABLE", "da/de7/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_get_workspace_enums_1_1_sort_value.html#a334c71700c97e0807081fc730ed7db41", null ]
+];

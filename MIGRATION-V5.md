@@ -24,7 +24,7 @@
 * `includeCount` is now a parameter of the `ListDialogNodes()` method
 * `context` type was changed from `Dictionary<string, object>` to `DialogNodeContext` in the `CreateDialogNode()` method
 * `newContext` type was changed from `Dictionary<string, object>` to `DialogNodeContext` in the `UpdateDialogNode()` method
-* `BulkClassify` method was addded
+* `BulkClassify()` method was addded
 
 ##### Models Added
 
@@ -71,7 +71,7 @@
 
 #### Assistant v2
 
-* `BulkClassify` method was addded
+* `BulkClassify()` method was addded
 
 ##### Models Added
 
@@ -129,7 +129,7 @@
 
 #### Discovery v2
 
-* `analyzeDocument()` method was addded
+* `AnalyzeDocument()` method was addded
 
 ##### Models Added
 
@@ -221,7 +221,7 @@ No changes
 ##### Model Properties Changed
 
 `Voice`
-* Change return type of `Customization()` from `VoiceModel` to `CustomModel`
+* Change return type of `Customization` from `VoiceModel` to `CustomModel`
 
 #### Tone Analyzer v3
 

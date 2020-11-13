@@ -8,5 +8,9 @@
   <ItemGroup>
     <PackageReference Include="IBM.Cloud.SDK.Core" Version="1.1.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IBM.Watson.Discovery.v2.csproj" />
+  </ItemGroup>
   
 </Project>

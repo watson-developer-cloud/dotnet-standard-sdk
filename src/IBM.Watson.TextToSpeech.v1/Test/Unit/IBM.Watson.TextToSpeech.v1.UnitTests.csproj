@@ -41,5 +41,9 @@
     <PackageReference Include="coveralls.net" Version="0.7.0" />
     <PackageReference Include="ReportGenerator" Version="4.1.5" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\IBM.Watson.TextToSpeech.v1.csproj" />
+  </ItemGroup>
   
 </Project>

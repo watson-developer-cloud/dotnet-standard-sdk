@@ -20,7 +20,7 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using IBM.Watson.Assistant.v1.;
+using IBM.Watson.Assistant.v1.Model;
 using System.Collections.Generic;
 using IBM.Cloud.SDK.Core.Util;
 using IBM.Cloud.SDK.Core.Authentication.Iam;

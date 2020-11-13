@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "+9X9TFGhmAGCjUKuFE+7c9Cc/xb3iZhb+NOv96hCcazpzabAM3vpcta2446CUBaWJRyIgT02G2dxGoxTSxxXvg==",
+  "dgSpecHash": "ei8kN2FogLB1AoT+0HW9vqiOqvLT3d+pPoAlqD7c91UFIeR/GKD1pBCPd4hUOcNtRFICvnni2slMz56MRyDmyg==",
   "success": true,
   "projectFilePath": "/Users/kevinkowalski/Documents/sdk-generation/dotnet-standard-sdk/watson-dotnet-standard-sdk/src/IBM.Watson.VisualRecognition.v4/Test/Unit/IBM.Watson.VisualRecognition.v4.UnitTests.csproj",
   "expectedPackageFiles": [
     "/Users/kevinkowalski/.nuget/packages/castle.core/4.4.0/castle.core.4.4.0.nupkg.sha512",
     "/Users/kevinkowalski/.nuget/packages/coveralls.net/0.7.0/coveralls.net.0.7.0.nupkg.sha512",
     "/Users/kevinkowalski/.nuget/packages/ibm.cloud.sdk.core/1.1.0/ibm.cloud.sdk.core.1.1.0.nupkg.sha512",
+    "/Users/kevinkowalski/.nuget/packages/ibm.watson.common/5.0.0/ibm.watson.common.5.0.0.nupkg.sha512",
+    "/Users/kevinkowalski/.nuget/packages/jsonsubtypes/1.6.0/jsonsubtypes.1.6.0.nupkg.sha512",
     "/Users/kevinkowalski/.nuget/packages/jwt/5.1.1/jwt.5.1.1.nupkg.sha512",
     "/Users/kevinkowalski/.nuget/packages/microsoft.codecoverage/1.0.3/microsoft.codecoverage.1.0.3.nupkg.sha512",
     "/Users/kevinkowalski/.nuget/packages/microsoft.dotnet.platformabstractions/1.0.3/microsoft.dotnet.platformabstractions.1.0.3.nupkg.sha512",

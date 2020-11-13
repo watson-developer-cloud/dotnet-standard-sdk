@@ -4,6 +4,72 @@
     "/Users/kevinkowalski/Documents/sdk-generation/dotnet-standard-sdk/watson-dotnet-standard-sdk/src/IBM.Watson.LanguageTranslator.v3/Test/Unit/IBM.Watson.LanguageTranslator.v3.UnitTests.csproj": {}
   },
   "projects": {
+    "/Users/kevinkowalski/Documents/sdk-generation/dotnet-standard-sdk/watson-dotnet-standard-sdk/src/IBM.Watson.LanguageTranslator.v3/IBM.Watson.LanguageTranslator.v3.csproj": {
+      "version": "5.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/kevinkowalski/Documents/sdk-generation/dotnet-standard-sdk/watson-dotnet-standard-sdk/src/IBM.Watson.LanguageTranslator.v3/IBM.Watson.LanguageTranslator.v3.csproj",
+        "projectName": "IBM.Watson.LanguageTranslator.v3",
+        "projectPath": "/Users/kevinkowalski/Documents/sdk-generation/dotnet-standard-sdk/watson-dotnet-standard-sdk/src/IBM.Watson.LanguageTranslator.v3/IBM.Watson.LanguageTranslator.v3.csproj",
+        "packagesPath": "/Users/kevinkowalski/.nuget/packages/",
+        "outputPath": "/Users/kevinkowalski/Documents/sdk-generation/dotnet-standard-sdk/watson-dotnet-standard-sdk/src/IBM.Watson.LanguageTranslator.v3/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/Users/kevinkowalski/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "IBM.Cloud.SDK.Core": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "IBM.Watson.Common": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "JsonSubTypes": {
+              "target": "Package",
+              "version": "[1.6.0, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
     "/Users/kevinkowalski/Documents/sdk-generation/dotnet-standard-sdk/watson-dotnet-standard-sdk/src/IBM.Watson.LanguageTranslator.v3/Test/Unit/IBM.Watson.LanguageTranslator.v3.UnitTests.csproj": {
       "version": "4.6.0",
       "restore": {
@@ -17,7 +83,7 @@
           "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "/Users/kevinkowalski/.nuget/NuGet/NuGet.Config"
+          "/Users/kevinkowalski/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.0"
@@ -27,7 +93,11 @@
         },
         "frameworks": {
           "netcoreapp2.0": {
-            "projectReferences": {}
+            "projectReferences": {
+              "/Users/kevinkowalski/Documents/sdk-generation/dotnet-standard-sdk/watson-dotnet-standard-sdk/src/IBM.Watson.LanguageTranslator.v3/IBM.Watson.LanguageTranslator.v3.csproj": {
+                "projectPath": "/Users/kevinkowalski/Documents/sdk-generation/dotnet-standard-sdk/watson-dotnet-standard-sdk/src/IBM.Watson.LanguageTranslator.v3/IBM.Watson.LanguageTranslator.v3.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

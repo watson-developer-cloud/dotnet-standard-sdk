@@ -9,4 +9,8 @@
     <PackageReference Include="IBM.Cloud.SDK.Core" Version="1.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\IBM.Watson.TextToSpeech.v1.csproj" />
+  </ItemGroup>
+
 </Project>

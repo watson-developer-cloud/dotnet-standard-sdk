@@ -25,6 +25,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="Examples\**" />
+      <EmbeddedResource Remove="Examples\**" />
+      <None Remove="Examples\**" />
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="IBM.Cloud.SDK.Core" Version="1.1.0" />
         <PackageReference Include="IBM.Watson.Common" Version="5.0.0" />
         <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
@@ -42,9 +48,6 @@
       <Compile Remove="Test\Integration\obj\Debug\netcoreapp2.0\.NETCoreApp,Version=v2.0.AssemblyAttributes.cs" />
       <Compile Remove="Test\Integration\obj\Debug\netcoreapp2.0\IBM.Watson.VisualRecognition.v4.IntegrationTests.Program.cs" />
       <Compile Remove="Test\Integration\Properties\AssemblyInfo.cs" />
-      <Compile Remove="Examples\ServiceExample.cs" />
-      <Compile Remove="Examples\obj\Debug\netcoreapp2.1\.NETCoreApp,Version=v2.1.AssemblyAttributes.cs" />
-      <Compile Remove="Examples\obj\Debug\netcoreapp2.1\IBM.Watson.VisualRecognition.v4.Examples.AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Remove="Test\.DS_Store" />
@@ -116,28 +119,5 @@
       <None Remove="Test\Integration\VisualRecognitionTestData\giraffe_to_classify.jpg" />
       <None Remove="Test\Integration\VisualRecognitionTestData\obama.jpg" />
       <None Remove="Test\Integration\VisualRecognitionTestData\giraffe_positive_examples.zip" />
-      <None Remove="Examples\.DS_Store" />
-      <None Remove="Examples\obj\IBM.Watson.VisualRecognition.v4.Examples.csproj.nuget.cache" />
-      <None Remove="Examples\obj\project.nuget.cache" />
-      <None Remove="Examples\obj\IBM.Watson.VisualRecognition.v4.Examples.csproj.nuget.g.targets" />
-      <None Remove="Examples\obj\IBM.Watson.VisualRecognition.v4.Examples.csproj.nuget.g.props" />
-      <None Remove="Examples\obj\project.assets.json" />
-      <None Remove="Examples\obj\IBM.Watson.VisualRecognition.v4.Examples.csproj.nuget.dgspec.json" />
-      <None Remove="Examples\obj\Release\netcoreapp2.1\IBM.Watson.VisualRecognition.v4.Examples.assets.cache" />
-      <None Remove="Examples\obj\Debug\netcoreapp2.1\IBM.Watson.VisualRecognition.v4.Examples.csproj.CoreCompileInputs.cache" />
-      <None Remove="Examples\obj\Debug\netcoreapp2.1\IBM.Watson.VisualRecognition.v4.Examples.assets.cache" />
-      <None Remove="Examples\obj\Debug\netcoreapp2.1\IBM.Watson.VisualRecognition.v4.Examples.csprojAssemblyReference.cache" />
-      <None Remove="Examples\obj\Debug\netcoreapp2.1\IBM.Watson.VisualRecognition.v4.Examples.csproj.FileListAbsolute.txt" />
-      <None Remove="Examples\obj\Debug\netcoreapp2.1\IBM.Watson.VisualRecognition.v4.Examples.AssemblyInfoInputs.cache" />
-      <None Remove="Examples\obj\Debug\netcoreapp2.1\IBM.Watson.VisualRecognition.v4.Examples.csproj.CopyComplete" />
-      <None Remove="Examples\obj\Debug\netcoreapp2.1\IBM.Watson.VisualRecognition.v4.Examples.pdb" />
-      <None Remove="Examples\obj\Debug\netcoreapp2.1\IBM.Watson.VisualRecognition.v4.Examples.dll" />
-      <None Remove="Examples\bin\Debug\netcoreapp2.1\IBM.Watson.VisualRecognition.v4.Examples.runtimeconfig.dev.json" />
-      <None Remove="Examples\bin\Debug\netcoreapp2.1\IBM.Watson.VisualRecognition.v4.Examples.deps.json" />
-      <None Remove="Examples\bin\Debug\netcoreapp2.1\IBM.Watson.VisualRecognition.v4.dll" />
-      <None Remove="Examples\bin\Debug\netcoreapp2.1\IBM.Watson.VisualRecognition.v4.Examples.pdb" />
-      <None Remove="Examples\bin\Debug\netcoreapp2.1\IBM.Watson.VisualRecognition.v4.pdb" />
-      <None Remove="Examples\bin\Debug\netcoreapp2.1\IBM.Watson.VisualRecognition.v4.Examples.runtimeconfig.json" />
-      <None Remove="Examples\bin\Debug\netcoreapp2.1\IBM.Watson.VisualRecognition.v4.Examples.dll" />
     </ItemGroup>
 </Project>

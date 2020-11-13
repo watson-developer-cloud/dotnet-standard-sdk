@@ -10,6 +10,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\IBM.Watson.Discovery.v1.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update=".\DiscoveryTestData\**\*;appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

@@ -25,42 +25,18 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="Examples\**" />
+      <Compile Remove="Test\**" />
+      <EmbeddedResource Remove="Examples\**" />
+      <EmbeddedResource Remove="Test\**" />
+      <None Remove="Examples\**" />
+      <None Remove="Test\**" />
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="IBM.Cloud.SDK.Core" Version="1.1.0" />
         <PackageReference Include="IBM.Watson.Common" Version="5.0.0" />
         <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
         <PackageReference Include="JsonSubTypes" Version="1.6.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Remove="Examples\ServiceExample.cs" />
-      <Compile Remove="Test\Unit\AssistantServiceGeneratedUnitTests.cs" />
-      <Compile Remove="Test\Unit\AssistantV2UnitTests.cs" />
-      <Compile Remove="Test\Integration\AssistantServiceIntegrationConfigTests.cs" />
-      <Compile Remove="Test\Integration\AssistantServiceIntegrationTests.cs" />
-    </ItemGroup>
-    <ItemGroup>
-      <None Remove="Examples\.DS_Store" />
-      <None Remove="Examples\obj\IBM.Watson.Assistant.v2.Examples.csproj.nuget.cache" />
-      <None Remove="Examples\obj\IBM.Watson.Assistant.v2.Examples.csproj.nuget.dgspec.json" />
-      <None Remove="Examples\obj\IBM.Watson.Assistant.v2.Examples.csproj.nuget.g.targets" />
-      <None Remove="Examples\obj\IBM.Watson.Assistant.v2.Examples.csproj.nuget.g.props" />
-      <None Remove="Examples\obj\project.assets.json" />
-      <None Remove="Examples\obj\Debug\netcoreapp2.1\IBM.Watson.Assistant.v2.Examples.csprojAssemblyReference.cache" />
-      <None Remove="Examples\obj\Debug\netcoreapp2.1\IBM.Watson.Assistant.v2.Examples.assets.cache" />
-      <None Remove="Test\Unit\.DS_Store" />
-      <None Remove="Test\Unit\obj\IBM.Watson.Assistant.v2.UnitTests.csproj.nuget.g.targets" />
-      <None Remove="Test\Unit\obj\IBM.Watson.Assistant.v2.UnitTests.csproj.nuget.dgspec.json" />
-      <None Remove="Test\Unit\obj\IBM.Watson.Assistant.v2.UnitTests.csproj.nuget.cache" />
-      <None Remove="Test\Unit\obj\project.assets.json" />
-      <None Remove="Test\Unit\obj\IBM.Watson.Assistant.v2.UnitTests.csproj.nuget.g.props" />
-      <None Remove="Test\Unit\obj\Debug\netcoreapp2.0\IBM.Watson.Assistant.v2.UnitTests.assets.cache" />
-      <None Remove="Test\Integration\.DS_Store" />
-      <None Remove="Test\Integration\obj\IBM.Watson.Assistant.v2.IntegrationTests.csproj.nuget.g.targets" />
-      <None Remove="Test\Integration\obj\project.nuget.cache" />
-      <None Remove="Test\Integration\obj\IBM.Watson.Assistant.v2.IntegrationTests.csproj.nuget.dgspec.json" />
-      <None Remove="Test\Integration\obj\IBM.Watson.Assistant.v2.IntegrationTests.csproj.nuget.cache" />
-      <None Remove="Test\Integration\obj\project.assets.json" />
-      <None Remove="Test\Integration\obj\IBM.Watson.Assistant.v2.IntegrationTests.csproj.nuget.g.props" />
-      <None Remove="Test\Integration\obj\Debug\netcoreapp2.0\IBM.Watson.Assistant.v2.IntegrationTests.assets.cache" />
     </ItemGroup>
 </Project>

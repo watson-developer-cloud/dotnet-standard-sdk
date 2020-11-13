@@ -25,122 +25,18 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="Examples\**" />
+      <Compile Remove="Test\**" />
+      <EmbeddedResource Remove="Examples\**" />
+      <EmbeddedResource Remove="Test\**" />
+      <None Remove="Examples\**" />
+      <None Remove="Test\**" />
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="IBM.Cloud.SDK.Core" Version="1.1.0" />
         <PackageReference Include="IBM.Watson.Common" Version="5.0.0" />
         <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
         <PackageReference Include="JsonSubTypes" Version="1.6.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Remove="Test\Integration\obj\project.assets.json" />
-      <None Remove="Examples\.DS_Store" />
-      <None Remove="Examples\bin\Debug\netcoreapp2.1\IBM.Watson.CompareComply.v1.Examples.runtimeconfig.dev.json" />
-      <None Remove="Examples\bin\Debug\netcoreapp2.1\IBM.Watson.CompareComply.v1.pdb" />
-      <None Remove="Examples\bin\Debug\netcoreapp2.1\IBM.Watson.CompareComply.v1.Examples.deps.json" />
-      <None Remove="Examples\bin\Debug\netcoreapp2.1\IBM.Watson.CompareComply.v1.Examples.runtimeconfig.json" />
-      <None Remove="Examples\bin\Debug\netcoreapp2.1\IBM.Watson.CompareComply.v1.dll" />
-      <None Remove="Examples\bin\Debug\netcoreapp2.1\IBM.Watson.CompareComply.v1.Examples.dll" />
-      <None Remove="Examples\bin\Debug\netcoreapp2.1\IBM.Watson.CompareComply.v1.Examples.pdb" />
-      <None Remove="Examples\bin\Debug\netcoreapp2.1\CompareComplyTestData\TestTable.pdf" />
-      <None Remove="Examples\bin\Debug\netcoreapp2.1\CompareComplyTestData\contract_B.pdf" />
-      <None Remove="Examples\bin\Debug\netcoreapp2.1\CompareComplyTestData\contract_A.pdf" />
-      <None Remove="Examples\CompareComplyTestData\TestTable.pdf" />
-      <None Remove="Examples\CompareComplyTestData\contract_B.pdf" />
-      <None Remove="Examples\CompareComplyTestData\contract_A.pdf" />
-      <None Remove="Test\.DS_Store" />
-      <None Remove="Examples\obj\project.nuget.cache" />
-      <None Remove="Examples\obj\IBM.Watson.CompareComply.v1.Examples.csproj.nuget.g.targets" />
-      <None Remove="Examples\obj\IBM.Watson.CompareComply.v1.Examples.csproj.nuget.dgspec.json" />
-      <None Remove="Examples\obj\project.assets.json" />
-      <None Remove="Examples\obj\IBM.Watson.CompareComply.v1.Examples.csproj.nuget.g.props" />
-      <None Remove="Examples\obj\IBM.Watson.CompareComply.v1.Examples.csproj.nuget.cache" />
-      <None Remove="Examples\obj\Release\netcoreapp2.1\IBM.Watson.CompareComply.v1.Examples.assets.cache" />
-      <None Remove="Examples\obj\Debug\netcoreapp2.1\IBM.Watson.CompareComply.v1.Examples.csprojAssemblyReference.cache" />
-      <None Remove="Examples\obj\Debug\netcoreapp2.1\IBM.Watson.CompareComply.v1.Examples.assets.cache" />
-      <None Remove="Examples\obj\Debug\netcoreapp2.1\IBM.Watson.CompareComply.v1.Examples.csproj.FileListAbsolute.txt" />
-      <None Remove="Examples\obj\Debug\netcoreapp2.1\IBM.Watson.CompareComply.v1.Examples.dll" />
-      <None Remove="Examples\obj\Debug\netcoreapp2.1\IBM.Watson.CompareComply.v1.Examples.AssemblyInfoInputs.cache" />
-      <None Remove="Examples\obj\Debug\netcoreapp2.1\IBM.Watson.CompareComply.v1.Examples.csproj.CoreCompileInputs.cache" />
-      <None Remove="Examples\obj\Debug\netcoreapp2.1\IBM.Watson.CompareComply.v1.Examples.csproj.CopyComplete" />
-      <None Remove="Examples\obj\Debug\netcoreapp2.1\IBM.Watson.CompareComply.v1.Examples.pdb" />
-      <None Remove="Test\Unit\.DS_Store" />
-      <None Remove="Test\Unit\obj\IBM.Watson.CompareComply.v1.UnitTests.csproj.nuget.g.targets" />
-      <None Remove="Test\Unit\obj\IBM.Watson.CompareComply.v1.UnitTests.csproj.nuget.g.props" />
-      <None Remove="Test\Unit\obj\IBM.Watson.CompareComply.v1.UnitTests.csproj.nuget.dgspec.json" />
-      <None Remove="Test\Unit\obj\project.nuget.cache" />
-      <None Remove="Test\Unit\obj\project.assets.json" />
-      <None Remove="Test\Unit\obj\IBM.Watson.CompareComply.v1.UnitTests.csproj.nuget.cache" />
-      <None Remove="Test\Unit\obj\Release\netcoreapp2.0\IBM.Watson.CompareComply.v1.UnitTests.assets.cache" />
-      <None Remove="Test\Unit\obj\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.UnitTests.AssemblyInfoInputs.cache" />
-      <None Remove="Test\Unit\obj\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.UnitTests.csproj.FileListAbsolute.txt" />
-      <None Remove="Test\Unit\obj\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.UnitTests.assets.cache" />
-      <None Remove="Test\Unit\obj\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.UnitTests.dll" />
-      <None Remove="Test\Unit\obj\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.UnitTests.csprojAssemblyReference.cache" />
-      <None Remove="Test\Unit\obj\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.UnitTests.csproj.CopyComplete" />
-      <None Remove="Test\Unit\obj\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.UnitTests.pdb" />
-      <None Remove="Test\Unit\obj\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.UnitTests.csproj.CoreCompileInputs.cache" />
-      <None Remove="Test\Unit\bin\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.pdb" />
-      <None Remove="Test\Unit\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll" />
-      <None Remove="Test\Unit\bin\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.UnitTests.runtimeconfig.json" />
-      <None Remove="Test\Unit\bin\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.dll" />
-      <None Remove="Test\Unit\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll" />
-      <None Remove="Test\Unit\bin\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.UnitTests.dll" />
-      <None Remove="Test\Unit\bin\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.UnitTests.runtimeconfig.dev.json" />
-      <None Remove="Test\Unit\bin\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.UnitTests.pdb" />
-      <None Remove="Test\Unit\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll" />
-      <None Remove="Test\Unit\bin\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.UnitTests.deps.json" />
-      <None Remove="Test\Unit\bin\Debug\netcoreapp2.0\CompareComplyTestData\TestTable.pdf" />
-      <None Remove="Test\Unit\bin\Debug\netcoreapp2.0\CompareComplyTestData\contract_B.pdf" />
-      <None Remove="Test\Unit\bin\Debug\netcoreapp2.0\CompareComplyTestData\contract_A.pdf" />
-      <None Remove="Test\Unit\bin\Debug\netcoreapp2.0\CompareComplyTestData\table-return.json" />
-      <None Remove="Test\Unit\CompareComplyTestData\TestTable.pdf" />
-      <None Remove="Test\Unit\CompareComplyTestData\contract_B.pdf" />
-      <None Remove="Test\Unit\CompareComplyTestData\contract_A.pdf" />
-      <None Remove="Test\Unit\CompareComplyTestData\table-return.json" />
-      <None Remove="Test\Integration\obj\IBM.Watson.CompareComply.v1.IntegrationTests.csproj.nuget.dgspec.json" />
-      <None Remove="Test\Integration\obj\project.nuget.cache" />
-      <None Remove="Test\Integration\obj\IBM.Watson.CompareComply.v1.IntegrationTests.csproj.nuget.cache" />
-      <None Remove="Test\Integration\obj\IBM.Watson.CompareComply.v1.IntegrationTests.csproj.nuget.g.props" />
-      <None Remove="Test\Integration\obj\IBM.Watson.CompareComply.v1.IntegrationTests.csproj.nuget.g.targets" />
-      <None Remove="Test\Integration\obj\Release\netcoreapp2.0\IBM.Watson.CompareComply.v1.IntegrationTests.csprojAssemblyReference.cache" />
-      <None Remove="Test\Integration\obj\Release\netcoreapp2.0\IBM.Watson.CompareComply.v1.IntegrationTests.assets.cache" />
-      <None Remove="Test\Integration\obj\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.IntegrationTests.csproj.FileListAbsolute.txt" />
-      <None Remove="Test\Integration\obj\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.IntegrationTests.csprojAssemblyReference.cache" />
-      <None Remove="Test\Integration\obj\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.IntegrationTests.csproj.CopyComplete" />
-      <None Remove="Test\Integration\obj\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.IntegrationTests.pdb" />
-      <None Remove="Test\Integration\obj\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.IntegrationTests.csproj.CoreCompileInputs.cache" />
-      <None Remove="Test\Integration\obj\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.IntegrationTests.dll" />
-      <None Remove="Test\Integration\obj\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.IntegrationTests.AssemblyInfoInputs.cache" />
-      <None Remove="Test\Integration\obj\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.IntegrationTests.assets.cache" />
-      <None Remove="Test\Integration\bin\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.IntegrationTests.runtimeconfig.json" />
-      <None Remove="Test\Integration\bin\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.IntegrationTests.pdb" />
-      <None Remove="Test\Integration\bin\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.pdb" />
-      <None Remove="Test\Integration\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll" />
-      <None Remove="Test\Integration\bin\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.dll" />
-      <None Remove="Test\Integration\bin\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.IntegrationTests.dll" />
-      <None Remove="Test\Integration\bin\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.IntegrationTests.runtimeconfig.dev.json" />
-      <None Remove="Test\Integration\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll" />
-      <None Remove="Test\Integration\bin\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.IntegrationTests.deps.json" />
-      <None Remove="Test\Integration\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll" />
-      <None Remove="Test\Integration\bin\Debug\netcoreapp2.0\CompareComplyTestData\TestTable.png" />
-      <None Remove="Test\Integration\bin\Debug\netcoreapp2.0\CompareComplyTestData\TestTable.pdf" />
-      <None Remove="Test\Integration\bin\Debug\netcoreapp2.0\CompareComplyTestData\contract_B.pdf" />
-      <None Remove="Test\Integration\bin\Debug\netcoreapp2.0\CompareComplyTestData\contract_A.pdf" />
-      <None Remove="Test\Integration\CompareComplyTestData\TestTable.png" />
-      <None Remove="Test\Integration\CompareComplyTestData\TestTable.pdf" />
-      <None Remove="Test\Integration\CompareComplyTestData\contract_B.pdf" />
-      <None Remove="Test\Integration\CompareComplyTestData\contract_A.pdf" />
-    </ItemGroup>
-    <ItemGroup>
-      <Compile Remove="Examples\obj\Debug\netcoreapp2.1\.NETCoreApp,Version=v2.1.AssemblyAttributes.cs" />
-      <Compile Remove="Examples\ServiceExample.cs" />
-      <Compile Remove="Test\Unit\CompareComplyServiceGeneratedUnitTests.cs" />
-      <Compile Remove="Test\Unit\obj\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.UnitTests.Program.cs" />
-      <Compile Remove="Test\Unit\obj\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.UnitTests.AssemblyInfo.cs" />
-      <Compile Remove="Test\Unit\obj\Debug\netcoreapp2.0\.NETCoreApp,Version=v2.0.AssemblyAttributes.cs" />
-      <Compile Remove="Test\Integration\CompareComplyServiceIntegrationTests.cs" />
-      <Compile Remove="Test\Integration\obj\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.IntegrationTests.AssemblyInfo.cs" />
-      <Compile Remove="Test\Integration\obj\Debug\netcoreapp2.0\IBM.Watson.CompareComply.v1.IntegrationTests.Program.cs" />
-      <Compile Remove="Test\Integration\obj\Debug\netcoreapp2.0\.NETCoreApp,Version=v2.0.AssemblyAttributes.cs" />
     </ItemGroup>
 </Project>

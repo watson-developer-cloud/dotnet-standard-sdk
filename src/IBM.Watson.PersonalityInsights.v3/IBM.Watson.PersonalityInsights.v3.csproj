@@ -25,120 +25,18 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="Examples\**" />
+      <Compile Remove="Test\**" />
+      <EmbeddedResource Remove="Examples\**" />
+      <EmbeddedResource Remove="Test\**" />
+      <None Remove="Examples\**" />
+      <None Remove="Test\**" />
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="IBM.Cloud.SDK.Core" Version="1.1.0" />
         <PackageReference Include="IBM.Watson.Common" Version="5.0.0" />
         <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
         <PackageReference Include="JsonSubTypes" Version="1.6.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Remove="Test\Integration\obj\IBM.Watson.PersonalityInsights.v3.IntegrationTests.csproj.nuget.cache" />
-      <None Remove="Examples\obj\IBM.Watson.PersonalityInsights.v3.Examples.csproj.nuget.cache" />
-      <None Remove="Examples\.DS_Store" />
-      <None Remove="Examples\bin\Debug\netcoreapp2.1\IBM.Watson.PersonalityInsights.v3.Examples.runtimeconfig.dev.json" />
-      <None Remove="Examples\bin\Debug\netcoreapp2.1\IBM.Watson.PersonalityInsights.v3.Examples.runtimeconfig.json" />
-      <None Remove="Examples\bin\Debug\netcoreapp2.1\IBM.Watson.PersonalityInsights.v3.pdb" />
-      <None Remove="Examples\bin\Debug\netcoreapp2.1\IBM.Watson.PersonalityInsights.v3.Examples.dll" />
-      <None Remove="Examples\bin\Debug\netcoreapp2.1\IBM.Watson.PersonalityInsights.v3.Examples.deps.json" />
-      <None Remove="Examples\bin\Debug\netcoreapp2.1\IBM.Watson.PersonalityInsights.v3.Examples.pdb" />
-      <None Remove="Examples\bin\Debug\netcoreapp2.1\IBM.Watson.PersonalityInsights.v3.dll" />
-      <None Remove="Test\.DS_Store" />
-      <None Remove="Examples\obj\IBM.Watson.PersonalityInsights.v3.Examples.csproj.nuget.dgspec.json" />
-      <None Remove="Examples\obj\project.nuget.cache" />
-      <None Remove="Examples\obj\project.assets.json" />
-      <None Remove="Examples\obj\IBM.Watson.PersonalityInsights.v3.Examples.csproj.nuget.g.targets" />
-      <None Remove="Examples\obj\IBM.Watson.PersonalityInsights.v3.Examples.csproj.nuget.g.props" />
-      <None Remove="Examples\obj\Release\netcoreapp2.1\IBM.Watson.PersonalityInsights.v3.Examples.assets.cache" />
-      <None Remove="Examples\obj\Debug\netcoreapp2.1\IBM.Watson.PersonalityInsights.v3.Examples.AssemblyInfoInputs.cache" />
-      <None Remove="Examples\obj\Debug\netcoreapp2.1\IBM.Watson.PersonalityInsights.v3.Examples.assets.cache" />
-      <None Remove="Examples\obj\Debug\netcoreapp2.1\IBM.Watson.PersonalityInsights.v3.Examples.csproj.CopyComplete" />
-      <None Remove="Examples\obj\Debug\netcoreapp2.1\IBM.Watson.PersonalityInsights.v3.Examples.csprojAssemblyReference.cache" />
-      <None Remove="Examples\obj\Debug\netcoreapp2.1\IBM.Watson.PersonalityInsights.v3.Examples.csproj.CoreCompileInputs.cache" />
-      <None Remove="Examples\obj\Debug\netcoreapp2.1\IBM.Watson.PersonalityInsights.v3.Examples.dll" />
-      <None Remove="Examples\obj\Debug\netcoreapp2.1\IBM.Watson.PersonalityInsights.v3.Examples.csproj.FileListAbsolute.txt" />
-      <None Remove="Examples\obj\Debug\netcoreapp2.1\IBM.Watson.PersonalityInsights.v3.Examples.pdb" />
-      <None Remove="Test\Unit\.DS_Store" />
-      <None Remove="Test\Unit\obj\IBM.Watson.PersonalityInsights.v3.UnitTests.csproj.nuget.g.props" />
-      <None Remove="Test\Unit\obj\IBM.Watson.PersonalityInsights.v3.UnitTests.csproj.nuget.g.targets" />
-      <None Remove="Test\Unit\obj\IBM.Watson.PersonalityInsights.v3.UnitTests.csproj.nuget.cache" />
-      <None Remove="Test\Unit\obj\project.nuget.cache" />
-      <None Remove="Test\Unit\obj\IBM.Watson.PersonalityInsights.v3.UnitTests.csproj.nuget.dgspec.json" />
-      <None Remove="Test\Unit\obj\project.assets.json" />
-      <None Remove="Test\Unit\obj\Release\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.UnitTests.assets.cache" />
-      <None Remove="Test\Unit\obj\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.UnitTests.csproj.CoreCompileInputs.cache" />
-      <None Remove="Test\Unit\obj\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.UnitTests.AssemblyInfoInputs.cache" />
-      <None Remove="Test\Unit\obj\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.UnitTests.pdb" />
-      <None Remove="Test\Unit\obj\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.UnitTests.csproj.FileListAbsolute.txt" />
-      <None Remove="Test\Unit\obj\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.UnitTests.assets.cache" />
-      <None Remove="Test\Unit\obj\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.UnitTests.csproj.CopyComplete" />
-      <None Remove="Test\Unit\obj\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.UnitTests.csprojAssemblyReference.cache" />
-      <None Remove="Test\Unit\obj\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.UnitTests.dll" />
-      <None Remove="Test\Unit\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll" />
-      <None Remove="Test\Unit\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll" />
-      <None Remove="Test\Unit\bin\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.UnitTests.deps.json" />
-      <None Remove="Test\Unit\bin\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.UnitTests.pdb" />
-      <None Remove="Test\Unit\bin\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.pdb" />
-      <None Remove="Test\Unit\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll" />
-      <None Remove="Test\Unit\bin\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.UnitTests.runtimeconfig.json" />
-      <None Remove="Test\Unit\bin\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.UnitTests.runtimeconfig.dev.json" />
-      <None Remove="Test\Unit\bin\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.dll" />
-      <None Remove="Test\Unit\bin\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.UnitTests.dll" />
-      <None Remove="Test\Integration\obj\IBM.Watson.PersonalityInsights.v3.IntegrationTests.csproj.nuget.g.props" />
-      <None Remove="Test\Integration\obj\project.nuget.cache" />
-      <None Remove="Test\Integration\obj\IBM.Watson.PersonalityInsights.v3.IntegrationTests.csproj.nuget.dgspec.json" />
-      <None Remove="Test\Integration\obj\IBM.Watson.PersonalityInsights.v3.IntegrationTests.csproj.nuget.g.targets" />
-      <None Remove="Test\Integration\obj\project.assets.json" />
-      <None Remove="Test\Integration\obj\Release\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.csprojAssemblyReference.cache" />
-      <None Remove="Test\Integration\obj\Release\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.csproj.CopyComplete" />
-      <None Remove="Test\Integration\obj\Release\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.csproj.FileListAbsolute.txt" />
-      <None Remove="Test\Integration\obj\Release\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.pdb" />
-      <None Remove="Test\Integration\obj\Release\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.csproj.CoreCompileInputs.cache" />
-      <None Remove="Test\Integration\obj\Release\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.dll" />
-      <None Remove="Test\Integration\obj\Release\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.AssemblyInfoInputs.cache" />
-      <None Remove="Test\Integration\obj\Release\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.assets.cache" />
-      <None Remove="Test\Integration\obj\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.csprojAssemblyReference.cache" />
-      <None Remove="Test\Integration\obj\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.csproj.CopyComplete" />
-      <None Remove="Test\Integration\obj\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.csproj.FileListAbsolute.txt" />
-      <None Remove="Test\Integration\obj\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.pdb" />
-      <None Remove="Test\Integration\obj\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.csproj.CoreCompileInputs.cache" />
-      <None Remove="Test\Integration\obj\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.dll" />
-      <None Remove="Test\Integration\obj\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.AssemblyInfoInputs.cache" />
-      <None Remove="Test\Integration\obj\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.assets.cache" />
-      <None Remove="Test\Integration\bin\Release\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.runtimeconfig.dev.json" />
-      <None Remove="Test\Integration\bin\Release\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll" />
-      <None Remove="Test\Integration\bin\Release\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.deps.json" />
-      <None Remove="Test\Integration\bin\Release\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.runtimeconfig.json" />
-      <None Remove="Test\Integration\bin\Release\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll" />
-      <None Remove="Test\Integration\bin\Release\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.pdb" />
-      <None Remove="Test\Integration\bin\Release\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.pdb" />
-      <None Remove="Test\Integration\bin\Release\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.dll" />
-      <None Remove="Test\Integration\bin\Release\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll" />
-      <None Remove="Test\Integration\bin\Release\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.dll" />
-      <None Remove="Test\Integration\bin\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.runtimeconfig.dev.json" />
-      <None Remove="Test\Integration\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll" />
-      <None Remove="Test\Integration\bin\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.deps.json" />
-      <None Remove="Test\Integration\bin\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.runtimeconfig.json" />
-      <None Remove="Test\Integration\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll" />
-      <None Remove="Test\Integration\bin\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.pdb" />
-      <None Remove="Test\Integration\bin\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.pdb" />
-      <None Remove="Test\Integration\bin\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.dll" />
-      <None Remove="Test\Integration\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll" />
-      <None Remove="Test\Integration\bin\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.dll" />
-    </ItemGroup>
-    <ItemGroup>
-      <Compile Remove="Examples\obj\Debug\netcoreapp2.1\.NETCoreApp,Version=v2.1.AssemblyAttributes.cs" />
-      <Compile Remove="Examples\ServiceExample.cs" />
-      <Compile Remove="Test\Unit\PersonalityInsightsServiceGeneratedUnitTests.cs" />
-      <Compile Remove="Test\Unit\obj\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.UnitTests.Program.cs" />
-      <Compile Remove="Test\Unit\obj\Debug\netcoreapp2.0\.NETCoreApp,Version=v2.0.AssemblyAttributes.cs" />
-      <Compile Remove="Test\Unit\obj\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.UnitTests.AssemblyInfo.cs" />
-      <Compile Remove="Test\Integration\PersonalityInsightsServiceIntegrationTests.cs" />
-      <Compile Remove="Test\Integration\obj\Release\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.AssemblyInfo.cs" />
-      <Compile Remove="Test\Integration\obj\Release\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.Program.cs" />
-      <Compile Remove="Test\Integration\obj\Release\netcoreapp2.0\.NETCoreApp,Version=v2.0.AssemblyAttributes.cs" />
-      <Compile Remove="Test\Integration\obj\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.AssemblyInfo.cs" />
-      <Compile Remove="Test\Integration\obj\Debug\netcoreapp2.0\IBM.Watson.PersonalityInsights.v3.IntegrationTests.Program.cs" />
-      <Compile Remove="Test\Integration\obj\Debug\netcoreapp2.0\.NETCoreApp,Version=v2.0.AssemblyAttributes.cs" />
-      <Compile Remove="Test\Integration\Properties\AssemblyInfo.cs" />
     </ItemGroup>
 </Project>

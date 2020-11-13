@@ -1,0 +1,5 @@
+var class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_text =
+[
+    [ "ResponseTypeEnumValue", "db/d69/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_respon8061ab8472eb8fa60e59659b91c4348f.html", "db/d69/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_respon8061ab8472eb8fa60e59659b91c4348f" ],
+    [ "Text", "d7/da0/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_text.html#a5f4ff73aafba4bcddf7d6809dc5b8009", null ]
+];

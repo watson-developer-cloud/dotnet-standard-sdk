@@ -1,0 +1,5 @@
+var namespace_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_integration_tests =
+[
+    [ "AssistantServiceIntegrationConfigTests", "d1/de4/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_integration_tests_1_1_assistant_service_integration_config_tests.html", "d1/de4/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_integration_tests_1_1_assistant_service_integration_config_tests" ],
+    [ "AssistantServiceIntegrationTests", "d4/dac/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_integration_tests_1_1_assistant_service_integration_tests.html", "d4/dac/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_integration_tests_1_1_assistant_service_integration_tests" ]
+];

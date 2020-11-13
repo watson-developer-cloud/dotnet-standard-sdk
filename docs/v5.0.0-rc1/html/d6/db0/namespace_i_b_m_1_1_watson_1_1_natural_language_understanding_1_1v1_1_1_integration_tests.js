@@ -1,0 +1,4 @@
+var namespace_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_integration_tests =
+[
+    [ "NaturalLanguageUnderstandingIntegrationTests", "df/d49/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_integration_tests_1_1_natura0bb300eed2efca6b7088142ddb06d25d.html", "df/d49/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_integration_tests_1_1_natura0bb300eed2efca6b7088142ddb06d25d" ]
+];

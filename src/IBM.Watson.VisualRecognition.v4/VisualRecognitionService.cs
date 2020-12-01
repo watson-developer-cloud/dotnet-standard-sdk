@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2019, 2020.
+* (C) Copyright IBM Corp. 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 */
 
 /**
-* IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-8d569e8f-20201109-230115
+* IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-be3b4618-20201201-123423
 */
  
 using System.Collections.Generic;
@@ -37,7 +37,7 @@ namespace IBM.Watson.VisualRecognition.v4
 {
     public partial class VisualRecognitionService : IBMService, IVisualRecognitionService
     {
-        const string defaultServiceName = "visual_recognition";
+        const string defaultServiceName = "watson_vision_combined";
         private const string defaultServiceUrl = "https://api.us-south.visual-recognition.watson.cloud.ibm.com";
         public string Version { get; set; }
 
@@ -218,7 +218,7 @@ namespace IBM.Watson.VisualRecognition.v4
         /// <param name="description">The description of the collection. (optional)</param>
         /// <param name="trainingStatus">Training status information for the collection. (optional)</param>
         /// <returns><see cref="Collection" />Collection</returns>
-        public DetailedResponse<Collection> CreateCollection(string name = null, string description = null)
+        public DetailedResponse<Collection> CreateCollection(string name = null, string description = null, TrainingStatus trainingStatus = null)
         {
             if (string.IsNullOrEmpty(Version))
             {
@@ -248,6 +248,10 @@ namespace IBM.Watson.VisualRecognition.v4
                 if (!string.IsNullOrEmpty(description))
                 {
                     bodyObject["description"] = description;
+                }
+                if (trainingStatus != null)
+                {
+                    bodyObject["training_status"] = JToken.FromObject(trainingStatus);
                 }
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
@@ -383,7 +387,7 @@ namespace IBM.Watson.VisualRecognition.v4
         /// <param name="description">The description of the collection. (optional)</param>
         /// <param name="trainingStatus">Training status information for the collection. (optional)</param>
         /// <returns><see cref="Collection" />Collection</returns>
-        public DetailedResponse<Collection> UpdateCollection(string collectionId, string name = null, string description = null)
+        public DetailedResponse<Collection> UpdateCollection(string collectionId, string name = null, string description = null, TrainingStatus trainingStatus = null)
         {
             if (string.IsNullOrEmpty(Version))
             {
@@ -421,6 +425,10 @@ namespace IBM.Watson.VisualRecognition.v4
                 if (!string.IsNullOrEmpty(description))
                 {
                     bodyObject["description"] = description;
+                }
+                if (trainingStatus != null)
+                {
+                    bodyObject["training_status"] = JToken.FromObject(trainingStatus);
                 }
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);

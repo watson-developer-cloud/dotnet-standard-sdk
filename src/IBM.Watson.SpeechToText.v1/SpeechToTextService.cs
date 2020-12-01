@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2016, 2020.
+* (C) Copyright IBM Corp. 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 */
 
 /**
-* IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-8d569e8f-20201109-230115
+* IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-be3b4618-20201201-123423
 */
  
 using System.Collections.Generic;
@@ -2220,6 +2220,10 @@ namespace IBM.Watson.SpeechToText.v1
                 /// </summary>
                 public const string ES_PE = "es-PE";
                 /// <summary>
+                /// Constant FR_CA for fr-CA
+                /// </summary>
+                public const string FR_CA = "fr-CA";
+                /// <summary>
                 /// Constant FR_FR for fr-FR
                 /// </summary>
                 public const string FR_FR = "fr-FR";
@@ -3553,7 +3557,7 @@ namespace IBM.Watson.SpeechToText.v1
             {
                 grammarName = Uri.EscapeDataString(grammarName);
             }
-            if (grammarFile == null)
+            if (string.IsNullOrEmpty(grammarFile))
             {
                 throw new ArgumentNullException("`grammarFile` is required for `AddGrammar`");
             }
@@ -3950,6 +3954,10 @@ namespace IBM.Watson.SpeechToText.v1
                 /// Constant ES_PE for es-PE
                 /// </summary>
                 public const string ES_PE = "es-PE";
+                /// <summary>
+                /// Constant FR_CA for fr-CA
+                /// </summary>
+                public const string FR_CA = "fr-CA";
                 /// <summary>
                 /// Constant FR_FR for fr-FR
                 /// </summary>

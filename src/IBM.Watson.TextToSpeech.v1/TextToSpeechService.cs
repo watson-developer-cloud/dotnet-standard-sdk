@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2016, 2020.
+* (C) Copyright IBM Corp. 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 */
 
 /**
-* IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-8d569e8f-20201109-230115
+* IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-be3b4618-20201201-123423
 */
  
 using System.Collections.Generic;
@@ -1128,10 +1128,6 @@ namespace IBM.Watson.TextToSpeech.v1
             /// </summary>
             public class LanguageValue
             {
-                /// <summary>
-                /// Constant AR_AR for ar-AR
-                /// </summary>
-                public const string AR_AR = "ar-AR";
                 /// <summary>
                 /// Constant DE_DE for de-DE
                 /// </summary>

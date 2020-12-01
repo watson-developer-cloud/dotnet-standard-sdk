@@ -35,6 +35,9 @@ using System;
 
 namespace IBM.Watson.VisualRecognition.v4
 {
+    [System.Obsolete("On 1 December 2021, Visual Recognition will no longer be available. " +
+        "For more information, see Visual Recognition Deprecation " +
+        "(https://github.com/watson-developer-cloud/java-sdk/tree/master#visual-recognition-deprecation).")]
     public partial class VisualRecognitionService : IBMService, IVisualRecognitionService
     {
         const string defaultServiceName = "visual_recognition";

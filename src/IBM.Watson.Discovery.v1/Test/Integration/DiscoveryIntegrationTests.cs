@@ -77,6 +77,41 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             updatedCollectionName = createdCollectionName + "-updated";
         }
 
+        [TestCleanup]
+        public void Cleanup()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var environments = service.ListEnvironments();
+            environmentId = environments.Result.Environments[1].EnvironmentId;
+
+            var collectionsList = service.ListCollections(
+                environmentId: environmentId
+                );
+
+            foreach (Collection collection in collectionsList.Result.Collections)
+            {
+                if (!string.IsNullOrEmpty(collection.Name) && !string.IsNullOrEmpty(createdCollectionName))
+                {
+                    if (collection.Name.StartsWith(createdCollectionName+"-"))
+                    {
+                        try
+                        {
+                            service.WithHeader("X-Watson-Test", "1");
+                            service.DeleteCollection(
+                                environmentId: environmentId,
+                                collectionId: collection.CollectionId
+                                );
+                            Console.WriteLine("deleted " + collection.CollectionId);
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("ERROR: Could not delete collection with id: "+collection.CollectionId);
+                        }
+                    }
+                }
+            }
+        }
+
         #region Configurations
         [TestMethod]
         public void TestConfigurations_Success()

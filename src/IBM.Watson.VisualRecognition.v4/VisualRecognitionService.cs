@@ -219,7 +219,6 @@ namespace IBM.Watson.VisualRecognition.v4
         /// <param name="name">The name of the collection. The name can contain alphanumeric, underscore, hyphen, and
         /// dot characters. It cannot begin with the reserved prefix `sys-`. (optional)</param>
         /// <param name="description">The description of the collection. (optional)</param>
-        /// <param name="trainingStatus">Training status information for the collection. (optional)</param>
         /// <returns><see cref="Collection" />Collection</returns>
         public DetailedResponse<Collection> CreateCollection(string name = null, string description = null)
         {
@@ -384,7 +383,6 @@ namespace IBM.Watson.VisualRecognition.v4
         /// <param name="name">The name of the collection. The name can contain alphanumeric, underscore, hyphen, and
         /// dot characters. It cannot begin with the reserved prefix `sys-`. (optional)</param>
         /// <param name="description">The description of the collection. (optional)</param>
-        /// <param name="trainingStatus">Training status information for the collection. (optional)</param>
         /// <returns><see cref="Collection" />Collection</returns>
         public DetailedResponse<Collection> UpdateCollection(string collectionId, string name = null, string description = null)
         {

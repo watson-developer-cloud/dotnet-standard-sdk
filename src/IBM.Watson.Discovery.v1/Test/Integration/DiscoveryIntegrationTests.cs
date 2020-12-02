@@ -92,7 +92,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
             {
                 if (!string.IsNullOrEmpty(collection.Name) && !string.IsNullOrEmpty(createdCollectionName))
                 {
-                    if (collection.Name.StartsWith(createdCollectionName+"-"))
+                    if (collection.Name.StartsWith(createdCollectionName + "-"))
                     {
                         try
                         {
@@ -105,7 +105,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                         }
                         catch (Exception e)
                         {
-                            Console.WriteLine("ERROR: Could not delete collection with id: "+collection.CollectionId);
+                            Console.WriteLine("ERROR: Could not delete collection with id: " + collection.CollectionId);
                         }
                     }
                 }

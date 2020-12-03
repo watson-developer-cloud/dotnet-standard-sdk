@@ -178,6 +178,7 @@ No changes
 
 #### Personality Insights
 
+* Added deprecation notice
 * Changed `content` parameter type from `Content` to `System.IO.MemoryStream` in `Profile()` method
 * Changed `content` parameter type from `Content` to `System.IO.MemoryStream` in `ProfileAsCsv()` method
 
@@ -229,10 +230,11 @@ No changes
 
 #### Visual Recognition v3
 
-No changes
+* Added deprecation notice
 
 #### Visual Recognition v4
 
+* Added deprecation notice
 * Changed `startTime` and `endTime` parameter types from `string` to `DateTime` in `GetTrainingUsage()` method
 
 ##### Models Added

@@ -35,7 +35,7 @@ namespace IBM.Watson.PersonalityInsights.v3
     [System.Obsolete("On 1 December 2021, Personality Insights will no longer be available." +
             " Consider migrating to Watson Natural Language Understanding." +
             "\nFor more information, see Personality Insights Deprecation " +
-            "(https://github.com/watson-developer-cloud/java-sdk/tree/master#personality-insights-deprecation).")]
+            "(https://github.com/watson-developer-cloud/dotnet-standard-sdk/tree/master#personality-insights-deprecation).")]
     public partial class PersonalityInsightsService : IBMService, IPersonalityInsightsService
     {
         const string defaultServiceName = "personality_insights";

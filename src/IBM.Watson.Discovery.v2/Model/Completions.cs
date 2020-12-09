@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2019, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ namespace IBM.Watson.Discovery.v2.Model
     public class Completions
     {
         /// <summary>
-        /// Array of autcomplete suggestion based on the provided prefix.
+        /// Array of autocomplete suggestion based on the provided prefix.
         /// </summary>
         [JsonProperty("completions", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> _Completions { get; set; }

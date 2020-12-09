@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2020.
+* (C) Copyright IBM Corp. 2019, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,6 +15,10 @@
 *
 */
 
+/**
+* IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-be3b4618-20201201-123423
+*/
+ 
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
@@ -31,23 +35,27 @@ using System;
 
 namespace IBM.Watson.VisualRecognition.v4
 {
+    [System.Obsolete("On 1 December 2021, Visual Recognition will no longer be available. " +
+        "For more information, see Visual Recognition Deprecation " +
+        "(https://github.com/watson-developer-cloud/dotnet-standard-sdk/tree/master#visual-recognition-deprecation).")]
     public partial class VisualRecognitionService : IBMService, IVisualRecognitionService
     {
-        const string serviceName = "visual_recognition";
+        const string defaultServiceName = "visual_recognition";
         private const string defaultServiceUrl = "https://api.us-south.visual-recognition.watson.cloud.ibm.com";
-        public string VersionDate { get; set; }
+        public string Version { get; set; }
 
-        public VisualRecognitionService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
-        public VisualRecognitionService(IClient httpClient) : base(serviceName, httpClient) { }
+        public VisualRecognitionService(string version) : this(version, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public VisualRecognitionService(string version, IAuthenticator authenticator) : this(version, defaultServiceName, authenticator) {}
+        public VisualRecognitionService(string version, string serviceName) : this(version, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public VisualRecognitionService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public VisualRecognitionService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
+        public VisualRecognitionService(string version, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
-            if (string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`version` is required");
             }
-
-            VersionDate = versionDate;
+            Version = version;
 
             if (string.IsNullOrEmpty(ServiceUrl))
             {
@@ -83,6 +91,10 @@ namespace IBM.Watson.VisualRecognition.v4
         /// <returns><see cref="AnalyzeResponse" />AnalyzeResponse</returns>
         public DetailedResponse<AnalyzeResponse> Analyze(List<string> collectionIds, List<string> features, List<FileWithMetadata> imagesFile = null, List<string> imageUrl = null, float? threshold = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (collectionIds == null || collectionIds.Count == 0)
             {
                 throw new ArgumentNullException("`collectionIds` is required for `Analyze`");
@@ -91,12 +103,6 @@ namespace IBM.Watson.VisualRecognition.v4
             {
                 throw new ArgumentNullException("`features` is required for `Analyze`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<AnalyzeResponse> result = null;
 
             try
@@ -157,8 +163,11 @@ namespace IBM.Watson.VisualRecognition.v4
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v4/analyze");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithBodyContent(formData);
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v4", "Analyze"));
@@ -178,6 +187,24 @@ namespace IBM.Watson.VisualRecognition.v4
 
             return result;
         }
+
+        /// <summary>
+        /// Enum values for Analyze.
+        /// </summary>
+        public class AnalyzeEnums
+        {
+            /// <summary>
+            /// The features to analyze.
+            /// </summary>
+            public class FeaturesValue
+            {
+                /// <summary>
+                /// Constant OBJECTS for objects
+                /// </summary>
+                public const string OBJECTS = "objects";
+                
+            }
+        }
         /// <summary>
         /// Create a collection.
         ///
@@ -189,16 +216,16 @@ namespace IBM.Watson.VisualRecognition.v4
         /// Encode the name and description in UTF-8 if they contain non-ASCII characters. The service assumes UTF-8
         /// encoding if it encounters non-ASCII characters.
         /// </summary>
-        /// <param name="collectionInfo">The new collection.</param>
+        /// <param name="name">The name of the collection. The name can contain alphanumeric, underscore, hyphen, and
+        /// dot characters. It cannot begin with the reserved prefix `sys-`. (optional)</param>
+        /// <param name="description">The description of the collection. (optional)</param>
         /// <returns><see cref="Collection" />Collection</returns>
         public DetailedResponse<Collection> CreateCollection(string name = null, string description = null)
         {
-
-            if (string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(Version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`Version` is required");
             }
-
             DetailedResponse<Collection> result = null;
 
             try
@@ -208,8 +235,11 @@ namespace IBM.Watson.VisualRecognition.v4
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v4/collections");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -250,12 +280,10 @@ namespace IBM.Watson.VisualRecognition.v4
         /// <returns><see cref="CollectionsList" />CollectionsList</returns>
         public DetailedResponse<CollectionsList> ListCollections()
         {
-
-            if (string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(Version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`Version` is required");
             }
-
             DetailedResponse<CollectionsList> result = null;
 
             try
@@ -265,8 +293,11 @@ namespace IBM.Watson.VisualRecognition.v4
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v4/collections");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v4", "ListCollections"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -295,6 +326,10 @@ namespace IBM.Watson.VisualRecognition.v4
         /// <returns><see cref="Collection" />Collection</returns>
         public DetailedResponse<Collection> GetCollection(string collectionId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `GetCollection`");
@@ -303,12 +338,6 @@ namespace IBM.Watson.VisualRecognition.v4
             {
                 collectionId = Uri.EscapeDataString(collectionId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<Collection> result = null;
 
             try
@@ -318,8 +347,11 @@ namespace IBM.Watson.VisualRecognition.v4
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v4/collections/{collectionId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v4", "GetCollection"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -348,10 +380,16 @@ namespace IBM.Watson.VisualRecognition.v4
         /// encoding if it encounters non-ASCII characters.
         /// </summary>
         /// <param name="collectionId">The identifier of the collection.</param>
-        /// <param name="collectionInfo">The updated collection. (optional)</param>
+        /// <param name="name">The name of the collection. The name can contain alphanumeric, underscore, hyphen, and
+        /// dot characters. It cannot begin with the reserved prefix `sys-`. (optional)</param>
+        /// <param name="description">The description of the collection. (optional)</param>
         /// <returns><see cref="Collection" />Collection</returns>
         public DetailedResponse<Collection> UpdateCollection(string collectionId, string name = null, string description = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `UpdateCollection`");
@@ -360,12 +398,6 @@ namespace IBM.Watson.VisualRecognition.v4
             {
                 collectionId = Uri.EscapeDataString(collectionId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<Collection> result = null;
 
             try
@@ -375,8 +407,11 @@ namespace IBM.Watson.VisualRecognition.v4
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v4/collections/{collectionId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -418,6 +453,10 @@ namespace IBM.Watson.VisualRecognition.v4
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteCollection(string collectionId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `DeleteCollection`");
@@ -426,12 +465,6 @@ namespace IBM.Watson.VisualRecognition.v4
             {
                 collectionId = Uri.EscapeDataString(collectionId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<object> result = null;
 
             try
@@ -441,8 +474,11 @@ namespace IBM.Watson.VisualRecognition.v4
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v4/collections/{collectionId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v4", "DeleteCollection"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -479,6 +515,10 @@ namespace IBM.Watson.VisualRecognition.v4
         /// <returns><see cref="byte[]" />byte[]</returns>
         public DetailedResponse<System.IO.MemoryStream> GetModelFile(string collectionId, string feature, string modelFormat)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `GetModelFile`");
@@ -495,12 +535,6 @@ namespace IBM.Watson.VisualRecognition.v4
             {
                 throw new ArgumentNullException("`modelFormat` is required for `GetModelFile`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<System.IO.MemoryStream> result = null;
 
             try
@@ -510,8 +544,11 @@ namespace IBM.Watson.VisualRecognition.v4
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v4/collections/{collectionId}/model");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/octet-stream");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(feature))
                 {
                     restRequest.WithArgument("feature", feature);
@@ -534,6 +571,35 @@ namespace IBM.Watson.VisualRecognition.v4
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Enum values for GetModelFile.
+        /// </summary>
+        public class GetModelFileEnums
+        {
+            /// <summary>
+            /// The feature for the model.
+            /// </summary>
+            public class FeatureValue
+            {
+                /// <summary>
+                /// Constant OBJECTS for objects
+                /// </summary>
+                public const string OBJECTS = "objects";
+                
+            }
+            /// <summary>
+            /// The format of the returned model.
+            /// </summary>
+            public class ModelFormatValue
+            {
+                /// <summary>
+                /// Constant RSCNN for rscnn
+                /// </summary>
+                public const string RSCNN = "rscnn";
+                
+            }
         }
         /// <summary>
         /// Add images.
@@ -565,6 +631,10 @@ namespace IBM.Watson.VisualRecognition.v4
         /// <returns><see cref="ImageDetailsList" />ImageDetailsList</returns>
         public DetailedResponse<ImageDetailsList> AddImages(string collectionId, List<FileWithMetadata> imagesFile = null, List<string> imageUrl = null, string trainingData = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `AddImages`");
@@ -573,12 +643,6 @@ namespace IBM.Watson.VisualRecognition.v4
             {
                 collectionId = Uri.EscapeDataString(collectionId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<ImageDetailsList> result = null;
 
             try
@@ -619,8 +683,11 @@ namespace IBM.Watson.VisualRecognition.v4
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v4/collections/{collectionId}/images");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithBodyContent(formData);
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v4", "AddImages"));
@@ -650,6 +717,10 @@ namespace IBM.Watson.VisualRecognition.v4
         /// <returns><see cref="ImageSummaryList" />ImageSummaryList</returns>
         public DetailedResponse<ImageSummaryList> ListImages(string collectionId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `ListImages`");
@@ -658,12 +729,6 @@ namespace IBM.Watson.VisualRecognition.v4
             {
                 collectionId = Uri.EscapeDataString(collectionId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<ImageSummaryList> result = null;
 
             try
@@ -673,8 +738,11 @@ namespace IBM.Watson.VisualRecognition.v4
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v4/collections/{collectionId}/images");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v4", "ListImages"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -704,6 +772,10 @@ namespace IBM.Watson.VisualRecognition.v4
         /// <returns><see cref="ImageDetails" />ImageDetails</returns>
         public DetailedResponse<ImageDetails> GetImageDetails(string collectionId, string imageId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `GetImageDetails`");
@@ -720,12 +792,6 @@ namespace IBM.Watson.VisualRecognition.v4
             {
                 imageId = Uri.EscapeDataString(imageId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<ImageDetails> result = null;
 
             try
@@ -735,8 +801,11 @@ namespace IBM.Watson.VisualRecognition.v4
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v4/collections/{collectionId}/images/{imageId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v4", "GetImageDetails"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -766,6 +835,10 @@ namespace IBM.Watson.VisualRecognition.v4
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteImage(string collectionId, string imageId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `DeleteImage`");
@@ -782,12 +855,6 @@ namespace IBM.Watson.VisualRecognition.v4
             {
                 imageId = Uri.EscapeDataString(imageId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<object> result = null;
 
             try
@@ -797,8 +864,11 @@ namespace IBM.Watson.VisualRecognition.v4
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v4/collections/{collectionId}/images/{imageId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v4", "DeleteImage"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -831,6 +901,10 @@ namespace IBM.Watson.VisualRecognition.v4
         /// <returns><see cref="byte[]" />byte[]</returns>
         public DetailedResponse<System.IO.MemoryStream> GetJpegImage(string collectionId, string imageId, string size = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `GetJpegImage`");
@@ -847,12 +921,6 @@ namespace IBM.Watson.VisualRecognition.v4
             {
                 imageId = Uri.EscapeDataString(imageId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<System.IO.MemoryStream> result = null;
 
             try
@@ -862,8 +930,11 @@ namespace IBM.Watson.VisualRecognition.v4
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v4/collections/{collectionId}/images/{imageId}/jpeg");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "image/jpeg");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(size))
                 {
                     restRequest.WithArgument("size", size);
@@ -883,6 +954,30 @@ namespace IBM.Watson.VisualRecognition.v4
 
             return result;
         }
+
+        /// <summary>
+        /// Enum values for GetJpegImage.
+        /// </summary>
+        public class GetJpegImageEnums
+        {
+            /// <summary>
+            /// The image size. Specify `thumbnail` to return a version that maintains the original aspect ratio but is
+            /// no larger than 200 pixels in the larger dimension. For example, an original 800 x 1000 image is resized
+            /// to 160 x 200 pixels.
+            /// </summary>
+            public class SizeValue
+            {
+                /// <summary>
+                /// Constant FULL for full
+                /// </summary>
+                public const string FULL = "full";
+                /// <summary>
+                /// Constant THUMBNAIL for thumbnail
+                /// </summary>
+                public const string THUMBNAIL = "thumbnail";
+                
+            }
+        }
         /// <summary>
         /// List object metadata.
         ///
@@ -892,6 +987,10 @@ namespace IBM.Watson.VisualRecognition.v4
         /// <returns><see cref="ObjectMetadataList" />ObjectMetadataList</returns>
         public DetailedResponse<ObjectMetadataList> ListObjectMetadata(string collectionId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `ListObjectMetadata`");
@@ -900,12 +999,6 @@ namespace IBM.Watson.VisualRecognition.v4
             {
                 collectionId = Uri.EscapeDataString(collectionId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<ObjectMetadataList> result = null;
 
             try
@@ -915,8 +1008,11 @@ namespace IBM.Watson.VisualRecognition.v4
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v4/collections/{collectionId}/objects");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v4", "ListObjectMetadata"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -944,10 +1040,15 @@ namespace IBM.Watson.VisualRecognition.v4
         /// </summary>
         /// <param name="collectionId">The identifier of the collection.</param>
         /// <param name="_object">The name of the object.</param>
-        /// <param name="updateObjectMetadata"></param>
+        /// <param name="newObject">The updated name of the object. The name can contain alphanumeric, underscore,
+        /// hyphen, space, and dot characters. It cannot begin with the reserved prefix `sys-`.</param>
         /// <returns><see cref="UpdateObjectMetadata" />UpdateObjectMetadata</returns>
         public DetailedResponse<UpdateObjectMetadata> UpdateObjectMetadata(string collectionId, string _object, string newObject)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `UpdateObjectMetadata`");
@@ -968,12 +1069,6 @@ namespace IBM.Watson.VisualRecognition.v4
             {
                 throw new ArgumentNullException("`newObject` is required for `UpdateObjectMetadata`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<UpdateObjectMetadata> result = null;
 
             try
@@ -983,8 +1078,11 @@ namespace IBM.Watson.VisualRecognition.v4
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v4/collections/{collectionId}/objects/{_object}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -1023,6 +1121,10 @@ namespace IBM.Watson.VisualRecognition.v4
         /// <returns><see cref="ObjectMetadata" />ObjectMetadata</returns>
         public DetailedResponse<ObjectMetadata> GetObjectMetadata(string collectionId, string _object)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `GetObjectMetadata`");
@@ -1039,12 +1141,6 @@ namespace IBM.Watson.VisualRecognition.v4
             {
                 _object = Uri.EscapeDataString(_object);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<ObjectMetadata> result = null;
 
             try
@@ -1054,8 +1150,11 @@ namespace IBM.Watson.VisualRecognition.v4
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v4/collections/{collectionId}/objects/{_object}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v4", "GetObjectMetadata"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -1086,6 +1185,10 @@ namespace IBM.Watson.VisualRecognition.v4
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteObject(string collectionId, string _object)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `DeleteObject`");
@@ -1102,12 +1205,6 @@ namespace IBM.Watson.VisualRecognition.v4
             {
                 _object = Uri.EscapeDataString(_object);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<object> result = null;
 
             try
@@ -1117,8 +1214,11 @@ namespace IBM.Watson.VisualRecognition.v4
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v4/collections/{collectionId}/objects/{_object}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v4", "DeleteObject"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -1148,6 +1248,10 @@ namespace IBM.Watson.VisualRecognition.v4
         /// <returns><see cref="Collection" />Collection</returns>
         public DetailedResponse<Collection> Train(string collectionId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `Train`");
@@ -1156,12 +1260,6 @@ namespace IBM.Watson.VisualRecognition.v4
             {
                 collectionId = Uri.EscapeDataString(collectionId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<Collection> result = null;
 
             try
@@ -1171,8 +1269,11 @@ namespace IBM.Watson.VisualRecognition.v4
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v4/collections/{collectionId}/train");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v4", "Train"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -1206,10 +1307,14 @@ namespace IBM.Watson.VisualRecognition.v4
         /// </summary>
         /// <param name="collectionId">The identifier of the collection.</param>
         /// <param name="imageId">The identifier of the image.</param>
-        /// <param name="trainingData">Training data. Elements in the request replace the existing elements.</param>
+        /// <param name="objects">Training data for specific objects. (optional)</param>
         /// <returns><see cref="TrainingDataObjects" />TrainingDataObjects</returns>
         public DetailedResponse<TrainingDataObjects> AddImageTrainingData(string collectionId, string imageId, List<TrainingDataObject> objects = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(collectionId))
             {
                 throw new ArgumentNullException("`collectionId` is required for `AddImageTrainingData`");
@@ -1226,12 +1331,6 @@ namespace IBM.Watson.VisualRecognition.v4
             {
                 imageId = Uri.EscapeDataString(imageId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<TrainingDataObjects> result = null;
 
             try
@@ -1241,8 +1340,11 @@ namespace IBM.Watson.VisualRecognition.v4
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v4/collections/{collectionId}/images/{imageId}/training_data");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -1283,14 +1385,12 @@ namespace IBM.Watson.VisualRecognition.v4
         /// All events for the day are included. If empty or not specified, the current day is used. Specify the same
         /// value as `start_time` to request events for a single day. (optional)</param>
         /// <returns><see cref="TrainingEvents" />TrainingEvents</returns>
-        public DetailedResponse<TrainingEvents> GetTrainingUsage(string startTime = null, string endTime = null)
+        public DetailedResponse<TrainingEvents> GetTrainingUsage(DateTime? startTime = null, DateTime? endTime = null)
         {
-
-            if (string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(Version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`Version` is required");
             }
-
             DetailedResponse<TrainingEvents> result = null;
 
             try
@@ -1300,15 +1400,18 @@ namespace IBM.Watson.VisualRecognition.v4
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v4/training_usage");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
-                if (!string.IsNullOrEmpty(startTime))
+                if (!string.IsNullOrEmpty(Version))
                 {
-                    restRequest.WithArgument("start_time", startTime);
+                    restRequest.WithArgument("version", Version);
                 }
-                if (!string.IsNullOrEmpty(endTime))
+                if (startTime != null)
                 {
-                    restRequest.WithArgument("end_time", endTime);
+                    restRequest.WithArgument("start_time", startTime?.ToString("yyyy-MM-dd"));
+                }
+                if (endTime != null)
+                {
+                    restRequest.WithArgument("end_time", endTime?.ToString("yyyy-MM-dd"));
                 }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("watson_vision_combined", "v4", "GetTrainingUsage"));
@@ -1342,16 +1445,14 @@ namespace IBM.Watson.VisualRecognition.v4
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteUserData(string customerId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(customerId))
             {
                 throw new ArgumentNullException("`customerId` is required for `DeleteUserData`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<object> result = null;
 
             try
@@ -1361,8 +1462,11 @@ namespace IBM.Watson.VisualRecognition.v4
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v4/user_data");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(customerId))
                 {
                     restRequest.WithArgument("customer_id", customerId);

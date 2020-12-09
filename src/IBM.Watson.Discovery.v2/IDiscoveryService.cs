@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2020.
+* (C) Copyright IBM Corp. 2019, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -41,6 +41,7 @@ namespace IBM.Watson.Discovery.v2
         DetailedResponse<TrainingQuery> CreateTrainingQuery(string projectId, string naturalLanguageQuery, List<TrainingExample> examples, string filter = null);
         DetailedResponse<TrainingQuery> GetTrainingQuery(string projectId, string queryId);
         DetailedResponse<TrainingQuery> UpdateTrainingQuery(string projectId, string queryId, string naturalLanguageQuery, List<TrainingExample> examples, string filter = null);
+        DetailedResponse<AnalyzedDocument> AnalyzeDocument(string projectId, string collectionId, System.IO.MemoryStream file = null, string filename = null, string fileContentType = null, string metadata = null);
         DetailedResponse<Enrichments> ListEnrichments(string projectId);
         DetailedResponse<Enrichment> CreateEnrichment(string projectId, CreateEnrichment enrichment, System.IO.MemoryStream file = null);
         DetailedResponse<Enrichment> GetEnrichment(string projectId, string enrichmentId);

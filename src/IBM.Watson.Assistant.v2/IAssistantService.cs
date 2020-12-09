@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2020.
+* (C) Copyright IBM Corp. 2019, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 */
 
 using IBM.Cloud.SDK.Core.Http;
+using System.Collections.Generic;
 using IBM.Watson.Assistant.v2.Model;
 
 namespace IBM.Watson.Assistant.v2
@@ -28,5 +29,6 @@ namespace IBM.Watson.Assistant.v2
         DetailedResponse<MessageResponseStateless> MessageStateless(string assistantId, MessageInputStateless input = null, MessageContextStateless context = null);
         DetailedResponse<LogCollection> ListLogs(string assistantId, string sort = null, string filter = null, long? pageLimit = null, string cursor = null);
         DetailedResponse<object> DeleteUserData(string customerId);
+        DetailedResponse<BulkClassifyResponse> BulkClassify(string skillId, List<BulkClassifyUtterance> input = null);
     }
 }

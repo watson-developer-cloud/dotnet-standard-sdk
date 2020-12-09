@@ -15,6 +15,10 @@
 *
 */
 
+/**
+* IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-be3b4618-20201201-123423
+*/
+ 
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -30,21 +34,22 @@ namespace IBM.Watson.Assistant.v2
 {
     public partial class AssistantService : IBMService, IAssistantService
     {
-        const string serviceName = "assistant";
+        const string defaultServiceName = "assistant";
         private const string defaultServiceUrl = "https://api.us-south.assistant.watson.cloud.ibm.com";
-        public string VersionDate { get; set; }
+        public string Version { get; set; }
 
-        public AssistantService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
-        public AssistantService(IClient httpClient) : base(serviceName, httpClient) { }
+        public AssistantService(string version) : this(version, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public AssistantService(string version, IAuthenticator authenticator) : this(version, defaultServiceName, authenticator) {}
+        public AssistantService(string version, string serviceName) : this(version, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public AssistantService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public AssistantService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
+        public AssistantService(string version, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
-            if (string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`version` is required");
             }
-
-            VersionDate = versionDate;
+            Version = version;
 
             if (string.IsNullOrEmpty(ServiceUrl))
             {
@@ -77,12 +82,10 @@ namespace IBM.Watson.Assistant.v2
             {
                 assistantId = Uri.EscapeDataString(assistantId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(Version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`Version` is required");
             }
-
             DetailedResponse<SessionResponse> result = null;
 
             try
@@ -92,8 +95,11 @@ namespace IBM.Watson.Assistant.v2
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v2/assistants/{assistantId}/sessions");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v2", "CreateSession"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -137,6 +143,10 @@ namespace IBM.Watson.Assistant.v2
             {
                 assistantId = Uri.EscapeDataString(assistantId);
             }
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(sessionId))
             {
                 throw new ArgumentNullException("`sessionId` is required for `DeleteSession`");
@@ -145,12 +155,6 @@ namespace IBM.Watson.Assistant.v2
             {
                 sessionId = Uri.EscapeDataString(sessionId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<object> result = null;
 
             try
@@ -160,8 +164,11 @@ namespace IBM.Watson.Assistant.v2
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v2/assistants/{assistantId}/sessions/{sessionId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v2", "DeleteSession"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -193,8 +200,13 @@ namespace IBM.Watson.Assistant.v2
         ///
         /// **Note:** Currently, the v2 API does not support creating assistants.</param>
         /// <param name="sessionId">Unique identifier of the session.</param>
-        /// <param name="request">The message to be sent. This includes the user's input, along with optional content
-        /// such as intents and entities. (optional)</param>
+        /// <param name="input">An input object that includes the input text. (optional)</param>
+        /// <param name="context">Context data for the conversation. You can use this property to set or modify context
+        /// variables, which can also be accessed by dialog nodes. The context is stored by the assistant on a
+        /// per-session basis.
+        ///
+        /// **Note:** The total size of the context data stored for a stateful session cannot exceed 100KB.
+        /// (optional)</param>
         /// <returns><see cref="MessageResponse" />MessageResponse</returns>
         public DetailedResponse<MessageResponse> Message(string assistantId, string sessionId, MessageInput input = null, MessageContext context = null)
         {
@@ -214,12 +226,10 @@ namespace IBM.Watson.Assistant.v2
             {
                 sessionId = Uri.EscapeDataString(sessionId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(Version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`Version` is required");
             }
-
             DetailedResponse<MessageResponse> result = null;
 
             try
@@ -229,8 +239,11 @@ namespace IBM.Watson.Assistant.v2
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v2/assistants/{assistantId}/sessions/{sessionId}/message");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -275,8 +288,12 @@ namespace IBM.Watson.Assistant.v2
         /// [documentation](https://cloud.ibm.com/docs/assistant?topic=assistant-assistant-add#assistant-add-task).
         ///
         /// **Note:** Currently, the v2 API does not support creating assistants.</param>
-        /// <param name="request">The message to be sent. This includes the user's input, context data, and optional
-        /// content such as intents and entities. (optional)</param>
+        /// <param name="input">An input object that includes the input text. (optional)</param>
+        /// <param name="context">Context data for the conversation. You can use this property to set or modify context
+        /// variables, which can also be accessed by dialog nodes. The context is not stored by the assistant. To
+        /// maintain session state, include the context from the previous response.
+        ///
+        /// **Note:** The total size of the context data for a stateless session cannot exceed 250KB. (optional)</param>
         /// <returns><see cref="MessageResponseStateless" />MessageResponseStateless</returns>
         public DetailedResponse<MessageResponseStateless> MessageStateless(string assistantId, MessageInputStateless input = null, MessageContextStateless context = null)
         {
@@ -288,12 +305,10 @@ namespace IBM.Watson.Assistant.v2
             {
                 assistantId = Uri.EscapeDataString(assistantId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(Version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`Version` is required");
             }
-
             DetailedResponse<MessageResponseStateless> result = null;
 
             try
@@ -303,8 +318,11 @@ namespace IBM.Watson.Assistant.v2
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v2/assistants/{assistantId}/message");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -368,12 +386,10 @@ namespace IBM.Watson.Assistant.v2
             {
                 assistantId = Uri.EscapeDataString(assistantId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(Version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`Version` is required");
             }
-
             DetailedResponse<LogCollection> result = null;
 
             try
@@ -383,8 +399,11 @@ namespace IBM.Watson.Assistant.v2
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v2/assistants/{assistantId}/logs");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(sort))
                 {
                     restRequest.WithArgument("sort", sort);
@@ -435,16 +454,14 @@ namespace IBM.Watson.Assistant.v2
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteUserData(string customerId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(customerId))
             {
                 throw new ArgumentNullException("`customerId` is required for `DeleteUserData`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<object> result = null;
 
             try
@@ -454,8 +471,11 @@ namespace IBM.Watson.Assistant.v2
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v2/user_data");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(customerId))
                 {
                     restRequest.WithArgument("customer_id", customerId);
@@ -469,6 +489,74 @@ namespace IBM.Watson.Assistant.v2
                 if (result == null)
                 {
                     result = new DetailedResponse<object>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// Identify intents and entities in multiple user utterances.
+        ///
+        /// Send multiple user inputs to a dialog skill in a single request and receive information about the intents
+        /// and entities recognized in each input. This method is useful for testing and comparing the performance of
+        /// different skills or skill versions.
+        ///
+        /// This method is available only with Premium plans.
+        /// </summary>
+        /// <param name="skillId">Unique identifier of the skill. To find the skill ID in the Watson Assistant user
+        /// interface, open the skill settings and click **API Details**.</param>
+        /// <param name="input">An array of input utterances to classify. (optional)</param>
+        /// <returns><see cref="BulkClassifyResponse" />BulkClassifyResponse</returns>
+        public DetailedResponse<BulkClassifyResponse> BulkClassify(string skillId, List<BulkClassifyUtterance> input = null)
+        {
+            if (string.IsNullOrEmpty(skillId))
+            {
+                throw new ArgumentNullException("`skillId` is required for `BulkClassify`");
+            }
+            else
+            {
+                skillId = Uri.EscapeDataString(skillId);
+            }
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
+            DetailedResponse<BulkClassifyResponse> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v2/skills/{skillId}/workspace/bulk_classify");
+
+                restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
+                restRequest.WithHeader("Content-Type", "application/json");
+
+                JObject bodyObject = new JObject();
+                if (input != null && input.Count > 0)
+                {
+                    bodyObject["input"] = JToken.FromObject(input);
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
+                restRequest.WithBodyContent(httpContent);
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v2", "BulkClassify"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<BulkClassifyResponse>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<BulkClassifyResponse>();
                 }
             }
             catch (AggregateException ae)

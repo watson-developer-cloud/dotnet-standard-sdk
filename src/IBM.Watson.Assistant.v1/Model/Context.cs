@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
 *
 */
 
+using System.Collections.Generic;
 using IBM.Cloud.SDK.Core.Model;
 using Newtonsoft.Json;
 
@@ -34,7 +35,7 @@ namespace IBM.Watson.Assistant.v1.Model
         /// For internal use only.
         /// </summary>
         [JsonProperty("system", NullValueHandling = NullValueHandling.Ignore)]
-        public SystemResponse System { get; set; }
+        public Dictionary<string, object> System { get; set; }
         /// <summary>
         /// Metadata related to the message.
         /// </summary>

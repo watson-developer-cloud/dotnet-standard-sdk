@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2016, 2019.
+* (C) Copyright IBM Corp. 2016, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -27,11 +27,11 @@ namespace IBM.Watson.TextToSpeech.v1
         DetailedResponse<Voice> GetVoice(string voice, string customizationId = null);
         DetailedResponse<System.IO.MemoryStream> Synthesize(string text, string accept = null, string voice = null, string customizationId = null);
         DetailedResponse<Pronunciation> GetPronunciation(string text, string voice = null, string format = null, string customizationId = null);
-        DetailedResponse<VoiceModel> CreateVoiceModel(string name, string language = null, string description = null);
-        DetailedResponse<VoiceModels> ListVoiceModels(string language = null);
-        DetailedResponse<object> UpdateVoiceModel(string customizationId, string name = null, string description = null, List<Word> words = null);
-        DetailedResponse<VoiceModel> GetVoiceModel(string customizationId);
-        DetailedResponse<object> DeleteVoiceModel(string customizationId);
+        DetailedResponse<CustomModel> CreateCustomModel(string name, string language = null, string description = null);
+        DetailedResponse<CustomModels> ListCustomModels(string language = null);
+        DetailedResponse<object> UpdateCustomModel(string customizationId, string name = null, string description = null, List<Word> words = null);
+        DetailedResponse<CustomModel> GetCustomModel(string customizationId);
+        DetailedResponse<object> DeleteCustomModel(string customizationId);
         DetailedResponse<object> AddWords(string customizationId, List<Word> words);
         DetailedResponse<Words> ListWords(string customizationId);
         DetailedResponse<object> AddWord(string customizationId, string word, string translation, string partOfSpeech = null);

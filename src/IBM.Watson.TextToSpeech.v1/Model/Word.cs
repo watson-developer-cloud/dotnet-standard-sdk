@@ -20,7 +20,7 @@ using Newtonsoft.Json;
 namespace IBM.Watson.TextToSpeech.v1.Model
 {
     /// <summary>
-    /// Information about a word for the custom voice model.
+    /// Information about a word for the custom model.
     /// </summary>
     public class Word
     {
@@ -115,7 +115,7 @@ namespace IBM.Watson.TextToSpeech.v1.Model
         [JsonProperty("part_of_speech", NullValueHandling = NullValueHandling.Ignore)]
         public string PartOfSpeech { get; set; }
         /// <summary>
-        /// The word for the custom voice model. The maximum length of a word is 49 characters.
+        /// The word for the custom model. The maximum length of a word is 49 characters.
         /// </summary>
         [JsonProperty("word", NullValueHandling = NullValueHandling.Ignore)]
         public string _Word { get; set; }

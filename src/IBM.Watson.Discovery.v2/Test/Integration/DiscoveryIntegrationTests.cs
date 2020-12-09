@@ -32,7 +32,7 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
     {
         private DiscoveryService service;
         private string versionDate = "2019-11-22";
-        private string filepathToIngest = @"DiscoveryTestData/watson_beats_jeopardy.html";
+        private string filepathToIngest = @"DiscoveryTestData/problem.json";
         private string enrichmentFile = @"DiscoveryTestData/test.csv";
         private string metadata = "{\"Creator\": \".NET SDK Test\",\"Subject\": \"Discovery service\"}";
         private string bearerToken = "";
@@ -43,11 +43,12 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
-            //Authenticator discoveryAuthenticator = new BearerTokenAuthenticator(bearerToken: bearerToken);
-            //service = new DiscoveryService(versionDate: versionDate, authenticator: discoveryAuthenticator);
-            //service.SetServiceUrl(serviceUrl: serviceUrl);
-            //service.DisableSslVerification(true);
-            service = new DiscoveryService(versionDate);
+            Authenticator discoveryAuthenticator = new BearerTokenAuthenticator(bearerToken: bearerToken);
+            service = new DiscoveryService(version: versionDate, authenticator: discoveryAuthenticator);
+            service.SetServiceUrl(serviceUrl: serviceUrl);
+            service.DisableSslVerification(true);
+            //service = new DiscoveryService(versionDate);
+            //service.SetServiceUrl(serviceUrl);
             var creds = CredentialUtils.GetServiceProperties("discovery");
             creds.TryGetValue("PROJECT_ID", out projectId);
             creds.TryGetValue("COLLECTION_ID", out collectionId);
@@ -61,7 +62,7 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
                 projectId: projectId,
                 collectionIds: new List<string> { collectionId },
                 passages: new QueryLargePassages() { PerDocument = true },
-                query: "text:IBM",
+                query: "text:document",
                 count: 2);
 
             Assert.IsNotNull(queryResult.Result.Results[0].DocumentPassages[0].PassageText);
@@ -74,7 +75,7 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
                 projectId: projectId,
                 collectionIds: new List<string> { collectionId },
                 passages: new QueryLargePassages() { PerDocument = false },
-                query: "text:IBM",
+                query: "text:document",
                 count: 2);
 
             Assert.IsNotNull(queryResult.Result.Passages[0].CollectionId);
@@ -186,7 +187,7 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
             service.WithHeader("X-Watson-Test", "1");
             var getAutocompletionResult = service.GetAutocompletion(
                 projectId: projectId,
-                prefix: "ha"
+                prefix: "pd"
                 );
 
             Assert.IsNotNull(getAutocompletionResult.Result);
@@ -320,14 +321,13 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
-
                     service.WithHeader("X-Watson-Test", "1");
                     var response = service.AnalyzeDocument(
                         projectId: projectId,
                         collectionId: collectionId,
                         file: ms,
-                        filename: "watson_beats_jeopardy.html",
-                        fileContentType: DiscoveryService.AnalyzeDocumentEnums.FileContentTypeValue.TEXT_HTML,
+                        filename: "problem.json",
+                        fileContentType: DiscoveryService.AnalyzeDocumentEnums.FileContentTypeValue.APPLICATION_JSON,
                         metadata: "{ \"metadata\": \"value\" }"
                         );
                     Assert.IsNotNull(response);

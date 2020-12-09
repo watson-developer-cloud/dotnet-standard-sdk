@@ -1,16 +1,46 @@
 var class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service =
 [
-    [ "AssistantService", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#ad41c37ccb77a59929533cf589eaeeeb7", null ],
+    [ "GetWorkspaceEnums", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_get_workspace_enums.html", [
+      [ "SortValue", "da/de7/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_get_workspace_enums_1_1_sort_value.html", "da/de7/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_get_workspace_enums_1_1_sort_value" ]
+    ] ],
+    [ "ListCounterexamplesEnums", "d7/dee/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_list_counterexamples_enums.html", [
+      [ "SortValue", "d1/de0/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_list_counterexamples_enums_1_1_sort_value.html", "d1/de0/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_list_counterexamples_enums_1_1_sort_value" ]
+    ] ],
+    [ "ListDialogNodesEnums", "d2/de4/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_list_dialog_nodes_enums.html", [
+      [ "SortValue", "dd/d90/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_list_dialog_nodes_enums_1_1_sort_value.html", "dd/d90/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_list_dialog_nodes_enums_1_1_sort_value" ]
+    ] ],
+    [ "ListEntitiesEnums", "dc/df2/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_list_entities_enums.html", [
+      [ "SortValue", "d8/d8a/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_list_entities_enums_1_1_sort_value.html", "d8/d8a/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_list_entities_enums_1_1_sort_value" ]
+    ] ],
+    [ "ListExamplesEnums", "de/d86/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_list_examples_enums.html", [
+      [ "SortValue", "db/d8d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_list_examples_enums_1_1_sort_value.html", "db/d8d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_list_examples_enums_1_1_sort_value" ]
+    ] ],
+    [ "ListIntentsEnums", "d1/d65/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_list_intents_enums.html", [
+      [ "SortValue", "d7/d37/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_list_intents_enums_1_1_sort_value.html", "d7/d37/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_list_intents_enums_1_1_sort_value" ]
+    ] ],
+    [ "ListSynonymsEnums", "df/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_list_synonyms_enums.html", [
+      [ "SortValue", "d7/d55/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_list_synonyms_enums_1_1_sort_value.html", "d7/d55/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_list_synonyms_enums_1_1_sort_value" ]
+    ] ],
+    [ "ListValuesEnums", "d7/dee/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_list_values_enums.html", [
+      [ "SortValue", "dd/d99/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_list_values_enums_1_1_sort_value.html", "dd/d99/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_list_values_enums_1_1_sort_value" ]
+    ] ],
+    [ "ListWorkspacesEnums", "d9/db7/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_list_workspaces_enums.html", [
+      [ "SortValue", "dd/d4e/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_list_workspaces_enums_1_1_sort_value.html", "dd/d4e/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_list_workspaces_enums_1_1_sort_value" ]
+    ] ],
+    [ "AssistantService", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#ac94d0f6454f71e1da43299ce563e82a7", null ],
+    [ "AssistantService", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a07a73849414681421e6303ef77919ae1", null ],
+    [ "AssistantService", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a8ad7841bffe1ac4f653445da6a35f888", null ],
     [ "AssistantService", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#ad952f780e07afc77d910bc8b9c473384", null ],
-    [ "AssistantService", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#ae6f13e42fb44a2475d1a1bb3b61a52da", null ],
+    [ "AssistantService", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a3c80e68a2afac979b6aa2610cc9a648f", null ],
+    [ "BulkClassify", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a51ae7f3f2b2219658fd471fdbebdc1a1", null ],
     [ "CreateCounterexample", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a35d5cb75be0b8a80296f03c06100d059", null ],
-    [ "CreateDialogNode", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a973fcdbe8a622bdf388087325f62f28c", null ],
+    [ "CreateDialogNode", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#aad0bde7ae0c701d8efedd3daf82d1c93", null ],
     [ "CreateEntity", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a11faf526d60e370a342f5376f1410292", null ],
     [ "CreateExample", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a5ddbf7363a6572bae949e732ba7d4cd7", null ],
     [ "CreateIntent", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a5541aecdec5f94e1085a8a421ca47e18", null ],
     [ "CreateSynonym", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a139f42eeb119cac9098e60fa758211e9", null ],
     [ "CreateValue", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a05d5c1f07b7c5f02b22864ecd1732f28", null ],
-    [ "CreateWorkspace", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a358855b51be7dd1d0bbd31fd45b87a22", null ],
+    [ "CreateWorkspace", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a4fbb0fd3bafea1c8e6fe4d40b51924a8", null ],
     [ "DeleteCounterexample", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#acfd6e4ba712d6ef497d1ca58a96e1788", null ],
     [ "DeleteDialogNode", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a90e7a1287b9e1d08235f269703672a5a", null ],
     [ "DeleteEntity", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#aa324d04977b5fb8761f618819006e2e1", null ],
@@ -29,24 +59,24 @@ var class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service =
     [ "GetValue", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a113aeca17ee4bda5fd44e205457c355e", null ],
     [ "GetWorkspace", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a7613d36222ccc8dd16bb7f1c9b223bd8", null ],
     [ "ListAllLogs", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#af485045366129ce9e752f0f4e51c03ba", null ],
-    [ "ListCounterexamples", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#aa302b76b384a02c35e7112fd92f3ab63", null ],
-    [ "ListDialogNodes", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a779c41c02879ff929d05e8ac93faf619", null ],
-    [ "ListEntities", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a28a58c0c334281d2499a34effa4cdb0e", null ],
-    [ "ListExamples", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#ae1136acb0b696c679f19e9b460ec98c0", null ],
-    [ "ListIntents", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a16791316b34315c81bd7f5a378eb684f", null ],
+    [ "ListCounterexamples", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#aca4c9b29b985acb230c030bb05aa0438", null ],
+    [ "ListDialogNodes", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a769c427c5e4e7d55c2e01c07f7c5e60e", null ],
+    [ "ListEntities", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#abd74120869e8b2e482c726a23a3e3a09", null ],
+    [ "ListExamples", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a4bf6ba9c26d6751c392eda3d13fe1f1b", null ],
+    [ "ListIntents", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a3ddd065cf0a01d513658de26419e7071", null ],
     [ "ListLogs", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#ad45bba548309760672fb0683cb37e256", null ],
     [ "ListMentions", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#aa26e4e89aa89a53444f69a4da4e72ad8", null ],
-    [ "ListSynonyms", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a9b6fdc9bc83deaaaf0f2584e7fdef948", null ],
-    [ "ListValues", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#af52591d69071a48bb502077c5d56c52d", null ],
-    [ "ListWorkspaces", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#aad06a9b6a2143e48c91a37764cd982f7", null ],
+    [ "ListSynonyms", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a251c179e263ce8a836115d35e3649e47", null ],
+    [ "ListValues", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#abffb6741c2d8d91f24a26da5a978669f", null ],
+    [ "ListWorkspaces", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#ab634c117db67cd7502bf7adcb44cd596", null ],
     [ "Message", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a578a469f050c6732628a54eeb2249acb", null ],
     [ "UpdateCounterexample", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a158a888072e450f47f271fe18b1bb745", null ],
-    [ "UpdateDialogNode", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a173d243fb996e41300f933a4e3a35508", null ],
+    [ "UpdateDialogNode", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a6a7972e4f8034f82d785d955641a0877", null ],
     [ "UpdateEntity", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a2d19131ea0723c942286c606ef3c8bf2", null ],
     [ "UpdateExample", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a63f4c557a06c10a35a9c76c4697dde23", null ],
     [ "UpdateIntent", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a253626ec5babb0c26136eec728e9be6b", null ],
     [ "UpdateSynonym", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a148de02115b73416729f6021828a79fb", null ],
     [ "UpdateValue", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a74f61635bf9f7495cd75f8f04888a869", null ],
-    [ "UpdateWorkspace", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a73ba20ccb7a81351947a5af3ca54bf98", null ],
-    [ "VersionDate", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#ad62e2d9f190ffac1c92d61487e173c07", null ]
+    [ "UpdateWorkspace", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#ac9c50ac4403e6036b187d4f94ab54c26", null ],
+    [ "Version", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a1aedd0ce69989f53dd83ad2bdbf5d5bd", null ]
 ];

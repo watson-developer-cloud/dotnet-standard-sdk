@@ -6,6 +6,9 @@ var searchData=
   ['languagemodels_2ecs',['LanguageModels.cs',['../db/d2a/_language_models_8cs.html',1,'']]],
   ['languages_2ecs',['Languages.cs',['../d9/d28/_languages_8cs.html',1,'']]],
   ['languagetranslatorservice_2ecs',['LanguageTranslatorService.cs',['../d9/d98/_language_translator_service_8cs.html',1,'']]],
+  ['languagetranslatorservicegeneratedunittests_2ecs',['LanguageTranslatorServiceGeneratedUnitTests.cs',['../de/dbb/_language_translator_service_generated_unit_tests_8cs.html',1,'']]],
+  ['languagetranslatorserviceintegrationtests_2ecs',['LanguageTranslatorServiceIntegrationTests.cs',['../db/d5b/_language_translator_service_integration_tests_8cs.html',1,'']]],
+  ['languagetranslatorserviceunittest_2ecs',['LanguageTranslatorServiceUnitTest.cs',['../d6/dfd/_language_translator_service_unit_test_8cs.html',1,'']]],
   ['leadingsentence_2ecs',['LeadingSentence.cs',['../d9/d21/_leading_sentence_8cs.html',1,'']]],
   ['listcollectionfieldsresponse_2ecs',['ListCollectionFieldsResponse.cs',['../d6/dfe/_list_collection_fields_response_8cs.html',1,'']]],
   ['listcollectionsresponse_2ecs',['ListCollectionsResponse.cs',['../db/dfb/_i_b_m_8_watson_8_discovery_8v1_2_model_2_list_collections_response_8cs.html',1,'(Global Namespace)'],['../d6/dcd/_i_b_m_8_watson_8_discovery_8v2_2_model_2_list_collections_response_8cs.html',1,'(Global Namespace)']]],
@@ -22,5 +25,6 @@ var searchData=
   ['logqueryresponse_2ecs',['LogQueryResponse.cs',['../db/d99/_log_query_response_8cs.html',1,'']]],
   ['logqueryresponseresult_2ecs',['LogQueryResponseResult.cs',['../da/dd7/_log_query_response_result_8cs.html',1,'']]],
   ['logqueryresponseresultdocuments_2ecs',['LogQueryResponseResultDocuments.cs',['../d2/d5b/_log_query_response_result_documents_8cs.html',1,'']]],
-  ['logqueryresponseresultdocumentsresult_2ecs',['LogQueryResponseResultDocumentsResult.cs',['../de/d42/_log_query_response_result_documents_result_8cs.html',1,'']]]
+  ['logqueryresponseresultdocumentsresult_2ecs',['LogQueryResponseResultDocumentsResult.cs',['../de/d42/_log_query_response_result_documents_result_8cs.html',1,'']]],
+  ['ltserviceinttestbasicauthiamapikey_2ecs',['LTServiceIntTestBasicAuthIamApikey.cs',['../d2/df2/_l_t_service_int_test_basic_auth_iam_apikey_8cs.html',1,'']]]
 ];

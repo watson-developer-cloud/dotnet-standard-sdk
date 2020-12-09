@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['bar',['Bar',['../df/dc1/class_i_b_m_1_1_watson_1_1_integration_tests_1_1_foo.html#af76b9a67af11283181fe8591adbb1901',1,'IBM::Watson::IntegrationTests::Foo']]],
   ['basemodelid',['BaseModelId',['../d8/d19/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_document_status.html#a21ef0d5f8f12f69144d9a6815b261eae',1,'IBM.Watson.LanguageTranslator.v3.Model.DocumentStatus.BaseModelId()'],['../d6/d16/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_translation_model.html#a148dcb26d5e2ce4b11b429c23c9bf6a7',1,'IBM.Watson.LanguageTranslator.v3.Model.TranslationModel.BaseModelId()']]],
   ['basemodelname',['BaseModelName',['../d2/def/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_acoustic_model.html#aff9ec281e52e71c69e8f8f701a351cb2',1,'IBM.Watson.SpeechToText.v1.Model.AcousticModel.BaseModelName()'],['../df/df8/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html#ad47be824b3c64580fda4dbf86e4bd960',1,'IBM.Watson.SpeechToText.v1.Model.LanguageModel.BaseModelName()']]],
   ['batchid',['BatchId',['../d6/d18/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_batch_status.html#a4cfe6be25f9d6a34d2b53169ab4e6d9c',1,'IBM::Watson::CompareComply::v1::Model::BatchStatus']]],

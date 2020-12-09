@@ -1,5 +1,11 @@
 var dir_ea04e12627ecdacfca39677fe79baf39 =
 [
+    [ "CustomModel.cs", "d8/d84/_custom_model_8cs.html", [
+      [ "CustomModel", "de/d02/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_model_1_1_custom_model.html", "de/d02/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_model_1_1_custom_model" ]
+    ] ],
+    [ "CustomModels.cs", "d5/d73/_custom_models_8cs.html", [
+      [ "CustomModels", "de/df0/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_model_1_1_custom_models.html", "de/df0/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_model_1_1_custom_models" ]
+    ] ],
     [ "Pronunciation.cs", "d9/d37/_pronunciation_8cs.html", [
       [ "Pronunciation", "d7/df5/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_model_1_1_pronunciation.html", "d7/df5/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_model_1_1_pronunciation" ]
     ] ],
@@ -12,12 +18,6 @@ var dir_ea04e12627ecdacfca39677fe79baf39 =
     ] ],
     [ "Voice.cs", "d0/d56/_voice_8cs.html", [
       [ "Voice", "d7/dda/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_model_1_1_voice.html", "d7/dda/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_model_1_1_voice" ]
-    ] ],
-    [ "VoiceModel.cs", "de/d77/_voice_model_8cs.html", [
-      [ "VoiceModel", "d5/d14/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_model_1_1_voice_model.html", "d5/d14/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_model_1_1_voice_model" ]
-    ] ],
-    [ "VoiceModels.cs", "dd/d6f/_voice_models_8cs.html", [
-      [ "VoiceModels", "db/d1f/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_model_1_1_voice_models.html", "db/d1f/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_model_1_1_voice_models" ]
     ] ],
     [ "Voices.cs", "dc/d31/_voices_8cs.html", [
       [ "Voices", "db/d97/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_model_1_1_voices.html", "db/d97/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_model_1_1_voices" ]

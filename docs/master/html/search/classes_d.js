@@ -1,6 +1,7 @@
 var searchData=
 [
   ['objectdetail',['ObjectDetail',['../d1/d03/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_object_detail.html',1,'IBM::Watson::VisualRecognition::v4::Model']]],
+  ['objectdetaillocation',['ObjectDetailLocation',['../d7/deb/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_object_detail_location.html',1,'IBM::Watson::VisualRecognition::v4::Model']]],
   ['objectmetadata',['ObjectMetadata',['../da/d5c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_object_metadata.html',1,'IBM::Watson::VisualRecognition::v4::Model']]],
   ['objectmetadatalist',['ObjectMetadataList',['../df/d9c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_object_metadata_list.html',1,'IBM::Watson::VisualRecognition::v4::Model']]],
   ['objecttrainingstatus',['ObjectTrainingStatus',['../d3/dd8/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_object_training_status.html',1,'IBM::Watson::VisualRecognition::v4::Model']]],

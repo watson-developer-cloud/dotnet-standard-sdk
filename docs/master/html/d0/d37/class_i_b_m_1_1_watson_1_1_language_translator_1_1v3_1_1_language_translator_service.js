@@ -1,8 +1,16 @@
 var class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service =
 [
-    [ "LanguageTranslatorService", "d0/d37/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service.html#aa73d81643337a3d6bb4f3a76c686e794", null ],
+    [ "GetTranslatedDocumentEnums", "dd/d52/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_get_translated_document_enums.html", [
+      [ "AcceptValue", "db/dba/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_get_tra7d7b02363b330454c2dc59f53560b0bb.html", "db/dba/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_get_tra7d7b02363b330454c2dc59f53560b0bb" ]
+    ] ],
+    [ "TranslateDocumentEnums", "d3/d90/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_translate_document_enums.html", [
+      [ "FileContentTypeValue", "d9/d2a/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_transla8f47c996b36ae79b7d2ab975d62f045e.html", "d9/d2a/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_transla8f47c996b36ae79b7d2ab975d62f045e" ]
+    ] ],
+    [ "LanguageTranslatorService", "d0/d37/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service.html#afbe8eccc53d06d51b3df314c053347e7", null ],
+    [ "LanguageTranslatorService", "d0/d37/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service.html#acbe08116fbc6f2178d29dde6243a1a5e", null ],
+    [ "LanguageTranslatorService", "d0/d37/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service.html#a17773b13d072c5b8f9de8f3b03642b42", null ],
     [ "LanguageTranslatorService", "d0/d37/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service.html#a79b446854114b1c6bc6a186b3c7eccea", null ],
-    [ "LanguageTranslatorService", "d0/d37/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service.html#a2d747f4fc891aae879e37b93e5fb651d", null ],
+    [ "LanguageTranslatorService", "d0/d37/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service.html#afb3dce230f2b1ab39dc523073a824b45", null ],
     [ "CreateModel", "d0/d37/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service.html#a449ee26f7157541fdf54c3ac9d288a67", null ],
     [ "DeleteDocument", "d0/d37/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service.html#aee79336645cab8980f5e4fcf618c83a0", null ],
     [ "DeleteModel", "d0/d37/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service.html#a534c695fca59a610eacd695b10dacbf9", null ],
@@ -16,5 +24,5 @@ var class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator
     [ "ListModels", "d0/d37/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service.html#a610239e4b8f86674cef4e6682ceffc73", null ],
     [ "Translate", "d0/d37/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service.html#a39b94c7473a48425c4964e9e8d3f785e", null ],
     [ "TranslateDocument", "d0/d37/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service.html#acecf9d280def73faf797e5af337e38b4", null ],
-    [ "VersionDate", "d0/d37/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service.html#a92483c218946fe100ee7d48616284419", null ]
+    [ "Version", "d0/d37/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service.html#a0e5c83147a07926b73d8ed110f3be28c", null ]
 ];

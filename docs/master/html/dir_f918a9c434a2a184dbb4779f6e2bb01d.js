@@ -181,9 +181,6 @@ var dir_f918a9c434a2a184dbb4779f6e2bb01d =
     [ "Nested.cs", "d4/d99/_nested_8cs.html", [
       [ "Nested", "de/d71/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nested.html", "de/d71/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nested" ]
     ] ],
-    [ "NluEnrichmentCategories.cs", "da/d8d/_nlu_enrichment_categories_8cs.html", [
-      [ "NluEnrichmentCategories", "d3/d5c/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_categories.html", null ]
-    ] ],
     [ "NluEnrichmentConcepts.cs", "de/dcf/_nlu_enrichment_concepts_8cs.html", [
       [ "NluEnrichmentConcepts", "dc/d75/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_concepts.html", "dc/d75/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_concepts" ]
     ] ],
@@ -228,7 +225,7 @@ var dir_f918a9c434a2a184dbb4779f6e2bb01d =
     [ "QueryNoticesResponse.cs", "de/dd6/_i_b_m_8_watson_8_discovery_8v1_2_model_2_query_notices_response_8cs.html", [
       [ "QueryNoticesResponse", "d7/d9f/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_notices_response.html", "d7/d9f/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_notices_response" ]
     ] ],
-    [ "QueryNoticesResult.cs", "d0/dfb/_i_b_m_8_watson_8_discovery_8v1_2_model_2_query_notices_result_8cs.html", [
+    [ "QueryNoticesResult.cs", "d3/d00/_query_notices_result_8cs.html", [
       [ "QueryNoticesResult", "df/dca/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_notices_result.html", "df/dca/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_notices_result" ],
       [ "FileTypeEnumValue", "d6/dfc/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_notices_result_1_1_file_type_enum_value.html", "d6/dfc/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_notices_result_1_1_file_type_enum_value" ]
     ] ],

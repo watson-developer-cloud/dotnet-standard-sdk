@@ -1,12 +1,12 @@
 var searchData=
 [
-  ['iassistantservice',['IAssistantService',['../df/d56/interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service.html',1,'IBM.Watson.Assistant.v1.IAssistantService'],['../d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html',1,'IBM.Watson.Assistant.v2.IAssistantService']]],
+  ['iassistantservice',['IAssistantService',['../d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html',1,'IBM.Watson.Assistant.v2.IAssistantService'],['../df/d56/interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service.html',1,'IBM.Watson.Assistant.v1.IAssistantService']]],
   ['icomparecomplyservice',['ICompareComplyService',['../d8/d70/interface_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_i_compare_comply_service.html',1,'IBM::Watson::CompareComply::v1']]],
   ['identifiablelanguage',['IdentifiableLanguage',['../d0/d50/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_identifiable_language.html',1,'IBM::Watson::LanguageTranslator::v3::Model']]],
   ['identifiablelanguages',['IdentifiableLanguages',['../d8/dea/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_identifiable_languages.html',1,'IBM::Watson::LanguageTranslator::v3::Model']]],
   ['identifiedlanguage',['IdentifiedLanguage',['../df/d42/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_identified_language.html',1,'IBM::Watson::LanguageTranslator::v3::Model']]],
   ['identifiedlanguages',['IdentifiedLanguages',['../d2/dca/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_identified_languages.html',1,'IBM::Watson::LanguageTranslator::v3::Model']]],
-  ['idiscoveryservice',['IDiscoveryService',['../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html',1,'IBM.Watson.Discovery.v2.IDiscoveryService'],['../dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html',1,'IBM.Watson.Discovery.v1.IDiscoveryService']]],
+  ['idiscoveryservice',['IDiscoveryService',['../dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html',1,'IBM.Watson.Discovery.v1.IDiscoveryService'],['../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html',1,'IBM.Watson.Discovery.v2.IDiscoveryService']]],
   ['ilanguagetranslatorservice',['ILanguageTranslatorService',['../d5/dcd/interface_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_i_language_translator_service.html',1,'IBM::Watson::LanguageTranslator::v3']]],
   ['image',['Image',['../d2/d42/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_image.html',1,'IBM::Watson::VisualRecognition::v4::Model']]],
   ['imagedetails',['ImageDetails',['../d5/db8/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_image_details.html',1,'IBM::Watson::VisualRecognition::v4::Model']]],

@@ -10,6 +10,6 @@ var interface_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_i_compare_comply_ser
     [ "GetBatch", "d8/d70/interface_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_i_compare_comply_service.html#a4e403e5e0fea30197c1a6d633a0dcb07", null ],
     [ "GetFeedback", "d8/d70/interface_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_i_compare_comply_service.html#a531253b072c30a168e3244f6fe75a312", null ],
     [ "ListBatches", "d8/d70/interface_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_i_compare_comply_service.html#a2a3809a0bf42925a95c3faf69aa715e7", null ],
-    [ "ListFeedback", "d8/d70/interface_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_i_compare_comply_service.html#a23702e752ca949ee902e2f7ed56c2ffd", null ],
+    [ "ListFeedback", "d8/d70/interface_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_i_compare_comply_service.html#a7b6c6a857a10e0396e462567e947ac6d", null ],
     [ "UpdateBatch", "d8/d70/interface_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_i_compare_comply_service.html#a0ef3e5f529c5d341bcb4f07371c63696", null ]
 ];

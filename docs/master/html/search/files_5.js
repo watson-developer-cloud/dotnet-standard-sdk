@@ -2,6 +2,7 @@ var searchData=
 [
   ['features_2ecs',['Features.cs',['../d0/d31/_features_8cs.html',1,'']]],
   ['featuresentimentresults_2ecs',['FeatureSentimentResults.cs',['../d8/d65/_feature_sentiment_results_8cs.html',1,'']]],
+  ['featuresresultsmetadata_2ecs',['FeaturesResultsMetadata.cs',['../dc/df4/_features_results_metadata_8cs.html',1,'']]],
   ['feed_2ecs',['Feed.cs',['../d8/d27/_feed_8cs.html',1,'']]],
   ['feedbackdatainput_2ecs',['FeedbackDataInput.cs',['../d1/d79/_feedback_data_input_8cs.html',1,'']]],
   ['feedbackdataoutput_2ecs',['FeedbackDataOutput.cs',['../d5/df4/_feedback_data_output_8cs.html',1,'']]],

@@ -1,0 +1,12 @@
+var class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_compare_documents63d1fd2d372568dc99a439ccc610d668 =
+[
+    [ "APPLICATION_JSON", "d5/d93/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_compare_documents63d1fd2d372568dc99a439ccc610d668.html#a285f073861e20cece2b203e7a58fe8c7", null ],
+    [ "APPLICATION_MSWORD", "d5/d93/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_compare_documents63d1fd2d372568dc99a439ccc610d668.html#a637009698d8f62ae0821b01e1f404998", null ],
+    [ "APPLICATION_PDF", "d5/d93/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_compare_documents63d1fd2d372568dc99a439ccc610d668.html#a16e36cdddddce10639660f78ad264a78", null ],
+    [ "APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT", "d5/d93/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_compare_documents63d1fd2d372568dc99a439ccc610d668.html#a840339a9410771602ddff7cf2d70e75d", null ],
+    [ "IMAGE_BMP", "d5/d93/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_compare_documents63d1fd2d372568dc99a439ccc610d668.html#a06f9c559bf9c809a7b8b9d0e611c78cc", null ],
+    [ "IMAGE_GIF", "d5/d93/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_compare_documents63d1fd2d372568dc99a439ccc610d668.html#a553a89f3eca022d1c92b673f192390b1", null ],
+    [ "IMAGE_JPEG", "d5/d93/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_compare_documents63d1fd2d372568dc99a439ccc610d668.html#af1dd1482f0645c329e0905dc31848a6a", null ],
+    [ "IMAGE_PNG", "d5/d93/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_compare_documents63d1fd2d372568dc99a439ccc610d668.html#aee8cecbfeac1e51ce5ee03495d984313", null ],
+    [ "IMAGE_TIFF", "d5/d93/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_compare_documents63d1fd2d372568dc99a439ccc610d668.html#aead081cf93ee6ce3a6cfbbfabe2e5e9c", null ]
+];

@@ -1,9 +1,21 @@
 var class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service =
 [
-    [ "DiscoveryService", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a3788b45f80527dd155ce689715ef735c", null ],
+    [ "AddDocumentEnums", "d6/dee/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service_1_1_add_document_enums.html", [
+      [ "FileContentTypeValue", "da/da6/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service_1_1_add_document_enums_1_1_file_content_type_value.html", "da/da6/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service_1_1_add_document_enums_1_1_file_content_type_value" ]
+    ] ],
+    [ "AnalyzeDocumentEnums", "d3/d90/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service_1_1_analyze_document_enums.html", [
+      [ "FileContentTypeValue", "de/d10/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service_1_1_analyze_document_enums_1_1_file_content_type_value.html", "de/d10/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service_1_1_analyze_document_enums_1_1_file_content_type_value" ]
+    ] ],
+    [ "UpdateDocumentEnums", "da/d97/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service_1_1_update_document_enums.html", [
+      [ "FileContentTypeValue", "d6/de4/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service_1_1_update_document_enums_1_1_file_content_type_value.html", "d6/de4/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service_1_1_update_document_enums_1_1_file_content_type_value" ]
+    ] ],
+    [ "DiscoveryService", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a1d8f8b21e76f4a420169e8c7d782a609", null ],
+    [ "DiscoveryService", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a44b6e5b99578c07a633910580ef43497", null ],
+    [ "DiscoveryService", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#ae146b5385d4f4f1977393aa874cfdf6e", null ],
     [ "DiscoveryService", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a6647216411f0ea33b8c7d2a554b279cd", null ],
-    [ "DiscoveryService", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a12cfcceb3f5a2eedfb70e2a4c9daa794", null ],
+    [ "DiscoveryService", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a1851e6e09b3872aa0d252d24c57e7cb2", null ],
     [ "AddDocument", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a8c9fc8baf2f28bcd0f9e92f6c2ab28f8", null ],
+    [ "AnalyzeDocument", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a43bdfa6525ebda30d8ec31bdb312c8b1", null ],
     [ "CreateCollection", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a580753bc961355f7150e92fb331d5dde", null ],
     [ "CreateEnrichment", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a3f55bbe42c88ab63eefa01583ed5a92f", null ],
     [ "CreateProject", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#aa1810f0a0c3b6fe8a81ad5710aae2090", null ],
@@ -32,5 +44,5 @@ var class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service =
     [ "UpdateEnrichment", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a58205d5d895c4c8d1cb2fec958db5edd", null ],
     [ "UpdateProject", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#aee8c7e7016cdb42bb8856a9788fae254", null ],
     [ "UpdateTrainingQuery", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#af1923e4b94857359020fe7d34e2fceab", null ],
-    [ "VersionDate", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#ae9802178dff13af08312cd6554638ba3", null ]
+    [ "Version", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#aa19c2c6ae9bf1f08b4220c3f0c447875", null ]
 ];

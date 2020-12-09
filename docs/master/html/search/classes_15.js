@@ -13,6 +13,8 @@ var searchData=
   ['words',['Words',['../d4/d94/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_words.html',1,'IBM.Watson.SpeechToText.v1.Model.Words'],['../d7/d64/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_model_1_1_words.html',1,'IBM.Watson.TextToSpeech.v1.Model.Words']]],
   ['wordsettings',['WordSettings',['../d2/d1e/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_word_settings.html',1,'IBM::Watson::Discovery::v1::Model']]],
   ['wordstyle',['WordStyle',['../d7/dba/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_word_style.html',1,'IBM::Watson::Discovery::v1::Model']]],
+  ['wordtypetoaddvalue',['WordTypeToAddValue',['../dc/d3f/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_train_language_mo2aeb2f76192ca798f1540659ae2bc374.html',1,'IBM::Watson::SpeechToText::v1::SpeechToTextService::TrainLanguageModelEnums']]],
+  ['wordtypevalue',['WordTypeValue',['../da/d71/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_words_enums_1_1_word_type_value.html',1,'IBM::Watson::SpeechToText::v1::SpeechToTextService::ListWordsEnums']]],
   ['workspace',['Workspace',['../d6/d2d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace.html',1,'IBM::Watson::Assistant::v1::Model']]],
   ['workspacecollection',['WorkspaceCollection',['../d6/dfb/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_collection.html',1,'IBM::Watson::Assistant::v1::Model']]],
   ['workspacesystemsettings',['WorkspaceSystemSettings',['../dc/d9f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings.html',1,'IBM::Watson::Assistant::v1::Model']]],

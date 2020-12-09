@@ -13,7 +13,7 @@ var interface_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_i_visual_recogni
     [ "GetJpegImage", "d2/d37/interface_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_i_visual_recognition_service.html#a2d55d4117312881dd25c9fc7f63f79e5", null ],
     [ "GetModelFile", "d2/d37/interface_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_i_visual_recognition_service.html#a21cd3d0890a15a3f2d26926e82d13dc1", null ],
     [ "GetObjectMetadata", "d2/d37/interface_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_i_visual_recognition_service.html#a547e75626fe3e7242605ae00374d7b0a", null ],
-    [ "GetTrainingUsage", "d2/d37/interface_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_i_visual_recognition_service.html#a9dec3a035fe1259ed1bfb65607be4862", null ],
+    [ "GetTrainingUsage", "d2/d37/interface_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_i_visual_recognition_service.html#a1929706cc1bf7a2fea3364730e0bff27", null ],
     [ "ListCollections", "d2/d37/interface_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_i_visual_recognition_service.html#ac01643fe001d98c7df0a843729b5c4fe", null ],
     [ "ListImages", "d2/d37/interface_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_i_visual_recognition_service.html#a7be66684b8fb65318833f0887d9686c9", null ],
     [ "ListObjectMetadata", "d2/d37/interface_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_i_visual_recognition_service.html#a8f0ee500a5150c7c43fa34ebd5d201db", null ],

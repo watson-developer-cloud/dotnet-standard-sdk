@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2020.
+* (C) Copyright IBM Corp. 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -51,12 +51,12 @@ namespace IBM.Watson.Discovery.v2.Model
         [JsonProperty("suggested_refinements", NullValueHandling = NullValueHandling.Ignore)]
         public DefaultQueryParamsSuggestedRefinements SuggestedRefinements { get; set; }
         /// <summary>
-        /// When `true`, a spelling suggestions for the query are retuned by default.
+        /// When `true`, a spelling suggestions for the query are returned by default.
         /// </summary>
         [JsonProperty("spelling_suggestions", NullValueHandling = NullValueHandling.Ignore)]
         public bool? SpellingSuggestions { get; set; }
         /// <summary>
-        /// When `true`, a highlights for the query are retuned by default.
+        /// When `true`, a highlights for the query are returned by default.
         /// </summary>
         [JsonProperty("highlight", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Highlight { get; set; }

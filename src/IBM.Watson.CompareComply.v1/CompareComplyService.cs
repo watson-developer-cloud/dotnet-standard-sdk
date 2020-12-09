@@ -15,6 +15,10 @@
 *
 */
 
+/**
+* IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-be3b4618-20201201-123423
+*/
+ 
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
@@ -32,21 +36,22 @@ namespace IBM.Watson.CompareComply.v1
 {
     public partial class CompareComplyService : IBMService, ICompareComplyService
     {
-        const string serviceName = "compare_comply";
+        const string defaultServiceName = "compare_comply";
         private const string defaultServiceUrl = "https://api.us-south.compare-comply.watson.cloud.ibm.com";
-        public string VersionDate { get; set; }
+        public string Version { get; set; }
 
-        public CompareComplyService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
-        public CompareComplyService(IClient httpClient) : base(serviceName, httpClient) { }
+        public CompareComplyService(string version) : this(version, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public CompareComplyService(string version, IAuthenticator authenticator) : this(version, defaultServiceName, authenticator) {}
+        public CompareComplyService(string version, string serviceName) : this(version, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public CompareComplyService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public CompareComplyService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
+        public CompareComplyService(string version, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
-            if (string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`version` is required");
             }
-
-            VersionDate = versionDate;
+            Version = version;
 
             if (string.IsNullOrEmpty(ServiceUrl))
             {
@@ -68,16 +73,14 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="HTMLReturn" />HTMLReturn</returns>
         public DetailedResponse<HTMLReturn> ConvertToHtml(System.IO.MemoryStream file, string fileContentType = null, string model = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (file == null)
             {
                 throw new ArgumentNullException("`file` is required for `ConvertToHtml`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<HTMLReturn> result = null;
 
             try
@@ -98,8 +101,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/html_conversion");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(model))
                 {
                     restRequest.WithArgument("model", model);
@@ -123,6 +129,74 @@ namespace IBM.Watson.CompareComply.v1
 
             return result;
         }
+
+        /// <summary>
+        /// Enum values for ConvertToHtml.
+        /// </summary>
+        public class ConvertToHtmlEnums
+        {
+            /// <summary>
+            /// The content type of file.
+            /// </summary>
+            public class FileContentTypeValue
+            {
+                /// <summary>
+                /// Constant APPLICATION_PDF for application/pdf
+                /// </summary>
+                public const string APPLICATION_PDF = "application/pdf";
+                /// <summary>
+                /// Constant APPLICATION_MSWORD for application/msword
+                /// </summary>
+                public const string APPLICATION_MSWORD = "application/msword";
+                /// <summary>
+                /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
+                /// </summary>
+                public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                /// <summary>
+                /// Constant IMAGE_BMP for image/bmp
+                /// </summary>
+                public const string IMAGE_BMP = "image/bmp";
+                /// <summary>
+                /// Constant IMAGE_GIF for image/gif
+                /// </summary>
+                public const string IMAGE_GIF = "image/gif";
+                /// <summary>
+                /// Constant IMAGE_JPEG for image/jpeg
+                /// </summary>
+                public const string IMAGE_JPEG = "image/jpeg";
+                /// <summary>
+                /// Constant IMAGE_PNG for image/png
+                /// </summary>
+                public const string IMAGE_PNG = "image/png";
+                /// <summary>
+                /// Constant IMAGE_TIFF for image/tiff
+                /// </summary>
+                public const string IMAGE_TIFF = "image/tiff";
+                /// <summary>
+                /// Constant TEXT_PLAIN for text/plain
+                /// </summary>
+                public const string TEXT_PLAIN = "text/plain";
+                
+            }
+            /// <summary>
+            /// The analysis model to be used by the service. For the **Element classification** and **Compare two
+            /// documents** methods, the default is `contracts`. For the **Extract tables** method, the default is
+            /// `tables`. These defaults apply to the standalone methods as well as to the methods' use in
+            /// batch-processing requests.
+            /// </summary>
+            public class ModelValue
+            {
+                /// <summary>
+                /// Constant CONTRACTS for contracts
+                /// </summary>
+                public const string CONTRACTS = "contracts";
+                /// <summary>
+                /// Constant TABLES for tables
+                /// </summary>
+                public const string TABLES = "tables";
+                
+            }
+        }
         /// <summary>
         /// Classify the elements of a document.
         ///
@@ -137,16 +211,14 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="ClassifyReturn" />ClassifyReturn</returns>
         public DetailedResponse<ClassifyReturn> ClassifyElements(System.IO.MemoryStream file, string fileContentType = null, string model = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (file == null)
             {
                 throw new ArgumentNullException("`file` is required for `ClassifyElements`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<ClassifyReturn> result = null;
 
             try
@@ -167,8 +239,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/element_classification");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(model))
                 {
                     restRequest.WithArgument("model", model);
@@ -192,6 +267,70 @@ namespace IBM.Watson.CompareComply.v1
 
             return result;
         }
+
+        /// <summary>
+        /// Enum values for ClassifyElements.
+        /// </summary>
+        public class ClassifyElementsEnums
+        {
+            /// <summary>
+            /// The content type of file.
+            /// </summary>
+            public class FileContentTypeValue
+            {
+                /// <summary>
+                /// Constant APPLICATION_PDF for application/pdf
+                /// </summary>
+                public const string APPLICATION_PDF = "application/pdf";
+                /// <summary>
+                /// Constant APPLICATION_MSWORD for application/msword
+                /// </summary>
+                public const string APPLICATION_MSWORD = "application/msword";
+                /// <summary>
+                /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
+                /// </summary>
+                public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                /// <summary>
+                /// Constant IMAGE_BMP for image/bmp
+                /// </summary>
+                public const string IMAGE_BMP = "image/bmp";
+                /// <summary>
+                /// Constant IMAGE_GIF for image/gif
+                /// </summary>
+                public const string IMAGE_GIF = "image/gif";
+                /// <summary>
+                /// Constant IMAGE_JPEG for image/jpeg
+                /// </summary>
+                public const string IMAGE_JPEG = "image/jpeg";
+                /// <summary>
+                /// Constant IMAGE_PNG for image/png
+                /// </summary>
+                public const string IMAGE_PNG = "image/png";
+                /// <summary>
+                /// Constant IMAGE_TIFF for image/tiff
+                /// </summary>
+                public const string IMAGE_TIFF = "image/tiff";
+                
+            }
+            /// <summary>
+            /// The analysis model to be used by the service. For the **Element classification** and **Compare two
+            /// documents** methods, the default is `contracts`. For the **Extract tables** method, the default is
+            /// `tables`. These defaults apply to the standalone methods as well as to the methods' use in
+            /// batch-processing requests.
+            /// </summary>
+            public class ModelValue
+            {
+                /// <summary>
+                /// Constant CONTRACTS for contracts
+                /// </summary>
+                public const string CONTRACTS = "contracts";
+                /// <summary>
+                /// Constant TABLES for tables
+                /// </summary>
+                public const string TABLES = "tables";
+                
+            }
+        }
         /// <summary>
         /// Extract a document's tables.
         ///
@@ -206,16 +345,14 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="TableReturn" />TableReturn</returns>
         public DetailedResponse<TableReturn> ExtractTables(System.IO.MemoryStream file, string fileContentType = null, string model = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (file == null)
             {
                 throw new ArgumentNullException("`file` is required for `ExtractTables`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<TableReturn> result = null;
 
             try
@@ -236,8 +373,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/tables");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(model))
                 {
                     restRequest.WithArgument("model", model);
@@ -261,6 +401,74 @@ namespace IBM.Watson.CompareComply.v1
 
             return result;
         }
+
+        /// <summary>
+        /// Enum values for ExtractTables.
+        /// </summary>
+        public class ExtractTablesEnums
+        {
+            /// <summary>
+            /// The content type of file.
+            /// </summary>
+            public class FileContentTypeValue
+            {
+                /// <summary>
+                /// Constant APPLICATION_PDF for application/pdf
+                /// </summary>
+                public const string APPLICATION_PDF = "application/pdf";
+                /// <summary>
+                /// Constant APPLICATION_MSWORD for application/msword
+                /// </summary>
+                public const string APPLICATION_MSWORD = "application/msword";
+                /// <summary>
+                /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
+                /// </summary>
+                public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                /// <summary>
+                /// Constant IMAGE_BMP for image/bmp
+                /// </summary>
+                public const string IMAGE_BMP = "image/bmp";
+                /// <summary>
+                /// Constant IMAGE_GIF for image/gif
+                /// </summary>
+                public const string IMAGE_GIF = "image/gif";
+                /// <summary>
+                /// Constant IMAGE_JPEG for image/jpeg
+                /// </summary>
+                public const string IMAGE_JPEG = "image/jpeg";
+                /// <summary>
+                /// Constant IMAGE_PNG for image/png
+                /// </summary>
+                public const string IMAGE_PNG = "image/png";
+                /// <summary>
+                /// Constant IMAGE_TIFF for image/tiff
+                /// </summary>
+                public const string IMAGE_TIFF = "image/tiff";
+                /// <summary>
+                /// Constant TEXT_PLAIN for text/plain
+                /// </summary>
+                public const string TEXT_PLAIN = "text/plain";
+                
+            }
+            /// <summary>
+            /// The analysis model to be used by the service. For the **Element classification** and **Compare two
+            /// documents** methods, the default is `contracts`. For the **Extract tables** method, the default is
+            /// `tables`. These defaults apply to the standalone methods as well as to the methods' use in
+            /// batch-processing requests.
+            /// </summary>
+            public class ModelValue
+            {
+                /// <summary>
+                /// Constant CONTRACTS for contracts
+                /// </summary>
+                public const string CONTRACTS = "contracts";
+                /// <summary>
+                /// Constant TABLES for tables
+                /// </summary>
+                public const string TABLES = "tables";
+                
+            }
+        }
         /// <summary>
         /// Compare two documents.
         ///
@@ -279,6 +487,10 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="CompareReturn" />CompareReturn</returns>
         public DetailedResponse<CompareReturn> CompareDocuments(System.IO.MemoryStream file1, System.IO.MemoryStream file2, string file1ContentType = null, string file2ContentType = null, string file1Label = null, string file2Label = null, string model = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (file1 == null)
             {
                 throw new ArgumentNullException("`file1` is required for `CompareDocuments`");
@@ -287,12 +499,6 @@ namespace IBM.Watson.CompareComply.v1
             {
                 throw new ArgumentNullException("`file2` is required for `CompareDocuments`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<CompareReturn> result = null;
 
             try
@@ -322,8 +528,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/comparison");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(file1Label))
                 {
                     restRequest.WithArgument("file_1_label", file1Label);
@@ -355,6 +564,117 @@ namespace IBM.Watson.CompareComply.v1
 
             return result;
         }
+
+        /// <summary>
+        /// Enum values for CompareDocuments.
+        /// </summary>
+        public class CompareDocumentsEnums
+        {
+            /// <summary>
+            /// The content type of file1.
+            /// </summary>
+            public class File1ContentTypeValue
+            {
+                /// <summary>
+                /// Constant APPLICATION_PDF for application/pdf
+                /// </summary>
+                public const string APPLICATION_PDF = "application/pdf";
+                /// <summary>
+                /// Constant APPLICATION_JSON for application/json
+                /// </summary>
+                public const string APPLICATION_JSON = "application/json";
+                /// <summary>
+                /// Constant APPLICATION_MSWORD for application/msword
+                /// </summary>
+                public const string APPLICATION_MSWORD = "application/msword";
+                /// <summary>
+                /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
+                /// </summary>
+                public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                /// <summary>
+                /// Constant IMAGE_BMP for image/bmp
+                /// </summary>
+                public const string IMAGE_BMP = "image/bmp";
+                /// <summary>
+                /// Constant IMAGE_GIF for image/gif
+                /// </summary>
+                public const string IMAGE_GIF = "image/gif";
+                /// <summary>
+                /// Constant IMAGE_JPEG for image/jpeg
+                /// </summary>
+                public const string IMAGE_JPEG = "image/jpeg";
+                /// <summary>
+                /// Constant IMAGE_PNG for image/png
+                /// </summary>
+                public const string IMAGE_PNG = "image/png";
+                /// <summary>
+                /// Constant IMAGE_TIFF for image/tiff
+                /// </summary>
+                public const string IMAGE_TIFF = "image/tiff";
+                
+            }
+            /// <summary>
+            /// The content type of file2.
+            /// </summary>
+            public class File2ContentTypeValue
+            {
+                /// <summary>
+                /// Constant APPLICATION_PDF for application/pdf
+                /// </summary>
+                public const string APPLICATION_PDF = "application/pdf";
+                /// <summary>
+                /// Constant APPLICATION_JSON for application/json
+                /// </summary>
+                public const string APPLICATION_JSON = "application/json";
+                /// <summary>
+                /// Constant APPLICATION_MSWORD for application/msword
+                /// </summary>
+                public const string APPLICATION_MSWORD = "application/msword";
+                /// <summary>
+                /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
+                /// </summary>
+                public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                /// <summary>
+                /// Constant IMAGE_BMP for image/bmp
+                /// </summary>
+                public const string IMAGE_BMP = "image/bmp";
+                /// <summary>
+                /// Constant IMAGE_GIF for image/gif
+                /// </summary>
+                public const string IMAGE_GIF = "image/gif";
+                /// <summary>
+                /// Constant IMAGE_JPEG for image/jpeg
+                /// </summary>
+                public const string IMAGE_JPEG = "image/jpeg";
+                /// <summary>
+                /// Constant IMAGE_PNG for image/png
+                /// </summary>
+                public const string IMAGE_PNG = "image/png";
+                /// <summary>
+                /// Constant IMAGE_TIFF for image/tiff
+                /// </summary>
+                public const string IMAGE_TIFF = "image/tiff";
+                
+            }
+            /// <summary>
+            /// The analysis model to be used by the service. For the **Element classification** and **Compare two
+            /// documents** methods, the default is `contracts`. For the **Extract tables** method, the default is
+            /// `tables`. These defaults apply to the standalone methods as well as to the methods' use in
+            /// batch-processing requests.
+            /// </summary>
+            public class ModelValue
+            {
+                /// <summary>
+                /// Constant CONTRACTS for contracts
+                /// </summary>
+                public const string CONTRACTS = "contracts";
+                /// <summary>
+                /// Constant TABLES for tables
+                /// </summary>
+                public const string TABLES = "tables";
+                
+            }
+        }
         /// <summary>
         /// Add feedback.
         ///
@@ -363,20 +683,20 @@ namespace IBM.Watson.CompareComply.v1
         /// incorporated at a later date. Instead, submitted feedback is used to suggest future updates to the training
         /// model.
         /// </summary>
-        /// <param name="feedbackData">An object that defines the feedback to be submitted.</param>
+        /// <param name="feedbackData">Feedback data for submission.</param>
+        /// <param name="userId">An optional string identifying the user. (optional)</param>
+        /// <param name="comment">An optional comment on or description of the feedback. (optional)</param>
         /// <returns><see cref="FeedbackReturn" />FeedbackReturn</returns>
         public DetailedResponse<FeedbackReturn> AddFeedback(FeedbackDataInput feedbackData, string userId = null, string comment = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (feedbackData == null)
             {
                 throw new ArgumentNullException("`feedbackData` is required for `AddFeedback`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<FeedbackReturn> result = null;
 
             try
@@ -386,8 +706,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/feedback");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -431,10 +754,6 @@ namespace IBM.Watson.CompareComply.v1
         /// </summary>
         /// <param name="feedbackType">An optional string that filters the output to include only feedback with the
         /// specified feedback type. The only permitted value is `element_classification`. (optional)</param>
-        /// <param name="before">An optional string in the format `YYYY-MM-DD` that filters the output to include only
-        /// feedback that was added before the specified date. (optional)</param>
-        /// <param name="after">An optional string in the format `YYYY-MM-DD` that filters the output to include only
-        /// feedback that was added after the specified date. (optional)</param>
         /// <param name="documentTitle">An optional string that filters the output to include only feedback from the
         /// document with the specified `document_title`. (optional)</param>
         /// <param name="modelId">An optional string that filters the output to include only feedback with the specified
@@ -470,14 +789,12 @@ namespace IBM.Watson.CompareComply.v1
         /// <param name="includeTotal">An optional boolean value. If specified as `true`, the `pagination` object in the
         /// output includes a value called `total` that gives the total count of feedback created. (optional)</param>
         /// <returns><see cref="FeedbackList" />FeedbackList</returns>
-        public DetailedResponse<FeedbackList> ListFeedback(string feedbackType = null, DateTime? before = null, DateTime? after = null, string documentTitle = null, string modelId = null, string modelVersion = null, string categoryRemoved = null, string categoryAdded = null, string categoryNotChanged = null, string typeRemoved = null, string typeAdded = null, string typeNotChanged = null, long? pageLimit = null, string cursor = null, string sort = null, bool? includeTotal = null)
+        public DetailedResponse<FeedbackList> ListFeedback(string feedbackType = null, string documentTitle = null, string modelId = null, string modelVersion = null, string categoryRemoved = null, string categoryAdded = null, string categoryNotChanged = null, string typeRemoved = null, string typeAdded = null, string typeNotChanged = null, long? pageLimit = null, string cursor = null, string sort = null, bool? includeTotal = null)
         {
-
-            if (string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(Version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`Version` is required");
             }
-
             DetailedResponse<FeedbackList> result = null;
 
             try
@@ -487,19 +804,14 @@ namespace IBM.Watson.CompareComply.v1
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/feedback");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(feedbackType))
                 {
                     restRequest.WithArgument("feedback_type", feedbackType);
-                }
-                if (before != null)
-                {
-                    restRequest.WithArgument("before", before?.ToString("yyyy-MM-dd"));
-                }
-                if (after != null)
-                {
-                    restRequest.WithArgument("after", after?.ToString("yyyy-MM-dd"));
                 }
                 if (!string.IsNullOrEmpty(documentTitle))
                 {
@@ -585,6 +897,10 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="GetFeedback" />GetFeedback</returns>
         public DetailedResponse<GetFeedback> GetFeedback(string feedbackId, string model = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(feedbackId))
             {
                 throw new ArgumentNullException("`feedbackId` is required for `GetFeedback`");
@@ -593,12 +909,6 @@ namespace IBM.Watson.CompareComply.v1
             {
                 feedbackId = Uri.EscapeDataString(feedbackId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<GetFeedback> result = null;
 
             try
@@ -608,8 +918,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/feedback/{feedbackId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(model))
                 {
                     restRequest.WithArgument("model", model);
@@ -634,6 +947,31 @@ namespace IBM.Watson.CompareComply.v1
         }
 
         /// <summary>
+        /// Enum values for GetFeedback.
+        /// </summary>
+        public class GetFeedbackEnums
+        {
+            /// <summary>
+            /// The analysis model to be used by the service. For the **Element classification** and **Compare two
+            /// documents** methods, the default is `contracts`. For the **Extract tables** method, the default is
+            /// `tables`. These defaults apply to the standalone methods as well as to the methods' use in
+            /// batch-processing requests.
+            /// </summary>
+            public class ModelValue
+            {
+                /// <summary>
+                /// Constant CONTRACTS for contracts
+                /// </summary>
+                public const string CONTRACTS = "contracts";
+                /// <summary>
+                /// Constant TABLES for tables
+                /// </summary>
+                public const string TABLES = "tables";
+                
+            }
+        }
+
+        /// <summary>
         /// Delete a specified feedback entry.
         ///
         /// Deletes a feedback entry with a specified `feedback_id`.
@@ -646,6 +984,10 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="FeedbackDeleted" />FeedbackDeleted</returns>
         public DetailedResponse<FeedbackDeleted> DeleteFeedback(string feedbackId, string model = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(feedbackId))
             {
                 throw new ArgumentNullException("`feedbackId` is required for `DeleteFeedback`");
@@ -654,12 +996,6 @@ namespace IBM.Watson.CompareComply.v1
             {
                 feedbackId = Uri.EscapeDataString(feedbackId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<FeedbackDeleted> result = null;
 
             try
@@ -669,8 +1005,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v1/feedback/{feedbackId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(model))
                 {
                     restRequest.WithArgument("model", model);
@@ -692,6 +1031,31 @@ namespace IBM.Watson.CompareComply.v1
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Enum values for DeleteFeedback.
+        /// </summary>
+        public class DeleteFeedbackEnums
+        {
+            /// <summary>
+            /// The analysis model to be used by the service. For the **Element classification** and **Compare two
+            /// documents** methods, the default is `contracts`. For the **Extract tables** method, the default is
+            /// `tables`. These defaults apply to the standalone methods as well as to the methods' use in
+            /// batch-processing requests.
+            /// </summary>
+            public class ModelValue
+            {
+                /// <summary>
+                /// Constant CONTRACTS for contracts
+                /// </summary>
+                public const string CONTRACTS = "contracts";
+                /// <summary>
+                /// Constant TABLES for tables
+                /// </summary>
+                public const string TABLES = "tables";
+                
+            }
         }
         /// <summary>
         /// Submit a batch-processing request.
@@ -725,6 +1089,10 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="BatchStatus" />BatchStatus</returns>
         public DetailedResponse<BatchStatus> CreateBatch(string function, System.IO.MemoryStream inputCredentialsFile, string inputBucketLocation, string inputBucketName, System.IO.MemoryStream outputCredentialsFile, string outputBucketLocation, string outputBucketName, string model = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(function))
             {
                 throw new ArgumentNullException("`function` is required for `CreateBatch`");
@@ -753,12 +1121,6 @@ namespace IBM.Watson.CompareComply.v1
             {
                 throw new ArgumentNullException("`outputBucketName` is required for `CreateBatch`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<BatchStatus> result = null;
 
             try
@@ -816,8 +1178,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v1/batches");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(function))
                 {
                     restRequest.WithArgument("function", function);
@@ -847,6 +1212,50 @@ namespace IBM.Watson.CompareComply.v1
         }
 
         /// <summary>
+        /// Enum values for CreateBatch.
+        /// </summary>
+        public class CreateBatchEnums
+        {
+            /// <summary>
+            /// The Compare and Comply method to run across the submitted input documents.
+            /// </summary>
+            public class FunctionValue
+            {
+                /// <summary>
+                /// Constant HTML_CONVERSION for html_conversion
+                /// </summary>
+                public const string HTML_CONVERSION = "html_conversion";
+                /// <summary>
+                /// Constant ELEMENT_CLASSIFICATION for element_classification
+                /// </summary>
+                public const string ELEMENT_CLASSIFICATION = "element_classification";
+                /// <summary>
+                /// Constant TABLES for tables
+                /// </summary>
+                public const string TABLES = "tables";
+                
+            }
+            /// <summary>
+            /// The analysis model to be used by the service. For the **Element classification** and **Compare two
+            /// documents** methods, the default is `contracts`. For the **Extract tables** method, the default is
+            /// `tables`. These defaults apply to the standalone methods as well as to the methods' use in
+            /// batch-processing requests.
+            /// </summary>
+            public class ModelValue
+            {
+                /// <summary>
+                /// Constant CONTRACTS for contracts
+                /// </summary>
+                public const string CONTRACTS = "contracts";
+                /// <summary>
+                /// Constant TABLES for tables
+                /// </summary>
+                public const string TABLES = "tables";
+                
+            }
+        }
+
+        /// <summary>
         /// List submitted batch-processing jobs.
         ///
         /// Lists batch-processing jobs submitted by users.
@@ -854,12 +1263,10 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="Batches" />Batches</returns>
         public DetailedResponse<Batches> ListBatches()
         {
-
-            if (string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(Version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`Version` is required");
             }
-
             DetailedResponse<Batches> result = null;
 
             try
@@ -869,8 +1276,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/batches");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("compare-comply", "v1", "ListBatches"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -899,6 +1309,10 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="BatchStatus" />BatchStatus</returns>
         public DetailedResponse<BatchStatus> GetBatch(string batchId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(batchId))
             {
                 throw new ArgumentNullException("`batchId` is required for `GetBatch`");
@@ -907,12 +1321,6 @@ namespace IBM.Watson.CompareComply.v1
             {
                 batchId = Uri.EscapeDataString(batchId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<BatchStatus> result = null;
 
             try
@@ -922,8 +1330,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/batches/{batchId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("compare-comply", "v1", "GetBatch"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -958,6 +1369,10 @@ namespace IBM.Watson.CompareComply.v1
         /// <returns><see cref="BatchStatus" />BatchStatus</returns>
         public DetailedResponse<BatchStatus> UpdateBatch(string batchId, string action, string model = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(batchId))
             {
                 throw new ArgumentNullException("`batchId` is required for `UpdateBatch`");
@@ -970,12 +1385,6 @@ namespace IBM.Watson.CompareComply.v1
             {
                 throw new ArgumentNullException("`action` is required for `UpdateBatch`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<BatchStatus> result = null;
 
             try
@@ -985,8 +1394,11 @@ namespace IBM.Watson.CompareComply.v1
 
                 var restRequest = client.PutAsync($"{this.Endpoint}/v1/batches/{batchId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(action))
                 {
                     restRequest.WithArgument("action", action);
@@ -1012,6 +1424,46 @@ namespace IBM.Watson.CompareComply.v1
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Enum values for UpdateBatch.
+        /// </summary>
+        public class UpdateBatchEnums
+        {
+            /// <summary>
+            /// The action you want to perform on the specified batch-processing job.
+            /// </summary>
+            public class ActionValue
+            {
+                /// <summary>
+                /// Constant RESCAN for rescan
+                /// </summary>
+                public const string RESCAN = "rescan";
+                /// <summary>
+                /// Constant CANCEL for cancel
+                /// </summary>
+                public const string CANCEL = "cancel";
+                
+            }
+            /// <summary>
+            /// The analysis model to be used by the service. For the **Element classification** and **Compare two
+            /// documents** methods, the default is `contracts`. For the **Extract tables** method, the default is
+            /// `tables`. These defaults apply to the standalone methods as well as to the methods' use in
+            /// batch-processing requests.
+            /// </summary>
+            public class ModelValue
+            {
+                /// <summary>
+                /// Constant CONTRACTS for contracts
+                /// </summary>
+                public const string CONTRACTS = "contracts";
+                /// <summary>
+                /// Constant TABLES for tables
+                /// </summary>
+                public const string TABLES = "tables";
+                
+            }
         }
     }
 }

@@ -25,10 +25,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="IBM.Cloud.SDK.Core" Version="1.1.0" />
-        <PackageReference Include="IBM.Watson.Common" Version="4.6.0" />
-        <PackageReference Include="JsonSubTypes" Version="1.6.0" />
-        <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+      <Compile Remove="Examples\**" />
+      <Compile Remove="Test\**" />
+      <EmbeddedResource Remove="Examples\**" />
+      <EmbeddedResource Remove="Test\**" />
+      <None Remove="Examples\**" />
+      <None Remove="Test\**" />
     </ItemGroup>
 
+    <ItemGroup>
+        <PackageReference Include="IBM.Cloud.SDK.Core" Version="1.1.0" />
+        <PackageReference Include="IBM.Watson.Common" Version="5.0.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+        <PackageReference Include="JsonSubTypes" Version="1.6.0" />
+    </ItemGroup>
 </Project>

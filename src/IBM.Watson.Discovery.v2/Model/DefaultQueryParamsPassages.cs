@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2020.
+* (C) Copyright IBM Corp. 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ namespace IBM.Watson.Discovery.v2.Model
         [JsonProperty("count", NullValueHandling = NullValueHandling.Ignore)]
         public long? Count { get; set; }
         /// <summary>
-        /// An array of field names to perfom the passage search on.
+        /// An array of field names to perform the passage search on.
         /// </summary>
         [JsonProperty("fields", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Fields { get; set; }

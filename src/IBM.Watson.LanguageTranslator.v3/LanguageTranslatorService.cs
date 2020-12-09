@@ -15,6 +15,10 @@
 *
 */
 
+/**
+* IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-be3b4618-20201201-123423
+*/
+ 
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
@@ -32,21 +36,22 @@ namespace IBM.Watson.LanguageTranslator.v3
 {
     public partial class LanguageTranslatorService : IBMService, ILanguageTranslatorService
     {
-        const string serviceName = "language_translator";
+        const string defaultServiceName = "language_translator";
         private const string defaultServiceUrl = "https://api.us-south.language-translator.watson.cloud.ibm.com";
-        public string VersionDate { get; set; }
+        public string Version { get; set; }
 
-        public LanguageTranslatorService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
-        public LanguageTranslatorService(IClient httpClient) : base(serviceName, httpClient) { }
+        public LanguageTranslatorService(string version) : this(version, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public LanguageTranslatorService(string version, IAuthenticator authenticator) : this(version, defaultServiceName, authenticator) {}
+        public LanguageTranslatorService(string version, string serviceName) : this(version, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public LanguageTranslatorService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public LanguageTranslatorService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
+        public LanguageTranslatorService(string version, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
-            if (string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`version` is required");
             }
-
-            VersionDate = versionDate;
+            Version = version;
 
             if (string.IsNullOrEmpty(ServiceUrl))
             {
@@ -57,18 +62,19 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <summary>
         /// List supported languages.
         ///
-        /// Lists all supported languages. The method returns an array of supported languages with information about
-        /// each language. Languages are listed in alphabetical order by language code (for example, `af`, `ar`).
+        /// Lists all supported languages for translation. The method returns an array of supported languages with
+        /// information about each language. Languages are listed in alphabetical order by language code (for example,
+        /// `af`, `ar`). In addition to basic information about each language, the response indicates whether the
+        /// language is `supported_as_source` for translation and `supported_as_target` for translation. It also lists
+        /// whether the language is `identifiable`.
         /// </summary>
         /// <returns><see cref="Languages" />Languages</returns>
         public DetailedResponse<Languages> ListLanguages()
         {
-
-            if (string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(Version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`Version` is required");
             }
-
             DetailedResponse<Languages> result = null;
 
             try
@@ -78,8 +84,11 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/languages");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "ListLanguages"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -106,22 +115,32 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// source language to have the service attempt to detect the language from the input text. If you omit the
         /// source language, the request must contain sufficient input text for the service to identify the source
         /// language.
+        ///
+        /// You can translate a maximum of 50 KB (51,200 bytes) of text with a single request. All input text must be
+        /// encoded in UTF-8 format.
         /// </summary>
-        /// <param name="request">The translate request containing the text, and either a model ID or source and target
-        /// language pair.</param>
+        /// <param name="text">Input text in UTF-8 encoding. Submit a maximum of 50 KB (51,200 bytes) of text with a
+        /// single request. Multiple elements result in multiple translations in the response.</param>
+        /// <param name="modelId">The model to use for translation. For example, `en-de` selects the IBM-provided base
+        /// model for English-to-German translation. A model ID overrides the `source` and `target` parameters and is
+        /// required if you use a custom model. If no model ID is specified, you must specify at least a target
+        /// language. (optional)</param>
+        /// <param name="source">Language code that specifies the language of the input text. If omitted, the service
+        /// derives the source language from the input text. The input must contain sufficient text for the service to
+        /// identify the language reliably. (optional)</param>
+        /// <param name="target">Language code that specifies the target language for translation. Required if model ID
+        /// is not specified. (optional)</param>
         /// <returns><see cref="TranslationResult" />TranslationResult</returns>
         public DetailedResponse<TranslationResult> Translate(List<string> text, string modelId = null, string source = null, string target = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (text == null)
             {
                 throw new ArgumentNullException("`text` is required for `Translate`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<TranslationResult> result = null;
 
             try
@@ -131,8 +150,11 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/translate");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithHeader("Content-Type", "application/json");
 
                 JObject bodyObject = new JObject();
@@ -181,12 +203,10 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <returns><see cref="IdentifiableLanguages" />IdentifiableLanguages</returns>
         public DetailedResponse<IdentifiableLanguages> ListIdentifiableLanguages()
         {
-
-            if (string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(Version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`Version` is required");
             }
-
             DetailedResponse<IdentifiableLanguages> result = null;
 
             try
@@ -196,8 +216,11 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/identifiable_languages");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "ListIdentifiableLanguages"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -226,16 +249,14 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <returns><see cref="IdentifiedLanguages" />IdentifiedLanguages</returns>
         public DetailedResponse<IdentifiedLanguages> Identify(string text)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(text))
             {
                 throw new ArgumentNullException("`text` is required for `Identify`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<IdentifiedLanguages> result = null;
 
             try
@@ -245,10 +266,13 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/identify");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithHeader("Content-Type", "text/plain");
-                var httpContent = new StringContent(text, Encoding.UTF8);
+                var httpContent = new StringContent(JsonConvert.SerializeObject(text), Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "Identify"));
@@ -282,12 +306,10 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <returns><see cref="TranslationModels" />TranslationModels</returns>
         public DetailedResponse<TranslationModels> ListModels(string source = null, string target = null, bool? _default = null)
         {
-
-            if (string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(Version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`Version` is required");
             }
-
             DetailedResponse<TranslationModels> result = null;
 
             try
@@ -297,8 +319,11 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/models");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(source))
                 {
                     restRequest.WithArgument("source", source);
@@ -362,9 +387,11 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// * **XLIFF** (`.xliff`) - XML Localization Interchange File Format (XLIFF) is an XML specification for the
         /// exchange of translation memories.
         /// * **CSV** (`.csv`) - Comma-separated values (CSV) file with two columns for aligned sentences and phrases.
-        /// The first row contains the language code.
+        /// The first row must have two language codes. The first column is for the source language code, and the second
+        /// column is for the target language code.
         /// * **TSV** (`.tsv` or `.tab`) - Tab-separated values (TSV) file with two columns for aligned sentences and
-        /// phrases. The first row contains the language code.
+        /// phrases. The first row must have two language codes. The first column is for the source language code, and
+        /// the second column is for the target language code.
         /// * **JSON** (`.json`) - Custom JSON format for specifying aligned sentences and phrases.
         /// * **Microsoft Excel** (`.xls` or `.xlsx`) - Excel file with the first two columns for aligned sentences and
         /// phrases. The first row contains the language code.
@@ -422,16 +449,14 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <returns><see cref="TranslationModel" />TranslationModel</returns>
         public DetailedResponse<TranslationModel> CreateModel(string baseModelId, System.IO.MemoryStream forcedGlossary = null, System.IO.MemoryStream parallelCorpus = null, string name = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(baseModelId))
             {
                 throw new ArgumentNullException("`baseModelId` is required for `CreateModel`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<TranslationModel> result = null;
 
             try
@@ -461,8 +486,11 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/models");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (!string.IsNullOrEmpty(baseModelId))
                 {
                     restRequest.WithArgument("base_model_id", baseModelId);
@@ -500,6 +528,10 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <returns><see cref="DeleteModelResult" />DeleteModelResult</returns>
         public DetailedResponse<DeleteModelResult> DeleteModel(string modelId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(modelId))
             {
                 throw new ArgumentNullException("`modelId` is required for `DeleteModel`");
@@ -508,12 +540,6 @@ namespace IBM.Watson.LanguageTranslator.v3
             {
                 modelId = Uri.EscapeDataString(modelId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<DeleteModelResult> result = null;
 
             try
@@ -523,8 +549,11 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v3/models/{modelId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "DeleteModel"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -555,6 +584,10 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <returns><see cref="TranslationModel" />TranslationModel</returns>
         public DetailedResponse<TranslationModel> GetModel(string modelId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(modelId))
             {
                 throw new ArgumentNullException("`modelId` is required for `GetModel`");
@@ -563,12 +596,6 @@ namespace IBM.Watson.LanguageTranslator.v3
             {
                 modelId = Uri.EscapeDataString(modelId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<TranslationModel> result = null;
 
             try
@@ -578,8 +605,11 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/models/{modelId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "GetModel"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -606,12 +636,10 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <returns><see cref="DocumentList" />DocumentList</returns>
         public DetailedResponse<DocumentList> ListDocuments()
         {
-
-            if (string.IsNullOrEmpty(VersionDate))
+            if (string.IsNullOrEmpty(Version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`Version` is required");
             }
-
             DetailedResponse<DocumentList> result = null;
 
             try
@@ -621,8 +649,11 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/documents");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "ListDocuments"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -646,14 +677,14 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// Translate document.
         ///
         /// Submit a document for translation. You can submit the document contents in the `file` parameter, or you can
-        /// reference a previously submitted document by document ID.
+        /// reference a previously submitted document by document ID. The maximum file size for document translation is
+        /// * 20 MB for service instances on the Standard, Advanced, and Premium plans
+        /// * 2 MB for service instances on the Lite plan.
         /// </summary>
-        /// <param name="file">The contents of the source file to translate.
-        ///
-        /// [Supported file
-        /// types](https://cloud.ibm.com/docs/language-translator?topic=language-translator-document-translator-tutorial#supported-file-formats)
-        ///
-        /// Maximum file size: **20 MB**.</param>
+        /// <param name="file">The contents of the source file to translate. The maximum file size for document
+        /// translation is 20 MB for service instances on the Standard, Advanced, and Premium plans, and 2 MB for
+        /// service instances on the Lite plan. For more information, see [Supported file formats
+        /// (Beta)](https://cloud.ibm.com/docs/language-translator?topic=language-translator-document-translator-tutorial#supported-file-formats).</param>
         /// <param name="filename">The filename for file.</param>
         /// <param name="fileContentType">The content type of file. (optional)</param>
         /// <param name="modelId">The model to use for translation. For example, `en-de` selects the IBM-provided base
@@ -670,6 +701,10 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <returns><see cref="DocumentStatus" />DocumentStatus</returns>
         public DetailedResponse<DocumentStatus> TranslateDocument(System.IO.MemoryStream file, string filename, string fileContentType = null, string modelId = null, string source = null, string target = null, string documentId = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (file == null)
             {
                 throw new ArgumentNullException("`file` is required for `TranslateDocument`");
@@ -678,12 +713,6 @@ namespace IBM.Watson.LanguageTranslator.v3
             {
                 throw new ArgumentNullException("`filename` is required for `TranslateDocument`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<DocumentStatus> result = null;
 
             try
@@ -732,8 +761,11 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/documents");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 restRequest.WithBodyContent(formData);
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "TranslateDocument"));
@@ -755,6 +787,120 @@ namespace IBM.Watson.LanguageTranslator.v3
         }
 
         /// <summary>
+        /// Enum values for TranslateDocument.
+        /// </summary>
+        public class TranslateDocumentEnums
+        {
+            /// <summary>
+            /// The content type of file.
+            /// </summary>
+            public class FileContentTypeValue
+            {
+                /// <summary>
+                /// Constant APPLICATION_POWERPOINT for application/powerpoint
+                /// </summary>
+                public const string APPLICATION_POWERPOINT = "application/powerpoint";
+                /// <summary>
+                /// Constant APPLICATION_MSPOWERPOINT for application/mspowerpoint
+                /// </summary>
+                public const string APPLICATION_MSPOWERPOINT = "application/mspowerpoint";
+                /// <summary>
+                /// Constant APPLICATION_X_RTF for application/x-rtf
+                /// </summary>
+                public const string APPLICATION_X_RTF = "application/x-rtf";
+                /// <summary>
+                /// Constant APPLICATION_JSON for application/json
+                /// </summary>
+                public const string APPLICATION_JSON = "application/json";
+                /// <summary>
+                /// Constant APPLICATION_XML for application/xml
+                /// </summary>
+                public const string APPLICATION_XML = "application/xml";
+                /// <summary>
+                /// Constant APPLICATION_VND_MS_EXCEL for application/vnd.ms-excel
+                /// </summary>
+                public const string APPLICATION_VND_MS_EXCEL = "application/vnd.ms-excel";
+                /// <summary>
+                /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_SPREADSHEETML_SHEET for application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+                /// </summary>
+                public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_SPREADSHEETML_SHEET = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                /// <summary>
+                /// Constant APPLICATION_VND_MS_POWERPOINT for application/vnd.ms-powerpoint
+                /// </summary>
+                public const string APPLICATION_VND_MS_POWERPOINT = "application/vnd.ms-powerpoint";
+                /// <summary>
+                /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_PRESENTATIONML_PRESENTATION for application/vnd.openxmlformats-officedocument.presentationml.presentation
+                /// </summary>
+                public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_PRESENTATIONML_PRESENTATION = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
+                /// <summary>
+                /// Constant APPLICATION_MSWORD for application/msword
+                /// </summary>
+                public const string APPLICATION_MSWORD = "application/msword";
+                /// <summary>
+                /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
+                /// </summary>
+                public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                /// <summary>
+                /// Constant APPLICATION_VND_OASIS_OPENDOCUMENT_SPREADSHEET for application/vnd.oasis.opendocument.spreadsheet
+                /// </summary>
+                public const string APPLICATION_VND_OASIS_OPENDOCUMENT_SPREADSHEET = "application/vnd.oasis.opendocument.spreadsheet";
+                /// <summary>
+                /// Constant APPLICATION_VND_OASIS_OPENDOCUMENT_PRESENTATION for application/vnd.oasis.opendocument.presentation
+                /// </summary>
+                public const string APPLICATION_VND_OASIS_OPENDOCUMENT_PRESENTATION = "application/vnd.oasis.opendocument.presentation";
+                /// <summary>
+                /// Constant APPLICATION_VND_OASIS_OPENDOCUMENT_TEXT for application/vnd.oasis.opendocument.text
+                /// </summary>
+                public const string APPLICATION_VND_OASIS_OPENDOCUMENT_TEXT = "application/vnd.oasis.opendocument.text";
+                /// <summary>
+                /// Constant APPLICATION_PDF for application/pdf
+                /// </summary>
+                public const string APPLICATION_PDF = "application/pdf";
+                /// <summary>
+                /// Constant APPLICATION_RTF for application/rtf
+                /// </summary>
+                public const string APPLICATION_RTF = "application/rtf";
+                /// <summary>
+                /// Constant TEXT_HTML for text/html
+                /// </summary>
+                public const string TEXT_HTML = "text/html";
+                /// <summary>
+                /// Constant TEXT_JSON for text/json
+                /// </summary>
+                public const string TEXT_JSON = "text/json";
+                /// <summary>
+                /// Constant TEXT_PLAIN for text/plain
+                /// </summary>
+                public const string TEXT_PLAIN = "text/plain";
+                /// <summary>
+                /// Constant TEXT_RICHTEXT for text/richtext
+                /// </summary>
+                public const string TEXT_RICHTEXT = "text/richtext";
+                /// <summary>
+                /// Constant TEXT_RTF for text/rtf
+                /// </summary>
+                public const string TEXT_RTF = "text/rtf";
+                /// <summary>
+                /// Constant TEXT_SBV for text/sbv
+                /// </summary>
+                public const string TEXT_SBV = "text/sbv";
+                /// <summary>
+                /// Constant TEXT_SRT for text/srt
+                /// </summary>
+                public const string TEXT_SRT = "text/srt";
+                /// <summary>
+                /// Constant TEXT_VTT for text/vtt
+                /// </summary>
+                public const string TEXT_VTT = "text/vtt";
+                /// <summary>
+                /// Constant TEXT_XML for text/xml
+                /// </summary>
+                public const string TEXT_XML = "text/xml";
+                
+            }
+        }
+
+        /// <summary>
         /// Get document status.
         ///
         /// Gets the translation status of a document.
@@ -763,6 +909,10 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <returns><see cref="DocumentStatus" />DocumentStatus</returns>
         public DetailedResponse<DocumentStatus> GetDocumentStatus(string documentId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(documentId))
             {
                 throw new ArgumentNullException("`documentId` is required for `GetDocumentStatus`");
@@ -771,12 +921,6 @@ namespace IBM.Watson.LanguageTranslator.v3
             {
                 documentId = Uri.EscapeDataString(documentId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<DocumentStatus> result = null;
 
             try
@@ -786,8 +930,11 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/documents/{documentId}");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "GetDocumentStatus"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -816,6 +963,10 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteDocument(string documentId)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(documentId))
             {
                 throw new ArgumentNullException("`documentId` is required for `DeleteDocument`");
@@ -824,12 +975,6 @@ namespace IBM.Watson.LanguageTranslator.v3
             {
                 documentId = Uri.EscapeDataString(documentId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<object> result = null;
 
             try
@@ -839,7 +984,10 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 var restRequest = client.DeleteAsync($"{this.Endpoint}/v3/documents/{documentId}");
 
-                restRequest.WithArgument("version", VersionDate);
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "DeleteDocument"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -877,6 +1025,10 @@ namespace IBM.Watson.LanguageTranslator.v3
         /// <returns><see cref="byte[]" />byte[]</returns>
         public DetailedResponse<System.IO.MemoryStream> GetTranslatedDocument(string documentId, string accept = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (string.IsNullOrEmpty(documentId))
             {
                 throw new ArgumentNullException("`documentId` is required for `GetTranslatedDocument`");
@@ -885,12 +1037,6 @@ namespace IBM.Watson.LanguageTranslator.v3
             {
                 documentId = Uri.EscapeDataString(documentId);
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<System.IO.MemoryStream> result = null;
 
             try
@@ -900,11 +1046,14 @@ namespace IBM.Watson.LanguageTranslator.v3
 
                 var restRequest = client.GetAsync($"{this.Endpoint}/v3/documents/{documentId}/translated_document");
 
-                restRequest.WithArgument("version", VersionDate);
 
                 if (!string.IsNullOrEmpty(accept))
                 {
                     restRequest.WithHeader("Accept", accept);
+                }
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
                 }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("language_translator", "v3", "GetTranslatedDocument"));
@@ -920,6 +1069,116 @@ namespace IBM.Watson.LanguageTranslator.v3
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Enum values for GetTranslatedDocument.
+        /// </summary>
+        public class GetTranslatedDocumentEnums
+        {
+            /// <summary>
+            /// The type of the response: application/powerpoint, application/mspowerpoint, application/x-rtf,
+            /// application/json, application/xml, application/vnd.ms-excel,
+            /// application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-powerpoint,
+            /// application/vnd.openxmlformats-officedocument.presentationml.presentation, application/msword,
+            /// application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+            /// application/vnd.oasis.opendocument.spreadsheet, application/vnd.oasis.opendocument.presentation,
+            /// application/vnd.oasis.opendocument.text, application/pdf, application/rtf, text/html, text/json,
+            /// text/plain, text/richtext, text/rtf, or text/xml. A character encoding can be specified by including a
+            /// `charset` parameter. For example, 'text/html;charset=utf-8'.
+            /// </summary>
+            public class AcceptValue
+            {
+                /// <summary>
+                /// Constant APPLICATION_POWERPOINT for application/powerpoint
+                /// </summary>
+                public const string APPLICATION_POWERPOINT = "application/powerpoint";
+                /// <summary>
+                /// Constant APPLICATION_MSPOWERPOINT for application/mspowerpoint
+                /// </summary>
+                public const string APPLICATION_MSPOWERPOINT = "application/mspowerpoint";
+                /// <summary>
+                /// Constant APPLICATION_X_RTF for application/x-rtf
+                /// </summary>
+                public const string APPLICATION_X_RTF = "application/x-rtf";
+                /// <summary>
+                /// Constant APPLICATION_JSON for application/json
+                /// </summary>
+                public const string APPLICATION_JSON = "application/json";
+                /// <summary>
+                /// Constant APPLICATION_XML for application/xml
+                /// </summary>
+                public const string APPLICATION_XML = "application/xml";
+                /// <summary>
+                /// Constant APPLICATION_VND_MS_EXCEL for application/vnd.ms-excel
+                /// </summary>
+                public const string APPLICATION_VND_MS_EXCEL = "application/vnd.ms-excel";
+                /// <summary>
+                /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_SPREADSHEETML_SHEET for application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+                /// </summary>
+                public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_SPREADSHEETML_SHEET = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                /// <summary>
+                /// Constant APPLICATION_VND_MS_POWERPOINT for application/vnd.ms-powerpoint
+                /// </summary>
+                public const string APPLICATION_VND_MS_POWERPOINT = "application/vnd.ms-powerpoint";
+                /// <summary>
+                /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_PRESENTATIONML_PRESENTATION for application/vnd.openxmlformats-officedocument.presentationml.presentation
+                /// </summary>
+                public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_PRESENTATIONML_PRESENTATION = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
+                /// <summary>
+                /// Constant APPLICATION_MSWORD for application/msword
+                /// </summary>
+                public const string APPLICATION_MSWORD = "application/msword";
+                /// <summary>
+                /// Constant APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT for application/vnd.openxmlformats-officedocument.wordprocessingml.document
+                /// </summary>
+                public const string APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                /// <summary>
+                /// Constant APPLICATION_VND_OASIS_OPENDOCUMENT_SPREADSHEET for application/vnd.oasis.opendocument.spreadsheet
+                /// </summary>
+                public const string APPLICATION_VND_OASIS_OPENDOCUMENT_SPREADSHEET = "application/vnd.oasis.opendocument.spreadsheet";
+                /// <summary>
+                /// Constant APPLICATION_VND_OASIS_OPENDOCUMENT_PRESENTATION for application/vnd.oasis.opendocument.presentation
+                /// </summary>
+                public const string APPLICATION_VND_OASIS_OPENDOCUMENT_PRESENTATION = "application/vnd.oasis.opendocument.presentation";
+                /// <summary>
+                /// Constant APPLICATION_VND_OASIS_OPENDOCUMENT_TEXT for application/vnd.oasis.opendocument.text
+                /// </summary>
+                public const string APPLICATION_VND_OASIS_OPENDOCUMENT_TEXT = "application/vnd.oasis.opendocument.text";
+                /// <summary>
+                /// Constant APPLICATION_PDF for application/pdf
+                /// </summary>
+                public const string APPLICATION_PDF = "application/pdf";
+                /// <summary>
+                /// Constant APPLICATION_RTF for application/rtf
+                /// </summary>
+                public const string APPLICATION_RTF = "application/rtf";
+                /// <summary>
+                /// Constant TEXT_HTML for text/html
+                /// </summary>
+                public const string TEXT_HTML = "text/html";
+                /// <summary>
+                /// Constant TEXT_JSON for text/json
+                /// </summary>
+                public const string TEXT_JSON = "text/json";
+                /// <summary>
+                /// Constant TEXT_PLAIN for text/plain
+                /// </summary>
+                public const string TEXT_PLAIN = "text/plain";
+                /// <summary>
+                /// Constant TEXT_RICHTEXT for text/richtext
+                /// </summary>
+                public const string TEXT_RICHTEXT = "text/richtext";
+                /// <summary>
+                /// Constant TEXT_RTF for text/rtf
+                /// </summary>
+                public const string TEXT_RTF = "text/rtf";
+                /// <summary>
+                /// Constant TEXT_XML for text/xml
+                /// </summary>
+                public const string TEXT_XML = "text/xml";
+                
+            }
         }
     }
 }

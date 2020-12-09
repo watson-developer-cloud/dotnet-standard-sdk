@@ -141,17 +141,17 @@ after_build:
 
     }
 
-    Copy-Item C:\projects\dotnet-standard-sdk\test\VisualRecognition.v3.IntegrationTests\VisualRecognitionTestData C:\projects\dotnet-standard-sdk\VisualRecognitionTestData
+    Copy-Item C:\projects\dotnet-standard-sdk\src\IBM.Watson.VisualRecognition.v3\Test\Integration\VisualRecognitionTestData C:\projects\dotnet-standard-sdk\VisualRecognitionTestData
 
-    Copy-Item C:\projects\dotnet-standard-sdk\test\VisualRecognition.v4.IntegrationTests\VisualRecognitionTestData C:\projects\dotnet-standard-sdk\VisualRecognitionTestData
+    Copy-Item C:\projects\dotnet-standard-sdk\src\IBM.Watson.VisualRecognition.v4\Test\Integration\VisualRecognitionTestData C:\projects\dotnet-standard-sdk\VisualRecognitionTestData
 
-    Copy-Item C:\projects\dotnet-standard-sdk\test\SpeechToText.v1.IntegrationTests\SpeechToTextTestData C:\projects\dotnet-standard-sdk\SpeechToTextTestData
+    Copy-Item C:\projects\dotnet-standard-sdk\src\IBM.Watson.SpeechToText.v1\Test\Integration\SpeechToTextTestData C:\projects\dotnet-standard-sdk\SpeechToTextTestData
 
-    Copy-Item C:\projects\dotnet-standard-sdk\test\Discovery.v1.IntegrationTests\DiscoveryTestData C:\projects\dotnet-standard-sdk\DiscoveryTestData
+    Copy-Item C:\projects\dotnet-standard-sdk\src\IBM.Watson.Discovery.v1\Test\Integration\DiscoveryTestData C:\projects\dotnet-standard-sdk\DiscoveryTestData
     
-    Copy-Item C:\projects\dotnet-standard-sdk\test\CompareComply.v1.IntegrationTests\CompareComplyTestData C:\projects\dotnet-standard-sdk\CompareComplyTestData
+    Copy-Item C:\projects\dotnet-standard-sdk\src\IBM.Watson.CompareComply.v1\Test\Integration\CompareComplyTestData C:\projects\dotnet-standard-sdk\CompareComplyTestData
 
-    Copy-Item C:\projects\dotnet-standard-sdk\test\NaturalLanguageClassifier.v1.IntegrationTests\NaturalLanguageClassifierTestData C:\projects\dotnet-standard-sdk\NaturalLanguageClassifierTestData
+    Copy-Item C:\projects\dotnet-standard-sdk\src\IBM.Watson.NaturalLanguageClassifier.v1\Test\Integration\NaturalLanguageClassifierTestData C:\projects\dotnet-standard-sdk\NaturalLanguageClassifierTestData
 test_script:
 - ps: >-
     if(Test-Path -Path coverage)
@@ -164,82 +164,90 @@ test_script:
 
     New-Item -path . -name coverage -itemtype directory
     
-    ForEach ($folder in (Get-ChildItem -Path C:\\projects\\dotnet-standard-sdk\\test -Directory)) 
+    $testDirectories = "IBM.Watson.Assistant.v1", "IBM.Watson.Assistant.v2", "IBM.Watson.CompareComply.v1", "IBM.Watson.Discovery.v1", 
+    "IBM.Watson.Discovery.v2", "IBM.Watson.LanguageTranslator.v3", "IBM.Watson.NaturalLanguageClassifier.v1", 
+    "IBM.Watson.NaturalLanguageUnderstanding.v1", "IBM.Watson.PersonalityInsights.v3", "IBM.Watson.SpeechToText.v1",
+    "IBM.Watson.TextToSpeech.v1", "IBM.Watson.ToneAnalyzer.v3", "IBM.Watson.ToneAnalyzer.v3", "IBM.Watson.VisualRecognition.v4"
 
-    { 
+    ForEach ($serviceDirectory in $testDirectories)
+    {
+      ForEach ($folder in (Get-ChildItem -Path C:\\projects\\dotnet-standard-sdk\\src\\$serviceDirectory\\Test -Directory)) 
 
-        if($env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null)
+      { 
 
-        {
+          if($env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null)
 
-            Write-Output \"No pull request number. Executing tests\"
+          {
 
-            # dotnet test $folder.FullName
+              Write-Output \"No pull request number. Executing tests\"
 
-            # if($LastExitCode -ne 0) 
+              # dotnet test $serviceDirectory $folder.FullName
 
-            # {
+              # if($LastExitCode -ne 0) 
 
-            #     $host.SetShouldExit($LastExitCode )
+              # {
 
-            # }
+              #     $host.SetShouldExit($LastExitCode )
 
-            echo \"Test passed: $?\"
+              # }
 
-            echo \"LastExitCode: $LastExitCode\"
+              echo \"Test passed: $?\"
 
-            $openCover = 'C:\\projects\\dotnet-standard-sdk\\packages\\OpenCover.4.7.922\\tools\\OpenCover.Console.exe'    
-            
-            $targetArgs = '-targetargs: test ' + $folder.FullName + ' -c Release -f netcoreapp2.0'
-            
-            $filter = '-filter:+[IBM.Watson*]*-[*Tests*]*-[*Example*]*'
-            
-            & $openCover '-target:C:\\Program Files\\dotnet\\dotnet.exe' $targetArgs '-register:user' $filter '-oldStyle' '-mergeoutput' '-hideskipped:File' '-searchdirs:$testdir\\bin\\release\\netcoreapp2.0' '-output:coverage\\coverage.xml'
+              echo \"LastExitCode: $LastExitCode\"
 
-            if($env:COVERALLS_REPO_TOKEN)
-            
-            {
-            
-                C:\projects\dotnet-standard-sdk\packages\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover -i coverage\coverage.xml --useRelativePaths
-            
-                }
-            
-            else
+              $openCover = 'C:\\projects\\dotnet-standard-sdk\\packages\\OpenCover.4.7.922\\tools\\OpenCover.Console.exe'    
+              
+              $targetArgs = '-targetargs: test ' + $folder.FullName + ' -c Release -f netcoreapp2.0'
+              
+              $filter = '-filter:+[IBM.Watson*]*-[*Tests*]*-[*Example*]*'
+              
+              & $openCover '-target:C:\\Program Files\\dotnet\\dotnet.exe' $targetArgs '-register:user' $filter '-oldStyle' '-mergeoutput' '-hideskipped:File' '-searchdirs:$testdir\\bin\\release\\netcoreapp2.0' '-output:coverage\\coverage.xml'
 
-            {
+              if($env:COVERALLS_REPO_TOKEN)
+              
+              {
+              
+                  C:\projects\dotnet-standard-sdk\packages\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover -i coverage\coverage.xml --useRelativePaths
+              
+                  }
+              
+              else
 
-                Write-Output \"There is no Coveralls Repo Token - not pushing coverage.\"
+              {
 
-            }
-        }
+                  Write-Output \"There is no Coveralls Repo Token - not pushing coverage.\"
 
-        else
+              }
+          }
 
-        {
-            Write-Output \"Pull request number is $env:APPVEYOR_PULL_REQUEST_NUMBER. Skipping integration tests.\"
+          else
 
-            if($folder.FullName.EndsWith("UnitTests"))
+          {
+              Write-Output \"Pull request number is $env:APPVEYOR_PULL_REQUEST_NUMBER. Skipping integration tests.\"
 
-            {
+              if($folder.FullName.EndsWith("Unit"))
 
-                dotnet test $folder.FullName
+              {
 
-                if($LastExitCode -ne 0) 
+                  dotnet test $folder.FullName
 
-                {
+                  if($LastExitCode -ne 0) 
 
-                    $host.SetShouldExit($LastExitCode )
+                  {
 
-                }
+                      $host.SetShouldExit($LastExitCode )
 
-                echo \"Test passed: $?\"
+                  }
 
-                echo \"LastExitCode: $LastExitCode\"
+                  echo \"Test passed: $?\"
 
-            }
+                  echo \"LastExitCode: $LastExitCode\"
 
-        }
+              }
 
+          }
+
+      }
     }
 
     If($branchName -eq "master" -and $env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null)

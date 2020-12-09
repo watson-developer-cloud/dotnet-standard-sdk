@@ -15,6 +15,10 @@
 *
 */
 
+/**
+* IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-be3b4618-20201201-123423
+*/
+ 
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
@@ -32,13 +36,15 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
 {
     public partial class NaturalLanguageClassifierService : IBMService, INaturalLanguageClassifierService
     {
-        const string serviceName = "natural_language_classifier";
+        const string defaultServiceName = "natural_language_classifier";
         private const string defaultServiceUrl = "https://api.us-south.natural-language-classifier.watson.cloud.ibm.com";
 
-        public NaturalLanguageClassifierService() : this(ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
-        public NaturalLanguageClassifierService(IClient httpClient) : base(serviceName, httpClient) { }
+        public NaturalLanguageClassifierService() : this(defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public NaturalLanguageClassifierService(IAuthenticator authenticator) : this(defaultServiceName, authenticator) {}
+        public NaturalLanguageClassifierService(string serviceName) : this(serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public NaturalLanguageClassifierService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public NaturalLanguageClassifierService(IAuthenticator authenticator) : base(serviceName, authenticator)
+        public NaturalLanguageClassifierService(string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
 
             if (string.IsNullOrEmpty(ServiceUrl))
@@ -54,7 +60,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
         /// classify text.
         /// </summary>
         /// <param name="classifierId">Classifier ID to use.</param>
-        /// <param name="body">Phrase to classify.</param>
+        /// <param name="text">The submitted phrase. The maximum length is 2048 characters.</param>
         /// <returns><see cref="Classification" />Classification</returns>
         public DetailedResponse<Classification> Classify(string classifierId, string text)
         {
@@ -117,7 +123,7 @@ namespace IBM.Watson.NaturalLanguageClassifier.v1
         /// Note that classifying Japanese texts is a beta feature.
         /// </summary>
         /// <param name="classifierId">Classifier ID to use.</param>
-        /// <param name="body">Phrase to classify. You can submit up to 30 text phrases in a request.</param>
+        /// <param name="collection">The submitted phrases.</param>
         /// <returns><see cref="ClassificationCollection" />ClassificationCollection</returns>
         public DetailedResponse<ClassificationCollection> ClassifyCollection(string classifierId, List<ClassifyInput> collection)
         {

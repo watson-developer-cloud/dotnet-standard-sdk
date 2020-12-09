@@ -15,6 +15,10 @@
 *
 */
 
+/**
+* IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-be3b4618-20201201-123423
+*/
+ 
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -30,21 +34,22 @@ namespace IBM.Watson.ToneAnalyzer.v3
 {
     public partial class ToneAnalyzerService : IBMService, IToneAnalyzerService
     {
-        const string serviceName = "tone_analyzer";
+        const string defaultServiceName = "tone_analyzer";
         private const string defaultServiceUrl = "https://api.us-south.tone-analyzer.watson.cloud.ibm.com";
-        public string VersionDate { get; set; }
+        public string Version { get; set; }
 
-        public ToneAnalyzerService(string versionDate) : this(versionDate, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
-        public ToneAnalyzerService(IClient httpClient) : base(serviceName, httpClient) { }
+        public ToneAnalyzerService(string version) : this(version, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
+        public ToneAnalyzerService(string version, IAuthenticator authenticator) : this(version, defaultServiceName, authenticator) {}
+        public ToneAnalyzerService(string version, string serviceName) : this(version, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public ToneAnalyzerService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public ToneAnalyzerService(string versionDate, IAuthenticator authenticator) : base(serviceName, authenticator)
+        public ToneAnalyzerService(string version, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
         {
-            if (string.IsNullOrEmpty(versionDate))
+            if (string.IsNullOrEmpty(version))
             {
-                throw new ArgumentNullException("versionDate cannot be null.");
+                throw new ArgumentNullException("`version` is required");
             }
-
-            VersionDate = versionDate;
+            Version = version;
 
             if (string.IsNullOrEmpty(ServiceUrl))
             {
@@ -96,18 +101,16 @@ namespace IBM.Watson.ToneAnalyzer.v3
         /// variants are treated as their parent language; for example, `en-US` is interpreted as `en`. You can use
         /// different languages for **Content-Language** and **Accept-Language**. (optional, default to en)</param>
         /// <returns><see cref="ToneAnalysis" />ToneAnalysis</returns>
-        public DetailedResponse<ToneAnalysis> Tone(ToneInput toneInput, string contentType = null, bool? sentences = null, List<string> tones = null, string contentLanguage = null, string acceptLanguage = null)
+        public DetailedResponse<ToneAnalysis> Tone(System.IO.MemoryStream toneInput, string contentType = null, bool? sentences = null, List<string> tones = null, string contentLanguage = null, string acceptLanguage = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (toneInput == null)
             {
                 throw new ArgumentNullException("`toneInput` is required for `Tone`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<ToneAnalysis> result = null;
 
             try
@@ -117,7 +120,6 @@ namespace IBM.Watson.ToneAnalyzer.v3
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/tone");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
                 if (!string.IsNullOrEmpty(contentType))
@@ -134,6 +136,10 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 {
                     restRequest.WithHeader("Accept-Language", acceptLanguage);
                 }
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
                 if (sentences != null)
                 {
                     restRequest.WithArgument("sentences", sentences);
@@ -142,7 +148,7 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 {
                     restRequest.WithArgument("tones", string.Join(",", tones.ToArray()));
                 }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(toneInput), Encoding.UTF8);
+                var httpContent = new StringContent(Encoding.UTF8.GetString(toneInput.ToArray()), Encoding.UTF8);
                 restRequest.WithBodyContent(httpContent);
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("tone_analyzer", "v3", "Tone"));
@@ -164,6 +170,131 @@ namespace IBM.Watson.ToneAnalyzer.v3
         }
 
         /// <summary>
+        /// Enum values for Tone.
+        /// </summary>
+        public class ToneEnums
+        {
+            /// <summary>
+            /// The type of the input. A character encoding can be specified by including a `charset` parameter. For
+            /// example, 'text/plain;charset=utf-8'.
+            /// </summary>
+            public class ContentTypeValue
+            {
+                /// <summary>
+                /// Constant APPLICATION_JSON for application/json
+                /// </summary>
+                public const string APPLICATION_JSON = "application/json";
+                /// <summary>
+                /// Constant TEXT_PLAIN for text/plain
+                /// </summary>
+                public const string TEXT_PLAIN = "text/plain";
+                /// <summary>
+                /// Constant TEXT_HTML for text/html
+                /// </summary>
+                public const string TEXT_HTML = "text/html";
+                
+            }
+            /// <summary>
+            /// **`2017-09-21`:** Deprecated. The service continues to accept the parameter for backward-compatibility,
+            /// but the parameter no longer affects the response.
+            ///
+            /// **`2016-05-19`:** A comma-separated list of tones for which the service is to return its analysis of the
+            /// input; the indicated tones apply both to the full document and to individual sentences of the document.
+            /// You can specify one or more of the valid values. Omit the parameter to request results for all three
+            /// tones.
+            /// </summary>
+            public class TonesValue
+            {
+                /// <summary>
+                /// Constant EMOTION for emotion
+                /// </summary>
+                public const string EMOTION = "emotion";
+                /// <summary>
+                /// Constant LANGUAGE for language
+                /// </summary>
+                public const string LANGUAGE = "language";
+                /// <summary>
+                /// Constant SOCIAL for social
+                /// </summary>
+                public const string SOCIAL = "social";
+                
+            }
+            /// <summary>
+            /// The language of the input text for the request: English or French. Regional variants are treated as
+            /// their parent language; for example, `en-US` is interpreted as `en`. The input content must match the
+            /// specified language. Do not submit content that contains both languages. You can use different languages
+            /// for **Content-Language** and **Accept-Language**.
+            /// * **`2017-09-21`:** Accepts `en` or `fr`.
+            /// * **`2016-05-19`:** Accepts only `en`.
+            /// </summary>
+            public class ContentLanguageValue
+            {
+                /// <summary>
+                /// Constant EN for en
+                /// </summary>
+                public const string EN = "en";
+                /// <summary>
+                /// Constant FR for fr
+                /// </summary>
+                public const string FR = "fr";
+                
+            }
+            /// <summary>
+            /// The desired language of the response. For two-character arguments, regional variants are treated as
+            /// their parent language; for example, `en-US` is interpreted as `en`. You can use different languages for
+            /// **Content-Language** and **Accept-Language**.
+            /// </summary>
+            public class AcceptLanguageValue
+            {
+                /// <summary>
+                /// Constant AR for ar
+                /// </summary>
+                public const string AR = "ar";
+                /// <summary>
+                /// Constant DE for de
+                /// </summary>
+                public const string DE = "de";
+                /// <summary>
+                /// Constant EN for en
+                /// </summary>
+                public const string EN = "en";
+                /// <summary>
+                /// Constant ES for es
+                /// </summary>
+                public const string ES = "es";
+                /// <summary>
+                /// Constant FR for fr
+                /// </summary>
+                public const string FR = "fr";
+                /// <summary>
+                /// Constant IT for it
+                /// </summary>
+                public const string IT = "it";
+                /// <summary>
+                /// Constant JA for ja
+                /// </summary>
+                public const string JA = "ja";
+                /// <summary>
+                /// Constant KO for ko
+                /// </summary>
+                public const string KO = "ko";
+                /// <summary>
+                /// Constant PT_BR for pt-br
+                /// </summary>
+                public const string PT_BR = "pt-br";
+                /// <summary>
+                /// Constant ZH_CN for zh-cn
+                /// </summary>
+                public const string ZH_CN = "zh-cn";
+                /// <summary>
+                /// Constant ZH_TW for zh-tw
+                /// </summary>
+                public const string ZH_TW = "zh-tw";
+                
+            }
+        }
+
+        /// <summary>
         /// Analyze customer-engagement tone.
         ///
         /// Use the customer-engagement endpoint to analyze the tone of customer service and customer support
@@ -179,7 +310,8 @@ namespace IBM.Watson.ToneAnalyzer.v3
         /// **See also:** [Using the customer-engagement
         /// endpoint](https://cloud.ibm.com/docs/tone-analyzer?topic=tone-analyzer-utco#utco).
         /// </summary>
-        /// <param name="utterances">An object that contains the content to be analyzed.</param>
+        /// <param name="utterances">An array of `Utterance` objects that provides the input content that the service is
+        /// to analyze.</param>
         /// <param name="contentLanguage">The language of the input text for the request: English or French. Regional
         /// variants are treated as their parent language; for example, `en-US` is interpreted as `en`. The input
         /// content must match the specified language. Do not submit content that contains both languages. You can use
@@ -192,16 +324,14 @@ namespace IBM.Watson.ToneAnalyzer.v3
         /// <returns><see cref="UtteranceAnalyses" />UtteranceAnalyses</returns>
         public DetailedResponse<UtteranceAnalyses> ToneChat(List<Utterance> utterances, string contentLanguage = null, string acceptLanguage = null)
         {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
             if (utterances == null)
             {
                 throw new ArgumentNullException("`utterances` is required for `ToneChat`");
             }
-
-            if (string.IsNullOrEmpty(VersionDate))
-            {
-                throw new ArgumentNullException("versionDate cannot be null.");
-            }
-
             DetailedResponse<UtteranceAnalyses> result = null;
 
             try
@@ -211,7 +341,6 @@ namespace IBM.Watson.ToneAnalyzer.v3
 
                 var restRequest = client.PostAsync($"{this.Endpoint}/v3/tone_chat");
 
-                restRequest.WithArgument("version", VersionDate);
                 restRequest.WithHeader("Accept", "application/json");
 
                 if (!string.IsNullOrEmpty(contentLanguage))
@@ -222,6 +351,10 @@ namespace IBM.Watson.ToneAnalyzer.v3
                 if (!string.IsNullOrEmpty(acceptLanguage))
                 {
                     restRequest.WithHeader("Accept-Language", acceptLanguage);
+                }
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
                 }
                 restRequest.WithHeader("Content-Type", "application/json");
 
@@ -249,6 +382,86 @@ namespace IBM.Watson.ToneAnalyzer.v3
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Enum values for ToneChat.
+        /// </summary>
+        public class ToneChatEnums
+        {
+            /// <summary>
+            /// The language of the input text for the request: English or French. Regional variants are treated as
+            /// their parent language; for example, `en-US` is interpreted as `en`. The input content must match the
+            /// specified language. Do not submit content that contains both languages. You can use different languages
+            /// for **Content-Language** and **Accept-Language**.
+            /// * **`2017-09-21`:** Accepts `en` or `fr`.
+            /// * **`2016-05-19`:** Accepts only `en`.
+            /// </summary>
+            public class ContentLanguageValue
+            {
+                /// <summary>
+                /// Constant EN for en
+                /// </summary>
+                public const string EN = "en";
+                /// <summary>
+                /// Constant FR for fr
+                /// </summary>
+                public const string FR = "fr";
+                
+            }
+            /// <summary>
+            /// The desired language of the response. For two-character arguments, regional variants are treated as
+            /// their parent language; for example, `en-US` is interpreted as `en`. You can use different languages for
+            /// **Content-Language** and **Accept-Language**.
+            /// </summary>
+            public class AcceptLanguageValue
+            {
+                /// <summary>
+                /// Constant AR for ar
+                /// </summary>
+                public const string AR = "ar";
+                /// <summary>
+                /// Constant DE for de
+                /// </summary>
+                public const string DE = "de";
+                /// <summary>
+                /// Constant EN for en
+                /// </summary>
+                public const string EN = "en";
+                /// <summary>
+                /// Constant ES for es
+                /// </summary>
+                public const string ES = "es";
+                /// <summary>
+                /// Constant FR for fr
+                /// </summary>
+                public const string FR = "fr";
+                /// <summary>
+                /// Constant IT for it
+                /// </summary>
+                public const string IT = "it";
+                /// <summary>
+                /// Constant JA for ja
+                /// </summary>
+                public const string JA = "ja";
+                /// <summary>
+                /// Constant KO for ko
+                /// </summary>
+                public const string KO = "ko";
+                /// <summary>
+                /// Constant PT_BR for pt-br
+                /// </summary>
+                public const string PT_BR = "pt-br";
+                /// <summary>
+                /// Constant ZH_CN for zh-cn
+                /// </summary>
+                public const string ZH_CN = "zh-cn";
+                /// <summary>
+                /// Constant ZH_TW for zh-tw
+                /// </summary>
+                public const string ZH_TW = "zh-tw";
+                
+            }
         }
     }
 }

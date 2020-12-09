@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2020.
+* (C) Copyright IBM Corp. 2019, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@
 using System.Collections.Generic;
 using IBM.Cloud.SDK.Core.Model;
 using IBM.Cloud.SDK.Core.Http;
+using System;
 using IBM.Watson.VisualRecognition.v4.Model;
 
 namespace IBM.Watson.VisualRecognition.v4
@@ -42,7 +43,7 @@ namespace IBM.Watson.VisualRecognition.v4
         DetailedResponse<object> DeleteObject(string collectionId, string _object);
         DetailedResponse<Collection> Train(string collectionId);
         DetailedResponse<TrainingDataObjects> AddImageTrainingData(string collectionId, string imageId, List<TrainingDataObject> objects = null);
-        DetailedResponse<TrainingEvents> GetTrainingUsage(string startTime = null, string endTime = null);
+        DetailedResponse<TrainingEvents> GetTrainingUsage(DateTime? startTime = null, DateTime? endTime = null);
         DetailedResponse<object> DeleteUserData(string customerId);
     }
 }

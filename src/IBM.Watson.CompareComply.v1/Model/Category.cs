@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2018, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -134,11 +134,37 @@ namespace IBM.Watson.CompareComply.v1.Model
         }
 
         /// <summary>
+        /// The type of modification of the feedback entry in the updated labels response.
+        /// </summary>
+        public class ModificationEnumValue
+        {
+            /// <summary>
+            /// Constant ADDED for added
+            /// </summary>
+            public const string ADDED = "added";
+            /// <summary>
+            /// Constant UNCHANGED for unchanged
+            /// </summary>
+            public const string UNCHANGED = "unchanged";
+            /// <summary>
+            /// Constant REMOVED for removed
+            /// </summary>
+            public const string REMOVED = "removed";
+            
+        }
+
+        /// <summary>
         /// The category of the associated element.
         /// Constants for possible values can be found using Category.LabelEnumValue
         /// </summary>
         [JsonProperty("label", NullValueHandling = NullValueHandling.Ignore)]
         public string Label { get; set; }
+        /// <summary>
+        /// The type of modification of the feedback entry in the updated labels response.
+        /// Constants for possible values can be found using Category.ModificationEnumValue
+        /// </summary>
+        [JsonProperty("modification", NullValueHandling = NullValueHandling.Ignore)]
+        public string Modification { get; set; }
         /// <summary>
         /// Hashed values that you can send to IBM to provide feedback or receive support.
         /// </summary>

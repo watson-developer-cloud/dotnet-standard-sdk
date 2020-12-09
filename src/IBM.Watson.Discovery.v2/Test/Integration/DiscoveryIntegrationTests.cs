@@ -32,7 +32,8 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
     {
         private DiscoveryService service;
         private string versionDate = "2019-11-22";
-        private string filepathToIngest = @"DiscoveryTestData/problem.json";
+        private string filepathToIngest = @"DiscoveryTestData/watson_beats_jeopardy.html";
+        private string filepathAnalyzeDoc = @"DiscoveryTestData/problem.json";
         private string enrichmentFile = @"DiscoveryTestData/test.csv";
         private string metadata = "{\"Creator\": \".NET SDK Test\",\"Subject\": \"Discovery service\"}";
         private string bearerToken = "";
@@ -316,7 +317,7 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
         [TestMethod]
         public void TestAnalyzeDocument()
         {
-            using (FileStream fs = File.OpenRead(filepathToIngest))
+            using (FileStream fs = File.OpenRead(filepathAnalyzeDoc))
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
@@ -709,7 +710,7 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
         #endregion
 
         #region List Projects
-        //[TestMethod]
+        [TestMethod]
         public void TestListProjects()
         {
             service.WithHeader("X-Watson-Test", "1");

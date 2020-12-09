@@ -1,5 +1,7 @@
 var namespace_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model =
 [
+    [ "AnalyzedDocument", "d8/d0f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_analyzed_document.html", "d8/d0f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_analyzed_document" ],
+    [ "AnalyzedResult", "db/d7e/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_analyzed_result.html", "db/d7e/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_analyzed_result" ],
     [ "Collection", "d0/d6e/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection.html", "d0/d6e/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection" ],
     [ "CollectionDetails", "d1/dcf/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_details.html", "d1/dcf/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_details" ],
     [ "CollectionEnrichment", "d4/dd5/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_enrichment.html", "d4/dd5/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_enrichment" ],
@@ -40,8 +42,8 @@ var namespace_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model =
     [ "QueryLargeTableResults", "db/dc0/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_large_table_results.html", "db/dc0/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_large_table_results" ],
     [ "QueryNestedAggregation", "d7/daa/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_nested_aggregation.html", "d7/daa/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_nested_aggregation" ],
     [ "QueryNoticesResponse", "de/d14/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_notices_response.html", "de/d14/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_notices_response" ],
-    [ "QueryNoticesResult", "de/d8a/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_notices_result.html", "de/d8a/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_notices_result" ],
     [ "QueryResponse", "dc/d2f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_response.html", "dc/d2f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_response" ],
+    [ "QueryResponsePassage", "d8/d1b/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_response_passage.html", "d8/d1b/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_response_passage" ],
     [ "QueryResult", "d2/d3a/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_result.html", "d2/d3a/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_result" ],
     [ "QueryResultMetadata", "d0/d73/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_result_metadata.html", "d0/d73/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_result_metadata" ],
     [ "QueryResultPassage", "d8/d0c/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_result_passage.html", "d8/d0c/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_result_passage" ],

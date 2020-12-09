@@ -22,7 +22,8 @@ var dir_1ddf9071e1bda1b1e408fcc2f4be9e1f =
     ] ],
     [ "Category.cs", "da/d0e/_category_8cs.html", [
       [ "Category", "d9/d01/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category.html", "d9/d01/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category" ],
-      [ "LabelEnumValue", "d9/d97/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value.html", "d9/d97/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value" ]
+      [ "LabelEnumValue", "d9/d97/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value.html", "d9/d97/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_label_enum_value" ],
+      [ "ModificationEnumValue", "d1/d7a/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_modification_enum_value.html", "d1/d7a/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_1_1_modification_enum_value" ]
     ] ],
     [ "CategoryComparison.cs", "dc/d1f/_category_comparison_8cs.html", [
       [ "CategoryComparison", "d1/d61/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_comparison.html", "d1/d61/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_category_comparison" ],
@@ -130,8 +131,7 @@ var dir_1ddf9071e1bda1b1e408fcc2f4be9e1f =
       [ "OriginalLabelsIn", "db/d6f/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_original_labels_in.html", "db/d6f/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_original_labels_in" ]
     ] ],
     [ "OriginalLabelsOut.cs", "dc/dba/_original_labels_out_8cs.html", [
-      [ "OriginalLabelsOut", "d1/d25/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_original_labels_out.html", "d1/d25/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_original_labels_out" ],
-      [ "ModificationEnumValue", "d8/da7/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_original_labels_out_1_1_modification_enum_value.html", "d8/da7/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_original_labels_out_1_1_modification_enum_value" ]
+      [ "OriginalLabelsOut", "d1/d25/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_original_labels_out.html", "d1/d25/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_original_labels_out" ]
     ] ],
     [ "Pagination.cs", "d8/de3/_i_b_m_8_watson_8_compare_comply_8v1_2_model_2_pagination_8cs.html", [
       [ "Pagination", "d9/db6/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_pagination.html", "d9/db6/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_pagination" ]
@@ -176,7 +176,8 @@ var dir_1ddf9071e1bda1b1e408fcc2f4be9e1f =
       [ "ConfidenceLevelEnumValue", "d0/d6c/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_termination_dates_1_1_confidence_level_enum_value.html", "d0/d6c/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_termination_dates_1_1_confidence_level_enum_value" ]
     ] ],
     [ "TypeLabel.cs", "d7/d97/_type_label_8cs.html", [
-      [ "TypeLabel", "df/d65/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_type_label.html", "df/d65/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_type_label" ]
+      [ "TypeLabel", "df/d65/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_type_label.html", "df/d65/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_type_label" ],
+      [ "ModificationEnumValue", "df/d8b/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_type_label_1_1_modification_enum_value.html", "df/d8b/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_type_label_1_1_modification_enum_value" ]
     ] ],
     [ "TypeLabelComparison.cs", "d8/d6b/_type_label_comparison_8cs.html", [
       [ "TypeLabelComparison", "da/d7c/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_type_label_comparison.html", "da/d7c/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_type_label_comparison" ]
@@ -188,8 +189,7 @@ var dir_1ddf9071e1bda1b1e408fcc2f4be9e1f =
       [ "UpdatedLabelsIn", "d1/d00/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_updated_labels_in.html", "d1/d00/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_updated_labels_in" ]
     ] ],
     [ "UpdatedLabelsOut.cs", "df/d6f/_updated_labels_out_8cs.html", [
-      [ "UpdatedLabelsOut", "d4/da1/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_updated_labels_out.html", "d4/da1/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_updated_labels_out" ],
-      [ "ModificationEnumValue", "d7/d9b/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_updated_labels_out_1_1_modification_enum_value.html", "d7/d9b/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_updated_labels_out_1_1_modification_enum_value" ]
+      [ "UpdatedLabelsOut", "d4/da1/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_updated_labels_out.html", "d4/da1/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_updated_labels_out" ]
     ] ],
     [ "Value.cs", "d6/d5f/_i_b_m_8_watson_8_compare_comply_8v1_2_model_2_value_8cs.html", [
       [ "Value", "d6/d63/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_value.html", "d6/d63/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_value" ]

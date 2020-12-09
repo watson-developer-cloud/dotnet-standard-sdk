@@ -1,8 +1,28 @@
 var class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service =
 [
-    [ "DiscoveryService", "d5/d83/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service.html#a17ac30bfaabf08d97e69092a235f02ce", null ],
+    [ "AddDocumentEnums", "d8/d18/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service_1_1_add_document_enums.html", [
+      [ "FileContentTypeValue", "de/deb/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service_1_1_add_document_enums_1_1_file_content_type_value.html", "de/deb/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service_1_1_add_document_enums_1_1_file_content_type_value" ]
+    ] ],
+    [ "GetMetricsEventRateEnums", "d2/d97/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service_1_1_get_metrics_event_rate_enums.html", [
+      [ "ResultTypeValue", "d9/d98/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service_1_1_get_metrics_event_rate_enums_1_1_result_type_value.html", "d9/d98/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service_1_1_get_metrics_event_rate_enums_1_1_result_type_value" ]
+    ] ],
+    [ "GetMetricsQueryEnums", "d6/daa/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service_1_1_get_metrics_query_enums.html", [
+      [ "ResultTypeValue", "de/d1e/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service_1_1_get_metrics_query_enums_1_1_result_type_value.html", "de/d1e/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service_1_1_get_metrics_query_enums_1_1_result_type_value" ]
+    ] ],
+    [ "GetMetricsQueryEventEnums", "d3/d4c/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service_1_1_get_metrics_query_event_enums.html", [
+      [ "ResultTypeValue", "d4/d8e/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service_1_1_get_metrics_query_event_enums_1_1_result_type_value.html", "d4/d8e/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service_1_1_get_metrics_query_event_enums_1_1_result_type_value" ]
+    ] ],
+    [ "GetMetricsQueryNoResultsEnums", "d7/d43/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service_1_1_get_metrics_query_no_results_enums.html", [
+      [ "ResultTypeValue", "dd/dbf/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service_1_1_get_metrics_query_no_results_enums_1_1_result_type_value.html", "dd/dbf/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service_1_1_get_metrics_query_no_results_enums_1_1_result_type_value" ]
+    ] ],
+    [ "UpdateDocumentEnums", "de/d4d/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service_1_1_update_document_enums.html", [
+      [ "FileContentTypeValue", "d9/d33/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service_1_1_update_document_enums_1_1_file_content_type_value.html", "d9/d33/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service_1_1_update_document_enums_1_1_file_content_type_value" ]
+    ] ],
+    [ "DiscoveryService", "d5/d83/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service.html#a880bd8f0f4fbe4f82066e74a37d37fec", null ],
+    [ "DiscoveryService", "d5/d83/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service.html#af327d7f127645d12753ba3d5fc2bf65e", null ],
+    [ "DiscoveryService", "d5/d83/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service.html#a606435ae4eca8d8aa4fc7b2d9e3154ea", null ],
     [ "DiscoveryService", "d5/d83/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service.html#a8e6726589d8c3ac9cebc01611b928844", null ],
-    [ "DiscoveryService", "d5/d83/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service.html#a9712f3187376170001f84d0d0459ba6e", null ],
+    [ "DiscoveryService", "d5/d83/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service.html#a43a6bd8a7120a310b0ad8ef35deece95", null ],
     [ "AddDocument", "d5/d83/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service.html#a9652484c91d85af591212ed3fe336288", null ],
     [ "AddTrainingData", "d5/d83/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service.html#a4510bf8653d778f9e9e06bdd58361a4c", null ],
     [ "CreateCollection", "d5/d83/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service.html#aab7097a81d124ff5c4f4fbbe5446f18e", null ],
@@ -65,5 +85,5 @@ var class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service =
     [ "UpdateDocument", "d5/d83/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service.html#a5bc01cef4f506ed01662859a5824273a", null ],
     [ "UpdateEnvironment", "d5/d83/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service.html#ab281ca49de3be53fc77f4c86ce4380ca", null ],
     [ "UpdateTrainingExample", "d5/d83/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service.html#aeddc9bc19ef8f69d46a0314577a6a225", null ],
-    [ "VersionDate", "d5/d83/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service.html#a357e1c1458faf9aabf687545cf720489", null ]
+    [ "Version", "d5/d83/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service.html#a1b37b4d3f58a591315f275b1d2274a7a", null ]
 ];

@@ -3,9 +3,6 @@ var dir_1ee6794a256bb6e828d5ee9dbce895d9 =
     [ "AnalysisResults.cs", "db/d1c/_analysis_results_8cs.html", [
       [ "AnalysisResults", "dd/d9f/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_analysis_results.html", "dd/d9f/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_analysis_results" ]
     ] ],
-    [ "AnalysisResultsMetadata.cs", "d9/d97/_analysis_results_metadata_8cs.html", [
-      [ "AnalysisResultsMetadata", "de/d15/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_analysis_results_metadata.html", "de/d15/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_analysis_results_metadata" ]
-    ] ],
     [ "AnalysisResultsUsage.cs", "d3/dd8/_analysis_results_usage_8cs.html", [
       [ "AnalysisResultsUsage", "d6/d7a/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_analysis_results_usage.html", "d6/d7a/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_analysis_results_usage" ]
     ] ],
@@ -66,6 +63,9 @@ var dir_1ee6794a256bb6e828d5ee9dbce895d9 =
     [ "FeatureSentimentResults.cs", "d8/d65/_feature_sentiment_results_8cs.html", [
       [ "FeatureSentimentResults", "d4/d3f/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_feature_sentiment_results.html", "d4/d3f/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_feature_sentiment_results" ]
     ] ],
+    [ "FeaturesResultsMetadata.cs", "dc/df4/_features_results_metadata_8cs.html", [
+      [ "FeaturesResultsMetadata", "d0/d89/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_features_results_metadata.html", "d0/d89/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_features_results_metadata" ]
+    ] ],
     [ "Feed.cs", "d8/d27/_feed_8cs.html", [
       [ "Feed", "dc/d54/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_feed.html", "dc/d54/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_feed" ]
     ] ],
@@ -77,9 +77,6 @@ var dir_1ee6794a256bb6e828d5ee9dbce895d9 =
     ] ],
     [ "ListModelsResults.cs", "d7/d0c/_list_models_results_8cs.html", [
       [ "ListModelsResults", "d8/d5a/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_list_models_results.html", "d8/d5a/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_list_models_results" ]
-    ] ],
-    [ "MetadataOptions.cs", "d8/dd5/_metadata_options_8cs.html", [
-      [ "MetadataOptions", "d0/dbe/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_metadata_options.html", null ]
     ] ],
     [ "Model.cs", "db/d88/_model_8cs.html", [
       [ "Model", "de/ddd/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_model.html", "de/ddd/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_model" ],

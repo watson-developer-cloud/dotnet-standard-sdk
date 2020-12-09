@@ -1,17 +1,51 @@
 var class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service =
 [
+    [ "AddAudioEnums", "d0/d61/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_add_audio_enums.html", [
+      [ "ContainedContentTypeValue", "d0/d77/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_add_audio_enums_1_1_contained_content_type_value.html", "d0/d77/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_add_audio_enums_1_1_contained_content_type_value" ],
+      [ "ContentTypeValue", "d3/d9d/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_add_audio_enums_1_1_content_type_value.html", "d3/d9d/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_add_audio_enums_1_1_content_type_value" ]
+    ] ],
+    [ "AddGrammarEnums", "dd/d4f/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_add_grammar_enums.html", [
+      [ "ContentTypeValue", "d0/d67/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_add_grammar_enums_1_1_content_type_value.html", "d0/d67/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_add_grammar_enums_1_1_content_type_value" ]
+    ] ],
+    [ "CreateJobEnums", "d4/d51/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_create_job_enums.html", [
+      [ "ContentTypeValue", "dd/d82/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_create_job_enums_1_1_content_type_value.html", "dd/d82/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_create_job_enums_1_1_content_type_value" ],
+      [ "EventsValue", "d0/d44/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_create_job_enums_1_1_events_value.html", "d0/d44/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_create_job_enums_1_1_events_value" ],
+      [ "ModelValue", "de/de9/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_create_job_enums_1_1_model_value.html", "de/de9/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_create_job_enums_1_1_model_value" ]
+    ] ],
+    [ "GetModelEnums", "d7/d90/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_get_model_enums.html", [
+      [ "ModelIdValue", "dc/db1/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_get_model_enums_1_1_model_id_value.html", "dc/db1/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_get_model_enums_1_1_model_id_value" ]
+    ] ],
+    [ "ListAcousticModelsEnums", "dc/d48/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_acoustic_models_enums.html", [
+      [ "LanguageValue", "dd/d7e/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_acoustic_models_enums_1_1_language_value.html", "dd/d7e/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_acoustic_models_enums_1_1_language_value" ]
+    ] ],
+    [ "ListLanguageModelsEnums", "da/dcb/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_language_models_enums.html", [
+      [ "LanguageValue", "dd/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_language_models_enums_1_1_language_value.html", "dd/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_language_models_enums_1_1_language_value" ]
+    ] ],
+    [ "ListWordsEnums", "d1/d67/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_words_enums.html", [
+      [ "SortValue", "d2/d5a/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_words_enums_1_1_sort_value.html", "d2/d5a/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_words_enums_1_1_sort_value" ],
+      [ "WordTypeValue", "da/d71/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_words_enums_1_1_word_type_value.html", "da/d71/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_words_enums_1_1_word_type_value" ]
+    ] ],
+    [ "RecognizeEnums", "de/d72/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_recognize_enums.html", [
+      [ "ContentTypeValue", "d8/d9f/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_recognize_enums_1_1_content_type_value.html", "d8/d9f/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_recognize_enums_1_1_content_type_value" ],
+      [ "ModelValue", "da/de8/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_recognize_enums_1_1_model_value.html", "da/de8/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_recognize_enums_1_1_model_value" ]
+    ] ],
+    [ "TrainLanguageModelEnums", "d7/d69/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_train_language_model_enums.html", [
+      [ "WordTypeToAddValue", "dc/d3f/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_train_language_mo2aeb2f76192ca798f1540659ae2bc374.html", "dc/d3f/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_train_language_mo2aeb2f76192ca798f1540659ae2bc374" ]
+    ] ],
     [ "SpeechToTextService", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a3da86c5055a6cf85c34a94f459d4f784", null ],
-    [ "SpeechToTextService", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#abbdfacf680992e1fea35c331555a64f8", null ],
     [ "SpeechToTextService", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a31fd2b9a3b161176164104ca67d644e9", null ],
-    [ "AddAudio", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a3e32f9c8efaa197badc3306c485e23ac", null ],
+    [ "SpeechToTextService", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#afbd7d120217b057a5ff56ab1bdee38b8", null ],
+    [ "SpeechToTextService", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#abbdfacf680992e1fea35c331555a64f8", null ],
+    [ "SpeechToTextService", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#ae2e101a784a5341e4b4d2129fcc919e6", null ],
+    [ "AddAudio", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#ac8966d1294a7cf296a8d95e55d1e077a", null ],
     [ "AddCorpus", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#ac58aae2ca6569b8933bdc24b987e1eae", null ],
-    [ "AddGrammar", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a3d6942f18f7fcf24541c9fe83509440a", null ],
+    [ "AddGrammar", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#aa37c721345d7b1b5c14ea1ac76a5963d", null ],
     [ "AddWord", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a3664b09234f71f38dfc8a08d1721188d", null ],
     [ "AddWords", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a182bdb4eb3405ee745a8d176c5fabeab", null ],
     [ "CheckJob", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#abf13d0d13993c30bd66fe4e6b585737d", null ],
     [ "CheckJobs", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#aa1c7f4ab05904b26fa3f2cd9a35b9fd2", null ],
     [ "CreateAcousticModel", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#aef82ba44b89eac6ad8f7548500f1826f", null ],
-    [ "CreateJob", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a0dbc3ec34d63169db5660934f80e1057", null ],
+    [ "CreateJob", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a2f138d13facab5795eae5d95b69575f3", null ],
     [ "CreateLanguageModel", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a6e0679a774cfe145c99519c275b793aa", null ],
     [ "DeleteAcousticModel", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#acd5d7d06b52e025d8a7ef6d48f3eb80a", null ],
     [ "DeleteAudio", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a5b845667d359c1b1b9ccc452e484bad3", null ],
@@ -35,7 +69,7 @@ var class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service =
     [ "ListLanguageModels", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a8a4d6b1ea5727936faa7cc21b7441cc4", null ],
     [ "ListModels", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a56c4952b167f2ec29c6da452bcbe6ec5", null ],
     [ "ListWords", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a96c6118c68e909b0147cf56cf5d2579e", null ],
-    [ "Recognize", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a8f1ab0db8d94b1dd4444ccf939239640", null ],
+    [ "Recognize", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#ac172c0e40bf2296b8344f2c843fe2206", null ],
     [ "RegisterCallback", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a2eccc4ef165fd09c5cf57ec7f767307f", null ],
     [ "ResetAcousticModel", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#aa73f7c2c564fb47a325b69cfaaea9f50", null ],
     [ "ResetLanguageModel", "d0/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service.html#a5820913b7a6130238d274900e649b3d7", null ],

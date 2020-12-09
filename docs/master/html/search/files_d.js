@@ -1,6 +1,7 @@
 var searchData=
 [
   ['objectdetail_2ecs',['ObjectDetail.cs',['../d7/d8b/_object_detail_8cs.html',1,'']]],
+  ['objectdetaillocation_2ecs',['ObjectDetailLocation.cs',['../da/df3/_object_detail_location_8cs.html',1,'']]],
   ['objectmetadata_2ecs',['ObjectMetadata.cs',['../d6/d13/_object_metadata_8cs.html',1,'']]],
   ['objectmetadatalist_2ecs',['ObjectMetadataList.cs',['../dc/d6f/_object_metadata_list_8cs.html',1,'']]],
   ['objecttrainingstatus_2ecs',['ObjectTrainingStatus.cs',['../d4/d23/_object_training_status_8cs.html',1,'']]],

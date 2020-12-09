@@ -53,7 +53,6 @@ var namespace_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model =
     [ "MetricTokenAggregationResult", "d9/dae/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_metric_token_aggregation_result.html", "d9/dae/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_metric_token_aggregation_result" ],
     [ "MetricTokenResponse", "d0/d4e/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_metric_token_response.html", "d0/d4e/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_metric_token_response" ],
     [ "Nested", "de/d71/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nested.html", "de/d71/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nested" ],
-    [ "NluEnrichmentCategories", "d3/d5c/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_categories.html", null ],
     [ "NluEnrichmentConcepts", "dc/d75/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_concepts.html", "dc/d75/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_concepts" ],
     [ "NluEnrichmentEmotion", "de/dda/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_emotion.html", "de/dda/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_emotion" ],
     [ "NluEnrichmentEntities", "d5/d89/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_entities.html", "d5/d89/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_entities" ],

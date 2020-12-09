@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['x',['X',['../d6/dd9/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_token_result_1_1_part_of_speech_enum_value.html#a60a61efaf31453f8a8461c1967133638',1,'IBM::Watson::NaturalLanguageUnderstanding::v1::Model::TokenResult::PartOfSpeechEnumValue']]],
+  ['x',['X',['../de/d77/class_i_b_m_1_1_watson_1_1_integration_tests_1_1_x.html',1,'IBM.Watson.IntegrationTests.X'],['../d6/dd9/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_token_result_1_1_part_of_speech_enum_value.html#a60a61efaf31453f8a8461c1967133638',1,'IBM.Watson.NaturalLanguageUnderstanding.v1.Model.TokenResult.PartOfSpeechEnumValue.X()']]],
   ['xl',['XL',['../d1/d44/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_environment_1_1_size_enum_value.html#ab5bef9804cf6bc2b623679d19b4cd981',1,'IBM::Watson::Discovery::v1::Model::Environment::SizeEnumValue']]],
   ['xpathpatterns',['XPathPatterns',['../d4/d27/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_x_path_patterns.html',1,'IBM::Watson::Discovery::v1::Model']]],
   ['xpathpatterns_2ecs',['XPathPatterns.cs',['../d5/dff/_x_path_patterns_8cs.html',1,'']]],

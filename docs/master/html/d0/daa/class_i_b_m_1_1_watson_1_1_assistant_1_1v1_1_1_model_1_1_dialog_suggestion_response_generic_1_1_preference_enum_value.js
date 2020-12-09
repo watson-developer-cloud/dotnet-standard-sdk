@@ -1,5 +1,0 @@
-var class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_suggestion_response_generic_1_1_preference_enum_value =
-[
-    [ "BUTTON", "d0/daa/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_suggestion_response_generic_1_1_preference_enum_value.html#ac4242c8745befafb7d57b4161b6a7652", null ],
-    [ "DROPDOWN", "d0/daa/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_suggestion_response_generic_1_1_preference_enum_value.html#a0248c7de7b4ab26ed5813eb8792f35fc", null ]
-];

@@ -12,6 +12,9 @@ var dir_c947c98380fc538e38f9573b367e72d4 =
     [ "CollectionsList.cs", "d9/da3/_collections_list_8cs.html", [
       [ "CollectionsList", "de/d16/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_collections_list.html", "de/d16/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_collections_list" ]
     ] ],
+    [ "CollectionTrainingStatus.cs", "da/dee/_collection_training_status_8cs.html", [
+      [ "CollectionTrainingStatus", "dd/d9a/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_collection_training_status.html", "dd/d9a/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_collection_training_status" ]
+    ] ],
     [ "DetectedObjects.cs", "d8/d7f/_detected_objects_8cs.html", [
       [ "DetectedObjects", "d3/df5/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_detected_objects.html", "d3/df5/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_detected_objects" ]
     ] ],
@@ -50,6 +53,9 @@ var dir_c947c98380fc538e38f9573b367e72d4 =
     ] ],
     [ "ObjectDetail.cs", "d7/d8b/_object_detail_8cs.html", [
       [ "ObjectDetail", "d1/d03/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_object_detail.html", "d1/d03/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_object_detail" ]
+    ] ],
+    [ "ObjectDetailLocation.cs", "da/df3/_object_detail_location_8cs.html", [
+      [ "ObjectDetailLocation", "d7/deb/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_object_detail_location.html", "d7/deb/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_object_detail_location" ]
     ] ],
     [ "ObjectMetadata.cs", "d6/d13/_object_metadata_8cs.html", [
       [ "ObjectMetadata", "da/d5c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_object_metadata.html", "da/d5c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_object_metadata" ]

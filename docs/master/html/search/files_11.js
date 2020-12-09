@@ -21,6 +21,7 @@ var searchData=
   ['sentenceresult_2ecs',['SentenceResult.cs',['../dd/d85/_sentence_result_8cs.html',1,'']]],
   ['sentimentoptions_2ecs',['SentimentOptions.cs',['../d4/df8/_sentiment_options_8cs.html',1,'']]],
   ['sentimentresult_2ecs',['SentimentResult.cs',['../d2/d0a/_sentiment_result_8cs.html',1,'']]],
+  ['serviceexample_2ecs',['ServiceExample.cs',['../d8/d9d/_i_b_m_8_watson_8_assistant_8v1_2_examples_2_service_example_8cs.html',1,'(Global Namespace)'],['../d8/d63/_i_b_m_8_watson_8_assistant_8v2_2_examples_2_service_example_8cs.html',1,'(Global Namespace)'],['../d3/da9/_i_b_m_8_watson_8_compare_comply_8v1_2_examples_2_service_example_8cs.html',1,'(Global Namespace)'],['../dd/d33/_i_b_m_8_watson_8_discovery_8v1_2_examples_2_service_example_8cs.html',1,'(Global Namespace)'],['../d8/dda/_i_b_m_8_watson_8_discovery_8v2_2_examples_2_service_example_8cs.html',1,'(Global Namespace)'],['../df/d72/_i_b_m_8_watson_8_language_translator_8v3_2_examples_2_service_example_8cs.html',1,'(Global Namespace)'],['../df/ddc/_i_b_m_8_watson_8_natural_language_classifier_8v1_2_examples_2_service_example_8cs.html',1,'(Global Namespace)'],['../d2/dd0/_i_b_m_8_watson_8_natural_language_understanding_8v1_2_examples_2_service_example_8cs.html',1,'(Global Namespace)'],['../d2/ddd/_i_b_m_8_watson_8_personality_insights_8v3_2_examples_2_service_example_8cs.html',1,'(Global Namespace)'],['../d2/d1d/_i_b_m_8_watson_8_speech_to_text_8v1_2_examples_2_service_example_8cs.html',1,'(Global Namespace)'],['../d7/d59/_i_b_m_8_watson_8_text_to_speech_8v1_2_examples_2_service_example_8cs.html',1,'(Global Namespace)'],['../d5/d4a/_i_b_m_8_watson_8_tone_analyzer_8v3_2_examples_2_service_example_8cs.html',1,'(Global Namespace)'],['../df/db4/_i_b_m_8_watson_8_visual_recognition_8v3_2_examples_2_service_example_8cs.html',1,'(Global Namespace)'],['../df/d9a/_i_b_m_8_watson_8_visual_recognition_8v4_2_examples_2_service_example_8cs.html',1,'(Global Namespace)']]],
   ['sessionresponse_2ecs',['SessionResponse.cs',['../dc/d4b/_session_response_8cs.html',1,'']]],
   ['shortdoc_2ecs',['ShortDoc.cs',['../d7/dd9/_short_doc_8cs.html',1,'']]],
   ['source_2ecs',['Source.cs',['../de/d06/_source_8cs.html',1,'']]],
@@ -39,11 +40,12 @@ var searchData=
   ['speechrecognitionresult_2ecs',['SpeechRecognitionResult.cs',['../d9/db8/_speech_recognition_result_8cs.html',1,'']]],
   ['speechrecognitionresults_2ecs',['SpeechRecognitionResults.cs',['../dc/dec/_speech_recognition_results_8cs.html',1,'']]],
   ['speechtotextservice_2ecs',['SpeechToTextService.cs',['../db/d33/_speech_to_text_service_8cs.html',1,'']]],
+  ['speechtotextservicegeneratedunittests_2ecs',['SpeechToTextServiceGeneratedUnitTests.cs',['../da/df2/_speech_to_text_service_generated_unit_tests_8cs.html',1,'']]],
+  ['speechtotextserviceintegrationtest_2ecs',['SpeechToTextServiceIntegrationTest.cs',['../d3/dca/_speech_to_text_service_integration_test_8cs.html',1,'']]],
   ['supportedfeatures_2ecs',['SupportedFeatures.cs',['../d9/d6a/_i_b_m_8_watson_8_speech_to_text_8v1_2_model_2_supported_features_8cs.html',1,'(Global Namespace)'],['../d8/dd5/_i_b_m_8_watson_8_text_to_speech_8v1_2_model_2_supported_features_8cs.html',1,'(Global Namespace)']]],
   ['synonym_2ecs',['Synonym.cs',['../d3/d42/_synonym_8cs.html',1,'']]],
   ['synonymcollection_2ecs',['SynonymCollection.cs',['../d5/d32/_synonym_collection_8cs.html',1,'']]],
   ['syntaxoptions_2ecs',['SyntaxOptions.cs',['../d8/d7f/_syntax_options_8cs.html',1,'']]],
   ['syntaxoptionstokens_2ecs',['SyntaxOptionsTokens.cs',['../d4/d05/_syntax_options_tokens_8cs.html',1,'']]],
-  ['syntaxresult_2ecs',['SyntaxResult.cs',['../d2/d2c/_syntax_result_8cs.html',1,'']]],
-  ['systemresponse_2ecs',['SystemResponse.cs',['../d2/d27/_system_response_8cs.html',1,'']]]
+  ['syntaxresult_2ecs',['SyntaxResult.cs',['../d2/d2c/_syntax_result_8cs.html',1,'']]]
 ];

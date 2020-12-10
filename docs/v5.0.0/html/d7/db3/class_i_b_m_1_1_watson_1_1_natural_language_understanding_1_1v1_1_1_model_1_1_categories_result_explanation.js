@@ -1,0 +1,4 @@
+var class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_result_explanation =
+[
+    [ "RelevantText", "d7/db3/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_result_explanation.html#a1a8d6be17837580f6ba9d4f43182181b", null ]
+];

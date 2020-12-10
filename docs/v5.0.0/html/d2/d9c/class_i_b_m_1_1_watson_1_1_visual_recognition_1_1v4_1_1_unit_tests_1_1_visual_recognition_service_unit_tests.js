@@ -1,0 +1,25 @@
+var class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_unit_tests_1_1_visual_recognition_service_unit_tests =
+[
+    [ "AddImages_Success", "d2/d9c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_unit_tests_1_1_visual_recognition_service_unit_tests.html#aff9534d0a816444b7609b129e70471d9", null ],
+    [ "AddImageTrainingData_Success", "d2/d9c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_unit_tests_1_1_visual_recognition_service_unit_tests.html#a32c61cbbaefd71c0d5d9b850c0793180", null ],
+    [ "Analyze_Success", "d2/d9c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_unit_tests_1_1_visual_recognition_service_unit_tests.html#aa5f0c12b200f2de52ef7ae5cf6f34b42", null ],
+    [ "Constructor", "d2/d9c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_unit_tests_1_1_visual_recognition_service_unit_tests.html#a9eb09efc5bb78ceda41a8307910f65f2", null ],
+    [ "Constructor_HttpClient_Null", "d2/d9c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_unit_tests_1_1_visual_recognition_service_unit_tests.html#a9fc95dee978e6cfc2e3cecde3410fd88", null ],
+    [ "ConstructorAuthenticator", "d2/d9c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_unit_tests_1_1_visual_recognition_service_unit_tests.html#ae8076d3fef175fb3f86df0f71b288383", null ],
+    [ "ConstructorExternalConfig", "d2/d9c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_unit_tests_1_1_visual_recognition_service_unit_tests.html#a5dc89e4215bcdb3eeed633a5fefec8e1", null ],
+    [ "ConstructorHttpClient", "d2/d9c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_unit_tests_1_1_visual_recognition_service_unit_tests.html#aad89e78f990da8be3d755e0f677ce5d9", null ],
+    [ "ConstructorNoUrl", "d2/d9c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_unit_tests_1_1_visual_recognition_service_unit_tests.html#af4fd4dfd3cabe9e6407a85a0d22d7841", null ],
+    [ "ConstructorNoVersion", "d2/d9c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_unit_tests_1_1_visual_recognition_service_unit_tests.html#ae60109fb7a93c46f075678965269964c", null ],
+    [ "CreateCollection_Success", "d2/d9c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_unit_tests_1_1_visual_recognition_service_unit_tests.html#a2d65b53f0332cf05ccd13364a9e02fac", null ],
+    [ "DeleteCollection_Success", "d2/d9c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_unit_tests_1_1_visual_recognition_service_unit_tests.html#ae241456e354577c2282a891a2ce431d1", null ],
+    [ "DeleteImage_Success", "d2/d9c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_unit_tests_1_1_visual_recognition_service_unit_tests.html#aae6ccf8a30d445104e0c6aea2df20709", null ],
+    [ "DeleteUserData_Success", "d2/d9c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_unit_tests_1_1_visual_recognition_service_unit_tests.html#a77bc65f8747a40b3337f7646fec081bd", null ],
+    [ "GetCollection_Success", "d2/d9c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_unit_tests_1_1_visual_recognition_service_unit_tests.html#a549fc43fd36af2ddacd4bd02745a798d", null ],
+    [ "GetImageDetails_Success", "d2/d9c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_unit_tests_1_1_visual_recognition_service_unit_tests.html#a8819bff5b390640966b70ee3cf8c656e", null ],
+    [ "GetJpegImage_Success", "d2/d9c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_unit_tests_1_1_visual_recognition_service_unit_tests.html#a3a3c213fd5768f864ce6e5b411d2f89e", null ],
+    [ "GetTrainingUsage_Success", "d2/d9c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_unit_tests_1_1_visual_recognition_service_unit_tests.html#a4568719086de5a24ea5b5ae9b09df6c4", null ],
+    [ "ListCollections_Success", "d2/d9c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_unit_tests_1_1_visual_recognition_service_unit_tests.html#a71cad5f74305a2bf7bd1d0a0508eabb6", null ],
+    [ "ListImages_Success", "d2/d9c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_unit_tests_1_1_visual_recognition_service_unit_tests.html#a774ac83cf498598fc469efdc6ac9cf2c", null ],
+    [ "Train_Success", "d2/d9c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_unit_tests_1_1_visual_recognition_service_unit_tests.html#aa7f500a5977c75d0c18ebdd94d0a88cc", null ],
+    [ "UpdateCollection_Success", "d2/d9c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_unit_tests_1_1_visual_recognition_service_unit_tests.html#ad2ea093e9f42ee8f6fb85f5067984348", null ]
+];

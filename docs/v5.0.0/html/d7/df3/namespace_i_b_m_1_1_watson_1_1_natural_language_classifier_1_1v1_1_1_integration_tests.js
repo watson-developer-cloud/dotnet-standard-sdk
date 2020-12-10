@@ -1,0 +1,4 @@
+var namespace_i_b_m_1_1_watson_1_1_natural_language_classifier_1_1v1_1_1_integration_tests =
+[
+    [ "NaturalLanguageClassifierServiceIntegrationTests", "dc/ddf/class_i_b_m_1_1_watson_1_1_natural_language_classifier_1_1v1_1_1_integration_tests_1_1_natural_ld554e774ac8dd5880711665d190cad69.html", "dc/ddf/class_i_b_m_1_1_watson_1_1_natural_language_classifier_1_1v1_1_1_integration_tests_1_1_natural_ld554e774ac8dd5880711665d190cad69" ]
+];

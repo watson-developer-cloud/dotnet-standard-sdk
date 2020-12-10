@@ -1,0 +1,12 @@
+var class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_compare_documentsd81aae22af3ee5298d21da03a94256c8 =
+[
+    [ "APPLICATION_JSON", "d2/d90/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_compare_documentsd81aae22af3ee5298d21da03a94256c8.html#a8a8c99d3df1b93b691d1bc1ba9de961b", null ],
+    [ "APPLICATION_MSWORD", "d2/d90/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_compare_documentsd81aae22af3ee5298d21da03a94256c8.html#a9049c49c1d64d5750074f207f1f2f4cd", null ],
+    [ "APPLICATION_PDF", "d2/d90/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_compare_documentsd81aae22af3ee5298d21da03a94256c8.html#a3ae8a221ea2547a7dfa012c528e5d369", null ],
+    [ "APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT", "d2/d90/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_compare_documentsd81aae22af3ee5298d21da03a94256c8.html#a53bea59140800b44b9d6b85cdf5d075e", null ],
+    [ "IMAGE_BMP", "d2/d90/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_compare_documentsd81aae22af3ee5298d21da03a94256c8.html#ad970540e1c283cacb3b4dcc8fd0e8021", null ],
+    [ "IMAGE_GIF", "d2/d90/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_compare_documentsd81aae22af3ee5298d21da03a94256c8.html#a749a5ebf8660989e7f540b7d81c2772c", null ],
+    [ "IMAGE_JPEG", "d2/d90/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_compare_documentsd81aae22af3ee5298d21da03a94256c8.html#afbf529551e63a8ff0ae395349f1015e9", null ],
+    [ "IMAGE_PNG", "d2/d90/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_compare_documentsd81aae22af3ee5298d21da03a94256c8.html#a5df294b9526fe39431702b1827e29e9c", null ],
+    [ "IMAGE_TIFF", "d2/d90/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_compare_documentsd81aae22af3ee5298d21da03a94256c8.html#a965710e0338aec43205c1c6238517503", null ]
+];

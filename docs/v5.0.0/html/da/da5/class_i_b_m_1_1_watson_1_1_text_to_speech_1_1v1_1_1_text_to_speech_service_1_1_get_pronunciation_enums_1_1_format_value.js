@@ -1,0 +1,5 @@
+var class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_get_pronunciation_enums_1_1_format_value =
+[
+    [ "IBM", "da/da5/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_get_pronunciation_enums_1_1_format_value.html#a6fe031e5a8aab1d141e37d4de9751524", null ],
+    [ "IPA", "da/da5/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_get_pronunciation_enums_1_1_format_value.html#a403f751e476d97e91f646285b1ad970a", null ]
+];

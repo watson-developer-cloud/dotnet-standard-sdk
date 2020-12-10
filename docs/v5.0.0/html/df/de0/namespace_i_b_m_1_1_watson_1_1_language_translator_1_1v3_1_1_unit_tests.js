@@ -1,0 +1,5 @@
+var namespace_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_unit_tests =
+[
+    [ "LanguageTranslatorServiceUnitTest", "d3/deb/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_unit_tests_1_1_language_translator_service_unit_test.html", "d3/deb/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_unit_tests_1_1_language_translator_service_unit_test" ],
+    [ "LanguageTranslatorServiceUnitTests", "df/d12/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_unit_tests_1_1_language_translator_service_unit_tests.html", "df/d12/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_unit_tests_1_1_language_translator_service_unit_tests" ]
+];

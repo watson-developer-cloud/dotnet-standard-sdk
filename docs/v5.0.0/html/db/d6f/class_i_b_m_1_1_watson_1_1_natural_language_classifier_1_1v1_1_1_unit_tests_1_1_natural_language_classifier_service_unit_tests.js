@@ -1,0 +1,15 @@
+var class_i_b_m_1_1_watson_1_1_natural_language_classifier_1_1v1_1_1_unit_tests_1_1_natural_language_classifier_service_unit_tests =
+[
+    [ "Classify_Success", "db/d6f/class_i_b_m_1_1_watson_1_1_natural_language_classifier_1_1v1_1_1_unit_tests_1_1_natural_language_classifier_service_unit_tests.html#a36f72c783bde4f6d7ef7e152e4e28f8d", null ],
+    [ "ClassifyCollection_Success", "db/d6f/class_i_b_m_1_1_watson_1_1_natural_language_classifier_1_1v1_1_1_unit_tests_1_1_natural_language_classifier_service_unit_tests.html#a95e1b429175d147b1e1a2d3adbd08d9f", null ],
+    [ "Constructor", "db/d6f/class_i_b_m_1_1_watson_1_1_natural_language_classifier_1_1v1_1_1_unit_tests_1_1_natural_language_classifier_service_unit_tests.html#a324f00a72e521ea8f2acdfaf5cab7792", null ],
+    [ "Constructor_HttpClient_Null", "db/d6f/class_i_b_m_1_1_watson_1_1_natural_language_classifier_1_1v1_1_1_unit_tests_1_1_natural_language_classifier_service_unit_tests.html#af00f1001192109d18d715fd67cc76f7c", null ],
+    [ "ConstructorAuthenticator", "db/d6f/class_i_b_m_1_1_watson_1_1_natural_language_classifier_1_1v1_1_1_unit_tests_1_1_natural_language_classifier_service_unit_tests.html#a10e17988288711facfb5aafbb531bbb4", null ],
+    [ "ConstructorExternalConfig", "db/d6f/class_i_b_m_1_1_watson_1_1_natural_language_classifier_1_1v1_1_1_unit_tests_1_1_natural_language_classifier_service_unit_tests.html#ab42135ae2ffa2e95600156fe2a60c389", null ],
+    [ "ConstructorHttpClient", "db/d6f/class_i_b_m_1_1_watson_1_1_natural_language_classifier_1_1v1_1_1_unit_tests_1_1_natural_language_classifier_service_unit_tests.html#af51114b0bee42f7b0778e56956d1020a", null ],
+    [ "ConstructorNoUrl", "db/d6f/class_i_b_m_1_1_watson_1_1_natural_language_classifier_1_1v1_1_1_unit_tests_1_1_natural_language_classifier_service_unit_tests.html#a26eaca7992618d10cd2533fa0ce8113f", null ],
+    [ "CreateClassifier_Success", "db/d6f/class_i_b_m_1_1_watson_1_1_natural_language_classifier_1_1v1_1_1_unit_tests_1_1_natural_language_classifier_service_unit_tests.html#a89a608b341de795e9f434d8225a6203d", null ],
+    [ "DeleteClassifier_Success", "db/d6f/class_i_b_m_1_1_watson_1_1_natural_language_classifier_1_1v1_1_1_unit_tests_1_1_natural_language_classifier_service_unit_tests.html#acabc4a6c81a8b9b080746e825f9cea84", null ],
+    [ "GetClassifier_Success", "db/d6f/class_i_b_m_1_1_watson_1_1_natural_language_classifier_1_1v1_1_1_unit_tests_1_1_natural_language_classifier_service_unit_tests.html#a56857f9f77246920187a71f245be906a", null ],
+    [ "ListClassifiers_Success", "db/d6f/class_i_b_m_1_1_watson_1_1_natural_language_classifier_1_1v1_1_1_unit_tests_1_1_natural_language_classifier_service_unit_tests.html#a28499d43f24ce0dc6b37a76509ae0092", null ]
+];

@@ -1,0 +1,5 @@
+var class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_classify_elements_enums_1_1_model_value =
+[
+    [ "CONTRACTS", "db/d73/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_classify_elements_enums_1_1_model_value.html#a15695fc85205f0a9cdadc2c3d1ae133f", null ],
+    [ "TABLES", "db/d73/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_classify_elements_enums_1_1_model_value.html#aa4778b405e933e1af7aac8e05774b987", null ]
+];

@@ -1,0 +1,9 @@
+var class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service_1_1_analyze_document_enums_1_1_file_content_type_value =
+[
+    [ "APPLICATION_JSON", "de/d10/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service_1_1_analyze_document_enums_1_1_file_content_type_value.html#a46b8d8fab9f992aed2869bb2b07b6955", null ],
+    [ "APPLICATION_MSWORD", "de/d10/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service_1_1_analyze_document_enums_1_1_file_content_type_value.html#a9105d8305d6f1bbbeb819a86c8786da5", null ],
+    [ "APPLICATION_PDF", "de/d10/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service_1_1_analyze_document_enums_1_1_file_content_type_value.html#a1eecbd7feb02868461274e7637520059", null ],
+    [ "APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT", "de/d10/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service_1_1_analyze_document_enums_1_1_file_content_type_value.html#af3cfb3e810a92e2ae4b3281328a16b6b", null ],
+    [ "APPLICATION_XHTML_XML", "de/d10/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service_1_1_analyze_document_enums_1_1_file_content_type_value.html#a50c1947d54ec1946ba28e5351dcb91eb", null ],
+    [ "TEXT_HTML", "de/d10/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service_1_1_analyze_document_enums_1_1_file_content_type_value.html#a1981cf4032617d59507f3b2e1405b966", null ]
+];

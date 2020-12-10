@@ -1,0 +1,5 @@
+var class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_add_grammar_enums_1_1_content_type_value =
+[
+    [ "APPLICATION_SRGS", "d0/d67/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_add_grammar_enums_1_1_content_type_value.html#a383d754d4e56d8ebfa270819b7da8e9f", null ],
+    [ "APPLICATION_SRGS_XML", "d0/d67/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_add_grammar_enums_1_1_content_type_value.html#aaa2eaf93cf98b597d0d18058dc6dd8e3", null ]
+];

@@ -1,0 +1,10 @@
+var class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_response_type_connect_to_agent =
+[
+    [ "ResponseTypeEnumValue", "d8/da6/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_responeebce31829b2d76ca12f0d242b4bb660.html", "d8/da6/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_responeebce31829b2d76ca12f0d242b4bb660" ],
+    [ "AgentAvailable", "d5/dbc/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_response_type_connect_to_agent.html#a1524c24c2d1f7406a895ceaa73e7d0cf", null ],
+    [ "AgentUnavailable", "d5/dbc/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_response_type_connect_to_agent.html#adddceb06a931753095d48283998aaab4", null ],
+    [ "DialogNode", "d5/dbc/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_response_type_connect_to_agent.html#a95f1125d0017ea5bc0d483d118ba7c8f", null ],
+    [ "MessageToHumanAgent", "d5/dbc/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_response_type_connect_to_agent.html#a9142b925296d9a9ed99e0b3b02dca92a", null ],
+    [ "Topic", "d5/dbc/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_response_type_connect_to_agent.html#a559e2c80be6fbd9241c67a330bd76e61", null ],
+    [ "TransferInfo", "d5/dbc/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_response_type_connect_to_agent.html#ac3b727bfece418822801eb08c49f2b1e", null ]
+];

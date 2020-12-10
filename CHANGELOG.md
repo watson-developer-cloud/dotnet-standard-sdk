@@ -1,3 +1,23 @@
+# [5.0.0](https://github.com/watson-developer-cloud/dotnet-standard-sdk/compare/v4.6.0...v5.0.0) (2020-12-10)
+
+
+### Bug Fixes
+
+* **discovery-v2:** change fileContent from ByteArrayContent to StreamContent ([b6d5d70](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/b6d5d7040a976e45bfeef9fdaff732ea3354ed81))
+* **examples:** update examples ([5e85f39](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/5e85f398cdffb41b51e3cb4d881665d0b7a446f3))
+
+
+### Features
+
+* **generation:** api def tag 'sdk-major-release-2020' gen tag 3.19.0 ([d691cf8](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/d691cf89df175550e7bdd281e298038a39481b24))
+* **generation:** generated with 3.17.0 generator and sdk-major-release-2020-rc01 api def ([d28fa35](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/d28fa355501971df36c5b975f9474b2d4cb4a933))
+
+
+### BREAKING CHANGES
+
+* **generation:** api def tag 'sdk-major-release-2020' gen tag 3.19.0
+* **generation:** generated with 3.17.0 generator and sdk-major-release-2020-rc01 api def
+
 # [4.6.0](https://github.com/watson-developer-cloud/dotnet-standard-sdk/compare/v4.5.0...v4.6.0) (2020-08-25)
 
 

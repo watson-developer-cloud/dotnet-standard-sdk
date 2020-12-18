@@ -15,26 +15,20 @@
 *
 */
 
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace IBM.Watson.Assistant.v1.Model
+namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// CounterexampleCollection.
+    /// AgentAvailabilityMessage.
     /// </summary>
-    public class CounterexampleCollection
+    public class AgentAvailabilityMessage
     {
         /// <summary>
-        /// An array of objects describing the examples marked as irrelevant input.
+        /// The text of the message.
         /// </summary>
-        [JsonProperty("counterexamples", NullValueHandling = NullValueHandling.Ignore)]
-        public List<Counterexample> Counterexamples { get; set; }
-        /// <summary>
-        /// The pagination data for the returned objects.
-        /// </summary>
-        [JsonProperty("pagination", NullValueHandling = NullValueHandling.Ignore)]
-        public Pagination Pagination { get; set; }
+        [JsonProperty("message", NullValueHandling = NullValueHandling.Ignore)]
+        public string Message { get; set; }
     }
 
 }

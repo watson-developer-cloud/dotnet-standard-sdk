@@ -15,7 +15,7 @@ var searchData=
   ['detectedobjects',['DetectedObjects',['../d3/df5/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_detected_objects.html',1,'IBM::Watson::VisualRecognition::v4::Model']]],
   ['dialoglogmessage',['DialogLogMessage',['../dc/ded/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_log_message.html',1,'IBM::Watson::Assistant::v2::Model']]],
   ['dialognode',['DialogNode',['../da/d43/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node.html',1,'IBM::Watson::Assistant::v1::Model']]],
-  ['dialognodeaction',['DialogNodeAction',['../de/d48/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_action.html',1,'IBM.Watson.Assistant.v1.Model.DialogNodeAction'],['../d6/dd1/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_node_action.html',1,'IBM.Watson.Assistant.v2.Model.DialogNodeAction']]],
+  ['dialognodeaction',['DialogNodeAction',['../d6/dd1/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_node_action.html',1,'IBM.Watson.Assistant.v2.Model.DialogNodeAction'],['../de/d48/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_action.html',1,'IBM.Watson.Assistant.v1.Model.DialogNodeAction']]],
   ['dialognodecollection',['DialogNodeCollection',['../dc/de1/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_collection.html',1,'IBM::Watson::Assistant::v1::Model']]],
   ['dialognodecontext',['DialogNodeContext',['../d1/d2f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_context.html',1,'IBM::Watson::Assistant::v1::Model']]],
   ['dialognodenextstep',['DialogNodeNextStep',['../d2/d0c/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_next_step.html',1,'IBM::Watson::Assistant::v1::Model']]],

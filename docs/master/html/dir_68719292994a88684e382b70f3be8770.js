@@ -1,5 +1,8 @@
 var dir_68719292994a88684e382b70f3be8770 =
 [
+    [ "AgentAvailabilityMessage.cs", "d5/dc2/_i_b_m_8_watson_8_assistant_8v1_2_model_2_agent_availability_message_8cs.html", [
+      [ "AgentAvailabilityMessage", "db/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_agent_availability_message.html", "db/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_agent_availability_message" ]
+    ] ],
     [ "BulkClassifyOutput.cs", "d6/dac/_i_b_m_8_watson_8_assistant_8v1_2_model_2_bulk_classify_output_8cs.html", [
       [ "BulkClassifyOutput", "d4/d24/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_bulk_classify_output.html", "d4/d24/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_bulk_classify_output" ]
     ] ],

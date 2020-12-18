@@ -10,6 +10,7 @@ var searchData=
   ['addgrammarenums',['AddGrammarEnums',['../dd/d4f/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_add_grammar_enums.html',1,'IBM::Watson::SpeechToText::v1::SpeechToTextService']]],
   ['additionalpropertiestest',['AdditionalPropertiesTest',['../df/d8f/class_i_b_m_1_1_watson_1_1_integration_tests_1_1_additional_properties_test.html',1,'IBM::Watson::IntegrationTests']]],
   ['address',['Address',['../db/d6d/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_address.html',1,'IBM::Watson::CompareComply::v1::Model']]],
+  ['agentavailabilitymessage',['AgentAvailabilityMessage',['../d1/db1/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_agent_availability_message.html',1,'IBM.Watson.Assistant.v2.Model.AgentAvailabilityMessage'],['../db/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_agent_availability_message.html',1,'IBM.Watson.Assistant.v1.Model.AgentAvailabilityMessage']]],
   ['aggregationresult',['AggregationResult',['../d1/d5f/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_aggregation_result.html',1,'IBM::Watson::Discovery::v1::Model']]],
   ['alignedelement',['AlignedElement',['../d4/de0/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_model_1_1_aligned_element.html',1,'IBM::Watson::CompareComply::v1::Model']]],
   ['analysisresults',['AnalysisResults',['../dd/d9f/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_analysis_results.html',1,'IBM::Watson::NaturalLanguageUnderstanding::v1::Model']]],

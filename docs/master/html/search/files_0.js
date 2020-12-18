@@ -4,6 +4,7 @@ var searchData=
   ['acousticmodels_2ecs',['AcousticModels.cs',['../d8/d3d/_acoustic_models_8cs.html',1,'']]],
   ['additionalpropertiestest_2ecs',['AdditionalPropertiesTest.cs',['../d3/d14/_additional_properties_test_8cs.html',1,'']]],
   ['address_2ecs',['Address.cs',['../de/dea/_address_8cs.html',1,'']]],
+  ['agentavailabilitymessage_2ecs',['AgentAvailabilityMessage.cs',['../d5/dc2/_i_b_m_8_watson_8_assistant_8v1_2_model_2_agent_availability_message_8cs.html',1,'(Global Namespace)'],['../de/d05/_i_b_m_8_watson_8_assistant_8v2_2_model_2_agent_availability_message_8cs.html',1,'(Global Namespace)']]],
   ['aggregationresult_2ecs',['AggregationResult.cs',['../df/d15/_aggregation_result_8cs.html',1,'']]],
   ['alignedelement_2ecs',['AlignedElement.cs',['../dd/d09/_aligned_element_8cs.html',1,'']]],
   ['analysisresults_2ecs',['AnalysisResults.cs',['../db/d1c/_analysis_results_8cs.html',1,'']]],

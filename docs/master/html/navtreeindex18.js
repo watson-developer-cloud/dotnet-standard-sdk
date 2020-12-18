@@ -1,5 +1,8 @@
 var NAVTREEINDEX18 =
 {
+"da/da0/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_unit_tests_1_1_discovery_unit_tests.html#a123179a682bb2a6da1e286865443af92":[1,0,0,0,2,0,3,1,110],
+"da/da0/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_unit_tests_1_1_discovery_unit_tests.html#a12b9516da93eeb3b72e3757fda7d67d5":[1,0,0,0,2,0,3,1,132],
+"da/da0/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_unit_tests_1_1_discovery_unit_tests.html#a132147954ad4a78c46c62f00d32a79e1":[1,0,0,0,2,0,3,1,184],
 "da/da0/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_unit_tests_1_1_discovery_unit_tests.html#a13dacbb920a9a313567e8f5d4faf06ef":[1,0,0,0,2,0,3,1,21],
 "da/da0/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_unit_tests_1_1_discovery_unit_tests.html#a16b5d34d66f40a0f90a403df8ad949d1":[1,0,0,0,2,0,3,1,44],
 "da/da0/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_unit_tests_1_1_discovery_unit_tests.html#a170732032be6cb8e5c3e45a60c9411cd":[1,0,0,0,2,0,3,1,151],
@@ -175,7 +178,7 @@ var NAVTREEINDEX18 =
 "da/da5/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_get_pronunciation_enums_1_1_format_value.html":[1,0,0,0,10,0,5,0,0],
 "da/da5/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_get_pronunciation_enums_1_1_format_value.html#a403f751e476d97e91f646285b1ad970a":[1,0,0,0,10,0,5,0,0,1],
 "da/da5/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_get_pronunciation_enums_1_1_format_value.html#a6fe031e5a8aab1d141e37d4de9751524":[1,0,0,0,10,0,5,0,0,0],
-"da/da6/_message_input_options_stateless_8cs.html":[2,0,0,1,1,25],
+"da/da6/_message_input_options_stateless_8cs.html":[2,0,0,1,1,26],
 "da/da6/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service_1_1_add_document_enums_1_1_file_content_type_value.html":[1,0,0,0,2,1,4,0,0],
 "da/da6/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service_1_1_add_document_enums_1_1_file_content_type_value.html#a7012d9e51ed7e3eb6a233288deb42916":[1,0,0,0,2,1,4,0,0,5],
 "da/da6/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service_1_1_add_document_enums_1_1_file_content_type_value.html#a73b90352ad952f3e4aff42c6125c4415":[1,0,0,0,2,1,4,0,0,0],
@@ -246,8 +249,5 @@ var NAVTREEINDEX18 =
 "da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#ab754bc93f6543f08cd829f4dc919eeee":[1,0,0,0,10,0,5,11],
 "da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#ac3535000d37e26c1bc529e01821dc62e":[1,0,0,0,10,0,5,16],
 "da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#ad15beba8b9c395f615751591f573a2a0":[1,0,0,0,10,0,5,13],
-"da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#ae2ea8cd4afd564cda0f2b2818a73e461":[1,0,0,0,10,0,5,6],
-"da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#aed4db69aa9075061eefd74e4b1cd7004":[1,0,0,0,10,0,5,23],
-"da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#af22269e98416a26790aba3fa76b51f65":[1,0,0,0,10,0,5,15],
-"da/de7/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_get_workspace_enums_1_1_sort_value.html":[1,0,0,0,0,0,4,0,0]
+"da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#ae2ea8cd4afd564cda0f2b2818a73e461":[1,0,0,0,10,0,5,6]
 };

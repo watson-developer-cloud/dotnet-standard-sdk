@@ -1,5 +1,8 @@
 var dir_e05cd18fe37823e65ffef40a75ea096b =
 [
+    [ "AgentAvailabilityMessage.cs", "de/d05/_i_b_m_8_watson_8_assistant_8v2_2_model_2_agent_availability_message_8cs.html", [
+      [ "AgentAvailabilityMessage", "d1/db1/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_agent_availability_message.html", "d1/db1/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_agent_availability_message" ]
+    ] ],
     [ "BulkClassifyOutput.cs", "d9/d9f/_i_b_m_8_watson_8_assistant_8v2_2_model_2_bulk_classify_output_8cs.html", [
       [ "BulkClassifyOutput", "df/dae/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_bulk_classify_output.html", "df/dae/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_bulk_classify_output" ]
     ] ],

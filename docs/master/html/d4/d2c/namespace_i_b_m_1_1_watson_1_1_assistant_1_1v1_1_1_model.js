@@ -1,5 +1,6 @@
 var namespace_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model =
 [
+    [ "AgentAvailabilityMessage", "db/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_agent_availability_message.html", "db/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_agent_availability_message" ],
     [ "BulkClassifyOutput", "d4/d24/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_bulk_classify_output.html", "d4/d24/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_bulk_classify_output" ],
     [ "BulkClassifyResponse", "d9/d60/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_bulk_classify_response.html", "d9/d60/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_bulk_classify_response" ],
     [ "BulkClassifyUtterance", "d4/df4/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_bulk_classify_utterance.html", "d4/df4/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_bulk_classify_utterance" ],

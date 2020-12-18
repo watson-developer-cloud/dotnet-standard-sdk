@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2020.
+* (C) Copyright IBM Corp. 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ namespace IBM.Watson.Assistant.v1
     public partial interface IAssistantService
     {
         DetailedResponse<MessageResponse> Message(string workspaceId, MessageInput input = null, List<RuntimeIntent> intents = null, List<RuntimeEntity> entities = null, bool? alternateIntents = null, Context context = null, OutputData output = null, bool? nodesVisitedDetails = null);
+        DetailedResponse<BulkClassifyResponse> BulkClassify(string workspaceId, List<BulkClassifyUtterance> input = null);
         DetailedResponse<WorkspaceCollection> ListWorkspaces(long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null);
         DetailedResponse<Workspace> CreateWorkspace(string name = null, string description = null, string language = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<Webhook> webhooks = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null, bool? includeAudit = null);
         DetailedResponse<Workspace> GetWorkspace(string workspaceId, bool? export = null, bool? includeAudit = null, string sort = null);
@@ -68,6 +69,5 @@ namespace IBM.Watson.Assistant.v1
         DetailedResponse<LogCollection> ListLogs(string workspaceId, string sort = null, string filter = null, long? pageLimit = null, string cursor = null);
         DetailedResponse<LogCollection> ListAllLogs(string filter, string sort = null, long? pageLimit = null, string cursor = null);
         DetailedResponse<object> DeleteUserData(string customerId);
-        DetailedResponse<BulkClassifyResponse> BulkClassify(string workspaceId, List<BulkClassifyUtterance> input = null);
     }
 }

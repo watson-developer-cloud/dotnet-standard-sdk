@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2020.
+* (C) Copyright IBM Corp. 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -154,6 +154,73 @@ namespace IBM.Watson.Assistant.v1
                 if (result == null)
                 {
                     result = new DetailedResponse<MessageResponse>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// Identify intents and entities in multiple user utterances.
+        ///
+        /// Send multiple user inputs to a workspace in a single request and receive information about the intents and
+        /// entities recognized in each input. This method is useful for testing and comparing the performance of
+        /// different workspaces.
+        ///
+        /// This method is available only with Premium plans.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="input">An array of input utterances to classify. (optional)</param>
+        /// <returns><see cref="BulkClassifyResponse" />BulkClassifyResponse</returns>
+        public DetailedResponse<BulkClassifyResponse> BulkClassify(string workspaceId, List<BulkClassifyUtterance> input = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+            {
+                throw new ArgumentNullException("`workspaceId` is required for `BulkClassify`");
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
+            DetailedResponse<BulkClassifyResponse> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/bulk_classify");
+
+                restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
+                restRequest.WithHeader("Content-Type", "application/json");
+
+                JObject bodyObject = new JObject();
+                if (input != null && input.Count > 0)
+                {
+                    bodyObject["input"] = JToken.FromObject(input);
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
+                restRequest.WithBodyContent(httpContent);
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "BulkClassify"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<BulkClassifyResponse>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<BulkClassifyResponse>();
                 }
             }
             catch (AggregateException ae)
@@ -4339,73 +4406,6 @@ namespace IBM.Watson.Assistant.v1
                 if (result == null)
                 {
                     result = new DetailedResponse<object>();
-                }
-            }
-            catch (AggregateException ae)
-            {
-                throw ae.Flatten();
-            }
-
-            return result;
-        }
-        /// <summary>
-        /// Identify intents and entities in multiple user utterances.
-        ///
-        /// Send multiple user inputs to a workspace in a single request and receive information about the intents and
-        /// entities recognized in each input. This method is useful for testing and comparing the performance of
-        /// different workspaces.
-        ///
-        /// This method is available only with Premium plans.
-        /// </summary>
-        /// <param name="workspaceId">Unique identifier of the workspace.</param>
-        /// <param name="input">An array of input utterances to classify. (optional)</param>
-        /// <returns><see cref="BulkClassifyResponse" />BulkClassifyResponse</returns>
-        public DetailedResponse<BulkClassifyResponse> BulkClassify(string workspaceId, List<BulkClassifyUtterance> input = null)
-        {
-            if (string.IsNullOrEmpty(workspaceId))
-            {
-                throw new ArgumentNullException("`workspaceId` is required for `BulkClassify`");
-            }
-            else
-            {
-                workspaceId = Uri.EscapeDataString(workspaceId);
-            }
-            if (string.IsNullOrEmpty(Version))
-            {
-                throw new ArgumentNullException("`Version` is required");
-            }
-            DetailedResponse<BulkClassifyResponse> result = null;
-
-            try
-            {
-                IClient client = this.Client;
-                SetAuthentication();
-
-                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces/{workspaceId}/bulk_classify");
-
-                restRequest.WithHeader("Accept", "application/json");
-                if (!string.IsNullOrEmpty(Version))
-                {
-                    restRequest.WithArgument("version", Version);
-                }
-                restRequest.WithHeader("Content-Type", "application/json");
-
-                JObject bodyObject = new JObject();
-                if (input != null && input.Count > 0)
-                {
-                    bodyObject["input"] = JToken.FromObject(input);
-                }
-                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
-                restRequest.WithBodyContent(httpContent);
-
-                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "BulkClassify"));
-                restRequest.WithHeaders(customRequestHeaders);
-                ClearCustomRequestHeaders();
-
-                result = restRequest.As<BulkClassifyResponse>().Result;
-                if (result == null)
-                {
-                    result = new DetailedResponse<BulkClassifyResponse>();
                 }
             }
             catch (AggregateException ae)

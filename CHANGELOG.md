@@ -1,3 +1,10 @@
+## [5.0.1](https://github.com/watson-developer-cloud/dotnet-standard-sdk/compare/v5.0.0...v5.0.1) (2020-12-21)
+
+
+### Bug Fixes
+
+* **generation:** api def '8be1cdc78c7998b055bc8ea895dddd7c8496b2a4' gen tag 3.19.0 ([9b96f89](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/9b96f89879332eda362390b0c24fd3a9421cfbfa))
+
 # [5.0.0](https://github.com/watson-developer-cloud/dotnet-standard-sdk/compare/v4.6.0...v5.0.0) (2020-12-10)
 
 

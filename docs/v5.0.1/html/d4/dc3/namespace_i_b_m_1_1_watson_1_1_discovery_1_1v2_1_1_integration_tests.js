@@ -1,0 +1,4 @@
+var namespace_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_integration_tests =
+[
+    [ "DiscoveryIntegrationTests", "d7/dde/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_integration_tests_1_1_discovery_integration_tests.html", "d7/dde/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_integration_tests_1_1_discovery_integration_tests" ]
+];

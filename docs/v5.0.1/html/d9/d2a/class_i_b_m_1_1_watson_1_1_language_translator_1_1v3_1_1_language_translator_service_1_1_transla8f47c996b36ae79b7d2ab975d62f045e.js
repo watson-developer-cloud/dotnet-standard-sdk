@@ -1,0 +1,28 @@
+var class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_transla8f47c996b36ae79b7d2ab975d62f045e =
+[
+    [ "APPLICATION_JSON", "d9/d2a/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_transla8f47c996b36ae79b7d2ab975d62f045e.html#af52ecf24ca4ba5478993f29c23574de1", null ],
+    [ "APPLICATION_MSPOWERPOINT", "d9/d2a/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_transla8f47c996b36ae79b7d2ab975d62f045e.html#a91ecb38159b5b5022ed0ab518514f965", null ],
+    [ "APPLICATION_MSWORD", "d9/d2a/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_transla8f47c996b36ae79b7d2ab975d62f045e.html#a2d6a73e51231f9c38ca18c74e0a750a6", null ],
+    [ "APPLICATION_PDF", "d9/d2a/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_transla8f47c996b36ae79b7d2ab975d62f045e.html#af5b7f3c474e360cb5e4f28fa98bee607", null ],
+    [ "APPLICATION_POWERPOINT", "d9/d2a/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_transla8f47c996b36ae79b7d2ab975d62f045e.html#aab91f963207ff82481436b399876a36c", null ],
+    [ "APPLICATION_RTF", "d9/d2a/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_transla8f47c996b36ae79b7d2ab975d62f045e.html#a7362a0f26cd0ee5089f08422374efe76", null ],
+    [ "APPLICATION_VND_MS_EXCEL", "d9/d2a/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_transla8f47c996b36ae79b7d2ab975d62f045e.html#ad72f9ed3b50fd276dd766f9f3dad3484", null ],
+    [ "APPLICATION_VND_MS_POWERPOINT", "d9/d2a/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_transla8f47c996b36ae79b7d2ab975d62f045e.html#ad2695d6094ebbe3656e5c15202d54a5f", null ],
+    [ "APPLICATION_VND_OASIS_OPENDOCUMENT_PRESENTATION", "d9/d2a/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_transla8f47c996b36ae79b7d2ab975d62f045e.html#ab61a0303d3ce1e785e7bdca06c7fb644", null ],
+    [ "APPLICATION_VND_OASIS_OPENDOCUMENT_SPREADSHEET", "d9/d2a/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_transla8f47c996b36ae79b7d2ab975d62f045e.html#ac0ff0d9a90fc7a82bc88c1b4471f0a77", null ],
+    [ "APPLICATION_VND_OASIS_OPENDOCUMENT_TEXT", "d9/d2a/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_transla8f47c996b36ae79b7d2ab975d62f045e.html#a8b013d34b80a4267dcc7b4b885f70950", null ],
+    [ "APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_PRESENTATIONML_PRESENTATION", "d9/d2a/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_transla8f47c996b36ae79b7d2ab975d62f045e.html#a0ad06311ea1a424193de9cccfe7e1441", null ],
+    [ "APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_SPREADSHEETML_SHEET", "d9/d2a/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_transla8f47c996b36ae79b7d2ab975d62f045e.html#a049f96b691a89304f78224b13c2b3f11", null ],
+    [ "APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT", "d9/d2a/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_transla8f47c996b36ae79b7d2ab975d62f045e.html#a7d7b3f58fddff5e696e31dd48a3d7037", null ],
+    [ "APPLICATION_X_RTF", "d9/d2a/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_transla8f47c996b36ae79b7d2ab975d62f045e.html#a02a62e1d25691f8b9da251e33253607f", null ],
+    [ "APPLICATION_XML", "d9/d2a/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_transla8f47c996b36ae79b7d2ab975d62f045e.html#ab1a58512519dfb59efb75a5673b71cf0", null ],
+    [ "TEXT_HTML", "d9/d2a/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_transla8f47c996b36ae79b7d2ab975d62f045e.html#a3680b69e2065592f4bd0e601bbb44eac", null ],
+    [ "TEXT_JSON", "d9/d2a/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_transla8f47c996b36ae79b7d2ab975d62f045e.html#a784e67785eb324a7a87dec3ea9d35596", null ],
+    [ "TEXT_PLAIN", "d9/d2a/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_transla8f47c996b36ae79b7d2ab975d62f045e.html#a00fa646ce91e43e21c379eeabcf675a6", null ],
+    [ "TEXT_RICHTEXT", "d9/d2a/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_transla8f47c996b36ae79b7d2ab975d62f045e.html#abad394d5aaba244e8cd8d1a7905f6cd4", null ],
+    [ "TEXT_RTF", "d9/d2a/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_transla8f47c996b36ae79b7d2ab975d62f045e.html#a408f1b0fff944d99af023f481e0c9cb2", null ],
+    [ "TEXT_SBV", "d9/d2a/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_transla8f47c996b36ae79b7d2ab975d62f045e.html#a54875b910dde269cde835a813b4b5d62", null ],
+    [ "TEXT_SRT", "d9/d2a/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_transla8f47c996b36ae79b7d2ab975d62f045e.html#a00e8ebe0fde5564f6367c7aa44a983bc", null ],
+    [ "TEXT_VTT", "d9/d2a/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_transla8f47c996b36ae79b7d2ab975d62f045e.html#a2281421d5095e94937c0f59b8f9a1834", null ],
+    [ "TEXT_XML", "d9/d2a/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_transla8f47c996b36ae79b7d2ab975d62f045e.html#a11cf73644ec5144f418c9e0015a6fa9f", null ]
+];

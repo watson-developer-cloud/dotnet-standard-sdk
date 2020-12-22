@@ -1,0 +1,25 @@
+var class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_get_tra7d7b02363b330454c2dc59f53560b0bb =
+[
+    [ "APPLICATION_JSON", "db/dba/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_get_tra7d7b02363b330454c2dc59f53560b0bb.html#aa7acebcdd6c099d38eb04ca02dcb82a1", null ],
+    [ "APPLICATION_MSPOWERPOINT", "db/dba/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_get_tra7d7b02363b330454c2dc59f53560b0bb.html#aff36b1807e2d55014eee9ef793de98b3", null ],
+    [ "APPLICATION_MSWORD", "db/dba/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_get_tra7d7b02363b330454c2dc59f53560b0bb.html#a7d59bda2e48b8e59ee66a07c89229e8d", null ],
+    [ "APPLICATION_PDF", "db/dba/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_get_tra7d7b02363b330454c2dc59f53560b0bb.html#a8a3a5634da2884ffa8d9aaa3128a5376", null ],
+    [ "APPLICATION_POWERPOINT", "db/dba/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_get_tra7d7b02363b330454c2dc59f53560b0bb.html#ac973ca77733861c6fa89f9e7efa6949b", null ],
+    [ "APPLICATION_RTF", "db/dba/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_get_tra7d7b02363b330454c2dc59f53560b0bb.html#ac0a6d375cadc8c82e49aba071ee72f3f", null ],
+    [ "APPLICATION_VND_MS_EXCEL", "db/dba/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_get_tra7d7b02363b330454c2dc59f53560b0bb.html#acbfcc751b82a23582d5992de100566e5", null ],
+    [ "APPLICATION_VND_MS_POWERPOINT", "db/dba/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_get_tra7d7b02363b330454c2dc59f53560b0bb.html#a1bff35d527d6686bbbb2921ca314296d", null ],
+    [ "APPLICATION_VND_OASIS_OPENDOCUMENT_PRESENTATION", "db/dba/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_get_tra7d7b02363b330454c2dc59f53560b0bb.html#a261525b31e6156bb4bf52f31297414f9", null ],
+    [ "APPLICATION_VND_OASIS_OPENDOCUMENT_SPREADSHEET", "db/dba/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_get_tra7d7b02363b330454c2dc59f53560b0bb.html#a7c9e77befe009c0860eb84620db7e1ac", null ],
+    [ "APPLICATION_VND_OASIS_OPENDOCUMENT_TEXT", "db/dba/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_get_tra7d7b02363b330454c2dc59f53560b0bb.html#a1c0905c8d67c090a9d0e120384a2a1a1", null ],
+    [ "APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_PRESENTATIONML_PRESENTATION", "db/dba/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_get_tra7d7b02363b330454c2dc59f53560b0bb.html#a87449c9efe1d95203a0f5daaf5a2c222", null ],
+    [ "APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_SPREADSHEETML_SHEET", "db/dba/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_get_tra7d7b02363b330454c2dc59f53560b0bb.html#a86f875323d2d9307211aee10407e0517", null ],
+    [ "APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT", "db/dba/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_get_tra7d7b02363b330454c2dc59f53560b0bb.html#afb161241af6dbfe76920cd21e07dc9ca", null ],
+    [ "APPLICATION_X_RTF", "db/dba/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_get_tra7d7b02363b330454c2dc59f53560b0bb.html#a91a22c14332cee5b589d74adf2e193a2", null ],
+    [ "APPLICATION_XML", "db/dba/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_get_tra7d7b02363b330454c2dc59f53560b0bb.html#a9a248eb5746906e5d5955131777fcd4a", null ],
+    [ "TEXT_HTML", "db/dba/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_get_tra7d7b02363b330454c2dc59f53560b0bb.html#a0c86ebd9d90e5afb87afce2e0f34f840", null ],
+    [ "TEXT_JSON", "db/dba/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_get_tra7d7b02363b330454c2dc59f53560b0bb.html#ab3e1cc22e4299dc655461b7b2211e088", null ],
+    [ "TEXT_PLAIN", "db/dba/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_get_tra7d7b02363b330454c2dc59f53560b0bb.html#a10bd2980f7ad6ba0cb9da83d95c5965a", null ],
+    [ "TEXT_RICHTEXT", "db/dba/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_get_tra7d7b02363b330454c2dc59f53560b0bb.html#a2929fda95b6ad2ee890b16c4f1f6890c", null ],
+    [ "TEXT_RTF", "db/dba/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_get_tra7d7b02363b330454c2dc59f53560b0bb.html#aa94b062e7f1e35c34cd2baa076d53af1", null ],
+    [ "TEXT_XML", "db/dba/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_language_translator_service_1_1_get_tra7d7b02363b330454c2dc59f53560b0bb.html#a7cd2a8344f73cc86bcb2347446733198", null ]
+];

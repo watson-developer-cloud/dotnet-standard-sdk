@@ -1,0 +1,5 @@
+var class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_train_language_mo2aeb2f76192ca798f1540659ae2bc374 =
+[
+    [ "ALL", "dc/d3f/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_train_language_mo2aeb2f76192ca798f1540659ae2bc374.html#a1d19729fbf39631eaddce42e27b50a6d", null ],
+    [ "USER", "dc/d3f/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_train_language_mo2aeb2f76192ca798f1540659ae2bc374.html#add6cd7dac96e0bedfd2193cbdd781c9d", null ]
+];

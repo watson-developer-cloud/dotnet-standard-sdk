@@ -1,0 +1,4 @@
+var class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_respon8061ab8472eb8fa60e59659b91c4348f =
+[
+    [ "TEXT", "db/d69/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_respon8061ab8472eb8fa60e59659b91c4348f.html#ac608d1750c49cd7be94dd9d52eb36c6b", null ]
+];

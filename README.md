@@ -38,7 +38,7 @@ As an alternative, we encourage you to consider migrating to IBM Watson™ [Natu
 IBM Watson™ Visual Recognition is discontinued. Existing instances are supported until 1 December 2021, but as of 7 January 2021, you can't create instances. Any instance that is provisioned on 1 December 2021 will be deleted.
 
 ### Compare and Comply deprecation
-Deprecated: IBM Watson™ Compare and Comply is discontinued. Existing instances are supported until 30 November 2021, but as of 1 December 2020, you can't create instances. Any instance that exists on 30 November 2021 will be deleted. Consider migrating to Watson Discovery Premium on IBM Cloud for your Compare and Comply use cases. To start the migration process, visit https://ibm.biz/contact-wdc-premium.
+IBM Watson™ Compare and Comply is discontinued. Existing instances are supported until 30 November 2021, but as of 1 December 2020, you can't create instances. Any instance that exists on 30 November 2021 will be deleted. Consider migrating to Watson Discovery Premium on IBM Cloud for your Compare and Comply use cases. To start the migration process, visit https://ibm.biz/contact-wdc-premium.
 
 ## Before you begin
 Ensure you have the following prerequisites:

@@ -29,6 +29,9 @@ using IBM.Watson.TextToSpeech.v1.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Net.WebSockets;
+using IBM.Cloud.SDK.Core.Sockets;
+using IBM.Watson.TextToSpeech.v1.websocket;
 
 namespace IBM.Watson.TextToSpeech.v1
 {
@@ -464,6 +467,46 @@ namespace IBM.Watson.TextToSpeech.v1
             }
 
             return result;
+        }
+
+        public WebSocketClientTest SynthesizeUsingWebSocket(WebSocketClientTest callback, string voice, string customizationId)
+        {
+            if (callback == null)
+            {
+                throw new ArgumentNullException("callback cannot be null");
+            }
+
+            try
+            {
+                SetAuthentication();
+
+                if (!string.IsNullOrEmpty(voice))
+                {
+                    callback.AddArgument("voice", voice);
+                }
+                if (!string.IsNullOrEmpty(customizationId))
+                {
+                    callback.AddArgument("customization_id", customizationId);
+                }
+
+                //socketClient.WithHeader("Content-Type", "application/json");
+
+                var sdkHeaders = Common.GetSdkHeaders("text_to_speech", "v1", "Synthesize");
+                foreach (var header in sdkHeaders)
+                {
+                    callback.WithHeader(header.Key, header.Value);
+                }
+
+                foreach (var header in customRequestHeaders)
+                {
+                    callback.WithHeader(header.Key, header.Value);
+                }
+                return callback;
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
         }
 
         /// <summary>

@@ -39,4 +39,7 @@
         <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
         <PackageReference Include="JsonSubTypes" Version="1.6.0" />
     </ItemGroup>
+    <ItemGroup>
+      <Folder Include="websocket\" />
+    </ItemGroup>
 </Project>

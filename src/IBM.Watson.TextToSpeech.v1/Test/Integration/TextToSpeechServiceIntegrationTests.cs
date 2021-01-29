@@ -24,6 +24,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using IBM.Cloud.SDK.Core;
+using System.Threading.Tasks;
+using IBM.Cloud.SDK.Core.Sockets;
+using System.Diagnostics;
+using IBM.Cloud.SDK.Core.Http;
+using IBM.Watson.TextToSpeech.v1.websocket;
 
 namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
 {
@@ -86,6 +91,38 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
             }
 
             Assert.IsNotNull(synthesizeResult.Result);
+        }
+
+        [TestMethod]
+        public void Synthesize_sockets_SuccessAsync()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            string url = ("{url}/v1/synthesize").Replace("https://", "wss://");
+            //wss://api.{location}.text-to-speech.watson.cloud.ibm.com/instances/{instance_id}/v1/synthesize
+            WebSocketClientTest callback = new WebSocketClientTest(url);
+
+            var bearerToken = "";
+            callback.WithHeader("Authorization", "Bearer " + bearerToken);
+
+            callback.OnOpen = () =>
+            {
+                System.Diagnostics.Debug.WriteLine("WEBSOCKET IS OPEN");
+            };
+            callback.OnClose = () =>
+            {
+                System.Diagnostics.Debug.WriteLine("WEBSOCKET IS CLOSED");
+            };
+            callback.OnMessage = (message) =>
+            {
+                System.Diagnostics.Debug.WriteLine("MESSAGE");
+                System.Diagnostics.Debug.WriteLine(message);
+
+            };
+            var synthesizeResult = service.SynthesizeUsingWebSocket(
+                voice: allisonVoice,
+                socketClient: callback
+                );
+            synthesizeResult.Send("hello test", "test");
         }
         #endregion
 

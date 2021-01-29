@@ -469,7 +469,7 @@ namespace IBM.Watson.TextToSpeech.v1
             return result;
         }
 
-        public WebSocketClientTest SynthesizeUsingWebSocket(WebSocketClientTest callback, string voice, string customizationId)
+        public WebSocketClientTest SynthesizeUsingWebSocket(WebSocketClientTest callback, string voice = null, string customizationId = null)
         {
             if (callback == null)
             {

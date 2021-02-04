@@ -469,7 +469,7 @@ namespace IBM.Watson.TextToSpeech.v1
             return result;
         }
 
-        public WebSocketClientTest SynthesizeUsingWebSocket(WebSocketClientTest callback, string voice = null, string customizationId = null)
+        public WebSocketClientTest SynthesizeUsingWebSocket(WebSocketClientTest callback, string voice = null, string customizationId = null, string accept = "audio/ogg; codecs=opus")
         {
             if (callback == null)
             {
@@ -478,6 +478,7 @@ namespace IBM.Watson.TextToSpeech.v1
 
             try
             {
+                IClient client = this.Client;
                 SetAuthentication();
 
                 if (!string.IsNullOrEmpty(voice))
@@ -487,6 +488,10 @@ namespace IBM.Watson.TextToSpeech.v1
                 if (!string.IsNullOrEmpty(customizationId))
                 {
                     callback.AddArgument("customization_id", customizationId);
+                }
+                if (!string.IsNullOrEmpty(accept))
+                {
+                    callback.AddArgument("accept", accept);
                 }
 
                 //socketClient.WithHeader("Content-Type", "application/json");
@@ -500,7 +505,16 @@ namespace IBM.Watson.TextToSpeech.v1
                 foreach (var header in customRequestHeaders)
                 {
                     callback.WithHeader(header.Key, header.Value);
+                }                
+
+                foreach (var header in client.BaseClient.DefaultRequestHeaders)
+                {
+                    var enumerator = header.Value.GetEnumerator();
+                    enumerator.MoveNext();
+                    var value = enumerator.Current;
+                    callback = (WebSocketClientTest)callback.WithHeader(header.Key, value);
                 }
+
                 return callback;
             }
             catch (AggregateException ae)

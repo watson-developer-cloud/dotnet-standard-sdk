@@ -97,32 +97,45 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
         public void Synthesize_sockets_SuccessAsync()
         {
             service.WithHeader("X-Watson-Test", "1");
-            string url = ("{url}/v1/synthesize").Replace("https://", "wss://");
-            //wss://api.{location}.text-to-speech.watson.cloud.ibm.com/instances/{instance_id}/v1/synthesize
+            string url = ("https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/{instanceId}/v1/synthesize").Replace("https://", "wss://");
             WebSocketClientTest callback = new WebSocketClientTest(url);
 
-            var bearerToken = "";
-            callback.WithHeader("Authorization", "Bearer " + bearerToken);
+            // path to file
+            string Name = @"{pathToFile}/yourfiletest.ogg";
+            FileStream fs = File.Create(Name);
 
             callback.OnOpen = () =>
             {
-                System.Diagnostics.Debug.WriteLine("WEBSOCKET IS OPEN");
+                System.Diagnostics.Debug.WriteLine("On Open");
             };
             callback.OnClose = () =>
             {
-                System.Diagnostics.Debug.WriteLine("WEBSOCKET IS CLOSED");
+                System.Diagnostics.Debug.WriteLine("On Close");
+                fs.Close();
             };
-            callback.OnMessage = (message) =>
+            callback.OnContentType = (contentType) =>
             {
-                System.Diagnostics.Debug.WriteLine("MESSAGE");
-                System.Diagnostics.Debug.WriteLine(message);
-
+                System.Diagnostics.Debug.WriteLine("On content");
             };
+            callback.OnMessage = (bytes) =>
+            {
+                System.Diagnostics.Debug.WriteLine("On message");
+                try
+                {
+                    fs.Write(bytes, 0, bytes.Length);
+                }
+                catch
+                {
+                    System.Diagnostics.Debug.WriteLine("error");
+                }
+            };
+            
             var synthesizeResult = service.SynthesizeUsingWebSocket(
                 voice: allisonVoice,
-                socketClient: callback
+                callback: callback
                 );
-            synthesizeResult.Send("hello test", "test");
+            synthesizeResult.Send("The random sentence generator generated a random sentence about a random sentence.");
+
         }
         #endregion
 

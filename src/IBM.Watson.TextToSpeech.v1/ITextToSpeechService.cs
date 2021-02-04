@@ -29,7 +29,7 @@ namespace IBM.Watson.TextToSpeech.v1
         DetailedResponse<Voices> ListVoices();
         DetailedResponse<Voice> GetVoice(string voice, string customizationId = null);
         DetailedResponse<System.IO.MemoryStream> Synthesize(string text, string accept = null, string voice = null, string customizationId = null);
-        WebSocketClientTest SynthesizeUsingWebSocket(WebSocketClientTest callback, string voice = null, string customizationId = null);
+        WebSocketClientTest SynthesizeUsingWebSocket(WebSocketClientTest callback, string voice = null, string customizationId = null, string accept = "");
         DetailedResponse<Pronunciation> GetPronunciation(string text, string voice = null, string format = null, string customizationId = null);
         DetailedResponse<CustomModel> CreateCustomModel(string name, string language = null, string description = null);
         DetailedResponse<CustomModels> ListCustomModels(string language = null);

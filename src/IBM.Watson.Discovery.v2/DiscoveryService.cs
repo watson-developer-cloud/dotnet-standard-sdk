@@ -22,6 +22,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
+using System.Net;
 using System.Text;
 using IBM.Cloud.SDK.Core.Authentication;
 using IBM.Cloud.SDK.Core.Http;
@@ -45,7 +46,7 @@ namespace IBM.Watson.Discovery.v2
         public DiscoveryService(string version, string serviceName) : this(version, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
         public DiscoveryService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public DiscoveryService(string version, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
+        public DiscoveryService(string version, string serviceName, IAuthenticator authenticator, WebProxy webProxy = null) : base(serviceName, authenticator, webProxy)
         {
             if (string.IsNullOrEmpty(version))
             {

@@ -1,0 +1,4 @@
+var namespace_i_b_m_1_1_watson_1_1_tone_analyzer_1_1v3_1_1_unit_tests =
+[
+    [ "ToneAnalyzerServiceUnitTests", "dd/dcb/class_i_b_m_1_1_watson_1_1_tone_analyzer_1_1v3_1_1_unit_tests_1_1_tone_analyzer_service_unit_tests.html", "dd/dcb/class_i_b_m_1_1_watson_1_1_tone_analyzer_1_1v3_1_1_unit_tests_1_1_tone_analyzer_service_unit_tests" ]
+];

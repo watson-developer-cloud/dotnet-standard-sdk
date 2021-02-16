@@ -1,0 +1,5 @@
+var class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_dialog_node_c1f7e32459210ab537378d6bc840f09c =
+[
+    [ "DISCOVERY_QUERY_LANGUAGE", "db/da7/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_dialog_node_c1f7e32459210ab537378d6bc840f09c.html#aa8c47e30837818c6745a1cebb2bfb8ff", null ],
+    [ "NATURAL_LANGUAGE", "db/da7/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_dialog_node_c1f7e32459210ab537378d6bc840f09c.html#a826b3c6d2cf5aadea09a72338d97e6c5", null ]
+];

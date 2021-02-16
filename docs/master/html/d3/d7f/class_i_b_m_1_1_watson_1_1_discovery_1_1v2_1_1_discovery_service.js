@@ -9,11 +9,11 @@ var class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service =
     [ "UpdateDocumentEnums", "da/d97/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service_1_1_update_document_enums.html", [
       [ "FileContentTypeValue", "d6/de4/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service_1_1_update_document_enums_1_1_file_content_type_value.html", "d6/de4/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service_1_1_update_document_enums_1_1_file_content_type_value" ]
     ] ],
-    [ "DiscoveryService", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a1d8f8b21e76f4a420169e8c7d782a609", null ],
-    [ "DiscoveryService", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a44b6e5b99578c07a633910580ef43497", null ],
-    [ "DiscoveryService", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#ae146b5385d4f4f1977393aa874cfdf6e", null ],
+    [ "DiscoveryService", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#ad5d354c6106d9a44d8f113480ad05b4d", null ],
+    [ "DiscoveryService", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a8ca330bed1543a3a70418bc94048a93f", null ],
+    [ "DiscoveryService", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a8261d78aca1da9cf469877191c3dcfa5", null ],
     [ "DiscoveryService", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a6647216411f0ea33b8c7d2a554b279cd", null ],
-    [ "DiscoveryService", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a1851e6e09b3872aa0d252d24c57e7cb2", null ],
+    [ "DiscoveryService", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#ad1fb42f06e95e3056a81113e209faee2", null ],
     [ "AddDocument", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a8c9fc8baf2f28bcd0f9e92f6c2ab28f8", null ],
     [ "AnalyzeDocument", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a43bdfa6525ebda30d8ec31bdb312c8b1", null ],
     [ "CreateCollection", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a580753bc961355f7150e92fb331d5dde", null ],

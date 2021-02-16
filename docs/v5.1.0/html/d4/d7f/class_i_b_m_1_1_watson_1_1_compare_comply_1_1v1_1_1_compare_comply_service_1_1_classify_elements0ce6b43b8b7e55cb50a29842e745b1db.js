@@ -1,0 +1,11 @@
+var class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_classify_elements0ce6b43b8b7e55cb50a29842e745b1db =
+[
+    [ "APPLICATION_MSWORD", "d4/d7f/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_classify_elements0ce6b43b8b7e55cb50a29842e745b1db.html#a0491e990d0dfdb683dc4b001ae15a67e", null ],
+    [ "APPLICATION_PDF", "d4/d7f/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_classify_elements0ce6b43b8b7e55cb50a29842e745b1db.html#aadfeae2a05c78a32527dff204c65156b", null ],
+    [ "APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT", "d4/d7f/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_classify_elements0ce6b43b8b7e55cb50a29842e745b1db.html#aa6f2fc61590edf11781d9726268083d2", null ],
+    [ "IMAGE_BMP", "d4/d7f/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_classify_elements0ce6b43b8b7e55cb50a29842e745b1db.html#aeb6e9cdd3cdd4ab95de2a54540ae26a4", null ],
+    [ "IMAGE_GIF", "d4/d7f/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_classify_elements0ce6b43b8b7e55cb50a29842e745b1db.html#a71c60cc34fe10366d7abbcbf703a92fb", null ],
+    [ "IMAGE_JPEG", "d4/d7f/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_classify_elements0ce6b43b8b7e55cb50a29842e745b1db.html#af03b61a71363442a9da7dce25f05f49f", null ],
+    [ "IMAGE_PNG", "d4/d7f/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_classify_elements0ce6b43b8b7e55cb50a29842e745b1db.html#af7289e5179367c309faf276e3d8d01b7", null ],
+    [ "IMAGE_TIFF", "d4/d7f/class_i_b_m_1_1_watson_1_1_compare_comply_1_1v1_1_1_compare_comply_service_1_1_classify_elements0ce6b43b8b7e55cb50a29842e745b1db.html#af7f1e98276feb7ec52e0819af36aa7d0", null ]
+];

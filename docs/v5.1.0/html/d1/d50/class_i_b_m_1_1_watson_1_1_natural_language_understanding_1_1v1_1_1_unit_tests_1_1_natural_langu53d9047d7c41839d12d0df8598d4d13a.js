@@ -1,0 +1,13 @@
+var class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_unit_tests_1_1_natural_langu53d9047d7c41839d12d0df8598d4d13a =
+[
+    [ "Analyze_Success", "d1/d50/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_unit_tests_1_1_natural_langu53d9047d7c41839d12d0df8598d4d13a.html#ad5abc9acd18131a3502eb7e802d65b16", null ],
+    [ "Constructor", "d1/d50/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_unit_tests_1_1_natural_langu53d9047d7c41839d12d0df8598d4d13a.html#a49c2f6149123d66d159213748b85f6ac", null ],
+    [ "Constructor_HttpClient_Null", "d1/d50/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_unit_tests_1_1_natural_langu53d9047d7c41839d12d0df8598d4d13a.html#a5fa9a2e21c61ddfd7e14d86ea25036de", null ],
+    [ "ConstructorAuthenticator", "d1/d50/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_unit_tests_1_1_natural_langu53d9047d7c41839d12d0df8598d4d13a.html#a5ff2daee6c06fe5acc566d25a2b5842f", null ],
+    [ "ConstructorExternalConfig", "d1/d50/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_unit_tests_1_1_natural_langu53d9047d7c41839d12d0df8598d4d13a.html#adf898b60468355b99fdd831ae29f002f", null ],
+    [ "ConstructorHttpClient", "d1/d50/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_unit_tests_1_1_natural_langu53d9047d7c41839d12d0df8598d4d13a.html#af79fdb3b84fb61bc1bf528a1eb737800", null ],
+    [ "ConstructorNoUrl", "d1/d50/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_unit_tests_1_1_natural_langu53d9047d7c41839d12d0df8598d4d13a.html#afc55783e0a49e06f07a57d67e09dcfde", null ],
+    [ "ConstructorNoVersion", "d1/d50/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_unit_tests_1_1_natural_langu53d9047d7c41839d12d0df8598d4d13a.html#aebb0518821d09a025a2a16f76b643ada", null ],
+    [ "DeleteModel_Success", "d1/d50/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_unit_tests_1_1_natural_langu53d9047d7c41839d12d0df8598d4d13a.html#afce48aa453776133974a9df609bca9f7", null ],
+    [ "ListModels_Success", "d1/d50/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_unit_tests_1_1_natural_langu53d9047d7c41839d12d0df8598d4d13a.html#aa7025a5114d39edcb675d6ce7e98013a", null ]
+];

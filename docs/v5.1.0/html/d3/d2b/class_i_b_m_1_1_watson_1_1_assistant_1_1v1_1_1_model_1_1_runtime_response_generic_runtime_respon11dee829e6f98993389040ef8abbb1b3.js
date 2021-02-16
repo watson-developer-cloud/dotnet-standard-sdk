@@ -1,0 +1,4 @@
+var class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_respon11dee829e6f98993389040ef8abbb1b3 =
+[
+    [ "IMAGE", "d3/d2b/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_respon11dee829e6f98993389040ef8abbb1b3.html#abefb8bbb104dcb4eb309e7bb8d4a6061", null ]
+];

@@ -1,3 +1,10 @@
+# [5.1.0](https://github.com/watson-developer-cloud/dotnet-standard-sdk/compare/v5.0.1...v5.1.0) (2021-02-16)
+
+
+### Features
+
+* **csproj:** update core & common version ([d89daea](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/d89daeaca3da8c7fb15e18c913f9df18f5c52466))
+
 ## [5.0.1](https://github.com/watson-developer-cloud/dotnet-standard-sdk/compare/v5.0.0...v5.0.1) (2020-12-21)
 
 

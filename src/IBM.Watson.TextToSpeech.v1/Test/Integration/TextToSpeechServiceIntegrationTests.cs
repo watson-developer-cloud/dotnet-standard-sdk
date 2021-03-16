@@ -24,6 +24,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using IBM.Cloud.SDK.Core;
+using IBM.Watson.TextToSpeech.v1.Websockets;
+using static IBM.Watson.TextToSpeech.v1.TextToSpeechService;
 
 namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
 {
@@ -86,6 +88,74 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
             }
 
             Assert.IsNotNull(synthesizeResult.Result);
+        }
+
+        [TestMethod]
+        public void Synthesize_sockets_SuccessAsync()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+
+            // path to file
+            string Name = @"FILEPATH/yourfiletest.mpeg";
+            FileStream fs = File.Create(Name);
+
+            SynthesizeCallback callback = new SynthesizeCallback();
+            callback.OnOpen = () =>
+            {
+                System.Diagnostics.Debug.WriteLine("On Open");
+            };
+            callback.OnClose = () =>
+            {
+                System.Diagnostics.Debug.WriteLine("On Close");
+                fs.Close();
+            };
+            callback.OnContentType = (contentType) =>
+            {
+                System.Diagnostics.Debug.WriteLine("On content");
+                System.Diagnostics.Debug.WriteLine(contentType);
+            };
+            callback.OnMarks = (marks) =>
+            {
+                System.Diagnostics.Debug.WriteLine("On marks");
+                foreach (MarkTiming markTiming in marks)
+                {
+                    System.Diagnostics.Debug.WriteLine(markTiming);
+                }
+            };
+            callback.onTimings = (words) =>
+            {
+                System.Diagnostics.Debug.WriteLine("On words");
+                foreach (WordTiming wordTiming in words)
+                {
+                    System.Diagnostics.Debug.WriteLine(wordTiming);
+                }
+            };
+            callback.OnMessage = (bytes) =>
+            {
+                System.Diagnostics.Debug.WriteLine("On message");
+                try
+                {
+                    fs.Write(bytes, 0, bytes.Length);
+                }
+                catch
+                {
+                    System.Diagnostics.Debug.WriteLine("error");
+                }
+            };
+            callback.OnError = (err) =>
+            {
+                System.Diagnostics.Debug.WriteLine("On error");
+                System.Diagnostics.Debug.WriteLine(err);
+            };
+
+            var synthesizeResult = service.SynthesizeUsingWebSocket(
+                voice: allisonVoice,
+                callback: callback,
+                accept: SynthesizeEnums.AcceptValue.AUDIO_MP3,
+                text: "The <mark name='SIMPLE'/>random sentence generator generated a random sentence about a random sentence.",
+                timings: new string[] { "words" }
+            );
+            Console.WriteLine("hi");
         }
         #endregion
 

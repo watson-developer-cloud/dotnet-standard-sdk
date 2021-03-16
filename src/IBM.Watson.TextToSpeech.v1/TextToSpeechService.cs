@@ -75,6 +75,7 @@ namespace IBM.Watson.TextToSpeech.v1
                 IClient client = this.Client;
                 SetAuthentication();
 
+                Console.WriteLine(this.Endpoint);
                 var restRequest = client.GetAsync($"{this.Endpoint}/v1/voices");
 
                 restRequest.WithHeader("Accept", "application/json");
@@ -469,9 +470,9 @@ namespace IBM.Watson.TextToSpeech.v1
             return result;
         }
 
-        public WebSocketClientTest SynthesizeUsingWebSocket(WebSocketClientTest callback, string voice = null, string customizationId = null, string accept = "audio/ogg; codecs=opus")
+        public WebSocketClientTest SynthesizeUsingWebSocket(SynthesizeCallback callback, string text, string voice = null, string customizationId = null, string accept = SynthesizeEnums.AcceptValue.AUDIO_OGG_CODECS_OPUS, string[] timings = null)
         {
-            if (callback == null)
+            if (callback == null) 
             {
                 throw new ArgumentNullException("callback cannot be null");
             }
@@ -481,30 +482,34 @@ namespace IBM.Watson.TextToSpeech.v1
                 IClient client = this.Client;
                 SetAuthentication();
 
+                string url = ($"{this.Endpoint}/v1/synthesize").Replace("https://", "wss://");
+                WebSocketClientTest webSocketClient = new WebSocketClientTest(url, callback);
+
                 if (!string.IsNullOrEmpty(voice))
                 {
-                    callback.AddArgument("voice", voice);
+                    webSocketClient.AddArgument("voice", voice);
                 }
                 if (!string.IsNullOrEmpty(customizationId))
                 {
-                    callback.AddArgument("customization_id", customizationId);
+                    webSocketClient.AddArgument("customization_id", customizationId);
                 }
                 if (!string.IsNullOrEmpty(accept))
                 {
-                    callback.AddArgument("accept", accept);
+                    webSocketClient.AddArgument("accept", accept);
                 }
-
-                //socketClient.WithHeader("Content-Type", "application/json");
-
+                if (timings == null)
+                {
+                    timings = new string[] {};
+                }
                 var sdkHeaders = Common.GetSdkHeaders("text_to_speech", "v1", "Synthesize");
                 foreach (var header in sdkHeaders)
                 {
-                    callback.WithHeader(header.Key, header.Value);
+                    webSocketClient.WithHeader(header.Key, header.Value);
                 }
 
                 foreach (var header in customRequestHeaders)
                 {
-                    callback.WithHeader(header.Key, header.Value);
+                    webSocketClient.WithHeader(header.Key, header.Value);
                 }                
 
                 foreach (var header in client.BaseClient.DefaultRequestHeaders)
@@ -512,10 +517,11 @@ namespace IBM.Watson.TextToSpeech.v1
                     var enumerator = header.Value.GetEnumerator();
                     enumerator.MoveNext();
                     var value = enumerator.Current;
-                    callback = (WebSocketClientTest)callback.WithHeader(header.Key, value);
+                    webSocketClient = (WebSocketClientTest)webSocketClient.WithHeader(header.Key, value);
                 }
+                webSocketClient.Send(text, accept: accept, timings: timings);
 
-                return callback;
+                return webSocketClient;
             }
             catch (AggregateException ae)
             {

@@ -36,7 +36,8 @@ namespace IBM.Watson.TextToSpeech.v1.websocket
     {
         public const string BINARY_STREAMS = "binary_streams";
         public const string CONTENT_TYPE = "content_type";
-
+        public const string MARKS = "marks";
+        public const string WORDS = "words";
 
         ArraySegment<byte> stopMessage = new ArraySegment<byte>(Encoding.UTF8.GetBytes(
            "{\"action\": \"stop\"}"
@@ -52,6 +53,8 @@ namespace IBM.Watson.TextToSpeech.v1.websocket
         public Action OnOpen = () => { };
         public Action<byte[]> OnMessage = (message) => { };
         public Action<string> OnContentType = (contentType) => { };
+        public Action<MarkTiming[]> OnMarks = (marks) => { };
+        public Action<WordTiming[]> onTimings = (timings) => { };
         public Action<Exception> OnError = (ex) => { };
         public Action OnClose = () => { };
 
@@ -80,7 +83,7 @@ namespace IBM.Watson.TextToSpeech.v1.websocket
 
         public abstract void Send(FileStream file, string openingMessage);
 
-        public abstract void Send(string request, string openingMessage);
+        public abstract void Send(string request, string accept, string[] timings, string openingMessage);
 
         protected async Task SendAudio(FileStream file)
         {
@@ -113,7 +116,7 @@ namespace IBM.Watson.TextToSpeech.v1.websocket
 
         protected async Task HandleResults()
         {
-            var buffer = new byte[16 * 1024 * 1024];
+            var buffer = new byte[1024 * 16 * 4];
             var audioStream = new List<byte>();
 
             while (true)
@@ -127,7 +130,7 @@ namespace IBM.Watson.TextToSpeech.v1.websocket
                 {
                     return;
                 }
-
+                //58290
                 int count = result.Count;
                 while (!result.EndOfMessage)
                 {
@@ -153,17 +156,35 @@ namespace IBM.Watson.TextToSpeech.v1.websocket
                     string contentType = json[BINARY_STREAMS][0][CONTENT_TYPE].ToString();
                     OnContentType(contentType);
                 }
-                else if (message.Contains("words"))
+                else if (message.Contains(MARKS))
                 {
-
+                    var json = JObject.Parse(message);
+                    JToken marks = json[MARKS];
+                    MarkTiming[] markList = new MarkTiming[marks.Count()];
+                    for (int i = 0; i < markList.Length; i++)
+                    {
+                        MarkTiming markTiming = new MarkTiming(marks[i][0].ToString(), Double.Parse(marks[i][1].ToString()));
+                        markList[i] = markTiming;
+                    }
+                    OnMarks(markList);
                 }
-                else if (message.Contains("marks"))
+                else if (message.Contains(WORDS))
                 {
-
+                    var json = JObject.Parse(message);
+                    JToken words = json[WORDS];
+                    WordTiming[] wordList = new WordTiming[words.Count()];
+                    for(int i = 0; i < wordList.Length; i++)
+                    {
+                        WordTiming wordTiming = new WordTiming(words[i][0].ToString(), Double.Parse(words[i][1].ToString()), Double.Parse(words[i][2].ToString()));
+                        wordList[i] = wordTiming;
+                    }
+                    onTimings(wordList);
                 }
                 else
                 {
-                    OnMessage(buffer);
+                    byte[] messageBuffer = new byte[count];
+                    Array.Copy(buffer, messageBuffer, count);
+                    OnMessage(messageBuffer);
                 }
             }
         }

@@ -7,7 +7,7 @@ namespace IBM.Watson.TextToSpeech.v1
 {
     public partial class TextToSpeechService : IBMService, ITextToSpeechService
     {
-        public WebSocketClient SynthesizeUsingWebSocket(SynthesizeCallback callback, string text, string voice = null, string customizationId = null, string accept = SynthesizeEnums.AcceptValue.AUDIO_OGG_CODECS_OPUS, string[] timings = null)
+        public WebSocketClient SynthesizeUsingWebsockets(SynthesizeCallback callback, string text, string voice = null, string customizationId = null, string accept = null, string[] timings = null)
         {
             if (callback == null) 
             {

@@ -15,6 +15,7 @@
 *
 */
 
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,7 @@ namespace IBM.Watson.TextToSpeech.v1.Websockets
            "{\"action\": \"stop\"}"
        ));
 
-        private const int ReceiveChunkSize = 1024;
+        private const int ReceiveChunkSize = 1024 * 16 * 4;
         private const int SendChunkSize = 1024;
 
         protected ClientWebSocket BaseClient { get; set; }
@@ -49,8 +50,8 @@ namespace IBM.Watson.TextToSpeech.v1.Websockets
         public Action OnOpen = () => { };
         public Action<byte[]> OnMessage = (message) => { };
         public Action<string> OnContentType = (contentType) => { };
-        public Action<MarkTiming[]> OnMarks = (marks) => { };
-        public Action<WordTiming[]> onTimings = (timings) => { };
+        public Action<MarkTiming> OnMarks = (marks) => { };
+        public Action<WordTiming> onTimings = (timings) => { };
         public Action<Exception> OnError = (ex) => { };
         public Action OnClose = () => { };
 
@@ -93,26 +94,29 @@ namespace IBM.Watson.TextToSpeech.v1.Websockets
 
         protected async Task SendText(string message)
         {
-            var messageBuffer = Encoding.UTF8.GetBytes(message);
-            var messagesCount = (int)Math.Ceiling((double)messageBuffer.Length / SendChunkSize);
-
-            for (var i = 0; i < messagesCount; i++)
+            if (BaseClient.State == WebSocketState.Open)
             {
-                var offset = (SendChunkSize * i);
-                var count = SendChunkSize;
-                var lastMessage = ((i + 1) == messagesCount);
+                var messageBuffer = Encoding.UTF8.GetBytes(message);
+                var messagesCount = (int)Math.Ceiling((double)messageBuffer.Length / SendChunkSize);
 
-                if ((count * (i + 1)) > messageBuffer.Length)
+                for (var i = 0; i < messagesCount; i++)
                 {
-                    count = messageBuffer.Length - offset;
+                    var offset = (SendChunkSize * i);
+                    var count = SendChunkSize;
+                    var lastMessage = ((i + 1) == messagesCount);
+
+                    if ((count * (i + 1)) > messageBuffer.Length)
+                    {
+                        count = messageBuffer.Length - offset;
+                    }
+                    await BaseClient.SendAsync(new ArraySegment<byte>(messageBuffer, offset, count), WebSocketMessageType.Text, lastMessage, CancellationToken.None);
                 }
-                await BaseClient.SendAsync(new ArraySegment<byte>(messageBuffer, offset, count), WebSocketMessageType.Text, lastMessage, CancellationToken.None);
             }
         }
 
         protected async Task HandleResults()
         {
-            var buffer = new byte[1024 * 16 * 4];
+            var buffer = new byte[ReceiveChunkSize];
             var audioStream = new List<byte>();
 
             while (true)
@@ -126,19 +130,11 @@ namespace IBM.Watson.TextToSpeech.v1.Websockets
                 {
                     return;
                 }
-                //58290
+
                 int count = result.Count;
+
                 while (!result.EndOfMessage)
                 {
-                    if (count >= buffer.Length)
-                    {
-                        if (BaseClient.State == WebSocketState.Open)
-                        {
-                            await BaseClient.CloseAsync(WebSocketCloseStatus.InvalidPayloadData, "That's too long", CancellationToken.None);
-                        }
-                        return;
-                    }
-
                     segment = new ArraySegment<byte>(buffer, count, buffer.Length - count);
                     result = await BaseClient.ReceiveAsync(segment, CancellationToken.None);
                     count += result.Count;
@@ -156,25 +152,15 @@ namespace IBM.Watson.TextToSpeech.v1.Websockets
                 {
                     var json = JObject.Parse(message);
                     JToken marks = json[MARKS];
-                    MarkTiming[] markList = new MarkTiming[marks.Count()];
-                    for (int i = 0; i < markList.Length; i++)
-                    {
-                        MarkTiming markTiming = new MarkTiming(marks[i][0].ToString(), Double.Parse(marks[i][1].ToString()));
-                        markList[i] = markTiming;
-                    }
-                    OnMarks(markList);
+                    MarkTiming markTiming = json.ToObject<MarkTiming>();
+                    OnMarks(markTiming);
                 }
                 else if (message.Contains(WORDS))
                 {
                     var json = JObject.Parse(message);
                     JToken words = json[WORDS];
-                    WordTiming[] wordList = new WordTiming[words.Count()];
-                    for (int i = 0; i < wordList.Length; i++)
-                    {
-                        WordTiming wordTiming = new WordTiming(words[i][0].ToString(), Double.Parse(words[i][1].ToString()), Double.Parse(words[i][2].ToString()));
-                        wordList[i] = wordTiming;
-                    }
-                    onTimings(wordList);
+                    WordTiming wordTimings = json.ToObject<WordTiming>();
+                    onTimings(wordTimings);
                 }
                 else
                 {

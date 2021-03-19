@@ -106,8 +106,12 @@ namespace IBM.Watson.TextToSpeech.v1.Websockets
             // modify this opening message to include timings, and type of file.
 
             openingMessage = $"{{{openingMessage}}}";
-            System.Diagnostics.Debug.WriteLine(openingMessage);
 
+            if (openingMessage.Length >= 5120)
+            {
+                OnError(new Exception("The provided text is too long. You can provide a maximum of 5 KB of either plain text or text that is annotated with SSML."));
+                return;
+            }
             // connect the websocket
             Action connectAction = () => BaseClient.ConnectAsync(UriBuilder.Uri, CancellationToken.None).Wait();
 
@@ -125,7 +129,7 @@ namespace IBM.Watson.TextToSpeech.v1.Websockets
             {
                 if (BaseClient.State == WebSocketState.Open)
                 {
-                    BaseClient.CloseAsync(WebSocketCloseStatus.NormalClosure, string.Empty, CancellationToken.None).Wait();
+                    BaseClient.CloseOutputAsync(WebSocketCloseStatus.NormalClosure, string.Empty, CancellationToken.None).Wait();
                 }
                 OnClose();
             };

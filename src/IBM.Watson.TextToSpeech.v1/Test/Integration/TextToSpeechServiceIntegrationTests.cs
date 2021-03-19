@@ -32,8 +32,6 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
     [TestClass]
     public class TextToSpeechServiceIntegrationTests
     {
-        private static string apikey;
-        private static string endpoint;
         private TextToSpeechService service;
         private static string credentials = string.Empty;
         private const string allisonVoice = "en-US_AllisonVoice";
@@ -89,13 +87,22 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
 
             Assert.IsNotNull(synthesizeResult.Result);
         }
+        public void DoOnMarks(MarkTiming markTimings)
+        {
+            System.Diagnostics.Debug.WriteLine("On marks");
+            foreach (List<string> marks in markTimings.Marks)
+            {
+                System.Diagnostics.Debug.WriteLine(marks[0] + ": " + marks[1]);
+            }
+        }
 
-        [TestMethod]
-        public void Synthesize_sockets_SuccessAsync()
+        //[TestMethod]
+        public void SynthesizeUsingWebsocketsSuccess()
         {
             service.WithHeader("X-Watson-Test", "1");
 
             // path to file
+            // test callbacks with custom functions
             string Name = @"FILEPATH/yourfiletest.mpeg";
             FileStream fs = File.Create(Name);
 
@@ -114,20 +121,14 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
                 System.Diagnostics.Debug.WriteLine("On content");
                 System.Diagnostics.Debug.WriteLine(contentType);
             };
-            callback.OnMarks = (marks) =>
-            {
-                System.Diagnostics.Debug.WriteLine("On marks");
-                foreach (MarkTiming markTiming in marks)
-                {
-                    System.Diagnostics.Debug.WriteLine(markTiming);
-                }
-            };
-            callback.onTimings = (words) =>
+            callback.OnMarks = (markTimings) => DoOnMarks(markTimings);
+
+            callback.onTimings = (wordTimings) =>
             {
                 System.Diagnostics.Debug.WriteLine("On words");
-                foreach (WordTiming wordTiming in words)
+                foreach (List<string> words in wordTimings.Words)
                 {
-                    System.Diagnostics.Debug.WriteLine(wordTiming);
+                    System.Diagnostics.Debug.WriteLine(words[0] + ": " + words[1] + " - " + words[2]);
                 }
             };
             callback.OnMessage = (bytes) =>
@@ -137,8 +138,9 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
                 {
                     fs.Write(bytes, 0, bytes.Length);
                 }
-                catch
+                catch (Exception ex)
                 {
+                    System.Diagnostics.Debug.WriteLine(ex);
                     System.Diagnostics.Debug.WriteLine("error");
                 }
             };
@@ -148,14 +150,13 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
                 System.Diagnostics.Debug.WriteLine(err);
             };
 
-            var synthesizeResult = service.SynthesizeUsingWebSocket(
+            var synthesizeResult = service.SynthesizeUsingWebsockets(
                 voice: allisonVoice,
                 callback: callback,
                 accept: SynthesizeEnums.AcceptValue.AUDIO_MP3,
                 text: "The <mark name='SIMPLE'/>random sentence generator generated a random sentence about a random sentence.",
                 timings: new string[] { "words" }
             );
-            Console.WriteLine("hi");
         }
         #endregion
 

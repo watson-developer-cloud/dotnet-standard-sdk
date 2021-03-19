@@ -1,19 +1,11 @@
-﻿namespace IBM.Watson.TextToSpeech.v1.Websockets
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
+
+namespace IBM.Watson.TextToSpeech.v1.Websockets
 {
     public class MarkTiming
     {
-        public string word { get; }
-        public double startTime { get; }
-
-        public MarkTiming(string word, double startTime)
-        {
-            this.word = word;
-            this.startTime = startTime;
-        }
-
-        public override string ToString()
-        {
-            return word + " " + startTime;
-        }
+        [JsonProperty("marks", NullValueHandling = NullValueHandling.Ignore)]
+        public List<List<string>> Marks { get; set; }
     }
 }

@@ -1,21 +1,12 @@
-﻿namespace IBM.Watson.TextToSpeech.v1.Websockets
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
+
+namespace IBM.Watson.TextToSpeech.v1.Websockets
 {
     public class WordTiming
     {
-        public string word { get; }
-        public double startTime { get; }
-        public double endTime { get; }
-
-        public WordTiming(string word, double startTime, double endTime)
-        {
-            this.word = word;
-            this.startTime = startTime;
-            this.endTime = endTime;
-        }
-
-        public override string ToString()
-        {
-            return word + " " + startTime + "-" + endTime;
-        }
+        [JsonProperty("words", NullValueHandling = NullValueHandling.Ignore)]
+        public List<List<string>> Words { get; set; }
+       
     }
 }

@@ -17,9 +17,11 @@
 
 using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Watson.TextToSpeech.v1.Model;
+using IBM.Watson.TextToSpeech.v1.Websockets;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using static IBM.Watson.TextToSpeech.v1.TextToSpeechService;
 
 namespace IBM.Watson.TextToSpeech.v1.Examples
 {
@@ -336,6 +338,45 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
                 );
 
             Console.WriteLine(result.StatusCode);
+        }
+        #endregion
+
+        #region Websockets
+        public void SynthesizeUsingWebsockets()
+        {
+            IamAuthenticator authenticator = new IamAuthenticator("{apikey}");
+            TextToSpeechService service = new TextToSpeechService(authenticator);
+
+            SynthesizeCallback callback = new SynthesizeCallback();
+
+            MemoryStream soundStream = new MemoryStream();
+            // Example requires SoundPlayer
+            SoundPlayer player = new SoundPlayer(soundStream);
+
+            callback.OnOpen = () =>
+            {
+                Console.WriteLine("open");
+            };
+
+            callback.OnClose = () =>
+            {
+                Console.WriteLine("close");
+            };
+            callback.OnMessage = (bytes) =>
+            {
+                player.Stream.Position = player.Stream.Length;
+                player.Stream.WriteAsync(bytes, 0, bytes.Length);
+                WaveUtils.ReWriteWaveHeader((MemoryStream)player.Stream);
+                Console.WriteLine("new message call");
+            };
+
+            var synthesizeResult = service.SynthesizeUsingWebsockets(
+                voice: SynthesizeEnums.VoiceValue.EN_US_ALLISONVOICE,
+                callback: callback,
+                accept: SynthesizeEnums.AcceptValue.AUDIO_WAV,
+                timings: new string[] { "words" },
+                text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.");
+            player.PlaySync();
         }
         #endregion
     }

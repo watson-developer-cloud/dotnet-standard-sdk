@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2036
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SpeechToTextV1", "SpeechToTextV1", "{254924C9-64CD-4902-97C4-5F9E48DCDF7F}"
 EndProject
@@ -63,91 +63,93 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.VisualRecognitio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.VisualRecognition.v4", "src\IBM.Watson.VisualRecognition.v4\IBM.Watson.VisualRecognition.v4.csproj", "{1D6DA3A1-2C96-4080-AF46-B43AD00C9B48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.SpeechToText.v1.IntegrationTests", "src\IBM.Watson.SpeechToText.v1\Test\Integration\IBM.Watson.SpeechToText.v1.IntegrationTests.csproj", "{1ECC7ED9-1A27-4AE8-9640-0737A0D2F995}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.SpeechToText.v1.IntegrationTests", "src\IBM.Watson.SpeechToText.v1\Test\Integration\IBM.Watson.SpeechToText.v1.IntegrationTests.csproj", "{1ECC7ED9-1A27-4AE8-9640-0737A0D2F995}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.SpeechToText.v1.UnitTests", "src\IBM.Watson.SpeechToText.v1\Test\Unit\IBM.Watson.SpeechToText.v1.UnitTests.csproj", "{BED0B837-5E8C-4DBE-B178-0B0DA7CA6F92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.SpeechToText.v1.UnitTests", "src\IBM.Watson.SpeechToText.v1\Test\Unit\IBM.Watson.SpeechToText.v1.UnitTests.csproj", "{BED0B837-5E8C-4DBE-B178-0B0DA7CA6F92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.SpeechToText.v1.Examples", "src\IBM.Watson.SpeechToText.v1\Examples\IBM.Watson.SpeechToText.v1.Examples.csproj", "{6A98427D-60FC-4810-BE2E-26706656BB72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.SpeechToText.v1.Examples", "src\IBM.Watson.SpeechToText.v1\Examples\IBM.Watson.SpeechToText.v1.Examples.csproj", "{6A98427D-60FC-4810-BE2E-26706656BB72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.TextToSpeech.v1.IntegrationTests", "src\IBM.Watson.TextToSpeech.v1\Test\Integration\IBM.Watson.TextToSpeech.v1.IntegrationTests.csproj", "{FE7E842A-A60F-44AB-85C9-D73A7701F007}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.TextToSpeech.v1.IntegrationTests", "src\IBM.Watson.TextToSpeech.v1\Test\Integration\IBM.Watson.TextToSpeech.v1.IntegrationTests.csproj", "{FE7E842A-A60F-44AB-85C9-D73A7701F007}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.TextToSpeech.v1.UnitTests", "src\IBM.Watson.TextToSpeech.v1\Test\Unit\IBM.Watson.TextToSpeech.v1.UnitTests.csproj", "{F5534285-D147-44CF-B55E-831719FEBA0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.TextToSpeech.v1.UnitTests", "src\IBM.Watson.TextToSpeech.v1\Test\Unit\IBM.Watson.TextToSpeech.v1.UnitTests.csproj", "{F5534285-D147-44CF-B55E-831719FEBA0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.TextToSpeech.v1.Examples", "src\IBM.Watson.TextToSpeech.v1\Examples\IBM.Watson.TextToSpeech.v1.Examples.csproj", "{06885AE2-2B3C-491E-8BDA-1AF07D76A9F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.TextToSpeech.v1.Examples", "src\IBM.Watson.TextToSpeech.v1\Examples\IBM.Watson.TextToSpeech.v1.Examples.csproj", "{06885AE2-2B3C-491E-8BDA-1AF07D76A9F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.ToneAnalyzer.v3.IntegrationTests", "src\IBM.Watson.ToneAnalyzer.v3\Test\Integration\IBM.Watson.ToneAnalyzer.v3.IntegrationTests.csproj", "{305D5A37-5969-4EC7-B194-72AF4E6BB37D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.ToneAnalyzer.v3.IntegrationTests", "src\IBM.Watson.ToneAnalyzer.v3\Test\Integration\IBM.Watson.ToneAnalyzer.v3.IntegrationTests.csproj", "{305D5A37-5969-4EC7-B194-72AF4E6BB37D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.ToneAnalyzer.v3.UnitTests", "src\IBM.Watson.ToneAnalyzer.v3\Test\Unit\IBM.Watson.ToneAnalyzer.v3.UnitTests.csproj", "{6C816E29-2753-4C88-8D7D-000AC2A6E26E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.ToneAnalyzer.v3.UnitTests", "src\IBM.Watson.ToneAnalyzer.v3\Test\Unit\IBM.Watson.ToneAnalyzer.v3.UnitTests.csproj", "{6C816E29-2753-4C88-8D7D-000AC2A6E26E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.ToneAnalyzer.v3.Examples", "src\IBM.Watson.ToneAnalyzer.v3\Examples\IBM.Watson.ToneAnalyzer.v3.Examples.csproj", "{FE223869-79E1-4B30-9307-20474B44B987}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.ToneAnalyzer.v3.Examples", "src\IBM.Watson.ToneAnalyzer.v3\Examples\IBM.Watson.ToneAnalyzer.v3.Examples.csproj", "{FE223869-79E1-4B30-9307-20474B44B987}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.Discovery.v1.UnitTests", "src\IBM.Watson.Discovery.v1\Test\Unit\IBM.Watson.Discovery.v1.UnitTests.csproj", "{F4D959C5-A96F-43F8-9DF5-FD8EF6D5EB31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.Discovery.v1.UnitTests", "src\IBM.Watson.Discovery.v1\Test\Unit\IBM.Watson.Discovery.v1.UnitTests.csproj", "{F4D959C5-A96F-43F8-9DF5-FD8EF6D5EB31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.Discovery.v1.IntegrationTests", "src\IBM.Watson.Discovery.v1\Test\Integration\IBM.Watson.Discovery.v1.IntegrationTests.csproj", "{7D8764AC-31F3-4B89-8E4C-B9D128CB5FFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.Discovery.v1.IntegrationTests", "src\IBM.Watson.Discovery.v1\Test\Integration\IBM.Watson.Discovery.v1.IntegrationTests.csproj", "{7D8764AC-31F3-4B89-8E4C-B9D128CB5FFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.Discovery.v1.Examples", "src\IBM.Watson.Discovery.v1\Examples\IBM.Watson.Discovery.v1.Examples.csproj", "{3BFA3450-D93E-493F-975F-C9DBFBBFF413}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.Discovery.v1.Examples", "src\IBM.Watson.Discovery.v1\Examples\IBM.Watson.Discovery.v1.Examples.csproj", "{3BFA3450-D93E-493F-975F-C9DBFBBFF413}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.VisualRecognition.v3.IntegrationTests", "src\IBM.Watson.VisualRecognition.v3\Test\Integration\IBM.Watson.VisualRecognition.v3.IntegrationTests.csproj", "{0422EB5A-E9B5-4162-A4AC-332D8ECCF256}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.VisualRecognition.v3.IntegrationTests", "src\IBM.Watson.VisualRecognition.v3\Test\Integration\IBM.Watson.VisualRecognition.v3.IntegrationTests.csproj", "{0422EB5A-E9B5-4162-A4AC-332D8ECCF256}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.VisualRecognition.v3.UnitTests", "src\IBM.Watson.VisualRecognition.v3\Test\Unit\IBM.Watson.VisualRecognition.v3.UnitTests.csproj", "{2C8C3759-3ED0-40FB-B9C8-A5309B9AA67A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.VisualRecognition.v3.UnitTests", "src\IBM.Watson.VisualRecognition.v3\Test\Unit\IBM.Watson.VisualRecognition.v3.UnitTests.csproj", "{2C8C3759-3ED0-40FB-B9C8-A5309B9AA67A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.VisualRecognition.v3.Examples", "src\IBM.Watson.VisualRecognition.v3\Examples\IBM.Watson.VisualRecognition.v3.Examples.csproj", "{A6E7C941-C2D1-4AFE-BAEC-DCEDBD0DCE84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.VisualRecognition.v3.Examples", "src\IBM.Watson.VisualRecognition.v3\Examples\IBM.Watson.VisualRecognition.v3.Examples.csproj", "{A6E7C941-C2D1-4AFE-BAEC-DCEDBD0DCE84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.PersonalityInsights.v3.UnitTests", "src\IBM.Watson.PersonalityInsights.v3\Test\Unit\IBM.Watson.PersonalityInsights.v3.UnitTests.csproj", "{68383BB1-C366-4B09-973E-CF5557524226}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.PersonalityInsights.v3.UnitTests", "src\IBM.Watson.PersonalityInsights.v3\Test\Unit\IBM.Watson.PersonalityInsights.v3.UnitTests.csproj", "{68383BB1-C366-4B09-973E-CF5557524226}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.PersonalityInsights.v3.IntegrationTests", "src\IBM.Watson.PersonalityInsights.v3\Test\Integration\IBM.Watson.PersonalityInsights.v3.IntegrationTests.csproj", "{C64C53C8-57E4-4088-A621-812FD81DA6EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.PersonalityInsights.v3.IntegrationTests", "src\IBM.Watson.PersonalityInsights.v3\Test\Integration\IBM.Watson.PersonalityInsights.v3.IntegrationTests.csproj", "{C64C53C8-57E4-4088-A621-812FD81DA6EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.PersonalityInsights.v3.Examples", "src\IBM.Watson.PersonalityInsights.v3\Examples\IBM.Watson.PersonalityInsights.v3.Examples.csproj", "{BCCFBAA0-CAF2-4740-8742-136986176A68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.PersonalityInsights.v3.Examples", "src\IBM.Watson.PersonalityInsights.v3\Examples\IBM.Watson.PersonalityInsights.v3.Examples.csproj", "{BCCFBAA0-CAF2-4740-8742-136986176A68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests", "src\IBM.Watson.NaturalLanguageUnderstanding.v1\Test\Unit\IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests.csproj", "{90E554AF-389F-41D2-9EA6-7F4BAE7A13A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests", "src\IBM.Watson.NaturalLanguageUnderstanding.v1\Test\Unit\IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests.csproj", "{90E554AF-389F-41D2-9EA6-7F4BAE7A13A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.NLU.v1.Examples", "src\IBM.Watson.NaturalLanguageUnderstanding.v1\Examples\IBM.Watson.NLU.v1.Examples.csproj", "{076D324F-D836-4597-9143-07526CF6EDA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.NLU.v1.Examples", "src\IBM.Watson.NaturalLanguageUnderstanding.v1\Examples\IBM.Watson.NLU.v1.Examples.csproj", "{076D324F-D836-4597-9143-07526CF6EDA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.NLU.v1.IntegrationTests", "src\IBM.Watson.NaturalLanguageUnderstanding.v1\Test\Integration\IBM.Watson.NLU.v1.IntegrationTests.csproj", "{B0017108-0DDD-47FF-922F-A7B8D28B226F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.NLU.v1.IntegrationTests", "src\IBM.Watson.NaturalLanguageUnderstanding.v1\Test\Integration\IBM.Watson.NLU.v1.IntegrationTests.csproj", "{B0017108-0DDD-47FF-922F-A7B8D28B226F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.NaturalLanguageClassifier.v1.UnitTests", "src\IBM.Watson.NaturalLanguageClassifier.v1\Test\Unit\IBM.Watson.NaturalLanguageClassifier.v1.UnitTests.csproj", "{6E53BA03-D270-4F91-91CF-048D73E7EBD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.NaturalLanguageClassifier.v1.UnitTests", "src\IBM.Watson.NaturalLanguageClassifier.v1\Test\Unit\IBM.Watson.NaturalLanguageClassifier.v1.UnitTests.csproj", "{6E53BA03-D270-4F91-91CF-048D73E7EBD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.NLC.v1.IntegrationTests", "src\IBM.Watson.NaturalLanguageClassifier.v1\Test\Integration\IBM.Watson.NLC.v1.IntegrationTests.csproj", "{F7508377-04CF-42D1-AD58-49DE0D22D66B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.NLC.v1.IntegrationTests", "src\IBM.Watson.NaturalLanguageClassifier.v1\Test\Integration\IBM.Watson.NLC.v1.IntegrationTests.csproj", "{F7508377-04CF-42D1-AD58-49DE0D22D66B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.NLC.v1.Examples", "src\IBM.Watson.NaturalLanguageClassifier.v1\Examples\IBM.Watson.NLC.v1.Examples.csproj", "{8C1D818B-D7A6-486E-BC47-7D16078A9FC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.NLC.v1.Examples", "src\IBM.Watson.NaturalLanguageClassifier.v1\Examples\IBM.Watson.NLC.v1.Examples.csproj", "{8C1D818B-D7A6-486E-BC47-7D16078A9FC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.Assistant.v1.UnitTests", "src\IBM.Watson.Assistant.v1\Test\Unit\IBM.Watson.Assistant.v1.UnitTests.csproj", "{A6111465-A50B-4F0C-979A-6EC02E45EBE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.Assistant.v1.UnitTests", "src\IBM.Watson.Assistant.v1\Test\Unit\IBM.Watson.Assistant.v1.UnitTests.csproj", "{A6111465-A50B-4F0C-979A-6EC02E45EBE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.Assistant.v1.IntegrationTests", "src\IBM.Watson.Assistant.v1\Test\Integration\IBM.Watson.Assistant.v1.IntegrationTests.csproj", "{48CA1CD3-120B-4967-BA76-90A418CCD59F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.Assistant.v1.IntegrationTests", "src\IBM.Watson.Assistant.v1\Test\Integration\IBM.Watson.Assistant.v1.IntegrationTests.csproj", "{48CA1CD3-120B-4967-BA76-90A418CCD59F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.Assistant.v1.Examples", "src\IBM.Watson.Assistant.v1\Examples\IBM.Watson.Assistant.v1.Examples.csproj", "{2868AA8F-3049-448F-AF86-1CFCD89A60B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.Assistant.v1.Examples", "src\IBM.Watson.Assistant.v1\Examples\IBM.Watson.Assistant.v1.Examples.csproj", "{2868AA8F-3049-448F-AF86-1CFCD89A60B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.LanguageTranslator.v3.UnitTests", "src\IBM.Watson.LanguageTranslator.v3\Test\Unit\IBM.Watson.LanguageTranslator.v3.UnitTests.csproj", "{8AEE26B4-2F99-4659-BADF-170C28CB8961}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.LanguageTranslator.v3.UnitTests", "src\IBM.Watson.LanguageTranslator.v3\Test\Unit\IBM.Watson.LanguageTranslator.v3.UnitTests.csproj", "{8AEE26B4-2F99-4659-BADF-170C28CB8961}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.LanguageTranslator.v3.IntegrationTests", "src\IBM.Watson.LanguageTranslator.v3\Test\Integration\IBM.Watson.LanguageTranslator.v3.IntegrationTests.csproj", "{D447F2E3-5DBE-4164-98F8-19C3278AE465}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.LanguageTranslator.v3.IntegrationTests", "src\IBM.Watson.LanguageTranslator.v3\Test\Integration\IBM.Watson.LanguageTranslator.v3.IntegrationTests.csproj", "{D447F2E3-5DBE-4164-98F8-19C3278AE465}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.LanguageTranslator.v3.Examples", "src\IBM.Watson.LanguageTranslator.v3\Examples\IBM.Watson.LanguageTranslator.v3.Examples.csproj", "{2723C886-78E0-4CD4-8D11-1FA0B185EEDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.LanguageTranslator.v3.Examples", "src\IBM.Watson.LanguageTranslator.v3\Examples\IBM.Watson.LanguageTranslator.v3.Examples.csproj", "{2723C886-78E0-4CD4-8D11-1FA0B185EEDE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.Assistant.v2.IntegrationTests", "src\IBM.Watson.Assistant.v2\Test\Integration\IBM.Watson.Assistant.v2.IntegrationTests.csproj", "{5AEBA942-66BF-4D23-89A7-59753C40AF0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.Assistant.v2.IntegrationTests", "src\IBM.Watson.Assistant.v2\Test\Integration\IBM.Watson.Assistant.v2.IntegrationTests.csproj", "{5AEBA942-66BF-4D23-89A7-59753C40AF0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.Assistant.v2.UnitTests", "src\IBM.Watson.Assistant.v2\Test\Unit\IBM.Watson.Assistant.v2.UnitTests.csproj", "{98653167-65EE-4B2B-9F3B-CC70CD4BE2DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.Assistant.v2.UnitTests", "src\IBM.Watson.Assistant.v2\Test\Unit\IBM.Watson.Assistant.v2.UnitTests.csproj", "{98653167-65EE-4B2B-9F3B-CC70CD4BE2DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.Assistant.v2.Examples", "src\IBM.Watson.Assistant.v2\Examples\IBM.Watson.Assistant.v2.Examples.csproj", "{6E3B6FFA-B0C9-4E40-8AC6-97663011A81E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.Assistant.v2.Examples", "src\IBM.Watson.Assistant.v2\Examples\IBM.Watson.Assistant.v2.Examples.csproj", "{6E3B6FFA-B0C9-4E40-8AC6-97663011A81E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.CompareComply.v1.UnitTests", "src\IBM.Watson.CompareComply.v1\Test\Unit\IBM.Watson.CompareComply.v1.UnitTests.csproj", "{57E5893F-F87D-4F67-8002-3B9D0820CE7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.CompareComply.v1.UnitTests", "src\IBM.Watson.CompareComply.v1\Test\Unit\IBM.Watson.CompareComply.v1.UnitTests.csproj", "{57E5893F-F87D-4F67-8002-3B9D0820CE7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.CompareComply.v1.IntegrationTests", "src\IBM.Watson.CompareComply.v1\Test\Integration\IBM.Watson.CompareComply.v1.IntegrationTests.csproj", "{9AE080CE-1273-4D70-A409-6DDA529A7D93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.CompareComply.v1.IntegrationTests", "src\IBM.Watson.CompareComply.v1\Test\Integration\IBM.Watson.CompareComply.v1.IntegrationTests.csproj", "{9AE080CE-1273-4D70-A409-6DDA529A7D93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.CompareComply.v1.Examples", "src\IBM.Watson.CompareComply.v1\Examples\IBM.Watson.CompareComply.v1.Examples.csproj", "{1543A431-61B9-4540-AAB4-DE5DB4673732}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.CompareComply.v1.Examples", "src\IBM.Watson.CompareComply.v1\Examples\IBM.Watson.CompareComply.v1.Examples.csproj", "{1543A431-61B9-4540-AAB4-DE5DB4673732}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.VisualRecognition.v4.IntegrationTests", "src\IBM.Watson.VisualRecognition.v4\Test\Integration\IBM.Watson.VisualRecognition.v4.IntegrationTests.csproj", "{D6E7AE84-BA10-407B-B2B2-C33B693E744D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.VisualRecognition.v4.IntegrationTests", "src\IBM.Watson.VisualRecognition.v4\Test\Integration\IBM.Watson.VisualRecognition.v4.IntegrationTests.csproj", "{D6E7AE84-BA10-407B-B2B2-C33B693E744D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.VisualRecognition.v4.UnitTests", "src\IBM.Watson.VisualRecognition.v4\Test\Unit\IBM.Watson.VisualRecognition.v4.UnitTests.csproj", "{4852C47F-5D16-4DBB-AB94-2239D12D138A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.VisualRecognition.v4.UnitTests", "src\IBM.Watson.VisualRecognition.v4\Test\Unit\IBM.Watson.VisualRecognition.v4.UnitTests.csproj", "{4852C47F-5D16-4DBB-AB94-2239D12D138A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.VisualRecognition.v4.Examples", "src\IBM.Watson.VisualRecognition.v4\Examples\IBM.Watson.VisualRecognition.v4.Examples.csproj", "{EE27B113-F3F9-45CE-8D9D-719C2EEA98C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.VisualRecognition.v4.Examples", "src\IBM.Watson.VisualRecognition.v4\Examples\IBM.Watson.VisualRecognition.v4.Examples.csproj", "{EE27B113-F3F9-45CE-8D9D-719C2EEA98C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.Discovery.v2.IntegrationTests", "src\IBM.Watson.Discovery.v2\Test\Integration\IBM.Watson.Discovery.v2.IntegrationTests.csproj", "{B7BD8C08-81C7-452B-B428-C9D6E9BA1A70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.Discovery.v2.IntegrationTests", "src\IBM.Watson.Discovery.v2\Test\Integration\IBM.Watson.Discovery.v2.IntegrationTests.csproj", "{B7BD8C08-81C7-452B-B428-C9D6E9BA1A70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.Discovery.v2.UnitTests", "src\IBM.Watson.Discovery.v2\Test\Unit\IBM.Watson.Discovery.v2.UnitTests.csproj", "{495E2C90-C64F-44B3-AE94-196C03E86031}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.Discovery.v2.UnitTests", "src\IBM.Watson.Discovery.v2\Test\Unit\IBM.Watson.Discovery.v2.UnitTests.csproj", "{495E2C90-C64F-44B3-AE94-196C03E86031}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.Discovery.v2.Examples", "src\IBM.Watson.Discovery.v2\Examples\IBM.Watson.Discovery.v2.Examples.csproj", "{C3026561-5022-4F93-B786-8D8341008779}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.Discovery.v2.Examples", "src\IBM.Watson.Discovery.v2\Examples\IBM.Watson.Discovery.v2.Examples.csproj", "{C3026561-5022-4F93-B786-8D8341008779}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.IntegrationTests", "src\IBM.Watson.IntegrationTests\IBM.Watson.IntegrationTests.csproj", "{034DFAD3-4A2D-4483-8D3C-DFE82BA8EFDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IBM.Watson.IntegrationTests", "src\IBM.Watson.IntegrationTests\IBM.Watson.IntegrationTests.csproj", "{034DFAD3-4A2D-4483-8D3C-DFE82BA8EFDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.TextToSpeech.v1.Examples.Streaming", "examples\IBM.Watson.TextToSpeech.v1.Examples.Streaming\IBM.Watson.TextToSpeech.v1.Examples.Streaming.csproj", "{C64C2B2D-41A3-40E8-8770-B815A11573BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -387,6 +389,10 @@ Global
 		{034DFAD3-4A2D-4483-8D3C-DFE82BA8EFDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{034DFAD3-4A2D-4483-8D3C-DFE82BA8EFDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{034DFAD3-4A2D-4483-8D3C-DFE82BA8EFDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C64C2B2D-41A3-40E8-8770-B815A11573BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C64C2B2D-41A3-40E8-8770-B815A11573BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C64C2B2D-41A3-40E8-8770-B815A11573BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C64C2B2D-41A3-40E8-8770-B815A11573BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -449,6 +455,7 @@ Global
 		{B7BD8C08-81C7-452B-B428-C9D6E9BA1A70} = {9A62662C-AB8A-4683-B251-B9B8B95B5F49}
 		{495E2C90-C64F-44B3-AE94-196C03E86031} = {9A62662C-AB8A-4683-B251-B9B8B95B5F49}
 		{C3026561-5022-4F93-B786-8D8341008779} = {9A62662C-AB8A-4683-B251-B9B8B95B5F49}
+		{C64C2B2D-41A3-40E8-8770-B815A11573BA} = {A86D4D5B-AECE-49F2-A2BC-F6897B3EB2E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B9D9D17B-1C17-402F-B701-DC671528690A}

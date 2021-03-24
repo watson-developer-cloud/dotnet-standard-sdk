@@ -17,6 +17,7 @@
 
 using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Watson.TextToSpeech.v1.Websockets;
+using IBM.Watson.TextToSpeech.v1.Websockets.Util;
 using System;
 using System.IO;
 using System.Media;

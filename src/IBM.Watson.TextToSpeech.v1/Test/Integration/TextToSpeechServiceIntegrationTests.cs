@@ -26,6 +26,7 @@ using System.IO;
 using IBM.Cloud.SDK.Core;
 using IBM.Watson.TextToSpeech.v1.Websockets;
 using static IBM.Watson.TextToSpeech.v1.TextToSpeechService;
+using IBM.Watson.TextToSpeech.v1.Websockets.Model;
 
 namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
 {
@@ -123,7 +124,7 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
             };
             callback.OnMarks = (markTimings) => DoOnMarks(markTimings);
 
-            callback.onTimings = (wordTimings) =>
+            callback.OnTimings = (wordTimings) =>
             {
                 System.Diagnostics.Debug.WriteLine("On words");
                 foreach (List<string> words in wordTimings.Words)

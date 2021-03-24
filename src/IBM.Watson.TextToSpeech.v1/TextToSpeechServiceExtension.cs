@@ -38,7 +38,7 @@ namespace IBM.Watson.TextToSpeech.v1
                 {
                     timings = new string[] {};
                 }
-                var sdkHeaders = Common.GetSdkHeaders("text_to_speech", "v1", "Synthesize");
+                var sdkHeaders = Common.GetSdkHeaders("text_to_speech", "v1", "SynthesizeusingWebsockets");
                 foreach (var header in sdkHeaders)
                 {
                     webSocketClient.WithHeader(header.Key, header.Value);

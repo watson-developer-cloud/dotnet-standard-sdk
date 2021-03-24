@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace IBM.Watson.TextToSpeech.v1.Websockets
+namespace IBM.Watson.TextToSpeech.v1.Websockets.Model
 {
     public class MarkTiming
     {

@@ -15,6 +15,7 @@
 *
 */
 
+using IBM.Watson.TextToSpeech.v1.Websockets.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -36,10 +37,6 @@ namespace IBM.Watson.TextToSpeech.v1.Websockets
         public const string MARKS = "marks";
         public const string WORDS = "words";
 
-        ArraySegment<byte> stopMessage = new ArraySegment<byte>(Encoding.UTF8.GetBytes(
-           "{\"action\": \"stop\"}"
-       ));
-
         private const int ReceiveChunkSize = 1024 * 16 * 4;
         private const int SendChunkSize = 1024;
 
@@ -52,7 +49,7 @@ namespace IBM.Watson.TextToSpeech.v1.Websockets
         public Action<string> OnContentType = (contentType) => { };
         public Action<MarkTiming> OnMarks = (marks) => { };
         public Action<WordTiming> onTimings = (timings) => { };
-        public Action<Exception> OnError = (ex) => { };
+        public Action<Exception> OnError = (e) => { };
         public Action OnClose = () => { };
 
         public AWebSocketClient AddArgument(string argumentName, string argumentValue)
@@ -78,19 +75,7 @@ namespace IBM.Watson.TextToSpeech.v1.Websockets
             return this;
         }
 
-        public abstract void Send(FileStream file, string openingMessage);
-
         public abstract void Send(string request, string accept, string[] timings, string openingMessage);
-
-        protected async Task SendAudio(FileStream file)
-        {
-            byte[] b = new byte[1024];
-            while (file.Read(b, 0, b.Length) > 0)
-            {
-                await BaseClient.SendAsync(new ArraySegment<byte>(b), WebSocketMessageType.Binary, true, CancellationToken.None);
-            }
-            await BaseClient.SendAsync(stopMessage, WebSocketMessageType.Text, true, CancellationToken.None);
-        }
 
         protected async Task SendText(string message)
         {

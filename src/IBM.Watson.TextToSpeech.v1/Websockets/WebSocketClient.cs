@@ -45,55 +45,7 @@ namespace IBM.Watson.TextToSpeech.v1.Websockets
             OnContentType = callback.OnContentType;
             OnMessage = callback.OnMessage;
             OnMarks = callback.OnMarks;
-            onTimings = callback.onTimings;
-        }
-
-        public override void Send(FileStream file, string openingMessage)
-        {
-            // NOTE: use memorystream
-            // connect the websocket
-            Action connectAction = () => BaseClient.ConnectAsync(UriBuilder.Uri, CancellationToken.None).Wait();
-
-            // send opening message and wait for initial delimeter 
-            Action<ArraySegment<byte>> openAction = (message) => Task.WaitAll(BaseClient.SendAsync(message, WebSocketMessageType.Text, true, CancellationToken.None), HandleResults());
-
-            // send all audio and then a closing message; simltaneously print all results until delimeter is recieved
-            Action sendAction = () => Task.WaitAll(SendAudio(file), HandleResults());
-
-            // close down the websocket
-            Action closeAction = () => BaseClient.CloseAsync(WebSocketCloseStatus.NormalClosure, "Close", CancellationToken.None).Wait();
-
-            ArraySegment<byte> openMessage = new ArraySegment<byte>(Encoding.UTF8.GetBytes(openingMessage));
-
-            Task.Factory.StartNew(() => connectAction())
-                            .ContinueWith((antecedent) =>
-                            {
-                                if (antecedent.Status == TaskStatus.Faulted)
-                                    if (antecedent.Exception != null)
-                                        OnError(antecedent.Exception.InnerException);
-                            })
-                            .ContinueWith((antecedent) => openAction(openMessage), TaskContinuationOptions.OnlyOnRanToCompletion)
-                            .ContinueWith((antecedent) =>
-                            {
-                                if (antecedent.Status == TaskStatus.Faulted)
-                                    if (antecedent.Exception != null)
-                                        OnError(antecedent.Exception.InnerException);
-                            })
-                            .ContinueWith((antecedent) => sendAction(), TaskContinuationOptions.OnlyOnRanToCompletion)
-                            .ContinueWith((antecedent) =>
-                            {
-                                if (antecedent.Status == TaskStatus.Faulted)
-                                    if (antecedent.Exception != null)
-                                        OnError(antecedent.Exception.InnerException);
-                            })
-                            .ContinueWith((antecedent) => closeAction(), TaskContinuationOptions.OnlyOnRanToCompletion)
-                            .ContinueWith((antecedent) =>
-                            {
-                                if (antecedent.Status == TaskStatus.Faulted)
-                                    if (antecedent.Exception != null)
-                                        OnError(antecedent.Exception.InnerException);
-                            })
-                            .Wait();
+            onTimings = callback.OnTimings;
         }
 
         public override void Send(string request, string accept, string[] timings, string openingMessage = "start")

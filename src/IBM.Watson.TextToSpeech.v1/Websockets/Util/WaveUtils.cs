@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace IBM.Watson.TextToSpeech.v1.Websockets
+namespace IBM.Watson.TextToSpeech.v1.Websockets.Util
 {
     public static class WaveUtils
     {

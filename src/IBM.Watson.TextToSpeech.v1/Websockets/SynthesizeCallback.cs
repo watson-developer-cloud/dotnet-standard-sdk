@@ -1,4 +1,6 @@
 ﻿using System;
+using IBM.Watson.TextToSpeech.v1.Websockets.Model;
+
 namespace IBM.Watson.TextToSpeech.v1.Websockets
 {
     public class SynthesizeCallback
@@ -7,8 +9,8 @@ namespace IBM.Watson.TextToSpeech.v1.Websockets
         public Action<byte[]> OnMessage = (message) => { };
         public Action<string> OnContentType = (contentType) => { };
         public Action<MarkTiming> OnMarks = (marks) => { };
-        public Action<WordTiming> onTimings = (timings) => { };
-        public Action<Exception> OnError = (ex) => { };
+        public Action<WordTiming> OnTimings = (timings) => { };
+        public Action<Exception> OnError = (e) => { };
         public Action OnClose = () => { };
     }
 }

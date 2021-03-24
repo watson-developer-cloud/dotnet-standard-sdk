@@ -18,6 +18,7 @@
 using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Watson.TextToSpeech.v1.Model;
 using IBM.Watson.TextToSpeech.v1.Websockets;
+using IBM.Watson.TextToSpeech.v1.Websockets.Util;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -342,6 +343,7 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
         #endregion
 
         #region Websockets
+        /*
         public void SynthesizeUsingWebsockets()
         {
             IamAuthenticator authenticator = new IamAuthenticator("{apikey}");
@@ -378,6 +380,7 @@ namespace IBM.Watson.TextToSpeech.v1.Examples
                 text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.");
             player.PlaySync();
         }
+        */
         #endregion
     }
 }

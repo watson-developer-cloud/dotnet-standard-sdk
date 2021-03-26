@@ -17,6 +17,7 @@
 
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Watson.SpeechToText.v1.Model;
+using IBM.Watson.SpeechToText.v1.Websockets;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ using System.IO;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using static IBM.Watson.SpeechToText.v1.SpeechToTextService;
 
 namespace IBM.Watson.SpeechToText.v1.IntegrationTests
 {
@@ -587,6 +589,54 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
             Assert.IsNotNull(recognizeResult.Result);
             Assert.IsNotNull(recognizeResult.Result.Results);
             Assert.IsTrue(recognizeResult.Result.Results.Count > 1);
+        }
+
+        //[TestMethod]
+        public void TestRecognizeUsingWebsockets()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            RecognizeCallback callback = new RecognizeCallback();
+
+            string Name = @"SpeechToTextTestData/sample1.wav";
+
+            try
+            {
+                byte[] filebytes = File.ReadAllBytes(Name);
+                MemoryStream stream = new MemoryStream(filebytes);
+
+                callback.OnOpen = () =>
+                {
+                    System.Diagnostics.Debug.WriteLine("On Open");
+                };
+                callback.OnClose = () =>
+                {
+                    System.Diagnostics.Debug.WriteLine("On Close");
+                };
+                callback.OnTranscription = (speechResults) =>
+                {
+                    System.Diagnostics.Debug.WriteLine("On transcription");
+                    System.Diagnostics.Debug.WriteLine(speechResults);
+                };
+                callback.OnError = (err) =>
+                {
+                    System.Diagnostics.Debug.WriteLine("On error");
+                    System.Diagnostics.Debug.WriteLine(err);
+                };
+                service.RecognizeUsingWebsockets(
+                    callback: callback,
+                    audio: stream,
+                    contentType: RecognizeEnums.ContentTypeValue.AUDIO_WAV,
+                    interimResults: true,
+                    model: RecognizeEnums.ModelValue.EN_US_BROADBANDMODEL,
+                    processingMetrics: true,
+                    processingMetricsInterval: 0.2f,
+                    audioMetrics: true
+                    );
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e);
+            }
         }
         #endregion
 

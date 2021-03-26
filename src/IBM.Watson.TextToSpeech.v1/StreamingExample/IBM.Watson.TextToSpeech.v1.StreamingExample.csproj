@@ -10,7 +10,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\..\IBM.Watson.TextToSpeech.v1.csproj" />
+    <ProjectReference Include="..\IBM.Watson.TextToSpeech.v1.csproj" />
   </ItemGroup>
 
 </Project>

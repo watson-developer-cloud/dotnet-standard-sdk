@@ -20,7 +20,7 @@ using IBM.Watson.TextToSpeech.v1.Websockets;
 using IBM.Watson.TextToSpeech.v1.Websockets.Util;
 using System;
 using System.IO;
-using System.Media;
+//using System.Media;
 using System.Threading;
 using System.Threading.Tasks;
 using static IBM.Watson.TextToSpeech.v1.TextToSpeechService;
@@ -29,8 +29,8 @@ namespace IBM.Watson.TextToSpeech.v1.Examples.Streaming
 {
     public class StreamingExample
     {
-        string apikey = "{apikey}";
-        string url = "{serviceUrl}";
+        string apikey = "OldPvSWgwIMXs_FcCkDc-MqX3cUiZgC1gop0yYTPipnk";//"{apikey}";
+        string url = "https://api.us-south.text-to-speech.watson.cloud.ibm.com";//"{serviceUrl}";
 
         string testText = "Jabberwocky is a nonsense poem written by Lewis Carroll about the killing of a creature named the Jabberwock. It was included in his 1871 novel Through the Looking-Glass, and What Alice Found There, the sequel to Alice's Adventures in Wonderland (1865). The book tells of Alice's adventures within the back-to-front world of Looking-Glass Land. In an early scene in which she first encounters the chess piece characters White King and White Queen, Alice finds a book written in a seemingly unintelligible language. Realizing that she is travelling through an inverted world, she recognises that the verses on the pages are written in mirror-writing. She holds a mirror to one of the poems and reads the reflected verse of Jabberwocky. She finds the nonsense verse as puzzling as the odd land she has passed into, later revealed as a dreamscape.";
 
@@ -53,7 +53,7 @@ namespace IBM.Watson.TextToSpeech.v1.Examples.Streaming
             SynthesizeCallback callback = new SynthesizeCallback();
 
             MemoryStream soundStream = new MemoryStream();
-            SoundPlayer player = new SoundPlayer(soundStream);
+            //SoundPlayer player = new SoundPlayer(soundStream);
 
             callback.OnOpen = () =>
             {
@@ -67,10 +67,16 @@ namespace IBM.Watson.TextToSpeech.v1.Examples.Streaming
 
             callback.OnMessage = (bytes) =>
             {
-                player.Stream.Position = player.Stream.Length;
-                player.Stream.WriteAsync(bytes, 0, bytes.Length);
-                WaveUtils.ReWriteWaveHeader((MemoryStream)player.Stream);
-                Console.WriteLine(string.Format("OnMessage({0})", player.Stream.Length));
+                //  SoundPlayer needs .net core 3
+                //player.Stream.Position = player.Stream.Length;
+                //player.Stream.WriteAsync(bytes, 0, bytes.Length);
+                //WaveUtils.ReWriteWaveHeader((MemoryStream)player.Stream);
+                //Console.WriteLine(string.Format("OnMessage({0})", player.Stream.Length));
+
+                soundStream.Position = soundStream.Length;
+                soundStream.WriteAsync(bytes, 0, bytes.Length);
+                WaveUtils.ReWriteWaveHeader(soundStream);
+                Console.WriteLine(string.Format("OnMessage({0})", soundStream.Length));
             };
 
             var synthesizeResult = Task.Run(() => service.SynthesizeUsingWebsockets(
@@ -85,7 +91,7 @@ namespace IBM.Watson.TextToSpeech.v1.Examples.Streaming
                 Thread.Sleep(1000);
             }
 
-            Task.Run(() => player.Play());
+            //Task.Run(() => player.Play());
 
             Console.ReadKey();
         }

@@ -34,13 +34,6 @@ namespace IBM.Watson.TextToSpeech.v1.Examples.Streaming
 
         string testText = "Jabberwocky is a nonsense poem written by Lewis Carroll about the killing of a creature named the Jabberwock. It was included in his 1871 novel Through the Looking-Glass, and What Alice Found There, the sequel to Alice's Adventures in Wonderland (1865). The book tells of Alice's adventures within the back-to-front world of Looking-Glass Land. In an early scene in which she first encounters the chess piece characters White King and White Queen, Alice finds a book written in a seemingly unintelligible language. Realizing that she is travelling through an inverted world, she recognises that the verses on the pages are written in mirror-writing. She holds a mirror to one of the poems and reads the reflected verse of Jabberwocky. She finds the nonsense verse as puzzling as the odd land she has passed into, later revealed as a dreamscape.";
 
-
-        static void Synthesize(string[] args)
-        {
-            StreamingExample example = new StreamingExample();
-            example.SynthesizeUsingWebsockets();
-        }
-
         #region SynthesizeUsingWebsockets
         public void SynthesizeUsingWebsockets()
         {

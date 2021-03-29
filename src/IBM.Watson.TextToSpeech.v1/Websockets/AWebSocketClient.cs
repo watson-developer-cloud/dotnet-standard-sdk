@@ -32,10 +32,10 @@ namespace IBM.Watson.TextToSpeech.v1.Websockets
 {
     public abstract class AWebSocketClient
     {
-        public const string BINARY_STREAMS = "binary_streams";
-        public const string CONTENT_TYPE = "content_type";
-        public const string MARKS = "marks";
-        public const string WORDS = "words";
+        public const string BinaryStreams = "binary_streams";
+        public const string ContentType = "content_type";
+        public const string Marks = "marks";
+        public const string Words = "words";
 
         private const int ReceiveChunkSize = 1024 * 16 * 4;
         private const int SendChunkSize = 1024;
@@ -127,23 +127,23 @@ namespace IBM.Watson.TextToSpeech.v1.Websockets
 
                 var message = Encoding.UTF8.GetString(buffer, 0, count);
 
-                if (message.Contains(BINARY_STREAMS))
+                if (message.Contains(BinaryStreams))
                 {
                     var json = JObject.Parse(message);
-                    string contentType = json[BINARY_STREAMS][0][CONTENT_TYPE].ToString();
+                    string contentType = json[BinaryStreams][0][ContentType].ToString();
                     OnContentType(contentType);
                 }
-                else if (message.Contains(MARKS))
+                else if (message.Contains(Marks))
                 {
                     var json = JObject.Parse(message);
-                    JToken marks = json[MARKS];
+                    JToken marks = json[Marks];
                     MarkTiming markTiming = json.ToObject<MarkTiming>();
                     OnMarks(markTiming);
                 }
-                else if (message.Contains(WORDS))
+                else if (message.Contains(Words))
                 {
                     var json = JObject.Parse(message);
-                    JToken words = json[WORDS];
+                    JToken words = json[Words];
                     WordTiming wordTimings = json.ToObject<WordTiming>();
                     onTimings(wordTimings);
                 }

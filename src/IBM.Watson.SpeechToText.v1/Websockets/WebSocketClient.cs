@@ -45,7 +45,7 @@ namespace IBM.Watson.SpeechToText.v1.Websockets
             OnOpen = callback.OnOpen;
             OnClose = callback.OnClose;
             OnError = callback.OnError;
-            OnTranscription = callback.OnTranscription;
+            OnMessage = callback.OnMessage;
         }
 
         public override void Send(MemoryStream stream, string openingMessage = "start")

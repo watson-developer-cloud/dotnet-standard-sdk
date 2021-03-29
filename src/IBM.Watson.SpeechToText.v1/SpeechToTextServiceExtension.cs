@@ -49,7 +49,7 @@ namespace IBM.Watson.SpeechToText.v1
                     webSocketClient.AddArgument("customization_id", customizationId);
                 }
 
-
+                // Websocket Open Message
                 if (!string.IsNullOrEmpty(contentType))
                 {
                     webSocketClient.AddWebsocketParameter("content-type", contentType);
@@ -139,7 +139,6 @@ namespace IBM.Watson.SpeechToText.v1
                     webSocketClient.AddWebsocketParameter("background_audio_suppression", backgroundAudioSuppression);
                 }
 
-                //webSocketClient.AddWebsocketParameter("interim_results", true);
                 var sdkHeaders = Common.GetSdkHeaders("speech_to_text", "v1", "RecognizeUsingWebsockets");
                 foreach (var header in sdkHeaders)
                 {

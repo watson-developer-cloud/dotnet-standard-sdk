@@ -16,7 +16,6 @@
 */
 
 using IBM.Watson.SpeechToText.v1.Model;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -32,9 +31,9 @@ namespace IBM.Watson.SpeechToText.v1.Websockets
 {
     public abstract class AWebSocketClient
     {
-        public const string RESULTS = "results";
-        public const string ERROR = "error";
-        public const string STATE = "state";
+        public const string Results = "results";
+        public const string Error = "error";
+        public const string State = "state";
 
         ArraySegment<byte> stopMessage = new ArraySegment<byte>(Encoding.UTF8.GetBytes(
            "{\"action\": \"stop\"}"
@@ -48,7 +47,7 @@ namespace IBM.Watson.SpeechToText.v1.Websockets
         protected Dictionary<string, object> WebsocketsParameters { get; set; }
 
         public Action OnOpen = () => { };
-        public Action<SpeechRecognitionResults> OnTranscription = (speechResults) => { };
+        public Action<SpeechRecognitionResults> OnMessage = (speechResults) => { };
         public Action<Exception> OnError = (ex) => { };
         public Action OnClose = () => { };
 
@@ -138,18 +137,18 @@ namespace IBM.Watson.SpeechToText.v1.Websockets
                 var message = Encoding.UTF8.GetString(buffer, 0, count);
                 var json = JObject.Parse(message);
 
-                if (json.ContainsKey(ERROR))
+                if (json.ContainsKey(Error))
                 {
-                    OnError(new Exception(json[ERROR].ToString()));
+                    OnError(new Exception(json[Error].ToString()));
                 }
-                else if (json.ContainsKey(STATE))
+                else if (json.ContainsKey(State))
                 {
                     return;
                 }
                 else
                 {
                     SpeechRecognitionResults results = json.ToObject<SpeechRecognitionResults>();
-                    OnTranscription(results);
+                    OnMessage(results);
                 }
             }
         }

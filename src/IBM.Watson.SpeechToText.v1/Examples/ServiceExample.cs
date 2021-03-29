@@ -18,11 +18,13 @@
 using IBM.Cloud.SDK.Core.Authentication.Iam;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Watson.SpeechToText.v1.Model;
+using IBM.Watson.SpeechToText.v1.Websockets;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
+using static IBM.Watson.SpeechToText.v1.SpeechToTextService;
 
 namespace IBM.Watson.SpeechToText.v1.Examples
 {
@@ -163,6 +165,57 @@ namespace IBM.Watson.SpeechToText.v1.Examples
                 );
 
             Console.WriteLine(result.Response);
+        }
+        #endregion
+
+        #region Websockets
+        public void RecognizeusingWebsockets()
+        {
+            IamAuthenticator authenticator = new IamAuthenticator(
+                apikey: "{apikey}");
+
+            SpeechToTextService service = new SpeechToTextService(authenticator);
+            service.SetServiceUrl("{serviceUrl}");
+
+            RecognizeCallback callback = new RecognizeCallback();
+
+            string Name = @"SpeechToTextTestData/test-audio.wav";
+
+            try
+            {
+                byte[] filebytes = File.ReadAllBytes(Name);
+                MemoryStream stream = new MemoryStream(filebytes);
+
+                callback.OnOpen = () =>
+                {
+                    Console.WriteLine("On Open");
+                };
+                callback.OnClose = () =>
+                {
+                    Console.WriteLine("On Close");
+                };
+                callback.OnMessage = (speechResults) =>
+                {
+                    Console.WriteLine("On Message");
+                    Console.WriteLine(speechResults?.Results[0]?.Alternatives[0]?.Transcript);
+                };
+                callback.OnError = (err) =>
+                {
+                    Console.WriteLine("On error");
+                    Console.WriteLine(err);
+                };
+                service.RecognizeUsingWebsockets(
+                    callback: callback,
+                    audio: stream,
+                    contentType: RecognizeEnums.ContentTypeValue.AUDIO_WAV,
+                    interimResults: true,
+                    model: RecognizeEnums.ModelValue.EN_US_BROADBANDMODEL
+                    );
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
         #endregion
 

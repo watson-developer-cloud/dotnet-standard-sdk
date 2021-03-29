@@ -612,10 +612,10 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
                 {
                     System.Diagnostics.Debug.WriteLine("On Close");
                 };
-                callback.OnTranscription = (speechResults) =>
+                callback.OnMessage = (speechResults) =>
                 {
-                    System.Diagnostics.Debug.WriteLine("On transcription");
-                    System.Diagnostics.Debug.WriteLine(speechResults);
+                    System.Diagnostics.Debug.WriteLine("On Message");
+                    System.Diagnostics.Debug.WriteLine(speechResults?.Results[0]?.Alternatives[0]?.Transcript);
                 };
                 callback.OnError = (err) =>
                 {
@@ -627,10 +627,7 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
                     audio: stream,
                     contentType: RecognizeEnums.ContentTypeValue.AUDIO_WAV,
                     interimResults: true,
-                    model: RecognizeEnums.ModelValue.EN_US_BROADBANDMODEL,
-                    processingMetrics: true,
-                    processingMetricsInterval: 0.2f,
-                    audioMetrics: true
+                    model: RecognizeEnums.ModelValue.EN_US_BROADBANDMODEL
                     );
             }
             catch (Exception e)

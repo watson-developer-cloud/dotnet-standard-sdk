@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Service;
 using IBM.Watson.SpeechToText.v1.Websockets;
@@ -68,7 +68,7 @@ namespace IBM.Watson.SpeechToText.v1
                 }
                 if (keywords != null && keywords.Count > 0)
                 {
-                    webSocketClient.AddWebsocketParameter("keywords", string.Join(",", keywords.ToArray()));
+                    webSocketClient.AddWebsocketParameter("keywords", string.Join(",", keywords.Select(x => "\"" + x + "\"")));
                 }
                 if (keywordsThreshold != null)
                 {

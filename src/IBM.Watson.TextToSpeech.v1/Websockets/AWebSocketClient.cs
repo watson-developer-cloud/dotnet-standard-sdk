@@ -16,11 +16,9 @@
 */
 
 using IBM.Watson.TextToSpeech.v1.Websockets.Model;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.WebSockets;
@@ -43,6 +41,7 @@ namespace IBM.Watson.TextToSpeech.v1.Websockets
         protected ClientWebSocket BaseClient { get; set; }
         protected UriBuilder UriBuilder { get; set; }
         protected Dictionary<string, string> QueryString { get; set; }
+        protected Dictionary<string, object> WebsocketsParameters { get; set; }
 
         public Action OnOpen = () => { };
         public Action<byte[]> OnMessage = (message) => { };
@@ -64,6 +63,15 @@ namespace IBM.Watson.TextToSpeech.v1.Websockets
 
             return this;
         }
+        public AWebSocketClient AddWebsocketParameter(string key, object value)
+        {
+            if (WebsocketsParameters.ContainsKey(key))
+                WebsocketsParameters[key] = value;
+            else
+                WebsocketsParameters.Add(key, value);
+
+            return this;
+        }
         public AWebSocketClient WithAuthentication(string userName, string password)
         {
             BaseClient.Options.SetRequestHeader("Authorization", "Basic " + Convert.ToBase64String(Encoding.ASCII.GetBytes(userName + ":" + password)));
@@ -75,7 +83,7 @@ namespace IBM.Watson.TextToSpeech.v1.Websockets
             return this;
         }
 
-        public abstract void Send(string request, string accept, string[] timings, string openingMessage);
+        public abstract void Send(string request, string openingMessage);
 
         protected async Task SendText(string message)
         {

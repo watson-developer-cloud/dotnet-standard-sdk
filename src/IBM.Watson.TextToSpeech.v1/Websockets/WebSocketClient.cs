@@ -17,7 +17,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
@@ -39,6 +38,9 @@ namespace IBM.Watson.TextToSpeech.v1.Websockets
             QueryString =
                 new Dictionary<string, string>();
 
+            WebsocketsParameters =
+                new Dictionary<string, object>();
+
             OnOpen = callback.OnOpen;
             OnClose = callback.OnClose;
             OnError = callback.OnError;
@@ -48,14 +50,23 @@ namespace IBM.Watson.TextToSpeech.v1.Websockets
             onTimings = callback.OnTimings;
         }
 
-        public override void Send(string request, string accept, string[] timings, string openingMessage = "start")
+        public override void Send(string request, string openingMessage = "start")
         {
             openingMessage =
                 $"\"action\": \"{openingMessage}\"," +
-                $"\"text\": \"{request}\"," +
-                $"\"accept\": \"{accept}\"," +
-                $"\"timings\": [\"{string.Join(",", timings)}\"]";
-            // modify this opening message to include timings, and type of file.
+                $"\"text\": \"{request}\"";
+
+            foreach (KeyValuePair<string, object> entry in WebsocketsParameters)
+            {
+                if (entry.Key == "timings")
+                {
+                    openingMessage += $",\"{entry.Key}\": [{entry.Value}]";
+                }
+                else
+                {
+                    openingMessage += $",\"{entry.Key}\": \"{entry.Value}\"";
+                }
+            }
 
             openingMessage = $"{{{openingMessage}}}";
 

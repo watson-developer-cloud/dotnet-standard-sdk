@@ -104,17 +104,20 @@ namespace IBM.Watson.SpeechToText.v1.Websockets
         {
             byte[] b = new byte[1024];
 
-            while (stream.Read(b, 0, b.Length) > 0)
+            while (stream.Read(b, 0, b.Length) > 0 && BaseClient.State == WebSocketState.Open)
             {
                 await BaseClient.SendAsync(new ArraySegment<byte>(b), WebSocketMessageType.Binary, true, CancellationToken.None);
             }
-            await BaseClient.SendAsync(stopMessage, WebSocketMessageType.Text, true, CancellationToken.None);
+            if (BaseClient.State == WebSocketState.Open)
+            {
+                await BaseClient.SendAsync(stopMessage, WebSocketMessageType.Text, true, CancellationToken.None);
+            }
         }
 
         protected async Task HandleResults()
         {
             var buffer = new byte[ReceiveChunkSize];
-            while (true)
+            while (BaseClient.State == WebSocketState.Open)
             {
                 var segment = new ArraySegment<byte>(buffer);
 
@@ -173,6 +176,14 @@ namespace IBM.Watson.SpeechToText.v1.Websockets
                 segment = new ArraySegment<byte>(buffer, count, buffer.Length - count);
                 result = await BaseClient.ReceiveAsync(segment, CancellationToken.None);
                 count += result.Count;
+            }
+            var message = Encoding.UTF8.GetString(buffer, 0, count);
+            var json = JObject.Parse(message);
+
+            if (json.ContainsKey(Error))
+            {
+                OnError(new Exception(json[Error].ToString()));
+                BaseClient.CloseOutputAsync(WebSocketCloseStatus.NormalClosure, string.Empty, CancellationToken.None).Wait();
             }
         }
     }

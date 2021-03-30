@@ -59,6 +59,15 @@ namespace IBM.Watson.SpeechToText.v1.Websockets
                 {
                     openingMessage += $",\"{entry.Key}\": {entry.Value}";
                 }
+                else if (entry.Key == "keywords")
+                {
+                    openingMessage += $",\"{entry.Key}\": [{entry.Value}]";
+                }
+                else if (entry.Value is bool)
+                {
+                    var value = (bool) entry.Value ? "true" : "false";
+                    openingMessage += $",\"{entry.Key}\": {value}";
+                }
                 else
                 {
                     openingMessage += $",\"{entry.Key}\": \"{entry.Value}\"";
@@ -78,8 +87,10 @@ namespace IBM.Watson.SpeechToText.v1.Websockets
             // send opening message and wait for initial delimeter 
             Action<ArraySegment<byte>> openAction = (message) =>
             {
-                OnOpen();
-                Task.WaitAll(BaseClient.SendAsync(message, WebSocketMessageType.Text, true, CancellationToken.None), HandleOpenMessage());
+                if (BaseClient.State == WebSocketState.Open) { 
+                    OnOpen();
+                    Task.WaitAll(BaseClient.SendAsync(message, WebSocketMessageType.Text, true, CancellationToken.None), HandleOpenMessage());
+                }
             };
             // send all audio and then a closing message; simltaneously print all results until delimeter is recieved
             Action sendAction = () => Task.WaitAll(SendAudio(stream), HandleResults());
@@ -102,7 +113,10 @@ namespace IBM.Watson.SpeechToText.v1.Websockets
                             {
                                 if (antecedent.Status == TaskStatus.Faulted)
                                     if (antecedent.Exception != null)
+                                    {
                                         OnError(antecedent.Exception.InnerException);
+                                        OnError(new Exception("The response from the server might be the following: \"400 bad request\""));
+                                    }
                             })
                             .ContinueWith((antecedent) => openAction(openMessage), TaskContinuationOptions.OnlyOnRanToCompletion)
                             .ContinueWith((antecedent) =>

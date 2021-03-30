@@ -103,7 +103,6 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
             service.WithHeader("X-Watson-Test", "1");
 
             // path to file
-            // test callbacks with custom functions
             string Name = @"FILEPATH/yourfiletest.mpeg";
             FileStream fs = File.Create(Name);
 
@@ -156,7 +155,7 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
                 callback: callback,
                 accept: SynthesizeEnums.AcceptValue.AUDIO_MP3,
                 text: "The <mark name='SIMPLE'/>random sentence generator generated a random sentence about a random sentence.",
-                timings: new string[] { "words" }
+                timings: new List<string> { "words" }
             );
         }
         #endregion

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using IBM.Cloud.SDK.Core.Http;
 using IBM.Cloud.SDK.Core.Service;
 using IBM.Watson.TextToSpeech.v1.Websockets;
@@ -7,11 +9,15 @@ namespace IBM.Watson.TextToSpeech.v1
 {
     public partial class TextToSpeechService : IBMService, ITextToSpeechService
     {
-        public WebSocketClient SynthesizeUsingWebsockets(SynthesizeCallback callback, string text, string voice = null, string customizationId = null, string accept = null, string[] timings = null)
+        public WebSocketClient SynthesizeUsingWebsockets(SynthesizeCallback callback, string text, string voice = null, string customizationId = null, string accept = null, List<string> timings = null)
         {
             if (callback == null) 
             {
                 throw new ArgumentNullException("callback cannot be null");
+            }
+            if (text == null)
+            {
+                throw new ArgumentNullException("text cannot be null");
             }
 
             try
@@ -32,11 +38,11 @@ namespace IBM.Watson.TextToSpeech.v1
                 }
                 if (!string.IsNullOrEmpty(accept))
                 {
-                    webSocketClient.AddArgument("accept", accept);
+                    webSocketClient.AddWebsocketParameter("accept", accept);
                 }
-                if (timings == null)
+                if (timings != null)
                 {
-                    timings = new string[] {};
+                    webSocketClient.AddWebsocketParameter("timings", string.Join(",", timings.Select(x => "\"" + x + "\"")));
                 }
                 var sdkHeaders = Common.GetSdkHeaders("text_to_speech", "v1", "SynthesizeusingWebsockets");
                 foreach (var header in sdkHeaders)
@@ -56,7 +62,7 @@ namespace IBM.Watson.TextToSpeech.v1
                     var value = enumerator.Current;
                     webSocketClient = (WebSocketClient) webSocketClient.WithHeader(header.Key, value);
                 }
-                webSocketClient.Send(text, accept: accept, timings: timings);
+                webSocketClient.Send(text);
 
                 return webSocketClient;
             }

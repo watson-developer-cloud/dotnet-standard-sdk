@@ -169,7 +169,7 @@ namespace IBM.Watson.SpeechToText.v1.Examples
         #endregion
 
         #region Websockets
-        public void RecognizeusingWebsockets()
+        public void RecognizeusingWebSocket()
         {
             IamAuthenticator authenticator = new IamAuthenticator(
                 apikey: "{apikey}");
@@ -204,7 +204,7 @@ namespace IBM.Watson.SpeechToText.v1.Examples
                     Console.WriteLine("On error");
                     Console.WriteLine(err);
                 };
-                service.RecognizeUsingWebsockets(
+                service.RecognizeUsingWebSocket(
                     callback: callback,
                     audio: stream,
                     contentType: RecognizeEnums.ContentTypeValue.AUDIO_WAV,

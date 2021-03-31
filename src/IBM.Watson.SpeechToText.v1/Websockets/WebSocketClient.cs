@@ -28,18 +28,18 @@ namespace IBM.Watson.SpeechToText.v1.Websockets
     public class WebSocketClient : AWebSocketClient
     {
         private WebSocketClient() { }
-        public WebSocketClient(string urlService, RecognizeCallback callback)
+        public WebSocketClient(string serviceUrl, RecognizeCallback callback)
         {
             BaseClient =
                 new ClientWebSocket();
 
             UriBuilder =
-                new UriBuilder(urlService);
+                new UriBuilder(serviceUrl);
 
             QueryString =
                 new Dictionary<string, string>();
 
-            WebsocketsParameters =
+            WebSocketParameters =
                 new Dictionary<string, object>();
 
             OnOpen = callback.OnOpen;
@@ -53,7 +53,7 @@ namespace IBM.Watson.SpeechToText.v1.Websockets
             openingMessage =
                 $"\"action\": \"{openingMessage}\"";
 
-            foreach (KeyValuePair<string, object> entry in WebsocketsParameters)
+            foreach (KeyValuePair<string, object> entry in WebSocketParameters)
             {
                 if (IsNumber(entry.Value))
                 {

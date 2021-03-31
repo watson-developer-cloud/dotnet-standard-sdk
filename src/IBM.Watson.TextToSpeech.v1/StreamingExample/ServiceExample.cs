@@ -51,7 +51,7 @@ namespace IBM.Watson.TextToSpeech.v1.StreamingExample
             Console.WriteLine("OnClose()");
         }
 
-        #region SynthesizeUsingWebsockets
+        #region SynthesizeUsingWebSocket
         public void SynthesizeUsingWebsockets()
         {
             IamAuthenticator authenticator = new IamAuthenticator(
@@ -83,7 +83,7 @@ namespace IBM.Watson.TextToSpeech.v1.StreamingExample
                 Console.WriteLine(string.Format("OnMessage({0})", soundStream.Length));
             };
 
-            var synthesizeResult = Task.Run(() => service.SynthesizeUsingWebsockets(
+            var synthesizeResult = Task.Run(() => service.SynthesizeUsingWebSocket(
                 voice: SynthesizeEnums.VoiceValue.EN_US_ALLISONVOICE,
                 callback: callback,
                 accept: SynthesizeEnums.AcceptValue.AUDIO_WAV,

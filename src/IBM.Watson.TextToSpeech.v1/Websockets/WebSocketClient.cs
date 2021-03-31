@@ -38,7 +38,7 @@ namespace IBM.Watson.TextToSpeech.v1.Websockets
             QueryString =
                 new Dictionary<string, string>();
 
-            WebsocketsParameters =
+            WebSocketParameters =
                 new Dictionary<string, object>();
 
             OnOpen = callback.OnOpen;
@@ -56,7 +56,7 @@ namespace IBM.Watson.TextToSpeech.v1.Websockets
                 $"\"action\": \"{openingMessage}\"," +
                 $"\"text\": \"{request}\"";
 
-            foreach (KeyValuePair<string, object> entry in WebsocketsParameters)
+            foreach (KeyValuePair<string, object> entry in WebSocketParameters)
             {
                 if (entry.Key == "timings")
                 {

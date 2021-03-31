@@ -26,10 +26,13 @@
 
     <ItemGroup>
       <Compile Remove="Examples\**" />
+      <Compile Remove="StreamingExample\**" />
       <Compile Remove="Test\**" />
       <EmbeddedResource Remove="Examples\**" />
+      <EmbeddedResource Remove="StreamingExample\**" />
       <EmbeddedResource Remove="Test\**" />
       <None Remove="Examples\**" />
+      <None Remove="StreamingExample\**" />
       <None Remove="Test\**" />
     </ItemGroup>
 

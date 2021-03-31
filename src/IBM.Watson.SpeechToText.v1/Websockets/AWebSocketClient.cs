@@ -44,7 +44,7 @@ namespace IBM.Watson.SpeechToText.v1.Websockets
         protected ClientWebSocket BaseClient { get; set; }
         protected UriBuilder UriBuilder { get; set; }
         protected Dictionary<string, string> QueryString { get; set; }
-        protected Dictionary<string, object> WebsocketsParameters { get; set; }
+        protected Dictionary<string, object> WebSocketParameters { get; set; }
 
         public Action OnOpen = () => { };
         public Action<SpeechRecognitionResults> OnMessage = (speechResults) => { };
@@ -78,12 +78,12 @@ namespace IBM.Watson.SpeechToText.v1.Websockets
 
             return this;
         }
-        public AWebSocketClient AddWebsocketParameter(string key, object value)
+        public AWebSocketClient AddWebSocketParameter(string key, object value)
         {
-            if (WebsocketsParameters.ContainsKey(key))
-                WebsocketsParameters[key] = value;
+            if (WebSocketParameters.ContainsKey(key))
+                WebSocketParameters[key] = value;
             else
-                WebsocketsParameters.Add(key, value);
+                WebSocketParameters.Add(key, value);
 
             return this;
         }

@@ -591,7 +591,7 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
             Assert.IsTrue(recognizeResult.Result.Results.Count > 1);
         }
 
-        //[TestMethod]
+        [TestMethod]
         public void TestRecognizeUsingWebsockets()
         {
             service.WithHeader("X-Watson-Test", "1");
@@ -615,19 +615,33 @@ namespace IBM.Watson.SpeechToText.v1.IntegrationTests
                 callback.OnMessage = (speechResults) =>
                 {
                     System.Diagnostics.Debug.WriteLine("On Message");
-                    System.Diagnostics.Debug.WriteLine(speechResults?.Results[0]?.Alternatives[0]?.Transcript);
+                    Assert.IsNotNull(speechResults);
                 };
                 callback.OnError = (err) =>
                 {
                     System.Diagnostics.Debug.WriteLine("On error");
                     System.Diagnostics.Debug.WriteLine(err);
                 };
-                service.RecognizeUsingWebsockets(
+                service.RecognizeUsingWebSocket(
                     callback: callback,
                     audio: stream,
                     contentType: RecognizeEnums.ContentTypeValue.AUDIO_WAV,
                     interimResults: true,
-                    model: RecognizeEnums.ModelValue.EN_US_BROADBANDMODEL
+                    model: RecognizeEnums.ModelValue.EN_US_BROADBANDMODEL,
+                    inactivityTimeout: 55,
+                    keywords: new List<string>{"could"},
+                    keywordsThreshold: 0.8f,
+                    timestamps: true,
+                    profanityFilter: true,
+                    smartFormatting: true,
+                    speakerLabels: true,
+                    processingMetrics: true,
+                    processingMetricsInterval: 0.9f,
+                    audioMetrics: true,
+                    endOfPhraseSilenceTime: 0,
+                    splitTranscriptAtPhraseEnd: true,
+                    speechDetectorSensitivity: 1.0f,
+                    backgroundAudioSuppression: 0.5f
                     );
             }
             catch (Exception e)

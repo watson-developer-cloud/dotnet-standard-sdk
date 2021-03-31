@@ -9,7 +9,7 @@ namespace IBM.Watson.TextToSpeech.v1
 {
     public partial class TextToSpeechService : IBMService, ITextToSpeechService
     {
-        public WebSocketClient SynthesizeUsingWebsockets(SynthesizeCallback callback, string text, string voice = null, string customizationId = null, string accept = null, List<string> timings = null)
+        public WebSocketClient SynthesizeUsingWebSocket(SynthesizeCallback callback, string text, string voice = null, string customizationId = null, string accept = null, List<string> timings = null)
         {
             if (callback == null) 
             {
@@ -38,13 +38,13 @@ namespace IBM.Watson.TextToSpeech.v1
                 }
                 if (!string.IsNullOrEmpty(accept))
                 {
-                    webSocketClient.AddWebsocketParameter("accept", accept);
+                    webSocketClient.AddWebSocketParameter("accept", accept);
                 }
                 if (timings != null)
                 {
-                    webSocketClient.AddWebsocketParameter("timings", string.Join(",", timings.Select(x => "\"" + x + "\"")));
+                    webSocketClient.AddWebSocketParameter("timings", string.Join(",", timings.Select(x => "\"" + x + "\"")));
                 }
-                var sdkHeaders = Common.GetSdkHeaders("text_to_speech", "v1", "SynthesizeusingWebsockets");
+                var sdkHeaders = Common.GetSdkHeaders("text_to_speech", "v1", "SynthesizeUsingWebSocket");
                 foreach (var header in sdkHeaders)
                 {
                     webSocketClient.WithHeader(header.Key, header.Value);

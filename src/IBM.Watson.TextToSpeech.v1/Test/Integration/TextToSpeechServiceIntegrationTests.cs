@@ -150,7 +150,7 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
                 System.Diagnostics.Debug.WriteLine(err);
             };
 
-            var synthesizeResult = service.SynthesizeUsingWebsockets(
+            var synthesizeResult = service.SynthesizeUsingWebSocket(
                 voice: allisonVoice,
                 callback: callback,
                 accept: SynthesizeEnums.AcceptValue.AUDIO_MP3,

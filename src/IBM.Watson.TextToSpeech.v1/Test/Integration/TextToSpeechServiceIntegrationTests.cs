@@ -24,14 +24,15 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using IBM.Cloud.SDK.Core;
+using IBM.Watson.TextToSpeech.v1.Websockets;
+using static IBM.Watson.TextToSpeech.v1.TextToSpeechService;
+using IBM.Watson.TextToSpeech.v1.Websockets.Model;
 
 namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
 {
     [TestClass]
     public class TextToSpeechServiceIntegrationTests
     {
-        private static string apikey;
-        private static string endpoint;
         private TextToSpeechService service;
         private static string credentials = string.Empty;
         private const string allisonVoice = "en-US_AllisonVoice";
@@ -86,6 +87,76 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
             }
 
             Assert.IsNotNull(synthesizeResult.Result);
+        }
+        public void DoOnMarks(MarkTiming markTimings)
+        {
+            System.Diagnostics.Debug.WriteLine("On marks");
+            foreach (List<string> marks in markTimings.Marks)
+            {
+                System.Diagnostics.Debug.WriteLine(marks[0] + ": " + marks[1]);
+            }
+        }
+
+        //[TestMethod]
+        public void SynthesizeUsingWebsocketsSuccess()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+
+            // path to file
+            string Name = @"FILEPATH/yourfiletest.mpeg";
+            FileStream fs = File.Create(Name);
+
+            SynthesizeCallback callback = new SynthesizeCallback();
+            callback.OnOpen = () =>
+            {
+                System.Diagnostics.Debug.WriteLine("On Open");
+            };
+            callback.OnClose = () =>
+            {
+                System.Diagnostics.Debug.WriteLine("On Close");
+                fs.Close();
+            };
+            callback.OnContentType = (contentType) =>
+            {
+                System.Diagnostics.Debug.WriteLine("On content");
+                System.Diagnostics.Debug.WriteLine(contentType);
+            };
+            callback.OnMarks = (markTimings) => DoOnMarks(markTimings);
+
+            callback.OnTimings = (wordTimings) =>
+            {
+                System.Diagnostics.Debug.WriteLine("On words");
+                foreach (List<string> words in wordTimings.Words)
+                {
+                    System.Diagnostics.Debug.WriteLine(words[0] + ": " + words[1] + " - " + words[2]);
+                }
+            };
+            callback.OnMessage = (bytes) =>
+            {
+                System.Diagnostics.Debug.WriteLine("On message");
+                try
+                {
+                    fs.Write(bytes, 0, bytes.Length);
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex);
+                    System.Diagnostics.Debug.WriteLine("error");
+                }
+            };
+            callback.OnError = (err) =>
+            {
+                System.Diagnostics.Debug.WriteLine("On error");
+                System.Diagnostics.Debug.WriteLine(err);
+            };
+
+            var synthesizeResult = service.SynthesizeUsingWebSocket(
+                voice: allisonVoice,
+                callback: callback,
+                accept: SynthesizeEnums.AcceptValue.AUDIO_MP3,
+                text: "The <mark name='SIMPLE'/>random sentence generator generated a random sentence about a random sentence.",
+                timings: new List<string> { "words" }
+            );
         }
         #endregion
 

@@ -72,11 +72,6 @@ namespace IBM.Watson.TextToSpeech.v1.Websockets
 
             return this;
         }
-        public AWebSocketClient WithAuthentication(string userName, string password)
-        {
-            BaseClient.Options.SetRequestHeader("Authorization", "Basic " + Convert.ToBase64String(Encoding.ASCII.GetBytes(userName + ":" + password)));
-            return this;
-        }
         public AWebSocketClient WithHeader(string headerName, string headerValue)
         {
             this.BaseClient.Options.SetRequestHeader(headerName, headerValue);

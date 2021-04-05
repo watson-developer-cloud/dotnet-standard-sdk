@@ -9,9 +9,6 @@ namespace IBM.Watson.TextToSpeech.v1.Websockets.Util
         /** The WAVE meta-data header size. (value is 8) */
         private static readonly int WAVE_HEADER_SIZE = 8;
 
-        /** The WAVE meta-data position in bytes. (value is 74) */
-        private static readonly int WAVE_METADATA_POS = 74;
-
         /** The WAVE meta-data size position. (value is 4) */
         private static readonly int WAVE_SIZE_POS = 4;
 
@@ -57,8 +54,6 @@ namespace IBM.Watson.TextToSpeech.v1.Websockets.Util
 
             // initialize values to hold data of each chunk we come across
             var tempChunkID = "";
-            var tempChunkSize = 0;
-
             while (tempChunkID != "data")
             {
                 if (chunkSizeOffset + fieldSize > audioBytes.Length)
@@ -69,8 +64,7 @@ namespace IBM.Watson.TextToSpeech.v1.Websockets.Util
                 tempChunkID = System.Text.Encoding.ASCII.GetString(audioBytes.Skip(chunkIdOffset)
                   .Take(fieldSize).ToArray());
 
-                String decoded = System.Text.Encoding.ASCII.GetString(audioBytes.Skip(chunkSizeOffset).Take(4).ToArray()).Trim();
-                tempChunkSize = BitConverter.ToInt32(audioBytes, chunkSizeOffset);
+                int tempChunkSize = BitConverter.ToInt32(audioBytes, chunkSizeOffset);
 
                 // save the location of the data size field
                 if (tempChunkID == "data")

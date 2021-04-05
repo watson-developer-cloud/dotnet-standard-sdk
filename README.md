@@ -8,23 +8,6 @@
 
 The .NET Standard SDK uses [Watson][wdc] services, a collection of REST APIs that use cognitive computing to solve complex problems.
 
-## Table of Contents
-* [Before you begin](#before-you-begin)
-* [Installing the Watson .NET Standard SDK](#installing-the-watson-net-standard-sdk)
-* [.NET Standard 2.0](#net-standard-20)
-* [Authentication](#authentication)
-* [Custom Request Headers](#custom-request-headers)
-* [Response Headers, Status Code and Raw Json](#response-headers-status-code-and-raw-json)
-* [Self signed certificates](#self-signed-certificates)
-* [Discovery V2](#discovery-v2)
-* [Transaction IDs](#transactio-ids)
-* [Use behind a proxy](#use-behind-a-proxy)
-* [Documentation](#documentation)
-* [Questions](#questions)
-* [Open Source @ IBM](#open-source--ibm)
-* [License](#license)
-* [Contributing](#contributing)
-
 ## Announcements
 ### Updating endpoint URLs from watsonplatform.net
 Watson API endpoint URLs at watsonplatform.net are changing and will not work after 26 May 2021. Update your calls to use the newer endpoint URLs. For more information, see https://cloud.ibm.com/docs/watson?topic=watson-endpoint-change.

@@ -18,6 +18,7 @@
 using IBM.Cloud.SDK.Core.Http;
 using System.Collections.Generic;
 using IBM.Watson.TextToSpeech.v1.Model;
+using IBM.Watson.TextToSpeech.v1.Websockets;
 
 namespace IBM.Watson.TextToSpeech.v1
 {

@@ -34,6 +34,9 @@ using System;
 
 namespace IBM.Watson.CompareComply.v1
 {
+    [System.Obsolete("On 1 November 2021, Compare and Comply will no longer be available." +
+            "\nFor more information, see Compare and Comply Deprecation " +
+            "(https://github.com/watson-developer-cloud/dotnet-standard-sdk#compare-and-comply-deprecation).")]
     public partial class CompareComplyService : IBMService, ICompareComplyService
     {
         const string defaultServiceName = "compare_comply";

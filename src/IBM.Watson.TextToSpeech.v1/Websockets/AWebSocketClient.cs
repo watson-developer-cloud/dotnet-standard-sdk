@@ -34,6 +34,7 @@ namespace IBM.Watson.TextToSpeech.v1.Websockets
         public const string ContentType = "content_type";
         public const string Marks = "marks";
         public const string Words = "words";
+        public const string Error = "error";
 
         private const int ReceiveChunkSize = 1024 * 16 * 4;
         private const int SendChunkSize = 1024;
@@ -129,28 +130,33 @@ namespace IBM.Watson.TextToSpeech.v1.Websockets
                 }
 
                 var message = Encoding.UTF8.GetString(buffer, 0, count);
-
-                if (message.Contains(BinaryStreams))
+                try
                 {
                     var json = JObject.Parse(message);
-                    string contentType = json[BinaryStreams][0][ContentType].ToString();
-                    OnContentType(contentType);
+                    if (json.ContainsKey(Error))
+                    {
+                        OnError(new Exception(json[Error].ToString()));
+                        BaseClient.CloseOutputAsync(WebSocketCloseStatus.NormalClosure, string.Empty, CancellationToken.None).Wait();
+                    }
+                    else if (json.ContainsKey(BinaryStreams))
+                    {
+                        string contentType = json[BinaryStreams][0][ContentType].ToString();
+                        OnContentType(contentType);
+                    }
+                    else if (json.ContainsKey(Marks))
+                    {
+                        JToken marks = json[Marks];
+                        MarkTiming markTiming = json.ToObject<MarkTiming>();
+                        OnMarks(markTiming);
+                    }
+                    else if (json.ContainsKey(Words))
+                    {
+                        JToken words = json[Words];
+                        WordTiming wordTimings = json.ToObject<WordTiming>();
+                        onTimings(wordTimings);
+                    }
                 }
-                else if (message.Contains(Marks))
-                {
-                    var json = JObject.Parse(message);
-                    JToken marks = json[Marks];
-                    MarkTiming markTiming = json.ToObject<MarkTiming>();
-                    OnMarks(markTiming);
-                }
-                else if (message.Contains(Words))
-                {
-                    var json = JObject.Parse(message);
-                    JToken words = json[Words];
-                    WordTiming wordTimings = json.ToObject<WordTiming>();
-                    onTimings(wordTimings);
-                }
-                else
+                catch (Exception e)
                 {
                     byte[] messageBuffer = new byte[count];
                     Array.Copy(buffer, messageBuffer, count);

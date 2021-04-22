@@ -89,7 +89,14 @@ namespace IBM.Watson.SpeechToText.v1.Websockets
         }
         public AWebSocketClient WithHeader(string headerName, string headerValue)
         {
-            BaseClient.Options.SetRequestHeader(headerName, headerValue);
+            try
+            {
+                BaseClient.Options.SetRequestHeader(headerName, headerValue);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Can't add header: " + headerName + " with value: " + headerValue);
+            }
             return this;
         }
 

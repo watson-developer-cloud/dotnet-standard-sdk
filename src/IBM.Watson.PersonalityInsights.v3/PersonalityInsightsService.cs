@@ -29,6 +29,7 @@ using IBM.Watson.PersonalityInsights.v3.Model;
 using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
+using System.Net;
 
 namespace IBM.Watson.PersonalityInsights.v3
 {
@@ -42,12 +43,12 @@ namespace IBM.Watson.PersonalityInsights.v3
         private const string defaultServiceUrl = "https://api.us-south.personality-insights.watson.cloud.ibm.com";
         public string Version { get; set; }
 
-        public PersonalityInsightsService(string version) : this(version, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
-        public PersonalityInsightsService(string version, IAuthenticator authenticator) : this(version, defaultServiceName, authenticator) {}
-        public PersonalityInsightsService(string version, string serviceName) : this(version, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public PersonalityInsightsService(string version, WebProxy webProxy = null) : this(version, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName), webProxy) { }
+        public PersonalityInsightsService(string version, IAuthenticator authenticator, WebProxy webProxy = null) : this(version, defaultServiceName, authenticator, webProxy) {}
+        public PersonalityInsightsService(string version, string serviceName, WebProxy webProxy = null) : this(version, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName), webProxy) { }
         public PersonalityInsightsService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public PersonalityInsightsService(string version, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
+        public PersonalityInsightsService(string version, string serviceName, IAuthenticator authenticator, WebProxy webProxy = null) : base(serviceName, authenticator, webProxy)
         {
             if (string.IsNullOrEmpty(version))
             {

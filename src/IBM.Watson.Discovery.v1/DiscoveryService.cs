@@ -32,6 +32,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using Environment = IBM.Watson.Discovery.v1.Model.Environment;
+using System.Net;
 
 namespace IBM.Watson.Discovery.v1
 {
@@ -41,12 +42,12 @@ namespace IBM.Watson.Discovery.v1
         private const string defaultServiceUrl = "https://api.us-south.discovery.watson.cloud.ibm.com";
         public string Version { get; set; }
 
-        public DiscoveryService(string version) : this(version, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
-        public DiscoveryService(string version, IAuthenticator authenticator) : this(version, defaultServiceName, authenticator) {}
-        public DiscoveryService(string version, string serviceName) : this(version, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public DiscoveryService(string version, WebProxy webProxy = null) : this(version, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName), webProxy) { }
+        public DiscoveryService(string version, IAuthenticator authenticator, WebProxy webProxy = null) : this(version, defaultServiceName, authenticator, webProxy) {}
+        public DiscoveryService(string version, string serviceName, WebProxy webProxy = null) : this(version, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName), webProxy) { }
         public DiscoveryService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public DiscoveryService(string version, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
+        public DiscoveryService(string version, string serviceName, IAuthenticator authenticator, WebProxy webProxy = null) : base(serviceName, authenticator, webProxy)
         {
             if (string.IsNullOrEmpty(version))
             {

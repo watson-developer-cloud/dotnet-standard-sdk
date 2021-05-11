@@ -56,7 +56,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
         {
             var apikey = System.Environment.GetEnvironmentVariable("DISCOVERY_APIKEY");
             System.Environment.SetEnvironmentVariable("DISCOVERY_APIKEY", "apikey");
-            DiscoveryService service = Substitute.For<DiscoveryService>("versionDate");
+            DiscoveryService service = Substitute.For<DiscoveryService>("versionDate", null);
             Assert.IsNotNull(service);
             System.Environment.SetEnvironmentVariable("DISCOVERY_APIKEY", apikey);
         }
@@ -88,7 +88,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             System.Environment.SetEnvironmentVariable("DISCOVERY_APIKEY", "apikey");
             var url = System.Environment.GetEnvironmentVariable("DISCOVERY_URL");
             System.Environment.SetEnvironmentVariable("DISCOVERY_URL", null);
-            DiscoveryService service = Substitute.For<DiscoveryService>("versionDate");
+            DiscoveryService service = Substitute.For<DiscoveryService>("versionDate", null);
             Assert.IsTrue(service.ServiceUrl == "https://api.us-south.discovery.watson.cloud.ibm.com");
             System.Environment.SetEnvironmentVariable("DISCOVERY_APIKEY", apikey);
         }

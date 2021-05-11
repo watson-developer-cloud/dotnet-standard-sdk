@@ -55,7 +55,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
         {
             var apikey = System.Environment.GetEnvironmentVariable("COMPARE_COMPLY_APIKEY");
             System.Environment.SetEnvironmentVariable("COMPARE_COMPLY_APIKEY", "apikey");
-            CompareComplyService service = Substitute.For<CompareComplyService>("versionDate");
+            CompareComplyService service = Substitute.For<CompareComplyService>("versionDate", null);
             Assert.IsNotNull(service);
             System.Environment.SetEnvironmentVariable("COMPARE_COMPLY_APIKEY", apikey);
         }
@@ -87,7 +87,7 @@ namespace IBM.Watson.CompareComply.v1.UnitTests
             System.Environment.SetEnvironmentVariable("COMPARE_COMPLY_APIKEY", "apikey");
             var url = System.Environment.GetEnvironmentVariable("COMPARE_COMPLY_URL");
             System.Environment.SetEnvironmentVariable("COMPARE_COMPLY_URL", null);
-            CompareComplyService service = Substitute.For<CompareComplyService>("versionDate");
+            CompareComplyService service = Substitute.For<CompareComplyService>("versionDate", null);
             Assert.IsTrue(service.ServiceUrl == "https://api.us-south.compare-comply.watson.cloud.ibm.com");
             System.Environment.SetEnvironmentVariable("COMPARE_COMPLY_URL", url);
         }

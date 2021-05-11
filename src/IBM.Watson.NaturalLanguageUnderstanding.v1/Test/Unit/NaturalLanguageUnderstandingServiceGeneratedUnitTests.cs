@@ -55,7 +55,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
         {
             var apikey = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_APIKEY");
             System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_APIKEY", "apikey");
-            NaturalLanguageUnderstandingService service = Substitute.For<NaturalLanguageUnderstandingService>("versionDate");
+            NaturalLanguageUnderstandingService service = Substitute.For<NaturalLanguageUnderstandingService>("versionDate", null);
             Assert.IsNotNull(service);
             System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_APIKEY", apikey);
         }
@@ -87,7 +87,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.UnitTests
             System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_APIKEY", "apikey");
             var url = System.Environment.GetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_URL");
             System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_URL", null);
-            NaturalLanguageUnderstandingService service = Substitute.For<NaturalLanguageUnderstandingService>("versionDate");
+            NaturalLanguageUnderstandingService service = Substitute.For<NaturalLanguageUnderstandingService>("versionDate", null);
             Assert.IsTrue(service.ServiceUrl == "https://api.us-south.natural-language-understanding.watson.cloud.ibm.com");
             System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_URL", url);
             System.Environment.SetEnvironmentVariable("NATURAL_LANGUAGE_UNDERSTANDING_APIKEY", apikey);

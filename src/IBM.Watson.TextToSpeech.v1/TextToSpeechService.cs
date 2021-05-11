@@ -29,6 +29,7 @@ using IBM.Watson.TextToSpeech.v1.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Net;
 
 namespace IBM.Watson.TextToSpeech.v1
 {
@@ -37,12 +38,12 @@ namespace IBM.Watson.TextToSpeech.v1
         const string defaultServiceName = "text_to_speech";
         private const string defaultServiceUrl = "https://api.us-south.text-to-speech.watson.cloud.ibm.com";
 
-        public TextToSpeechService() : this(defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
-        public TextToSpeechService(IAuthenticator authenticator) : this(defaultServiceName, authenticator) {}
-        public TextToSpeechService(string serviceName) : this(serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public TextToSpeechService(WebProxy webProxy = null) : this(defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName), webProxy) { }
+        public TextToSpeechService(IAuthenticator authenticator, WebProxy webProxy = null) : this(defaultServiceName, authenticator, webProxy) {}
+        public TextToSpeechService(string serviceName, WebProxy webProxy = null) : this(serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName), webProxy) { }
         public TextToSpeechService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public TextToSpeechService(string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
+        public TextToSpeechService(string serviceName, IAuthenticator authenticator, WebProxy webProxy = null) : base(serviceName, authenticator, webProxy)
         {
 
             if (string.IsNullOrEmpty(ServiceUrl))

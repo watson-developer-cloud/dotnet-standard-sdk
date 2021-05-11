@@ -55,7 +55,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
         {
             var apikey = System.Environment.GetEnvironmentVariable("ASSISTANT_APIKEY");
             System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", "apikey");
-            AssistantService service = Substitute.For<AssistantService>("versionDate");
+            AssistantService service = Substitute.For<AssistantService>("versionDate", null);
             Assert.IsNotNull(service);
             System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", apikey);
         }
@@ -87,7 +87,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
             var apikey = System.Environment.GetEnvironmentVariable("ASSISTANT_APIKEY");
             System.Environment.SetEnvironmentVariable("ASSISTANT_URL", null);
             System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", "apikey");
-            AssistantService service = Substitute.For<AssistantService>("versionDate");
+            AssistantService service = Substitute.For<AssistantService>("versionDate", null);
             Assert.IsTrue(service.ServiceUrl == "https://api.us-south.assistant.watson.cloud.ibm.com");
             System.Environment.SetEnvironmentVariable("ASSISTANT_URL", url);
             System.Environment.SetEnvironmentVariable("ASSISTANT_APIKEY", apikey);

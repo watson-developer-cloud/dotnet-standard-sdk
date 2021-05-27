@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2020.
+* (C) Copyright IBM Corp. 2021.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 */
 
 /**
-* IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-be3b4618-20201201-123423
+* IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-902c9336-20210513-140138
 */
  
 using System.Collections.Generic;
@@ -34,12 +34,9 @@ using System;
 
 namespace IBM.Watson.CompareComply.v1
 {
-    [System.Obsolete("On 1 November 2021, Compare and Comply will no longer be available." +
-            "\nFor more information, see Compare and Comply Deprecation " +
-            "(https://github.com/watson-developer-cloud/dotnet-standard-sdk#compare-and-comply-deprecation).")]
     public partial class CompareComplyService : IBMService, ICompareComplyService
     {
-        const string defaultServiceName = "compare_comply";
+        const string defaultServiceName = "compare-comply";
         private const string defaultServiceUrl = "https://api.us-south.compare-comply.watson.cloud.ibm.com";
         public string Version { get; set; }
 

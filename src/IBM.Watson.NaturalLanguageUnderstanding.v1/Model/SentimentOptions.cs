@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2017, 2019.
+* (C) Copyright IBM Corp. 2021.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -38,6 +38,14 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
         /// </summary>
         [JsonProperty("targets", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Targets { get; set; }
+        /// <summary>
+        /// (Beta) Enter a [custom
+        /// model](https://cloud.ibm.com/docs/natural-language-understanding?topic=natural-language-understanding-customizing)
+        /// ID to override the standard sentiment model for all sentiment analysis operations in the request, including
+        /// targeted sentiment for entities and keywords.
+        /// </summary>
+        [JsonProperty("model", NullValueHandling = NullValueHandling.Ignore)]
+        public string Model { get; set; }
     }
 
 }

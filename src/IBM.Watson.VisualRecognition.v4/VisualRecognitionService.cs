@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2019, 2021.
+* (C) Copyright IBM Corp. 2019, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 */
 
 /**
-* IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-902c9336-20210513-140138
+* IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-be3b4618-20201201-123423
 */
  
 using System.Collections.Generic;
@@ -35,9 +35,12 @@ using System;
 
 namespace IBM.Watson.VisualRecognition.v4
 {
+    [System.Obsolete("On 1 December 2021, Visual Recognition will no longer be available. " +
+        "For more information, see Visual Recognition Deprecation " +
+        "(https://github.com/watson-developer-cloud/dotnet-standard-sdk/tree/master#visual-recognition-deprecation).")]
     public partial class VisualRecognitionService : IBMService, IVisualRecognitionService
     {
-        const string defaultServiceName = "watson_vision_combined";
+        const string defaultServiceName = "visual_recognition";
         private const string defaultServiceUrl = "https://api.us-south.visual-recognition.watson.cloud.ibm.com";
         public string Version { get; set; }
 
@@ -216,9 +219,8 @@ namespace IBM.Watson.VisualRecognition.v4
         /// <param name="name">The name of the collection. The name can contain alphanumeric, underscore, hyphen, and
         /// dot characters. It cannot begin with the reserved prefix `sys-`. (optional)</param>
         /// <param name="description">The description of the collection. (optional)</param>
-        /// <param name="trainingStatus">Training status information for the collection. (optional)</param>
         /// <returns><see cref="Collection" />Collection</returns>
-        public DetailedResponse<Collection> CreateCollection(string name = null, string description = null, TrainingStatus trainingStatus = null)
+        public DetailedResponse<Collection> CreateCollection(string name = null, string description = null)
         {
             if (string.IsNullOrEmpty(Version))
             {
@@ -248,10 +250,6 @@ namespace IBM.Watson.VisualRecognition.v4
                 if (!string.IsNullOrEmpty(description))
                 {
                     bodyObject["description"] = description;
-                }
-                if (trainingStatus != null)
-                {
-                    bodyObject["training_status"] = JToken.FromObject(trainingStatus);
                 }
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
@@ -385,9 +383,8 @@ namespace IBM.Watson.VisualRecognition.v4
         /// <param name="name">The name of the collection. The name can contain alphanumeric, underscore, hyphen, and
         /// dot characters. It cannot begin with the reserved prefix `sys-`. (optional)</param>
         /// <param name="description">The description of the collection. (optional)</param>
-        /// <param name="trainingStatus">Training status information for the collection. (optional)</param>
         /// <returns><see cref="Collection" />Collection</returns>
-        public DetailedResponse<Collection> UpdateCollection(string collectionId, string name = null, string description = null, TrainingStatus trainingStatus = null)
+        public DetailedResponse<Collection> UpdateCollection(string collectionId, string name = null, string description = null)
         {
             if (string.IsNullOrEmpty(Version))
             {
@@ -425,10 +422,6 @@ namespace IBM.Watson.VisualRecognition.v4
                 if (!string.IsNullOrEmpty(description))
                 {
                     bodyObject["description"] = description;
-                }
-                if (trainingStatus != null)
-                {
-                    bodyObject["training_status"] = JToken.FromObject(trainingStatus);
                 }
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);

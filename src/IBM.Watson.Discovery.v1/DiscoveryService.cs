@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2017, 2021.
+* (C) Copyright IBM Corp. 2017, 2020.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 */
 
 /**
-* IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-902c9336-20210513-140138
+* IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-be3b4618-20201201-123423
 */
  
 using System.Collections.Generic;
@@ -2364,7 +2364,7 @@ namespace IBM.Watson.Discovery.v1
         /// are biased towards higher field values. This parameter cannot be used in the same query as the **sort**
         /// parameter. (optional)</param>
         /// <param name="spellingSuggestions">When `true` and the **natural_language_query** parameter is used, the
-        /// **natural_languge_query** parameter is spell checked. The most likely correction is returned in the
+        /// **natural_languge_query** parameter is spell checked. The most likely correction is retunred in the
         /// **suggested_query** field of the response (if one exists).
         ///
         /// **Important:** this parameter is only valid when using the Cloud Pak version of Discovery. (optional,

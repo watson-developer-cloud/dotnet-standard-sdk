@@ -35,6 +35,7 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
         private string filepathToIngest = @"DiscoveryTestData/watson_beats_jeopardy.html";
         private string filepathAnalyzeDoc = @"DiscoveryTestData/problem.json";
         private string enrichmentFile = @"DiscoveryTestData/test.csv";
+        private string testPDF = @"DiscoveryTestData/test-pdf.pdf";
         private string metadata = "{\"Creator\": \".NET SDK Test\",\"Subject\": \"Discovery service\"}";
         private string bearerToken = "";
         private string serviceUrl = "";
@@ -826,6 +827,87 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
 
             Assert.IsNotNull(deleteUserDataResults.Response);
             Assert.IsTrue(deleteUserDataResults.StatusCode == 204);
+        }
+        #endregion
+
+        #region Miscellaneous
+        [TestMethod]
+        public void TestQueryCollectionNotices()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+
+            var response = service.QueryCollectionNotices(
+                projectId: projectId,
+                collectionId: collectionId,
+                naturalLanguageQuery: "warning"
+                );
+            Assert.IsNotNull(response.Result.Notices);
+        }
+
+        [TestMethod]
+        public void TestDeleteTrainingQuery()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var documentId = "";
+            var queryId = "";
+
+            try
+            {
+                using (FileStream fs = File.OpenRead(enrichmentFile))
+                {
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        fs.CopyTo(ms);
+                        var addResponse = service.AddDocument(
+                            projectId: projectId,
+                            collectionId: collectionId,
+                            file: ms,
+                            filename: "test-file",
+                            fileContentType: DiscoveryService.AddDocumentEnums.FileContentTypeValue.APPLICATION_PDF,
+                            xWatsonDiscoveryForce: true
+                            );
+                        Assert.IsNotNull(addResponse);
+
+                        documentId = addResponse.Result.DocumentId;
+
+                        TrainingExample trainingExample = new TrainingExample
+                        {
+                            CollectionId = collectionId,
+                            DocumentId = documentId,
+                            Relevance = 1L
+                        };
+
+                        List<TrainingExample> examples = new List<TrainingExample>();
+                        examples.Add(trainingExample);
+                        var createResponse = service.CreateTrainingQuery(
+                            projectId: projectId,
+                            examples: examples,
+                            naturalLanguageQuery: "test query"
+                            );
+
+                        queryId = createResponse.Result.QueryId;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
+            finally
+            {
+                service.DeleteTrainingQuery(
+                    projectId: projectId,
+                    queryId: queryId
+                    );
+
+                service.DeleteDocument(
+                    projectId: projectId,
+                    collectionId: collectionId,
+                    documentId: documentId,
+                    xWatsonDiscoveryForce: true
+                    );
+            }
         }
         #endregion
     }

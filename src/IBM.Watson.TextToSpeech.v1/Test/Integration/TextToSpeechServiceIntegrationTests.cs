@@ -318,8 +318,7 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
                     customizationId: customizationId,
                     promptId: "testId",
                     metadata: promptMetadata,
-                    file: file,
-                    filename: "testName"
+                    file: file
                     );
 
                 Assert.IsNotNull(prompt.Result.Status);
@@ -362,8 +361,7 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
                     customizationId: customizationId,
                     promptId: "testId",
                     metadata: promptMetadata,
-                    file: file,
-                    filename: "testName"
+                    file: file
                     );
 
                 Assert.IsNotNull(prompt.Result.Status);
@@ -413,8 +411,7 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
                     customizationId: customizationId,
                     promptId: "testId",
                     metadata: promptMetadata,
-                    file: file,
-                    filename: "testName"
+                    file: file
                     );
 
                 Assert.IsNotNull(prompt.Result.Status);
@@ -447,13 +444,11 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
             {
                 MemoryStream ms = new MemoryStream();
                 FileStream fs = File.OpenRead(wavFile);
-
                 fs.CopyTo(ms);
                 var speakerModel = service.CreateSpeakerModel(
-                    speakerName: "speakerName",
+                    speakerName: "speakerNameDotNet",
                     audio: ms
                     );
-
                 speakerId = speakerModel.Result.SpeakerId;
 
                 Assert.IsNotNull(speakerModel.Result.SpeakerId);
@@ -483,7 +478,7 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
                 fs.CopyTo(ms);
 
                 var speakerModel = service.CreateSpeakerModel(
-                    speakerName: "speakerName",
+                    speakerName: "speakerNameDotNet",
                     audio: ms
                     );
 
@@ -521,7 +516,7 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
                 fs.CopyTo(ms);
 
                 var speakerModel = service.CreateSpeakerModel(
-                    speakerName: "speakerName",
+                    speakerName: "speakerNameDotNet",
                     audio: ms
                     );
 

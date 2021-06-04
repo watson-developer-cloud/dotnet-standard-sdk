@@ -40,6 +40,7 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
         private string voiceModelUpdatedName = "dotnet-sdk-voice-model-updated";
         private string voiceModelDescription = "Custom voice model for .NET SDK integration tests.";
         private string voiceModelUpdatedDescription = "Custom voice model for .NET SDK integration tests. Updated.";
+        private string wavFile = @"Assets/test-audio.wav";
 
         [TestInitialize]
         public void Setup()
@@ -264,6 +265,286 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
             Assert.IsNotNull(listWordsResult.Result._Words);
             Assert.IsTrue(listWordsResult.Result._Words.Count == 3);
             Assert.IsNotNull(addWordsResult.Result);
+        }
+        #endregion
+
+        #region Miscellaneous
+        [TestMethod]
+        public void testListCustomPrompts()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var customModel = service.CreateCustomModel(
+                description: "testString",
+                name: "testString",
+                language: TextToSpeechService.ListCustomModelsEnums.LanguageValue.EN_US
+                );
+
+            var customizationId = customModel.Result.CustomizationId;
+
+            var prompts = service.ListCustomPrompts(
+                customizationId: customizationId
+                );
+
+            Assert.IsNotNull(prompts.Result._Prompts);
+
+            service.DeleteCustomModel(
+                customizationId: customizationId
+                );
+        }
+
+        [TestMethod]
+        public void testAddCustomPrompts()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            string customizationId = "";
+            try
+            {
+                var customModel = service.CreateCustomModel(
+                    description: "testString",
+                    name: "testString",
+                    language: TextToSpeechService.ListCustomModelsEnums.LanguageValue.EN_US
+                    );
+
+                customizationId = customModel.Result.CustomizationId;
+
+                var promptMetadata = new PromptMetadata()
+                {
+                    PromptText = "promptText"
+                };
+
+                MemoryStream file = new MemoryStream();
+
+                var prompt = service.AddCustomPrompt(
+                    customizationId: customizationId,
+                    promptId: "testId",
+                    metadata: promptMetadata,
+                    file: file,
+                    filename: "testName"
+                    );
+
+                Assert.IsNotNull(prompt.Result.Status);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
+            finally
+            {
+                service.DeleteCustomModel(
+                    customizationId: customizationId
+                    );
+            }
+        }
+
+        [TestMethod]
+        public void testGetCustomPrompts()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            string customizationId = "";
+            try
+            {
+                var customModel = service.CreateCustomModel(
+                    description: "testString",
+                    name: "testString",
+                    language: TextToSpeechService.ListCustomModelsEnums.LanguageValue.EN_US
+                    );
+
+                customizationId = customModel.Result.CustomizationId;
+
+                var promptMetadata = new PromptMetadata()
+                {
+                    PromptText = "promptText"
+                };
+
+                MemoryStream file = new MemoryStream();
+
+                var prompt = service.AddCustomPrompt(
+                    customizationId: customizationId,
+                    promptId: "testId",
+                    metadata: promptMetadata,
+                    file: file,
+                    filename: "testName"
+                    );
+
+                Assert.IsNotNull(prompt.Result.Status);
+
+                var prompt1 = service.GetCustomPrompt(
+                    customizationId: customizationId,
+                    promptId: "testId"
+                    );
+
+                Assert.IsNotNull(prompt1.Result.Status);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
+            finally
+            {
+                service.DeleteCustomModel(
+                    customizationId: customizationId
+                    );
+            }
+        }
+
+        [TestMethod]
+        public void testDeleteCustomPrompts()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            string customizationId = "";
+            try
+            {
+                var customModel = service.CreateCustomModel(
+                    description: "testString",
+                    name: "testString",
+                    language: TextToSpeechService.ListCustomModelsEnums.LanguageValue.EN_US
+                    );
+
+                customizationId = customModel.Result.CustomizationId;
+
+                var promptMetadata = new PromptMetadata()
+                {
+                    PromptText = "promptText"
+                };
+
+                MemoryStream file = new MemoryStream();
+
+                var prompt = service.AddCustomPrompt(
+                    customizationId: customizationId,
+                    promptId: "testId",
+                    metadata: promptMetadata,
+                    file: file,
+                    filename: "testName"
+                    );
+
+                Assert.IsNotNull(prompt.Result.Status);
+
+                var response = service.DeleteCustomPrompt(
+                    customizationId: customizationId,
+                    promptId: prompt.Result.PromptId
+                    );
+
+                Assert.IsNotNull(response.Result);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
+            finally
+            {
+                service.DeleteCustomModel(
+                    customizationId: customizationId
+                    );
+            }
+        }
+
+        [TestMethod]
+        public void testCreateSpeakerModel()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            string speakerId = "";
+            try
+            {
+                MemoryStream ms = new MemoryStream();
+                FileStream fs = File.OpenRead(wavFile);
+
+                fs.CopyTo(ms);
+                var speakerModel = service.CreateSpeakerModel(
+                    speakerName: "speakerName",
+                    audio: ms
+                    );
+
+                speakerId = speakerModel.Result.SpeakerId;
+
+                Assert.IsNotNull(speakerModel.Result.SpeakerId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
+            finally
+            {
+                service.DeleteSpeakerModel(
+                    speakerId: speakerId
+                    );
+            }
+        }
+
+        [TestMethod]
+        public void testListSpeakerModel()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            string speakerId = "";
+            try
+            {
+                MemoryStream ms = new MemoryStream();
+                FileStream fs = File.OpenRead(wavFile);
+
+                fs.CopyTo(ms);
+
+                var speakerModel = service.CreateSpeakerModel(
+                    speakerName: "speakerName",
+                    audio: ms
+                    );
+
+                speakerId = speakerModel.Result.SpeakerId;
+
+                Assert.IsNotNull(speakerModel.Result.SpeakerId);
+
+                var speakers = service.ListSpeakerModels();
+
+                Assert.IsNotNull(speakers.Result._Speakers);
+                Assert.IsTrue(speakers.Result._Speakers.Count > 0);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
+            finally
+            {
+                service.DeleteSpeakerModel(
+                    speakerId: speakerId
+                    );
+            }
+        }
+
+        [TestMethod]
+        public void testGetSpeakerModel()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            string speakerId = "";
+            try
+            {
+                MemoryStream ms = new MemoryStream();
+                FileStream fs = File.OpenRead(wavFile);
+
+                fs.CopyTo(ms);
+
+                var speakerModel = service.CreateSpeakerModel(
+                    speakerName: "speakerName",
+                    audio: ms
+                    );
+
+                speakerId = speakerModel.Result.SpeakerId;
+
+                Assert.IsNotNull(speakerModel.Result.SpeakerId);
+
+                var response = service.GetSpeakerModel(
+                    speakerId: speakerId
+                    );
+
+                Assert.IsNotNull(response.Result.Customizations);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
+            finally
+            {
+                service.DeleteSpeakerModel(
+                    speakerId: speakerId
+                    );
+            }
         }
         #endregion
     }

@@ -38,7 +38,7 @@ namespace IBM.Watson.TextToSpeech.v1
         DetailedResponse<Translation> GetWord(string customizationId, string word);
         DetailedResponse<object> DeleteWord(string customizationId, string word);
         DetailedResponse<Prompts> ListCustomPrompts(string customizationId);
-        DetailedResponse<Prompt> AddCustomPrompt(string customizationId, string promptId, PromptMetadata metadata, System.IO.MemoryStream file, string filename);
+        DetailedResponse<Prompt> AddCustomPrompt(string customizationId, string promptId, PromptMetadata metadata, System.IO.MemoryStream file);
         DetailedResponse<Prompt> GetCustomPrompt(string customizationId, string promptId);
         DetailedResponse<object> DeleteCustomPrompt(string customizationId, string promptId);
         DetailedResponse<Speakers> ListSpeakerModels();

@@ -2061,9 +2061,8 @@ namespace IBM.Watson.TextToSpeech.v1
         /// * The prompt audio must be in WAV format and must have a minimum sampling rate of 16 kHz. The service
         /// accepts audio with higher sampling rates. The service transcodes all audio to 16 kHz before processing it.
         /// * The length of the prompt audio is limited to 30 seconds.</param>
-        /// <param name="filename">The filename for file.</param>
         /// <returns><see cref="Prompt" />Prompt</returns>
-        public DetailedResponse<Prompt> AddCustomPrompt(string customizationId, string promptId, PromptMetadata metadata, System.IO.MemoryStream file, string filename)
+        public DetailedResponse<Prompt> AddCustomPrompt(string customizationId, string promptId, PromptMetadata metadata, System.IO.MemoryStream file)
         {
             if (string.IsNullOrEmpty(customizationId))
             {
@@ -2089,10 +2088,6 @@ namespace IBM.Watson.TextToSpeech.v1
             {
                 throw new ArgumentNullException("`file` is required for `AddCustomPrompt`");
             }
-            if (string.IsNullOrEmpty(filename))
-            {
-                throw new ArgumentNullException("`filename` is required for `AddCustomPrompt`");
-            }
             DetailedResponse<Prompt> result = null;
 
             try
@@ -2112,7 +2107,7 @@ namespace IBM.Watson.TextToSpeech.v1
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse("audio/wav", out contentType);
                     fileContent.Headers.ContentType = contentType;
-                    formData.Add(fileContent, "file", filename);
+                    formData.Add(fileContent, "file", "filename");
                 }
 
                 IClient client = this.Client;

@@ -23,6 +23,7 @@ using IBM.Watson.NaturalLanguageUnderstanding.v1.Model;
 using IBM.Cloud.SDK.Core.Util;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Text;
 
 namespace IBM.Watson.NaturalLanguageUnderstanding.v1.IntegrationTests
 {
@@ -203,12 +204,14 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.IntegrationTests
         [TestMethod]
         public void AnalyzeWithMetadata()
         {
+            Dictionary<string, object> metadata = new Dictionary<string, object>();
+
             service.WithHeader("X-Watson-Test", "1");
             var result = service.Analyze(
                 url: "www.ibm.com",
                 features: new Features()
                 {
-                    Metadata = new FeaturesResultsMetadata()
+                    Metadata = metadata
                 }
                 );
 
@@ -311,5 +314,690 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.IntegrationTests
             Assert.IsTrue(result.Result.Syntax.Sentences.Count > 0);
             Assert.IsTrue(result.Result.Syntax.Sentences[0].Text == "With great power comes great responsibility");
         }
+    
+
+        #region SentimentModel
+        [TestMethod]
+        public void TestCreateSentimentModel()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            MemoryStream trainingData = new MemoryStream(ASCIIEncoding.Default.GetBytes("This is a mock file."));
+
+            var response = service.CreateSentimentModel(
+                language: "en",
+                trainingData: trainingData,
+                name: "testString",
+                description: "testString",
+                modelVersion: "testString",
+                versionDescription: "testString"
+                );
+
+            Assert.IsNotNull(response.Result);
+            Assert.AreEqual(response.Result.Name, "testString");
+            Assert.AreEqual(response.Result.Language, "en");
+            Assert.AreEqual(response.Result.Description, "testString");
+            Assert.AreEqual(response.Result.ModelVersion, "testString");
+            Assert.AreEqual(response.Result.VersionDescription, "testString");
+
+            service.DeleteSentimentModel(
+                modelId: response.Result.ModelId
+                );
+        }
+
+        [TestMethod]
+        public void TestListSentimentModels()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var response = service.ListSentimentModels();
+
+            Assert.IsNotNull(response.Result.Models);
+
+            foreach(SentimentModel sentimentModel in response.Result.Models)
+            {
+                if (sentimentModel.Name.StartsWith("testString"))
+                {
+                    service.DeleteSentimentModel(
+                        modelId: sentimentModel.ModelId
+                        );
+                }
+            }
+        }
+
+        [TestMethod]
+        public void TestUpdateSentimentModel()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+
+            string modelId = "";
+            try
+            {
+                MemoryStream trainingData = new MemoryStream(ASCIIEncoding.Default.GetBytes("This is a mock file."));
+
+                var response = service.CreateSentimentModel(
+                    language: "en",
+                    trainingData: trainingData,
+                    name: "testString",
+                    description: "testString",
+                    modelVersion: "testString",
+                    versionDescription: "testString"
+                    );
+
+                Assert.IsNotNull(response.Result);
+                Assert.AreEqual(response.Result.Name, "testString");
+                Assert.AreEqual(response.Result.Language, "en");
+                Assert.AreEqual(response.Result.Description, "testString");
+                Assert.AreEqual(response.Result.ModelVersion, "testString");
+                Assert.AreEqual(response.Result.VersionDescription, "testString");
+
+                modelId = response.Result.ModelId;
+
+                var response2 = service.UpdateSentimentModel(
+                    description: "newString",
+                    name: "newString",
+                    modelId: modelId,
+                    language: "en",
+                    trainingData: trainingData
+                    );
+
+                Assert.IsNotNull(response2.Result);
+                Assert.AreEqual(response2.Result.Name, "newString");
+                Assert.AreEqual(response2.Result.Language, "en");
+                Assert.AreEqual(response2.Result.Description, "newString");
+                Assert.AreEqual(response2.Result.ModelVersion, "testString");
+                Assert.AreEqual(response2.Result.VersionDescription, "testString");
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
+            finally
+            {
+                if (modelId != "")
+                {
+                    service.DeleteSentimentModel(
+                        modelId: modelId
+                        );
+                }
+                
+            }
+        }
+
+        [TestMethod]
+        public void TestGetSentimentModel()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+
+            string modelId = "";
+            try
+            {
+                MemoryStream trainingData = new MemoryStream(ASCIIEncoding.Default.GetBytes("This is a mock file."));
+
+                var response = service.CreateSentimentModel(
+                    language: "en",
+                    trainingData: trainingData,
+                    name: "testString",
+                    description: "testString",
+                    modelVersion: "testString",
+                    versionDescription: "testString"
+                    );
+
+                Assert.IsNotNull(response.Result);
+                Assert.AreEqual(response.Result.Name, "testString");
+                Assert.AreEqual(response.Result.Language, "en");
+                Assert.AreEqual(response.Result.Description, "testString");
+                Assert.AreEqual(response.Result.ModelVersion, "testString");
+                Assert.AreEqual(response.Result.VersionDescription, "testString");
+
+                modelId = response.Result.ModelId;
+
+                var response2 = service.GetSentimentModel(
+                    modelId: modelId
+                    );
+
+                Assert.IsNotNull(response2.Result);
+                Assert.AreEqual(response2.Result.Name, "testString");
+                Assert.AreEqual(response2.Result.Language, "en");
+                Assert.AreEqual(response2.Result.Description, "testString");
+                Assert.AreEqual(response2.Result.ModelVersion, "testString");
+                Assert.AreEqual(response2.Result.VersionDescription, "testString");
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
+            finally
+            {
+                if (modelId != "")
+                {
+                    service.DeleteSentimentModel(
+                        modelId: modelId
+                        );
+                }
+
+            }
+        }
+        #endregion
+
+        #region CategoriesModel
+        [TestMethod]
+        public void TestCreateCategoriesModel()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            MemoryStream trainingData = new MemoryStream(ASCIIEncoding.Default.GetBytes("[\n"
+                        + "       {\n"
+                        + "           \"labels\": [\n"
+                        + "               \"level1\"\n"
+                        + "           ],\n"
+                        + "           \"key_phrases\": [\n"
+                        + "               \"key phrase\",\n"
+                        + "               \"key phrase 2\"\n"
+                        + "           ]\n"
+                        + "       },\n"
+                        + "       {\n"
+                        + "           \"labels\": [\n"
+                        + "               \"level1\",\n"
+                        + "               \"level2\"\n"
+                        + "           ],\n"
+                        + "           \"key_phrases\": [\n"
+                        + "               \"key phrase 3\",\n"
+                        + "               \"key phrase 4\"\n"
+                        + "           ]\n"
+                        + "       }\n"
+                        + "   ]"));
+
+            var response = service.CreateCategoriesModel(
+                language: "en",
+                trainingData: trainingData,
+                trainingDataContentType: NaturalLanguageUnderstandingService.CreateCategoriesModelEnums.TrainingDataContentTypeValue.APPLICATION_JSON,
+                name: "testString",
+                description: "testString",
+                modelVersion: "testString",
+                versionDescription: "testString"
+                );
+
+            Assert.IsNotNull(response.Result);
+            Assert.AreEqual(response.Result.Name, "testString");
+            Assert.AreEqual(response.Result.Language, "en");
+            Assert.AreEqual(response.Result.Description, "testString");
+            Assert.AreEqual(response.Result.ModelVersion, "testString");
+            Assert.AreEqual(response.Result.VersionDescription, "testString");
+
+            service.DeleteCategoriesModel(
+                modelId: response.Result.ModelId
+                );
+        }
+
+        [TestMethod]
+        public void TestListCategoriesModels()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var response = service.ListCategoriesModels();
+
+            Assert.IsNotNull(response.Result.Models);
+
+            foreach (CategoriesModel categoriesModel in response.Result.Models)
+            {
+                if (categoriesModel.Name.StartsWith("testString"))
+                {
+                    service.DeleteCategoriesModel(
+                        modelId: categoriesModel.ModelId
+                        );
+                }
+            }
+        }
+
+        [TestMethod]
+        public void TestUpdateCategoriesModel()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+
+            string modelId = "";
+            try
+            {
+                MemoryStream trainingData = new MemoryStream(ASCIIEncoding.Default.GetBytes("[\n"
+                         + "       {\n"
+                         + "           \"labels\": [\n"
+                         + "               \"level1\"\n"
+                         + "           ],\n"
+                         + "           \"key_phrases\": [\n"
+                         + "               \"key phrase\",\n"
+                         + "               \"key phrase 2\"\n"
+                         + "           ]\n"
+                         + "       },\n"
+                         + "       {\n"
+                         + "           \"labels\": [\n"
+                         + "               \"level1\",\n"
+                         + "               \"level2\"\n"
+                         + "           ],\n"
+                         + "           \"key_phrases\": [\n"
+                         + "               \"key phrase 3\",\n"
+                         + "               \"key phrase 4\"\n"
+                         + "           ]\n"
+                         + "       }\n"
+                         + "   ]"));
+
+                var response = service.CreateCategoriesModel(
+                    language: "en",
+                    trainingData: trainingData,
+                    trainingDataContentType: NaturalLanguageUnderstandingService.CreateCategoriesModelEnums.TrainingDataContentTypeValue.APPLICATION_JSON,
+                    name: "testString",
+                    description: "testString",
+                    modelVersion: "testString",
+                    versionDescription: "testString"
+                    );
+
+                Assert.IsNotNull(response.Result);
+                Assert.AreEqual(response.Result.Name, "testString");
+                Assert.AreEqual(response.Result.Language, "en");
+                Assert.AreEqual(response.Result.Description, "testString");
+                Assert.AreEqual(response.Result.ModelVersion, "testString");
+                Assert.AreEqual(response.Result.VersionDescription, "testString");
+
+                modelId = response.Result.ModelId;
+
+                var response2 = service.UpdateCategoriesModel(
+                    description: "newString",
+                    name: "newString",
+                    modelId: modelId,
+                    language: "en",
+                    trainingData: trainingData
+                    );
+
+                Assert.IsNotNull(response2.Result);
+                Assert.AreEqual(response2.Result.Name, "newString");
+                Assert.AreEqual(response2.Result.Language, "en");
+                Assert.AreEqual(response2.Result.Description, "newString");
+                Assert.AreEqual(response2.Result.ModelVersion, "testString");
+                Assert.AreEqual(response2.Result.VersionDescription, "testString");
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
+            finally
+            {
+                if (modelId != "")
+                {
+                    service.DeleteCategoriesModel(
+                        modelId: modelId
+                        );
+                }
+
+            }
+        }
+
+        [TestMethod]
+        public void TestGetCategoriesModel()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+
+            string modelId = "";
+            try
+            {
+                MemoryStream trainingData = new MemoryStream(ASCIIEncoding.Default.GetBytes("[\n"
+                         + "       {\n"
+                         + "           \"labels\": [\n"
+                         + "               \"level1\"\n"
+                         + "           ],\n"
+                         + "           \"key_phrases\": [\n"
+                         + "               \"key phrase\",\n"
+                         + "               \"key phrase 2\"\n"
+                         + "           ]\n"
+                         + "       },\n"
+                         + "       {\n"
+                         + "           \"labels\": [\n"
+                         + "               \"level1\",\n"
+                         + "               \"level2\"\n"
+                         + "           ],\n"
+                         + "           \"key_phrases\": [\n"
+                         + "               \"key phrase 3\",\n"
+                         + "               \"key phrase 4\"\n"
+                         + "           ]\n"
+                         + "       }\n"
+                         + "   ]"));
+
+                var response = service.CreateCategoriesModel(
+                    language: "en",
+                    trainingData: trainingData,
+                    trainingDataContentType: NaturalLanguageUnderstandingService.CreateCategoriesModelEnums.TrainingDataContentTypeValue.APPLICATION_JSON,
+                    name: "testString",
+                    description: "testString",
+                    modelVersion: "testString",
+                    versionDescription: "testString"
+                    );
+
+                Assert.IsNotNull(response.Result);
+                Assert.AreEqual(response.Result.Name, "testString");
+                Assert.AreEqual(response.Result.Language, "en");
+                Assert.AreEqual(response.Result.Description, "testString");
+                Assert.AreEqual(response.Result.ModelVersion, "testString");
+                Assert.AreEqual(response.Result.VersionDescription, "testString");
+
+                modelId = response.Result.ModelId;
+
+                var response2 = service.GetCategoriesModel(
+                    modelId: modelId
+                    );
+
+                Assert.IsNotNull(response2.Result);
+                Assert.AreEqual(response2.Result.Name, "testString");
+                Assert.AreEqual(response2.Result.Language, "en");
+                Assert.AreEqual(response2.Result.Description, "testString");
+                Assert.AreEqual(response2.Result.ModelVersion, "testString");
+                Assert.AreEqual(response2.Result.VersionDescription, "testString");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
+            finally
+            {
+                if (modelId != "")
+                {
+                    service.DeleteCategoriesModel(
+                        modelId: modelId
+                        );
+                }
+
+            }
+        }
+        #endregion
+
+        #region ClassificationModel
+        [TestMethod]
+        public void TestCreateClassificationModel()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            MemoryStream trainingData = new MemoryStream(ASCIIEncoding.Default.GetBytes("[\n"
+                          + "    {\n"
+                          + "        \"text\": \"How hot is it today?\",\n"
+                          + "        \"labels\": [\"temperature\"]\n"
+                          + "    },\n"
+                          + "    {\n"
+                          + "        \"text\": \"Is it hot outside?\",\n"
+                          + "        \"labels\": [\"temperature\"]\n"
+                          + "    },\n"
+                          + "    {\n"
+                          + "        \"text\": \"Will it be uncomfortably hot?\",\n"
+                          + "        \"labels\": [\"temperature\"]\n"
+                          + "    },\n"
+                          + "    {\n"
+                          + "        \"text\": \"Will it be sweltering?\",\n"
+                          + "        \"labels\": [\"temperature\"]\n"
+                          + "    },\n"
+                          + "    {\n"
+                          + "        \"text\": \"How cold is it today?\",\n"
+                          + "        \"labels\": [\"temperature\"]\n"
+                          + "    },\n"
+                          + "    {\n"
+                          + "        \"text\": \"Will we get snow?\",\n"
+                          + "        \"labels\": [\"conditions\"]\n"
+                          + "    },\n"
+                          + "    {\n"
+                          + "        \"text\": \"Are we expecting sunny conditions?\",\n"
+                          + "        \"labels\": [\"conditions\"]\n"
+                          + "    },\n"
+                          + "    {\n"
+                          + "        \"text\": \"Is it overcast?\",\n"
+                          + "        \"labels\": [\"conditions\"]\n"
+                          + "    },\n"
+                          + "    {\n"
+                          + "        \"text\": \"Will it be cloudy?\",\n"
+                          + "        \"labels\": [\"conditions\"]\n"
+                          + "    },\n"
+                          + "    {\n"
+                          + "        \"text\": \"How much rain will fall today?\",\n"
+                          + "        \"labels\": [\"conditions\"]\n"
+                          + "    }\n"
+                          + "]"));
+
+            var response = service.CreateClassificationsModel(
+                language: "en",
+                trainingData: trainingData,
+                trainingDataContentType: NaturalLanguageUnderstandingService.CreateClassificationsModelEnums.TrainingDataContentTypeValue.APPLICATION_JSON,
+                name: "testString",
+                description: "testString",
+                modelVersion: "testString",
+                versionDescription: "testString"
+                );
+
+            Assert.IsNotNull(response.Result);
+            Assert.AreEqual(response.Result.Name, "testString");
+            Assert.AreEqual(response.Result.Language, "en");
+            Assert.AreEqual(response.Result.Description, "testString");
+            Assert.AreEqual(response.Result.ModelVersion, "testString");
+            Assert.AreEqual(response.Result.VersionDescription, "testString");
+
+            service.DeleteClassificationsModel(
+                modelId: response.Result.ModelId
+                );
+        }
+
+        [TestMethod]
+        public void TestListClassificationModel()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var response = service.ListClassificationsModels();
+
+            Assert.IsNotNull(response.Result.Models);
+
+            foreach (ClassificationsModelList classificationsModelList in response.Result.Models)
+            {
+                foreach (ClassificationsModel classificationsModel in classificationsModelList.Models)
+                {
+                    if (classificationsModel.Name.StartsWith("testString"))
+                    {
+                        service.DeleteClassificationsModel(
+                            modelId: classificationsModel.ModelId
+                            );
+                    }
+                }
+               
+            }
+        }
+
+        [TestMethod]
+        public void TestUpdateClassificationModel()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+
+            string modelId = "";
+            try
+            {
+                MemoryStream trainingData = new MemoryStream(ASCIIEncoding.Default.GetBytes("[\n"
+                          + "    {\n"
+                          + "        \"text\": \"How hot is it today?\",\n"
+                          + "        \"labels\": [\"temperature\"]\n"
+                          + "    },\n"
+                          + "    {\n"
+                          + "        \"text\": \"Is it hot outside?\",\n"
+                          + "        \"labels\": [\"temperature\"]\n"
+                          + "    },\n"
+                          + "    {\n"
+                          + "        \"text\": \"Will it be uncomfortably hot?\",\n"
+                          + "        \"labels\": [\"temperature\"]\n"
+                          + "    },\n"
+                          + "    {\n"
+                          + "        \"text\": \"Will it be sweltering?\",\n"
+                          + "        \"labels\": [\"temperature\"]\n"
+                          + "    },\n"
+                          + "    {\n"
+                          + "        \"text\": \"How cold is it today?\",\n"
+                          + "        \"labels\": [\"temperature\"]\n"
+                          + "    },\n"
+                          + "    {\n"
+                          + "        \"text\": \"Will we get snow?\",\n"
+                          + "        \"labels\": [\"conditions\"]\n"
+                          + "    },\n"
+                          + "    {\n"
+                          + "        \"text\": \"Are we expecting sunny conditions?\",\n"
+                          + "        \"labels\": [\"conditions\"]\n"
+                          + "    },\n"
+                          + "    {\n"
+                          + "        \"text\": \"Is it overcast?\",\n"
+                          + "        \"labels\": [\"conditions\"]\n"
+                          + "    },\n"
+                          + "    {\n"
+                          + "        \"text\": \"Will it be cloudy?\",\n"
+                          + "        \"labels\": [\"conditions\"]\n"
+                          + "    },\n"
+                          + "    {\n"
+                          + "        \"text\": \"How much rain will fall today?\",\n"
+                          + "        \"labels\": [\"conditions\"]\n"
+                          + "    }\n"
+                          + "]"));
+
+                var response = service.CreateClassificationsModel(
+                    language: "en",
+                    trainingData: trainingData,
+                    trainingDataContentType: NaturalLanguageUnderstandingService.CreateClassificationsModelEnums.TrainingDataContentTypeValue.APPLICATION_JSON,
+                    name: "testString",
+                    description: "testString",
+                    modelVersion: "testString",
+                    versionDescription: "testString"
+                    );
+
+                Assert.IsNotNull(response.Result);
+                Assert.AreEqual(response.Result.Name, "testString");
+                Assert.AreEqual(response.Result.Language, "en");
+                Assert.AreEqual(response.Result.Description, "testString");
+                Assert.AreEqual(response.Result.ModelVersion, "testString");
+                Assert.AreEqual(response.Result.VersionDescription, "testString");
+
+                modelId = response.Result.ModelId;
+
+                var response2 = service.UpdateClassificationsModel(
+                    description: "newString",
+                    name: "newString",
+                    modelId: modelId,
+                    language: "en",
+                    trainingData: trainingData
+                    );
+
+                Assert.IsNotNull(response2.Result);
+                Assert.AreEqual(response2.Result.Name, "newString");
+                Assert.AreEqual(response2.Result.Language, "en");
+                Assert.AreEqual(response2.Result.Description, "newString");
+                Assert.AreEqual(response2.Result.ModelVersion, "testString");
+                Assert.AreEqual(response2.Result.VersionDescription, "testString");
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
+            finally
+            {
+                if (modelId != "")
+                {
+                    service.DeleteClassificationsModel(
+                        modelId: modelId
+                        );
+                }
+
+            }
+        }
+
+        [TestMethod]
+        public void TestGetClassificationModel()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+
+            string modelId = "";
+            try
+            {
+                MemoryStream trainingData = new MemoryStream(ASCIIEncoding.Default.GetBytes("[\n"
+                          + "    {\n"
+                          + "        \"text\": \"How hot is it today?\",\n"
+                          + "        \"labels\": [\"temperature\"]\n"
+                          + "    },\n"
+                          + "    {\n"
+                          + "        \"text\": \"Is it hot outside?\",\n"
+                          + "        \"labels\": [\"temperature\"]\n"
+                          + "    },\n"
+                          + "    {\n"
+                          + "        \"text\": \"Will it be uncomfortably hot?\",\n"
+                          + "        \"labels\": [\"temperature\"]\n"
+                          + "    },\n"
+                          + "    {\n"
+                          + "        \"text\": \"Will it be sweltering?\",\n"
+                          + "        \"labels\": [\"temperature\"]\n"
+                          + "    },\n"
+                          + "    {\n"
+                          + "        \"text\": \"How cold is it today?\",\n"
+                          + "        \"labels\": [\"temperature\"]\n"
+                          + "    },\n"
+                          + "    {\n"
+                          + "        \"text\": \"Will we get snow?\",\n"
+                          + "        \"labels\": [\"conditions\"]\n"
+                          + "    },\n"
+                          + "    {\n"
+                          + "        \"text\": \"Are we expecting sunny conditions?\",\n"
+                          + "        \"labels\": [\"conditions\"]\n"
+                          + "    },\n"
+                          + "    {\n"
+                          + "        \"text\": \"Is it overcast?\",\n"
+                          + "        \"labels\": [\"conditions\"]\n"
+                          + "    },\n"
+                          + "    {\n"
+                          + "        \"text\": \"Will it be cloudy?\",\n"
+                          + "        \"labels\": [\"conditions\"]\n"
+                          + "    },\n"
+                          + "    {\n"
+                          + "        \"text\": \"How much rain will fall today?\",\n"
+                          + "        \"labels\": [\"conditions\"]\n"
+                          + "    }\n"
+                          + "]"));
+
+                var response = service.CreateClassificationsModel(
+                    language: "en",
+                    trainingData: trainingData,
+                    trainingDataContentType: NaturalLanguageUnderstandingService.CreateClassificationsModelEnums.TrainingDataContentTypeValue.APPLICATION_JSON,
+                    name: "testString",
+                    description: "testString",
+                    modelVersion: "testString",
+                    versionDescription: "testString"
+                    );
+
+                Assert.IsNotNull(response.Result);
+                Assert.AreEqual(response.Result.Name, "testString");
+                Assert.AreEqual(response.Result.Language, "en");
+                Assert.AreEqual(response.Result.Description, "testString");
+                Assert.AreEqual(response.Result.ModelVersion, "testString");
+                Assert.AreEqual(response.Result.VersionDescription, "testString");
+
+                modelId = response.Result.ModelId;
+
+                var response2 = service.GetClassificationsModel(
+                    modelId: modelId
+                    );
+
+                Assert.IsNotNull(response2.Result);
+                Assert.AreEqual(response2.Result.Name, "testString");
+                Assert.AreEqual(response2.Result.Language, "en");
+                Assert.AreEqual(response2.Result.Description, "testString");
+                Assert.AreEqual(response2.Result.ModelVersion, "testString");
+                Assert.AreEqual(response2.Result.VersionDescription, "testString");
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
+            finally
+            {
+                if (modelId != "")
+                {
+                    service.DeleteClassificationsModel(
+                        modelId: modelId
+                        );
+                }
+
+            }
+        }
+        #endregion
     }
 }

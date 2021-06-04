@@ -2392,6 +2392,7 @@ namespace IBM.Watson.TextToSpeech.v1
                 }
                 restRequest.WithHeader("Content-Type", "audio/wav");
                 var httpContent = new ByteArrayContent(audio.ToArray());
+                httpContent.Headers.Add("Content-Type", "audio/wav");
                 restRequest.WithBodyContent(httpContent);
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("text_to_speech", "v1", "CreateSpeakerModel"));

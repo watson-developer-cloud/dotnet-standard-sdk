@@ -268,8 +268,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
             RuntimeResponseGenericRuntimeResponseTypeText typeText =
                 new RuntimeResponseGenericRuntimeResponseTypeText();
             typeText.Text = "text";
-            typeText.ResponseType =
-                RuntimeResponseGeneric.ResponseTypeEnumValue.TEXT;
+            typeText.ResponseType = "TEXT";
             typeText.Preference =
                 RuntimeResponseGeneric.PreferenceEnumValue.BUTTON;
 

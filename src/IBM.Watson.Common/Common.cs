@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2019, 2020.
+* (C) Copyright IBM Corp. 2019, 2021.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ namespace IBM.Watson
         /// <summary>
         /// The SDK version.
         /// </summary>
-        public const string Version = "watson-apis-dotnet-standard-sdk-5.1.0";
+        public const string Version = "watson-apis-dotnet-standard-sdk-5.2.0";
         private static string os;
         private static string osVersion;
         private static string frameworkDescription;

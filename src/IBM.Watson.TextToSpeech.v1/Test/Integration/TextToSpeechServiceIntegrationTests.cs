@@ -541,6 +541,34 @@ namespace IBM.Watson.TextToSpeech.v1.IntegrationTests
                     );
             }
         }
+
+        [TestMethod]
+        public void testDeleteSpeakerModel()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            MemoryStream ms = new MemoryStream();
+            FileStream fs = File.OpenRead(wavFile);
+
+            fs.CopyTo(ms);
+
+            var speakerModel = service.CreateSpeakerModel(
+                speakerName: "speakerNameDotNet",
+                audio: ms
+                );
+
+            string speakerId = speakerModel.Result.SpeakerId;
+            Assert.IsNotNull(speakerModel.Result.SpeakerId);
+
+            var response = service.GetSpeakerModel(
+                speakerId: speakerId
+                );
+
+            Assert.IsNotNull(response.Result.Customizations);
+
+            service.DeleteSpeakerModel(
+                speakerId: speakerId
+                );
+        }
         #endregion
     }
 }

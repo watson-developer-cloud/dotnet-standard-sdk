@@ -121,6 +121,9 @@ Properties</h2></td></tr>
 <tr class="memitem:aeb06fa34603ca8ccc005233913aafd92"><td class="memItemLeft" align="right" valign="top">virtual List&lt; <a class="el" href="../../de/d48/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_action.html">DialogNodeAction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d63/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_message_request.html#aeb06fa34603ca8ccc005233913aafd92">Actions</a><code> [get]</code></td></tr>
 <tr class="memdesc:aeb06fa34603ca8ccc005233913aafd92"><td class="mdescLeft">&#160;</td><td class="mdescRight">An array of objects describing any actions requested by the dialog node.  <a href="#aeb06fa34603ca8ccc005233913aafd92">More...</a><br /></td></tr>
 <tr class="separator:aeb06fa34603ca8ccc005233913aafd92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a535995507ecfb5ff3ecf4b3f48cfc4ff"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d63/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_message_request.html#a535995507ecfb5ff3ecf4b3f48cfc4ff">UserId</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a535995507ecfb5ff3ecf4b3f48cfc4ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">A string value that identifies the user who is interacting with the workspace. The client must provide a unique identifier for each individual end user who accesses the application. For user-based plans, this user ID is used to identify unique users for billing purposes. This string cannot contain carriage return, newline, or tab characters. If no value is specified in the input, <b>user_id</b> is automatically set to the value of <b>context.conversation_id</b>.  <a href="#a535995507ecfb5ff3ecf4b3f48cfc4ff">More...</a><br /></td></tr>
+<tr class="separator:a535995507ecfb5ff3ecf4b3f48cfc4ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A request sent to the workspace, including the user input and context. </p>
@@ -290,6 +293,31 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>An output object that includes the response to the user, the dialog nodes that were triggered, and messages from the log. </p>
+
+</div>
+</div>
+<a id="a535995507ecfb5ff3ecf4b3f48cfc4ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a535995507ecfb5ff3ecf4b3f48cfc4ff">&#9670;&nbsp;</a></span>UserId</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string IBM.Watson.Assistant.v1.Model.MessageRequest.UserId</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A string value that identifies the user who is interacting with the workspace. The client must provide a unique identifier for each individual end user who accesses the application. For user-based plans, this user ID is used to identify unique users for billing purposes. This string cannot contain carriage return, newline, or tab characters. If no value is specified in the input, <b>user_id</b> is automatically set to the value of <b>context.conversation_id</b>. </p>
+<p><b>Note:</b> This property is the same as the <b>user_id</b> property in the context metadata. If <b>user_id</b> is specified in both locations in a message request, the value specified at the root is used. </p>
 
 </div>
 </div>

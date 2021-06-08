@@ -1,0 +1,4 @@
+var class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_list_classifications_models_response =
+[
+    [ "Models", "d1/ddb/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_list_classifications_models_response.html#a26bfcf1c4c47c07cb9759459fc3cc777", null ]
+];

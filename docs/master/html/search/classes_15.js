@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['warning',['Warning',['../d3/d03/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_warning.html',1,'IBM.Watson.VisualRecognition.v4.Model.Warning'],['../d2/d43/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_model_1_1_warning.html',1,'IBM.Watson.PersonalityInsights.v3.Model.Warning']]],
+  ['warning',['Warning',['../d2/d43/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_model_1_1_warning.html',1,'IBM.Watson.PersonalityInsights.v3.Model.Warning'],['../d3/d03/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_model_1_1_warning.html',1,'IBM.Watson.VisualRecognition.v4.Model.Warning']]],
   ['warningidenumvalue',['WarningIdEnumValue',['../d5/d04/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_model_1_1_warning_1_1_warning_id_enum_value.html',1,'IBM::Watson::PersonalityInsights::v3::Model::Warning']]],
   ['warninginfo',['WarningInfo',['../d7/dab/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v3_1_1_model_1_1_warning_info.html',1,'IBM::Watson::VisualRecognition::v3::Model']]],
   ['webhook',['Webhook',['../dd/d90/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_webhook.html',1,'IBM::Watson::Assistant::v1::Model']]],

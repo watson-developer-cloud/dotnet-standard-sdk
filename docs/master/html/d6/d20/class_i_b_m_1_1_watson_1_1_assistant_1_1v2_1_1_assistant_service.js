@@ -10,7 +10,7 @@ var class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_assistant_service =
     [ "DeleteSession", "d6/d20/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_assistant_service.html#a99bb497b184fc11ce4caa315378b047b", null ],
     [ "DeleteUserData", "d6/d20/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_assistant_service.html#a3202e9d505c7bd62108889b902009106", null ],
     [ "ListLogs", "d6/d20/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_assistant_service.html#aa71b1cc702bb15adbf6742e23f536089", null ],
-    [ "Message", "d6/d20/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_assistant_service.html#a1690fe9c375d05cf18730beca2fef7a6", null ],
-    [ "MessageStateless", "d6/d20/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_assistant_service.html#af8d804fe6148ee083732606a8cba8413", null ],
+    [ "Message", "d6/d20/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_assistant_service.html#acfe9be889346bd064f04a929b396ca7e", null ],
+    [ "MessageStateless", "d6/d20/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_assistant_service.html#ac74bc807fd203fee25ccab6971d3d16b", null ],
     [ "Version", "d6/d20/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_assistant_service.html#a1687631e99ea8f74ccdd033c0db7ef22", null ]
 ];

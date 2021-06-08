@@ -104,7 +104,7 @@ Properties</h2></td></tr>
 <tr class="memdesc:a45a88ba5ca065b4996d7ca9fa536ae8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">A label identifying the deployment environment, used for filtering log data. This string cannot contain carriage return, newline, or tab characters.  <a href="#a45a88ba5ca065b4996d7ca9fa536ae8f">More...</a><br /></td></tr>
 <tr class="separator:a45a88ba5ca065b4996d7ca9fa536ae8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aded44d6614244dcbd215a8058c015178"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d9f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_message_context_metadata.html#aded44d6614244dcbd215a8058c015178">UserId</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:aded44d6614244dcbd215a8058c015178"><td class="mdescLeft">&#160;</td><td class="mdescRight">A string value that identifies the user who is interacting with the workspace. The client must provide a unique identifier for each individual end user who accesses the application. For Plus and Premium plans, this user ID is used to identify unique users for billing purposes. This string cannot contain carriage return, newline, or tab characters.  <a href="#aded44d6614244dcbd215a8058c015178">More...</a><br /></td></tr>
+<tr class="memdesc:aded44d6614244dcbd215a8058c015178"><td class="mdescLeft">&#160;</td><td class="mdescRight">A string value that identifies the user who is interacting with the workspace. The client must provide a unique identifier for each individual end user who accesses the application. For user-based plans, this user ID is used to identify unique users for billing purposes. This string cannot contain carriage return, newline, or tab characters. If no value is specified in the input, <b>user_id</b> is automatically set to the value of <b>context.conversation_id</b>.  <a href="#aded44d6614244dcbd215a8058c015178">More...</a><br /></td></tr>
 <tr class="separator:aded44d6614244dcbd215a8058c015178"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -154,7 +154,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>A string value that identifies the user who is interacting with the workspace. The client must provide a unique identifier for each individual end user who accesses the application. For Plus and Premium plans, this user ID is used to identify unique users for billing purposes. This string cannot contain carriage return, newline, or tab characters. </p>
+<p>A string value that identifies the user who is interacting with the workspace. The client must provide a unique identifier for each individual end user who accesses the application. For user-based plans, this user ID is used to identify unique users for billing purposes. This string cannot contain carriage return, newline, or tab characters. If no value is specified in the input, <b>user_id</b> is automatically set to the value of <b>context.conversation_id</b>. </p>
+<p><b>Note:</b> This property is the same as the <b>user_id</b> property at the root of the message body. If <b>user_id</b> is specified in both locations in a message request, the value specified at the root is used. </p>
 
 </div>
 </div>

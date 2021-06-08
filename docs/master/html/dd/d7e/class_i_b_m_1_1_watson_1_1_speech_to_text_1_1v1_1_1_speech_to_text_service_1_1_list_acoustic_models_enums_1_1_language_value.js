@@ -1,6 +1,7 @@
 var class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_acoustic_models_enums_1_1_language_value =
 [
     [ "AR_AR", "dd/d7e/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_acoustic_models_enums_1_1_language_value.html#a27d3edfb970181bab52760f3cd6d2b88", null ],
+    [ "AR_MS", "dd/d7e/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_acoustic_models_enums_1_1_language_value.html#addb5fe941d985713246fe8ec4a809767", null ],
     [ "DE_DE", "dd/d7e/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_acoustic_models_enums_1_1_language_value.html#ad04f2b8b3debd624d7f93193c1652177", null ],
     [ "EN_AU", "dd/d7e/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_acoustic_models_enums_1_1_language_value.html#ae6ab221a9d90d6313e604d57b11f0179", null ],
     [ "EN_GB", "dd/d7e/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_acoustic_models_enums_1_1_language_value.html#a37d3cd929733f022a99689b2f1f603a3", null ],

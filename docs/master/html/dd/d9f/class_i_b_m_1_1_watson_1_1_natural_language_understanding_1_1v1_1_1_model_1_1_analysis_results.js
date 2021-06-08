@@ -2,6 +2,7 @@ var class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_
 [
     [ "AnalyzedText", "dd/d9f/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_analysis_results.html#a0db8c85514f11cf95fdaea92929ec1a2", null ],
     [ "Categories", "dd/d9f/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_analysis_results.html#a71d1b6ed1fb9da197330bb75f1bdbc55", null ],
+    [ "Classifications", "dd/d9f/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_analysis_results.html#a136b5a3587665181b9d95c30b4fa4292", null ],
     [ "Concepts", "dd/d9f/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_analysis_results.html#a1a21cee5dffc16ff5e8d0ad6e3f0a8f6", null ],
     [ "Emotion", "dd/d9f/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_analysis_results.html#a9f5f77ac10e55d9b5d186b4e02c5d50a", null ],
     [ "Entities", "dd/d9f/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_analysis_results.html#a3a6e7d943a28bb34ef8a1df8a3b83f54", null ],

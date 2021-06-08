@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2019, 2021.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Discovery.v2.Model
@@ -44,6 +45,16 @@ namespace IBM.Watson.Discovery.v2.Model
         /// </summary>
         [JsonProperty("field", NullValueHandling = NullValueHandling.Ignore)]
         public string Field { get; set; }
+        /// <summary>
+        /// Estimate of the probability that the passage is relevant.
+        /// </summary>
+        [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
+        public double? Confidence { get; set; }
+        /// <summary>
+        /// An arry of extracted answers to the specified query.
+        /// </summary>
+        [JsonProperty("answers", NullValueHandling = NullValueHandling.Ignore)]
+        public List<ResultPassageAnswer> Answers { get; set; }
     }
 
 }

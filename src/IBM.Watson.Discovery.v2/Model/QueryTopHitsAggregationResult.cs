@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2019, 2021.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Discovery.v2.Model
 {
     /// <summary>
-    /// A query response containing the matching documents for the preceding aggregations.
+    /// A query response that contains the matching documents for the preceding aggregations.
     /// </summary>
     public class QueryTopHitsAggregationResult
     {

@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2016, 2020.
+* (C) Copyright IBM Corp. 2016, 2021.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -37,6 +37,14 @@ namespace IBM.Watson.TextToSpeech.v1
         DetailedResponse<object> AddWord(string customizationId, string word, string translation, string partOfSpeech = null);
         DetailedResponse<Translation> GetWord(string customizationId, string word);
         DetailedResponse<object> DeleteWord(string customizationId, string word);
+        DetailedResponse<Prompts> ListCustomPrompts(string customizationId);
+        DetailedResponse<Prompt> AddCustomPrompt(string customizationId, string promptId, PromptMetadata metadata, System.IO.MemoryStream file);
+        DetailedResponse<Prompt> GetCustomPrompt(string customizationId, string promptId);
+        DetailedResponse<object> DeleteCustomPrompt(string customizationId, string promptId);
+        DetailedResponse<Speakers> ListSpeakerModels();
+        DetailedResponse<SpeakerModel> CreateSpeakerModel(string speakerName, System.IO.MemoryStream audio);
+        DetailedResponse<SpeakerCustomModels> GetSpeakerModel(string speakerId);
+        DetailedResponse<object> DeleteSpeakerModel(string speakerId);
         DetailedResponse<object> DeleteUserData(string customerId);
     }
 }

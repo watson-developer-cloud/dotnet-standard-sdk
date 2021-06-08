@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2019, 2020.
+* (C) Copyright IBM Corp. 2019, 2021.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -30,6 +30,7 @@ namespace IBM.Watson.Discovery.v2
         DetailedResponse<object> DeleteCollection(string projectId, string collectionId);
         DetailedResponse<QueryResponse> Query(string projectId, List<string> collectionIds = null, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> _return = null, long? offset = null, string sort = null, bool? highlight = null, bool? spellingSuggestions = null, QueryLargeTableResults tableResults = null, QueryLargeSuggestedRefinements suggestedRefinements = null, QueryLargePassages passages = null);
         DetailedResponse<Completions> GetAutocompletion(string projectId, string prefix, List<string> collectionIds = null, string field = null, long? count = null);
+        DetailedResponse<QueryNoticesResponse> QueryCollectionNotices(string projectId, string collectionId, string filter = null, string query = null, string naturalLanguageQuery = null, long? count = null, long? offset = null);
         DetailedResponse<QueryNoticesResponse> QueryNotices(string projectId, string filter = null, string query = null, string naturalLanguageQuery = null, long? count = null, long? offset = null);
         DetailedResponse<ListFieldsResponse> ListFields(string projectId, List<string> collectionIds = null);
         DetailedResponse<ComponentSettingsResponse> GetComponentSettings(string projectId);
@@ -41,6 +42,7 @@ namespace IBM.Watson.Discovery.v2
         DetailedResponse<TrainingQuery> CreateTrainingQuery(string projectId, string naturalLanguageQuery, List<TrainingExample> examples, string filter = null);
         DetailedResponse<TrainingQuery> GetTrainingQuery(string projectId, string queryId);
         DetailedResponse<TrainingQuery> UpdateTrainingQuery(string projectId, string queryId, string naturalLanguageQuery, List<TrainingExample> examples, string filter = null);
+        DetailedResponse<object> DeleteTrainingQuery(string projectId, string queryId);
         DetailedResponse<AnalyzedDocument> AnalyzeDocument(string projectId, string collectionId, System.IO.MemoryStream file = null, string filename = null, string fileContentType = null, string metadata = null);
         DetailedResponse<Enrichments> ListEnrichments(string projectId);
         DetailedResponse<Enrichment> CreateEnrichment(string projectId, CreateEnrichment enrichment, System.IO.MemoryStream file = null);

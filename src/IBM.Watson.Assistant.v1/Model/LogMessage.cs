@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2018, 2021.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -55,6 +55,16 @@ namespace IBM.Watson.Assistant.v1.Model
         /// </summary>
         [JsonProperty("msg", NullValueHandling = NullValueHandling.Ignore)]
         public string Msg { get; set; }
+        /// <summary>
+        /// A code that indicates the category to which the error message belongs.
+        /// </summary>
+        [JsonProperty("code", NullValueHandling = NullValueHandling.Ignore)]
+        public string Code { get; set; }
+        /// <summary>
+        /// An object that identifies the dialog element that generated the error message.
+        /// </summary>
+        [JsonProperty("source", NullValueHandling = NullValueHandling.Ignore)]
+        public LogMessageSource Source { get; set; }
     }
 
 }

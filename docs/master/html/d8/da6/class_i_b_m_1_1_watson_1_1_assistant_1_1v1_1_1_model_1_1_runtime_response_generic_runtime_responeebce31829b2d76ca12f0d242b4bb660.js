@@ -1,4 +1,0 @@
-var class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_responeebce31829b2d76ca12f0d242b4bb660 =
-[
-    [ "CONNECT_TO_AGENT", "d8/da6/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_responeebce31829b2d76ca12f0d242b4bb660.html#a3d7273f20f8f0a58551d2eadc4ce549e", null ]
-];

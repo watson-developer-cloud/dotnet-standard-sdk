@@ -175,6 +175,9 @@ var dir_d33053f09bc1db3158906167638a9a93 =
     [ "QueryTopHitsAggregationResult.cs", "d6/d5f/_query_top_hits_aggregation_result_8cs.html", [
       [ "QueryTopHitsAggregationResult", "d6/d04/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_top_hits_aggregation_result.html", "d6/d04/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_top_hits_aggregation_result" ]
     ] ],
+    [ "ResultPassageAnswer.cs", "df/db3/_result_passage_answer_8cs.html", [
+      [ "ResultPassageAnswer", "db/d9d/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_result_passage_answer.html", "db/d9d/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_result_passage_answer" ]
+    ] ],
     [ "RetrievalDetails.cs", "d6/d5b/_i_b_m_8_watson_8_discovery_8v2_2_model_2_retrieval_details_8cs.html", [
       [ "RetrievalDetails", "de/de4/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_retrieval_details.html", "de/de4/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_retrieval_details" ],
       [ "DocumentRetrievalStrategyEnumValue", "dd/d3e/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_retrieval_details_1_1_document_retrieval_strategy_enum_value.html", "dd/d3e/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_retrieval_details_1_1_document_retrieval_strategy_enum_value" ]

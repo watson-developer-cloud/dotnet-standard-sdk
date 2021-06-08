@@ -104,20 +104,26 @@ Properties</h2></td></tr>
 <tr class="memdesc:a026d29f46f66ff7ef21970b364688c48"><td class="mdescLeft">&#160;</td><td class="mdescRight">A passages query that returns the most relevant passages from the results.  <a href="#a026d29f46f66ff7ef21970b364688c48">More...</a><br /></td></tr>
 <tr class="separator:a026d29f46f66ff7ef21970b364688c48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19a11f3d172cde26919eca56380ad2d3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d1a/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_large_passages.html#a19a11f3d172cde26919eca56380ad2d3">PerDocument</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a19a11f3d172cde26919eca56380ad2d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">When <code>true</code>, passages will be returned within their respective result.  <a href="#a19a11f3d172cde26919eca56380ad2d3">More...</a><br /></td></tr>
+<tr class="memdesc:a19a11f3d172cde26919eca56380ad2d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates whether to group passages with the document that they are extracted from in the query result.  <a href="#a19a11f3d172cde26919eca56380ad2d3">More...</a><br /></td></tr>
 <tr class="separator:a19a11f3d172cde26919eca56380ad2d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a738bbb2f7f45ce8644b096c1723c2f63"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d1a/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_large_passages.html#a738bbb2f7f45ce8644b096c1723c2f63">MaxPerDocument</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a738bbb2f7f45ce8644b096c1723c2f63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum number of passages to return per result.  <a href="#a738bbb2f7f45ce8644b096c1723c2f63">More...</a><br /></td></tr>
+<tr class="memdesc:a738bbb2f7f45ce8644b096c1723c2f63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum number of passages to return per document in the result. Ignored if <code>passages.per_document</code> is <code>false</code>.  <a href="#a738bbb2f7f45ce8644b096c1723c2f63">More...</a><br /></td></tr>
 <tr class="separator:a738bbb2f7f45ce8644b096c1723c2f63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afad597a69a5b697117d07c7078775de5"><td class="memItemLeft" align="right" valign="top">List&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d1a/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_large_passages.html#afad597a69a5b697117d07c7078775de5">Fields</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:afad597a69a5b697117d07c7078775de5"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of fields that passages are drawn from. If this parameter not specified, then all top-level fields are included.  <a href="#afad597a69a5b697117d07c7078775de5">More...</a><br /></td></tr>
+<tr class="memdesc:afad597a69a5b697117d07c7078775de5"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of fields to extract passages from. If this parameter is an empty list, then all root-level fields are included.  <a href="#afad597a69a5b697117d07c7078775de5">More...</a><br /></td></tr>
 <tr class="separator:afad597a69a5b697117d07c7078775de5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeaab5ecefa6f2a674353119178558d7e"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d1a/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_large_passages.html#aeaab5ecefa6f2a674353119178558d7e">Count</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:aeaab5ecefa6f2a674353119178558d7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum number of passages to return. The search returns fewer passages if the requested total is not found. The maximum is <code>100</code>.  <a href="#aeaab5ecefa6f2a674353119178558d7e">More...</a><br /></td></tr>
+<tr class="memdesc:aeaab5ecefa6f2a674353119178558d7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum number of passages to return. Ignored if <code>passages.per_document</code> is <code>true</code>.  <a href="#aeaab5ecefa6f2a674353119178558d7e">More...</a><br /></td></tr>
 <tr class="separator:aeaab5ecefa6f2a674353119178558d7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ce53df8c9ae3223e6050d5df39997af"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d1a/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_large_passages.html#a8ce53df8c9ae3223e6050d5df39997af">Characters</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a8ce53df8c9ae3223e6050d5df39997af"><td class="mdescLeft">&#160;</td><td class="mdescRight">The approximate number of characters that any one passage will have.  <a href="#a8ce53df8c9ae3223e6050d5df39997af">More...</a><br /></td></tr>
 <tr class="separator:a8ce53df8c9ae3223e6050d5df39997af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b0ec72ef75af33779b5d0b5119f3bb9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d1a/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_large_passages.html#a5b0ec72ef75af33779b5d0b5119f3bb9">FindAnswers</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a5b0ec72ef75af33779b5d0b5119f3bb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">When true, <code>answer</code> objects are returned as part of each passage in the query results. The primary difference between an <code>answer</code> and a <code>passage</code> is that the length of a passage is defined by the query, where the length of an <code>answer</code> is calculated by <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> based on how much text is needed to answer the question./n/nThis parameter is ignored if passages are not enabled for the query, or no <b>natural_language_query</b> is specified./n/nIf the <b>find_answers</b> parameter is set to <code>true</code> and <b>per_document</b> parameter is also set to <code>true</code>, then the document search results and the passage search results within each document are reordered using the answer confidences. The goal of this reordering is to do as much as possible to make sure that the first answer of the first passage of the first document is the best answer. Similarly, if the <b>find_answers</b> parameter is set to <code>true</code> and <b>per_document</b> parameter is set to <code>false</code>, then the passage search results are reordered in decreasing order of the highest confidence answer for each document and passage./n/nThe <b>find_answers</b> parameter is <b>beta</b> functionality available only on managed instances and should not be used in a production environment. This parameter is not available on installed instances of <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.  <a href="#a5b0ec72ef75af33779b5d0b5119f3bb9">More...</a><br /></td></tr>
+<tr class="separator:a5b0ec72ef75af33779b5d0b5119f3bb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f944447d12c2c9fc5700269d3037aaa"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d1a/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_large_passages.html#a3f944447d12c2c9fc5700269d3037aaa">MaxAnswersPerPassage</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a3f944447d12c2c9fc5700269d3037aaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of <code>answer</code> objects to return per passage if the <b>find_answers</b> parmeter is specified as <code>true</code>.  <a href="#a3f944447d12c2c9fc5700269d3037aaa">More...</a><br /></td></tr>
+<tr class="separator:a3f944447d12c2c9fc5700269d3037aaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Configuration for passage retrieval. </p>
@@ -166,7 +172,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The maximum number of passages to return. The search returns fewer passages if the requested total is not found. The maximum is <code>100</code>. </p>
+<p>The maximum number of passages to return. Ignored if <code>passages.per_document</code> is <code>true</code>. </p>
 
 </div>
 </div>
@@ -214,7 +220,55 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>A list of fields that passages are drawn from. If this parameter not specified, then all top-level fields are included. </p>
+<p>A list of fields to extract passages from. If this parameter is an empty list, then all root-level fields are included. </p>
+
+</div>
+</div>
+<a id="a5b0ec72ef75af33779b5d0b5119f3bb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b0ec72ef75af33779b5d0b5119f3bb9">&#9670;&nbsp;</a></span>FindAnswers</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool IBM.Watson.Discovery.v2.Model.QueryLargePassages.FindAnswers</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>When true, <code>answer</code> objects are returned as part of each passage in the query results. The primary difference between an <code>answer</code> and a <code>passage</code> is that the length of a passage is defined by the query, where the length of an <code>answer</code> is calculated by <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> based on how much text is needed to answer the question./n/nThis parameter is ignored if passages are not enabled for the query, or no <b>natural_language_query</b> is specified./n/nIf the <b>find_answers</b> parameter is set to <code>true</code> and <b>per_document</b> parameter is also set to <code>true</code>, then the document search results and the passage search results within each document are reordered using the answer confidences. The goal of this reordering is to do as much as possible to make sure that the first answer of the first passage of the first document is the best answer. Similarly, if the <b>find_answers</b> parameter is set to <code>true</code> and <b>per_document</b> parameter is set to <code>false</code>, then the passage search results are reordered in decreasing order of the highest confidence answer for each document and passage./n/nThe <b>find_answers</b> parameter is <b>beta</b> functionality available only on managed instances and should not be used in a production environment. This parameter is not available on installed instances of <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>. </p>
+
+</div>
+</div>
+<a id="a3f944447d12c2c9fc5700269d3037aaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f944447d12c2c9fc5700269d3037aaa">&#9670;&nbsp;</a></span>MaxAnswersPerPassage</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long IBM.Watson.Discovery.v2.Model.QueryLargePassages.MaxAnswersPerPassage</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The number of <code>answer</code> objects to return per passage if the <b>find_answers</b> parmeter is specified as <code>true</code>. </p>
 
 </div>
 </div>
@@ -238,7 +292,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Maximum number of passages to return per result. </p>
+<p>Maximum number of passages to return per document in the result. Ignored if <code>passages.per_document</code> is <code>false</code>. </p>
 
 </div>
 </div>
@@ -262,7 +316,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>When <code>true</code>, passages will be returned within their respective result. </p>
+<p>Indicates whether to group passages with the document that they are extracted from in the query result. </p>
 
 </div>
 </div>

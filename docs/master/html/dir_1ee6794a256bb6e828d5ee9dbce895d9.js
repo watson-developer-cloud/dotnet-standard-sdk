@@ -9,6 +9,13 @@ var dir_1ee6794a256bb6e828d5ee9dbce895d9 =
     [ "Author.cs", "d1/d22/_author_8cs.html", [
       [ "Author", "d9/d33/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_author.html", "d9/d33/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_author" ]
     ] ],
+    [ "CategoriesModel.cs", "d8/ddd/_categories_model_8cs.html", [
+      [ "CategoriesModel", "d5/df3/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_model.html", "d5/df3/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_model" ],
+      [ "StatusEnumValue", "db/dc1/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_model_1_1_status_enum_value.html", "db/dc1/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_model_1_1_status_enum_value" ]
+    ] ],
+    [ "CategoriesModelList.cs", "d1/d7c/_categories_model_list_8cs.html", [
+      [ "CategoriesModelList", "da/d2a/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_model_list.html", "da/d2a/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_model_list" ]
+    ] ],
     [ "CategoriesOptions.cs", "d5/dba/_categories_options_8cs.html", [
       [ "CategoriesOptions", "dc/d12/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_options.html", "dc/d12/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_options" ]
     ] ],
@@ -20,6 +27,19 @@ var dir_1ee6794a256bb6e828d5ee9dbce895d9 =
     ] ],
     [ "CategoriesResultExplanation.cs", "d3/d2e/_categories_result_explanation_8cs.html", [
       [ "CategoriesResultExplanation", "d7/db3/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_result_explanation.html", "d7/db3/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_result_explanation" ]
+    ] ],
+    [ "ClassificationsModel.cs", "d8/d11/_classifications_model_8cs.html", [
+      [ "ClassificationsModel", "de/d55/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_classifications_model.html", "de/d55/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_classifications_model" ],
+      [ "StatusEnumValue", "d3/d35/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_classifications_model_1_1_status_enum_value.html", "d3/d35/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_classifications_model_1_1_status_enum_value" ]
+    ] ],
+    [ "ClassificationsModelList.cs", "d9/dad/_classifications_model_list_8cs.html", [
+      [ "ClassificationsModelList", "dc/d83/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_classifications_model_list.html", "dc/d83/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_classifications_model_list" ]
+    ] ],
+    [ "ClassificationsOptions.cs", "de/dbc/_classifications_options_8cs.html", [
+      [ "ClassificationsOptions", "dc/d2a/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_classifications_options.html", "dc/d2a/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_classifications_options" ]
+    ] ],
+    [ "ClassificationsResult.cs", "d0/d0c/_classifications_result_8cs.html", [
+      [ "ClassificationsResult", "de/d54/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_classifications_result.html", "de/d54/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_classifications_result" ]
     ] ],
     [ "ConceptsOptions.cs", "d2/d09/_concepts_options_8cs.html", [
       [ "ConceptsOptions", "da/d4a/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_concepts_options.html", "da/d4a/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_concepts_options" ]
@@ -75,12 +95,24 @@ var dir_1ee6794a256bb6e828d5ee9dbce895d9 =
     [ "KeywordsResult.cs", "d8/da7/_keywords_result_8cs.html", [
       [ "KeywordsResult", "d4/d79/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_keywords_result.html", "d4/d79/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_keywords_result" ]
     ] ],
+    [ "ListClassificationsModelsResponse.cs", "d9/dba/_list_classifications_models_response_8cs.html", [
+      [ "ListClassificationsModelsResponse", "d1/ddb/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_list_classifications_models_response.html", "d1/ddb/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_list_classifications_models_response" ]
+    ] ],
     [ "ListModelsResults.cs", "d7/d0c/_list_models_results_8cs.html", [
       [ "ListModelsResults", "d8/d5a/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_list_models_results.html", "d8/d5a/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_list_models_results" ]
+    ] ],
+    [ "ListSentimentModelsResponse.cs", "d3/df0/_list_sentiment_models_response_8cs.html", [
+      [ "ListSentimentModelsResponse", "da/d7b/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_list_sentiment_models_response.html", "da/d7b/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_list_sentiment_models_response" ]
+    ] ],
+    [ "MetadataOptions.cs", "d8/dd5/_metadata_options_8cs.html", [
+      [ "MetadataOptions", "d0/dbe/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_metadata_options.html", null ]
     ] ],
     [ "Model.cs", "db/d88/_model_8cs.html", [
       [ "Model", "de/ddd/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_model.html", "de/ddd/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_model" ],
       [ "StatusEnumValue", "d9/d8f/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_model_1_1_status_enum_value.html", "d9/d8f/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_model_1_1_status_enum_value" ]
+    ] ],
+    [ "Notice.cs", "db/dde/_i_b_m_8_watson_8_natural_language_understanding_8v1_2_model_2_notice_8cs.html", [
+      [ "Notice", "df/dbd/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_notice.html", "df/dbd/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_notice" ]
     ] ],
     [ "RelationArgument.cs", "d7/dc8/_relation_argument_8cs.html", [
       [ "RelationArgument", "d5/d06/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_relation_argument.html", "d5/d06/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_relation_argument" ]
@@ -121,11 +153,18 @@ var dir_1ee6794a256bb6e828d5ee9dbce895d9 =
     [ "SentenceResult.cs", "dd/d85/_sentence_result_8cs.html", [
       [ "SentenceResult", "dd/dbc/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentence_result.html", "dd/dbc/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentence_result" ]
     ] ],
+    [ "SentimentModel.cs", "d2/d4e/_sentiment_model_8cs.html", [
+      [ "SentimentModel", "d2/d70/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_model.html", "d2/d70/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_model" ],
+      [ "StatusEnumValue", "de/daa/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_model_1_1_status_enum_value.html", "de/daa/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_model_1_1_status_enum_value" ]
+    ] ],
     [ "SentimentOptions.cs", "d4/df8/_sentiment_options_8cs.html", [
       [ "SentimentOptions", "df/dc8/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_options.html", "df/dc8/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_options" ]
     ] ],
     [ "SentimentResult.cs", "d2/d0a/_sentiment_result_8cs.html", [
       [ "SentimentResult", "d6/d1b/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_result.html", "d6/d1b/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_result" ]
+    ] ],
+    [ "SummarizationOptions.cs", "de/ddd/_summarization_options_8cs.html", [
+      [ "SummarizationOptions", "da/d9f/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_summarization_options.html", "da/d9f/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_summarization_options" ]
     ] ],
     [ "SyntaxOptions.cs", "d8/d7f/_syntax_options_8cs.html", [
       [ "SyntaxOptions", "df/d77/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_syntax_options.html", "df/d77/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_syntax_options" ]

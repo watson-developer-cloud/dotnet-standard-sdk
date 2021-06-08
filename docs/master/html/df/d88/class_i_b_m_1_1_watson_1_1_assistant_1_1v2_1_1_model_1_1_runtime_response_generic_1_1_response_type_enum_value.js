@@ -1,4 +1,0 @@
-var class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_1_1_response_type_enum_value =
-[
-    [ "TEXT", "df/d88/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_1_1_response_type_enum_value.html#ab2e400bc24a43c8a283e70a091e35aa6", null ]
-];

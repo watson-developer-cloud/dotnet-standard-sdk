@@ -15,6 +15,15 @@ var dir_e05cd18fe37823e65ffef40a75ea096b =
     [ "CaptureGroup.cs", "d0/df2/_i_b_m_8_watson_8_assistant_8v2_2_model_2_capture_group_8cs.html", [
       [ "CaptureGroup", "dd/d23/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_capture_group.html", "dd/d23/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_capture_group" ]
     ] ],
+    [ "ChannelTransferInfo.cs", "db/ddb/_i_b_m_8_watson_8_assistant_8v2_2_model_2_channel_transfer_info_8cs.html", [
+      [ "ChannelTransferInfo", "da/db4/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_channel_transfer_info.html", "da/db4/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_channel_transfer_info" ]
+    ] ],
+    [ "ChannelTransferTarget.cs", "dc/d69/_i_b_m_8_watson_8_assistant_8v2_2_model_2_channel_transfer_target_8cs.html", [
+      [ "ChannelTransferTarget", "da/dd7/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_channel_transfer_target.html", "da/dd7/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_channel_transfer_target" ]
+    ] ],
+    [ "ChannelTransferTargetChat.cs", "d1/d21/_i_b_m_8_watson_8_assistant_8v2_2_model_2_channel_transfer_target_chat_8cs.html", [
+      [ "ChannelTransferTargetChat", "db/d8e/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_channel_transfer_target_chat.html", "db/d8e/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_channel_transfer_target_chat" ]
+    ] ],
     [ "DialogLogMessage.cs", "d4/df7/_dialog_log_message_8cs.html", [
       [ "DialogLogMessage", "dc/ded/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_log_message.html", "dc/ded/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_log_message" ],
       [ "LevelEnumValue", "dc/dde/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_log_message_1_1_level_enum_value.html", "dc/dde/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_dialog_log_message_1_1_level_enum_value" ]
@@ -46,6 +55,21 @@ var dir_e05cd18fe37823e65ffef40a75ea096b =
     ] ],
     [ "LogCollection.cs", "d7/d69/_i_b_m_8_watson_8_assistant_8v2_2_model_2_log_collection_8cs.html", [
       [ "LogCollection", "d0/d81/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_log_collection.html", "d0/d81/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_log_collection" ]
+    ] ],
+    [ "LogMessageSource.cs", "da/d88/_i_b_m_8_watson_8_assistant_8v2_2_model_2_log_message_source_8cs.html", [
+      [ "LogMessageSource", "df/d4e/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_log_message_source.html", "df/d4e/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_log_message_source" ]
+    ] ],
+    [ "LogMessageSourceAction.cs", "d2/d44/_log_message_source_action_8cs.html", [
+      [ "LogMessageSourceAction", "d8/d53/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_log_message_source_action.html", "d8/d53/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_log_message_source_action" ]
+    ] ],
+    [ "LogMessageSourceDialogNode.cs", "da/df3/_log_message_source_dialog_node_8cs.html", [
+      [ "LogMessageSourceDialogNode", "dd/dfc/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_log_message_source_dialog_node.html", "dd/dfc/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_log_message_source_dialog_node" ]
+    ] ],
+    [ "LogMessageSourceHandler.cs", "d6/d35/_log_message_source_handler_8cs.html", [
+      [ "LogMessageSourceHandler", "d1/d2e/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_log_message_source_handler.html", "d1/d2e/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_log_message_source_handler" ]
+    ] ],
+    [ "LogMessageSourceStep.cs", "d6/d5d/_log_message_source_step_8cs.html", [
+      [ "LogMessageSourceStep", "d2/dad/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_log_message_source_step.html", "d2/dad/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_log_message_source_step" ]
     ] ],
     [ "LogPagination.cs", "d2/dc4/_i_b_m_8_watson_8_assistant_8v2_2_model_2_log_pagination_8cs.html", [
       [ "LogPagination", "dc/d6e/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_log_pagination.html", "dc/d6e/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_log_pagination" ]
@@ -108,6 +132,9 @@ var dir_e05cd18fe37823e65ffef40a75ea096b =
     [ "MessageResponseStateless.cs", "db/d38/_message_response_stateless_8cs.html", [
       [ "MessageResponseStateless", "d4/d28/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_response_stateless.html", "d4/d28/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_response_stateless" ]
     ] ],
+    [ "ResponseGenericChannel.cs", "d6/d48/_i_b_m_8_watson_8_assistant_8v2_2_model_2_response_generic_channel_8cs.html", [
+      [ "ResponseGenericChannel", "d1/da6/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_response_generic_channel.html", "d1/da6/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_response_generic_channel" ]
+    ] ],
     [ "RuntimeEntity.cs", "dc/db3/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_entity_8cs.html", [
       [ "RuntimeEntity", "d3/d1f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_entity.html", "d3/d1f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_entity" ]
     ] ],
@@ -127,37 +154,35 @@ var dir_e05cd18fe37823e65ffef40a75ea096b =
     ] ],
     [ "RuntimeResponseGeneric.cs", "dd/dc7/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_response_generic_8cs.html", [
       [ "RuntimeResponseGeneric", "d0/d59/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic.html", "d0/d59/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic" ],
-      [ "ResponseTypeEnumValue", "df/d88/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_1_1_response_type_enum_value.html", "df/d88/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_1_1_response_type_enum_value" ],
       [ "PreferenceEnumValue", "d8/da2/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_1_1_preference_enum_value.html", "d8/da2/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_1_1_preference_enum_value" ]
     ] ],
+    [ "RuntimeResponseGenericRuntimeResponseTypeChannelTransfer.cs", "dc/d10/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_response_generic_runtime_response_type_channel_transfer_8cs.html", [
+      [ "RuntimeResponseGenericRuntimeResponseTypeChannelTransfer", "d1/df0/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_channel_transfer.html", "d1/df0/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_channel_transfer" ]
+    ] ],
     [ "RuntimeResponseGenericRuntimeResponseTypeConnectToAgent.cs", "d5/d20/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_response_generic_runtime_response_type_connect_to_agent_8cs.html", [
-      [ "RuntimeResponseGenericRuntimeResponseTypeConnectToAgent", "df/d90/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_connect_to_agent.html", "df/d90/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_connect_to_agent" ],
-      [ "ResponseTypeEnumValue", "d1/dbe/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_respon4d64d5f0af77018987858fdb6b038da1.html", "d1/dbe/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_respon4d64d5f0af77018987858fdb6b038da1" ]
+      [ "RuntimeResponseGenericRuntimeResponseTypeConnectToAgent", "df/d90/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_connect_to_agent.html", "df/d90/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_connect_to_agent" ]
     ] ],
     [ "RuntimeResponseGenericRuntimeResponseTypeImage.cs", "d4/d8c/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_response_generic_runtime_response_type_image_8cs.html", [
-      [ "RuntimeResponseGenericRuntimeResponseTypeImage", "d3/d2b/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_image.html", "d3/d2b/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_image" ],
-      [ "ResponseTypeEnumValue", "dc/d8b/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_respon270b8c93edd76466a3bbb1ae0f788c96.html", "dc/d8b/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_respon270b8c93edd76466a3bbb1ae0f788c96" ]
+      [ "RuntimeResponseGenericRuntimeResponseTypeImage", "d3/d2b/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_image.html", "d3/d2b/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_image" ]
     ] ],
     [ "RuntimeResponseGenericRuntimeResponseTypeOption.cs", "d4/def/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_response_generic_runtime_response_type_option_8cs.html", [
       [ "RuntimeResponseGenericRuntimeResponseTypeOption", "da/d50/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_option.html", "da/d50/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_option" ],
-      [ "ResponseTypeEnumValue", "d4/def/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_responfedcb798bacbd6ca45b7f5e5bf33f189.html", "d4/def/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_responfedcb798bacbd6ca45b7f5e5bf33f189" ],
       [ "PreferenceEnumValue", "dd/d57/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_respon72b2011df54d9a9e9b88d755ca42659d.html", "dd/d57/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_respon72b2011df54d9a9e9b88d755ca42659d" ]
     ] ],
     [ "RuntimeResponseGenericRuntimeResponseTypePause.cs", "d1/dba/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_response_generic_runtime_response_type_pause_8cs.html", [
-      [ "RuntimeResponseGenericRuntimeResponseTypePause", "d0/dbc/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_pause.html", "d0/dbc/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_pause" ],
-      [ "ResponseTypeEnumValue", "db/da6/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_respon148859719b7c5397de938643984ddb85.html", "db/da6/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_respon148859719b7c5397de938643984ddb85" ]
+      [ "RuntimeResponseGenericRuntimeResponseTypePause", "d0/dbc/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_pause.html", "d0/dbc/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_pause" ]
     ] ],
     [ "RuntimeResponseGenericRuntimeResponseTypeSearch.cs", "db/db8/_runtime_response_generic_runtime_response_type_search_8cs.html", [
-      [ "RuntimeResponseGenericRuntimeResponseTypeSearch", "d3/d8d/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_search.html", "d3/d8d/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_search" ],
-      [ "ResponseTypeEnumValue", "da/dec/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_responf5867aac77ead970112d1ce95e6356f8.html", "da/dec/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_responf5867aac77ead970112d1ce95e6356f8" ]
+      [ "RuntimeResponseGenericRuntimeResponseTypeSearch", "d3/d8d/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_search.html", "d3/d8d/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_search" ]
     ] ],
     [ "RuntimeResponseGenericRuntimeResponseTypeSuggestion.cs", "d5/d08/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_response_generic_runtime_response_type_suggestion_8cs.html", [
-      [ "RuntimeResponseGenericRuntimeResponseTypeSuggestion", "dc/ddc/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_suggestion.html", "dc/ddc/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_suggestion" ],
-      [ "ResponseTypeEnumValue", "d8/d5b/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_respon124d36b204463ddfeb80b1f12d2982dd.html", "d8/d5b/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_respon124d36b204463ddfeb80b1f12d2982dd" ]
+      [ "RuntimeResponseGenericRuntimeResponseTypeSuggestion", "dc/ddc/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_suggestion.html", "dc/ddc/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_suggestion" ]
     ] ],
     [ "RuntimeResponseGenericRuntimeResponseTypeText.cs", "db/d58/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_response_generic_runtime_response_type_text_8cs.html", [
-      [ "RuntimeResponseGenericRuntimeResponseTypeText", "d7/da0/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_text.html", "d7/da0/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_text" ],
-      [ "ResponseTypeEnumValue", "db/d69/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_respon8061ab8472eb8fa60e59659b91c4348f.html", "db/d69/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_respon8061ab8472eb8fa60e59659b91c4348f" ]
+      [ "RuntimeResponseGenericRuntimeResponseTypeText", "d7/da0/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_text.html", "d7/da0/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_text" ]
+    ] ],
+    [ "RuntimeResponseGenericRuntimeResponseTypeUserDefined.cs", "d0/d95/_i_b_m_8_watson_8_assistant_8v2_2_model_2_runtime_response_generic_runtime_response_type_user_defined_8cs.html", [
+      [ "RuntimeResponseGenericRuntimeResponseTypeUserDefined", "d9/de9/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_user_defined.html", "d9/de9/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_user_defined" ]
     ] ],
     [ "SearchResult.cs", "de/d53/_search_result_8cs.html", [
       [ "SearchResult", "d1/dac/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result.html", "d1/dac/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result" ]

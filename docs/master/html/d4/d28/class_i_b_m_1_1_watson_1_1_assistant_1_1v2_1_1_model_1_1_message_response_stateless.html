@@ -106,6 +106,9 @@ Properties</h2></td></tr>
 <tr class="memitem:ae781e2f15e273aedfd6be659839a65ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/d62/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_stateless.html">MessageContextStateless</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d28/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_response_stateless.html#ae781e2f15e273aedfd6be659839a65ee">Context</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:ae781e2f15e273aedfd6be659839a65ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Context data for the conversation. You can use this property to access context variables. The context is not stored by the assistant; to maintain session state, include the context from the response in the next message.  <a href="#ae781e2f15e273aedfd6be659839a65ee">More...</a><br /></td></tr>
 <tr class="separator:ae781e2f15e273aedfd6be659839a65ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add71ba1498de7e4e1eca36c6b6e202cc"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d28/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_response_stateless.html#add71ba1498de7e4e1eca36c6b6e202cc">UserId</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:add71ba1498de7e4e1eca36c6b6e202cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">A string value that identifies the user who is interacting with the assistant. The client must provide a unique identifier for each individual end user who accesses the application. For user-based plans, this user ID is used to identify unique users for billing purposes. This string cannot contain carriage return, newline, or tab characters. If no value is specified in the input, <b>user_id</b> is automatically set to the value of <b>context.global.session_id</b>.  <a href="#add71ba1498de7e4e1eca36c6b6e202cc">More...</a><br /></td></tr>
+<tr class="separator:add71ba1498de7e4e1eca36c6b6e202cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A stateless response from the <a class="el" href="../../d2/d15/namespace_i_b_m_1_1_watson.html">Watson</a> <a class="el" href="../../d7/d94/namespace_i_b_m_1_1_watson_1_1_assistant.html">Assistant</a> service. </p>
@@ -155,6 +158,31 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p><a class="el" href="../../d7/d94/namespace_i_b_m_1_1_watson_1_1_assistant.html">Assistant</a> output to be rendered or processed by the client. </p>
+
+</div>
+</div>
+<a id="add71ba1498de7e4e1eca36c6b6e202cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add71ba1498de7e4e1eca36c6b6e202cc">&#9670;&nbsp;</a></span>UserId</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string IBM.Watson.Assistant.v2.Model.MessageResponseStateless.UserId</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A string value that identifies the user who is interacting with the assistant. The client must provide a unique identifier for each individual end user who accesses the application. For user-based plans, this user ID is used to identify unique users for billing purposes. This string cannot contain carriage return, newline, or tab characters. If no value is specified in the input, <b>user_id</b> is automatically set to the value of <b>context.global.session_id</b>. </p>
+<p><b>Note:</b> This property is the same as the <b>user_id</b> property in the global system context. </p>
 
 </div>
 </div>

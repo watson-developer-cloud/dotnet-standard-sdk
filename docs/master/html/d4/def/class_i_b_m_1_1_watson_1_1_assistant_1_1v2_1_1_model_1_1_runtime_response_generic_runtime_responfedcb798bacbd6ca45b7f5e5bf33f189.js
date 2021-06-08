@@ -1,4 +1,0 @@
-var class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_responfedcb798bacbd6ca45b7f5e5bf33f189 =
-[
-    [ "OPTION", "d4/def/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_responfedcb798bacbd6ca45b7f5e5bf33f189.html#a4cef8d05bdb19dc4f64b017908fa772d", null ]
-];

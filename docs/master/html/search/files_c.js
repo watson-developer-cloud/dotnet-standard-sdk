@@ -17,5 +17,5 @@ var searchData=
   ['nluenrichmentsemanticroles_2ecs',['NluEnrichmentSemanticRoles.cs',['../dd/d6c/_nlu_enrichment_semantic_roles_8cs.html',1,'']]],
   ['nluenrichmentsentiment_2ecs',['NluEnrichmentSentiment.cs',['../d8/dbd/_nlu_enrichment_sentiment_8cs.html',1,'']]],
   ['normalizationoperation_2ecs',['NormalizationOperation.cs',['../da/da7/_normalization_operation_8cs.html',1,'']]],
-  ['notice_2ecs',['Notice.cs',['../d5/da9/_i_b_m_8_watson_8_discovery_8v1_2_model_2_notice_8cs.html',1,'(Global Namespace)'],['../d0/d50/_i_b_m_8_watson_8_discovery_8v2_2_model_2_notice_8cs.html',1,'(Global Namespace)']]]
+  ['notice_2ecs',['Notice.cs',['../d5/da9/_i_b_m_8_watson_8_discovery_8v1_2_model_2_notice_8cs.html',1,'(Global Namespace)'],['../d0/d50/_i_b_m_8_watson_8_discovery_8v2_2_model_2_notice_8cs.html',1,'(Global Namespace)'],['../db/dde/_i_b_m_8_watson_8_natural_language_understanding_8v1_2_model_2_notice_8cs.html',1,'(Global Namespace)']]]
 ];

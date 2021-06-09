@@ -1,0 +1,5 @@
+var class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_respon72b2011df54d9a9e9b88d755ca42659d =
+[
+    [ "BUTTON", "dd/d57/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_respon72b2011df54d9a9e9b88d755ca42659d.html#ac5cff8990fa670b927302cfc532fe90b", null ],
+    [ "DROPDOWN", "dd/d57/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_respon72b2011df54d9a9e9b88d755ca42659d.html#ae2a8c2c3c60982e18d235970e37c2759", null ]
+];

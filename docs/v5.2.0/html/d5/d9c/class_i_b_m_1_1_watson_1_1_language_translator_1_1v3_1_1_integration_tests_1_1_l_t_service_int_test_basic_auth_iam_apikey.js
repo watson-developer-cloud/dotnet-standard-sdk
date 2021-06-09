@@ -1,0 +1,8 @@
+var class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_integration_tests_1_1_l_t_service_int_test_basic_auth_iam_apikey =
+[
+    [ "GetIdentifiableLanguages_Sucess_IamAsBasicAuth", "d5/d9c/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_integration_tests_1_1_l_t_service_int_test_basic_auth_iam_apikey.html#afb6f651dc15dc5f6858995938e2125d2", null ],
+    [ "Identify_Sucess_IamAsBasicAuth", "d5/d9c/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_integration_tests_1_1_l_t_service_int_test_basic_auth_iam_apikey.html#a96b93607bfc93090e8b57ccf41cbe6b3", null ],
+    [ "ListModels_Sucess_IamAsBasicAuth", "d5/d9c/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_integration_tests_1_1_l_t_service_int_test_basic_auth_iam_apikey.html#a48e42b45db8c4132424118c5eaf7af88", null ],
+    [ "Setup", "d5/d9c/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_integration_tests_1_1_l_t_service_int_test_basic_auth_iam_apikey.html#a8192643ad7226cc2a4eb386117fe6b01", null ],
+    [ "Translate_Sucess_IamAsBasicAuth", "d5/d9c/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_integration_tests_1_1_l_t_service_int_test_basic_auth_iam_apikey.html#a51ff6b45cf2539ed69ba51de2e540711", null ]
+];

@@ -1,0 +1,4 @@
+var class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service_1_1_get_metrics_query_enums_1_1_result_type_value =
+[
+    [ "DOCUMENT", "de/d1e/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_discovery_service_1_1_get_metrics_query_enums_1_1_result_type_value.html#a5e9e91b33938429729ba54835e5e2ab3", null ]
+];

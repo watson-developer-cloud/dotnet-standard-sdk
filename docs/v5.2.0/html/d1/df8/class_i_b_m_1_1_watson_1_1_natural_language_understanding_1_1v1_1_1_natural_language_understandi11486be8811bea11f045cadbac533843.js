@@ -1,0 +1,5 @@
+var class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understandi11486be8811bea11f045cadbac533843 =
+[
+    [ "APPLICATION_JSON", "d1/df8/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understandi11486be8811bea11f045cadbac533843.html#a9ad3082512b8dbf12f12b7d67a929b28", null ],
+    [ "JSON", "d1/df8/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understandi11486be8811bea11f045cadbac533843.html#a50ea1fea936a9788ff2e2751cea2629a", null ]
+];

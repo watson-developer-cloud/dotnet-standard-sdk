@@ -14,7 +14,7 @@ environment:
     CRED_SECRET:
         secure: eEcA/09B7XzeTSb3GlaeqcWfQ/TemXxAq9/0AFM5+z8= #pragma: whitelist secret
     CREDENTIALS_GITHUB_TOKEN:
-        secure: Zkh0ZB9E5PB/Kq5maKln+aKSH0xqDjR2LTDaJRmMaUYVOV7nzYsON4KlkqCKCgGs #pragma: whitelist secret
+        secure: J5kZIIRdDc9t2F9HtbURdy2kQlrGQoY1QiGTcuttxd8kbMqYqNLhUX3IvlysRcJo #pragma: whitelist secret
     GITHUB_TOKEN:
         secure: t+mZcwVcfpNd/WhDqprKgG5TXWZLYQZ3SeEPjewueFBlvpMmUKnxoQsNmIii+5eu #pragma: whitelist secret
     IBM_CREDENTIALS_FILE: C:/projects/sdk-credentials/ibm-credentials.env

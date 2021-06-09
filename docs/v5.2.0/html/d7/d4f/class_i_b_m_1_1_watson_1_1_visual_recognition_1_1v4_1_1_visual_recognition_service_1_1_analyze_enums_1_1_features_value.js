@@ -1,0 +1,4 @@
+var class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_visual_recognition_service_1_1_analyze_enums_1_1_features_value =
+[
+    [ "OBJECTS", "d7/d4f/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_visual_recognition_service_1_1_analyze_enums_1_1_features_value.html#a1e3e66895861d478ab34243c3ed350d6", null ]
+];

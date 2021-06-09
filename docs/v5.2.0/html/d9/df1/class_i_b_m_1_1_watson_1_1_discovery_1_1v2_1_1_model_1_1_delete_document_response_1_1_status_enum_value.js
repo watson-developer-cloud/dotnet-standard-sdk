@@ -1,0 +1,4 @@
+var class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_delete_document_response_1_1_status_enum_value =
+[
+    [ "DELETED", "d9/df1/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_delete_document_response_1_1_status_enum_value.html#a5f2aeef559d566033dbb03e3162fa42f", null ]
+];

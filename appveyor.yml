@@ -10,13 +10,13 @@ environment:
     COVERALLS_REPO_TOKEN:
         secure: Dnsrk2n+VNE4swcbTLXpfnHwUwTWT8TqMiMkthU6mq/ohNq9dA2rrSA6kdLDBKME  #pragma: whitelist secret
     WPS_GITHUB_TOKEN:
-        secure: dQC0NXlIJIGl3A0A45uVsqq8pFjCisYd1otn3iW2Tfy4UZJ7J5PVOYJWXU3ZGG7k #pragma: whitelist secret
+        secure: t+mZcwVcfpNd/WhDqprKgG5TXWZLYQZ3SeEPjewueFBlvpMmUKnxoQsNmIii+5eu #pragma: whitelist secret
     CRED_SECRET:
         secure: eEcA/09B7XzeTSb3GlaeqcWfQ/TemXxAq9/0AFM5+z8= #pragma: whitelist secret
     CREDENTIALS_GITHUB_TOKEN:
-        secure: E3HZQc98lMaFn9BQXf2XxaYCkA7C9f8/Vjw+JBawgM7uNhI2fBO99cJ9CXiWqnHn #pragma: whitelist secret
+        secure: Zkh0ZB9E5PB/Kq5maKln+aKSH0xqDjR2LTDaJRmMaUYVOV7nzYsON4KlkqCKCgGs #pragma: whitelist secret
     GITHUB_TOKEN:
-        secure: dQC0NXlIJIGl3A0A45uVsqq8pFjCisYd1otn3iW2Tfy4UZJ7J5PVOYJWXU3ZGG7k #pragma: whitelist secret
+        secure: t+mZcwVcfpNd/WhDqprKgG5TXWZLYQZ3SeEPjewueFBlvpMmUKnxoQsNmIii+5eu #pragma: whitelist secret
     IBM_CREDENTIALS_FILE: C:/projects/sdk-credentials/ibm-credentials.env
 install:
 # Get the latest stable version of Node.js or io.js
@@ -71,7 +71,7 @@ after_build:
 - ps: >-
     git config --global user.email "watdevex@us.ibm.com"
 
-    git config --global user.name "Watdevex"
+    git config --global user.name "Watson Github Bot"
 
     if(!$env:APPVEYOR_REPO_TAG_NAME)
 

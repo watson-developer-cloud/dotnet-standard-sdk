@@ -1,3 +1,19 @@
+# [5.2.0](https://github.com/watson-developer-cloud/dotnet-standard-sdk/compare/v5.1.0...v5.2.0) (2021-06-09)
+
+
+### Bug Fixes
+
+* **appveyor:** update appveyor env variables ([2807fa5](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/2807fa5552874a6351c165f355d7fab3443dda87))
+* **appveyor:** update credentials ([1e2a691](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/1e2a6912293ccb50e84c5ff7a181038aedcedc8a))
+* **appveyor:** update sdk-credentials ([39b025f](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/39b025f1b8406c3d80a3ebd2c43ae67f168c2bae))
+* **readme:** trigger release ([af21e9e](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/af21e9eb6811c5340140aae20edb4211386c1cc3))
+* **text-to-speech-v1:** generated using api def sdk-2021-05-11-rerelease and gen 3.31.0 ([0e2378a](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/0e2378a4370312db75084677f4c869cd03fa2f55))
+
+
+### Features
+
+* **generation:** generated using api def sdk-2021-05-11 & gen 3.31.0 ([7cca912](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/7cca912bdce601135bc29dbb89530803299d71df))
+
 # [5.1.0](https://github.com/watson-developer-cloud/dotnet-standard-sdk/compare/v5.0.1...v5.1.0) (2021-02-16)
 
 

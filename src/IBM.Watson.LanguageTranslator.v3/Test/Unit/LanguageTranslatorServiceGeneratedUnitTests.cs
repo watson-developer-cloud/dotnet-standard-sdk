@@ -55,7 +55,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
         {
             var apikey = System.Environment.GetEnvironmentVariable("LANGUAGE_TRANSLATOR_APIKEY");
             System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_APIKEY", "apikey");
-            LanguageTranslatorService service = Substitute.For<LanguageTranslatorService>("versionDate");
+            LanguageTranslatorService service = Substitute.For<LanguageTranslatorService>("versionDate", null);
             Assert.IsNotNull(service);
             System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_APIKEY", apikey);
         }
@@ -87,7 +87,7 @@ namespace IBM.Watson.LanguageTranslator.v3.UnitTests
             System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_APIKEY", "apikey");
             var url = System.Environment.GetEnvironmentVariable("LANGUAGE_TRANSLATOR_URL");
             System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_URL", null);
-            LanguageTranslatorService service = Substitute.For<LanguageTranslatorService>("versionDate");
+            LanguageTranslatorService service = Substitute.For<LanguageTranslatorService>("versionDate", null);
             Assert.IsTrue(service.ServiceUrl == "https://api.us-south.language-translator.watson.cloud.ibm.com");
             System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_URL", url);
             System.Environment.SetEnvironmentVariable("LANGUAGE_TRANSLATOR_APIKEY", apikey);

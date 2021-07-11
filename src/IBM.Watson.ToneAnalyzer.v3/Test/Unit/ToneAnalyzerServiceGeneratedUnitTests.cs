@@ -55,7 +55,7 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
         {
             var apikey = System.Environment.GetEnvironmentVariable("TONE_ANALYZER_APIKEY");
             System.Environment.SetEnvironmentVariable("TONE_ANALYZER_APIKEY", "apikey");
-            ToneAnalyzerService service = Substitute.For<ToneAnalyzerService>("versionDate");
+            ToneAnalyzerService service = Substitute.For<ToneAnalyzerService>("versionDate", null);
             Assert.IsNotNull(service);
             System.Environment.SetEnvironmentVariable("TONE_ANALYZER_APIKEY", apikey);
         }
@@ -87,7 +87,7 @@ namespace IBM.Watson.ToneAnalyzer.v3.UnitTests
             System.Environment.SetEnvironmentVariable("TONE_ANALYZER_APIKEY", "apikey");
             var url = System.Environment.GetEnvironmentVariable("TONE_ANALYZER_URL");
             System.Environment.SetEnvironmentVariable("TONE_ANALYZER_URL", null);
-            ToneAnalyzerService service = Substitute.For<ToneAnalyzerService>("versionDate");
+            ToneAnalyzerService service = Substitute.For<ToneAnalyzerService>("versionDate", null);
             Assert.IsTrue(service.ServiceUrl == "https://api.us-south.tone-analyzer.watson.cloud.ibm.com");
             System.Environment.SetEnvironmentVariable("TONE_ANALYZER_URL", url);
             System.Environment.SetEnvironmentVariable("TONE_ANALYZER_APIKEY", apikey);

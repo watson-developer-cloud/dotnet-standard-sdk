@@ -55,7 +55,7 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
         {
             var apikey = System.Environment.GetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY");
             System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY", "apikey");
-            VisualRecognitionService service = Substitute.For<VisualRecognitionService>("versionDate");
+            VisualRecognitionService service = Substitute.For<VisualRecognitionService>("versionDate", null);
             Assert.IsNotNull(service);
             System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY", apikey);
         }
@@ -87,7 +87,7 @@ namespace IBM.Watson.VisualRecognition.v3.UnitTests
             System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY", "apikey");
             var url = System.Environment.GetEnvironmentVariable("VISUAL_RECOGNITION_URL");
             System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_URL", null);
-            VisualRecognitionService service = Substitute.For<VisualRecognitionService>("versionDate");
+            VisualRecognitionService service = Substitute.For<VisualRecognitionService>("versionDate", null);
             Assert.IsTrue(service.ServiceUrl == "https://api.us-south.visual-recognition.watson.cloud.ibm.com");
             System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_URL", url);
             System.Environment.SetEnvironmentVariable("VISUAL_RECOGNITION_APIKEY", apikey);

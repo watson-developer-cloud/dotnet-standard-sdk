@@ -29,6 +29,7 @@ using IBM.Watson.ToneAnalyzer.v3.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Net;
 
 namespace IBM.Watson.ToneAnalyzer.v3
 {
@@ -38,12 +39,12 @@ namespace IBM.Watson.ToneAnalyzer.v3
         private const string defaultServiceUrl = "https://api.us-south.tone-analyzer.watson.cloud.ibm.com";
         public string Version { get; set; }
 
-        public ToneAnalyzerService(string version) : this(version, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
-        public ToneAnalyzerService(string version, IAuthenticator authenticator) : this(version, defaultServiceName, authenticator) {}
-        public ToneAnalyzerService(string version, string serviceName) : this(version, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public ToneAnalyzerService(string version, WebProxy webProxy = null) : this(version, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName), webProxy) { }
+        public ToneAnalyzerService(string version, IAuthenticator authenticator, WebProxy webProxy = null) : this(version, defaultServiceName, authenticator, webProxy) {}
+        public ToneAnalyzerService(string version, string serviceName, WebProxy webProxy = null) : this(version, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName), webProxy) { }
         public ToneAnalyzerService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public ToneAnalyzerService(string version, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
+        public ToneAnalyzerService(string version, string serviceName, IAuthenticator authenticator, WebProxy webProxy = null) : base(serviceName, authenticator, webProxy)
         {
             if (string.IsNullOrEmpty(version))
             {

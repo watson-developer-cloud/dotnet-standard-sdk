@@ -32,6 +32,7 @@ using IBM.Watson.VisualRecognition.v4.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Net;
 
 namespace IBM.Watson.VisualRecognition.v4
 {
@@ -44,12 +45,12 @@ namespace IBM.Watson.VisualRecognition.v4
         private const string defaultServiceUrl = "https://api.us-south.visual-recognition.watson.cloud.ibm.com";
         public string Version { get; set; }
 
-        public VisualRecognitionService(string version) : this(version, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
-        public VisualRecognitionService(string version, IAuthenticator authenticator) : this(version, defaultServiceName, authenticator) {}
-        public VisualRecognitionService(string version, string serviceName) : this(version, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public VisualRecognitionService(string version, WebProxy webProxy = null) : this(version, defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName), webProxy) { }
+        public VisualRecognitionService(string version, IAuthenticator authenticator, WebProxy webProxy = null) : this(version, defaultServiceName, authenticator, webProxy) {}
+        public VisualRecognitionService(string version, string serviceName, WebProxy webProxy = null) : this(version, serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName), webProxy) { }
         public VisualRecognitionService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public VisualRecognitionService(string version, string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
+        public VisualRecognitionService(string version, string serviceName, IAuthenticator authenticator, WebProxy webProxy = null) : base(serviceName, authenticator, webProxy)
         {
             if (string.IsNullOrEmpty(version))
             {

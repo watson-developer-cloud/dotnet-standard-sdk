@@ -55,7 +55,7 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
         {
             var apikey = System.Environment.GetEnvironmentVariable("SPEECH_TO_TEXT_APIKEY");
             System.Environment.SetEnvironmentVariable("SPEECH_TO_TEXT_APIKEY", "apikey");
-            SpeechToTextService service = Substitute.For<SpeechToTextService>();
+            SpeechToTextService service = Substitute.For<SpeechToTextService>(new WebProxy());
             Assert.IsNotNull(service);
             System.Environment.SetEnvironmentVariable("SPEECH_TO_TEXT_APIKEY", apikey);
         }
@@ -81,7 +81,7 @@ namespace IBM.Watson.SpeechToText.v1.UnitTests
             System.Environment.SetEnvironmentVariable("SPEECH_TO_TEXT_APIKEY", "apikey");
             var url = System.Environment.GetEnvironmentVariable("SPEECH_TO_TEXT_URL");
             System.Environment.SetEnvironmentVariable("SPEECH_TO_TEXT_URL", null);
-            SpeechToTextService service = Substitute.For<SpeechToTextService>();
+            SpeechToTextService service = Substitute.For<SpeechToTextService>(new WebProxy());
             Assert.IsTrue(service.ServiceUrl == "https://api.us-south.speech-to-text.watson.cloud.ibm.com");
             System.Environment.SetEnvironmentVariable("SPEECH_TO_TEXT_URL", url);
             System.Environment.SetEnvironmentVariable("SPEECH_TO_TEXT_APIKEY", apikey);

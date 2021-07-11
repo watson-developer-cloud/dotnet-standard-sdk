@@ -31,6 +31,7 @@ using IBM.Watson.SpeechToText.v1.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Net;
 
 namespace IBM.Watson.SpeechToText.v1
 {
@@ -39,12 +40,12 @@ namespace IBM.Watson.SpeechToText.v1
         const string defaultServiceName = "speech_to_text";
         private const string defaultServiceUrl = "https://api.us-south.speech-to-text.watson.cloud.ibm.com";
 
-        public SpeechToTextService() : this(defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName)) { }
-        public SpeechToTextService(IAuthenticator authenticator) : this(defaultServiceName, authenticator) {}
-        public SpeechToTextService(string serviceName) : this(serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName)) { }
+        public SpeechToTextService(WebProxy webProxy = null) : this(defaultServiceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(defaultServiceName), webProxy) { }
+        public SpeechToTextService(IAuthenticator authenticator, WebProxy webProxy = null) : this(defaultServiceName, authenticator, webProxy) {}
+        public SpeechToTextService(string serviceName, WebProxy webProxy = null) : this(serviceName, ConfigBasedAuthenticatorFactory.GetAuthenticator(serviceName), webProxy) { }
         public SpeechToTextService(IClient httpClient) : base(defaultServiceName, httpClient) { }
 
-        public SpeechToTextService(string serviceName, IAuthenticator authenticator) : base(serviceName, authenticator)
+        public SpeechToTextService(string serviceName, IAuthenticator authenticator, WebProxy webProxy = null) : base(serviceName, authenticator, webProxy)
         {
 
             if (string.IsNullOrEmpty(ServiceUrl))

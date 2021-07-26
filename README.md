@@ -8,23 +8,6 @@
 
 The .NET Standard SDK uses [Watson][wdc] services, a collection of REST APIs that use cognitive computing to solve complex problems.
 
-## Table of Contents
-* [Before you begin](#before-you-begin)
-* [Installing the Watson .NET Standard SDK](#installing-the-watson-net-standard-sdk)
-* [.NET Standard 2.0](#net-standard-20)
-* [Authentication](#authentication)
-* [Custom Request Headers](#custom-request-headers)
-* [Response Headers, Status Code and Raw Json](#response-headers-status-code-and-raw-json)
-* [Self signed certificates](#self-signed-certificates)
-* [Discovery V2](#discovery-v2)
-* [Transaction IDs](#transactio-ids)
-* [Use behind a proxy](#use-behind-a-proxy)
-* [Documentation](#documentation)
-* [Questions](#questions)
-* [Open Source @ IBM](#open-source--ibm)
-* [License](#license)
-* [Contributing](#contributing)
-
 ## Announcements
 ### Updating endpoint URLs from watsonplatform.net
 Watson API endpoint URLs at watsonplatform.net are changing and will not work after 26 May 2021. Update your calls to use the newer endpoint URLs. For more information, see https://cloud.ibm.com/docs/watson?topic=watson-endpoint-change.
@@ -239,9 +222,6 @@ void Example()
 }
 ```
 
-## Discovery V2
-Discovery v2 is only available on Cloud Pak for Data.
-
 ## Transaction IDs
 Every SDK call returns a response with a transaction ID in the `X-Global-Transaction-Id` header. Together the service instance region, this ID helps support teams troubleshoot issues from relevant logs.
 
@@ -316,7 +296,7 @@ We'd love to highlight cool open-source projects that use this SDK! If you'd lik
 [dw-answers]: https://developer.ibm.com/answers/questions/ask/?topics=watson
 [stack-overflow]: http://stackoverflow.com/questions/ask?tags=ibm-watson
 
-[discovery]: https://www.ibm.com/watson/developercloud/discovery/api/v1/
+[discovery]: https://www.ibm.com/cloud/watson-discovery
 [language_translator]: https://www.ibm.com/watson/developercloud/language-translator/api/v2/
 [natural_language_understanding]: https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/
 [personality_insights]: https://www.ibm.com/watson/developercloud/personality-insights/api/v2/

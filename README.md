@@ -35,14 +35,14 @@ This SDK provides classes and methods to access the following Watson services:
 
 * [Assistant](https://www.ibm.com/cloud/watson-assistant)
 * [Compare Comply](https://www.ibm.com/cloud/compare-and-comply)
-* [Discovery](https://www.ibm.com/watson/services/discovery)
-* [Language Translator](https://www.ibm.com/watson/services/language-translator)
-* [Natural Language Understanding](https://www.ibm.com/watson/services/natural-language-understanding)
+* [Discovery](https://www.ibm.com/cloud/discovery)
+* [Language Translator](https://www.ibm.com/cloud/watson-language-translator)
+* [Natural Language Understanding](https://www.ibm.com/cloud/watson-natural-language-understanding)
 * [Natural Language Classifier](https://www.ibm.com/watson/services/natural-language-classifier)
 * [Personality Insights](https://www.ibm.com/watson/services/personality-insights)
-* [Speech to Text](https://www.ibm.com/watson/services/speech-to-text)
-* [Text to Speech](https://www.ibm.com/watson/services/text-to-speech)
-* [Tone Analyzer](https://www.ibm.com/watson/services/tone-analyzer)
+* [Speech to Text](https://www.ibm.com/cloud/watson-speech-to-text)
+* [Text to Speech](https://www.ibm.com/cloud/text-to-speech)
+* [Tone Analyzer](https://www.ibm.com/cloud/watson-tone-analyzer)
 * [Visual Recognition](https://www.ibm.com/watson/services/visual-recognition)
 
 You can get the latest SDK packages through [NuGet](https://www.nuget.org) or manually [here][latest_release].
@@ -296,7 +296,6 @@ We'd love to highlight cool open-source projects that use this SDK! If you'd lik
 [dw-answers]: https://developer.ibm.com/answers/questions/ask/?topics=watson
 [stack-overflow]: http://stackoverflow.com/questions/ask?tags=ibm-watson
 
-[discovery]: https://www.ibm.com/cloud/watson-discovery
 [language_translator]: https://www.ibm.com/watson/developercloud/language-translator/api/v2/
 [natural_language_understanding]: https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/
 [personality_insights]: https://www.ibm.com/watson/developercloud/personality-insights/api/v2/

@@ -43,7 +43,7 @@ This SDK provides classes and methods to access the following Watson services:
 * [Speech to Text](https://www.ibm.com/cloud/watson-speech-to-text)
 * [Text to Speech](https://www.ibm.com/cloud/text-to-speech)
 * [Tone Analyzer](https://www.ibm.com/cloud/watson-tone-analyzer)
-* [Visual Recognition](https://www.ibm.com/watson/services/visual-recognition)
+* Visual Recognition (deprecated)
 
 You can get the latest SDK packages through [NuGet](https://www.nuget.org) or manually [here][latest_release].
 

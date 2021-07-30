@@ -35,7 +35,7 @@ This SDK provides classes and methods to access the following Watson services:
 
 * [Assistant](https://www.ibm.com/cloud/watson-assistant)
 * [Compare Comply](https://www.ibm.com/cloud/compare-and-comply)
-* [Discovery](https://www.ibm.com/cloud/discovery)
+* [Discovery](https://www.ibm.com/cloud/watson-discovery)
 * [Language Translator](https://www.ibm.com/cloud/watson-language-translator)
 * [Natural Language Understanding](https://www.ibm.com/cloud/watson-natural-language-understanding)
 * [Natural Language Classifier](https://www.ibm.com/watson/services/natural-language-classifier)

@@ -41,7 +41,7 @@ This SDK provides classes and methods to access the following Watson services:
 * [Natural Language Classifier](https://www.ibm.com/cloud/watson-natural-language-classifier)
 * Personality Insights (deprecated)
 * [Speech to Text](https://www.ibm.com/cloud/watson-speech-to-text)
-* [Text to Speech](https://www.ibm.com/cloud/text-to-speech)
+* [Text to Speech](https://www.ibm.com/cloud/watson-text-to-speech)
 * [Tone Analyzer](https://www.ibm.com/cloud/watson-tone-analyzer)
 * Visual Recognition (deprecated)
 

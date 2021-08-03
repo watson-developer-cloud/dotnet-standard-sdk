@@ -49,8 +49,8 @@ jobs:
 
     - name: Build
       run: |
-        echo -e "\nCommand: msbuild IBM.Watson.sln"
-        msbuild IBM.Watson.sln /verbosity:minimal
+#        echo -e "\nCommand: msbuild IBM.Watson.sln"
+#        msbuild IBM.Watson.sln /verbosity:minimal
         echo -e "\nCommand: dotnet build"
         dotnet build --no-restore
 

@@ -21,7 +21,7 @@ jobs:
     strategy:
       matrix:
         dotnet-version: ['5.0.x']
-        os: [windows-latest]
+        os: [ubuntu-latest]
 
     steps:
     - uses: actions/checkout@v2

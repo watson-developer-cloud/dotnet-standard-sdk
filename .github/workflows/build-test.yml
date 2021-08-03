@@ -54,4 +54,6 @@ jobs:
       run: dotnet build --no-restore
 
     - name: Unit Test
-      run: dotnet test src/IBM.Watson.Assistant.v1/Test/Unit
+      run: |
+        dotnet test --no-build --verbosity normal src/IBM.Watson.Assistant.v1/Test/Unit
+        dotnet test --no-build --verbosity normal src/IBM.Watson.Assistant.v2/Test/Unit

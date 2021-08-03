@@ -48,7 +48,7 @@ jobs:
       run: dotnet restore
 
     - name: Build
-      run: msbuild "C:\projects\dotnet-standard-sdk\IBM.Watson.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+      run: msbuild IBM.Watson.sln /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 
     - name: Test
       run: |

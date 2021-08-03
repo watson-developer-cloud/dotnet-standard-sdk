@@ -31,11 +31,27 @@ jobs:
       with:
         dotnet-version: ${{ matrix.dotnet-version }}
 
-    - name: Restore dependencies
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@v1.0.2
+
+    - name: Install dependencies
+      run: |
+        echo -e "\nCommand: create package directory"
+        rm -rf packages
+        mkdir packages
+        echo -e "\nCommand: nuget restore"
+        nuget restore
+        echo -e "\nCommand: nuget install"
+        nuget install -Verbosity quiet -OutputDirectory packages -Version 4.7.922 OpenCover
+        nuget install -Verbosity quiet -OutputDirectory packages -Version 0.7.0 coveralls.net
+        nuget install -Verbosity quiet -OutputDirectory packages -Version 1.8.14 Doxygen
+        nuget install -Verbosity quiet -OutputDirectory packages secure-file -ExcludeVersion
+
+    - name: Before Build
       run: dotnet restore
 
     - name: Build
-      run: dotnet build --no-restore
+      run: msbuild "C:\projects\dotnet-standard-sdk\IBM.Watson.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+
+

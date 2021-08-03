@@ -34,25 +34,25 @@ jobs:
 #    - name: Setup MSBuild.exe
 #      uses: microsoft/setup-msbuild@v1.0.2
 
-    - name: Install dependencies
-      run: |
-        rm -rf packages
-        mkdir packages
-        nuget restore
-        nuget install -Verbosity quiet -OutputDirectory packages -Version 4.7.922 OpenCover
-        nuget install -Verbosity quiet -OutputDirectory packages -Version 0.7.0 coveralls.net
-        nuget install -Verbosity quiet -OutputDirectory packages -Version 1.8.14 Doxygen
-        nuget install -Verbosity quiet -OutputDirectory packages secure-file -ExcludeVersion
+#    - name: Install dependencies
+#      run: |
+#        rm -rf packages
+#        mkdir packages
+#        nuget restore
+#        nuget install -Verbosity quiet -OutputDirectory packages -Version 4.7.922 OpenCover
+#        nuget install -Verbosity quiet -OutputDirectory packages -Version 0.7.0 coveralls.net
+#        nuget install -Verbosity quiet -OutputDirectory packages -Version 1.8.14 Doxygen
+#        nuget install -Verbosity quiet -OutputDirectory packages secure-file -ExcludeVersion
 
     - name: Before Build
       run: dotnet restore
 
-    - name: Build
-      run: msbuild IBM.Watson.sln /verbosity:minimal
+#    - name: Build
+#      run: msbuild IBM.Watson.sln /verbosity:minimal
 
-    - name: Test
+    - name: Unit Test
       run: |
         echo -e "\nCommand: dotnet restore"
         dotnet build --no-restore
         echo -e "\nCommand: dotnet test"
-        dotnet test src/IBM.Watson.Assistant.v1/Test/Unit
+        dotnet test --no-build --verbosity normal src/IBM.Watson.Assistant.v1/Test/Unit

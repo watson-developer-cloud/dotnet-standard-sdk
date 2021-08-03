@@ -47,12 +47,14 @@ jobs:
     - name: Before Build
       run: dotnet restore
 
-#    - name: Build
-#      run: msbuild IBM.Watson.sln /verbosity:minimal
+    - name: Build
+      run: |
+        echo -e "\nCommand: msbuild IBM.Watson.sln"
+        msbuild IBM.Watson.sln /verbosity:minimal
+        echo -e "\nCommand: dotnet build"
+        dotnet build --no-restore
 
     - name: Unit Test
       run: |
-        echo -e "\nCommand: dotnet restore"
-        dotnet build --no-restore
         echo -e "\nCommand: dotnet test"
         dotnet test --no-build --verbosity normal src/IBM.Watson.Assistant.v1/Test/Unit

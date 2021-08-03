@@ -20,7 +20,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        dotnet-version: ['2.0.x']
+        dotnet-version: ['3.0.x']
         os: [ubuntu-latest]
 
     steps:

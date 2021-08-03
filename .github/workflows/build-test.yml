@@ -52,5 +52,7 @@ jobs:
 
     - name: Test
       run: |
+        echo -e "\nCommand: dotnet restore"
         dotnet build --no-restore
+        echo -e "\nCommand: dotnet test"
         dotnet test --no-build --verbosity normal

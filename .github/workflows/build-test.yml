@@ -73,18 +73,15 @@ jobs:
       run: |
         echo -e "\n\033[0;35mCommand: doxygen Doxyfile"
         doxygen Doxyfile
-        echo -e "\n\033[0;35mCommand: clone gh-pages"
-        git clone --quiet --branch=gh-pages https://$env:GITHUB_TOKEN@github.com/watson-developer-cloud/dotnet-standard-sdk.git gh-pages
         echo -e "\n\033[0;35mCommand: Setup master directory"
-        rm gh-pages/docs/master -r -f
-        mkdir -p gh-pages/docs/master
-        mv ./docs/html gh-pages/docs/master
+        mkdir -p gh-pages-temp/docs/master
+        mv ./docs/html gh-pages-temp/docs/master
 
     - name: Generating Documentation (powershell to generate index.html)
       shell: pwsh
       run: |
         . ./.utility/generate_html.ps1
-        New-TableOfContents "./gh-pages/docs" | Out-File "./gh-pages/index.html" -encoding utf8
+        New-TableOfContents "./gh-pages-temp/docs" | Out-File "./gh-pages-temp/index.html" -encoding utf8
 
     - name: Generating Documentation (commit to git)
       continue-on-error: true
@@ -92,7 +89,13 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         GITHUB_TOKEN_DOCS: ${{ secrets.GH_TOKEN }}
       run: |
+        echo -e "\n\033[0;35mCommand: clone gh-pages"
+        git clone --quiet --branch=gh-pages https://$env:GITHUB_TOKEN@github.com/watson-developer-cloud/dotnet-standard-sdk.git gh-pages
+        rm gh-pages/docs/master -r -f
+        cp gh-pages-temp/index.html gh-pages
+        cp gh-pages-temp/docs/master gh-pages/docs
         cd gh-pages
+        ls -liat
         git config --global user.email "watdevex@us.ibm.com"
         git config --global user.name "Watson Github Bot"
         git add -f .

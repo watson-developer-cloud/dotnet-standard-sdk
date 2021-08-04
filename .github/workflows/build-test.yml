@@ -93,7 +93,7 @@ jobs:
         git clone --quiet --branch=gh-pages https://$env:GITHUB_TOKEN@github.com/watson-developer-cloud/dotnet-standard-sdk.git gh-pages
         rm gh-pages/docs/master -r -f
         cp gh-pages-temp/index.html gh-pages
-        cp gh-pages-temp/docs/master gh-pages/docs
+        cp gh-pages-temp/docs/master gh-pages/docs -r
         cd gh-pages
         ls -liat
         git config --global user.email "watdevex@us.ibm.com"

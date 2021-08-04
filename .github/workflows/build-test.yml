@@ -81,7 +81,7 @@ jobs:
         mv ./docs/html gh-pages/docs/master
         echo -e "\n\033[0;35mCommand: utility generate"
         pwsh
-        . ./.utility/generate_html.ps1
+        ./.utility/generate_html.ps1
         New-TableOfContents "./gh-pages/docs" | Out-File "./gh-pages/index.html" -encoding utf8
         exit
         cd gh-pages

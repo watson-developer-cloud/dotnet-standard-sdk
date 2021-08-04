@@ -25,6 +25,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        persist-credentials: false
 
     - name: Set up dotnet
       uses: actions/setup-dotnet@v1
@@ -90,14 +92,13 @@ jobs:
         GITHUB_TOKEN_DOCS: ${{ secrets.GH_TOKEN }}
       run: |
         echo -e "\n\033[0;35mCommand: clone gh-pages"
+        git config --global user.email "watdevex@us.ibm.com"
+        git config --global user.name "Watson Github Bot"
         git clone --quiet --branch=gh-pages https://$env:GITHUB_TOKEN@github.com/watson-developer-cloud/dotnet-standard-sdk.git gh-pages
         rm gh-pages/docs/master -r -f
         cp gh-pages-temp/index.html gh-pages
         cp gh-pages-temp/docs/master gh-pages/docs -r
         cd gh-pages
-        ls -liat
-        git config --global user.email "watdevex@us.ibm.com"
-        git config --global user.name "Watson Github Bot"
         git add -f .
         git commit -m "Updated documentation for master"
         git push -f origin gh-pages

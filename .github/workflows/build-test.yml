@@ -76,7 +76,7 @@ jobs:
         echo -e "\n\033[0;35mCommand: clone gh-pages"
         git clone --quiet --branch=gh-pages https://$env:GITHUB_TOKEN@github.com/watson-developer-cloud/dotnet-standard-sdk.git gh-pages
         echo -e "\n\033[0;35mCommand: Setup master directory"
-        rm gh-pages/docs/master -r -force
+        rm gh-pages/docs/master -r -f
         mkdir -p gh-pages/docs/master
         mv ./docs/html gh-pages/docs/master
         echo -e "\n\033[0;35mCommand: utility generate"

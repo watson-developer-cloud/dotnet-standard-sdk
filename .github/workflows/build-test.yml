@@ -67,8 +67,11 @@ jobs:
         rm -rf packages
         mkdir packages
         nuget restore
-        echo -e "\n'\033[0;31m'Command: nuget install Doxygen"
+        echo -e "\n\033[0;35mCommand: nuget install Doxygen"
         nuget install -Verbosity quiet -OutputDirectory packages -Version 1.8.14 Doxygen
+        nuget install -Verbosity quiet -OutputDirectory packages -Version 0.7.0 coveralls.net
+        nuget install -Verbosity quiet -OutputDirectory packages -Version 1.8.14 Doxygen
+        nuget install -Verbosity quiet -OutputDirectory packages secure-file -ExcludeVersion
 
     - name: Generating Documentation
       env:

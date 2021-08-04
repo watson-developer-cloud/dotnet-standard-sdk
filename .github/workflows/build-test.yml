@@ -87,6 +87,7 @@ jobs:
         New-TableOfContents "./gh-pages/docs" | Out-File "./gh-pages/index.html" -encoding utf8
 
     - name: Generating Documentation (commit to git)
+      continue-on-error: true
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         GITHUB_TOKEN_DOCS: ${{ secrets.GH_TOKEN }}

@@ -54,6 +54,21 @@ jobs:
         dotnet test --no-build --verbosity normal src/IBM.Watson.VisualRecognition.v3/Test/Unit
         dotnet test --no-build --verbosity normal src/IBM.Watson.VisualRecognition.v4/Test/Unit
 
+    - name: Install Semantic Release and nuget dependencies
+      run: |
+        sudo apt-get install bumpversion
+        npm install -g semantic-release
+        npm install -g @semantic-release/changelog
+        npm install -g @semantic-release/exec
+        npm install -g @semantic-release/git
+        npm install -g @semantic-release/github
+        npm install -g @semantic-release/commit-analyzer
+        npm install -g @semantic-release/release-notes-generator
+        rm -rf packages
+        mkdir packages
+        nuget restore
+        nuget install -Verbosity quiet -OutputDirectory packages -Version 1.8.14 Doxygen
+
     - name: Generating Documentation
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

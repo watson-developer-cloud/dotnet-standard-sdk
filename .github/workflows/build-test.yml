@@ -67,7 +67,7 @@ jobs:
         echo -e "\n\033[0;35mCommand: install Doxygen"
         sudo apt-get install doxygen
 
-    - name: Generating Documentation
+    - name: Generating Documentation (setup)
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
@@ -80,10 +80,16 @@ jobs:
         mkdir -p gh-pages/docs/master
         mv ./docs/html gh-pages/docs/master
 
-    - name: Perform a Powershell
+    - name: Generating Documentation (powershell to generate index.html)
       shell: pwsh
       run: |
         . ./.utility/generate_html.ps1
         New-TableOfContents "./gh-pages/docs" | Out-File "./gh-pages/index.html" -encoding utf8
 
+    - name: Generating Documentation (commit to git)
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      run: |
+        echo -e "\n\033[0;35mCommand: doxygen Doxyfile"
+        cat ./gh-pages/index.html
 

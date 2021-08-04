@@ -80,7 +80,7 @@ jobs:
         mkdir -p gh-pages/docs/master
         mv ./docs/html gh-pages/docs/master
         echo -e "\n\033[0;35mCommand: utility generate"
-        . ./.utility/generate_html_ubuntu.ps1
+        pwsh ./.utility/generate_html_ubuntu.ps1
         New-TableOfContents "./gh-pages/docs" | Out-File "./gh-pages/index.html" -encoding utf8
         cd gh-pages
         cd ../

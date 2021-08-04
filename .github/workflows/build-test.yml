@@ -90,6 +90,9 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
-        echo -e "\n\033[0;35mCommand: doxygen Doxyfile"
-        cat ./gh-pages/index.html
+        cd gh-pages
+        git add -f .
+        git commit -m "Updated documentation for master"
+        git push -f origin gh-pages
+        cd ../
 

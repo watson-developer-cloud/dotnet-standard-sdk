@@ -60,13 +60,9 @@ jobs:
       run: |
         .\packages\Doxygen.1.8.14\tools\doxygen.exe Doxyfile
         git clone --quiet --branch=gh-pages https://$env:GITHUB_TOKEN@github.com/watson-developer-cloud/dotnet-standard-sdk.git gh-pages
-     #  rm gh-pages\docs\master -r -force
         mkdir -p gh-pages\docs\master
         mv .\docs\html gh-pages\docs\master
         . .\.utility\generate_html.ps1
         New-TableOfContents ".\gh-pages\docs" | Out-File ".\gh-pages\index.html" -encoding utf8
         cd gh-pages
-     #  git add -f .
-     #  git commit -m "Updated documentation for master"
-     #  git push -f origin gh-pages
         cd ../

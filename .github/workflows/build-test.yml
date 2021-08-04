@@ -67,17 +67,18 @@ jobs:
         rm -rf packages
         mkdir packages
         nuget restore
+        echo -e "\n'\033[0;31m'Command: nuget install Doxygen"
         nuget install -Verbosity quiet -OutputDirectory packages -Version 1.8.14 Doxygen
 
     - name: Generating Documentation
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
-        .\packages\Doxygen.1.8.14\tools\doxygen.exe Doxyfile
+        ./packages/Doxygen.1.8.14/tools/doxygen.exe Doxyfile
         git clone --quiet --branch=gh-pages https://$env:GITHUB_TOKEN@github.com/watson-developer-cloud/dotnet-standard-sdk.git gh-pages
-        mkdir -p gh-pages\docs\master
-        mv .\docs\html gh-pages\docs\master
-        . .\.utility\generate_html.ps1
-        New-TableOfContents ".\gh-pages\docs" | Out-File ".\gh-pages\index.html" -encoding utf8
+        mkdir -p gh-pages/docs/master
+        mv ./docs/html gh-pages/docs/master
+        . ./.utility/generate_html.ps1
+        New-TableOfContents "./gh-pages/docs" | Out-File "./gh-pages/index.html" -encoding utf8
         cd gh-pages
         cd ../

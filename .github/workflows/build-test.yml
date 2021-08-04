@@ -91,6 +91,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
         cd gh-pages
+        git config --global user.email "watdevex@us.ibm.com"
+        git config --global user.name "Watson Github Bot"
         git add -f .
         git commit -m "Updated documentation for master"
         git push -f origin gh-pages

@@ -1,3 +1,4 @@
+#! /usr/bin/pwsh
 function New-TableOfContents($path)
 {
     # Verify the path exists and retrieve the official full path

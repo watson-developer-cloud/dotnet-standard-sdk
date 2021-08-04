@@ -89,6 +89,7 @@ jobs:
     - name: Generating Documentation (commit to git)
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        GITHUB_TOKEN_DOCS: ${{ secrets.GH_TOKEN }}
       run: |
         cd gh-pages
         git config --global user.email "watdevex@us.ibm.com"

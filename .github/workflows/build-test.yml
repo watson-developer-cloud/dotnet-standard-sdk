@@ -67,38 +67,27 @@ jobs:
         echo -e "\n\033[0;35mCommand: install Doxygen"
         sudo apt-get install doxygen
 
-    - name: Generating Documentation (setup)
+    - name: dotnet Pack to Nupkg
+      run: |
+        echo -e "\n\033[ 0;35mCommand: branchname must be APPVEYOR_REPO_TAG_NAME so building NuGet packages"
+        ls -R src/IBM.Watson.Assistant.v2
+        dotnet pack src/IBM.Watson.Assistant.v1/IBM.Watson.Assistant.v1.csproj --configuration Release
+        ls -R src/IBM.Watson.Assistant.v2
+        dotnet pack src/IBM.Watson.Assistant.v2/IBM.Watson.Assistant.v2.csproj --configuration Release
+        dotnet pack src/IBM.Watson.CompareComply.v1/IBM.Watson.CompareComply.v1.csproj --configuration Release
+        dotnet pack src/IBM.Watson.Discovery.v1/IBM.Watson.Discovery.v1.csproj --configuration Release
+        dotnet pack src/IBM.Watson.Discovery.v2/IBM.Watson.Discovery.v2.csproj --configuration Release
+        dotnet pack src/IBM.Watson.LanguageTranslator.v3/IBM.Watson.LanguageTranslator.v3.csproj --configuration Release
+        dotnet pack src/IBM.Watson.NaturalLanguageClassifier.v1/IBM.Watson.NaturalLanguageClassifier.v1.csproj --configuration Release
+        dotnet pack src/IBM.Watson.NaturalLanguageUnderstanding.v1/IBM.Watson.NaturalLanguageUnderstanding.v1.csproj --configuration Release
+        dotnet pack src/IBM.Watson.PersonalityInsights.v3/IBM.Watson.PersonalityInsights.v3.csproj --configuration Release
+        dotnet pack src/IBM.Watson.SpeechToText.v1/IBM.Watson.SpeechToText.v1.csproj --configuration Release
+        dotnet pack src/IBM.Watson.TextToSpeech.v1/IBM.Watson.TextToSpeech.v1.csproj --configuration Release
+        dotnet pack src/IBM.Watson.ToneAnalyzer.v3/IBM.Watson.ToneAnalyzer.v3.csproj --configuration Release
+        dotnet pack src/IBM.Watson.VisualRecognition.v3/IBM.Watson.VisualRecognition.v3.csproj --configuration Release
+        dotnet pack src/IBM.Watson.VisualRecognition.v4/IBM.Watson.VisualRecognition.v4.csproj --configuration Release
+
+    - name: Publish to Nuget
       env:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-      run: |
-        echo -e "\n\033[0;35mCommand: doxygen Doxyfile"
-        doxygen Doxyfile
-        echo -e "\n\033[0;35mCommand: clone gh-pages"
-        git config --global user.email "watdevex@us.ibm.com"
-        git config --global user.name "watdevex"
-        git clone --quiet --branch=gh-pages https://${GITHUB_TOKEN}@github.com/watson-developer-cloud/dotnet-standard-sdk.git gh-pages
-        echo -e "\n\033[0;35mCommand: Setup master directory"
-        rm gh-pages/docs/master -r -f
-        mkdir -p gh-pages/docs/master
-        mv ./docs/html gh-pages/docs/master
-
-    - name: Generating Documentation (powershell to generate index.html)
-      shell: pwsh
-      run: |
-        . ./.utility/generate_html.ps1
-        New-TableOfContents "./gh-pages/docs" | Out-File "./gh-pages/index.html" -encoding utf8
-
-    - name: Generating Documentation (commit to git)
-      continue-on-error: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        GITHUB_TOKEN_DOCS: ${{ secrets.GH_TOKEN }}
-      run: |
-        cd gh-pages
-        git add -f .
-        git commit -m "Updated documentation for master"
-        git push -f origin gh-pages
-        cd ../
-
-
+          NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
+      run: dotnet nuget push src/IBM.Watson.Assistant.v1/bin/Release/IBM.Watson.Assistant.v1.3.0.0.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json

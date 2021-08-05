@@ -88,6 +88,6 @@ jobs:
     - name: Publish to Nuget
       env:
           NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
-          REPO_TAG_NAME: "5.2.1"
+          REPO_TAG_NAME: "5.2.0"
       run: |
         dotnet nuget push src/IBM.Watson.Assistant.v1/bin/Release/IBM.Watson.Assistant.v1.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json

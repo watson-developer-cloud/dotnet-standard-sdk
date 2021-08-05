@@ -1,12 +1,12 @@
 var class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_model =
 [
     [ "StatusEnumValue", "db/dc1/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_model_1_1_status_enum_value.html", "db/dc1/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_model_1_1_status_enum_value" ],
-    [ "Created", "d5/df3/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_model.html#a1c1e4e7dc62f7ed399ae9f2e60bd147f", null ],
+    [ "Created", "d5/df3/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_model.html#af9f043f4fb415d4d807116fc952feda3", null ],
     [ "Description", "d5/df3/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_model.html#a578a9a52199280aca13d4ad199a26fbf", null ],
     [ "Features", "d5/df3/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_model.html#a3bca90bf11fb35230310e9d150d10913", null ],
     [ "Language", "d5/df3/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_model.html#a5cf27c0360ddc0f11f6bf5d32094defc", null ],
-    [ "LastDeployed", "d5/df3/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_model.html#afdbd750f42fee06e73daf6fc63fafe8f", null ],
-    [ "LastTrained", "d5/df3/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_model.html#add0e391004cc476da0e71104b26d5866", null ],
+    [ "LastDeployed", "d5/df3/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_model.html#aaf2a8a4ad323c3e686a847ca40b38691", null ],
+    [ "LastTrained", "d5/df3/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_model.html#ad57c5ba6cea0bde9168a791f1d0102c5", null ],
     [ "ModelId", "d5/df3/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_model.html#a05cc5e3a1f40cce0eee1a43c49ec7bcb", null ],
     [ "ModelVersion", "d5/df3/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_model.html#a1609d32e60a684284354f9d94ea873d5", null ],
     [ "Name", "d5/df3/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_categories_model.html#a70db01826fa831a4771b2de641f5a25f", null ],

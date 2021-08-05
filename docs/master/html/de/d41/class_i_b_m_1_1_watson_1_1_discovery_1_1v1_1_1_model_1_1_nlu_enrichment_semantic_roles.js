@@ -1,6 +1,6 @@
 var class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_semantic_roles =
 [
-    [ "Entities", "de/d41/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_semantic_roles.html#a309b7e0db793db3cdb02a977bc4960fa", null ],
-    [ "Keywords", "de/d41/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_semantic_roles.html#aa56e108fc3547ebb82b2679dca94d386", null ],
-    [ "Limit", "de/d41/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_semantic_roles.html#aab749d4977d9adbd5c63eae2a583d342", null ]
+    [ "Entities", "de/d41/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_semantic_roles.html#a3212d6e2f470c959df02f1f8b92ec011", null ],
+    [ "Keywords", "de/d41/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_semantic_roles.html#a964cc99659019d59f565e119d1eb4344", null ],
+    [ "Limit", "de/d41/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_semantic_roles.html#a39a4675fbbea0883d2faa2dcf45b1bd0", null ]
 ];

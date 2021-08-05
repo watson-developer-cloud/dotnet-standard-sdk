@@ -2,8 +2,8 @@ var class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_translati
 [
     [ "StatusEnumValue", "df/d50/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_translation_model_1_1_status_enum_value.html", "df/d50/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_translation_model_1_1_status_enum_value" ],
     [ "BaseModelId", "d6/d16/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_translation_model.html#a148dcb26d5e2ce4b11b429c23c9bf6a7", null ],
-    [ "Customizable", "d6/d16/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_translation_model.html#ad516d06a2822283eaf7d294001930077", null ],
-    [ "DefaultModel", "d6/d16/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_translation_model.html#a9f8b632b127d262cee67e8519831df66", null ],
+    [ "Customizable", "d6/d16/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_translation_model.html#a75c7d4f685d7dba83d520ab6f9f0af01", null ],
+    [ "DefaultModel", "d6/d16/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_translation_model.html#a8d50f9da0e1170d2a71006b8a56a8b54", null ],
     [ "Domain", "d6/d16/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_translation_model.html#a07e4bdd633e46d2ec70a79124ae78dfd", null ],
     [ "ModelId", "d6/d16/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_translation_model.html#a315998884ec59739aa0984af2b819fa2", null ],
     [ "Name", "d6/d16/class_i_b_m_1_1_watson_1_1_language_translator_1_1v3_1_1_model_1_1_translation_model.html#ad7c3d76e58927eded9fbab17910bd855", null ],

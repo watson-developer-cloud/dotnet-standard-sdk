@@ -1,12 +1,12 @@
 var class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_model =
 [
     [ "StatusEnumValue", "de/daa/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_model_1_1_status_enum_value.html", "de/daa/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_model_1_1_status_enum_value" ],
-    [ "Created", "d2/d70/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_model.html#ae3aa8eb2ae5da53a354c13e5f8331a34", null ],
+    [ "Created", "d2/d70/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_model.html#ab59c6d970ce3b0c7c8964704005bb57e", null ],
     [ "Description", "d2/d70/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_model.html#af1e21c774b2a61d27f3f90c460cf731c", null ],
     [ "Features", "d2/d70/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_model.html#a5fa5aceaaf38472b1ee3356a6a62c15f", null ],
     [ "Language", "d2/d70/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_model.html#a9bdbcecdf2ea0ffd966b02757a41dc48", null ],
-    [ "LastDeployed", "d2/d70/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_model.html#ae3c3411d734ead336e81539b7e3df59a", null ],
-    [ "LastTrained", "d2/d70/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_model.html#afc8543d32e00319ba0075b4ba5290824", null ],
+    [ "LastDeployed", "d2/d70/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_model.html#ab3420b53542f31889454aa4e61fc8ead", null ],
+    [ "LastTrained", "d2/d70/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_model.html#a96639a531a25a8aa2eda0b35b54fb7e8", null ],
     [ "ModelId", "d2/d70/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_model.html#ae502f2f0debac13e59abf4a21667a147", null ],
     [ "ModelVersion", "d2/d70/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_model.html#a692a4ba264da7023c8fbeecfa906dc69", null ],
     [ "Name", "d2/d70/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_model.html#a7eedb7f49ed7438ea6f76ae97038924b", null ],

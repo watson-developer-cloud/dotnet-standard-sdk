@@ -8,6 +8,6 @@ var class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_model_1_1_profile 
     [ "ProcessedLanguage", "d2/d79/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_model_1_1_profile.html#a411aa661720c7e425919882ad1763337", null ],
     [ "Values", "d2/d79/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_model_1_1_profile.html#ae5ce86412177831be01f278253ef56db", null ],
     [ "Warnings", "d2/d79/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_model_1_1_profile.html#a7922173412c16dc75d29f2a8ec8fd9ba", null ],
-    [ "WordCount", "d2/d79/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_model_1_1_profile.html#a65b2614a894f9e630bc150a9cb4b0a71", null ],
+    [ "WordCount", "d2/d79/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_model_1_1_profile.html#adb961ab56eb3187689d923b1fe8106f7", null ],
     [ "WordCountMessage", "d2/d79/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_model_1_1_profile.html#a72582f3aff31651598446227f66a9dcf", null ]
 ];

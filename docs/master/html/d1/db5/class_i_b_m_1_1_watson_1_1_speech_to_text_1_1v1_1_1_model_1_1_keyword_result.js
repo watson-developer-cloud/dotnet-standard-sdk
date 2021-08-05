@@ -1,7 +1,7 @@
 var class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_keyword_result =
 [
-    [ "Confidence", "d1/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_keyword_result.html#ab9199aa9f6eeeb376a8beb7071e00f81", null ],
-    [ "EndTime", "d1/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_keyword_result.html#ae7e0a4b7a696ff3b242ba4dffb235e90", null ],
+    [ "Confidence", "d1/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_keyword_result.html#a8f2b1f488e904158c7b4e7c0bcc0af69", null ],
+    [ "EndTime", "d1/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_keyword_result.html#a260d94c6627ba03374b2b7c69ab51f85", null ],
     [ "NormalizedText", "d1/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_keyword_result.html#aa0268c988ee758d4ec7eaa7cf6345c8c", null ],
-    [ "StartTime", "d1/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_keyword_result.html#aa1f9ba85457a247600ef1182485d930a", null ]
+    [ "StartTime", "d1/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_keyword_result.html#a0560d5f09f0e7bad761383933f130266", null ]
 ];

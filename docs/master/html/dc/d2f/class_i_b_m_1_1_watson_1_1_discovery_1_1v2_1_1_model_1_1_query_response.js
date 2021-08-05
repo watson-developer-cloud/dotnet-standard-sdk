@@ -1,7 +1,7 @@
 var class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_response =
 [
     [ "Aggregations", "dc/d2f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_response.html#a8427ec3d16f0c8452d5188a3cb2cec2c", null ],
-    [ "MatchingResults", "dc/d2f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_response.html#a0f308fb73059bc2d206a84a3009f17f5", null ],
+    [ "MatchingResults", "dc/d2f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_response.html#a148371fa8af5200b1ade57fb95c46b22", null ],
     [ "Passages", "dc/d2f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_response.html#a0514f662a985afdcf106c12445f1e349", null ],
     [ "Results", "dc/d2f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_response.html#a1aaa9a0bb52d4d32fb6b7f6adfde7e8b", null ],
     [ "RetrievalDetails", "dc/d2f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_response.html#a12091dc1449da7b0dd04928d9514fd0a", null ],

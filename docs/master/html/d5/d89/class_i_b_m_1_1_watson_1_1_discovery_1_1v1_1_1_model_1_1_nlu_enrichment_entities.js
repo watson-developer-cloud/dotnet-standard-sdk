@@ -1,10 +1,10 @@
 var class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_entities =
 [
-    [ "Emotion", "d5/d89/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_entities.html#a7f51277dd6e7454181ac9f7cd9ab7861", null ],
-    [ "Limit", "d5/d89/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_entities.html#ad26996a5ea9f9783f95e2db59839457d", null ],
-    [ "Mentions", "d5/d89/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_entities.html#a973897f65ea406f1ff6905b353b68793", null ],
-    [ "MentionTypes", "d5/d89/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_entities.html#adb23f66bf0e4b71fad9310fc10d1c4be", null ],
+    [ "Emotion", "d5/d89/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_entities.html#abe0e9e3608f2e0478192506ad6a9aba3", null ],
+    [ "Limit", "d5/d89/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_entities.html#a3c3af45cbc83074547612f051dbb686d", null ],
+    [ "Mentions", "d5/d89/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_entities.html#a36c40d9e9ee38fd894b67f69b795f5bf", null ],
+    [ "MentionTypes", "d5/d89/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_entities.html#a893c1c4fb32a7bcd0aa00c7e612e993e", null ],
     [ "Model", "d5/d89/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_entities.html#adf4f636126b963becf1680c2ef04eaea", null ],
-    [ "SentenceLocations", "d5/d89/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_entities.html#a3168acd81898153a1554f54ea8510de0", null ],
-    [ "Sentiment", "d5/d89/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_entities.html#a10f3fdbf6a84902d0b2e374805947de7", null ]
+    [ "SentenceLocations", "d5/d89/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_entities.html#a3ce408c336301800b68d8b172931c01a", null ],
+    [ "Sentiment", "d5/d89/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_entities.html#a15c80b1a5537051ba1825443dc3efa8d", null ]
 ];

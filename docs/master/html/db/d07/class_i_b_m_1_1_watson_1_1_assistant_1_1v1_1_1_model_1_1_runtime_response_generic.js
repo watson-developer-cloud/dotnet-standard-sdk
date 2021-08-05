@@ -15,9 +15,9 @@ var class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_ge
     [ "Source", "db/d07/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic.html#a1afefc3e0c8e78a711ece5075604e4d2", null ],
     [ "Suggestions", "db/d07/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic.html#aa7047ec9a7d2b5e55d9cf854b28fc215", null ],
     [ "Text", "db/d07/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic.html#aa715afeeff2d0aa93893fcf7b51317da", null ],
-    [ "Time", "db/d07/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic.html#ad1af07efa0fa75d930588d94497654c7", null ],
+    [ "Time", "db/d07/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic.html#ae3f0409a45715b822606a83e449f911d", null ],
     [ "Title", "db/d07/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic.html#a110edf5b509a0ee67400fd6ccb5aa317", null ],
     [ "Topic", "db/d07/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic.html#a4213afa4e40494e1081e4721ce6a0ac1", null ],
-    [ "Typing", "db/d07/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic.html#a2237693025a9032da2f4fba5f7181e17", null ],
+    [ "Typing", "db/d07/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic.html#a8516ace714502563d31cbc1416561178", null ],
     [ "UserDefined", "db/d07/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic.html#a5b8a5f1636289c8ca905136da3a6fc4b", null ]
 ];

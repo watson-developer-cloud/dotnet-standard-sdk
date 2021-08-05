@@ -1,4 +1,0 @@
-var dir_c61d8363507463545505456e738c10c7 =
-[
-    [ "netstandard2.0", "dir_225898418f7caeb10ea4488277550afd.html", "dir_225898418f7caeb10ea4488277550afd" ]
-];

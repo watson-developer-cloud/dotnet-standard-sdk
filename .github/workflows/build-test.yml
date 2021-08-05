@@ -70,9 +70,7 @@ jobs:
     - name: dotnet Pack to Nupkg
       run: |
         echo -e "\n\033[ 0;35mCommand: branchname must be APPVEYOR_REPO_TAG_NAME so building NuGet packages"
-        ls -R src/IBM.Watson.Assistant.v1/bin
         dotnet pack src/IBM.Watson.Assistant.v1/IBM.Watson.Assistant.v1.csproj --configuration Release
-        ls -R src/IBM.Watson.Assistant.v1/bin
         dotnet pack src/IBM.Watson.Assistant.v2/IBM.Watson.Assistant.v2.csproj --configuration Release
         dotnet pack src/IBM.Watson.CompareComply.v1/IBM.Watson.CompareComply.v1.csproj --configuration Release
         dotnet pack src/IBM.Watson.Discovery.v1/IBM.Watson.Discovery.v1.csproj --configuration Release
@@ -90,4 +88,6 @@ jobs:
     - name: Publish to Nuget
       env:
           NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
-      run: dotnet nuget push src/IBM.Watson.Assistant.v1/bin/Release/IBM.Watson.Assistant.v1.5.2.0.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
+          REPO_TAG_NAME: "5.2.1"
+      run: |
+        dotnet nuget push src/IBM.Watson.Assistant.v1/bin/Release/IBM.Watson.Assistant.v1.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json

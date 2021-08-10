@@ -6,11 +6,10 @@
 name: Deploy and Publish
 
 on:
-  workflow_run:
-    workflows: ["Build and Test"]
+  push:
+    branches: [ '**' ]
+  pull_request:
     branches: [ master ]
-    types:
-      - completed
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -55,51 +54,13 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
 
-    - name: Generating Documentation (setup)
-      if: ${{ github.event.workflow_run.conclusion == 'success' }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-      run: |
-        echo -e "\n\033[0;35mCommand: doxygen Doxyfile"
-        doxygen Doxyfile
-        echo -e "\n\033[0;35mCommand: clone gh-pages"
-        git config --global user.email "watdevex@us.ibm.com"
-        git config --global user.name "watdevex"
-        git clone --quiet --branch=gh-pages https://${GITHUB_TOKEN}@github.com/watson-developer-cloud/dotnet-standard-sdk.git gh-pages
-        echo -e "\n\033[0;35mCommand: Setup master directory"
-        rm gh-pages/docs/master -r -f
-        mkdir -p gh-pages/docs/master
-        mv ./docs/html gh-pages/docs/master
-
-    - name: Generating Documentation (powershell to generate index.html)
-      if: ${{ github.event.workflow_run.conclusion == 'success' }}
-      shell: pwsh
-      run: |
-        . ./.utility/generate_html.ps1
-        New-TableOfContents "./gh-pages/docs" | Out-File "./gh-pages/index.html" -encoding utf8
-
-    - name: Generating Documentation (commit to git)
-      if: ${{ github.event.workflow_run.conclusion == 'success' }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        GITHUB_TOKEN_DOCS: ${{ secrets.GH_TOKEN }}
-      run: |
-        cd gh-pages
-        git add -f .
-        git commit -m "Updated documentation for master"
-        git push -f origin gh-pages
-        cd ../
-
     - name: Publish to Git Releases and Tags
-      if: ${{ github.event.workflow_run.conclusion == 'success' }}
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       run: npx semantic-release --dry-run --branches 9588_gha_deploy
 
     - name: dotnet Pack to Nupkg
-      if: ${{ github.event.workflow_run.conclusion == 'success' }}
       run: |
         echo -e "\n\033[ 0;35mCommand: branchname must be APPVEYOR_REPO_TAG_NAME so building NuGet packages"
         dotnet pack src/IBM.Watson.Assistant.v1/IBM.Watson.Assistant.v1.csproj --configuration Release
@@ -118,7 +79,6 @@ jobs:
         dotnet pack src/IBM.Watson.VisualRecognition.v4/IBM.Watson.VisualRecognition.v4.csproj --configuration Release
 
     - name: Publish to Nuget
-      if: ${{ github.event.workflow_run.conclusion == 'success' }}
       env:
           NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
           REPO_TAG_NAME: "*"
@@ -137,4 +97,3 @@ jobs:
         dotnet nuget push src/IBM.Watson.ToneAnalyzer.v3/bin/Release/IBM.Watson.Assistant.v1.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
         dotnet nuget push src/IBM.Watson.VisualRecognition.v3/bin/Release/IBM.Watson.Assistant.v1.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
         dotnet nuget push src/IBM.Watson.VisualRecognition.v4/bin/Release/IBM.Watson.Assistant.v1.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
-      

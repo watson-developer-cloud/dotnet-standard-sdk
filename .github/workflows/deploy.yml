@@ -77,10 +77,11 @@ jobs:
         dotnet pack src/IBM.Watson.VisualRecognition.v4/IBM.Watson.VisualRecognition.v4.csproj --configuration Release
 
     - name: Publish to Nuget
-      if: "startsWith(github.ref, 'refs/tags/v')"
+      if: "!startsWith(github.ref, 'refs/tags/v')"
       env:
           NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
           REPO_TAG_NAME: "*" # ${{ steps.get_version_tag.outputs.SOURCE_TAG }}
       run: |
         echo -e "\n\033[0;35mCommand: branchname must have TAG_NAME to publish NuGet packages"
+        echo -e "\n\033[0;35mCommand: ${{ steps.get_version_tag.outputs.SOURCE_TAG }}"
         dotnet nuget push src/IBM.Watson.PersonalityInsights.v3/bin/Release/IBM.Watson.PersonalityInsights.v3.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json

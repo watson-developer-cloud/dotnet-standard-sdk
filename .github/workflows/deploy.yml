@@ -59,11 +59,13 @@ jobs:
       run: echo ::set-output name=SOURCE_TAG::$(echo $GITHUB_REF | cut -d / -f 3)
 
     - name: Publish to Git Releases and Tags
+      id: is_new_release
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       run: |
-        npx semantic-release --dry-run --branches 9588_gha_deploy
+        npx semantic-release --dry-run --branches 9588_gha_deploy | tee /dev/tty | grep -i "Published release" > .semver-output
+        echo ::set-output name=IS_NEW_RELEASE::$([[ $(cat .semver-output) =~ .*([[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+) ]] && echo ${BASH_REMATCH[1]})
 
     - name: dotnet Pack to Nupkg
       run: |
@@ -92,4 +94,5 @@ jobs:
           REPO_TAG_NAME: "*"
       run: |
         echo -e "\n\033[0;35mCommand: branchname - ${{ steps.get_version_tag.outputs.SOURCE_TAG }} must have TAG_NAME to publish NuGet packages"
+        echo -e "\n\033[0;35mCommand: New Release - ${{ steps.is_new_release.outputs.IS_NEW_RELEASE }}"
         dotnet nuget push src/IBM.Watson.PersonalityInsights.v3/bin/Release/IBM.Watson.PersonalityInsights.v3.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json

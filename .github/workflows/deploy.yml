@@ -76,12 +76,13 @@ jobs:
         dotnet pack src/IBM.Watson.VisualRecognition.v3/IBM.Watson.VisualRecognition.v3.csproj --configuration Release
         dotnet pack src/IBM.Watson.VisualRecognition.v4/IBM.Watson.VisualRecognition.v4.csproj --configuration Release
 
+      # I think we can publish everytime because trying to push up a duplicate will fail with already exists and cannot be modified (409)
     - name: Publish to Nuget
       if: "!startsWith(github.ref, 'refs/tags/v')"
+      continue-on-error: true
       env:
           NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
-          REPO_TAG_NAME: "*" # ${{ steps.get_version_tag.outputs.SOURCE_TAG }}
+          REPO_TAG_NAME: "*"
       run: |
-        echo -e "\n\033[0;35mCommand: branchname must have TAG_NAME to publish NuGet packages"
-        echo -e "\n\033[0;35mCommand: ${{ steps.get_version_tag.outputs.SOURCE_TAG }}"
+        echo -e "\n\033[0;35mCommand: branchname - ${{ steps.get_version_tag.outputs.SOURCE_TAG }} must have TAG_NAME to publish NuGet packages"
         dotnet nuget push src/IBM.Watson.PersonalityInsights.v3/bin/Release/IBM.Watson.PersonalityInsights.v3.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json

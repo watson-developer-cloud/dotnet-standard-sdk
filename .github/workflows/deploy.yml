@@ -64,7 +64,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       run: |
-        npx semantic-release --dry-run --branches 9588_gha_deploy | grep -i "Published release" > semver-output
+        pwd | grep -i "Published release" > semver-output
         cat semver-output
 
     - name: dotnet Pack to Nupkg

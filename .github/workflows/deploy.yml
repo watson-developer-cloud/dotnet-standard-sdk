@@ -54,9 +54,13 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
 
+    - name: Get the version tag
+      id: get_version_tag
+      run: echo ::set-output name=SOURCE_TAG::$(echo $GITHUB_REF | cut -d / -f 3)
+
     - name: dotnet Pack to Nupkg
       run: |
-        echo -e "\n\033[ 0;35mCommand: branchname must be APPVEYOR_REPO_TAG_NAME so building NuGet packages"
+        echo -e "\n\033[0;35mCommand: branchname must have TAG_NAME to build NuGet packages"
         dotnet pack src/IBM.Watson.Assistant.v1/IBM.Watson.Assistant.v1.csproj --configuration Release
         dotnet pack src/IBM.Watson.Assistant.v2/IBM.Watson.Assistant.v2.csproj --configuration Release
         dotnet pack src/IBM.Watson.CompareComply.v1/IBM.Watson.CompareComply.v1.csproj --configuration Release
@@ -73,8 +77,10 @@ jobs:
         dotnet pack src/IBM.Watson.VisualRecognition.v4/IBM.Watson.VisualRecognition.v4.csproj --configuration Release
 
     - name: Publish to Nuget
+      if: "startsWith(github.ref, 'refs/tags/v')"
       env:
           NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
-          REPO_TAG_NAME: "*"
+          REPO_TAG_NAME: "*" # ${{ steps.get_version_tag.outputs.SOURCE_TAG }}
       run: |
+        echo -e "\n\033[0;35mCommand: branchname must have TAG_NAME to publish NuGet packages"
         dotnet nuget push src/IBM.Watson.PersonalityInsights.v3/bin/Release/IBM.Watson.PersonalityInsights.v3.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json

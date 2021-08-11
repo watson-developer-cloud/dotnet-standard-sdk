@@ -64,7 +64,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       run: |
-        npx semantic-release --dry-run --branches 9588_gha_deploy | tee /dev/tty | grep -i "Published release" > .semver-output
+        npx semantic-release --dry-run --branches 9588_gha_deploy | tee | grep -i "Published release" > .semver-output
         echo ::set-output name=IS_NEW_RELEASE::$([[ $(cat .semver-output) =~ .*([[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+) ]] && echo ${BASH_REMATCH[1]})
 
     - name: dotnet Pack to Nupkg

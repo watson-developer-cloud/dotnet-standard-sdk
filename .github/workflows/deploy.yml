@@ -64,7 +64,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      run: echo ::set-output name=NEW_RELEASE::$(npx semantic-release --dry-run --branches 9588_gha_deploy | grep -c -i "no relevant changes")
+      run: echo ::set-output name=IS_NEW_RELEASE::$(npx semantic-release --dry-run --branches 9588_gha_deploy | grep -c -i "no relevant changes")
 
   # I think we can publish everytime because trying to push up a duplicate will fail with already exists and cannot be modified (409)
     - name: Publish to Nuget

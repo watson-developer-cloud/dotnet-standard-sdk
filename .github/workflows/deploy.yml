@@ -64,8 +64,11 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       run: |
+        echo pwd
         pwd
+        echo grep
         grep -i 'Published release' > semver-output
+        echo cat
         cat semver-output
 
     - name: dotnet Pack to Nupkg

@@ -64,7 +64,8 @@ jobs:
       run: |
         echo "foo" | grep -c "foo"
         echo "foo" | grep -c "run"
-        npx semantic-release --dry-run --branches 9588_gha_deploy | tee /dev/tty | grep -i "Published release" > semver-output
+        npx semantic-release --dry-run --branches 9588_gha_deploy | tee /dev/tty | grep -i "no relevant changes" > semver-output
+        cat semver-output
 
       # I think we can publish everytime because trying to push up a duplicate will fail with already exists and cannot be modified (409)
     - name: Publish to Nuget

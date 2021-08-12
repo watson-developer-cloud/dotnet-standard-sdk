@@ -6,10 +6,11 @@
 name: Deploy and Publish
 
 on:
-  push:
-    branches: [ '**' ]
-  pull_request:
+  workflow_run:
+    workflows: ["Build and Test"]
     branches: [ master ]
+    types:
+      - completed
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -63,9 +64,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: echo ::set-output name=IS_NEW_RELEASE::$(npx semantic-release --dry-run --branches 9588_gha_deploy | grep -c -i "no relevant changes")
+        run: echo ::set-output name=IS_NEW_RELEASE::$(npx semantic-release --dry-run --branches 9588_gha_deploy | grep -c -i "Published release")
 
       - name: Generating Documentation (setup)
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
@@ -81,6 +83,7 @@ jobs:
           mv ./docs/html gh-pages/docs/master
 
       - name: Generating Documentation (powershell to generate index.html)
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
         shell: pwsh
         run: |
           . ./.utility/generate_html.ps1
@@ -107,6 +110,7 @@ jobs:
         run: npx semantic-release --dry-run --branches 9588_gha_deploy
 
       - name: dotnet Pack to Nupkg
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
         run: |
           dotnet pack src/IBM.Watson.Assistant.v1/IBM.Watson.Assistant.v1.csproj --configuration Release
           dotnet pack src/IBM.Watson.Assistant.v2/IBM.Watson.Assistant.v2.csproj --configuration Release
@@ -133,4 +137,17 @@ jobs:
           REPO_TAG_NAME: "*"
         run: |
           echo -e "\n\033[0;35mCommand: branchname - ${{ steps.get_version_tag.outputs.SOURCE_TAG }} must have TAG_NAME to publish NuGet packages"
+          dotnet nuget push src/IBM.Watson.Assistant.v1/bin/Release/IBM.Watson.Assistant.v1.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push src/IBM.Watson.Assistant.v2/bin/Release/IBM.Watson.Assistant.v2.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push src/IBM.Watson.CompareComply.v1/bin/Release/IBM.Watson.CompareComply.v1.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push src/IBM.Watson.Discovery.v1/bin/Release/IBM.Watson.Discovery.v1.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push src/IBM.Watson.Discovery.v2/bin/Release/IBM.Watson.Discovery.v2.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push src/IBM.Watson.LanguageTranslator.v3/bin/Release/IBM.Watson.LanguageTranslator.v3.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push src/IBM.Watson.NaturalLanguageClassifier.v1/bin/Release/IBM.Watson.NaturalLanguageClassifier.v1.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push src/IBM.Watson.NaturalLanguageUnderstanding.v1/bin/Release/IBM.Watson.NaturalLanguageUnderstanding.v1.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
           dotnet nuget push src/IBM.Watson.PersonalityInsights.v3/bin/Release/IBM.Watson.PersonalityInsights.v3.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push src/IBM.Watson.SpeechToText.v1/bin/Release/IBM.Watson.SpeechToText.v1.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push src/IBM.Watson.TextToSpeech.v1/bin/Release/IBM.Watson.TextToSpeech.v1.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push src/IBM.Watson.ToneAnalyzer.v3/bin/Release/IBM.Watson.ToneAnalyzer.v3.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push src/IBM.Watson.VisualRecognition.v3/bin/Release/IBM.Watson.VisualRecognition.v3.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push src/IBM.Watson.VisualRecognition.v4/bin/Release/IBM.Watson.VisualRecognition.v4.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json

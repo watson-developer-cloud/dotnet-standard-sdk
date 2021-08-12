@@ -67,7 +67,8 @@ jobs:
         echo pwd
         pwd
         echo grep
-        grep -i 'Published release' > semver-output
+        where grep
+        grep -i 'Published release' 
         echo cat
         cat semver-output
 

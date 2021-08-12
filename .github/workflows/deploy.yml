@@ -62,12 +62,10 @@ jobs:
       continue-on-error: true
       id: is_new_release
       run: |
-        echo "foo" | grep -c "foo"
-        echo "foo" | grep -c "run"
-        npx semantic-release --dry-run --branches 9588_gha_deploy | tee /dev/tty | grep -i "no relevant changes" > semver-output
-        cat semver-output
+        npx semantic-release --dry-run --branches 9588_gha_deploy | grep -c -i "no relevant changes"
+        npx semantic-release --dry-run --branches 9588_gha_deploy | grep -c -i "Published release"
 
-      # I think we can publish everytime because trying to push up a duplicate will fail with already exists and cannot be modified (409)
+  # I think we can publish everytime because trying to push up a duplicate will fail with already exists and cannot be modified (409)
     - name: Publish to Nuget
       continue-on-error: true
       env:

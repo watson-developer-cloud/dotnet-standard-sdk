@@ -151,3 +151,8 @@ jobs:
           dotnet nuget push src/IBM.Watson.ToneAnalyzer.v3/bin/Release/IBM.Watson.ToneAnalyzer.v3.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
           dotnet nuget push src/IBM.Watson.VisualRecognition.v3/bin/Release/IBM.Watson.VisualRecognition.v3.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
           dotnet nuget push src/IBM.Watson.VisualRecognition.v4/bin/Release/IBM.Watson.VisualRecognition.v4.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
+
+      - name: SKIP - Publish/Deploy to Git and Nuget
+        if:  ${{ steps.is_new_release.outputs.IS_NEW_RELEASE == '0' }}
+        run: |
+          echo -e "\n\033[0;35mCommand: Skipping the deployment because semantic release has determined there are no relevant changes that warrent a new release.\n"

@@ -64,7 +64,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: echo ::set-output name=IS_NEW_RELEASE::$(npx semantic-release --dry-run --branches 9588_gha_deploy | grep -c -i "Published release")
+        run: echo ::set-output name=IS_NEW_RELEASE::$(npx semantic-release --dry-run | grep -c -i "Published release")
 
       - name: Generating Documentation (setup)
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
@@ -102,12 +102,13 @@ jobs:
           git push -f origin gh-pages
           cd ../
 
+        # Only run a real semantic release if the dry-run identified a new release
       - name: Publish to Git Releases and Tags
         if:  ${{ steps.is_new_release.outputs.IS_NEW_RELEASE == '1' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release --dry-run --branches 9588_gha_deploy
+        run: npx semantic-release # --dry-run --branches 9588_gha_deploy
 
       - name: dotnet Pack to Nupkg
         if: ${{ github.event.workflow_run.conclusion == 'success' }}

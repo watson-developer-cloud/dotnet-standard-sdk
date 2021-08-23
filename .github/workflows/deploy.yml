@@ -1,0 +1,159 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support documentation
+# This workflow will download a prebuilt Java version, install dependencies, build and deploy/publish a new release
+
+name: Deploy and Publish
+
+on:
+  workflow_run:
+    workflows: ["Build and Test"]
+    branches: [ master ]
+    types:
+      - completed
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    name: Deploy and Publish
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Set up dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '2.1.x'
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install Semantic Release and nuget dependencies
+        run: |
+          sudo apt-get install bumpversion
+          npm install -g semantic-release
+          npm install -g @semantic-release/changelog
+          npm install -g @semantic-release/exec
+          npm install -g @semantic-release/git
+          npm install -g @semantic-release/github
+          npm install -g @semantic-release/commit-analyzer
+          npm install -g @semantic-release/release-notes-generator
+          echo -e "\n\033[0;35mCommand: install Doxygen"
+          sudo apt-get install doxygen
+
+      - name: Before Build
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore
+
+      - name: Get the version tag
+        id: get_version_tag
+        run: echo ::set-output name=SOURCE_TAG::$(echo $GITHUB_REF | cut -d / -f 3)
+
+      - name: Check if semantic release generated a release
+        id: is_new_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: echo ::set-output name=IS_NEW_RELEASE::$(npx semantic-release --dry-run | grep -c -i "Published release")
+
+      - name: Generating Documentation (setup)
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          echo -e "\n\033[0;35mCommand: doxygen Doxyfile"
+          doxygen Doxyfile
+          echo -e "\n\033[0;35mCommand: clone gh-pages"
+          git config --global user.email "watdevex@us.ibm.com"
+          git config --global user.name "watdevex"
+          git clone --quiet --branch=gh-pages https://${GITHUB_TOKEN}@github.com/watson-developer-cloud/dotnet-standard-sdk.git gh-pages
+          echo -e "\n\033[0;35mCommand: Setup master directory"
+          rm gh-pages/docs/master -r -f
+          mkdir -p gh-pages/docs/master
+          mv ./docs/html gh-pages/docs/master
+
+      - name: Generating Documentation (powershell to generate index.html)
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        shell: pwsh
+        run: |
+          . ./.utility/generate_html.ps1
+          New-TableOfContents "./gh-pages/docs" | Out-File "./gh-pages/index.html" -encoding utf8
+
+      - name: Generating Documentation (commit to git)
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN_DOCS: ${{ secrets.GH_TOKEN }}
+        run: |
+          cd gh-pages
+          git add -f .
+          git commit -m "Updated documentation for master"
+          git push -f origin gh-pages
+          cd ../
+
+        # Only run a real semantic release if the dry-run identified a new release
+      - name: Publish to Git Releases and Tags
+        if:  ${{ steps.is_new_release.outputs.IS_NEW_RELEASE == '1' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx semantic-release # --dry-run --branches 9588_gha_deploy
+
+      - name: dotnet Pack to Nupkg
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        run: |
+          dotnet pack src/IBM.Watson.Assistant.v1/IBM.Watson.Assistant.v1.csproj --configuration Release
+          dotnet pack src/IBM.Watson.Assistant.v2/IBM.Watson.Assistant.v2.csproj --configuration Release
+          dotnet pack src/IBM.Watson.CompareComply.v1/IBM.Watson.CompareComply.v1.csproj --configuration Release
+          dotnet pack src/IBM.Watson.Discovery.v1/IBM.Watson.Discovery.v1.csproj --configuration Release
+          dotnet pack src/IBM.Watson.Discovery.v2/IBM.Watson.Discovery.v2.csproj --configuration Release
+          dotnet pack src/IBM.Watson.LanguageTranslator.v3/IBM.Watson.LanguageTranslator.v3.csproj --configuration Release
+          dotnet pack src/IBM.Watson.NaturalLanguageClassifier.v1/IBM.Watson.NaturalLanguageClassifier.v1.csproj --configuration Release
+          dotnet pack src/IBM.Watson.NaturalLanguageUnderstanding.v1/IBM.Watson.NaturalLanguageUnderstanding.v1.csproj --configuration Release
+          dotnet pack src/IBM.Watson.PersonalityInsights.v3/IBM.Watson.PersonalityInsights.v3.csproj --configuration Release
+          dotnet pack src/IBM.Watson.SpeechToText.v1/IBM.Watson.SpeechToText.v1.csproj --configuration Release
+          dotnet pack src/IBM.Watson.TextToSpeech.v1/IBM.Watson.TextToSpeech.v1.csproj --configuration Release
+          dotnet pack src/IBM.Watson.ToneAnalyzer.v3/IBM.Watson.ToneAnalyzer.v3.csproj --configuration Release
+          dotnet pack src/IBM.Watson.VisualRecognition.v3/IBM.Watson.VisualRecognition.v3.csproj --configuration Release
+          dotnet pack src/IBM.Watson.VisualRecognition.v4/IBM.Watson.VisualRecognition.v4.csproj --configuration Release
+
+        # I think we can publish everytime because trying to push up a duplicate will fail with already exists and cannot be modified (409)
+        # However we will try a new technique and only push if semantic release created a new release
+      - name: Publish to Nuget
+        if:  ${{ steps.is_new_release.outputs.IS_NEW_RELEASE == '1' }}
+        continue-on-error: true
+        env:
+          NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
+          REPO_TAG_NAME: "*"
+        run: |
+          echo -e "\n\033[0;35mCommand: branchname - ${{ steps.get_version_tag.outputs.SOURCE_TAG }} must have TAG_NAME to publish NuGet packages"
+          dotnet nuget push src/IBM.Watson.Assistant.v1/bin/Release/IBM.Watson.Assistant.v1.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push src/IBM.Watson.Assistant.v2/bin/Release/IBM.Watson.Assistant.v2.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push src/IBM.Watson.CompareComply.v1/bin/Release/IBM.Watson.CompareComply.v1.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push src/IBM.Watson.Discovery.v1/bin/Release/IBM.Watson.Discovery.v1.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push src/IBM.Watson.Discovery.v2/bin/Release/IBM.Watson.Discovery.v2.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push src/IBM.Watson.LanguageTranslator.v3/bin/Release/IBM.Watson.LanguageTranslator.v3.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push src/IBM.Watson.NaturalLanguageClassifier.v1/bin/Release/IBM.Watson.NaturalLanguageClassifier.v1.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push src/IBM.Watson.NaturalLanguageUnderstanding.v1/bin/Release/IBM.Watson.NaturalLanguageUnderstanding.v1.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push src/IBM.Watson.PersonalityInsights.v3/bin/Release/IBM.Watson.PersonalityInsights.v3.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push src/IBM.Watson.SpeechToText.v1/bin/Release/IBM.Watson.SpeechToText.v1.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push src/IBM.Watson.TextToSpeech.v1/bin/Release/IBM.Watson.TextToSpeech.v1.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push src/IBM.Watson.ToneAnalyzer.v3/bin/Release/IBM.Watson.ToneAnalyzer.v3.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push src/IBM.Watson.VisualRecognition.v3/bin/Release/IBM.Watson.VisualRecognition.v3.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push src/IBM.Watson.VisualRecognition.v4/bin/Release/IBM.Watson.VisualRecognition.v4.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
+
+      - name: SKIP - Publish/Deploy to Git and Nuget
+        if:  ${{ steps.is_new_release.outputs.IS_NEW_RELEASE == '0' }}
+        run: |
+          echo -e "\n\033[0;35mCommand: Skipping the deployment because semantic release has determined there are no relevant changes that warrent a new release.\n"

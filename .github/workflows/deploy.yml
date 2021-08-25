@@ -91,6 +91,7 @@ jobs:
 
       - name: Generating Documentation (commit to git)
         if:  ${{ steps.is_new_release.outputs.IS_NEW_RELEASE == '1' }}
+        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}

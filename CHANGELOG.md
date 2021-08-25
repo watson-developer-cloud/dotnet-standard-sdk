@@ -1,3 +1,10 @@
+## [5.2.1](https://github.com/watson-developer-cloud/dotnet-standard-sdk/compare/v5.2.0...v5.2.1) (2021-08-25)
+
+
+### Bug Fixes
+
+* **nlc:** add deprecation warning ([a2f15e9](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/a2f15e9fa232ae13eca16d290cb2e80be8653c41)), closes [#9626](https://github.com/watson-developer-cloud/dotnet-standard-sdk/issues/9626)
+
 # [5.2.0](https://github.com/watson-developer-cloud/dotnet-standard-sdk/compare/v5.1.0...v5.2.0) (2021-06-09)
 
 

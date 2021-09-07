@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2019, 2021.
+* (C) Copyright IBM Corp. 2021.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 */
 
 /**
-* IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-902c9336-20210513-140138
+* IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-07189efd-20210907-091205
 */
  
 using System.Collections.Generic;
@@ -65,8 +65,8 @@ namespace IBM.Watson.Discovery.v2
         ///
         /// Lists existing collections for the specified project.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <returns><see cref="ListCollectionsResponse" />ListCollectionsResponse</returns>
         public DetailedResponse<ListCollectionsResponse> ListCollections(string projectId)
         {
@@ -120,8 +120,8 @@ namespace IBM.Watson.Discovery.v2
         ///
         /// Create a new collection in the specified project.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <param name="name">The name of the collection.</param>
         /// <param name="description">A description of the collection. (optional)</param>
         /// <param name="language">The language of the collection. (optional, default to en)</param>
@@ -204,8 +204,8 @@ namespace IBM.Watson.Discovery.v2
         ///
         /// Get details about the specified collection.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <param name="collectionId">The ID of the collection.</param>
         /// <returns><see cref="CollectionDetails" />CollectionDetails</returns>
         public DetailedResponse<CollectionDetails> GetCollection(string projectId, string collectionId)
@@ -268,8 +268,8 @@ namespace IBM.Watson.Discovery.v2
         ///
         /// Updates the specified collection's name, description, and enrichments.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <param name="collectionId">The ID of the collection.</param>
         /// <param name="name">The name of the collection. (optional)</param>
         /// <param name="description">A description of the collection. (optional)</param>
@@ -353,8 +353,8 @@ namespace IBM.Watson.Discovery.v2
         /// Deletes the specified collection from the project. All documents stored in the specified collection and not
         /// shared is also deleted.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <param name="collectionId">The ID of the collection.</param>
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteCollection(string projectId, string collectionId)
@@ -420,8 +420,8 @@ namespace IBM.Watson.Discovery.v2
         /// overview of the standard default settings, and see [the Projects API documentation](#create-project) for
         /// details about how to set custom default query settings.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <param name="collectionIds">A comma-separated list of collection IDs to be queried against.
         /// (optional)</param>
         /// <param name="filter">A cacheable query that excludes documents that don't mention the query content. Filter
@@ -449,7 +449,8 @@ namespace IBM.Watson.Discovery.v2
         /// **natural_language_query** parameter is spell checked. The most likely correction is returned in the
         /// **suggested_query** field of the response (if one exists). (optional)</param>
         /// <param name="tableResults">Configuration for table retrieval. (optional)</param>
-        /// <param name="suggestedRefinements">Configuration for suggested refinements. (optional)</param>
+        /// <param name="suggestedRefinements">Configuration for suggested refinements. Available with Premium plans
+        /// only. (optional)</param>
         /// <param name="passages">Configuration for passage retrieval. (optional)</param>
         /// <returns><see cref="QueryResponse" />QueryResponse</returns>
         public DetailedResponse<QueryResponse> Query(string projectId, List<string> collectionIds = null, string filter = null, string query = null, string naturalLanguageQuery = null, string aggregation = null, long? count = null, List<string> _return = null, long? offset = null, string sort = null, bool? highlight = null, bool? spellingSuggestions = null, QueryLargeTableResults tableResults = null, QueryLargeSuggestedRefinements suggestedRefinements = null, QueryLargePassages passages = null)
@@ -565,10 +566,10 @@ namespace IBM.Watson.Discovery.v2
         ///
         /// Returns completion query suggestions for the specified prefix.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <param name="prefix">The prefix to use for autocompletion. For example, the prefix `Ho` could autocomplete
-        /// to `Hot`, `Housing`, or `How do I upgrade`. Possible completions are.</param>
+        /// to `hot`, `housing`, or `how`.</param>
         /// <param name="collectionIds">Comma separated list of the collection IDs. If this parameter is not specified,
         /// all collections in the project are used. (optional)</param>
         /// <param name="field">The field in the result documents that autocompletion suggestions are identified from.
@@ -647,8 +648,8 @@ namespace IBM.Watson.Discovery.v2
         ///
         /// Finds collection-level notices (errors and warnings) that are generated when documents are ingested.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <param name="collectionId">The ID of the collection.</param>
         /// <param name="filter">A cacheable query that excludes documents that don't mention the query content. Filter
         /// searches are better for metadata-type searches and for assessing the concepts in the data set.
@@ -744,8 +745,8 @@ namespace IBM.Watson.Discovery.v2
         /// Finds project-level notices (errors and warnings). Currently, project-level notices are generated by
         /// relevancy training.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <param name="filter">A cacheable query that excludes documents that don't mention the query content. Filter
         /// searches are better for metadata-type searches and for assessing the concepts in the data set.
         /// (optional)</param>
@@ -831,8 +832,8 @@ namespace IBM.Watson.Discovery.v2
         ///
         /// Gets a list of the unique fields (and their types) stored in the the specified collections.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <param name="collectionIds">Comma separated list of the collection IDs. If this parameter is not specified,
         /// all collections in the project are used. (optional)</param>
         /// <returns><see cref="ListFieldsResponse" />ListFieldsResponse</returns>
@@ -891,8 +892,8 @@ namespace IBM.Watson.Discovery.v2
         ///
         /// Returns default configuration settings for components.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <returns><see cref="ComponentSettingsResponse" />ComponentSettingsResponse</returns>
         public DetailedResponse<ComponentSettingsResponse> GetComponentSettings(string projectId)
         {
@@ -945,16 +946,16 @@ namespace IBM.Watson.Discovery.v2
         ///
         /// Add a document to a collection with optional metadata.
         ///
-        ///  Returns immediately after the system has accepted the document for processing.
+        /// Returns immediately after the system has accepted the document for processing.
         ///
         ///   * The user must provide document content, metadata, or both. If the request is missing both document
         /// content and metadata, it is rejected.
         ///
-        ///   * The user can set the **Content-Type** parameter on the **file** part to indicate the media type of the
+        ///   * You can set the **Content-Type** parameter on the **file** part to indicate the media type of the
         /// document. If the **Content-Type** parameter is missing or is one of the generic media types (for example,
         /// `application/octet-stream`), then the service attempts to automatically detect the document's media type.
         ///
-        ///   * The following field names are reserved and will be filtered out if present after normalization: `id`,
+        ///   * The following field names are reserved and are filtered out if present after normalization: `id`,
         /// `score`, `highlight`, and any field with the prefix of: `_`, `+`, or `-`
         ///
         ///   * Fields with empty name values after normalization are filtered out before indexing.
@@ -962,21 +963,22 @@ namespace IBM.Watson.Discovery.v2
         ///   * Fields that contain the following characters after normalization are filtered out before indexing: `#`
         /// and `,`
         ///
-        ///   If the document is uploaded to a collection that has it's data shared with another collection, the
+        ///   If the document is uploaded to a collection that shares its data with another collection, the
         /// **X-Watson-Discovery-Force** header must be set to `true`.
         ///
-        ///  **Note:** Documents can be added with a specific **document_id** by using the
-        /// **_/v2/projects/{project_id}/collections/{collection_id}/documents** method.
+        /// **Note:** You can assign an ID to a document that you add by appending the ID to the endpoint
+        /// (`/v2/projects/{project_id}/collections/{collection_id}/documents/{document_id}`). If a document already
+        /// exists with the specified ID, it is replaced.
         ///
-        /// **Note:** This operation only works on collections created to accept direct file uploads. It cannot be used
-        /// to modify a collection that connects to an external source such as Microsoft SharePoint.
+        /// **Note:** This operation works with a file upload collection. It cannot be used to modify a collection that
+        /// crawls an external data source.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <param name="collectionId">The ID of the collection.</param>
-        /// <param name="file">The content of the document to ingest. The maximum supported file size when adding a file
-        /// to a collection is 32 MB. The maximum supported file size when testing a configuration is 1 MB. Files larger
-        /// than the supported size are rejected. (optional)</param>
+        /// <param name="file">The content of the document to ingest. For maximum supported file size limits, see [the
+        /// documentation](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-collections#collections-doc-limits).
+        /// (optional)</param>
         /// <param name="filename">The filename for file. (optional)</param>
         /// <param name="fileContentType">The content type of file. (optional)</param>
         /// <param name="metadata">The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are
@@ -1113,7 +1115,7 @@ namespace IBM.Watson.Discovery.v2
         /// Replace an existing document or add a document with a specified **document_id**. Starts ingesting a document
         /// with optional metadata.
         ///
-        /// If the document is uploaded to a collection that has it's data shared with another collection, the
+        /// If the document is uploaded to a collection that shares its data with another collection, the
         /// **X-Watson-Discovery-Force** header must be set to `true`.
         ///
         /// **Note:** When uploading a new document with this method it automatically replaces any document stored with
@@ -1122,16 +1124,16 @@ namespace IBM.Watson.Discovery.v2
         /// **Note:** This operation only works on collections created to accept direct file uploads. It cannot be used
         /// to modify a collection that connects to an external source such as Microsoft SharePoint.
         ///
-        /// **Note:** If an uploaded document is segmented, all segments will be overwritten, even if the updated
-        /// version of the document has fewer segments.
+        /// **Note:** If an uploaded document is segmented, all segments are overwritten, even if the updated version of
+        /// the document has fewer segments.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <param name="collectionId">The ID of the collection.</param>
         /// <param name="documentId">The ID of the document.</param>
-        /// <param name="file">The content of the document to ingest. The maximum supported file size when adding a file
-        /// to a collection is 32 MB. The maximum supported file size when testing a configuration is 1 MB. Files larger
-        /// than the supported size are rejected. (optional)</param>
+        /// <param name="file">The content of the document to ingest. For maximum supported file size limits, see [the
+        /// documentation](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-collections#collections-doc-limits).
+        /// (optional)</param>
         /// <param name="filename">The filename for file. (optional)</param>
         /// <param name="fileContentType">The content type of file. (optional)</param>
         /// <param name="metadata">The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are
@@ -1282,8 +1284,8 @@ namespace IBM.Watson.Discovery.v2
         /// **Note:** Segments of an uploaded document cannot be deleted individually. Delete all segments by deleting
         /// using the `parent_document_id` of a segment result.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <param name="collectionId">The ID of the collection.</param>
         /// <param name="documentId">The ID of the document.</param>
         /// <param name="xWatsonDiscoveryForce">When `true`, the uploaded document is added to the collection even if
@@ -1361,8 +1363,8 @@ namespace IBM.Watson.Discovery.v2
         ///
         /// List the training queries for the specified project.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <returns><see cref="TrainingQuerySet" />TrainingQuerySet</returns>
         public DetailedResponse<TrainingQuerySet> ListTrainingQueries(string projectId)
         {
@@ -1416,8 +1418,8 @@ namespace IBM.Watson.Discovery.v2
         ///
         /// Removes all training queries for the specified project.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteTrainingQueries(string projectId)
         {
@@ -1471,8 +1473,8 @@ namespace IBM.Watson.Discovery.v2
         /// Add a query to the training data for this project. The query can contain a filter and natural language
         /// query.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <param name="naturalLanguageQuery">The natural text query for the training query.</param>
         /// <param name="examples">Array of training examples.</param>
         /// <param name="filter">The filter used on the collection before the **natural_language_query** is applied.
@@ -1555,8 +1557,8 @@ namespace IBM.Watson.Discovery.v2
         ///
         /// Get details for a specific training data query, including the query string and all examples.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <param name="queryId">The ID of the query used for training.</param>
         /// <returns><see cref="TrainingQuery" />TrainingQuery</returns>
         public DetailedResponse<TrainingQuery> GetTrainingQuery(string projectId, string queryId)
@@ -1619,8 +1621,8 @@ namespace IBM.Watson.Discovery.v2
         ///
         /// Updates an existing training query and it's examples.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <param name="queryId">The ID of the query used for training.</param>
         /// <param name="naturalLanguageQuery">The natural text query for the training query.</param>
         /// <param name="examples">Array of training examples.</param>
@@ -1712,8 +1714,8 @@ namespace IBM.Watson.Discovery.v2
         ///
         /// Removes details from a training data query, including the query string and all examples.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <param name="queryId">The ID of the query used for training.</param>
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteTrainingQuery(string projectId, string queryId)
@@ -1772,18 +1774,19 @@ namespace IBM.Watson.Discovery.v2
         /// <summary>
         /// Analyze a Document.
         ///
-        /// Process a document using the specified collection's settings and return it for realtime use.
+        /// Process a document and return it for realtime use. Supports JSON files only.
         ///
-        /// **Note:** Documents processed using this method are not added to the specified collection.
+        /// The document is processed according to the collection's configuration settings but is not stored in the
+        /// collection.
         ///
-        /// **Note:** This method is only supported on IBM Cloud Pak for Data instances of Discovery.
+        /// **Note:** This method is supported on installed instances of Discovery only.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <param name="collectionId">The ID of the collection.</param>
-        /// <param name="file">The content of the document to ingest. The maximum supported file size when adding a file
-        /// to a collection is 32 MB. The maximum supported file size when testing a configuration is 1 MB. Files larger
-        /// than the supported size are rejected. (optional)</param>
+        /// <param name="file">The content of the document to ingest. For maximum supported file size limits, see [the
+        /// documentation](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-collections#collections-doc-limits).
+        /// (optional)</param>
         /// <param name="filename">The filename for file. (optional)</param>
         /// <param name="fileContentType">The content type of file. (optional)</param>
         /// <param name="metadata">The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are
@@ -1909,10 +1912,11 @@ namespace IBM.Watson.Discovery.v2
         /// <summary>
         /// List Enrichments.
         ///
-        /// List the enrichments available to this project.
+        /// Lists the enrichments available to this project. The *Part of Speech* and *Sentiment of Phrases* enrichments
+        /// might be listed, but are reserved for internal use only.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <returns><see cref="Enrichments" />Enrichments</returns>
         public DetailedResponse<Enrichments> ListEnrichments(string projectId)
         {
@@ -1964,10 +1968,10 @@ namespace IBM.Watson.Discovery.v2
         /// <summary>
         /// Create an enrichment.
         ///
-        /// Create an enrichment for use with the specified project/.
+        /// Create an enrichment for use with the specified project.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <param name="enrichment">Information about a specific enrichment.</param>
         /// <param name="file">The enrichment file to upload. (optional)</param>
         /// <returns><see cref="Enrichment" />Enrichment</returns>
@@ -2046,8 +2050,8 @@ namespace IBM.Watson.Discovery.v2
         ///
         /// Get details about a specific enrichment.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <param name="enrichmentId">The ID of the enrichment.</param>
         /// <returns><see cref="Enrichment" />Enrichment</returns>
         public DetailedResponse<Enrichment> GetEnrichment(string projectId, string enrichmentId)
@@ -2110,8 +2114,8 @@ namespace IBM.Watson.Discovery.v2
         ///
         /// Updates an existing enrichment's name and description.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <param name="enrichmentId">The ID of the enrichment.</param>
         /// <param name="name">A new name for the enrichment.</param>
         /// <param name="description">A new description for the enrichment. (optional)</param>
@@ -2195,8 +2199,8 @@ namespace IBM.Watson.Discovery.v2
         ///
         /// **Note:** Only enrichments that have been manually created can be deleted.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <param name="enrichmentId">The ID of the enrichment.</param>
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteEnrichment(string projectId, string enrichmentId)
@@ -2303,7 +2307,13 @@ namespace IBM.Watson.Discovery.v2
         /// Create a new project for this instance.
         /// </summary>
         /// <param name="name">The human readable name of this project.</param>
-        /// <param name="type">The project type of this project.</param>
+        /// <param name="type">The type of project.
+        ///
+        /// The `content_intelligence` type is a *Document Retrieval for Contracts* project and the `other` type is a
+        /// *Custom* project.
+        ///
+        /// The `content_mining` and `content_intelligence` types are available with Premium plan managed deployments
+        /// and installed deployments only.</param>
         /// <param name="defaultQueryParameters">Default query parameters for this project. (optional)</param>
         /// <returns><see cref="ProjectDetails" />ProjectDetails</returns>
         public DetailedResponse<ProjectDetails> CreateProject(string name, string type, DefaultQueryParams defaultQueryParameters = null)
@@ -2375,8 +2385,8 @@ namespace IBM.Watson.Discovery.v2
         ///
         /// Get details on the specified project.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <returns><see cref="ProjectDetails" />ProjectDetails</returns>
         public DetailedResponse<ProjectDetails> GetProject(string projectId)
         {
@@ -2430,8 +2440,8 @@ namespace IBM.Watson.Discovery.v2
         ///
         /// Update the specified project's name.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <param name="name">The new name to give this project. (optional)</param>
         /// <returns><see cref="ProjectDetails" />ProjectDetails</returns>
         public DetailedResponse<ProjectDetails> UpdateProject(string projectId, string name = null)
@@ -2498,8 +2508,8 @@ namespace IBM.Watson.Discovery.v2
         /// **Important:** Deleting a project deletes everything that is part of the specified project, including all
         /// collections.
         /// </summary>
-        /// <param name="projectId">The ID of the project. This information can be found from the deploy page of the
-        /// Discovery administrative tooling.</param>
+        /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
+        /// page in Discovery.</param>
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> DeleteProject(string projectId)
         {

@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2020.
+* (C) Copyright IBM Corp. 2021.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -25,8 +25,8 @@ namespace IBM.Watson.Assistant.v1.Model
     public class WorkspaceSystemSettingsDisambiguation
     {
         /// <summary>
-        /// The sensitivity of the disambiguation feature to intent detection conflicts. Set to **high** if you want the
-        /// disambiguation feature to be triggered more often. This can be useful for testing or demonstration purposes.
+        /// The sensitivity of the disambiguation feature to intent detection uncertainty. Higher sensitivity means that
+        /// the disambiguation feature is triggered more often and includes more choices.
         /// </summary>
         public class SensitivityEnumValue
         {
@@ -42,8 +42,8 @@ namespace IBM.Watson.Assistant.v1.Model
         }
 
         /// <summary>
-        /// The sensitivity of the disambiguation feature to intent detection conflicts. Set to **high** if you want the
-        /// disambiguation feature to be triggered more often. This can be useful for testing or demonstration purposes.
+        /// The sensitivity of the disambiguation feature to intent detection uncertainty. Higher sensitivity means that
+        /// the disambiguation feature is triggered more often and includes more choices.
         /// Constants for possible values can be found using WorkspaceSystemSettingsDisambiguation.SensitivityEnumValue
         /// </summary>
         [JsonProperty("sensitivity", NullValueHandling = NullValueHandling.Ignore)]

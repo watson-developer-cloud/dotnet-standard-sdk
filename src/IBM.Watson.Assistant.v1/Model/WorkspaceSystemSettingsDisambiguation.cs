@@ -38,6 +38,22 @@ namespace IBM.Watson.Assistant.v1.Model
             /// Constant HIGH for high
             /// </summary>
             public const string HIGH = "high";
+            /// <summary>
+            /// Constant MEDIUM_HIGH for medium_high
+            /// </summary>
+            public const string MEDIUM_HIGH = "medium_high";
+            /// <summary>
+            /// Constant MEDIUM for medium
+            /// </summary>
+            public const string MEDIUM = "medium";
+            /// <summary>
+            /// Constant MEDIUM_LOW for medium_low
+            /// </summary>
+            public const string MEDIUM_LOW = "medium_low";
+            /// <summary>
+            /// Constant LOW for low
+            /// </summary>
+            public const string LOW = "low";
             
         }
 

@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2017, 2021.
+* (C) Copyright IBM Corp. 2021.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -71,7 +71,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
         /// and publication date. Supports URL and HTML input types only.
         /// </summary>
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
-        public object Metadata { get; set; }
+        public MetadataOptions Metadata { get; set; }
         /// <summary>
         /// Recognizes when two entities are related and identifies the type of relation. For example, an `awardedTo`
         /// relation might connect the entities "Nobel Prize" and "Albert Einstein". For more information, see [Relation
@@ -107,7 +107,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
         [JsonProperty("summarization", NullValueHandling = NullValueHandling.Ignore)]
         public SummarizationOptions Summarization { get; set; }
         /// <summary>
-        /// Returns a five-level taxonomy of the content. The top three categories are returned.
+        /// Returns a hierarchical taxonomy of the content. The top three categories are returned by default.
         ///
         /// Supported languages: Arabic, English, French, German, Italian, Japanese, Korean, Portuguese, Spanish.
         /// </summary>

@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2017, 2021.
+* (C) Copyright IBM Corp. 2021.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -1136,8 +1136,8 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// <summary>
         /// Create classifications model.
         ///
-        /// (Beta) Creates a custom classifications model by uploading training data and associated metadata. The model
-        /// begins the training and deploying process and is ready to use when the `status` is `available`.
+        /// Creates a custom classifications model by uploading training data and associated metadata. The model begins
+        /// the training and deploying process and is ready to use when the `status` is `available`.
         /// </summary>
         /// <param name="language">The 2-letter language code of this model.</param>
         /// <param name="trainingData">Training data in JSON format. For more information, see [Classifications training
@@ -1376,8 +1376,8 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// <summary>
         /// Update classifications model.
         ///
-        /// (Beta) Overwrites the training data associated with this custom classifications model and retrains the
-        /// model. The new model replaces the current deployment.
+        /// Overwrites the training data associated with this custom classifications model and retrains the model. The
+        /// new model replaces the current deployment.
         /// </summary>
         /// <param name="modelId">ID of the model.</param>
         /// <param name="language">The 2-letter language code of this model.</param>
@@ -1526,8 +1526,8 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// <summary>
         /// Delete classifications model.
         ///
-        /// (Beta) Un-deploys the custom classifications model with the given model ID and deletes all associated
-        /// customer data, including any training data or binary artifacts.
+        /// Un-deploys the custom classifications model with the given model ID and deletes all associated customer
+        /// data, including any training data or binary artifacts.
         /// </summary>
         /// <param name="modelId">ID of the model.</param>
         /// <returns><see cref="DeleteModelResults" />DeleteModelResults</returns>

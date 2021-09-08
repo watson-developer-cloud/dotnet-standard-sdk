@@ -784,18 +784,14 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.IntegrationTests
 
             Assert.IsNotNull(response.Result.Models);
 
-            foreach (ClassificationsModelList classificationsModelList in response.Result.Models)
+            foreach (ClassificationsModel classificationsModel in response.Result.Models)
             {
-                foreach (ClassificationsModel classificationsModel in classificationsModelList.Models)
+                if (classificationsModel.Name.StartsWith("testString"))
                 {
-                    if (classificationsModel.Name.StartsWith("testString"))
-                    {
-                        service.DeleteClassificationsModel(
-                            modelId: classificationsModel.ModelId
-                            );
-                    }
+                    service.DeleteClassificationsModel(
+                        modelId: classificationsModel.ModelId
+                        );
                 }
-               
             }
         }
 

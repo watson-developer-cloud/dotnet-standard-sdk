@@ -1825,7 +1825,7 @@ namespace IBM.Watson.Discovery.v2
 
                 if (file != null)
                 {
-                    var fileContent = new StreamContent(file);
+                    var fileContent = new ByteArrayContent(file.ToArray());
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
                     fileContent.Headers.ContentType = contentType;
@@ -2303,7 +2303,13 @@ namespace IBM.Watson.Discovery.v2
         /// Create a new project for this instance.
         /// </summary>
         /// <param name="name">The human readable name of this project.</param>
-        /// <param name="type">The project type of this project.</param>
+        /// <param name="type">The type of project.
+        ///
+        /// The `content_intelligence` type is a *Document Retrieval for Contracts* project and the `other` type is a
+        /// *Custom* project.
+        ///
+        /// The `content_mining` and `content_intelligence` types are available with Premium plan managed deployments
+        /// and installed deployments only.</param>
         /// <param name="defaultQueryParameters">Default query parameters for this project. (optional)</param>
         /// <returns><see cref="ProjectDetails" />ProjectDetails</returns>
         public DetailedResponse<ProjectDetails> CreateProject(string name, string type, DefaultQueryParams defaultQueryParameters = null)

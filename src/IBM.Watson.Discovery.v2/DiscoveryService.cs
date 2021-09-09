@@ -1828,7 +1828,7 @@ namespace IBM.Watson.Discovery.v2
 
                 if (file != null)
                 {
-                    var fileContent = new ByteArrayContent(file.ToArray());
+                    var fileContent = new StreamContent(file);
                     System.Net.Http.Headers.MediaTypeHeaderValue contentType;
                     System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(fileContentType, out contentType);
                     fileContent.Headers.ContentType = contentType;

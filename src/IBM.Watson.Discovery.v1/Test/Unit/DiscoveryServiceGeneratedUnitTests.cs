@@ -1630,7 +1630,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var environmentId = "environmentId";
             var sourceType = "sourceType";
             var credentialDetails = new CredentialDetails();
-            var status = "status";
+            var status = new StatusDetails();
 
             var result = service.CreateCredentials(environmentId: environmentId, sourceType: sourceType, credentialDetails: credentialDetails, status: status);
 
@@ -1643,9 +1643,9 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             {
                 bodyObject["credential_details"] = JToken.FromObject(credentialDetails);
             }
-            if (!string.IsNullOrEmpty(status))
+            if (status != null)
             {
-                bodyObject["status"] = JToken.FromObject(status);
+                bodyObject["authentication"] = JToken.FromObject(status);
             }
             var json = JsonConvert.SerializeObject(bodyObject);
             request.Received().WithArgument("version", versionDate);
@@ -1688,7 +1688,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var credentialId = "credentialId";
             var sourceType = "sourceType";
             var credentialDetails = new CredentialDetails();
-            var status = "status";
+            var status = new StatusDetails();
 
             var result = service.UpdateCredentials(environmentId: environmentId, credentialId: credentialId, sourceType: sourceType, credentialDetails: credentialDetails, status: status);
 
@@ -1701,9 +1701,9 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             {
                 bodyObject["credential_details"] = JToken.FromObject(credentialDetails);
             }
-            if (!string.IsNullOrEmpty(status))
+            if (status != null)
             {
-                bodyObject["status"] = JToken.FromObject(status);
+                bodyObject["authentication"] = JToken.FromObject(status);
             }
             var json = JsonConvert.SerializeObject(bodyObject);
             request.Received().WithArgument("version", versionDate);

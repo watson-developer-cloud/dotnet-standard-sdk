@@ -1645,7 +1645,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             }
             if (status != null)
             {
-                bodyObject["authentication"] = JToken.FromObject(status);
+                bodyObject["status"] = JToken.FromObject(status);
             }
             var json = JsonConvert.SerializeObject(bodyObject);
             request.Received().WithArgument("version", versionDate);
@@ -1703,7 +1703,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             }
             if (status != null)
             {
-                bodyObject["authentication"] = JToken.FromObject(status);
+                bodyObject["status"] = JToken.FromObject(status);
             }
             var json = JsonConvert.SerializeObject(bodyObject);
             request.Received().WithArgument("version", versionDate);

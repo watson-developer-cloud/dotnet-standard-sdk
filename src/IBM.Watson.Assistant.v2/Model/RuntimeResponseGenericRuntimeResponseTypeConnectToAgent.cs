@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2020, 2021.
+* (C) Copyright IBM Corp. 2021.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -68,7 +68,11 @@ namespace IBM.Watson.Assistant.v2.Model
         /// Routing or other contextual information to be used by target service desk systems.
         /// </summary>
         [JsonProperty("transfer_info", NullValueHandling = NullValueHandling.Ignore)]
-        public new DialogNodeOutputConnectToAgentTransferInfo TransferInfo { get; protected set; }
+        public new DialogNodeOutputConnectToAgentTransferInfo TransferInfo
+        {
+            get { return base.TransferInfo; }
+            set { base.TransferInfo = value; }
+        }
         /// <summary>
         /// A label identifying the topic of the conversation, derived from the **title** property of the relevant node
         /// or the **topic** property of the dialog node response.

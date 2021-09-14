@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2020, 2021.
+* (C) Copyright IBM Corp. 2021.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -17,23 +17,23 @@
 
 using Newtonsoft.Json;
 
-namespace IBM.Watson.Discovery.v2.Model
+namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
-    /// Object that contains suggested refinement settings. Available with Premium plans only.
+    /// Object that contains details about the status of the authentication process.
     /// </summary>
-    public class DefaultQueryParamsSuggestedRefinements
+    public class StatusDetails
     {
         /// <summary>
-        /// When `true`, suggested refinements for the query are returned by default.
+        /// Indicates whether the credential is accepted by the target data source.
         /// </summary>
-        [JsonProperty("enabled", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? Enabled { get; set; }
+        [JsonProperty("authenticated", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? Authenticated { get; set; }
         /// <summary>
-        /// The number of suggested refinements to return by default.
+        /// If `authenticated` is `false`, a message describes why the authentication was unsuccessful.
         /// </summary>
-        [JsonProperty("count", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Count { get; set; }
+        [JsonProperty("error_message", NullValueHandling = NullValueHandling.Ignore)]
+        public string ErrorMessage { get; set; }
     }
 
 }

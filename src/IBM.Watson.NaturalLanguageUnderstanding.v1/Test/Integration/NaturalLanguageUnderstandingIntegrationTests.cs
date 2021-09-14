@@ -1,5 +1,5 @@
 ﻿/**
-* (C) Copyright IBM Corp. 2017, 2020.
+* (C) Copyright IBM Corp. 2017, 2021.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -784,18 +784,14 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.IntegrationTests
 
             Assert.IsNotNull(response.Result.Models);
 
-            foreach (ClassificationsModelList classificationsModelList in response.Result.Models)
+            foreach (ClassificationsModel classificationsModel in response.Result.Models)
             {
-                foreach (ClassificationsModel classificationsModel in classificationsModelList.Models)
+                if (classificationsModel.Name.StartsWith("testString"))
                 {
-                    if (classificationsModel.Name.StartsWith("testString"))
-                    {
-                        service.DeleteClassificationsModel(
-                            modelId: classificationsModel.ModelId
-                            );
-                    }
+                    service.DeleteClassificationsModel(
+                        modelId: classificationsModel.ModelId
+                        );
                 }
-               
             }
         }
 

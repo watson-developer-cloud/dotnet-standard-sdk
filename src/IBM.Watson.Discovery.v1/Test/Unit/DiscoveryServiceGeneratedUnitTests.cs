@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2020.
+* (C) Copyright IBM Corp. 2018, 2021.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -1630,7 +1630,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var environmentId = "environmentId";
             var sourceType = "sourceType";
             var credentialDetails = new CredentialDetails();
-            var status = "status";
+            var status = new StatusDetails();
 
             var result = service.CreateCredentials(environmentId: environmentId, sourceType: sourceType, credentialDetails: credentialDetails, status: status);
 
@@ -1643,7 +1643,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             {
                 bodyObject["credential_details"] = JToken.FromObject(credentialDetails);
             }
-            if (!string.IsNullOrEmpty(status))
+            if (status != null)
             {
                 bodyObject["status"] = JToken.FromObject(status);
             }
@@ -1688,7 +1688,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             var credentialId = "credentialId";
             var sourceType = "sourceType";
             var credentialDetails = new CredentialDetails();
-            var status = "status";
+            var status = new StatusDetails();
 
             var result = service.UpdateCredentials(environmentId: environmentId, credentialId: credentialId, sourceType: sourceType, credentialDetails: credentialDetails, status: status);
 
@@ -1701,7 +1701,7 @@ namespace IBM.Watson.Discovery.v1.UnitTests
             {
                 bodyObject["credential_details"] = JToken.FromObject(credentialDetails);
             }
-            if (!string.IsNullOrEmpty(status))
+            if (status != null)
             {
                 bodyObject["status"] = JToken.FromObject(status);
             }

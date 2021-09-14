@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2018, 2021.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -58,24 +58,6 @@ namespace IBM.Watson.Discovery.v1.Model
         }
 
         /// <summary>
-        /// The current status of this set of credentials. `connected` indicates that the credentials are available to
-        /// use with the source configuration of a collection. `invalid` refers to the credentials (for example, the
-        /// password provided has expired) and must be corrected before they can be used with a collection.
-        /// </summary>
-        public class StatusEnumValue
-        {
-            /// <summary>
-            /// Constant CONNECTED for connected
-            /// </summary>
-            public const string CONNECTED = "connected";
-            /// <summary>
-            /// Constant INVALID for invalid
-            /// </summary>
-            public const string INVALID = "invalid";
-            
-        }
-
-        /// <summary>
         /// The source that this credentials object connects to.
         /// -  `box` indicates the credentials are used to connect an instance of Enterprise Box.
         /// -  `salesforce` indicates the credentials are used to connect to Salesforce.
@@ -86,14 +68,6 @@ namespace IBM.Watson.Discovery.v1.Model
         /// </summary>
         [JsonProperty("source_type", NullValueHandling = NullValueHandling.Ignore)]
         public string SourceType { get; set; }
-        /// <summary>
-        /// The current status of this set of credentials. `connected` indicates that the credentials are available to
-        /// use with the source configuration of a collection. `invalid` refers to the credentials (for example, the
-        /// password provided has expired) and must be corrected before they can be used with a collection.
-        /// Constants for possible values can be found using Credentials.StatusEnumValue
-        /// </summary>
-        [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
-        public string Status { get; set; }
         /// <summary>
         /// Unique identifier for this set of credentials.
         /// </summary>
@@ -106,6 +80,11 @@ namespace IBM.Watson.Discovery.v1.Model
         /// </summary>
         [JsonProperty("credential_details", NullValueHandling = NullValueHandling.Ignore)]
         public CredentialDetails CredentialDetails { get; set; }
+        /// <summary>
+        /// Object that contains details about the status of the authentication process.
+        /// </summary>
+        [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
+        public StatusDetails Status { get; set; }
     }
 
 }

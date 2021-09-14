@@ -27,7 +27,7 @@ namespace IBM.Watson
         /// <summary>
         /// The SDK version.
         /// </summary>
-        public const string Version = "watson-apis-dotnet-standard-sdk-5.2.1";
+        public const string Version = "watson-apis-dotnet-standard-sdk-5.3.0";
         private static string os;
         private static string osVersion;
         private static string frameworkDescription;

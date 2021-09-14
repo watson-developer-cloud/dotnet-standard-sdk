@@ -16,7 +16,7 @@
 */
 
 /**
-* IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-902c9336-20210513-140138
+* IBM OpenAPI SDK Code Generator Version: 3.38.0-07189efd-20210827-205025
 */
  
 using System.Collections.Generic;
@@ -4319,8 +4319,8 @@ namespace IBM.Watson.Assistant.v1
         /// </summary>
         /// <param name="filter">A cacheable parameter that limits the results to those matching the specified filter.
         /// You must specify a filter query that includes a value for `language`, as well as a value for
-        /// `request.context.system.assistant_id`, `workspace_id`, or `request.context.metadata.deployment`. For more
-        /// information, see the
+        /// `request.context.system.assistant_id`, `workspace_id`, or `request.context.metadata.deployment`. These
+        /// required filters must be specified using the exact match (`::`) operator. For more information, see the
         /// [documentation](https://cloud.ibm.com/docs/assistant?topic=assistant-filter-reference#filter-reference).</param>
         /// <param name="sort">How to sort the returned log events. You can sort by **request_timestamp**. To reverse
         /// the sort order, prefix the parameter value with a minus sign (`-`). (optional)</param>

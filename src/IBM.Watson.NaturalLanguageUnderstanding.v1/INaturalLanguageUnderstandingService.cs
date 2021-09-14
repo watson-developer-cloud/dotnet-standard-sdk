@@ -36,7 +36,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         DetailedResponse<CategoriesModel> UpdateCategoriesModel(string modelId, string language, System.IO.MemoryStream trainingData, string trainingDataContentType = null, string name = null, string description = null, string modelVersion = null, string workspaceId = null, string versionDescription = null);
         DetailedResponse<DeleteModelResults> DeleteCategoriesModel(string modelId);
         DetailedResponse<ClassificationsModel> CreateClassificationsModel(string language, System.IO.MemoryStream trainingData, string trainingDataContentType = null, string name = null, string description = null, string modelVersion = null, string workspaceId = null, string versionDescription = null);
-        DetailedResponse<ListClassificationsModelsResponse> ListClassificationsModels();
+        DetailedResponse<ClassificationsModelList> ListClassificationsModels();
         DetailedResponse<ClassificationsModel> GetClassificationsModel(string modelId);
         DetailedResponse<ClassificationsModel> UpdateClassificationsModel(string modelId, string language, System.IO.MemoryStream trainingData, string trainingDataContentType = null, string name = null, string description = null, string modelVersion = null, string workspaceId = null, string versionDescription = null);
         DetailedResponse<DeleteModelResults> DeleteClassificationsModel(string modelId);

@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2020, 2021.
+* (C) Copyright IBM Corp. 2021.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -17,23 +17,23 @@
 
 using Newtonsoft.Json;
 
-namespace IBM.Watson.Discovery.v2.Model
+namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// Object that contains suggested refinement settings. Available with Premium plans only.
+    /// An object specifing a segment of text that was identified as a direct answer to the search query.
     /// </summary>
-    public class DefaultQueryParamsSuggestedRefinements
+    public class SearchResultAnswer
     {
         /// <summary>
-        /// When `true`, suggested refinements for the query are returned by default.
+        /// The text of the answer.
         /// </summary>
-        [JsonProperty("enabled", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? Enabled { get; set; }
+        [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
+        public string Text { get; set; }
         /// <summary>
-        /// The number of suggested refinements to return by default.
+        /// The confidence score for the answer, as returned by the Discovery service.
         /// </summary>
-        [JsonProperty("count", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Count { get; set; }
+        [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
+        public double? Confidence { get; set; }
     }
 
 }

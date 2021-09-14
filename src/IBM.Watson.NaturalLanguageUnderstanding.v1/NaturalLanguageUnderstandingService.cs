@@ -16,7 +16,7 @@
 */
 
 /**
-* IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-902c9336-20210513-140138
+* IBM OpenAPI SDK Code Generator Version: 3.38.0-07189efd-20210827-205025
 */
  
 using System.Collections.Generic;
@@ -1136,8 +1136,8 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// <summary>
         /// Create classifications model.
         ///
-        /// (Beta) Creates a custom classifications model by uploading training data and associated metadata. The model
-        /// begins the training and deploying process and is ready to use when the `status` is `available`.
+        /// Creates a custom classifications model by uploading training data and associated metadata. The model begins
+        /// the training and deploying process and is ready to use when the `status` is `available`.
         /// </summary>
         /// <param name="language">The 2-letter language code of this model.</param>
         /// <param name="trainingData">Training data in JSON format. For more information, see [Classifications training
@@ -1277,16 +1277,16 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// <summary>
         /// List classifications models.
         ///
-        /// (Beta) Returns all custom classifications models associated with this service instance.
+        /// Returns all custom classifications models associated with this service instance.
         /// </summary>
-        /// <returns><see cref="ListClassificationsModelsResponse" />ListClassificationsModelsResponse</returns>
-        public DetailedResponse<ListClassificationsModelsResponse> ListClassificationsModels()
+        /// <returns><see cref="ClassificationsModelList" />ClassificationsModelList</returns>
+        public DetailedResponse<ClassificationsModelList> ListClassificationsModels()
         {
             if (string.IsNullOrEmpty(Version))
             {
                 throw new ArgumentNullException("`Version` is required");
             }
-            DetailedResponse<ListClassificationsModelsResponse> result = null;
+            DetailedResponse<ClassificationsModelList> result = null;
 
             try
             {
@@ -1305,10 +1305,10 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
                 restRequest.WithHeaders(customRequestHeaders);
                 ClearCustomRequestHeaders();
 
-                result = restRequest.As<ListClassificationsModelsResponse>().Result;
+                result = restRequest.As<ClassificationsModelList>().Result;
                 if (result == null)
                 {
-                    result = new DetailedResponse<ListClassificationsModelsResponse>();
+                    result = new DetailedResponse<ClassificationsModelList>();
                 }
             }
             catch (AggregateException ae)
@@ -1322,7 +1322,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// <summary>
         /// Get classifications model details.
         ///
-        /// (Beta) Returns the status of the classifications model with the given model ID.
+        /// Returns the status of the classifications model with the given model ID.
         /// </summary>
         /// <param name="modelId">ID of the model.</param>
         /// <returns><see cref="ClassificationsModel" />ClassificationsModel</returns>
@@ -1376,8 +1376,8 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// <summary>
         /// Update classifications model.
         ///
-        /// (Beta) Overwrites the training data associated with this custom classifications model and retrains the
-        /// model. The new model replaces the current deployment.
+        /// Overwrites the training data associated with this custom classifications model and retrains the model. The
+        /// new model replaces the current deployment.
         /// </summary>
         /// <param name="modelId">ID of the model.</param>
         /// <param name="language">The 2-letter language code of this model.</param>
@@ -1526,8 +1526,8 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// <summary>
         /// Delete classifications model.
         ///
-        /// (Beta) Un-deploys the custom classifications model with the given model ID and deletes all associated
-        /// customer data, including any training data or binary artifacts.
+        /// Un-deploys the custom classifications model with the given model ID and deletes all associated customer
+        /// data, including any training data or binary artifacts.
         /// </summary>
         /// <param name="modelId">ID of the model.</param>
         /// <returns><see cref="DeleteModelResults" />DeleteModelResults</returns>

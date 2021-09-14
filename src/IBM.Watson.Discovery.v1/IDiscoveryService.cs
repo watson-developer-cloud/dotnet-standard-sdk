@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2017, 2019.
+* (C) Copyright IBM Corp. 2017, 2021.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -79,9 +79,9 @@ namespace IBM.Watson.Discovery.v1
         DetailedResponse<MetricResponse> GetMetricsEventRate(DateTime? startTime = null, DateTime? endTime = null, string resultType = null);
         DetailedResponse<MetricTokenResponse> GetMetricsQueryTokenEvent(long? count = null);
         DetailedResponse<CredentialsList> ListCredentials(string environmentId);
-        DetailedResponse<Credentials> CreateCredentials(string environmentId, string sourceType = null, CredentialDetails credentialDetails = null, string status = null);
+        DetailedResponse<Credentials> CreateCredentials(string environmentId, string sourceType = null, CredentialDetails credentialDetails = null, StatusDetails status = null);
         DetailedResponse<Credentials> GetCredentials(string environmentId, string credentialId);
-        DetailedResponse<Credentials> UpdateCredentials(string environmentId, string credentialId, string sourceType = null, CredentialDetails credentialDetails = null, string status = null);
+        DetailedResponse<Credentials> UpdateCredentials(string environmentId, string credentialId, string sourceType = null, CredentialDetails credentialDetails = null, StatusDetails status = null);
         DetailedResponse<DeleteCredentials> DeleteCredentials(string environmentId, string credentialId);
         DetailedResponse<GatewayList> ListGateways(string environmentId);
         DetailedResponse<Gateway> CreateGateway(string environmentId, string name = null);

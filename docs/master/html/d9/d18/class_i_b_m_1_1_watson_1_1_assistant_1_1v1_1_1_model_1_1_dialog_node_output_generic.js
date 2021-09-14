@@ -6,6 +6,7 @@ var class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_
     [ "DialogNodeOutputGeneric", "d9/d18/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic.html#ae09fad600b66037c59778344f8c644ab", null ],
     [ "AgentAvailable", "d9/d18/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic.html#a736ed9c13465e68f9eb7a99e6e0c2763", null ],
     [ "AgentUnavailable", "d9/d18/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic.html#ac49279e630bfa180f323388b1bfefda0", null ],
+    [ "AltText", "d9/d18/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic.html#aefa83afa78d017357ad7289d9827eb6d", null ],
     [ "Channels", "d9/d18/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic.html#ae850a6b47fc9b6b300598643eaa1d43a", null ],
     [ "Delimiter", "d9/d18/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic.html#a5e6b1d4013fbec32da989f53f748056b", null ],
     [ "Description", "d9/d18/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic.html#a045ce0592b14d348e2ed74038da57bd0", null ],

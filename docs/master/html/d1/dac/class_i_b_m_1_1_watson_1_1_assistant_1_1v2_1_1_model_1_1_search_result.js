@@ -1,5 +1,6 @@
 var class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result =
 [
+    [ "Answers", "d1/dac/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result.html#a3fb69d6912667902612af6134c00abca", null ],
     [ "Body", "d1/dac/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result.html#ae386b14e9494c2da1c9155c314e98cfb", null ],
     [ "Highlight", "d1/dac/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result.html#adb49d0133c28d7b19a3fadce7c2a5d91", null ],
     [ "Id", "d1/dac/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result.html#ae9a206d149dac5f78a31dc7ddec0a6d7", null ],

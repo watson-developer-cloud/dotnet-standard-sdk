@@ -39,8 +39,7 @@ var dir_f918a9c434a2a184dbb4779f6e2bb01d =
     ] ],
     [ "Credentials.cs", "d5/d48/_credentials_8cs.html", [
       [ "Credentials", "de/d95/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_credentials.html", "de/d95/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_credentials" ],
-      [ "SourceTypeEnumValue", "d3/d69/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_credentials_1_1_source_type_enum_value.html", "d3/d69/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_credentials_1_1_source_type_enum_value" ],
-      [ "StatusEnumValue", "d6/d59/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_credentials_1_1_status_enum_value.html", "d6/d59/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_credentials_1_1_status_enum_value" ]
+      [ "SourceTypeEnumValue", "d3/d69/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_credentials_1_1_source_type_enum_value.html", "d3/d69/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_credentials_1_1_source_type_enum_value" ]
     ] ],
     [ "CredentialsList.cs", "d2/d6a/_credentials_list_8cs.html", [
       [ "CredentialsList", "d6/d22/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_credentials_list.html", "d6/d22/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_credentials_list" ]
@@ -288,6 +287,9 @@ var dir_f918a9c434a2a184dbb4779f6e2bb01d =
     [ "SourceStatus.cs", "d3/dc1/_source_status_8cs.html", [
       [ "SourceStatus", "dd/d2d/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_source_status.html", "dd/d2d/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_source_status" ],
       [ "StatusEnumValue", "d4/d2a/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_source_status_1_1_status_enum_value.html", "d4/d2a/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_source_status_1_1_status_enum_value" ]
+    ] ],
+    [ "StatusDetails.cs", "d2/db1/_status_details_8cs.html", [
+      [ "StatusDetails", "d2/ddf/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_status_details.html", "d2/ddf/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_status_details" ]
     ] ],
     [ "Term.cs", "db/df3/_term_8cs.html", [
       [ "Term", "d7/d98/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_term.html", "d7/d98/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_term" ]

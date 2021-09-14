@@ -13,6 +13,7 @@ var class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1
     [ "IT_IT", "d6/d52/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_list_custom_models_enums_1_1_language_value.html#ade1274f1bfb06db284538eff9f74d14d", null ],
     [ "JA_JP", "d6/d52/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_list_custom_models_enums_1_1_language_value.html#ab487e39a70130b349f46b9298dba1480", null ],
     [ "KO_KR", "d6/d52/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_list_custom_models_enums_1_1_language_value.html#ae7711b3acd4f78d1192698c467aaf438", null ],
+    [ "NL_BE", "d6/d52/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_list_custom_models_enums_1_1_language_value.html#aa4c2d3cb7218243bf94b2368fabfc006", null ],
     [ "NL_NL", "d6/d52/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_list_custom_models_enums_1_1_language_value.html#a1a79349aed05325a64047fed83ae8988", null ],
     [ "PT_BR", "d6/d52/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_list_custom_models_enums_1_1_language_value.html#a42cbeab9f63c6da3cad520fc99272edd", null ],
     [ "ZH_CN", "d6/d52/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_list_custom_models_enums_1_1_language_value.html#a385ef8aa2a19648184f033dbdc8d6032", null ]

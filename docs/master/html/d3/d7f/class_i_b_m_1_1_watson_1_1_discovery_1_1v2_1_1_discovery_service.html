@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">5.2.0</span>
+   &#160;<span id="projectnumber">5.2.1</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -493,19 +493,19 @@ Properties</h2></td></tr>
 <p>Returns immediately after the system has accepted the document for processing.</p>
 <ul>
 <li>The user must provide document content, metadata, or both. If the request is missing both document content and metadata, it is rejected.</li>
-<li>The user can set the <b>Content-Type</b> parameter on the <b>file</b> part to indicate the media type of the document. If the <b>Content-Type</b> parameter is missing or is one of the generic media types (for example, <code>application/octet-stream</code>), then the service attempts to automatically detect the document's media type.</li>
-<li>The following field names are reserved and will be filtered out if present after normalization: <code>id</code>, <code>score</code>, <code>highlight</code>, and any field with the prefix of: <code>_</code>, <code>+</code>, or <code>-</code></li>
+<li>You can set the <b>Content-Type</b> parameter on the <b>file</b> part to indicate the media type of the document. If the <b>Content-Type</b> parameter is missing or is one of the generic media types (for example, <code>application/octet-stream</code>), then the service attempts to automatically detect the document's media type.</li>
+<li>The following field names are reserved and are filtered out if present after normalization: <code>id</code>, <code>score</code>, <code>highlight</code>, and any field with the prefix of: <code>_</code>, <code>+</code>, or <code>-</code></li>
 <li>Fields with empty name values after normalization are filtered out before indexing.</li>
 <li>Fields that contain the following characters after normalization are filtered out before indexing: <code>#</code> and <code>,</code></li>
 </ul>
-<p>If the document is uploaded to a collection that has it's data shared with another collection, the <b>X-Watson-Discovery-Force</b> header must be set to <code>true</code>.</p>
-<p><b>Note:</b> Documents can be added with a specific <b>document_id</b> by using the **_/v2/projects/{project_id}/collections/{collection_id}/documents** method.</p>
-<p><b>Note:</b> This operation only works on collections created to accept direct file uploads. It cannot be used to modify a collection that connects to an external source such as Microsoft SharePoint.</p>
+<p>If the document is uploaded to a collection that shares its data with another collection, the <b>X-Watson-Discovery-Force</b> header must be set to <code>true</code>.</p>
+<p><b>Note:</b> You can assign an ID to a document that you add by appending the ID to the endpoint (<code>/v2/projects/{project_id}/collections/{collection_id}/documents/{document_id}</code>). If a document already exists with the specified ID, it is replaced.</p>
+<p><b>Note:</b> This operation works with a file upload collection. It cannot be used to modify a collection that crawls an external data source.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
     <tr><td class="paramname">collectionId</td><td>The ID of the collection.</td></tr>
-    <tr><td class="paramname">file</td><td>The content of the document to ingest. The maximum supported file size when adding a file to a collection is 32 MB. The maximum supported file size when testing a configuration is 1 MB. Files larger than the supported size are rejected. (optional)</td></tr>
+    <tr><td class="paramname">file</td><td>The content of the document to ingest. For maximum supported file size limits, see <a href="https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-collections#collections-doc-limits">the documentation</a>. (optional)</td></tr>
     <tr><td class="paramname">filename</td><td>The filename for file. (optional)</td></tr>
     <tr><td class="paramname">fileContentType</td><td>The content type of file. (optional)</td></tr>
     <tr><td class="paramname">metadata</td><td>The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are rejected.</td></tr>
@@ -578,14 +578,14 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Analyze a Document. </p>
-<p>Process a document using the specified collection's settings and return it for realtime use.</p>
-<p><b>Note:</b> Documents processed using this method are not added to the specified collection.</p>
-<p><b>Note:</b> This method is only supported on <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud Pak for Data instances of <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</p>
+<p>Process a document and return it for realtime use. Supports JSON files only.</p>
+<p>The document is processed according to the collection's configuration settings but is not stored in the collection.</p>
+<p><b>Note:</b> This method is supported on installed instances of <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> only.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
     <tr><td class="paramname">collectionId</td><td>The ID of the collection.</td></tr>
-    <tr><td class="paramname">file</td><td>The content of the document to ingest. The maximum supported file size when adding a file to a collection is 32 MB. The maximum supported file size when testing a configuration is 1 MB. Files larger than the supported size are rejected. (optional)</td></tr>
+    <tr><td class="paramname">file</td><td>The content of the document to ingest. For maximum supported file size limits, see <a href="https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-collections#collections-doc-limits">the documentation</a>. (optional)</td></tr>
     <tr><td class="paramname">filename</td><td>The filename for file. (optional)</td></tr>
     <tr><td class="paramname">fileContentType</td><td>The content type of file. (optional)</td></tr>
     <tr><td class="paramname">metadata</td><td>The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are rejected.</td></tr>
@@ -655,7 +655,7 @@ Properties</h2></td></tr>
 <p>Create a new collection in the specified project.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
     <tr><td class="paramname">name</td><td>The name of the collection.</td></tr>
     <tr><td class="paramname">description</td><td>A description of the collection. (optional)</td></tr>
     <tr><td class="paramname">language</td><td>The language of the collection. (optional, default to en)</td></tr>
@@ -710,10 +710,10 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Create an enrichment. </p>
-<p>Create an enrichment for use with the specified project/.</p>
+<p>Create an enrichment for use with the specified project.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
     <tr><td class="paramname">enrichment</td><td>Information about a specific enrichment.</td></tr>
     <tr><td class="paramname">file</td><td>The enrichment file to upload. (optional)</td></tr>
   </table>
@@ -770,7 +770,14 @@ Properties</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>The human readable name of this project.</td></tr>
-    <tr><td class="paramname">type</td><td>The project type of this project.</td></tr>
+    <tr><td class="paramname">type</td><td>The type of project.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The <code>content_intelligence</code> type is a <em>Document Retrieval for Contracts</em> project and the <code>other</code> type is a <em>Custom</em> project.</p>
+<p>The <code>content_mining</code> and <code>content_intelligence</code> types are available with Premium plan managed deployments and installed deployments only.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
     <tr><td class="paramname">defaultQueryParameters</td><td>Default query parameters for this project. (optional)</td></tr>
   </table>
   </dd>
@@ -831,7 +838,7 @@ Properties</h2></td></tr>
 <p>Add a query to the training data for this project. The query can contain a filter and natural language query.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
     <tr><td class="paramname">naturalLanguageQuery</td><td>The natural text query for the training query.</td></tr>
     <tr><td class="paramname">examples</td><td>Array of training examples.</td></tr>
     <tr><td class="paramname">filter</td><td>The filter used on the collection before the <b>natural_language_query</b> is applied. (optional)</td></tr>
@@ -882,7 +889,7 @@ Properties</h2></td></tr>
 <p>Deletes the specified collection from the project. All documents stored in the specified collection and not shared is also deleted.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
     <tr><td class="paramname">collectionId</td><td>The ID of the collection.</td></tr>
   </table>
   </dd>
@@ -945,7 +952,7 @@ Properties</h2></td></tr>
 <p><b>Note:</b> Segments of an uploaded document cannot be deleted individually. Delete all segments by deleting using the <code>parent_document_id</code> of a segment result.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
     <tr><td class="paramname">collectionId</td><td>The ID of the collection.</td></tr>
     <tr><td class="paramname">documentId</td><td>The ID of the document.</td></tr>
     <tr><td class="paramname">xWatsonDiscoveryForce</td><td>When <code>true</code>, the uploaded document is added to the collection even if the data for that collection is shared with other collections. (optional, default to false)</td></tr>
@@ -997,7 +1004,7 @@ Properties</h2></td></tr>
 <p><b>Note:</b> Only enrichments that have been manually created can be deleted.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
     <tr><td class="paramname">enrichmentId</td><td>The ID of the enrichment.</td></tr>
   </table>
   </dd>
@@ -1037,7 +1044,7 @@ Properties</h2></td></tr>
 <p><b>Important:</b> Deleting a project deletes everything that is part of the specified project, including all collections.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1075,7 +1082,7 @@ Properties</h2></td></tr>
 <p>Removes all training queries for the specified project.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1123,7 +1130,7 @@ Properties</h2></td></tr>
 <p>Removes details from a training data query, including the query string and all examples.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
     <tr><td class="paramname">queryId</td><td>The ID of the query used for training.</td></tr>
   </table>
   </dd>
@@ -1230,8 +1237,8 @@ Properties</h2></td></tr>
 <p>Returns completion query suggestions for the specified prefix.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
-    <tr><td class="paramname">prefix</td><td>The prefix to use for autocompletion. For example, the prefix <code>Ho</code> could autocomplete to <code>Hot</code>, <code>Housing</code>, or <code>How do I upgrade</code>. Possible completions are.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
+    <tr><td class="paramname">prefix</td><td>The prefix to use for autocompletion. For example, the prefix <code>Ho</code> could autocomplete to <code>hot</code>, <code>housing</code>, or <code>how</code>.</td></tr>
     <tr><td class="paramname">collectionIds</td><td>Comma separated list of the collection IDs. If this parameter is not specified, all collections in the project are used. (optional)</td></tr>
     <tr><td class="paramname">field</td><td>The field in the result documents that autocompletion suggestions are identified from. (optional)</td></tr>
     <tr><td class="paramname">count</td><td>The number of autocompletion suggestions to return. (optional)</td></tr>
@@ -1282,7 +1289,7 @@ Properties</h2></td></tr>
 <p>Get details about the specified collection.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
     <tr><td class="paramname">collectionId</td><td>The ID of the collection.</td></tr>
   </table>
   </dd>
@@ -1321,7 +1328,7 @@ Properties</h2></td></tr>
 <p>Returns default configuration settings for components.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1369,7 +1376,7 @@ Properties</h2></td></tr>
 <p>Get details about a specific enrichment.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
     <tr><td class="paramname">enrichmentId</td><td>The ID of the enrichment.</td></tr>
   </table>
   </dd>
@@ -1408,7 +1415,7 @@ Properties</h2></td></tr>
 <p>Get details on the specified project.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1456,7 +1463,7 @@ Properties</h2></td></tr>
 <p>Get details for a specific training data query, including the query string and all examples.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
     <tr><td class="paramname">queryId</td><td>The ID of the query used for training.</td></tr>
   </table>
   </dd>
@@ -1495,7 +1502,7 @@ Properties</h2></td></tr>
 <p>Lists existing collections for the specified project.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1530,10 +1537,10 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>List Enrichments. </p>
-<p>List the enrichments available to this project.</p>
+<p>Lists the enrichments available to this project. The <em>Part of Speech</em> and <em>Sentiment of Phrases</em> enrichments might be listed, but are reserved for internal use only.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1581,7 +1588,7 @@ Properties</h2></td></tr>
 <p>Gets a list of the unique fields (and their types) stored in the the specified collections.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
     <tr><td class="paramname">collectionIds</td><td>Comma separated list of the collection IDs. If this parameter is not specified, all collections in the project are used. (optional)</td></tr>
   </table>
   </dd>
@@ -1651,7 +1658,7 @@ Properties</h2></td></tr>
 <p>List the training queries for the specified project.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1777,7 +1784,7 @@ Properties</h2></td></tr>
 <p>By using this method, you can construct queries. For details, see the <a href="https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-query-concepts">Discovery documentation</a>. The default query parameters are defined by the settings for this project, see the <a href="https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-project-defaults">Discovery documentation</a> for an overview of the standard default settings, and see <a href="../../#create-project">the Projects API documentation</a> for details about how to set custom default query settings.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
     <tr><td class="paramname">collectionIds</td><td>A comma-separated list of collection IDs to be queried against. (optional)</td></tr>
     <tr><td class="paramname">filter</td><td>A cacheable query that excludes documents that don't mention the query content. Filter searches are better for metadata-type searches and for assessing the concepts in the data set. (optional)</td></tr>
     <tr><td class="paramname">query</td><td>A query search returns all documents in your data set with full enrichments and full text, but with the most relevant documents listed first. Use a query search when you want to find the most relevant search results. (optional)</td></tr>
@@ -1790,7 +1797,7 @@ Properties</h2></td></tr>
     <tr><td class="paramname">highlight</td><td>When <code>true</code>, a highlight field is returned for each result which contains the fields which match the query with <code>&lt;em&gt;&lt;/em&gt;</code> tags around the matching query terms. (optional)</td></tr>
     <tr><td class="paramname">spellingSuggestions</td><td>When <code>true</code> and the <b>natural_language_query</b> parameter is used, the <b>natural_language_query</b> parameter is spell checked. The most likely correction is returned in the <b>suggested_query</b> field of the response (if one exists). (optional)</td></tr>
     <tr><td class="paramname">tableResults</td><td>Configuration for table retrieval. (optional)</td></tr>
-    <tr><td class="paramname">suggestedRefinements</td><td>Configuration for suggested refinements. (optional)</td></tr>
+    <tr><td class="paramname">suggestedRefinements</td><td>Configuration for suggested refinements. Available with Premium plans only. (optional)</td></tr>
     <tr><td class="paramname">passages</td><td>Configuration for passage retrieval. (optional)</td></tr>
   </table>
   </dd>
@@ -1869,7 +1876,7 @@ Properties</h2></td></tr>
 <p>Finds collection-level notices (errors and warnings) that are generated when documents are ingested.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
     <tr><td class="paramname">collectionId</td><td>The ID of the collection.</td></tr>
     <tr><td class="paramname">filter</td><td>A cacheable query that excludes documents that don't mention the query content. Filter searches are better for metadata-type searches and for assessing the concepts in the data set. (optional)</td></tr>
     <tr><td class="paramname">query</td><td>A query search returns all documents in your data set with full enrichments and full text, but with the most relevant documents listed first. (optional)</td></tr>
@@ -1947,7 +1954,7 @@ Properties</h2></td></tr>
 <p>Finds project-level notices (errors and warnings). Currently, project-level notices are generated by relevancy training.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
     <tr><td class="paramname">filter</td><td>A cacheable query that excludes documents that don't mention the query content. Filter searches are better for metadata-type searches and for assessing the concepts in the data set. (optional)</td></tr>
     <tr><td class="paramname">query</td><td>A query search returns all documents in your data set with full enrichments and full text, but with the most relevant documents listed first. (optional)</td></tr>
     <tr><td class="paramname">naturalLanguageQuery</td><td>A natural language query that returns relevant documents by utilizing training data and natural language understanding. (optional)</td></tr>
@@ -2018,7 +2025,7 @@ Properties</h2></td></tr>
 <p>Updates the specified collection's name, description, and enrichments.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
     <tr><td class="paramname">collectionId</td><td>The ID of the collection.</td></tr>
     <tr><td class="paramname">name</td><td>The name of the collection. (optional)</td></tr>
     <tr><td class="paramname">description</td><td>A description of the collection. (optional)</td></tr>
@@ -2104,16 +2111,16 @@ Properties</h2></td></tr>
 
 <p>Update a document. </p>
 <p>Replace an existing document or add a document with a specified <b>document_id</b>. Starts ingesting a document with optional metadata.</p>
-<p>If the document is uploaded to a collection that has it's data shared with another collection, the <b>X-Watson-Discovery-Force</b> header must be set to <code>true</code>.</p>
+<p>If the document is uploaded to a collection that shares its data with another collection, the <b>X-Watson-Discovery-Force</b> header must be set to <code>true</code>.</p>
 <p><b>Note:</b> When uploading a new document with this method it automatically replaces any document stored with the same <b>document_id</b> if it exists.</p>
 <p><b>Note:</b> This operation only works on collections created to accept direct file uploads. It cannot be used to modify a collection that connects to an external source such as Microsoft SharePoint.</p>
-<p><b>Note:</b> If an uploaded document is segmented, all segments will be overwritten, even if the updated version of the document has fewer segments.</p>
+<p><b>Note:</b> If an uploaded document is segmented, all segments are overwritten, even if the updated version of the document has fewer segments.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
     <tr><td class="paramname">collectionId</td><td>The ID of the collection.</td></tr>
     <tr><td class="paramname">documentId</td><td>The ID of the document.</td></tr>
-    <tr><td class="paramname">file</td><td>The content of the document to ingest. The maximum supported file size when adding a file to a collection is 32 MB. The maximum supported file size when testing a configuration is 1 MB. Files larger than the supported size are rejected. (optional)</td></tr>
+    <tr><td class="paramname">file</td><td>The content of the document to ingest. For maximum supported file size limits, see <a href="https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-collections#collections-doc-limits">the documentation</a>. (optional)</td></tr>
     <tr><td class="paramname">filename</td><td>The filename for file. (optional)</td></tr>
     <tr><td class="paramname">fileContentType</td><td>The content type of file. (optional)</td></tr>
     <tr><td class="paramname">metadata</td><td>The maximum supported metadata file size is 1 MB. Metadata parts larger than 1 MB are rejected.</td></tr>
@@ -2177,7 +2184,7 @@ Properties</h2></td></tr>
 <p>Updates an existing enrichment's name and description.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
     <tr><td class="paramname">enrichmentId</td><td>The ID of the enrichment.</td></tr>
     <tr><td class="paramname">name</td><td>A new name for the enrichment.</td></tr>
     <tr><td class="paramname">description</td><td>A new description for the enrichment. (optional)</td></tr>
@@ -2228,7 +2235,7 @@ Properties</h2></td></tr>
 <p>Update the specified project's name.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
     <tr><td class="paramname">name</td><td>The new name to give this project. (optional)</td></tr>
   </table>
   </dd>
@@ -2295,7 +2302,7 @@ Properties</h2></td></tr>
 <p>Updates an existing training query and it's examples.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the deploy page of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> administrative tooling.</td></tr>
+    <tr><td class="paramname">projectId</td><td>The ID of the project. This information can be found from the <em>Integrate and Deploy</em> page in <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a>.</td></tr>
     <tr><td class="paramname">queryId</td><td>The ID of the query used for training.</td></tr>
     <tr><td class="paramname">naturalLanguageQuery</td><td>The natural text query for the training query.</td></tr>
     <tr><td class="paramname">examples</td><td>Array of training examples.</td></tr>

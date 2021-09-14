@@ -187,6 +187,9 @@ var dir_e05cd18fe37823e65ffef40a75ea096b =
     [ "SearchResult.cs", "de/d53/_search_result_8cs.html", [
       [ "SearchResult", "d1/dac/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result.html", "d1/dac/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result" ]
     ] ],
+    [ "SearchResultAnswer.cs", "d5/d9f/_search_result_answer_8cs.html", [
+      [ "SearchResultAnswer", "d1/d97/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result_answer.html", "d1/d97/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result_answer" ]
+    ] ],
     [ "SearchResultHighlight.cs", "d7/d5c/_search_result_highlight_8cs.html", [
       [ "SearchResultHighlight", "d6/d8c/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result_highlight.html", "d6/d8c/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result_highlight" ]
     ] ],

@@ -4,7 +4,7 @@ var interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service =
     [ "AddTrainingData", "dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a9ee1a235f8801d61044ed084be3b0c26", null ],
     [ "CreateCollection", "dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a2b3ccb9fae033d466265a6ed62ae2c84", null ],
     [ "CreateConfiguration", "dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a18634cb4676b76d01fd9f97c4b987f4e", null ],
-    [ "CreateCredentials", "dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a3c77a9a8757e7feca3cba878da050a37", null ],
+    [ "CreateCredentials", "dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a57957c7e138c89cfd60c5d1884dc039e", null ],
     [ "CreateEnvironment", "dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#ab0e704584614d6b75f1e48d3475bb30c", null ],
     [ "CreateEvent", "dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#af205b179a6d28641859b123c882cff88", null ],
     [ "CreateExpansions", "dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a1d4ab23e0ec37eb8cfe2deaa765e03e1", null ],
@@ -58,7 +58,7 @@ var interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service =
     [ "QueryNotices", "dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a430bd8213714cc5fc8500834e030cecc", null ],
     [ "UpdateCollection", "dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#ae73425810e08d80bfb54867991609cb6", null ],
     [ "UpdateConfiguration", "dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a3f3a77ba6d614d1772b9a0a763530621", null ],
-    [ "UpdateCredentials", "dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#ad3bea43d0efafc45b6cd5a25d20096ee", null ],
+    [ "UpdateCredentials", "dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#abac8c1d91adc3ee776d748093b4476cf", null ],
     [ "UpdateDocument", "dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#ade82a32bf47c8ae8dbce13e6f6322e44", null ],
     [ "UpdateEnvironment", "dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a25337a076194943a578221321e8a078b", null ],
     [ "UpdateTrainingExample", "dd/dc2/interface_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_i_discovery_service.html#a471e4b96383b6ae86f4c87db47f39b15", null ]

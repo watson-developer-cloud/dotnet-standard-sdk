@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">5.2.0</span>
+   &#160;<span id="projectnumber">5.2.1</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -91,7 +91,7 @@ $(document).ready(function(){initNavTree('dc/d3f/class_i_b_m_1_1_watson_1_1_spee
 </div><!--header-->
 <div class="contents">
 
-<p>The type of words from the custom language model's words resource on which to train the model:  
+<p><em>For custom models that are based on previous-generation models</em>, the type of words from the custom language model's words resource on which to train the model:  
  <a href="../../dc/d3f/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_train_language_mo2aeb2f76192ca798f1540659ae2bc374.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
@@ -104,11 +104,12 @@ Static Public Attributes</h2></td></tr>
 <tr class="separator:add6cd7dac96e0bedfd2193cbdd781c9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The type of words from the custom language model's words resource on which to train the model: </p>
+<div class="textblock"><p><em>For custom models that are based on previous-generation models</em>, the type of words from the custom language model's words resource on which to train the model: </p>
 <ul>
 <li><code>all</code> (the default) trains the model on all new words, regardless of whether they were extracted from corpora or grammars or were added or modified by the user.</li>
-<li><code>user</code> trains the model only on new words that were added or modified by the user directly. The model is not trained on new words extracted from corpora or grammars.</li>
+<li><code>user</code> trains the model only on custom words that were added or modified by the user directly. The model is not trained on new words extracted from corpora or grammars.</li>
 </ul>
+<p><em>For custom models that are based on next-generation models</em>, the service ignores the parameter. The words resource contains only custom words that the user adds or modifies directly, so the parameter is unnecessary.</p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="a1d19729fbf39631eaddce42e27b50a6d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1d19729fbf39631eaddce42e27b50a6d">&#9670;&nbsp;</a></span>ALL</h2>

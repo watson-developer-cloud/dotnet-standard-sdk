@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"d0/d77/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_add_audio_enums_1_1_contained_content_type_value.html#aa3f6fae0c540fd3403170619f29228a5":[1,0,0,0,9,0,6,0,0,2],
 "d0/d77/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_add_audio_enums_1_1_contained_content_type_value.html#ab0fd73829ea43f99a25a68aca1573119":[1,0,0,0,9,0,6,0,0,7],
 "d0/d77/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_add_audio_enums_1_1_contained_content_type_value.html#abacd048cc051515229a229b12c2dbf42":[1,0,0,0,9,0,6,0,0,8],
 "d0/d77/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_add_audio_enums_1_1_contained_content_type_value.html#ac05cee81c33ba3b44af0c4fa0637147f":[1,0,0,0,9,0,6,0,0,11],
@@ -54,7 +55,7 @@ var NAVTREEINDEX1 =
 "d0/d99/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_custom_word.html#ad8ea7ea67d658befbd9af57cad6c7b46":[1,0,0,0,9,0,2,11,0],
 "d0/d9b/_i_b_m_8_watson_8_discovery_8v2_2_model_2_training_query_8cs.html":[2,0,0,5,1,74],
 "d0/d9e/_audio_resources_8cs.html":[2,0,0,11,1,8],
-"d0/d9f/_search_result_metadata_8cs.html":[2,0,0,1,1,60],
+"d0/d9f/_search_result_metadata_8cs.html":[2,0,0,1,1,61],
 "d0/d9f/class_i_b_m_1_1_watson_1_1_integration_tests_1_1_y.html":[1,0,0,0,3,8],
 "d0/d9f/class_i_b_m_1_1_watson_1_1_integration_tests_1_1_y.html#a281449ba16d995206ae44efefebe7b29":[1,0,0,0,3,8,0],
 "d0/d9f/class_i_b_m_1_1_watson_1_1_integration_tests_1_1_y.html#a3342b6233266b368a53b922bda674ba6":[1,0,0,0,3,8,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "d1/d2e/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_log_message_source_handler.html#a8ab0b403cceddba5a2f86a8f1ab25bac":[1,0,0,0,0,1,2,21,1],
 "d1/d2e/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_log_message_source_handler.html#aa2d09e85c28df62b8937ca00f8e3d3d0":[1,0,0,0,0,1,2,21,3],
 "d1/d2e/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_log_message_source_handler.html#ab22d547dc533f99ff5883058d3e6b252":[1,0,0,0,0,1,2,21,0],
-"d1/d2f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_context.html":[1,0,0,0,0,0,2,17],
-"d1/d2f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_context.html#aee3ba454e37f3cc1eb2acf10e97bf8fd":[1,0,0,0,0,0,2,17,0]
+"d1/d2f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_context.html":[1,0,0,0,0,0,2,17]
 };

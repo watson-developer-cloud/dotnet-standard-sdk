@@ -4,6 +4,7 @@ var class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_ge
     [ "RuntimeResponseGeneric", "db/d07/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic.html#a9ef46cd5a9d791e3babb2c26f7eb45e5", null ],
     [ "AgentAvailable", "db/d07/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic.html#a81f828695259492238b84ffbde3c3544", null ],
     [ "AgentUnavailable", "db/d07/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic.html#a0ccbd7d6d8dbb7c4ad0cac968427007a", null ],
+    [ "AltText", "db/d07/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic.html#a5e47b0e93924dfb7257e4c79395e6d41", null ],
     [ "Channels", "db/d07/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic.html#a007c60ccd17814b93c0e18d1e7f66657", null ],
     [ "Description", "db/d07/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic.html#aa88a376c259fd09085b6262f2b28d011", null ],
     [ "DialogNode", "db/d07/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic.html#a3b84b0ba03935bca76c0ce318a970248", null ],

@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">5.2.0</span>
+   &#160;<span id="projectnumber">5.2.1</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -97,10 +97,10 @@ $(document).ready(function(){initNavTree('d0/d99/class_i_b_m_1_1_watson_1_1_spee
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a581c539145760e92679fb0c53c81ec6f"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d99/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_custom_word.html#a581c539145760e92679fb0c53c81ec6f">Word</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a581c539145760e92679fb0c53c81ec6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">For the <b>Add custom words</b> method, you must specify the custom word that is to be added to or updated in the custom model. Do not include spaces in the word. Use a <code>-</code> (dash) or <code>_</code> (underscore) to connect the tokens of compound words.  <a href="../../d0/d99/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_custom_word.html#a581c539145760e92679fb0c53c81ec6f">More...</a><br /></td></tr>
+<tr class="memdesc:a581c539145760e92679fb0c53c81ec6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">For the <a href="../../#addwords">Add custom words</a> method, you must specify the custom word that is to be added to or updated in the custom model. Do not include spaces in the word. Use a <code>-</code> (dash) or <code>_</code> (underscore) to connect the tokens of compound words.  <a href="../../d0/d99/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_custom_word.html#a581c539145760e92679fb0c53c81ec6f">More...</a><br /></td></tr>
 <tr class="separator:a581c539145760e92679fb0c53c81ec6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3282485713c4c5b5a2cd12d18b88715"><td class="memItemLeft" align="right" valign="top">List&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d99/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_custom_word.html#aa3282485713c4c5b5a2cd12d18b88715">SoundsLike</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:aa3282485713c4c5b5a2cd12d18b88715"><td class="mdescLeft">&#160;</td><td class="mdescRight">An array of sounds-like pronunciations for the custom word. Specify how words that are difficult to pronounce, foreign words, acronyms, and so on can be pronounced by users.  <a href="../../d0/d99/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_custom_word.html#aa3282485713c4c5b5a2cd12d18b88715">More...</a><br /></td></tr>
+<tr class="memdesc:aa3282485713c4c5b5a2cd12d18b88715"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>For a custom model that is based on a previous-generation model</em>, an array of sounds-like pronunciations for the custom word. Specify how words that are difficult to pronounce, foreign words, acronyms, and so on can be pronounced by users.  <a href="../../d0/d99/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_custom_word.html#aa3282485713c4c5b5a2cd12d18b88715">More...</a><br /></td></tr>
 <tr class="separator:aa3282485713c4c5b5a2cd12d18b88715"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8ea7ea67d658befbd9af57cad6c7b46"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d99/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_custom_word.html#ad8ea7ea67d658befbd9af57cad6c7b46">DisplayAs</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:ad8ea7ea67d658befbd9af57cad6c7b46"><td class="mdescLeft">&#160;</td><td class="mdescRight">An alternative spelling for the custom word when it appears in a transcript. Use the parameter when you want the word to have a spelling that is different from its usual representation or from its spelling in corpora training data.  <a href="../../d0/d99/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_custom_word.html#ad8ea7ea67d658befbd9af57cad6c7b46">More...</a><br /></td></tr>
@@ -153,12 +153,13 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>An array of sounds-like pronunciations for the custom word. Specify how words that are difficult to pronounce, foreign words, acronyms, and so on can be pronounced by users. </p>
+<p><em>For a custom model that is based on a previous-generation model</em>, an array of sounds-like pronunciations for the custom word. Specify how words that are difficult to pronounce, foreign words, acronyms, and so on can be pronounced by users. </p>
 <ul>
 <li>For a word that is not in the service's base vocabulary, omit the parameter to have the service automatically generate a sounds-like pronunciation for the word.</li>
 <li>For a word that is in the service's base vocabulary, use the parameter to specify additional pronunciations for the word. You cannot override the default pronunciation of a word; pronunciations you add augment the pronunciation from the base vocabulary.</li>
 </ul>
 <p>A word can have at most five sounds-like pronunciations. A pronunciation can include at most 40 characters not including spaces.</p>
+<p><em>For a custom model that is based on a next-generation model</em>, omit this field. Custom models based on next-generation models do not support the <code>sounds_like</code> field. The service ignores the field.</p>
 
 </div>
 </div>
@@ -182,8 +183,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>For the <b>Add custom words</b> method, you must specify the custom word that is to be added to or updated in the custom model. Do not include spaces in the word. Use a <code>-</code> (dash) or <code>_</code> (underscore) to connect the tokens of compound words. </p>
-<p>Omit this parameter for the <b>Add a custom word</b> method.</p>
+<p>For the <a href="../../#addwords">Add custom words</a> method, you must specify the custom word that is to be added to or updated in the custom model. Do not include spaces in the word. Use a <code>-</code> (dash) or <code>_</code> (underscore) to connect the tokens of compound words. </p>
+<p>Omit this parameter for the <a href="../../#addword">Add a custom word</a> method.</p>
 
 </div>
 </div>

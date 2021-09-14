@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">5.2.0</span>
+   &#160;<span id="projectnumber">5.2.1</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -467,11 +467,12 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Add an audio resource. </p>
-<p>Adds an audio resource to a custom acoustic model. Add audio content that reflects the acoustic characteristics of the audio that you plan to transcribe. You must use credentials for the instance of the service that owns a model to add an audio resource to it. Adding audio data does not affect the custom acoustic model until you train the model for the new data by using the <b>Train a custom acoustic model</b> method.</p>
+<p>Adds an audio resource to a custom acoustic model. Add audio content that reflects the acoustic characteristics of the audio that you plan to transcribe. You must use credentials for the instance of the service that owns a model to add an audio resource to it. Adding audio data does not affect the custom acoustic model until you train the model for the new data by using the <a href="../../#trainacousticmodel">Train a custom acoustic model</a> method.</p>
 <p>You can add individual audio files or an archive file that contains multiple audio files. Adding multiple audio files via a single archive file is significantly more efficient than adding each file individually. You can add audio resources in any format that the service supports for speech recognition.</p>
 <p>You can use this method to add any number of audio resources to a custom model by calling the method once for each audio or archive file. You can add multiple different audio resources at the same time. You must add a minimum of 10 minutes and a maximum of 200 hours of audio that includes speech, not just silence, to a custom acoustic model before you can train it. No audio resource, audio- or archive-type, can be larger than 100 MB. To add an audio resource that has the same name as an existing audio resource, set the <code>allow_overwrite</code> parameter to <code>true</code>; otherwise, the request fails.</p>
 <p>The method is asynchronous. It can take several seconds or minutes to complete depending on the duration of the audio and, in the case of an archive file, the total number of audio files being processed. The service returns a 201 response code if the audio is valid. It then asynchronously analyzes the contents of the audio file or files and automatically extracts information about the audio such as its length, sampling rate, and encoding. You cannot submit requests to train or upgrade the model until the service's analysis of all audio resources for current requests completes.</p>
-<p>To determine the status of the service's analysis of the audio, use the <b>Get an audio resource</b> method to poll the status of the audio. The method accepts the customization ID of the custom model and the name of the audio resource, and it returns the status of the resource. Use a loop to check the status of the audio every few seconds until it becomes <code>ok</code>.</p>
+<p>To determine the status of the service's analysis of the audio, use the <a href="../../#getaudio">Get an audio resource</a> method to poll the status of the audio. The method accepts the customization ID of the custom model and the name of the audio resource, and it returns the status of the resource. Use a loop to check the status of the audio every few seconds until it becomes <code>ok</code>.</p>
+<p><b>Note:</b> Acoustic model customization is supported only for use with previous-generation models. It is not supported for next-generation models.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-acoustic#addAudio">Add audio to the custom acoustic model</a>.</p>
 <h3>Content types for audio-type resources</h3>
 <p>You can add an individual audio file in any format that the service supports for speech recognition. For an audio-type resource, use the <code>Content-Type</code> parameter to specify the audio format (MIME type) of the audio file, including specifying the sampling rate, channels, and endianness where indicated.</p><ul>
@@ -528,13 +529,13 @@ Public Member Functions</h2></td></tr>
 <p>For an archive-type resource, the media type of the archive file. For more information, see <b>Content types for archive-type resources</b> in the method description. (optional)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">containedContentType</td><td>**For an archive-type resource,** specify the format of the audio files that are contained in the archive file if they are of type <code>audio/alaw</code>, <code>audio/basic</code>, <code>audio/l16</code>, or <code>audio/mulaw</code>. Include the <code>rate</code>, <code>channels</code>, and <code>endianness</code> parameters where necessary. In this case, all audio files that are contained in the archive file must be of the indicated type.</td></tr>
+    <tr><td class="paramname">containedContentType</td><td>_For an archive-type resource_, specify the format of the audio files that are contained in the archive file if they are of type <code>audio/alaw</code>, <code>audio/basic</code>, <code>audio/l16</code>, or <code>audio/mulaw</code>. Include the <code>rate</code>, <code>channels</code>, and <code>endianness</code> parameters where necessary. In this case, all audio files that are contained in the archive file must be of the indicated type.</td></tr>
   </table>
   </dd>
 </dl>
 <p>For all other audio formats, you can omit the header. In this case, the audio files can be of multiple types as long as they are not of the types listed in the previous paragraph.</p>
 <p>The parameter accepts all of the audio formats that are supported for use with speech recognition. For more information, see <b>Content types for audio-type resources</b> in the method description.</p>
-<p><b>For an audio-type resource,</b> omit the header. (optional)</p>
+<p><em>For an audio-type resource</em>, omit the header. (optional)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">allowOverwrite</td><td>If <code>true</code>, the specified audio resource overwrites an existing audio resource with the same name. If <code>false</code>, the request fails if an audio resource with the same name already exists. The parameter has no effect if an audio resource with the same name does not already exist. (optional, default to false)</td></tr>
@@ -594,16 +595,18 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Add a corpus. </p>
-<p>Adds a single corpus text file of new training data to a custom language model. Use multiple requests to submit multiple corpus text files. You must use credentials for the instance of the service that owns a model to add a corpus to it. Adding a corpus does not affect the custom language model until you train the model for the new data by using the <b>Train a custom language model</b> method.</p>
-<p>Submit a plain text file that contains sample sentences from the domain of interest to enable the service to extract words in context. The more sentences you add that represent the context in which speakers use words from the domain, the better the service's recognition accuracy.</p>
-<p>The call returns an HTTP 201 response code if the corpus is valid. The service then asynchronously processes the contents of the corpus and automatically extracts new words that it finds. This operation can take on the order of minutes to complete depending on the total number of words and the number of new words in the corpus, as well as the current load on the service. You cannot submit requests to add additional resources to the custom model or to train the model until the service's analysis of the corpus for the current request completes. Use the <b>List a corpus</b> method to check the status of the analysis.</p>
-<p>The service auto-populates the model's words resource with words from the corpus that are not found in its base vocabulary. These words are referred to as out-of-vocabulary (OOV) words. After adding a corpus, you must validate the words resource to ensure that each OOV word's definition is complete and valid. You can use the <b>List custom words</b> method to examine the words resource. You can use other words method to eliminate typos and modify how words are pronounced as needed.</p>
-<p>To add a corpus file that has the same name as an existing corpus, set the <code>allow_overwrite</code> parameter to <code>true</code>; otherwise, the request fails. Overwriting an existing corpus causes the service to process the corpus text file and extract OOV words anew. Before doing so, it removes any OOV words associated with the existing corpus from the model's words resource unless they were also added by another corpus or grammar, or they have been modified in some way with the <b>Add custom words</b> or <b>Add a custom word</b> method.</p>
-<p>The service limits the overall amount of data that you can add to a custom model to a maximum of 10 million total words from all sources combined. Also, you can add no more than 90 thousand custom (OOV) words to a model. This includes words that the service extracts from corpora and grammars, and words that you add directly.</p>
+<p>Adds a single corpus text file of new training data to a custom language model. Use multiple requests to submit multiple corpus text files. You must use credentials for the instance of the service that owns a model to add a corpus to it. Adding a corpus does not affect the custom language model until you train the model for the new data by using the <a href="../../#trainlanguagemodel">Train a custom language model</a> method.</p>
+<p>Submit a plain text file that contains sample sentences from the domain of interest to enable the service to parse the words in context. The more sentences you add that represent the context in which speakers use words from the domain, the better the service's recognition accuracy.</p>
+<p>The call returns an HTTP 201 response code if the corpus is valid. The service then asynchronously processes and automatically extracts data from the contents of the corpus. This operation can take on the order of minutes to complete depending on the current load on the service, the total number of words in the corpus, and, <em>for custom models that are based on previous-generation models</em>, the number of new (out-of-vocabulary) words in the corpus. You cannot submit requests to add additional resources to the custom model or to train the model until the service's analysis of the corpus for the current request completes. Use the <a href="../../#getcorpus">Get a corpus</a> method to check the status of the analysis.</p>
+<p><em>For custom models that are based on previous-generation models</em>, the service auto-populates the model's words resource with words from the corpus that are not found in its base vocabulary. These words are referred to as out-of-vocabulary (OOV) words. After adding a corpus, you must validate the words resource to ensure that each OOV word's definition is complete and valid. You can use the <a href="../../#listwords">List custom words</a> method to examine the words resource. You can use other words method to eliminate typos and modify how words are pronounced as needed.</p>
+<p>To add a corpus file that has the same name as an existing corpus, set the <code>allow_overwrite</code> parameter to <code>true</code>; otherwise, the request fails. Overwriting an existing corpus causes the service to process the corpus text file and extract its data anew. <em>For a custom model that is based on a previous-generation model</em>, the service first removes any OOV words that are associated with the existing corpus from the model's words resource unless they were also added by another corpus or grammar, or they have been modified in some way with the <a href="../../#addwords">Add custom words</a> or <a href="../../#addword">Add a custom word</a> method.</p>
+<p>The service limits the overall amount of data that you can add to a custom model to a maximum of 10 million total words from all sources combined. <em>For a custom model that is based on a previous-generation model</em>, you can add no more than 90 thousand custom (OOV) words to a model. This includes words that the service extracts from corpora and grammars, and words that you add directly.</p>
 <p><b>See also:</b></p><ul>
 <li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-languageCreate#addCorpus">Add a corpus to the custom language model</a></li>
-<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-corporaWords#workingCorpora">Working with corpora</a></li>
-<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-corporaWords#validateModel">Validating a words resource</a>.</li>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-corporaWords#workingCorpora">Working with corpora for previous-generation models</a></li>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-corporaWords-ng#workingCorpora-ng">Working with corpora for next-generation models</a></li>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-corporaWords#validateModel">Validating a words resource for previous-generation models</a></li>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-corporaWords-ng#validateModel-ng">Validating a words resource for next-generation models</a>.</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -620,7 +623,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p>Make sure that you know the character encoding of the file. You must use that encoding when working with the words in the custom language model. For more information, see <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-corporaWords#charEncoding">Character encoding</a>.</p>
+<p>Make sure that you know the character encoding of the file. You must use that same encoding when working with the words in the custom language model. For more information, see <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageWords#charEncoding">Character encoding for custom words</a>.</p>
 <p>With the <code>curl</code> command, use the <code>--data-binary</code> option to upload the file for the request.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -687,11 +690,12 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Add a grammar. </p>
-<p>Adds a single grammar file to a custom language model. Submit a plain text file in UTF-8 format that defines the grammar. Use multiple requests to submit multiple grammar files. You must use credentials for the instance of the service that owns a model to add a grammar to it. Adding a grammar does not affect the custom language model until you train the model for the new data by using the <b>Train a custom language model</b> method.</p>
-<p>The call returns an HTTP 201 response code if the grammar is valid. The service then asynchronously processes the contents of the grammar and automatically extracts new words that it finds. This operation can take a few seconds or minutes to complete depending on the size and complexity of the grammar, as well as the current load on the service. You cannot submit requests to add additional resources to the custom model or to train the model until the service's analysis of the grammar for the current request completes. Use the <b>Get a grammar</b> method to check the status of the analysis.</p>
-<p>The service populates the model's words resource with any word that is recognized by the grammar that is not found in the model's base vocabulary. These are referred to as out-of-vocabulary (OOV) words. You can use the <b>List custom words</b> method to examine the words resource and use other words-related methods to eliminate typos and modify how words are pronounced as needed.</p>
-<p>To add a grammar that has the same name as an existing grammar, set the <code>allow_overwrite</code> parameter to <code>true</code>; otherwise, the request fails. Overwriting an existing grammar causes the service to process the grammar file and extract OOV words anew. Before doing so, it removes any OOV words associated with the existing grammar from the model's words resource unless they were also added by another resource or they have been modified in some way with the <b>Add custom words</b> or <b>Add a custom word</b> method.</p>
-<p>The service limits the overall amount of data that you can add to a custom model to a maximum of 10 million total words from all sources combined. Also, you can add no more than 90 thousand OOV words to a model. This includes words that the service extracts from corpora and grammars and words that you add directly.</p>
+<p>Adds a single grammar file to a custom language model. Submit a plain text file in UTF-8 format that defines the grammar. Use multiple requests to submit multiple grammar files. You must use credentials for the instance of the service that owns a model to add a grammar to it. Adding a grammar does not affect the custom language model until you train the model for the new data by using the <a href="../../#trainlanguagemodel">Train a custom language model</a> method.</p>
+<p>The call returns an HTTP 201 response code if the grammar is valid. The service then asynchronously processes the contents of the grammar and automatically extracts new words that it finds. This operation can take a few seconds or minutes to complete depending on the size and complexity of the grammar, as well as the current load on the service. You cannot submit requests to add additional resources to the custom model or to train the model until the service's analysis of the grammar for the current request completes. Use the <a href="../../#getgrammar">Get a grammar</a> method to check the status of the analysis.</p>
+<p>The service populates the model's words resource with any word that is recognized by the grammar that is not found in the model's base vocabulary. These are referred to as out-of-vocabulary (OOV) words. You can use the <a href="../../#listwords">List custom words</a> method to examine the words resource and use other words-related methods to eliminate typos and modify how words are pronounced as needed.</p>
+<p>To add a grammar that has the same name as an existing grammar, set the <code>allow_overwrite</code> parameter to <code>true</code>; otherwise, the request fails. Overwriting an existing grammar causes the service to process the grammar file and extract OOV words anew. Before doing so, it removes any OOV words associated with the existing grammar from the model's words resource unless they were also added by another resource or they have been modified in some way with the <a href="../../#addwords">Add custom words</a> or <a href="../../#addword">Add a custom word</a> method.</p>
+<p>The service limits the overall amount of data that you can add to a custom model to a maximum of 10 million total words from all sources combined. Also, you can add no more than 90 thousand OOV words to a model. This includes words that the service extracts from corpora and grammars and words that you add directly. Grammars are available for all languages and models that support language customization.</p>
+<p><b>Note:</b> Grammars are supported only for use with previous-generation models. They are not supported for next-generation models.</p>
 <p><b>See also:</b></p><ul>
 <li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-grammarUnderstand#grammarUnderstand">Understanding grammars</a></li>
 <li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-grammarAdd#addGrammar">Add a grammar to the custom language model</a>.</li>
@@ -782,30 +786,33 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Add a custom word. </p>
-<p>Adds a custom word to a custom language model. The service populates the words resource for a custom model with out-of-vocabulary (OOV) words from each corpus or grammar that is added to the model. You can use this method to add a word or to modify an existing word in the words resource. The words resource for a model can contain a maximum of 90 thousand custom (OOV) words. This includes words that the service extracts from corpora and grammars and words that you add directly.</p>
-<p>You must use credentials for the instance of the service that owns a model to add or modify a custom word for the model. Adding or modifying a custom word does not affect the custom model until you train the model for the new data by using the <b>Train a custom language model</b> method.</p>
-<p>Use the <code>word_name</code> parameter to specify the custom word that is to be added or modified. Use the <code>CustomWord</code> object to provide one or both of the optional <code>sounds_like</code> and <code>display_as</code> fields for the word.</p><ul>
-<li>The <code>sounds_like</code> field provides an array of one or more pronunciations for the word. Use the parameter to specify how the word can be pronounced by users. Use the parameter for words that are difficult to pronounce, foreign words, acronyms, and so on. For example, you might specify that the word <code>IEEE</code> can sound like <code>i triple e</code>. You can specify a maximum of five sounds-like pronunciations for a word. If you omit the <code>sounds_like</code> field, the service attempts to set the field to its pronunciation of the word. It cannot generate a pronunciation for all words, so you must review the word's definition to ensure that it is complete and valid.</li>
-<li>The <code>display_as</code> field provides a different way of spelling the word in a transcript. Use the parameter when you want the word to appear different from its usual representation or from its spelling in training data. For example, you might indicate that the word <code>IBM(trademark)</code> is to be displayed as <code><a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a>&trade;</code>.</li>
+<p>Adds a custom word to a custom language model. You can use this method to add a word or to modify an existing word in the words resource. <em>For custom models that are based on previous-generation models</em>, the service populates the words resource for a custom model with out-of-vocabulary (OOV) words from each corpus or grammar that is added to the model. You can use this method to modify OOV words in the model's words resource.</p>
+<p><em>For a custom model that is based on a previous-generation models</em>, the words resource for a model can contain a maximum of 90 thousand custom (OOV) words. This includes words that the service extracts from corpora and grammars and words that you add directly.</p>
+<p>You must use credentials for the instance of the service that owns a model to add or modify a custom word for the model. Adding or modifying a custom word does not affect the custom model until you train the model for the new data by using the <a href="../../#trainlanguagemodel">Train a custom language model</a> method.</p>
+<p>Use the <code>word_name</code> parameter to specify the custom word that is to be added or modified. Use the <code>CustomWord</code> object to provide one or both of the optional <code>display_as</code> or <code>sounds_like</code> fields for the word.</p><ul>
+<li>The <code>display_as</code> field provides a different way of spelling the word in a transcript. Use the parameter when you want the word to appear different from its usual representation or from its spelling in training data. For example, you might indicate that the word <code><a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a></code> is to be displayed as <code><a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a>&trade;</code>.</li>
+<li>The <code>sounds_like</code> field, <em>which can be used only with a custom model that is based on a previous-generation model</em>, provides an array of one or more pronunciations for the word. Use the parameter to specify how the word can be pronounced by users. Use the parameter for words that are difficult to pronounce, foreign words, acronyms, and so on. For example, you might specify that the word <code>IEEE</code> can sound like <code>i triple e</code>. You can specify a maximum of five sounds-like pronunciations for a word. If you omit the <code>sounds_like</code> field, the service attempts to set the field to its pronunciation of the word. It cannot generate a pronunciation for all words, so you must review the word's definition to ensure that it is complete and valid.</li>
 </ul>
-<p>If you add a custom word that already exists in the words resource for the custom model, the new definition overwrites the existing data for the word. If the service encounters an error, it does not add the word to the words resource. Use the <b>List a custom word</b> method to review the word that you add.</p>
+<p>If you add a custom word that already exists in the words resource for the custom model, the new definition overwrites the existing data for the word. If the service encounters an error, it does not add the word to the words resource. Use the <a href="../../#getword">Get a custom word</a> method to review the word that you add.</p>
 <p><b>See also:</b></p><ul>
 <li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-languageCreate#addWords">Add words to the custom language model</a></li>
-<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-corporaWords#workingWords">Working with custom words</a></li>
-<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-corporaWords#validateModel">Validating a words resource</a>.</li>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-corporaWords#workingWords">Working with custom words for previous-generation models</a></li>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-corporaWords-ng#workingWords-ng">Working with custom words for next-generation models</a></li>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-corporaWords#validateModel">Validating a words resource for previous-generation models</a></li>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-corporaWords-ng#validateModel-ng">Validating a words resource for next-generation models</a>.</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom language model that is to be used for the request. You must make the request with credentials for the instance of the service that owns the custom model.</td></tr>
     <tr><td class="paramname">wordName</td><td>The custom word that is to be added to or updated in the custom language model. Do not include spaces in the word. Use a <code>-</code> (dash) or <code>_</code> (underscore) to connect the tokens of compound words. URL-encode the word if it includes non-ASCII characters. For more information, see <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-corporaWords#charEncoding">Character encoding</a>.</td></tr>
-    <tr><td class="paramname">word</td><td>For the <b>Add custom words</b> method, you must specify the custom word that is to be added to or updated in the custom model. Do not include spaces in the word. Use a <code>-</code> (dash) or <code>_</code> (underscore) to connect the tokens of compound words.</td></tr>
+    <tr><td class="paramname">word</td><td>For the <a href="../../#addwords">Add custom words</a> method, you must specify the custom word that is to be added to or updated in the custom model. Do not include spaces in the word. Use a <code>-</code> (dash) or <code>_</code> (underscore) to connect the tokens of compound words.</td></tr>
   </table>
   </dd>
 </dl>
-<p>Omit this parameter for the <b>Add a custom word</b> method. (optional)</p>
+<p>Omit this parameter for the <a href="../../#addword">Add a custom word</a> method. (optional)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">soundsLike</td><td>An array of sounds-like pronunciations for the custom word. Specify how words that are difficult to pronounce, foreign words, acronyms, and so on can be pronounced by users.<ul>
+    <tr><td class="paramname">soundsLike</td><td>_For a custom model that is based on a previous-generation model_, an array of sounds-like pronunciations for the custom word. Specify how words that are difficult to pronounce, foreign words, acronyms, and so on can be pronounced by users.<ul>
 <li>For a word that is not in the service's base vocabulary, omit the parameter to have the service automatically generate a sounds-like pronunciation for the word.</li>
 <li>For a word that is in the service's base vocabulary, use the parameter to specify additional pronunciations for the word. You cannot override the default pronunciation of a word; pronunciations you add augment the pronunciation from the base vocabulary.</li>
 </ul>
@@ -813,7 +820,8 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p>A word can have at most five sounds-like pronunciations. A pronunciation can include at most 40 characters not including spaces. (optional)</p>
+<p>A word can have at most five sounds-like pronunciations. A pronunciation can include at most 40 characters not including spaces.</p>
+<p><em>For a custom model that is based on a next-generation model</em>, omit this field. Custom models based on next-generation models do not support the <code>sounds_like</code> field. The service ignores the field. (optional)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">displayAs</td><td>An alternative spelling for the custom word when it appears in a transcript. Use the parameter when you want the word to have a spelling that is different from its usual representation or from its spelling in corpora training data. (optional)</td></tr>
@@ -861,20 +869,23 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Add custom words. </p>
-<p>Adds one or more custom words to a custom language model. The service populates the words resource for a custom model with out-of-vocabulary (OOV) words from each corpus or grammar that is added to the model. You can use this method to add additional words or to modify existing words in the words resource. The words resource for a model can contain a maximum of 90 thousand custom (OOV) words. This includes words that the service extracts from corpora and grammars and words that you add directly.</p>
-<p>You must use credentials for the instance of the service that owns a model to add or modify custom words for the model. Adding or modifying custom words does not affect the custom model until you train the model for the new data by using the <b>Train a custom language model</b> method.</p>
-<p>You add custom words by providing a <code>CustomWords</code> object, which is an array of <code>CustomWord</code> objects, one per word. You must use the object's <code>word</code> parameter to identify the word that is to be added. You can also provide one or both of the optional <code>sounds_like</code> and <code>display_as</code> fields for each word.</p><ul>
-<li>The <code>sounds_like</code> field provides an array of one or more pronunciations for the word. Use the parameter to specify how the word can be pronounced by users. Use the parameter for words that are difficult to pronounce, foreign words, acronyms, and so on. For example, you might specify that the word <code>IEEE</code> can sound like <code>i triple e</code>. You can specify a maximum of five sounds-like pronunciations for a word. If you omit the <code>sounds_like</code> field, the service attempts to set the field to its pronunciation of the word. It cannot generate a pronunciation for all words, so you must review the word's definition to ensure that it is complete and valid.</li>
-<li>The <code>display_as</code> field provides a different way of spelling the word in a transcript. Use the parameter when you want the word to appear different from its usual representation or from its spelling in training data. For example, you might indicate that the word <code>IBM(trademark)</code> is to be displayed as <code><a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a>&trade;</code>.</li>
+<p>Adds one or more custom words to a custom language model. You can use this method to add words or to modify existing words in a custom model's words resource. <em>For custom models that are based on previous-generation models</em>, the service populates the words resource for a custom model with out-of-vocabulary (OOV) words from each corpus or grammar that is added to the model. You can use this method to modify OOV words in the model's words resource.</p>
+<p><em>For a custom model that is based on a previous-generation model</em>, the words resource for a model can contain a maximum of 90 thousand custom (OOV) words. This includes words that the service extracts from corpora and grammars and words that you add directly.</p>
+<p>You must use credentials for the instance of the service that owns a model to add or modify custom words for the model. Adding or modifying custom words does not affect the custom model until you train the model for the new data by using the <a href="../../#trainlanguagemodel">Train a custom language model</a> method.</p>
+<p>You add custom words by providing a <code>CustomWords</code> object, which is an array of <code>CustomWord</code> objects, one per word. Use the object's <code>word</code> parameter to identify the word that is to be added. You can also provide one or both of the optional <code>display_as</code> or <code>sounds_like</code> fields for each word.</p><ul>
+<li>The <code>display_as</code> field provides a different way of spelling the word in a transcript. Use the parameter when you want the word to appear different from its usual representation or from its spelling in training data. For example, you might indicate that the word <code><a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a></code> is to be displayed as <code><a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a>&trade;</code>.</li>
+<li>The <code>sounds_like</code> field, <em>which can be used only with a custom model that is based on a previous-generation model</em>, provides an array of one or more pronunciations for the word. Use the parameter to specify how the word can be pronounced by users. Use the parameter for words that are difficult to pronounce, foreign words, acronyms, and so on. For example, you might specify that the word <code>IEEE</code> can sound like <code>i triple e</code>. You can specify a maximum of five sounds-like pronunciations for a word. If you omit the <code>sounds_like</code> field, the service attempts to set the field to its pronunciation of the word. It cannot generate a pronunciation for all words, so you must review the word's definition to ensure that it is complete and valid.</li>
 </ul>
 <p>If you add a custom word that already exists in the words resource for the custom model, the new definition overwrites the existing data for the word. If the service encounters an error with the input data, it returns a failure code and does not add any of the words to the words resource.</p>
 <p>The call returns an HTTP 201 response code if the input data is valid. It then asynchronously processes the words to add them to the model's words resource. The time that it takes for the analysis to complete depends on the number of new words that you add but is generally faster than adding a corpus or grammar.</p>
-<p>You can monitor the status of the request by using the <b>List a custom language model</b> method to poll the model's status. Use a loop to check the status every 10 seconds. The method returns a <code>Customization</code> object that includes a <code>status</code> field. A status of <code>ready</code> means that the words have been added to the custom model. The service cannot accept requests to add new data or to train the model until the existing request completes.</p>
-<p>You can use the <b>List custom words</b> or <b>List a custom word</b> method to review the words that you add. Words with an invalid <code>sounds_like</code> field include an <code>error</code> field that describes the problem. You can use other words-related methods to correct errors, eliminate typos, and modify how words are pronounced as needed.</p>
+<p>You can monitor the status of the request by using the <a href="../../#getlanguagemodel">Get a custom language model</a> method to poll the model's status. Use a loop to check the status every 10 seconds. The method returns a <code>Customization</code> object that includes a <code>status</code> field. A status of <code>ready</code> means that the words have been added to the custom model. The service cannot accept requests to add new data or to train the model until the existing request completes.</p>
+<p>You can use the <a href="../../#listwords">List custom words</a> or <a href="../../#getword">Get a custom word</a> method to review the words that you add. Words with an invalid <code>sounds_like</code> field include an <code>error</code> field that describes the problem. You can use other words-related methods to correct errors, eliminate typos, and modify how words are pronounced as needed.</p>
 <p><b>See also:</b></p><ul>
 <li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-languageCreate#addWords">Add words to the custom language model</a></li>
-<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-corporaWords#workingWords">Working with custom words</a></li>
-<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-corporaWords#validateModel">Validating a words resource</a>.</li>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-corporaWords#workingWords">Working with custom words for previous-generation models</a></li>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-corporaWords-ng#workingWords-ng">Working with custom words for next-generation models</a></li>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-corporaWords#validateModel">Validating a words resource for previous-generation models</a></li>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-corporaWords-ng#validateModel-ng">Validating a words resource for next-generation models</a>.</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -915,7 +926,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Check a job. </p>
 <p>Returns information about the specified job. The response always includes the status of the job and its creation and update times. If the status is <code>completed</code>, the response includes the results of the recognition request. You must use credentials for the instance of the service that owns a job to list information about it.</p>
-<p>You can use the method to retrieve the results of any job, regardless of whether it was submitted with a callback URL and the <code>recognitions.completed_with_results</code> event, and you can retrieve the results multiple times for as long as they remain available. Use the <b>Check jobs</b> method to request information about the most recent jobs associated with the calling credentials.</p>
+<p>You can use the method to retrieve the results of any job, regardless of whether it was submitted with a callback URL and the <code>recognitions.completed_with_results</code> event, and you can retrieve the results multiple times for as long as they remain available. Use the <a href="../../#checkjobs">Check jobs</a> method to request information about the most recent jobs associated with the calling credentials.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-async#job">Checking the status and retrieving the results of a job</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -953,7 +964,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Check jobs. </p>
-<p>Returns the ID and status of the latest 100 outstanding jobs associated with the credentials with which it is called. The method also returns the creation and update times of each job, and, if a job was created with a callback URL and a user token, the user token for the job. To obtain the results for a job whose status is <code>completed</code> or not one of the latest 100 outstanding jobs, use the <b>Check a job</b> method. A job and its results remain available until you delete them with the <b>Delete a job</b> method or until the job's time to live expires, whichever comes first.</p>
+<p>Returns the ID and status of the latest 100 outstanding jobs associated with the credentials with which it is called. The method also returns the creation and update times of each job, and, if a job was created with a callback URL and a user token, the user token for the job. To obtain the results for a job whose status is <code>completed</code> or not one of the latest 100 outstanding jobs, use the [Check a job[(#checkjob) method. A job and its results remain available until you delete them with the <a href="../../#deletejob">Delete a job</a> method or until the job's time to live expires, whichever comes first.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-async#jobs">Checking the status of the latest jobs</a>.</p>
 <dl class="section return"><dt>Returns</dt><dd>RecognitionJobsRecognitionJobs</dd></dl>
 
@@ -1004,6 +1015,7 @@ Public Member Functions</h2></td></tr>
 <p>Create a custom acoustic model. </p>
 <p>Creates a new custom acoustic model for a specified base model. The custom acoustic model can be used only with the base model for which it is created. The model is owned by the instance of the service whose credentials are used to create it.</p>
 <p>You can create a maximum of 1024 custom acoustic models per owning credentials. The service returns an error if you attempt to create more than 1024 models. You do not lose any models, but you cannot create any more until your model count is below the limit.</p>
+<p><b>Note:</b> Acoustic model customization is supported only for use with previous-generation models. It is not supported for next-generation models.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-acoustic#createModel-acoustic">Create a custom acoustic model</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1012,7 +1024,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p>To determine whether a base model supports acoustic model customization, refer to <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-customization#languageSupport">Language support for customization</a>.</p>
+<p>To determine whether a base model supports acoustic model customization, refer to <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support#custom-language-support">Language support for customization</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">description</td><td>A description of the new custom acoustic model. Use a localized description that matches the language of the custom model. (optional)</td></tr>
@@ -1242,9 +1254,9 @@ Public Member Functions</h2></td></tr>
 <p>Create a job. </p>
 <p>Creates a job for a new asynchronous recognition request. The job is owned by the instance of the service whose credentials are used to create it. How you learn the status and results of a job depends on the parameters you include with the job creation request:</p><ul>
 <li>By callback notification: Include the <code>callback_url</code> parameter to specify a URL to which the service is to send callback notifications when the status of the job changes. Optionally, you can also include the <code>events</code> and <code>user_token</code> parameters to subscribe to specific events and to specify a string that is to be included with each notification for the job.</li>
-<li>By polling the service: Omit the <code>callback_url</code>, <code>events</code>, and <code>user_token</code> parameters. You must then use the <b>Check jobs</b> or <b>Check a job</b> methods to check the status of the job, using the latter to retrieve the results when the job is complete.</li>
+<li>By polling the service: Omit the <code>callback_url</code>, <code>events</code>, and <code>user_token</code> parameters. You must then use the <a href="../../#checkjobs">Check jobs</a> or <a href="../../#checkjob">Check a job</a> methods to check the status of the job, using the latter to retrieve the results when the job is complete.</li>
 </ul>
-<p>The two approaches are not mutually exclusive. You can poll the service for job status or obtain results from the service manually even if you include a callback URL. In both cases, you can include the <code>results_ttl</code> parameter to specify how long the results are to remain available after the job is complete. Using the HTTPS <b>Check a job</b> method to retrieve results is more secure than receiving them via callback notification over HTTP because it provides confidentiality in addition to authentication and data integrity.</p>
+<p>The two approaches are not mutually exclusive. You can poll the service for job status or obtain results from the service manually even if you include a callback URL. In both cases, you can include the <code>results_ttl</code> parameter to specify how long the results are to remain available after the job is complete. Using the HTTPS <a href="../../#checkjob">Check a job</a> method to retrieve results is more secure than receiving them via callback notification over HTTP because it provides confidentiality in addition to authentication and data integrity.</p>
 <p>The method supports the same basic parameters as other HTTP and WebSocket recognition requests. It also supports the following parameters specific to the asynchronous interface:</p><ul>
 <li><code>callback_url</code></li>
 <li><code>events</code></li>
@@ -1284,26 +1296,16 @@ Public Member Functions</h2></td></tr>
 <p>The sampling rate of the audio must match the sampling rate of the model for the recognition request: for broadband models, at least 16 kHz; for narrowband models, at least 8 kHz. If the sampling rate of the audio is higher than the minimum required rate, the service down-samples the audio to the appropriate rate. If the sampling rate of the audio is lower than the minimum required rate, the request fails.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-audio-formats">Supported audio formats</a>.</p>
 <h3>Next-generation models</h3>
-<p><b>Note:</b> The next-generation language models are beta functionality. They support a limited number of languages and features at this time. The supported languages, models, and features will increase with future releases.</p>
 <p>The service supports next-generation <code>Multimedia</code> (16 kHz) and <code>Telephony</code> (8 kHz) models for many languages. Next-generation models have higher throughput than the service's previous generation of <code>Broadband</code> and <code>Narrowband</code> models. When you use next-generation models, the service can return transcriptions more quickly and also provide noticeably better transcription accuracy.</p>
-<p>You specify a next-generation model by using the <code>model</code> query parameter, as you do a previous-generation model. Next-generation models support the same request headers as previous-generation models, but they support only the following additional query parameters:</p><ul>
-<li><code>background_audio_suppression</code></li>
-<li><code>inactivity_timeout</code></li>
-<li><code>profanity_filter</code></li>
-<li><code>redaction</code></li>
-<li><code>smart_formatting</code></li>
-<li><code>speaker_labels</code></li>
-<li><code>speech_detector_sensitivity</code></li>
-<li><code>timestamps</code></li>
-</ul>
-<p>Many next-generation models also support the beta <code>low_latency</code> parameter, which is not available with previous-generation models.</p>
+<p>You specify a next-generation model by using the <code>model</code> query parameter, as you do a previous-generation model. Many next-generation models also support the <code>low_latency</code> parameter, which is not available with previous-generation models.</p>
+<p>But next-generation models do not support all of the parameters that are available for use with previous-generation models. For more information about all parameters that are supported for use with next-generation models, see <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-ng#models-ng-features">Supported features for next-generation models</a>.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-ng">Next-generation languages and models</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">audio</td><td>The audio to transcribe.</td></tr>
     <tr><td class="paramname">contentType</td><td>The format (MIME type) of the audio. For more information about specifying an audio format, see <b>Audio formats (content types)</b> in the method description. (optional)</td></tr>
-    <tr><td class="paramname">model</td><td>The identifier of the model that is to be used for the recognition request. (<b>Note:</b> The model <code>ar-AR_BroadbandModel</code> is deprecated; use <code>ar-MS_BroadbandModel</code> instead.) See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models">Languages and models</a> and <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-ng">Next-generation languages and models</a>. (optional, default to en-US_BroadbandModel)</td></tr>
-    <tr><td class="paramname">callbackUrl</td><td>A URL to which callback notifications are to be sent. The URL must already be successfully allowlisted by using the <b>Register a callback</b> method. You can include the same callback URL with any number of job creation requests. Omit the parameter to poll the service for job completion and results.</td></tr>
+    <tr><td class="paramname">model</td><td>The identifier of the model that is to be used for the recognition request. (<b>Note:</b> The model <code>ar-AR_BroadbandModel</code> is deprecated; use <code>ar-MS_BroadbandModel</code> instead.) See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models">Previous-generation languages and models</a> and <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-ng">Next-generation languages and models</a>. (optional, default to en-US_BroadbandModel)</td></tr>
+    <tr><td class="paramname">callbackUrl</td><td>A URL to which callback notifications are to be sent. The URL must already be successfully allowlisted by using the <a href="../../#registercallback">Register a callback</a> method. You can include the same callback URL with any number of job creation requests. Omit the parameter to poll the service for job completion and results.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1312,7 +1314,7 @@ Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">events</td><td>If the job includes a callback URL, a comma-separated list of notification events to which to subscribe. Valid events are<ul>
 <li><code>recognitions.started</code> generates a callback notification when the service begins to process the job.</li>
-<li><code>recognitions.completed</code> generates a callback notification when the job is complete. You must use the <b>Check a job</b> method to retrieve the results before they time out or are deleted.</li>
+<li><code>recognitions.completed</code> generates a callback notification when the job is complete. You must use the <a href="../../#checkjob">Check a job</a> method to retrieve the results before they time out or are deleted.</li>
 <li><code>recognitions.completed_with_results</code> generates a callback notification when the job is complete. The notification includes the results of the request.</li>
 <li><code>recognitions.failed</code> generates a callback notification if the service experiences an error while processing the job.</li>
 </ul>
@@ -1363,29 +1365,36 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p><b>Note:</b> Applies to US English, Japanese, and Spanish transcription only.</p>
+<p><b>Beta:</b> The parameter is beta functionality. Applies to US English, Japanese, and Spanish transcription only.</p>
 <p>See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-formatting#smart-formatting">Smart formatting</a>. (optional, default to false)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">speakerLabels</td><td>If <code>true</code>, the response includes labels that identify which words were spoken by which participants in a multi-person exchange. By default, the service returns no speaker labels. Setting <code>speaker_labels</code> to <code>true</code> forces the <code>timestamps</code> parameter to be <code>true</code>, regardless of whether you specify <code>false</code> for the parameter.<ul>
-<li>For previous-generation models, can be used for US English, Australian English, German, Japanese, Korean, and Spanish (both broadband and narrowband models) and UK English (narrowband model) transcription only.</li>
-<li>For next-generation models, can be used for English (Australian, UK, and US), German, and Spanish transcription only.</li>
-</ul>
-</td></tr>
+    <tr><td class="paramname">speakerLabels</td><td>If <code>true</code>, the response includes labels that identify which words were spoken by which participants in a multi-person exchange. By default, the service returns no speaker labels. Setting <code>speaker_labels</code> to <code>true</code> forces the <code>timestamps</code> parameter to be <code>true</code>, regardless of whether you specify <code>false</code> for the parameter.</td></tr>
   </table>
   </dd>
 </dl>
+<p><b>Beta:</b> The parameter is beta functionality.</p><ul>
+<li>For previous-generation models, the parameter can be used for Australian English, US English, German, Japanese, Korean, and Spanish (both broadband and narrowband models) and UK English (narrowband model) transcription only.</li>
+<li>For next-generation models, the parameter can be used for English (Australian, Indian, UK, and US), German, Japanese, Korean, and Spanish transcription only.</li>
+</ul>
 <p>Restrictions and limitations apply to the use of speaker labels for both types of models. See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-speaker-labels">Speaker labels</a>. (optional, default to false)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">customizationId</td><td>**Deprecated.** Use the <code>language_customization_id</code> parameter to specify the customization ID (GUID) of a custom language model that is to be used with the recognition request. Do not specify both parameters with a request. (optional)</td></tr>
-    <tr><td class="paramname">grammarName</td><td>The name of a grammar that is to be used with the recognition request. If you specify a grammar, you must also use the <code>language_customization_id</code> parameter to specify the name of the custom language model for which the grammar is defined. The service recognizes only strings that are recognized by the specified grammar; it does not recognize other custom words from the model's words resource. See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-grammarUse">Using a grammar for speech recognition</a>. (optional)</td></tr>
+    <tr><td class="paramname">grammarName</td><td>The name of a grammar that is to be used with the recognition request. If you specify a grammar, you must also use the <code>language_customization_id</code> parameter to specify the name of the custom language model for which the grammar is defined. The service recognizes only strings that are recognized by the specified grammar; it does not recognize other custom words from the model's words resource.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p><b>Beta:</b> The parameter is beta functionality.</p>
+<p>See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-grammarUse">Using a grammar for speech recognition</a>. (optional)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
     <tr><td class="paramname">redaction</td><td>If <code>true</code>, the service redacts, or masks, numeric data from final transcripts. The feature redacts any number that has three or more consecutive digits by replacing each digit with an <code>X</code> character. It is intended to redact sensitive numeric data, such as credit card numbers. By default, the service performs no redaction.</td></tr>
   </table>
   </dd>
 </dl>
 <p>When you enable redaction, the service automatically enables smart formatting, regardless of whether you explicitly disable that feature. To ensure maximum security, the service also disables keyword spotting (ignores the <code>keywords</code> and <code>keywords_threshold</code> parameters) and returns only a single final transcript (forces the <code>max_alternatives</code> parameter to be <code>1</code>).</p>
-<p><b>Note:</b> Applies to US English, Japanese, and Korean transcription only.</p>
+<p><b>Beta:</b> The parameter is beta functionality. Applies to US English, Japanese, and Korean transcription only.</p>
 <p>See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-formatting#numeric-redaction">Numeric redaction</a>. (optional, default to false)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1459,9 +1468,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p><b>Note:</b> The parameter is beta functionality. It is not available for previous-generation <code>Broadband</code> and <code>Narrowband</code> models. It is available only for some next-generation models.</p>
-<ul>
-<li>For a list of next-generation models that support low latency, see <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-ng#models-ng-supported">Supported language models</a> for next-generation models.</li>
+<p>The parameter is not available for previous-generation <code>Broadband</code> and <code>Narrowband</code> models. It is available only for some next-generation models. For a list of next-generation models that support low latency, see <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-ng#models-ng-supported">Supported next-generation language models</a>.</p><ul>
 <li>For more information about the <code>low_latency</code> parameter, see <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-interim#low-latency">Low latency</a>. (optional, default to false)</li>
 </ul>
 <dl class="section return"><dt>Returns</dt><dd>RecognitionJobRecognitionJob</dd></dl>
@@ -1527,20 +1534,19 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p>To determine whether a base model supports language model customization, use the <b>Get a model</b> method and check that the attribute <code>custom_language_model</code> is set to <code>true</code>. You can also refer to [Language support for customization](<a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-customization#languageSupport">https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-customization#languageSupport</a>).</p>
+<p>To determine whether a base model supports language model customization, use the <a href="../../#getmodel">Get a model</a> method and check that the attribute <code>custom_language_model</code> is set to <code>true</code>. You can also refer to <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support#custom-language-support">Language support for customization</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">dialect</td><td>The dialect of the specified language that is to be used with the custom language model. For most languages, the dialect matches the language of the base model by default. For example, <code>en-US</code> is used for either of the US English language models.</td></tr>
+    <tr><td class="paramname">dialect</td><td>The dialect of the specified language that is to be used with the custom language model. For most languages, the dialect matches the language of the base model by default. For example, <code>en-US</code> is used for the US English language models. All dialect values are case-insensitive.</td></tr>
   </table>
   </dd>
 </dl>
-<p>For a Spanish language, the service creates a custom language model that is suited for speech in one of the following dialects:</p><ul>
+<p>The parameter is meaningful only for Spanish language models, for which you can always safely omit the parameter to have the service create the correct mapping. For Spanish, the service creates a custom language model that is suited for speech in one of the following dialects:</p><ul>
 <li><code>es-ES</code> for Castilian Spanish (<code>es-ES</code> models)</li>
 <li><code>es-LA</code> for Latin American Spanish (<code>es-AR</code>, <code>es-CL</code>, <code>es-CO</code>, and <code>es-PE</code> models)</li>
 <li><code>es-US</code> for Mexican (North American) Spanish (<code>es-MX</code> models)</li>
 </ul>
-<p>The parameter is meaningful only for Spanish models, for which you can always safely omit the parameter to have the service create the correct mapping.</p>
-<p>If you specify the <code>dialect</code> parameter for non-Spanish language models, its value must match the language of the base model. If you specify the <code>dialect</code> for Spanish language models, its value must match one of the defined mappings as indicated (<code>es-ES</code>, <code>es-LA</code>, or <code>es-MX</code>). All dialect values are case-insensitive. (optional)</p>
+<p>If you specify the <code>dialect</code> parameter for a non-Spanish language model, its value must match the language of the base model. If you specify the <code>dialect</code> for a Spanish language model, its value must match one of the defined mappings (<code>es-ES</code>, <code>es-LA</code>, or <code>es-MX</code>). (optional)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">description</td><td>A description of the new custom language model. Use a localized description that matches the language of the custom model. (optional)</td></tr>
@@ -1579,6 +1585,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Delete a custom acoustic model. </p>
 <p>Deletes an existing custom acoustic model. The custom model cannot be deleted if another request, such as adding an audio resource to the model, is currently being processed. You must use credentials for the instance of the service that owns a model to delete it.</p>
+<p><b>Note:</b> Acoustic model customization is supported only for use with previous-generation models. It is not supported for next-generation models.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageAcousticModels#deleteModel-acoustic">Deleting a custom acoustic model</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1628,7 +1635,8 @@ Public Member Functions</h2></td></tr>
 
 <p>Delete an audio resource. </p>
 <p>Deletes an existing audio resource from a custom acoustic model. Deleting an archive-type audio resource removes the entire archive of files. The service does not allow deletion of individual files from an archive resource.</p>
-<p>Removing an audio resource does not affect the custom model until you train the model on its updated data by using the <b>Train a custom acoustic model</b> method. You can delete an existing audio resource from a model while a different resource is being added to the model. You must use credentials for the instance of the service that owns a model to delete its audio resources.</p>
+<p>Removing an audio resource does not affect the custom model until you train the model on its updated data by using the <a href="../../#trainacousticmodel">Train a custom acoustic model</a> method. You can delete an existing audio resource from a model while a different resource is being added to the model. You must use credentials for the instance of the service that owns a model to delete its audio resources.</p>
+<p><b>Note:</b> Acoustic model customization is supported only for use with previous-generation models. It is not supported for next-generation models.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageAudio#deleteAudio">Deleting an audio resource from a custom acoustic model</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1678,7 +1686,8 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Delete a corpus. </p>
-<p>Deletes an existing corpus from a custom language model. The service removes any out-of-vocabulary (OOV) words that are associated with the corpus from the custom model's words resource unless they were also added by another corpus or grammar, or they were modified in some way with the <b>Add custom words</b> or <b>Add a custom word</b> method. Removing a corpus does not affect the custom model until you train the model with the <b>Train a custom language model</b> method. You must use credentials for the instance of the service that owns a model to delete its corpora.</p>
+<p>Deletes an existing corpus from a custom language model. Removing a corpus does not affect the custom model until you train the model with the <a href="../../#trainlanguagemodel">Train a custom language model</a> method. You must use credentials for the instance of the service that owns a model to delete its corpora.</p>
+<p><em>For custom models that are based on previous-generation models</em>, the service removes any out-of-vocabulary (OOV) words that are associated with the corpus from the custom model's words resource unless they were also added by another corpus or grammar, or they were modified in some way with the <a href="../../#addwords">Add custom words</a> or <a href="../../#addword">Add a custom word</a> method.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageCorpora#deleteCorpus">Deleting a corpus from a custom language model</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1728,7 +1737,8 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Delete a grammar. </p>
-<p>Deletes an existing grammar from a custom language model. The service removes any out-of-vocabulary (OOV) words associated with the grammar from the custom model's words resource unless they were also added by another resource or they were modified in some way with the <b>Add custom words</b> or <b>Add a custom word</b> method. Removing a grammar does not affect the custom model until you train the model with the <b>Train a custom language model</b> method. You must use credentials for the instance of the service that owns a model to delete its grammar.</p>
+<p>Deletes an existing grammar from a custom language model. The service removes any out-of-vocabulary (OOV) words associated with the grammar from the custom model's words resource unless they were also added by another resource or they were modified in some way with the <a href="../../#addwords">Add custom words</a> or <a href="../../#addword">Add a custom word</a> method. Removing a grammar does not affect the custom model until you train the model with the <a href="../../#trainlanguagemodel">Train a custom language model</a> method. You must use credentials for the instance of the service that owns a model to delete its grammar. Grammars are available for all languages and models that support language customization.</p>
+<p><b>Note:</b> Grammars are supported only for use with previous-generation models. They are not supported for next-generation models.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageGrammars#deleteGrammar">Deleting a grammar from a custom language model</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1896,7 +1906,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Delete a custom word. </p>
-<p>Deletes a custom word from a custom language model. You can remove any word that you added to the custom model's words resource via any means. However, if the word also exists in the service's base vocabulary, the service removes only the custom pronunciation for the word; the word remains in the base vocabulary. Removing a custom word does not affect the custom model until you train the model with the <b>Train a custom language model</b> method. You must use credentials for the instance of the service that owns a model to delete its words.</p>
+<p>Deletes a custom word from a custom language model. You can remove any word that you added to the custom model's words resource via any means. However, if the word also exists in the service's base vocabulary, the service removes the word only from the words resource; the word remains in the base vocabulary. Removing a custom word does not affect the custom model until you train the model with the <a href="../../#trainlanguagemodel">Train a custom language model</a> method. You must use credentials for the instance of the service that owns a model to delete its words.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageWords#deleteWord">Deleting a word from a custom language model</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1937,6 +1947,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Get a custom acoustic model. </p>
 <p>Gets information about a specified custom acoustic model. You must use credentials for the instance of the service that owns a model to list information about it.</p>
+<p><b>Note:</b> Acoustic model customization is supported only for use with previous-generation models. It is not supported for next-generation models.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageAcousticModels#listModels-acoustic">Listing custom acoustic models</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1986,14 +1997,15 @@ Public Member Functions</h2></td></tr>
 
 <p>Get an audio resource. </p>
 <p>Gets information about an audio resource from a custom acoustic model. The method returns an <code>AudioListing</code> object whose fields depend on the type of audio resource that you specify with the method's <code>audio_name</code> parameter:</p><ul>
-<li><b>For an audio-type resource,</b> the object's fields match those of an <code>AudioResource</code> object: <code>duration</code>, <code>name</code>, <code>details</code>, and <code>status</code>.</li>
-<li><b>For an archive-type resource,</b> the object includes a <code>container</code> field whose fields match those of an <code>AudioResource</code> object. It also includes an <code>audio</code> field, which contains an array of <code>AudioResource</code> objects that provides information about the audio files that are contained in the archive.</li>
+<li><em>For an audio-type resource</em>, the object's fields match those of an <code>AudioResource</code> object: <code>duration</code>, <code>name</code>, <code>details</code>, and <code>status</code>.</li>
+<li><em>For an archive-type resource</em>, the object includes a <code>container</code> field whose fields match those of an <code>AudioResource</code> object. It also includes an <code>audio</code> field, which contains an array of <code>AudioResource</code> objects that provides information about the audio files that are contained in the archive.</li>
 </ul>
 <p>The information includes the status of the specified audio resource. The status is important for checking the service's analysis of a resource that you add to the custom model.</p><ul>
-<li>For an audio-type resource, the <code>status</code> field is located in the <code>AudioListing</code> object.</li>
-<li>For an archive-type resource, the <code>status</code> field is located in the <code>AudioResource</code> object that is returned in the <code>container</code> field.</li>
+<li><em>For an audio-type resource</em>, the <code>status</code> field is located in the <code>AudioListing</code> object.</li>
+<li><em>For an archive-type resource</em>, the <code>status</code> field is located in the <code>AudioResource</code> object that is returned in the <code>container</code> field.</li>
 </ul>
 <p>You must use credentials for the instance of the service that owns a model to list its audio resources.</p>
+<p><b>Note:</b> Acoustic model customization is supported only for use with previous-generation models. It is not supported for next-generation models.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageAudio#listAudio">Listing audio resources for a custom acoustic model</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2043,7 +2055,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get a corpus. </p>
-<p>Gets information about a corpus from a custom language model. The information includes the total number of words and out-of-vocabulary (OOV) words, name, and status of the corpus. You must use credentials for the instance of the service that owns a model to list its corpora.</p>
+<p>Gets information about a corpus from a custom language model. The information includes the name, status, and total number of words for the corpus. <em>For custom models that are based on previous-generation models</em>, it also includes the number of out-of-vocabulary (OOV) words from the corpus. You must use credentials for the instance of the service that owns a model to list its corpora.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageCorpora#listCorpora">Listing corpora for a custom language model</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2093,7 +2105,8 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get a grammar. </p>
-<p>Gets information about a grammar from a custom language model. The information includes the total number of out-of-vocabulary (OOV) words, name, and status of the grammar. You must use credentials for the instance of the service that owns a model to list its grammars.</p>
+<p>Gets information about a grammar from a custom language model. The information includes the total number of out-of-vocabulary (OOV) words, name, and status of the grammar. You must use credentials for the instance of the service that owns a model to list its grammars. Grammars are available for all languages and models that support language customization.</p>
+<p><b>Note:</b> Grammars are supported only for use with previous-generation models. They are not supported for next-generation models.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageGrammars#listGrammars">Listing grammars from a custom language model</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2176,7 +2189,7 @@ Public Member Functions</h2></td></tr>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-list">Listing models</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">modelId</td><td>The identifier of the model in the form of its name from the output of the <b>Get a model</b> method. (<b>Note:</b> The model <code>ar-AR_BroadbandModel</code> is deprecated; use <code>ar-MS_BroadbandModel</code> instead.).</td></tr>
+    <tr><td class="paramname">modelId</td><td>The identifier of the model in the form of its name from the output of the <a href="../../#listmodels">List models</a> method. (<b>Note:</b> The model <code>ar-AR_BroadbandModel</code> is deprecated; use <code>ar-MS_BroadbandModel</code> instead.).</td></tr>
   </table>
   </dd>
 </dl>
@@ -2262,6 +2275,7 @@ Public Member Functions</h2></td></tr>
 
 <p>List custom acoustic models. </p>
 <p>Lists information about all custom acoustic models that are owned by an instance of the service. Use the <code>language</code> parameter to see all custom acoustic models for the specified language. Omit the parameter to see all custom acoustic models for all languages. You must use credentials for the instance of the service that owns a model to list information about it.</p>
+<p><b>Note:</b> Acoustic model customization is supported only for use with previous-generation models. It is not supported for next-generation models.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageAcousticModels#listModels-acoustic">Listing custom acoustic models</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2269,7 +2283,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p>To determine the languages for which customization is available, see <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-customization#languageSupport">Language support for customization</a>. (optional)</p>
+<p>To determine the languages for which customization is available, see <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support#custom-language-support">Language support for customization</a>. (optional)</p>
 <dl class="section return"><dt>Returns</dt><dd>AcousticModelsAcousticModels</dd></dl>
 
 <p>Implements <a class="el" href="../../d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#ae980f741d9dd746e2584eaf5fdd9c979">IBM.Watson.SpeechToText.v1.ISpeechToTextService</a>.</p>
@@ -2302,6 +2316,7 @@ Public Member Functions</h2></td></tr>
 
 <p>List audio resources. </p>
 <p>Lists information about all audio resources from a custom acoustic model. The information includes the name of the resource and information about its audio data, such as its duration. It also includes the status of the audio resource, which is important for checking the service's analysis of the resource in response to a request to add it to the custom acoustic model. You must use credentials for the instance of the service that owns a model to list its audio resources.</p>
+<p><b>Note:</b> Acoustic model customization is supported only for use with previous-generation models. It is not supported for next-generation models.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageAudio#listAudio">Listing audio resources for a custom acoustic model</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2340,7 +2355,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>List corpora. </p>
-<p>Lists information about all corpora from a custom language model. The information includes the total number of words and out-of-vocabulary (OOV) words, name, and status of each corpus. You must use credentials for the instance of the service that owns a model to list its corpora.</p>
+<p>Lists information about all corpora from a custom language model. The information includes the name, status, and total number of words for each corpus. <em>For custom models that are based on previous-generation models</em>, it also includes the number of out-of-vocabulary (OOV) words from the corpus. You must use credentials for the instance of the service that owns a model to list its corpora.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageCorpora#listCorpora">Listing corpora for a custom language model</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2379,7 +2394,8 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>List grammars. </p>
-<p>Lists information about all grammars from a custom language model. The information includes the total number of out-of-vocabulary (OOV) words, name, and status of each grammar. You must use credentials for the instance of the service that owns a model to list its grammars.</p>
+<p>Lists information about all grammars from a custom language model. The information includes the total number of out-of-vocabulary (OOV) words, name, and status of each grammar. You must use credentials for the instance of the service that owns a model to list its grammars. Grammars are available for all languages and models that support language customization.</p>
+<p><b>Note:</b> Grammars are supported only for use with previous-generation models. They are not supported for next-generation models.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageGrammars#listGrammars">Listing grammars from a custom language model</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2426,7 +2442,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p>To determine the languages for which customization is available, see <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-customization#languageSupport">Language support for customization</a>. (optional)</p>
+<p>To determine the languages for which customization is available, see <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support#custom-language-support">Language support for customization</a>. (optional)</p>
 <dl class="section return"><dt>Returns</dt><dd>LanguageModelsLanguageModels</dd></dl>
 
 <p>Implements <a class="el" href="../../d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a5b5a2674e00b27f7c6186e31d77ad716">IBM.Watson.SpeechToText.v1.ISpeechToTextService</a>.</p>
@@ -2506,7 +2522,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>List custom words. </p>
-<p>Lists information about custom words from a custom language model. You can list all words from the custom model's words resource, only custom words that were added or modified by the user, or only out-of-vocabulary (OOV) words that were extracted from corpora or are recognized by grammars. You can also indicate the order in which the service is to return words; by default, the service lists words in ascending alphabetical order. You must use credentials for the instance of the service that owns a model to list information about its words.</p>
+<p>Lists information about custom words from a custom language model. You can list all words from the custom model's words resource, only custom words that were added or modified by the user, or, <em>for a custom model that is based on a previous-generation model</em>, only out-of-vocabulary (OOV) words that were extracted from corpora or are recognized by grammars. You can also indicate the order in which the service is to return words; by default, the service lists words in ascending alphabetical order. You must use credentials for the instance of the service that owns a model to list information about its words.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageWords#listWords">Listing words from a custom language model</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2515,9 +2531,15 @@ Public Member Functions</h2></td></tr>
 <li><code>all</code> (the default) shows all words.</li>
 <li><code>user</code> shows only custom words that were added or modified by the user directly.</li>
 <li><code>corpora</code> shows only OOV that were extracted from corpora.</li>
-<li><code>grammars</code> shows only OOV words that are recognized by grammars. (optional, default to all)</li>
+<li><code>grammars</code> shows only OOV words that are recognized by grammars.</li>
 </ul>
 </td></tr>
+  </table>
+  </dd>
+</dl>
+<p><em>For a custom model that is based on a next-generation model</em>, only <code>all</code> and <code>user</code> apply. Both options return the same results. Words from other sources are not added to custom models that are based on next-generation models. (optional, default to all)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
     <tr><td class="paramname">sort</td><td>Indicates the order in which the words are to be listed, <code>alphabetical</code> or by <code>count</code>. You can prepend an optional <code>+</code> or <code>-</code> to an argument to indicate whether the results are to be sorted in ascending or descending order. By default, words are sorted in ascending alphabetical order. For alphabetical ordering, the lexicographical precedence is numeric values, uppercase letters, and lowercase letters. For count ordering, values with the same count are ordered alphabetically. With the <code>curl</code> command, URL-encode the <code>+</code> symbol as <code>%2B</code>. (optional, default to alphabetical)</td></tr>
   </table>
   </dd>
@@ -2740,19 +2762,9 @@ Public Member Functions</h2></td></tr>
 <p>The sampling rate of the audio must match the sampling rate of the model for the recognition request: for broadband models, at least 16 kHz; for narrowband models, at least 8 kHz. If the sampling rate of the audio is higher than the minimum required rate, the service down-samples the audio to the appropriate rate. If the sampling rate of the audio is lower than the minimum required rate, the request fails.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-audio-formats">Supported audio formats</a>.</p>
 <h3>Next-generation models</h3>
-<p><b>Note:</b> The next-generation language models are beta functionality. They support a limited number of languages and features at this time. The supported languages, models, and features will increase with future releases.</p>
 <p>The service supports next-generation <code>Multimedia</code> (16 kHz) and <code>Telephony</code> (8 kHz) models for many languages. Next-generation models have higher throughput than the service's previous generation of <code>Broadband</code> and <code>Narrowband</code> models. When you use next-generation models, the service can return transcriptions more quickly and also provide noticeably better transcription accuracy.</p>
-<p>You specify a next-generation model by using the <code>model</code> query parameter, as you do a previous-generation model. Next-generation models support the same request headers as previous-generation models, but they support only the following additional query parameters:</p><ul>
-<li><code>background_audio_suppression</code></li>
-<li><code>inactivity_timeout</code></li>
-<li><code>profanity_filter</code></li>
-<li><code>redaction</code></li>
-<li><code>smart_formatting</code></li>
-<li><code>speaker_labels</code></li>
-<li><code>speech_detector_sensitivity</code></li>
-<li><code>timestamps</code></li>
-</ul>
-<p>Many next-generation models also support the beta <code>low_latency</code> parameter, which is not available with previous-generation models.</p>
+<p>You specify a next-generation model by using the <code>model</code> query parameter, as you do a previous-generation model. Many next-generation models also support the <code>low_latency</code> parameter, which is not available with previous-generation models.</p>
+<p>But next-generation models do not support all of the parameters that are available for use with previous-generation models. For more information about all parameters that are supported for use with next-generation models, see <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-ng#models-ng-features">Supported features for next-generation models</a>.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-ng">Next-generation languages and models</a>.</p>
 <h3>Multipart speech recognition</h3>
 <p><b>Note:</b> The <a class="el" href="../../d2/d15/namespace_i_b_m_1_1_watson.html">Watson</a> SDKs do not support multipart speech recognition.</p>
@@ -2763,7 +2775,7 @@ Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">audio</td><td>The audio to transcribe.</td></tr>
     <tr><td class="paramname">contentType</td><td>The format (MIME type) of the audio. For more information about specifying an audio format, see <b>Audio formats (content types)</b> in the method description. (optional)</td></tr>
-    <tr><td class="paramname">model</td><td>The identifier of the model that is to be used for the recognition request. (<b>Note:</b> The model <code>ar-AR_BroadbandModel</code> is deprecated; use <code>ar-MS_BroadbandModel</code> instead.) See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models">Languages and models</a> and <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-ng">Next-generation languages and models</a>. (optional, default to en-US_BroadbandModel)</td></tr>
+    <tr><td class="paramname">model</td><td>The identifier of the model that is to be used for the recognition request. (<b>Note:</b> The model <code>ar-AR_BroadbandModel</code> is deprecated; use <code>ar-MS_BroadbandModel</code> instead.) See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models">Previous-generation languages and models</a> and <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-ng">Next-generation languages and models</a>. (optional, default to en-US_BroadbandModel)</td></tr>
     <tr><td class="paramname">languageCustomizationId</td><td>The customization ID (GUID) of a custom language model that is to be used with the recognition request. The base model of the specified custom language model must match the model specified with the <code>model</code> parameter. You must make the request with credentials for the instance of the service that owns the custom model. By default, no custom language model is used. See [Using a custom language model for speech recognition](<a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-languageUse">https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-languageUse</a>).</td></tr>
   </table>
   </dd>
@@ -2801,29 +2813,36 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p><b>Note:</b> Applies to US English, Japanese, and Spanish transcription only.</p>
+<p><b>Beta:</b> The parameter is beta functionality. Applies to US English, Japanese, and Spanish transcription only.</p>
 <p>See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-formatting#smart-formatting">Smart formatting</a>. (optional, default to false)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">speakerLabels</td><td>If <code>true</code>, the response includes labels that identify which words were spoken by which participants in a multi-person exchange. By default, the service returns no speaker labels. Setting <code>speaker_labels</code> to <code>true</code> forces the <code>timestamps</code> parameter to be <code>true</code>, regardless of whether you specify <code>false</code> for the parameter.<ul>
-<li>For previous-generation models, can be used for US English, Australian English, German, Japanese, Korean, and Spanish (both broadband and narrowband models) and UK English (narrowband model) transcription only.</li>
-<li>For next-generation models, can be used for English (Australian, UK, and US), German, and Spanish transcription only.</li>
-</ul>
-</td></tr>
+    <tr><td class="paramname">speakerLabels</td><td>If <code>true</code>, the response includes labels that identify which words were spoken by which participants in a multi-person exchange. By default, the service returns no speaker labels. Setting <code>speaker_labels</code> to <code>true</code> forces the <code>timestamps</code> parameter to be <code>true</code>, regardless of whether you specify <code>false</code> for the parameter.</td></tr>
   </table>
   </dd>
 </dl>
+<p><b>Beta:</b> The parameter is beta functionality.</p><ul>
+<li>For previous-generation models, the parameter can be used for Australian English, US English, German, Japanese, Korean, and Spanish (both broadband and narrowband models) and UK English (narrowband model) transcription only.</li>
+<li>For next-generation models, the parameter can be used for English (Australian, Indian, UK, and US), German, Japanese, Korean, and Spanish transcription only.</li>
+</ul>
 <p>Restrictions and limitations apply to the use of speaker labels for both types of models. See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-speaker-labels">Speaker labels</a>. (optional, default to false)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">customizationId</td><td>**Deprecated.** Use the <code>language_customization_id</code> parameter to specify the customization ID (GUID) of a custom language model that is to be used with the recognition request. Do not specify both parameters with a request. (optional)</td></tr>
-    <tr><td class="paramname">grammarName</td><td>The name of a grammar that is to be used with the recognition request. If you specify a grammar, you must also use the <code>language_customization_id</code> parameter to specify the name of the custom language model for which the grammar is defined. The service recognizes only strings that are recognized by the specified grammar; it does not recognize other custom words from the model's words resource. See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-grammarUse">Using a grammar for speech recognition</a>. (optional)</td></tr>
+    <tr><td class="paramname">grammarName</td><td>The name of a grammar that is to be used with the recognition request. If you specify a grammar, you must also use the <code>language_customization_id</code> parameter to specify the name of the custom language model for which the grammar is defined. The service recognizes only strings that are recognized by the specified grammar; it does not recognize other custom words from the model's words resource.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p><b>Beta:</b> The parameter is beta functionality.</p>
+<p>See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-grammarUse">Using a grammar for speech recognition</a>. (optional)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
     <tr><td class="paramname">redaction</td><td>If <code>true</code>, the service redacts, or masks, numeric data from final transcripts. The feature redacts any number that has three or more consecutive digits by replacing each digit with an <code>X</code> character. It is intended to redact sensitive numeric data, such as credit card numbers. By default, the service performs no redaction.</td></tr>
   </table>
   </dd>
 </dl>
 <p>When you enable redaction, the service automatically enables smart formatting, regardless of whether you explicitly disable that feature. To ensure maximum security, the service also disables keyword spotting (ignores the <code>keywords</code> and <code>keywords_threshold</code> parameters) and returns only a single final transcript (forces the <code>max_alternatives</code> parameter to be <code>1</code>).</p>
-<p><b>Note:</b> Applies to US English, Japanese, and Korean transcription only.</p>
+<p><b>Beta:</b> The parameter is beta functionality. Applies to US English, Japanese, and Korean transcription only.</p>
 <p>See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-formatting#numeric-redaction">Numeric redaction</a>. (optional, default to false)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2881,9 +2900,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p><b>Note:</b> The parameter is beta functionality. It is not available for previous-generation <code>Broadband</code> and <code>Narrowband</code> models. It is available only for some next-generation models.</p>
-<ul>
-<li>For a list of next-generation models that support low latency, see <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-ng#models-ng-supported">Supported language models</a> for next-generation models.</li>
+<p>The parameter is not available for previous-generation <code>Broadband</code> and <code>Narrowband</code> models. It is available only for some next-generation models. For a list of next-generation models that support low latency, see <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-ng#models-ng-supported">Supported next-generation language models</a>.</p><ul>
 <li>For more information about the <code>low_latency</code> parameter, see <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-interim#low-latency">Low latency</a>. (optional, default to false)</li>
 </ul>
 <dl class="section return"><dt>Returns</dt><dd>SpeechRecognitionResultsSpeechRecognitionResults</dd></dl>
@@ -2929,7 +2946,7 @@ Public Member Functions</h2></td></tr>
 <p>Register a callback. </p>
 <p>Registers a callback URL with the service for use with subsequent asynchronous recognition requests. The service attempts to register, or allowlist, the callback URL if it is not already registered by sending a <code>GET</code> request to the callback URL. The service passes a random alphanumeric challenge string via the <code>challenge_string</code> parameter of the request. The request includes an <code>Accept</code> header that specifies <code>text/plain</code> as the required response type.</p>
 <p>To be registered successfully, the callback URL must respond to the <code>GET</code> request from the service. The response must send status code 200 and must include the challenge string in its body. Set the <code>Content-Type</code> response header to <code>text/plain</code>. Upon receiving this response, the service responds to the original registration request with response code 201.</p>
-<p>The service sends only a single <code>GET</code> request to the callback URL. If the service does not receive a reply with a response code of 200 and a body that echoes the challenge string sent by the service within five seconds, it does not allowlist the URL; it instead sends status code 400 in response to the <b>Register a callback</b> request. If the requested callback URL is already allowlisted, the service responds to the initial registration request with response code 200.</p>
+<p>The service sends only a single <code>GET</code> request to the callback URL. If the service does not receive a reply with a response code of 200 and a body that echoes the challenge string sent by the service within five seconds, it does not allowlist the URL; it instead sends status code 400 in response to the request to register a callback. If the requested callback URL is already allowlisted, the service responds to the initial registration request with response code 200.</p>
 <p>If you specify a user secret with the request, the service uses it as a key to calculate an HMAC-SHA1 signature of the challenge string in its response to the <code>POST</code> request. It sends this signature in the <code>X-Callback-Signature</code> header of its <code>GET</code> request to the URL during registration. It also uses the secret to calculate a signature over the payload of every callback notification that uses the URL. The signature provides authentication and data integrity for HTTP communications.</p>
 <p>After you successfully register a callback URL, you can use it with an indefinite number of recognition requests. You can register a maximum of 20 callback URLS in a one-hour span of time.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-async#register">Registering a callback URL</a>.</p>
@@ -2972,6 +2989,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Reset a custom acoustic model. </p>
 <p>Resets a custom acoustic model by removing all audio resources from the model. Resetting a custom acoustic model initializes the model to its state when it was first created. Metadata such as the name and language of the model are preserved, but the model's audio resources are removed and must be re-created. The service cannot reset a model while it is handling another request for the model. The service cannot accept subsequent requests for the model until the existing reset request completes. You must use credentials for the instance of the service that owns a model to reset it.</p>
+<p><b>Note:</b> Acoustic model customization is supported only for use with previous-generation models. It is not supported for next-generation models.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageAcousticModels#resetModel-acoustic">Resetting a custom acoustic model</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -3061,8 +3079,9 @@ Public Member Functions</h2></td></tr>
 <p>Train a custom acoustic model. </p>
 <p>Initiates the training of a custom acoustic model with new or changed audio resources. After adding or deleting audio resources for a custom acoustic model, use this method to begin the actual training of the model on the latest audio data. The custom acoustic model does not reflect its changed data until you train it. You must use credentials for the instance of the service that owns a model to train it.</p>
 <p>The training method is asynchronous. Training time depends on the cumulative amount of audio data that the custom acoustic model contains and the current load on the service. When you train or retrain a model, the service uses all of the model's audio data in the training. Training a custom acoustic model takes approximately as long as the length of its cumulative audio data. For example, it takes approximately 2 hours to train a model that contains a total of 2 hours of audio. The method returns an HTTP 200 response code to indicate that the training process has begun.</p>
-<p>You can monitor the status of the training by using the <b>Get a custom acoustic model</b> method to poll the model's status. Use a loop to check the status once a minute. The method returns an <code>AcousticModel</code> object that includes <code>status</code> and <code>progress</code> fields. A status of <code>available</code> indicates that the custom model is trained and ready to use. The service cannot train a model while it is handling another request for the model. The service cannot accept subsequent training requests, or requests to add new audio resources, until the existing training request completes.</p>
+<p>You can monitor the status of the training by using the <a href="../../#getacousticmodel">Get a custom acoustic model</a> method to poll the model's status. Use a loop to check the status once a minute. The method returns an <code>AcousticModel</code> object that includes <code>status</code> and <code>progress</code> fields. A status of <code>available</code> indicates that the custom model is trained and ready to use. The service cannot train a model while it is handling another request for the model. The service cannot accept subsequent training requests, or requests to add new audio resources, until the existing training request completes.</p>
 <p>You can use the optional <code>custom_language_model_id</code> parameter to specify the GUID of a separately created custom language model that is to be used during training. Train with a custom language model if you have verbatim transcriptions of the audio files that you have added to the custom model or you have either corpora (text files) or a list of words that are relevant to the contents of the audio files. For training to succeed, both of the custom models must be based on the same version of the same base model, and the custom language model must be fully trained and available.</p>
+<p><b>Note:</b> Acoustic model customization is supported only for use with previous-generation models. It is not supported for next-generation models.</p>
 <p><b>See also:</b></p><ul>
 <li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-acoustic#trainModel-acoustic">Train the custom acoustic model</a></li>
 <li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-useBoth#useBoth">Using custom acoustic and custom language models together</a></li>
@@ -3131,7 +3150,7 @@ Public Member Functions</h2></td></tr>
 <p>Train a custom language model. </p>
 <p>Initiates the training of a custom language model with new resources such as corpora, grammars, and custom words. After adding, modifying, or deleting resources for a custom language model, use this method to begin the actual training of the model on the latest data. You can specify whether the custom language model is to be trained with all words from its words resource or only with words that were added or modified by the user directly. You must use credentials for the instance of the service that owns a model to train it.</p>
 <p>The training method is asynchronous. It can take on the order of minutes to complete depending on the amount of data on which the service is being trained and the current load on the service. The method returns an HTTP 200 response code to indicate that the training process has begun.</p>
-<p>You can monitor the status of the training by using the <b>Get a custom language model</b> method to poll the model's status. Use a loop to check the status every 10 seconds. The method returns a <code>LanguageModel</code> object that includes <code>status</code> and <code>progress</code> fields. A status of <code>available</code> means that the custom model is trained and ready to use. The service cannot accept subsequent training requests or requests to add new resources until the existing request completes.</p>
+<p>You can monitor the status of the training by using the <a href="../../#getlanguagemodel">Get a custom language model</a> method to poll the model's status. Use a loop to check the status every 10 seconds. The method returns a <code>LanguageModel</code> object that includes <code>status</code> and <code>progress</code> fields. A status of <code>available</code> means that the custom model is trained and ready to use. The service cannot accept subsequent training requests or requests to add new resources until the existing request completes.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-languageCreate#trainModel-language">Train the custom language model</a>.</p>
 <h3>Training failures</h3>
 <p>Training can fail to start for the following reasons:</p><ul>
@@ -3142,11 +3161,17 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom language model that is to be used for the request. You must make the request with credentials for the instance of the service that owns the custom model.</td></tr>
-    <tr><td class="paramname">wordTypeToAdd</td><td>The type of words from the custom language model's words resource on which to train the model:<ul>
+    <tr><td class="paramname">wordTypeToAdd</td><td>_For custom models that are based on previous-generation models_, the type of words from the custom language model's words resource on which to train the model:<ul>
 <li><code>all</code> (the default) trains the model on all new words, regardless of whether they were extracted from corpora or grammars or were added or modified by the user.</li>
-<li><code>user</code> trains the model only on new words that were added or modified by the user directly. The model is not trained on new words extracted from corpora or grammars. (optional, default to all)</li>
+<li><code>user</code> trains the model only on custom words that were added or modified by the user directly. The model is not trained on new words extracted from corpora or grammars.</li>
 </ul>
 </td></tr>
+  </table>
+  </dd>
+</dl>
+<p><em>For custom models that are based on next-generation models</em>, the service ignores the parameter. The words resource contains only custom words that the user adds or modifies directly, so the parameter is unnecessary. (optional, default to all)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
     <tr><td class="paramname">customizationWeight</td><td>Specifies a customization weight for the custom language model. The customization weight tells the service how much weight to give to words from the custom language model compared to those from the base model for speech recognition. Specify a value between 0.0 and 1.0; the default is 0.3.</td></tr>
   </table>
   </dd>
@@ -3185,7 +3210,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Unregister a callback. </p>
-<p>Unregisters a callback URL that was previously allowlisted with a <b>Register a callback</b> request for use with the asynchronous interface. Once unregistered, the URL can no longer be used with asynchronous recognition requests.</p>
+<p>Unregisters a callback URL that was previously allowlisted with a <a href="../../#registercallback">Register a callback</a> request for use with the asynchronous interface. Once unregistered, the URL can no longer be used with asynchronous recognition requests.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-async#unregister">Unregistering a callback URL</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -3241,8 +3266,9 @@ Public Member Functions</h2></td></tr>
 
 <p>Upgrade a custom acoustic model. </p>
 <p>Initiates the upgrade of a custom acoustic model to the latest version of its base language model. The upgrade method is asynchronous. It can take on the order of minutes or hours to complete depending on the amount of data in the custom model and the current load on the service; typically, upgrade takes approximately twice the length of the total audio contained in the custom model. A custom model must be in the <code>ready</code> or <code>available</code> state to be upgraded. You must use credentials for the instance of the service that owns a model to upgrade it.</p>
-<p>The method returns an HTTP 200 response code to indicate that the upgrade process has begun successfully. You can monitor the status of the upgrade by using the <b>Get a custom acoustic model</b> method to poll the model's status. The method returns an <code>AcousticModel</code> object that includes <code>status</code> and <code>progress</code> fields. Use a loop to check the status once a minute. While it is being upgraded, the custom model has the status <code>upgrading</code>. When the upgrade is complete, the model resumes the status that it had prior to upgrade. The service cannot upgrade a model while it is handling another request for the model. The service cannot accept subsequent requests for the model until the existing upgrade request completes.</p>
+<p>The method returns an HTTP 200 response code to indicate that the upgrade process has begun successfully. You can monitor the status of the upgrade by using the <a href="../../#getacousticmodel">Get a custom acoustic model</a> method to poll the model's status. The method returns an <code>AcousticModel</code> object that includes <code>status</code> and <code>progress</code> fields. Use a loop to check the status once a minute. While it is being upgraded, the custom model has the status <code>upgrading</code>. When the upgrade is complete, the model resumes the status that it had prior to upgrade. The service cannot upgrade a model while it is handling another request for the model. The service cannot accept subsequent requests for the model until the existing upgrade request completes.</p>
 <p>If the custom acoustic model was trained with a separately created custom language model, you must use the <code>custom_language_model_id</code> parameter to specify the GUID of that custom language model. The custom language model must be upgraded before the custom acoustic model can be upgraded. Omit the parameter if the custom acoustic model was not trained with a custom language model.</p>
+<p><b>Note:</b> Acoustic model customization is supported only for use with previous-generation models. It is not supported for next-generation models.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-upgrade#custom-upgrade-acoustic">Upgrading a custom acoustic model</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -3284,7 +3310,8 @@ Public Member Functions</h2></td></tr>
 
 <p>Upgrade a custom language model. </p>
 <p>Initiates the upgrade of a custom language model to the latest version of its base language model. The upgrade method is asynchronous. It can take on the order of minutes to complete depending on the amount of data in the custom model and the current load on the service. A custom model must be in the <code>ready</code> or <code>available</code> state to be upgraded. You must use credentials for the instance of the service that owns a model to upgrade it.</p>
-<p>The method returns an HTTP 200 response code to indicate that the upgrade process has begun successfully. You can monitor the status of the upgrade by using the <b>Get a custom language model</b> method to poll the model's status. The method returns a <code>LanguageModel</code> object that includes <code>status</code> and <code>progress</code> fields. Use a loop to check the status every 10 seconds. While it is being upgraded, the custom model has the status <code>upgrading</code>. When the upgrade is complete, the model resumes the status that it had prior to upgrade. The service cannot accept subsequent requests for the model until the upgrade completes.</p>
+<p>The method returns an HTTP 200 response code to indicate that the upgrade process has begun successfully. You can monitor the status of the upgrade by using the <a href="../../#getlanguagemodel">Get a custom language model</a> method to poll the model's status. The method returns a <code>LanguageModel</code> object that includes <code>status</code> and <code>progress</code> fields. Use a loop to check the status every 10 seconds. While it is being upgraded, the custom model has the status <code>upgrading</code>. When the upgrade is complete, the model resumes the status that it had prior to upgrade. The service cannot accept subsequent requests for the model until the upgrade completes.</p>
+<p><b>Note:</b> Upgrading is necessary only for custom language models that are based on previous-generation models. Only a single version of a custom model that is based on a next-generation model is ever available.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-upgrade#custom-upgrade-language">Upgrading a custom language model</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

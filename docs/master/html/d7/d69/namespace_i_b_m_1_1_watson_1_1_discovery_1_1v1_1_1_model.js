@@ -86,6 +86,7 @@ var namespace_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model =
     [ "SourceOptionsWebCrawl", "d4/d66/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_source_options_web_crawl.html", "d4/d66/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_source_options_web_crawl" ],
     [ "SourceSchedule", "da/d5a/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_source_schedule.html", "da/d5a/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_source_schedule" ],
     [ "SourceStatus", "dd/d2d/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_source_status.html", "dd/d2d/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_source_status" ],
+    [ "StatusDetails", "d2/ddf/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_status_details.html", "d2/ddf/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_status_details" ],
     [ "Term", "d7/d98/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_term.html", "d7/d98/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_term" ],
     [ "Timeslice", "d9/d92/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_timeslice.html", "d9/d92/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_timeslice" ],
     [ "TokenDictRule", "d5/dda/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_token_dict_rule.html", "d5/dda/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_token_dict_rule" ],

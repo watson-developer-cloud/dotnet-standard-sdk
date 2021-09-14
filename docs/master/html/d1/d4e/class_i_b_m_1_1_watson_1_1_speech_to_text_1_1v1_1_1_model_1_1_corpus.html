@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">5.2.0</span>
+   &#160;<span id="projectnumber">5.2.1</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -113,7 +113,7 @@ Properties</h2></td></tr>
 <tr class="memdesc:aa3a21af2df4054fea125763f6aec8a3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The total number of words in the corpus. The value is <code>0</code> while the corpus is being processed.  <a href="../../d1/d4e/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_corpus.html#aa3a21af2df4054fea125763f6aec8a3d">More...</a><br /></td></tr>
 <tr class="separator:aa3a21af2df4054fea125763f6aec8a3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1c0d380ce69d23e705fc84a115b7443"><td class="memItemLeft" align="right" valign="top">long?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d4e/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_corpus.html#ac1c0d380ce69d23e705fc84a115b7443">OutOfVocabularyWords</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:ac1c0d380ce69d23e705fc84a115b7443"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of OOV words in the corpus. The value is <code>0</code> while the corpus is being processed.  <a href="../../d1/d4e/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_corpus.html#ac1c0d380ce69d23e705fc84a115b7443">More...</a><br /></td></tr>
+<tr class="memdesc:ac1c0d380ce69d23e705fc84a115b7443"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>For custom models that are based on previous-generation models</em>, the number of OOV words extracted from the corpus. The value is <code>0</code> while the corpus is being processed.  <a href="../../d1/d4e/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_corpus.html#ac1c0d380ce69d23e705fc84a115b7443">More...</a><br /></td></tr>
 <tr class="separator:ac1c0d380ce69d23e705fc84a115b7443"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc2329ced310b084eedbc7b265718a82"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d4e/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_corpus.html#afc2329ced310b084eedbc7b265718a82">Error</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:afc2329ced310b084eedbc7b265718a82"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the status of the corpus is <code>undetermined</code>, the following message: &lsquo;Analysis of corpus 'name&rsquo; failed. Please try adding the corpus again by setting the 'allow_overwrite' flag to 'true'`.  <a href="../../d1/d4e/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_corpus.html#afc2329ced310b084eedbc7b265718a82">More...</a><br /></td></tr>
@@ -190,7 +190,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The number of OOV words in the corpus. The value is <code>0</code> while the corpus is being processed. </p>
+<p><em>For custom models that are based on previous-generation models</em>, the number of OOV words extracted from the corpus. The value is <code>0</code> while the corpus is being processed. </p>
+<p><em>For custom models that are based on next-generation models</em>, no OOV words are extracted from corpora, so the value is always <code>0</code>.</p>
 
 </div>
 </div>

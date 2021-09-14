@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">5.2.0</span>
+   &#160;<span id="projectnumber">5.2.1</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -107,7 +107,7 @@ Properties</h2></td></tr>
 <tr class="memdesc:aa1effe5e9c064e49f8644fd1ca5c6c2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current status of the custom language model:  <a href="../../df/df8/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html#aa1effe5e9c064e49f8644fd1ca5c6c2c">More...</a><br /></td></tr>
 <tr class="separator:aa1effe5e9c064e49f8644fd1ca5c6c2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9039ecc040379c32812400faac4a89a2"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/df8/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html#a9039ecc040379c32812400faac4a89a2">CustomizationId</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a9039ecc040379c32812400faac4a89a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The customization ID (GUID) of the custom language model. The <b>Create a custom language model</b> method returns only this field of the object; it does not return the other fields.  <a href="../../df/df8/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html#a9039ecc040379c32812400faac4a89a2">More...</a><br /></td></tr>
+<tr class="memdesc:a9039ecc040379c32812400faac4a89a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The customization ID (GUID) of the custom language model. The <a href="../../#createlanguagemodel">Create a custom language model</a> method returns only this field of the object; it does not return the other fields.  <a href="../../df/df8/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html#a9039ecc040379c32812400faac4a89a2">More...</a><br /></td></tr>
 <tr class="separator:a9039ecc040379c32812400faac4a89a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1249ca910c03e0b69dfad1b68e8460c7"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/df8/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html#a1249ca910c03e0b69dfad1b68e8460c7">Created</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a1249ca910c03e0b69dfad1b68e8460c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The date and time in Coordinated Universal Time (UTC) at which the custom language model was created. The value is provided in full ISO 8601 format (<code>YYYY-MM-DDThh:mm:ss.sTZD</code>).  <a href="../../df/df8/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html#a1249ca910c03e0b69dfad1b68e8460c7">More...</a><br /></td></tr>
@@ -122,7 +122,7 @@ Properties</h2></td></tr>
 <tr class="memdesc:a3e391bd009e11c1de77be17274dd1c9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The dialect of the language for the custom language model. For non-Spanish models, the field matches the language of the base model; for example, <code>en-US</code> for either of the US English language models. For Spanish models, the field indicates the dialect for which the model was created:  <a href="../../df/df8/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html#a3e391bd009e11c1de77be17274dd1c9c">More...</a><br /></td></tr>
 <tr class="separator:a3e391bd009e11c1de77be17274dd1c9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b1fa9de3182d88198a3f06eeab2b5c2"><td class="memItemLeft" align="right" valign="top">List&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/df8/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html#a1b1fa9de3182d88198a3f06eeab2b5c2">Versions</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a1b1fa9de3182d88198a3f06eeab2b5c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of the available versions of the custom language model. Each element of the array indicates a version of the base model with which the custom model can be used. Multiple versions exist only if the custom model has been upgraded; otherwise, only a single version is shown.  <a href="../../df/df8/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html#a1b1fa9de3182d88198a3f06eeab2b5c2">More...</a><br /></td></tr>
+<tr class="memdesc:a1b1fa9de3182d88198a3f06eeab2b5c2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>For custom models that are based on previous-generation models</em>, a list of the available versions of the custom language model. Each element of the array indicates a version of the base model with which the custom model can be used. Multiple versions exist only if the custom model has been upgraded; otherwise, only a single version is shown.  <a href="../../df/df8/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html#a1b1fa9de3182d88198a3f06eeab2b5c2">More...</a><br /></td></tr>
 <tr class="separator:a1b1fa9de3182d88198a3f06eeab2b5c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50c8662a01d2994a55d7eb81c9872095"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/df8/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html#a50c8662a01d2994a55d7eb81c9872095">Owner</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a50c8662a01d2994a55d7eb81c9872095"><td class="mdescLeft">&#160;</td><td class="mdescRight">The GUID of the credentials for the instance of the service that owns the custom language model.  <a href="../../df/df8/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_language_model.html#a50c8662a01d2994a55d7eb81c9872095">More...</a><br /></td></tr>
@@ -217,7 +217,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The customization ID (GUID) of the custom language model. The <b>Create a custom language model</b> method returns only this field of the object; it does not return the other fields. </p>
+<p>The customization ID (GUID) of the custom language model. The <a href="../../#createlanguagemodel">Create a custom language model</a> method returns only this field of the object; it does not return the other fields. </p>
 
 </div>
 </div>
@@ -471,7 +471,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>A list of the available versions of the custom language model. Each element of the array indicates a version of the base model with which the custom model can be used. Multiple versions exist only if the custom model has been upgraded; otherwise, only a single version is shown. </p>
+<p><em>For custom models that are based on previous-generation models</em>, a list of the available versions of the custom language model. Each element of the array indicates a version of the base model with which the custom model can be used. Multiple versions exist only if the custom model has been upgraded; otherwise, only a single version is shown. </p>
+<p><em>For custom models that are based on next-generation models</em>, a single version of the custom model. Only one version of a custom model that is based on a next-generation model is ever available, and upgrading does not apply.</p>
 
 </div>
 </div>

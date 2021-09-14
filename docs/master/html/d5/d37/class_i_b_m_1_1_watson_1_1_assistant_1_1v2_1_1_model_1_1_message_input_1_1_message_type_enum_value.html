@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">5.2.0</span>
+   &#160;<span id="projectnumber">5.2.1</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -91,7 +91,7 @@ $(document).ready(function(){initNavTree('d5/d37/class_i_b_m_1_1_watson_1_1_assi
 </div><!--header-->
 <div class="contents">
 
-<p>The type of user input. Currently, only text input is supported.  
+<p>The type of the message:  
  <a href="../../d5/d37/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_1_1_message_type_enum_value.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
@@ -99,10 +99,42 @@ Static Public Attributes</h2></td></tr>
 <tr class="memitem:aefb405990c4d3fd6dd56f7a73c24583c"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d37/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_1_1_message_type_enum_value.html#aefb405990c4d3fd6dd56f7a73c24583c">TEXT</a> = &quot;text&quot;</td></tr>
 <tr class="memdesc:aefb405990c4d3fd6dd56f7a73c24583c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant TEXT for text  <a href="../../d5/d37/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_1_1_message_type_enum_value.html#aefb405990c4d3fd6dd56f7a73c24583c">More...</a><br /></td></tr>
 <tr class="separator:aefb405990c4d3fd6dd56f7a73c24583c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae88052c149e688a203617df9c9195e75"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d37/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_1_1_message_type_enum_value.html#ae88052c149e688a203617df9c9195e75">SEARCH</a> = &quot;search&quot;</td></tr>
+<tr class="memdesc:ae88052c149e688a203617df9c9195e75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant SEARCH for search  <a href="../../d5/d37/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_1_1_message_type_enum_value.html#ae88052c149e688a203617df9c9195e75">More...</a><br /></td></tr>
+<tr class="separator:ae88052c149e688a203617df9c9195e75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The type of user input. Currently, only text input is supported. </p>
+<div class="textblock"><p>The type of the message: </p>
+<ul>
+<li><code>text</code>: The user input is processed normally by the assistant.</li>
+<li><code>search</code>: Only search results are returned. (Any dialog or actions skill is bypassed.)</li>
+</ul>
+<p><b>Note:</b> A <code>search</code> message results in an error if no search skill is configured for the assistant.</p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="ae88052c149e688a203617df9c9195e75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae88052c149e688a203617df9c9195e75">&#9670;&nbsp;</a></span>SEARCH</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string IBM.Watson.Assistant.v2.Model.MessageInput.MessageTypeEnumValue.SEARCH = &quot;search&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constant SEARCH for search </p>
+
+</div>
+</div>
 <a id="aefb405990c4d3fd6dd56f7a73c24583c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aefb405990c4d3fd6dd56f7a73c24583c">&#9670;&nbsp;</a></span>TEXT</h2>
 

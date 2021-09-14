@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">5.2.0</span>
+   &#160;<span id="projectnumber">5.2.1</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -2298,7 +2298,7 @@ Properties</h2></td></tr>
 <p>List the events from the logs of all workspaces in the service instance.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">filter</td><td>A cacheable parameter that limits the results to those matching the specified filter. You must specify a filter query that includes a value for <code>language</code>, as well as a value for <code>request.context.system.assistant_id</code>, <code>workspace_id</code>, or <code>request.context.metadata.deployment</code>. For more information, see the <a href="https://cloud.ibm.com/docs/assistant?topic=assistant-filter-reference#filter-reference">documentation</a>.</td></tr>
+    <tr><td class="paramname">filter</td><td>A cacheable parameter that limits the results to those matching the specified filter. You must specify a filter query that includes a value for <code>language</code>, as well as a value for <code>request.context.system.assistant_id</code>, <code>workspace_id</code>, or <code>request.context.metadata.deployment</code>. These required filters must be specified using the exact match (<code>::</code>) operator. For more information, see the <a href="https://cloud.ibm.com/docs/assistant?topic=assistant-filter-reference#filter-reference">documentation</a>.</td></tr>
     <tr><td class="paramname">sort</td><td>How to sort the returned log events. You can sort by <b>request_timestamp</b>. To reverse the sort order, prefix the parameter value with a minus sign (<code>-</code>). (optional)</td></tr>
     <tr><td class="paramname">pageLimit</td><td>The number of records to return in each page of results. (optional)</td></tr>
     <tr><td class="paramname">cursor</td><td>A token identifying the page of results to retrieve. (optional)</td></tr>

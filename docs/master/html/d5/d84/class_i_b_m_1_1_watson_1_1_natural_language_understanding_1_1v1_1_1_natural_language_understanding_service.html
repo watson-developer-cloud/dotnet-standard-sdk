@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">5.2.0</span>
+   &#160;<span id="projectnumber">5.2.1</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -171,9 +171,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a791f168d37e6de21818c70d0c3579cb9"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../de/d55/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_classifications_model.html">ClassificationsModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a791f168d37e6de21818c70d0c3579cb9">CreateClassificationsModel</a> (string language, System.IO.MemoryStream trainingData, string trainingDataContentType=null, string name=null, string description=null, string modelVersion=null, string workspaceId=null, string versionDescription=null)</td></tr>
 <tr class="memdesc:a791f168d37e6de21818c70d0c3579cb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create classifications model.  <a href="../../d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a791f168d37e6de21818c70d0c3579cb9">More...</a><br /></td></tr>
 <tr class="separator:a791f168d37e6de21818c70d0c3579cb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ff9308a0b7d39e61c4bb3f505eb5d43"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d1/ddb/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_list_classifications_models_response.html">ListClassificationsModelsResponse</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a8ff9308a0b7d39e61c4bb3f505eb5d43">ListClassificationsModels</a> ()</td></tr>
-<tr class="memdesc:a8ff9308a0b7d39e61c4bb3f505eb5d43"><td class="mdescLeft">&#160;</td><td class="mdescRight">List classifications models.  <a href="../../d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a8ff9308a0b7d39e61c4bb3f505eb5d43">More...</a><br /></td></tr>
-<tr class="separator:a8ff9308a0b7d39e61c4bb3f505eb5d43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4459c82fc73c45d63fd6a5e56eb087a"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../dc/d83/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_classifications_model_list.html">ClassificationsModelList</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#aa4459c82fc73c45d63fd6a5e56eb087a">ListClassificationsModels</a> ()</td></tr>
+<tr class="memdesc:aa4459c82fc73c45d63fd6a5e56eb087a"><td class="mdescLeft">&#160;</td><td class="mdescRight">List classifications models.  <a href="../../d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#aa4459c82fc73c45d63fd6a5e56eb087a">More...</a><br /></td></tr>
+<tr class="separator:aa4459c82fc73c45d63fd6a5e56eb087a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8bede37b1f61fb38c4553dca7182f53e"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../de/d55/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_classifications_model.html">ClassificationsModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a8bede37b1f61fb38c4553dca7182f53e">GetClassificationsModel</a> (string modelId)</td></tr>
 <tr class="memdesc:a8bede37b1f61fb38c4553dca7182f53e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get classifications model details.  <a href="../../d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a8bede37b1f61fb38c4553dca7182f53e">More...</a><br /></td></tr>
 <tr class="separator:a8bede37b1f61fb38c4553dca7182f53e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -638,7 +638,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Create classifications model. </p>
-<p>(Beta) Creates a custom classifications model by uploading training data and associated metadata. The model begins the training and deploying process and is ready to use when the <code>status</code> is <code>available</code>.</p>
+<p>Creates a custom classifications model by uploading training data and associated metadata. The model begins the training and deploying process and is ready to use when the <code>status</code> is <code>available</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">language</td><td>The 2-letter language code of this model.</td></tr>
@@ -805,7 +805,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Delete classifications model. </p>
-<p>(Beta) Un-deploys the custom classifications model with the given model ID and deletes all associated customer data, including any training data or binary artifacts.</p>
+<p>Un-deploys the custom classifications model with the given model ID and deletes all associated customer data, including any training data or binary artifacts.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">modelId</td><td>ID of the model.</td></tr>
@@ -957,7 +957,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get classifications model details. </p>
-<p>(Beta) Returns the status of the classifications model with the given model ID.</p>
+<p>Returns the status of the classifications model with the given model ID.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">modelId</td><td>ID of the model.</td></tr>
@@ -1039,8 +1039,8 @@ Properties</h2></td></tr>
 
 </div>
 </div>
-<a id="a8ff9308a0b7d39e61c4bb3f505eb5d43"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8ff9308a0b7d39e61c4bb3f505eb5d43">&#9670;&nbsp;</a></span>ListClassificationsModels()</h2>
+<a id="aa4459c82fc73c45d63fd6a5e56eb087a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4459c82fc73c45d63fd6a5e56eb087a">&#9670;&nbsp;</a></span>ListClassificationsModels()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1049,7 +1049,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">DetailedResponse&lt;<a class="el" href="../../d1/ddb/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_list_classifications_models_response.html">ListClassificationsModelsResponse</a>&gt; IBM.Watson.NaturalLanguageUnderstanding.v1.NaturalLanguageUnderstandingService.ListClassificationsModels </td>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../dc/d83/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_classifications_model_list.html">ClassificationsModelList</a>&gt; IBM.Watson.NaturalLanguageUnderstanding.v1.NaturalLanguageUnderstandingService.ListClassificationsModels </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1063,10 +1063,10 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>List classifications models. </p>
-<p>(Beta) Returns all custom classifications models associated with this service instance.</p>
-<dl class="section return"><dt>Returns</dt><dd>ListClassificationsModelsResponseListClassificationsModelsResponse</dd></dl>
+<p>Returns all custom classifications models associated with this service instance.</p>
+<dl class="section return"><dt>Returns</dt><dd>ClassificationsModelListClassificationsModelList</dd></dl>
 
-<p>Implements <a class="el" href="../../d6/d09/interface_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_i_natural_language_understanding_service.html#a869357998b0af622da32d5e7a5250680">IBM.Watson.NaturalLanguageUnderstanding.v1.INaturalLanguageUnderstandingService</a>.</p>
+<p>Implements <a class="el" href="../../d6/d09/interface_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_i_natural_language_understanding_service.html#a90f3209bca8edc6c511e53fa11b3ea00">IBM.Watson.NaturalLanguageUnderstanding.v1.INaturalLanguageUnderstandingService</a>.</p>
 
 </div>
 </div>
@@ -1307,7 +1307,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Update classifications model. </p>
-<p>(Beta) Overwrites the training data associated with this custom classifications model and retrains the model. The new model replaces the current deployment.</p>
+<p>Overwrites the training data associated with this custom classifications model and retrains the model. The new model replaces the current deployment.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">modelId</td><td>ID of the model.</td></tr>

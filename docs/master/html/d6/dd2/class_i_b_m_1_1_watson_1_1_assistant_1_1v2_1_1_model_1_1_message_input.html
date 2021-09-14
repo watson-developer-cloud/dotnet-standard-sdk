@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">5.2.0</span>
+   &#160;<span id="projectnumber">5.2.1</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -98,13 +98,13 @@ $(document).ready(function(){initNavTree('d6/dd2/class_i_b_m_1_1_watson_1_1_assi
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d37/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_1_1_message_type_enum_value.html">MessageTypeEnumValue</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of user input. Currently, only text input is supported.  <a href="../../d5/d37/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_1_1_message_type_enum_value.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of the message:  <a href="../../d5/d37/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_1_1_message_type_enum_value.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a432f47d5b67d3e556749f311ea0f0f6f"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dd2/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input.html#a432f47d5b67d3e556749f311ea0f0f6f">MessageType</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a432f47d5b67d3e556749f311ea0f0f6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of user input. Currently, only text input is supported. Constants for possible values can be found using <a class="el" href="../../d5/d37/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_1_1_message_type_enum_value.html" title="The type of user input. Currently, only text input is supported.">MessageInput.MessageTypeEnumValue</a>  <a href="../../d6/dd2/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input.html#a432f47d5b67d3e556749f311ea0f0f6f">More...</a><br /></td></tr>
+<tr class="memdesc:a432f47d5b67d3e556749f311ea0f0f6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of the message:  <a href="../../d6/dd2/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input.html#a432f47d5b67d3e556749f311ea0f0f6f">More...</a><br /></td></tr>
 <tr class="separator:a432f47d5b67d3e556749f311ea0f0f6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6bfe14cad11143cb19c50f9691c39add"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dd2/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input.html#a6bfe14cad11143cb19c50f9691c39add">Text</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a6bfe14cad11143cb19c50f9691c39add"><td class="mdescLeft">&#160;</td><td class="mdescRight">The text of the user input. This string cannot contain carriage return, newline, or tab characters.  <a href="../../d6/dd2/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input.html#a6bfe14cad11143cb19c50f9691c39add">More...</a><br /></td></tr>
@@ -193,7 +193,12 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The type of user input. Currently, only text input is supported. Constants for possible values can be found using <a class="el" href="../../d5/d37/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_1_1_message_type_enum_value.html" title="The type of user input. Currently, only text input is supported.">MessageInput.MessageTypeEnumValue</a> </p>
+<p>The type of the message: </p>
+<ul>
+<li><code>text</code>: The user input is processed normally by the assistant.</li>
+<li><code>search</code>: Only search results are returned. (Any dialog or actions skill is bypassed.)</li>
+</ul>
+<p><b>Note:</b> A <code>search</code> message results in an error if no search skill is configured for the assistant. Constants for possible values can be found using <a class="el" href="../../d5/d37/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_1_1_message_type_enum_value.html" title="The type of the message:">MessageInput.MessageTypeEnumValue</a></p>
 
 </div>
 </div>

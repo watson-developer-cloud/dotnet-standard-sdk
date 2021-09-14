@@ -43,6 +43,7 @@ var class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1
     [ "KO_KR_SIWOOVOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#a41e8e66c22eda0c7e8478e77d33cfd10", null ],
     [ "KO_KR_YOUNGMIVOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#a7d978f930fa793c27409b2b31fddd2b4", null ],
     [ "KO_KR_YUNAVOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#acf42a315100060c57945b67f71752302", null ],
+    [ "NL_BE_ADELEVOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#ae6396b16b4efbf876bad69356a91c17e", null ],
     [ "NL_NL_EMMAVOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#ad9fcf6110ce3ab80f1657cc7196054ef", null ],
     [ "NL_NL_LIAMVOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#a53a1ef8dc83ee3c6b47896a6d5b661ef", null ],
     [ "PT_BR_ISABELAV3VOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#a8625d912fd8745c16631e67cc0dfe3d1", null ],

@@ -1,5 +1,6 @@
 var class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_dialog_node_output_response_type_image =
 [
+    [ "AltText", "d3/d5e/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_dialog_node_output_response_type_image.html#a55dd28dd425b53337682418c510e0525", null ],
     [ "Channels", "d3/d5e/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_dialog_node_output_response_type_image.html#a5d4e680ac00b998532c5a6833c21d5cf", null ],
     [ "Description", "d3/d5e/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_dialog_node_output_response_type_image.html#a1a52e01e836d4f88e94303a32020890f", null ],
     [ "ResponseType", "d3/d5e/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_dialog_node_output_response_type_image.html#ab8618ad88aa0659951853247749eeaad", null ],

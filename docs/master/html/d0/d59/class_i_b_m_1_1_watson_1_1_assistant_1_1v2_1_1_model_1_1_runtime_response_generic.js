@@ -5,6 +5,7 @@ var class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_ge
     [ "AdditionalResults", "d0/d59/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic.html#aba6d4ed46041b31f5e3096a792e5ccb2", null ],
     [ "AgentAvailable", "d0/d59/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic.html#a284e2b042483a8a784a9121bfd5e295a", null ],
     [ "AgentUnavailable", "d0/d59/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic.html#ab9a260fd49e77855d48c1ba678212030", null ],
+    [ "AltText", "d0/d59/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic.html#a28b0aaf4d23a384fafbcfa0ce8efc467", null ],
     [ "Channels", "d0/d59/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic.html#a7b29a8cac5daa76c91b7c7af330604a1", null ],
     [ "Description", "d0/d59/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic.html#a3aefb46b3aefc9ffe2fb2db76ba7352e", null ],
     [ "Header", "d0/d59/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic.html#ac1ade1952d37a0ad76b1b328a676138e", null ],

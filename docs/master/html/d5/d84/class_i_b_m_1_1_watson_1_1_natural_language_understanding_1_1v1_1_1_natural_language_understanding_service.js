@@ -29,7 +29,7 @@ var class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_
     [ "GetClassificationsModel", "d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a8bede37b1f61fb38c4553dca7182f53e", null ],
     [ "GetSentimentModel", "d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a67c4a6cc96b697bce846f0d5486bafae", null ],
     [ "ListCategoriesModels", "d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a47a9344e362500845bfc1831dae2afde", null ],
-    [ "ListClassificationsModels", "d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a8ff9308a0b7d39e61c4bb3f505eb5d43", null ],
+    [ "ListClassificationsModels", "d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#aa4459c82fc73c45d63fd6a5e56eb087a", null ],
     [ "ListModels", "d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a1bc936de2d5b9e53b9ec9f7f2f19a0cb", null ],
     [ "ListSentimentModels", "d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a91bc84d785e89ee3213d0cc003e72be8", null ],
     [ "UpdateCategoriesModel", "d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a72c767c38d578cc0b2c084955e72cb42", null ],

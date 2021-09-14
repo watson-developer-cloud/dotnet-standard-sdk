@@ -1,3 +1,34 @@
+# [5.3.0](https://github.com/watson-developer-cloud/dotnet-standard-sdk/compare/v5.2.1...v5.3.0) (2021-09-14)
+
+
+### Bug Fixes
+
+* **assistant-v2:** add transferInfo property for assistant v2 ([8d25195](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/8d25195001d59bb07ffbdb385a20beaea46666a0))
+* **assistant-v2:** update assistant v2 add new Model, SearchResultAnswer ([856ffd8](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/856ffd8d5edffdfd6cccc2bdb60d3825ccbd0faa))
+* **discovery-v1:** fix Status Details property change from authentication to authenticated ([7b9769a](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/7b9769a41efaaedd5dd7f65c8af46e2a1defdaaf))
+* **discovery-v1:** update status from string to StatusDetails ([c39d890](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/c39d890d819a9d08bb511249ae00541d5621d52d))
+* **discovery-v2:** manual revert fileContent method under AnalyzeDocument to the original code ([b047d7f](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/b047d7f67010d0b8659429675a6449878e97e49b))
+* **formatting:** update comments and fomatting changes ([05c7a67](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/05c7a6786b06009104f4ce6af716158e8dccf56c))
+* **formatting:** update comments and formatting changes ([c506219](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/c5062191f026e710a64c6db2cd37b93751527981))
+* **integration-test:** update return type from response.Result.Models in TestListClassificationModel ([a72c99b](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/a72c99b002008c7a3cd905ca2db66edd5fd5ba8a))
+* **manual-changes:** fix runtime error ([9dc83ea](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/9dc83ea2f6f6e3eca73ac496ed9f50fe1f510383))
+* **manual-changes:** remote transfer_infor out from runtimeResponseGeneric for assistant-v2 ([295ce72](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/295ce72da051338b05c441c88dca747b5980cbba))
+* **nlu:** fix listClassificationsModels through return type change and removal of unnecessary model ([c488dac](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/c488dac28259fc696718f6c4f4eeb5cbcb1e603c))
+* **nlu:** manual change: convert MetadataOptions back to Object on Model/Features ([b545942](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/b5459426755cfb3d26d0c8fbc1f6602a3a037a9a))
+* **unit-test:** fix unit test for diccovery-v1 ([3dddd1e](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/3dddd1e02f5223450bcfce5bf55c7d5f4eaa9085))
+* **unit-test:** update unit test for discovery v1 for converting status from string to StatusDetails ([06438cc](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/06438ccc94995139c1123e260bacdd4f2cdfd5d7))
+
+
+### Features
+
+* **assistant-v1:** add more enums for Disambiguation settings ([3508067](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/35080676f062a578de277c72b492a467c4c98ae5))
+* **assistant-v1:** alt_text property added to Image response type ([b805a7b](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/b805a7b8a15e2e8c9cddb8266abe8a2076bffd2e))
+* **assistant-v2:** alt_text property added to Image response type ([98448da](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/98448daaf5bc8035a92ed090a07d699e38fdacc4))
+* **assistant-v2:** session_start_time and state properties added to MessageContextGlobalSystem ([fcecbd2](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/fcecbd29878d29ed6768cdce3f9546412492748c))
+* **discovery-2:** enum update for CreateProjectConstants ([b16b165](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/b16b1651dc25b390fefa280d36d97bb5f2683c62))
+* **stt:** more languages supported for next generation models ([603bd99](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/603bd99ae8bd9a733298c85f64776575a6596370))
+* **tts:** new voice models added ([7ed8976](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/7ed8976747c165176899b7cd7183e6dbfcc2356d))
+
 ## [5.2.1](https://github.com/watson-developer-cloud/dotnet-standard-sdk/compare/v5.2.0...v5.2.1) (2021-08-25)
 
 

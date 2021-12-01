@@ -40,7 +40,7 @@ jobs:
       # continue-on-error: true
       env:
         NATURAL_LANGUAGE_CLASSIFIER_URL: "https://api.us-south.natural-language-classifier.watson.cloud.ibm.com"
-        NATURALS_LANGUAGE_CLASSIFIER_APIKEY: ${{ secrets.NLC_APIKEY }}
+        NATURAL_LANGUAGE_CLASSIFIER_APIKEY: ${{ secrets.NLC_APIKEY }}
         NATURAL_LANGUAGE_CLASSIFIER_ID: ${{ secrets.NLC_CLASSIFIER_ID }}
         LANGUAGE_TRANSLATOR_APIKEY: ${{ secrets.LT_APIKEY }}
         LANGUAGE_TRANSLATOR_URL: "https://api.us-south.language-translator.watson.cloud.ibm.com"

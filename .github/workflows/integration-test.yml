@@ -62,7 +62,7 @@ jobs:
         COMPARE_COMPLY_APIKEY: ${{ secrets.CC_APIKEY }}
         COMPARE_COMPLY_FEEDBACK_ID: ${{ secrets.CC_FEEDBACK_ID }}
         COMPARE_COMPLY_URL: "https://api.us-south.compare-comply.watson.cloud.ibm.com"
-        ASSISTANT_APIKEY: ${{ secrets.WA_APIKEY }}
+        ASSISTANT_APIKEY1: ${{ secrets.WA_APIKEY }}
         ASSISTANT_WORKSPACE_ID: ${{ secrets.WA_WORKSPACE_ID }}
         ASSISTANT_ASSISTANT_ID: ${{ secrets.WA_ASSISTANT_ID }}
         ASSISTANT_URL: "https://api.us-south.assistant.watson.cloud.ibm.com"
@@ -76,7 +76,7 @@ jobs:
         DISCOVERY_V2_URL: "https://api.us-south.discovery.watson.cloud.ibm.com"
       run: |
         echo -e "\n\033[0;35mCommand: Run Integration Tests"
-        dotnet test --no-build --verbosity normal src/IBM.Watson.VisualRecognition.v4/Test/Integration
+        dotnet test --no-build --verbosity normal src/IBM.Watson.Assistant.v1/Test/Integration
 
     # Do not notify on success.  We will leave the code here just in case we decide to switch gears
     - name: Notify slack on success

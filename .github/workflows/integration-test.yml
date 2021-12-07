@@ -66,11 +66,11 @@ jobs:
         ASSISTANT_WORKSPACE_ID: ${{ secrets.WA_WORKSPACE_ID }}
         ASSISTANT_ASSISTANT_ID: ${{ secrets.WA_ASSISTANT_ID }}
         ASSISTANT_URL: "https://api.us-south.assistant.watson.cloud.ibm.com"
-        DISCOVERY_APIKEY: ${{ secrets.D1_APIKEY }}
+        DISCOVERY_APIKEY1: ${{ secrets.D1_APIKEY }}
         DISCOVERY_ENVIRONMENT_ID: ${{ secrets.D1_ENVIRONMENT_ID }}
         DISCOVERY_COLLECTION_ID: ${{ secrets.D1_COLLECTION_ID }}
         DISCOVERY_URL: "https://api.us-south.discovery.watson.cloud.ibm.com"
-        DISCOVERY_V2_APIKEYX: ${{ secrets.D2_APIKEY }}
+        DISCOVERY_V2_APIKEY: ${{ secrets.D2_APIKEY }}
         DISCOVERY_V2_PROJECT_ID: ${{ secrets.D2_PROJECT_ID }}
         DISCOVERY_V2_COLLECTION_ID: ${{ secrets.D2_COLLECTION_ID }}
         DISCOVERY_V2_URL: "https://api.us-south.discovery.watson.cloud.ibm.com"

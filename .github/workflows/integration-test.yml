@@ -76,7 +76,7 @@ jobs:
         DISCOVERY_V2_URL: "https://api.us-south.discovery.watson.cloud.ibm.com"
       run: |
         echo -e "\n\033[0;35mCommand: Run Integration Tests"
-        dotnet test --no-build --verbosity normal src/IBM.Watson.Assistant.v1/Test/Integration
+        dotnet test --no-build --verbosity normal src/IBM.Watson.Assistant.v2/Test/Integration
 
     # Do not notify on success.  We will leave the code here just in case we decide to switch gears
     - name: Notify slack on success

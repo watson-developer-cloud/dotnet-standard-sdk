@@ -123,7 +123,6 @@ namespace IBM.Watson.LanguageTranslator.v3.IntegrationTests
             Assert.IsFalse(string.IsNullOrEmpty(results.Result.ModelId));
         }
 
-        [Ignore]
         [TestMethod]
         public void Model_Success()
         {

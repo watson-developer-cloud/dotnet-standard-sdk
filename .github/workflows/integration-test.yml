@@ -52,8 +52,6 @@ jobs:
         TONE_ANALYZER_URL: "https://api.us-south.tone-analyzer.watson.cloud.ibm.com"
         SPEECH_TO_TEXT_APIKEY: ${{ secrets.STT_APIKEY }}
         SPEECH_TO_TEXT_URL: "https://api.us-south.speech-to-text.watson.cloud.ibm.com"
-        SPEECH_TO_TEXT_CUSTOM_ID: ${{ secrets.STT_APIKEY_CUSTOM_ID }}
-        SPEECH_TO_TEXT_ACOUSTIC_CUSTOM_ID: ${{ secrets.STT_APIKEY_ACOUSTIC_CUSTOM_ID }}
         TEXT_TO_SPEECH_APIKEY: ${{ secrets.TTS_APIKEY }}
         TEXT_TO_SPEECH_URL: "https://api.us-south.text-to-speech.watson.cloud.ibm.com"
         VISUAL_RECOGNITION_APIKEY: ${{ secrets.VR_APIKEY }}
@@ -76,7 +74,7 @@ jobs:
         DISCOVERY_V2_URL: "https://api.us-south.discovery.watson.cloud.ibm.com"
       run: |
         echo -e "\n\033[0;35mCommand: Run Integration Tests"
-        dotnet test --no-build --verbosity normal src/IBM.Watson.IntegrationTests
+        dotnet test --no-build --verbosity normal src/IBM.Watson.SpeechToText.v1/Test/Integration
 
     # Do not notify on success.  We will leave the code here just in case we decide to switch gears
     - name: Notify slack on success

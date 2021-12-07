@@ -27,7 +27,7 @@ using System.IO;
 
 namespace IBM.Watson.Discovery.v2.IntegrationTests
 {
-    //[TestClass]
+    [TestClass]
     public class DiscoveryIntegrationTests
     {
         private DiscoveryService service;

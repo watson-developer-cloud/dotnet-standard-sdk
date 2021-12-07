@@ -53,6 +53,8 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
             System.Environment.SetEnvironmentVariable("DISCOVERY_APIKEY", apikey);
             var pid = System.Environment.GetEnvironmentVariable("DISCOVERY_V2_PROJECT_ID");
             System.Environment.SetEnvironmentVariable("DISCOVERY_PROJECT_ID", pid);
+            var cid = System.Environment.GetEnvironmentVariable("DISCOVERY_V2_COLLECTION_ID");
+            System.Environment.SetEnvironmentVariable("DISCOVERY_COLLECTION_ID", cid);
 
             service = new DiscoveryService(versionDate);
             //service.SetServiceUrl(serviceUrl);

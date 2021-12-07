@@ -49,6 +49,11 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
             //service = new DiscoveryService(version: versionDate, authenticator: discoveryAuthenticator);
             //service.SetServiceUrl(serviceUrl: serviceUrl);
             //service.DisableSslVerification(true);
+            var apikey = System.Environment.GetEnvironmentVariable("DISCOVERY_V2_APIKEY");
+            System.Environment.SetEnvironmentVariable("DISCOVERY_APIKEY", apikey);
+            var pid = System.Environment.GetEnvironmentVariable("DISCOVERY_V2_PROJECT_ID");
+            System.Environment.SetEnvironmentVariable("DISCOVERY_PROJECT_ID", pid);
+
             service = new DiscoveryService(versionDate);
             //service.SetServiceUrl(serviceUrl);
             var creds = CredentialUtils.GetServiceProperties("discovery");

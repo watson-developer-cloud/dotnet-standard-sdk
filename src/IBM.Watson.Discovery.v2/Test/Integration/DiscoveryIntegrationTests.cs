@@ -45,11 +45,11 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
-            Authenticator discoveryAuthenticator = new BearerTokenAuthenticator(bearerToken: bearerToken);
-            service = new DiscoveryService(version: versionDate, authenticator: discoveryAuthenticator);
-            service.SetServiceUrl(serviceUrl: serviceUrl);
-            service.DisableSslVerification(true);
-            //service = new DiscoveryService(versionDate);
+            //Authenticator discoveryAuthenticator = new BearerTokenAuthenticator(bearerToken: bearerToken);
+            //service = new DiscoveryService(version: versionDate, authenticator: discoveryAuthenticator);
+            //service.SetServiceUrl(serviceUrl: serviceUrl);
+            //service.DisableSslVerification(true);
+            service = new DiscoveryService(versionDate);
             //service.SetServiceUrl(serviceUrl);
             var creds = CredentialUtils.GetServiceProperties("discovery");
             creds.TryGetValue("PROJECT_ID", out projectId);

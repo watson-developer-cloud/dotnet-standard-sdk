@@ -322,6 +322,7 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
             Assert.IsNotNull(deleteDocumentResult.Result.Status);
         }
 
+        [Ignore]
         [TestMethod]
         public void TestAnalyzeDocument()
         {

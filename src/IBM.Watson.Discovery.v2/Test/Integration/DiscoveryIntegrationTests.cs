@@ -27,7 +27,7 @@ using System.IO;
 
 namespace IBM.Watson.Discovery.v2.IntegrationTests
 {
-    //[TestClass]
+    [TestClass]
     public class DiscoveryIntegrationTests
     {
         private DiscoveryService service;
@@ -45,11 +45,18 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
         [TestInitialize]
         public void Setup()
         {
-            Authenticator discoveryAuthenticator = new BearerTokenAuthenticator(bearerToken: bearerToken);
-            service = new DiscoveryService(version: versionDate, authenticator: discoveryAuthenticator);
-            service.SetServiceUrl(serviceUrl: serviceUrl);
-            service.DisableSslVerification(true);
-            //service = new DiscoveryService(versionDate);
+            //Authenticator discoveryAuthenticator = new BearerTokenAuthenticator(bearerToken: bearerToken);
+            //service = new DiscoveryService(version: versionDate, authenticator: discoveryAuthenticator);
+            //service.SetServiceUrl(serviceUrl: serviceUrl);
+            //service.DisableSslVerification(true);
+            var apikey = System.Environment.GetEnvironmentVariable("DISCOVERY_V2_APIKEY");
+            System.Environment.SetEnvironmentVariable("DISCOVERY_APIKEY", apikey);
+            var pid = System.Environment.GetEnvironmentVariable("DISCOVERY_V2_PROJECT_ID");
+            System.Environment.SetEnvironmentVariable("DISCOVERY_PROJECT_ID", pid);
+            var cid = System.Environment.GetEnvironmentVariable("DISCOVERY_V2_COLLECTION_ID");
+            System.Environment.SetEnvironmentVariable("DISCOVERY_COLLECTION_ID", cid);
+
+            service = new DiscoveryService(versionDate);
             //service.SetServiceUrl(serviceUrl);
             var creds = CredentialUtils.GetServiceProperties("discovery");
             creds.TryGetValue("PROJECT_ID", out projectId);
@@ -315,6 +322,7 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
             Assert.IsNotNull(deleteDocumentResult.Result.Status);
         }
 
+        [Ignore]
         [TestMethod]
         public void TestAnalyzeDocument()
         {

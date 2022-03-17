@@ -54,7 +54,7 @@ namespace IBM.Watson.Assistant.v1.Model
             set { base.Title = value; }
         }
         /// <summary>
-        /// The description to show with the the response.
+        /// The description to show with the response.
         /// </summary>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public new string Description

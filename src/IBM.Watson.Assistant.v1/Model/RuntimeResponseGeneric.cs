@@ -127,7 +127,7 @@ namespace IBM.Watson.Assistant.v1.Model
         [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
         public string Title { get; protected set; }
         /// <summary>
-        /// The description to show with the the response.
+        /// The description to show with the response.
         /// </summary>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; protected set; }

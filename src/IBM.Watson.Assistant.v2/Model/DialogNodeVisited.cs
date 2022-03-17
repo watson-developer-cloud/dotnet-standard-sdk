@@ -15,27 +15,31 @@
 *
 */
 
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// Contains information specific to a particular skill used by the assistant. The property name must be the same as
-    /// the name of the skill (for example, `main skill`).
+    /// An objects containing detailed diagnostic information about a dialog node that was triggered during processing
+    /// of the input message.
     /// </summary>
-    public class MessageContextSkill
+    public class DialogNodeVisited
     {
         /// <summary>
-        /// Arbitrary variables that can be read and written by a particular skill.
+        /// A dialog node that was triggered during processing of the input message.
         /// </summary>
-        [JsonProperty("user_defined", NullValueHandling = NullValueHandling.Ignore)]
-        public Dictionary<string, object> UserDefined { get; set; }
+        [JsonProperty("dialog_node", NullValueHandling = NullValueHandling.Ignore)]
+        public string DialogNode { get; set; }
         /// <summary>
-        /// System context data used by the skill.
+        /// The title of the dialog node.
         /// </summary>
-        [JsonProperty("system", NullValueHandling = NullValueHandling.Ignore)]
-        public MessageContextSkillSystem System { get; set; }
+        [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
+        public string Title { get; set; }
+        /// <summary>
+        /// The conditions that trigger the dialog node.
+        /// </summary>
+        [JsonProperty("conditions", NullValueHandling = NullValueHandling.Ignore)]
+        public string Conditions { get; set; }
     }
 
 }

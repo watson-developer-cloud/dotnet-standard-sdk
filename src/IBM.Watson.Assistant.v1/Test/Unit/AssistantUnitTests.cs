@@ -1992,10 +1992,6 @@ namespace IBM.Watson.Assistant.v1.UnitTests
                                         Msg = "msg"
                                     }
                                 },
-                    Text = new List<string>()
-                                {
-                                    "text"
-                                },
                     NodesVisited = new List<string>()
                                 {
                                     "node"

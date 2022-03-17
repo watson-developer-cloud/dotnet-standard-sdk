@@ -390,9 +390,9 @@ namespace IBM.Watson.Assistant.v2.UnitTests
                 Debug = new MessageOutputDebug()
                 {
                     BranchExitedReason = MessageOutputDebug.BranchExitedReasonEnumValue.COMPLETED,
-                    NodesVisited = new List<DialogNodesVisited>()
+                    NodesVisited = new List<DialogNodeVisited>()
                     {
-                        new DialogNodesVisited()
+                        new DialogNodeVisited()
                     },
                     LogMessages = new List<DialogLogMessage>()
                     {

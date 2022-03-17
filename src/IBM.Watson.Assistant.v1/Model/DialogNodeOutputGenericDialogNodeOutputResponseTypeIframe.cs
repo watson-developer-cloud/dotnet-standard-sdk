@@ -21,9 +21,9 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Assistant.v1.Model
 {
     /// <summary>
-    /// RuntimeResponseGenericRuntimeResponseTypeIframe.
+    /// DialogNodeOutputGenericDialogNodeOutputResponseTypeIframe.
     /// </summary>
-    public class RuntimeResponseGenericRuntimeResponseTypeIframe : RuntimeResponseGeneric
+    public class DialogNodeOutputGenericDialogNodeOutputResponseTypeIframe : DialogNodeOutputGeneric
     {
         /// <summary>
         /// The type of response returned by the dialog node. The specified response type must be supported by the
@@ -45,7 +45,7 @@ namespace IBM.Watson.Assistant.v1.Model
             set { base.Source = value; }
         }
         /// <summary>
-        /// The title or introductory text to show before the response.
+        /// An optional title to show before the response.
         /// </summary>
         [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
         public new string Title
@@ -54,7 +54,7 @@ namespace IBM.Watson.Assistant.v1.Model
             set { base.Title = value; }
         }
         /// <summary>
-        /// The description to show with the response.
+        /// An optional description to show with the response.
         /// </summary>
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public new string Description

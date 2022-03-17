@@ -15,27 +15,25 @@
 *
 */
 
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// Contains information specific to a particular skill used by the assistant. The property name must be the same as
-    /// the name of the skill (for example, `main skill`).
+    /// A reference to a media file to be sent as an attachment with the message.
     /// </summary>
-    public class MessageContextSkill
+    public class MessageInputAttachment
     {
         /// <summary>
-        /// Arbitrary variables that can be read and written by a particular skill.
+        /// The URL of the media file.
         /// </summary>
-        [JsonProperty("user_defined", NullValueHandling = NullValueHandling.Ignore)]
-        public Dictionary<string, object> UserDefined { get; set; }
+        [JsonProperty("url", NullValueHandling = NullValueHandling.Ignore)]
+        public string Url { get; set; }
         /// <summary>
-        /// System context data used by the skill.
+        /// The media content type (such as a MIME type) of the attachment.
         /// </summary>
-        [JsonProperty("system", NullValueHandling = NullValueHandling.Ignore)]
-        public MessageContextSkillSystem System { get; set; }
+        [JsonProperty("media_type", NullValueHandling = NullValueHandling.Ignore)]
+        public string MediaType { get; set; }
     }
 
 }

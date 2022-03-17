@@ -1082,6 +1082,28 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 runtimeResponseGenericRuntimeResponseTypeChannelTransfer.TransferInfo;
             Assert.IsNotNull(channelTransferInfo);
         }
+
+        [TestMethod]
+        public void TestRuntimeResponseGeneric()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+
+            string[] inputStrings = { "audio", "iframe", "video" };
+
+            foreach (string inputMessage in inputStrings)
+            {
+                MessageInput input = new MessageInput();
+                input.Text = inputMessage;
+
+                var response = service.Message(
+                workspaceId: workspaceId,
+                input: input
+                );
+
+                Assert.IsNotNull(response);
+                Assert.IsTrue(response.Result.Output.Generic[0].ResponseType.Contains(inputMessage));
+            }
+        }
         #endregion
     }
 }

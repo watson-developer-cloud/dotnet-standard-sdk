@@ -2330,29 +2330,6 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                         new QueryAggregation()
                         {
                             Type = "type",
-                            Results = new List<AggregationResult>()
-                            {
-                                new AggregationResult()
-                                {
-                                    Key = "key",
-                                    MatchingResults = 1,
-                                    Aggregations = new List<QueryAggregation>()
-                                    {
-                                        new QueryAggregation()
-                                        {
-
-                                        }
-                                    }
-                                }
-                            },
-                            MatchingResults = 1,
-                            Aggregations = new List<QueryAggregation>()
-                            {
-                                new QueryAggregation()
-                                {
-
-                                }
-                            }
                         }
                     }
                 }
@@ -2449,29 +2426,6 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                         new QueryAggregation()
                         {
                             Type = "type",
-                            Results = new List<AggregationResult>()
-                            {
-                                new AggregationResult()
-                                {
-                                    Key = "key",
-                                    MatchingResults = 1,
-                                    Aggregations = new List<QueryAggregation>()
-                                    {
-                                        new QueryAggregation()
-                                        {
-
-                                        }
-                                    }
-                                }
-                            },
-                            MatchingResults = 1,
-                            Aggregations = new List<QueryAggregation>()
-                            {
-                                new QueryAggregation()
-                                {
-
-                                }
-                            }
                         }
                     }
                 }

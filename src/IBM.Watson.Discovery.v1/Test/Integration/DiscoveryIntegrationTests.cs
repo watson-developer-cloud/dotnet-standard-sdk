@@ -455,8 +455,8 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
 
             Assert.IsNotNull(queryResultTimeslice.Result);
             Assert.IsNotNull(queryResultTimeslice.Result.Aggregations);
-            Assert.IsTrue((queryResultTimeslice.Result.Aggregations[0] as Timeslice).Field == "product.sales");
-            Assert.IsTrue((queryResultTimeslice.Result.Aggregations[0] as Timeslice).Interval == "2d");
+            Assert.IsTrue((queryResultTimeslice.Result.Aggregations[0] as QueryTimesliceAggregation).Field == "product.sales");
+            Assert.IsTrue((queryResultTimeslice.Result.Aggregations[0] as QueryTimesliceAggregation).Interval == "2d");
 
             service.WithHeader("X-Watson-Test", "1");
             var queryResultTerm = service.Query(
@@ -468,8 +468,8 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
 
             Assert.IsNotNull(queryResultTerm.Result);
             Assert.IsNotNull(queryResultTerm.Result.Aggregations);
-            Assert.IsTrue((queryResultTerm.Result.Aggregations[0] as Term).Field == "enriched_text.concepts.text");
-            Assert.IsTrue((queryResultTerm.Result.Aggregations[0] as Term).Count == 10);
+            Assert.IsTrue((queryResultTerm.Result.Aggregations[0] as QueryTermAggregation).Field == "enriched_text.concepts.text");
+            Assert.IsTrue((queryResultTerm.Result.Aggregations[0] as QueryTermAggregation).Count == 10);
 
             service.WithHeader("X-Watson-Test", "1");
             var queryResultFilter = service.Query(
@@ -481,7 +481,7 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
 
             Assert.IsNotNull(queryResultFilter.Result);
             Assert.IsNotNull(queryResultFilter.Result.Aggregations);
-            Assert.IsTrue((queryResultFilter.Result.Aggregations[0] as Filter).Match == "enriched_text.concepts.text:\"cloud computing\"");
+            Assert.IsTrue((queryResultFilter.Result.Aggregations[0] as QueryFilterAggregation).Match == "enriched_text.concepts.text:\"cloud computing\"");
         }
         #endregion
 

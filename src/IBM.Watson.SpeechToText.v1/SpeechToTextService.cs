@@ -179,6 +179,10 @@ namespace IBM.Watson.SpeechToText.v1
                 /// </summary>
                 public const string DE_DE_BROADBANDMODEL = "de-DE_BroadbandModel";
                 /// <summary>
+                /// Constant DE_DE_MULTIMEDIA for de-DE_Multimedia
+                /// </summary>
+                public const string DE_DE_MULTIMEDIA = "de-DE_Multimedia";
+                /// <summary>
                 /// Constant DE_DE_NARROWBANDMODEL for de-DE_NarrowbandModel
                 /// </summary>
                 public const string DE_DE_NARROWBANDMODEL = "de-DE_NarrowbandModel";
@@ -496,8 +500,8 @@ namespace IBM.Watson.SpeechToText.v1
         /// **Important:** Effective 15 March 2022, previous-generation models for all languages other than Arabic and
         /// Japanese are deprecated. The deprecated models remain available until 15 September 2022, when they will be
         /// removed from the service and the documentation. You must migrate to the equivalent next-generation model by
-        /// the end of service date. For more information, see [Previous-generation languages and
-        /// models](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models).
+        /// the end of service date. For more information, see [Migrating to next-generation
+        /// models](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-migrate).
         ///
         /// **See also:**
         /// * [Next-generation languages and
@@ -994,6 +998,10 @@ namespace IBM.Watson.SpeechToText.v1
                 /// </summary>
                 public const string DE_DE_BROADBANDMODEL = "de-DE_BroadbandModel";
                 /// <summary>
+                /// Constant DE_DE_MULTIMEDIA for de-DE_Multimedia
+                /// </summary>
+                public const string DE_DE_MULTIMEDIA = "de-DE_Multimedia";
+                /// <summary>
                 /// Constant DE_DE_NARROWBANDMODEL for de-DE_NarrowbandModel
                 /// </summary>
                 public const string DE_DE_NARROWBANDMODEL = "de-DE_NarrowbandModel";
@@ -1470,8 +1478,8 @@ namespace IBM.Watson.SpeechToText.v1
         /// **Important:** Effective 15 March 2022, previous-generation models for all languages other than Arabic and
         /// Japanese are deprecated. The deprecated models remain available until 15 September 2022, when they will be
         /// removed from the service and the documentation. You must migrate to the equivalent next-generation model by
-        /// the end of service date. For more information, see [Previous-generation languages and
-        /// models](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models).
+        /// the end of service date. For more information, see  [Migrating to next-generation
+        /// models](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-migrate).
         ///
         /// **See also:**
         /// * [Next-generation languages and
@@ -2029,6 +2037,10 @@ namespace IBM.Watson.SpeechToText.v1
                 /// </summary>
                 public const string DE_DE_BROADBANDMODEL = "de-DE_BroadbandModel";
                 /// <summary>
+                /// Constant DE_DE_MULTIMEDIA for de-DE_Multimedia
+                /// </summary>
+                public const string DE_DE_MULTIMEDIA = "de-DE_Multimedia";
+                /// <summary>
                 /// Constant DE_DE_NARROWBANDMODEL for de-DE_NarrowbandModel
                 /// </summary>
                 public const string DE_DE_NARROWBANDMODEL = "de-DE_NarrowbandModel";
@@ -2478,11 +2490,14 @@ namespace IBM.Watson.SpeechToText.v1
         /// **Important:** Effective 15 March 2022, previous-generation models for all languages other than Arabic and
         /// Japanese are deprecated. The deprecated models remain available until 15 September 2022, when they will be
         /// removed from the service and the documentation. You must migrate to the equivalent next-generation model by
-        /// the end of service date. For more information, see [Previous-generation languages and
-        /// models](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models).
+        /// the end of service date. For more information, see [Migrating to next-generation
+        /// models](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-migrate).
         ///
-        /// **See also:** [Create a custom language
-        /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-languageCreate#createModel-language).
+        /// **See also:**
+        /// * [Create a custom language
+        /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-languageCreate#createModel-language)
+        /// * [Language support for
+        /// customization](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support).
         /// </summary>
         /// <param name="name">A user-defined name for the new custom language model. Use a name that is unique among
         /// all custom language models that you own. Use a localized name that matches the language of the custom model.
@@ -2580,8 +2595,11 @@ namespace IBM.Watson.SpeechToText.v1
         /// all custom language models for all languages. You must use credentials for the instance of the service that
         /// owns a model to list information about it.
         ///
-        /// **See also:** [Listing custom language
-        /// models](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageLanguageModels#listModels-language).
+        /// **See also:**
+        /// * [Listing custom language
+        /// models](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageLanguageModels#listModels-language)
+        /// * [Language support for
+        /// customization](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support).
         /// </summary>
         /// <param name="language">The identifier of the language for which custom language or custom acoustic models
         /// are to be returned. Specify the five-character language identifier; for example, specify `en-US` to see all
@@ -2759,8 +2777,11 @@ namespace IBM.Watson.SpeechToText.v1
         /// Gets information about a specified custom language model. You must use credentials for the instance of the
         /// service that owns a model to list information about it.
         ///
-        /// **See also:** [Listing custom language
-        /// models](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageLanguageModels#listModels-language).
+        /// **See also:**
+        /// * [Listing custom language
+        /// models](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageLanguageModels#listModels-language)
+        /// * [Language support for
+        /// customization](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model that is to be used
         /// for the request. You must make the request with credentials for the instance of the service that owns the
@@ -2812,8 +2833,11 @@ namespace IBM.Watson.SpeechToText.v1
         /// adding a corpus or grammar to the model, is currently being processed. You must use credentials for the
         /// instance of the service that owns a model to delete it.
         ///
-        /// **See also:** [Deleting a custom language
-        /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageLanguageModels#deleteModel-language).
+        /// **See also:**
+        /// * [Deleting a custom language
+        /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageLanguageModels#deleteModel-language)
+        /// * [Language support for
+        /// customization](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model that is to be used
         /// for the request. You must make the request with credentials for the instance of the service that owns the
@@ -2877,8 +2901,11 @@ namespace IBM.Watson.SpeechToText.v1
         /// custom model is trained and ready to use. The service cannot accept subsequent training requests or requests
         /// to add new resources until the existing request completes.
         ///
-        /// **See also:** [Train the custom language
-        /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-languageCreate#trainModel-language).
+        /// **See also:**
+        /// * [Train the custom language
+        /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-languageCreate#trainModel-language)
+        /// * [Language support for
+        /// customization](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support)
         ///
         /// ### Training failures
         ///
@@ -3007,8 +3034,11 @@ namespace IBM.Watson.SpeechToText.v1
         /// name and language of the model are preserved, but the model's words resource is removed and must be
         /// re-created. You must use credentials for the instance of the service that owns a model to reset it.
         ///
-        /// **See also:** [Resetting a custom language
-        /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageLanguageModels#resetModel-language).
+        /// **See also:**
+        /// * [Resetting a custom language
+        /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageLanguageModels#resetModel-language)
+        /// * [Language support for
+        /// customization](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model that is to be used
         /// for the request. You must make the request with credentials for the instance of the service that owns the
@@ -3071,8 +3101,11 @@ namespace IBM.Watson.SpeechToText.v1
         /// model resumes the status that it had prior to upgrade. The service cannot accept subsequent requests for the
         /// model until the upgrade completes.
         ///
-        /// **See also:** [Upgrading a custom language
-        /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-upgrade#custom-upgrade-language).
+        /// **See also:**
+        /// * [Upgrading a custom language
+        /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-upgrade#custom-upgrade-language)
+        /// * [Language support for
+        /// customization](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model that is to be used
         /// for the request. You must make the request with credentials for the instance of the service that owns the
@@ -3985,13 +4018,11 @@ namespace IBM.Watson.SpeechToText.v1
         /// of out-of-vocabulary (OOV) words. You must use credentials for the instance of the service that owns a model
         /// to list its grammars.
         ///
-        /// **Availability:** Grammars are available only for some previous- and next-generation models. Support differs
-        /// between IBM Cloud and IBM Cloud Pak for Data. Grammars are generally available for some models and beta for
-        /// other models. For more information, see [Language support for
+        /// **See also:**
+        /// * [Listing grammars from a custom language
+        /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageGrammars#listGrammars)
+        /// * [Language support for
         /// customization](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support).
-        ///
-        /// **See also:** [Listing grammars from a custom language
-        /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageGrammars#listGrammars).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model that is to be used
         /// for the request. You must make the request with credentials for the instance of the service that owns the
@@ -4071,16 +4102,13 @@ namespace IBM.Watson.SpeechToText.v1
         /// you can add no more than 90 thousand OOV words to a model. This includes words that the service extracts
         /// from corpora and grammars and words that you add directly.
         ///
-        /// **Availability:** Grammars are available only for some previous- and next-generation models. Support differs
-        /// between IBM Cloud and IBM Cloud Pak for Data. Grammars are generally available for some models and beta for
-        /// other models. For more information, see [Language support for
-        /// customization](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support).
-        ///
         /// **See also:**
         /// * [Understanding
         /// grammars](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-grammarUnderstand#grammarUnderstand)
         /// * [Add a grammar to the custom language
-        /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-grammarAdd#addGrammar).
+        /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-grammarAdd#addGrammar)
+        /// * [Language support for
+        /// customization](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model that is to be used
         /// for the request. You must make the request with credentials for the instance of the service that owns the
@@ -4156,7 +4184,8 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     restRequest.WithArgument("allow_overwrite", allowOverwrite);
                 }
-                var httpContent = new StringContent(Encoding.UTF8.GetString(grammarFile.ToArray()), Encoding.UTF8);
+                var httpContent = new ByteArrayContent(grammarFile.ToArray());
+                httpContent.Headers.Add("Content-Type", "application/srgs");
                 System.Net.Http.Headers.MediaTypeHeaderValue grammarFileContentType;
                 System.Net.Http.Headers.MediaTypeHeaderValue.TryParse(contentType, out grammarFileContentType);
                 httpContent.Headers.ContentType = grammarFileContentType;
@@ -4213,13 +4242,11 @@ namespace IBM.Watson.SpeechToText.v1
         /// out-of-vocabulary (OOV) words. You must use credentials for the instance of the service that owns a model to
         /// list its grammars.
         ///
-        /// **Availability:** Grammars are available only for some previous- and next-generation models. Support differs
-        /// between IBM Cloud and IBM Cloud Pak for Data. Grammars are generally available for some models and beta for
-        /// other models. For more information, see [Language support for
+        /// **See also:**
+        /// * [Listing grammars from a custom language
+        /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageGrammars#listGrammars)
+        /// * [Language support for
         /// customization](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support).
-        ///
-        /// **See also:** [Listing grammars from a custom language
-        /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageGrammars#listGrammars).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model that is to be used
         /// for the request. You must make the request with credentials for the instance of the service that owns the
@@ -4284,13 +4311,11 @@ namespace IBM.Watson.SpeechToText.v1
         /// language model](#trainlanguagemodel) method. You must use credentials for the instance of the service that
         /// owns a model to delete its grammar.
         ///
-        /// **Availability:** Grammars are available only for some previous- and next-generation models. Support differs
-        /// between IBM Cloud and IBM Cloud Pak for Data. Grammars are generally available for some models and beta for
-        /// other models. For more information, see [Language support for
+        /// **See also:**
+        /// * [Deleting a grammar from a custom language
+        /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageGrammars#deleteGrammar)
+        /// * [Language support for
         /// customization](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support).
-        ///
-        /// **See also:** [Deleting a grammar from a custom language
-        /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageGrammars#deleteGrammar).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model that is to be used
         /// for the request. You must make the request with credentials for the instance of the service that owns the
@@ -4360,8 +4385,8 @@ namespace IBM.Watson.SpeechToText.v1
         /// **Important:** Effective 15 March 2022, previous-generation models for all languages other than Arabic and
         /// Japanese are deprecated. The deprecated models remain available until 15 September 2022, when they will be
         /// removed from the service and the documentation. You must migrate to the equivalent next-generation model by
-        /// the end of service date. For more information, see [Previous-generation languages and
-        /// models](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models).
+        /// the end of service date. For more information, see [Migrating to next-generation
+        /// models](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-migrate).
         ///
         /// **See also:** [Create a custom acoustic
         /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-acoustic#createModel-acoustic).

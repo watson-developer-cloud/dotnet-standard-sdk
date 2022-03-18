@@ -252,4 +252,3 @@ npm-debug.log
 **/*.openapi-generator*
 
 .pre-commit-config.yaml
-.secrets.baseline

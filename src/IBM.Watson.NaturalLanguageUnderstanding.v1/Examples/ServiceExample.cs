@@ -239,7 +239,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Examples
                 url: "www.ibm.com",
                 features: new Features()
                 {
-                    Metadata = new FeaturesResultsMetadata()
+                    Metadata = new Dictionary<string, object>()
                 }
                 );
 

@@ -1,5 +1,5 @@
 ﻿/**
-* (C) Copyright IBM Corp. 2017, 2021.
+* (C) Copyright IBM Corp. 2017, 2022.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -390,9 +390,9 @@ namespace IBM.Watson.Assistant.v2.UnitTests
                 Debug = new MessageOutputDebug()
                 {
                     BranchExitedReason = MessageOutputDebug.BranchExitedReasonEnumValue.COMPLETED,
-                    NodesVisited = new List<DialogNodesVisited>()
+                    NodesVisited = new List<DialogNodeVisited>()
                     {
-                        new DialogNodesVisited()
+                        new DialogNodeVisited()
                     },
                     LogMessages = new List<DialogLogMessage>()
                     {

@@ -1,5 +1,5 @@
 ﻿/**
-* (C) Copyright IBM Corp. 2017, 2020.
+* (C) Copyright IBM Corp. 2017, 2022.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -2330,29 +2330,6 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                         new QueryAggregation()
                         {
                             Type = "type",
-                            Results = new List<AggregationResult>()
-                            {
-                                new AggregationResult()
-                                {
-                                    Key = "key",
-                                    MatchingResults = 1,
-                                    Aggregations = new List<QueryAggregation>()
-                                    {
-                                        new QueryAggregation()
-                                        {
-
-                                        }
-                                    }
-                                }
-                            },
-                            MatchingResults = 1,
-                            Aggregations = new List<QueryAggregation>()
-                            {
-                                new QueryAggregation()
-                                {
-
-                                }
-                            }
                         }
                     }
                 }
@@ -2449,29 +2426,6 @@ namespace IBM.Watson.Discovery.v1.UnitTests
                         new QueryAggregation()
                         {
                             Type = "type",
-                            Results = new List<AggregationResult>()
-                            {
-                                new AggregationResult()
-                                {
-                                    Key = "key",
-                                    MatchingResults = 1,
-                                    Aggregations = new List<QueryAggregation>()
-                                    {
-                                        new QueryAggregation()
-                                        {
-
-                                        }
-                                    }
-                                }
-                            },
-                            MatchingResults = 1,
-                            Aggregations = new List<QueryAggregation>()
-                            {
-                                new QueryAggregation()
-                                {
-
-                                }
-                            }
                         }
                     }
                 }

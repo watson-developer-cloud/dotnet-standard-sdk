@@ -1,5 +1,5 @@
 ﻿/**
-* (C) Copyright IBM Corp. 2019, 2020.
+* (C) Copyright IBM Corp. 2019, 2022.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 */
 
 using IBM.Cloud.SDK.Core.Authentication.Bearer;
+using IBM.Cloud.SDK.Core.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace IBM.Watson.Discovery.v1.IntegrationTests
@@ -37,7 +38,10 @@ namespace IBM.Watson.Discovery.v1.IntegrationTests
                 );
             service = new DiscoveryService("2019-10-03", authenticator);
             service.SetServiceUrl(serviceUrl);
-            service.DisableSslVerification(true);
+            HttpConfigOptions httpConfigOptions = new HttpConfigOptions()
+                .SetDisableSslVerification(true)
+                .Build();
+            service.ConfigureClient(httpConfigOptions);
 
             var listEnvironmentsResult = service.ListEnvironments();
 

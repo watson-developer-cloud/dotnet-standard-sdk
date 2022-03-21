@@ -116,18 +116,12 @@ jobs:
         run: |
           dotnet pack src/IBM.Watson.Assistant.v1/IBM.Watson.Assistant.v1.csproj --configuration Release
           dotnet pack src/IBM.Watson.Assistant.v2/IBM.Watson.Assistant.v2.csproj --configuration Release
-          dotnet pack src/IBM.Watson.CompareComply.v1/IBM.Watson.CompareComply.v1.csproj --configuration Release
           dotnet pack src/IBM.Watson.Discovery.v1/IBM.Watson.Discovery.v1.csproj --configuration Release
           dotnet pack src/IBM.Watson.Discovery.v2/IBM.Watson.Discovery.v2.csproj --configuration Release
           dotnet pack src/IBM.Watson.LanguageTranslator.v3/IBM.Watson.LanguageTranslator.v3.csproj --configuration Release
-          dotnet pack src/IBM.Watson.NaturalLanguageClassifier.v1/IBM.Watson.NaturalLanguageClassifier.v1.csproj --configuration Release
           dotnet pack src/IBM.Watson.NaturalLanguageUnderstanding.v1/IBM.Watson.NaturalLanguageUnderstanding.v1.csproj --configuration Release
-          dotnet pack src/IBM.Watson.PersonalityInsights.v3/IBM.Watson.PersonalityInsights.v3.csproj --configuration Release
           dotnet pack src/IBM.Watson.SpeechToText.v1/IBM.Watson.SpeechToText.v1.csproj --configuration Release
           dotnet pack src/IBM.Watson.TextToSpeech.v1/IBM.Watson.TextToSpeech.v1.csproj --configuration Release
-          dotnet pack src/IBM.Watson.ToneAnalyzer.v3/IBM.Watson.ToneAnalyzer.v3.csproj --configuration Release
-          dotnet pack src/IBM.Watson.VisualRecognition.v3/IBM.Watson.VisualRecognition.v3.csproj --configuration Release
-          dotnet pack src/IBM.Watson.VisualRecognition.v4/IBM.Watson.VisualRecognition.v4.csproj --configuration Release
 
         # I think we can publish everytime because trying to push up a duplicate will fail with already exists and cannot be modified (409)
         # However we will try a new technique and only push if semantic release created a new release
@@ -141,18 +135,12 @@ jobs:
           echo -e "\n\033[0;35mCommand: branchname - ${{ steps.get_version_tag.outputs.SOURCE_TAG }} must have TAG_NAME to publish NuGet packages"
           dotnet nuget push src/IBM.Watson.Assistant.v1/bin/Release/IBM.Watson.Assistant.v1.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
           dotnet nuget push src/IBM.Watson.Assistant.v2/bin/Release/IBM.Watson.Assistant.v2.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
-          dotnet nuget push src/IBM.Watson.CompareComply.v1/bin/Release/IBM.Watson.CompareComply.v1.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
           dotnet nuget push src/IBM.Watson.Discovery.v1/bin/Release/IBM.Watson.Discovery.v1.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
           dotnet nuget push src/IBM.Watson.Discovery.v2/bin/Release/IBM.Watson.Discovery.v2.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
           dotnet nuget push src/IBM.Watson.LanguageTranslator.v3/bin/Release/IBM.Watson.LanguageTranslator.v3.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
-          dotnet nuget push src/IBM.Watson.NaturalLanguageClassifier.v1/bin/Release/IBM.Watson.NaturalLanguageClassifier.v1.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
           dotnet nuget push src/IBM.Watson.NaturalLanguageUnderstanding.v1/bin/Release/IBM.Watson.NaturalLanguageUnderstanding.v1.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
-          dotnet nuget push src/IBM.Watson.PersonalityInsights.v3/bin/Release/IBM.Watson.PersonalityInsights.v3.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
           dotnet nuget push src/IBM.Watson.SpeechToText.v1/bin/Release/IBM.Watson.SpeechToText.v1.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
           dotnet nuget push src/IBM.Watson.TextToSpeech.v1/bin/Release/IBM.Watson.TextToSpeech.v1.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
-          dotnet nuget push src/IBM.Watson.ToneAnalyzer.v3/bin/Release/IBM.Watson.ToneAnalyzer.v3.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
-          dotnet nuget push src/IBM.Watson.VisualRecognition.v3/bin/Release/IBM.Watson.VisualRecognition.v3.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
-          dotnet nuget push src/IBM.Watson.VisualRecognition.v4/bin/Release/IBM.Watson.VisualRecognition.v4.${REPO_TAG_NAME}.nupkg -k ${NUGET_TOKEN} -s https://api.nuget.org/v3/index.json
 
       - name: SKIP - Publish/Deploy to Git and Nuget
         if:  ${{ steps.is_new_release.outputs.IS_NEW_RELEASE == '0' }}

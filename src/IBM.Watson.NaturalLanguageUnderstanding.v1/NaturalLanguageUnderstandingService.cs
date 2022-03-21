@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2017, 2021.
+* (C) Copyright IBM Corp. 2017, 2022.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 */
 
 /**
-* IBM OpenAPI SDK Code Generator Version: 3.38.0-07189efd-20210827-205025
+* IBM OpenAPI SDK Code Generator Version: 3.46.0-a4e29da0-20220224-210428
 */
  
 using System.Collections.Generic;
@@ -36,7 +36,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
 {
     public partial class NaturalLanguageUnderstandingService : IBMService, INaturalLanguageUnderstandingService
     {
-        const string defaultServiceName = "natural_language_understanding";
+        const string defaultServiceName = "natural-language-understanding";
         private const string defaultServiceUrl = "https://api.us-south.natural-language-understanding.watson.cloud.ibm.com";
         public string Version { get; set; }
 

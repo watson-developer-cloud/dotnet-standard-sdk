@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">5.2.1</span>
+   &#160;<span id="projectnumber">5.3.0</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -97,11 +97,14 @@ $(document).ready(function(){initNavTree('d3/ddf/class_i_b_m_1_1_watson_1_1_assi
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:aa7531defa47d82ded0fc27e2634a880b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/d9a/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global.html">MessageContextGlobal</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/ddf/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context.html#aa7531defa47d82ded0fc27e2634a880b">Global</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:aa7531defa47d82ded0fc27e2634a880b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Session context data that is shared by all skills used by the <a class="el" href="../../d7/d94/namespace_i_b_m_1_1_watson_1_1_assistant.html">Assistant</a>.  <a href="../../d3/ddf/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context.html#aa7531defa47d82ded0fc27e2634a880b">More...</a><br /></td></tr>
+<tr class="memdesc:aa7531defa47d82ded0fc27e2634a880b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Session context data that is shared by all skills used by the assistant.  <a href="../../d3/ddf/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context.html#aa7531defa47d82ded0fc27e2634a880b">More...</a><br /></td></tr>
 <tr class="separator:aa7531defa47d82ded0fc27e2634a880b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9ca63629a5c93c1ddc59b6d58b44cb7"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; string, <a class="el" href="../../db/df3/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skill.html">MessageContextSkill</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/ddf/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context.html#af9ca63629a5c93c1ddc59b6d58b44cb7">Skills</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:af9ca63629a5c93c1ddc59b6d58b44cb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Information specific to particular skills used by the assistant.  <a href="../../d3/ddf/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context.html#af9ca63629a5c93c1ddc59b6d58b44cb7">More...</a><br /></td></tr>
 <tr class="separator:af9ca63629a5c93c1ddc59b6d58b44cb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73d4d30272698264ae360ef1450d8c74"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/ddf/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context.html#a73d4d30272698264ae360ef1450d8c74">Integrations</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a73d4d30272698264ae360ef1450d8c74"><td class="mdescLeft">&#160;</td><td class="mdescRight">An object containing context data that is specific to particular integrations. For more information, see the <a href="https://cloud.ibm.com/docs/assistant?topic=assistant-dialog-integrations">documentation</a>.  <a href="../../d3/ddf/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context.html#a73d4d30272698264ae360ef1450d8c74">More...</a><br /></td></tr>
+<tr class="separator:a73d4d30272698264ae360ef1450d8c74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="../../d3/ddf/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context.html" title="MessageContext.">MessageContext</a>. </p>
@@ -126,7 +129,31 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Session context data that is shared by all skills used by the <a class="el" href="../../d7/d94/namespace_i_b_m_1_1_watson_1_1_assistant.html">Assistant</a>. </p>
+<p>Session context data that is shared by all skills used by the assistant. </p>
+
+</div>
+</div>
+<a id="a73d4d30272698264ae360ef1450d8c74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73d4d30272698264ae360ef1450d8c74">&#9670;&nbsp;</a></span>Integrations</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">object IBM.Watson.Assistant.v2.Model.MessageContext.Integrations</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>An object containing context data that is specific to particular integrations. For more information, see the <a href="https://cloud.ibm.com/docs/assistant?topic=assistant-dialog-integrations">documentation</a>. </p>
 
 </div>
 </div>

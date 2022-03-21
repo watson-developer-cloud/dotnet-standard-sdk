@@ -1,11 +1,5 @@
 var dir_f918a9c434a2a184dbb4779f6e2bb01d =
 [
-    [ "AggregationResult.cs", "df/d15/_aggregation_result_8cs.html", [
-      [ "AggregationResult", "d1/d5f/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_aggregation_result.html", "d1/d5f/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_aggregation_result" ]
-    ] ],
-    [ "Calculation.cs", "d7/df9/_calculation_8cs.html", [
-      [ "Calculation", "db/db1/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_calculation.html", "db/db1/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_calculation" ]
-    ] ],
     [ "Collection.cs", "d6/da2/_i_b_m_8_watson_8_discovery_8v1_2_model_2_collection_8cs.html", [
       [ "Collection", "df/da8/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_collection.html", "df/da8/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_collection" ],
       [ "StatusEnumValue", "d5/dd3/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_collection_1_1_status_enum_value.html", "d5/dd3/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_collection_1_1_status_enum_value" ]
@@ -107,9 +101,6 @@ var dir_f918a9c434a2a184dbb4779f6e2bb01d =
       [ "Field", "d3/d3a/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_field.html", "d3/d3a/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_field" ],
       [ "TypeEnumValue", "d1/dd6/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_field_1_1_type_enum_value.html", "d1/dd6/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_field_1_1_type_enum_value" ]
     ] ],
-    [ "Filter.cs", "df/d29/_filter_8cs.html", [
-      [ "Filter", "d3/d05/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_filter.html", "d3/d05/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_filter" ]
-    ] ],
     [ "FontSetting.cs", "d1/de4/_font_setting_8cs.html", [
       [ "FontSetting", "d8/d95/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_font_setting.html", "d8/d95/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_font_setting" ]
     ] ],
@@ -122,9 +113,6 @@ var dir_f918a9c434a2a184dbb4779f6e2bb01d =
     ] ],
     [ "GatewayList.cs", "d7/de0/_gateway_list_8cs.html", [
       [ "GatewayList", "dc/d24/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_gateway_list.html", "dc/d24/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_gateway_list" ]
-    ] ],
-    [ "Histogram.cs", "dc/de8/_histogram_8cs.html", [
-      [ "Histogram", "de/d60/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_histogram.html", "de/d60/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_histogram" ]
     ] ],
     [ "HtmlSettings.cs", "dd/dcc/_html_settings_8cs.html", [
       [ "HtmlSettings", "d4/d54/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_html_settings.html", "d4/d54/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_html_settings" ]
@@ -177,9 +165,6 @@ var dir_f918a9c434a2a184dbb4779f6e2bb01d =
     [ "MetricTokenResponse.cs", "dd/d7b/_metric_token_response_8cs.html", [
       [ "MetricTokenResponse", "d0/d4e/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_metric_token_response.html", "d0/d4e/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_metric_token_response" ]
     ] ],
-    [ "Nested.cs", "d4/d99/_nested_8cs.html", [
-      [ "Nested", "de/d71/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nested.html", "de/d71/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nested" ]
-    ] ],
     [ "NluEnrichmentConcepts.cs", "de/dcf/_nlu_enrichment_concepts_8cs.html", [
       [ "NluEnrichmentConcepts", "dc/d75/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_concepts.html", "dc/d75/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_nlu_enrichment_concepts" ]
     ] ],
@@ -221,6 +206,21 @@ var dir_f918a9c434a2a184dbb4779f6e2bb01d =
     [ "QueryAggregation.cs", "dc/db8/_i_b_m_8_watson_8_discovery_8v1_2_model_2_query_aggregation_8cs.html", [
       [ "QueryAggregation", "d0/dbe/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_aggregation.html", "d0/dbe/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_aggregation" ]
     ] ],
+    [ "QueryCalculationAggregation.cs", "da/d7e/_i_b_m_8_watson_8_discovery_8v1_2_model_2_query_calculation_aggregation_8cs.html", [
+      [ "QueryCalculationAggregation", "d7/d65/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_calculation_aggregation.html", "d7/d65/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_calculation_aggregation" ]
+    ] ],
+    [ "QueryFilterAggregation.cs", "de/d97/_i_b_m_8_watson_8_discovery_8v1_2_model_2_query_filter_aggregation_8cs.html", [
+      [ "QueryFilterAggregation", "d3/d50/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_filter_aggregation.html", "d3/d50/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_filter_aggregation" ]
+    ] ],
+    [ "QueryHistogramAggregation.cs", "d2/db8/_i_b_m_8_watson_8_discovery_8v1_2_model_2_query_histogram_aggregation_8cs.html", [
+      [ "QueryHistogramAggregation", "d9/d91/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_histogram_aggregation.html", "d9/d91/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_histogram_aggregation" ]
+    ] ],
+    [ "QueryHistogramAggregationResult.cs", "df/d33/_i_b_m_8_watson_8_discovery_8v1_2_model_2_query_histogram_aggregation_result_8cs.html", [
+      [ "QueryHistogramAggregationResult", "d2/df5/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_histogram_aggregation_result.html", "d2/df5/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_histogram_aggregation_result" ]
+    ] ],
+    [ "QueryNestedAggregation.cs", "d0/d63/_i_b_m_8_watson_8_discovery_8v1_2_model_2_query_nested_aggregation_8cs.html", [
+      [ "QueryNestedAggregation", "d9/d6b/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_nested_aggregation.html", "d9/d6b/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_nested_aggregation" ]
+    ] ],
     [ "QueryNoticesResponse.cs", "de/dd6/_i_b_m_8_watson_8_discovery_8v1_2_model_2_query_notices_response_8cs.html", [
       [ "QueryNoticesResponse", "d7/d9f/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_notices_response.html", "d7/d9f/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_notices_response" ]
     ] ],
@@ -239,6 +239,24 @@ var dir_f918a9c434a2a184dbb4779f6e2bb01d =
     ] ],
     [ "QueryResultMetadata.cs", "dc/d2c/_i_b_m_8_watson_8_discovery_8v1_2_model_2_query_result_metadata_8cs.html", [
       [ "QueryResultMetadata", "d1/d79/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_result_metadata.html", "d1/d79/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_result_metadata" ]
+    ] ],
+    [ "QueryTermAggregation.cs", "d8/dbb/_i_b_m_8_watson_8_discovery_8v1_2_model_2_query_term_aggregation_8cs.html", [
+      [ "QueryTermAggregation", "db/dd9/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_term_aggregation.html", "db/dd9/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_term_aggregation" ]
+    ] ],
+    [ "QueryTermAggregationResult.cs", "dd/d8d/_i_b_m_8_watson_8_discovery_8v1_2_model_2_query_term_aggregation_result_8cs.html", [
+      [ "QueryTermAggregationResult", "d0/dd5/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_term_aggregation_result.html", "d0/dd5/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_term_aggregation_result" ]
+    ] ],
+    [ "QueryTimesliceAggregation.cs", "d6/d4c/_i_b_m_8_watson_8_discovery_8v1_2_model_2_query_timeslice_aggregation_8cs.html", [
+      [ "QueryTimesliceAggregation", "d4/d4e/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_timeslice_aggregation.html", "d4/d4e/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_timeslice_aggregation" ]
+    ] ],
+    [ "QueryTimesliceAggregationResult.cs", "db/d42/_i_b_m_8_watson_8_discovery_8v1_2_model_2_query_timeslice_aggregation_result_8cs.html", [
+      [ "QueryTimesliceAggregationResult", "d2/d1a/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_timeslice_aggregation_result.html", "d2/d1a/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_timeslice_aggregation_result" ]
+    ] ],
+    [ "QueryTopHitsAggregation.cs", "dd/dcf/_i_b_m_8_watson_8_discovery_8v1_2_model_2_query_top_hits_aggregation_8cs.html", [
+      [ "QueryTopHitsAggregation", "d3/daa/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_top_hits_aggregation.html", "d3/daa/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_top_hits_aggregation" ]
+    ] ],
+    [ "QueryTopHitsAggregationResult.cs", "da/da0/_i_b_m_8_watson_8_discovery_8v1_2_model_2_query_top_hits_aggregation_result_8cs.html", [
+      [ "QueryTopHitsAggregationResult", "d2/d31/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_top_hits_aggregation_result.html", "d2/d31/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_query_top_hits_aggregation_result" ]
     ] ],
     [ "RetrievalDetails.cs", "d4/d2d/_i_b_m_8_watson_8_discovery_8v1_2_model_2_retrieval_details_8cs.html", [
       [ "RetrievalDetails", "d8/d9b/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_retrieval_details.html", "d8/d9b/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_retrieval_details" ],
@@ -291,21 +309,12 @@ var dir_f918a9c434a2a184dbb4779f6e2bb01d =
     [ "StatusDetails.cs", "d2/db1/_status_details_8cs.html", [
       [ "StatusDetails", "d2/ddf/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_status_details.html", "d2/ddf/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_status_details" ]
     ] ],
-    [ "Term.cs", "db/df3/_term_8cs.html", [
-      [ "Term", "d7/d98/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_term.html", "d7/d98/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_term" ]
-    ] ],
-    [ "Timeslice.cs", "d7/d29/_timeslice_8cs.html", [
-      [ "Timeslice", "d9/d92/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_timeslice.html", "d9/d92/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_timeslice" ]
-    ] ],
     [ "TokenDictRule.cs", "df/d25/_token_dict_rule_8cs.html", [
       [ "TokenDictRule", "d5/dda/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_token_dict_rule.html", "d5/dda/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_token_dict_rule" ]
     ] ],
     [ "TokenDictStatusResponse.cs", "d5/df8/_token_dict_status_response_8cs.html", [
       [ "TokenDictStatusResponse", "da/d9f/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_token_dict_status_response.html", "da/d9f/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_token_dict_status_response" ],
       [ "StatusEnumValue", "d3/d04/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_token_dict_status_response_1_1_status_enum_value.html", "d3/d04/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_token_dict_status_response_1_1_status_enum_value" ]
-    ] ],
-    [ "TopHits.cs", "dc/d2e/_top_hits_8cs.html", [
-      [ "TopHits", "dd/d50/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_top_hits.html", "dd/d50/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_top_hits" ]
     ] ],
     [ "TopHitsResults.cs", "d5/d20/_top_hits_results_8cs.html", [
       [ "TopHitsResults", "dd/ddf/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_top_hits_results.html", "dd/ddf/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_top_hits_results" ]
@@ -322,7 +331,7 @@ var dir_f918a9c434a2a184dbb4779f6e2bb01d =
     [ "TrainingQuery.cs", "df/d3b/_i_b_m_8_watson_8_discovery_8v1_2_model_2_training_query_8cs.html", [
       [ "TrainingQuery", "d1/db7/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_query.html", "d1/db7/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_query" ]
     ] ],
-    [ "TrainingStatus.cs", "df/d9a/_i_b_m_8_watson_8_discovery_8v1_2_model_2_training_status_8cs.html", [
+    [ "TrainingStatus.cs", "d3/d5b/_training_status_8cs.html", [
       [ "TrainingStatus", "dc/d90/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_status.html", "dc/d90/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_training_status" ]
     ] ],
     [ "WordHeadingDetection.cs", "d6/d3b/_word_heading_detection_8cs.html", [

@@ -1,5 +1,0 @@
-var class_i_b_m_1_1_watson_1_1_natural_language_classifier_1_1v1_1_1_integration_tests_1_1_natural_ld554e774ac8dd5880711665d190cad69 =
-[
-    [ "Setup", "dc/ddf/class_i_b_m_1_1_watson_1_1_natural_language_classifier_1_1v1_1_1_integration_tests_1_1_natural_ld554e774ac8dd5880711665d190cad69.html#ae358f9211d142dd06f51bfebe0dfce26", null ],
-    [ "TestClassifiers_Success", "dc/ddf/class_i_b_m_1_1_watson_1_1_natural_language_classifier_1_1v1_1_1_integration_tests_1_1_natural_ld554e774ac8dd5880711665d190cad69.html#a9f9488aed79e7f9a0b851c42decd2abd", null ]
-];

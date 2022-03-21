@@ -1,4 +1,0 @@
-var namespace_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_integration_tests =
-[
-    [ "VisualRecognitionServiceIntegrationTests", "dd/dd1/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_integration_tests_1_1_visual_recognition_service_integration_tests.html", "dd/dd1/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_integration_tests_1_1_visual_recognition_service_integration_tests" ]
-];

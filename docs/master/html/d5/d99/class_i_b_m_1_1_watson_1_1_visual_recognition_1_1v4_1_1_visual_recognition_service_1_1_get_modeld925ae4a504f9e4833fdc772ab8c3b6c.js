@@ -1,4 +1,0 @@
-var class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_visual_recognition_service_1_1_get_modeld925ae4a504f9e4833fdc772ab8c3b6c =
-[
-    [ "RSCNN", "d5/d99/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_visual_recognition_service_1_1_get_modeld925ae4a504f9e4833fdc772ab8c3b6c.html#a0d0b03a7a282c6eeb4f8f3902418fef8", null ]
-];

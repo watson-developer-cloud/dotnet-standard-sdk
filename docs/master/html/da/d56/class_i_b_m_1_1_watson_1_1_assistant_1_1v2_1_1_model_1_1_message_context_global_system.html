@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">5.2.1</span>
+   &#160;<span id="projectnumber">5.3.0</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -124,6 +124,9 @@ Properties</h2></td></tr>
 <tr class="memitem:a35c4a86e6f2c152e31c2fe43ebaf6ef3"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d56/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global_system.html#a35c4a86e6f2c152e31c2fe43ebaf6ef3">State</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a35c4a86e6f2c152e31c2fe43ebaf6ef3"><td class="mdescLeft">&#160;</td><td class="mdescRight">An encoded string that represents the configuration state of the assistant at the beginning of the conversation. If you are using the stateless <code>message</code> method, save this value and then send it in the context of the subsequent message request to avoid disruptions if there are configuration changes during the conversation (such as a change to a skill the assistant uses).  <a href="../../da/d56/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global_system.html#a35c4a86e6f2c152e31c2fe43ebaf6ef3">More...</a><br /></td></tr>
 <tr class="separator:a35c4a86e6f2c152e31c2fe43ebaf6ef3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b9ee04ebc928c82d9c304f7233bbd02"><td class="memItemLeft" align="right" valign="top">bool?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d56/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global_system.html#a2b9ee04ebc928c82d9c304f7233bbd02">SkipUserInput</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a2b9ee04ebc928c82d9c304f7233bbd02"><td class="mdescLeft">&#160;</td><td class="mdescRight">For internal use only.  <a href="../../da/d56/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_global_system.html#a2b9ee04ebc928c82d9c304f7233bbd02">More...</a><br /></td></tr>
+<tr class="separator:a2b9ee04ebc928c82d9c304f7233bbd02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Built-in system properties that apply to all skills used by the assistant. </p>
@@ -201,6 +204,30 @@ Properties</h2></td></tr>
 
 <p>The time at which the session started. With the stateful <code>message</code> method, the start time is always present, and is set by the service based on the time the session was created. With the stateless <code>message</code> method, the start time is set by the service in the response to the first message, and should be returned as part of the context with each subsequent message in the session. </p>
 <p>This value is a UTC time value formatted according to ISO 8601 (for example, <code>2021-06-26T12:00:00Z</code> for noon UTC on 26 June 2021).</p>
+
+</div>
+</div>
+<a id="a2b9ee04ebc928c82d9c304f7233bbd02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b9ee04ebc928c82d9c304f7233bbd02">&#9670;&nbsp;</a></span>SkipUserInput</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool? IBM.Watson.Assistant.v2.Model.MessageContextGlobalSystem.SkipUserInput</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>For internal use only. </p>
 
 </div>
 </div>

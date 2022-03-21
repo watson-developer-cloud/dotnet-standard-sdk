@@ -1,6 +1,0 @@
-var class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_integration_tests_1_1_personality_insights_service_integration_tests =
-[
-    [ "Profile_Success", "d6/db4/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_integration_tests_1_1_personality_insights_service_integration_tests.html#a3440cdd8089a8fe3ed6852afec67ef97", null ],
-    [ "ProfileAsCsv_Success", "d6/db4/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_integration_tests_1_1_personality_insights_service_integration_tests.html#a8983ecdd1cb3cbcbb422ee1644ce1249", null ],
-    [ "Setup", "d6/db4/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_integration_tests_1_1_personality_insights_service_integration_tests.html#af762b65bdd9a74d0418d754eacb99180", null ]
-];

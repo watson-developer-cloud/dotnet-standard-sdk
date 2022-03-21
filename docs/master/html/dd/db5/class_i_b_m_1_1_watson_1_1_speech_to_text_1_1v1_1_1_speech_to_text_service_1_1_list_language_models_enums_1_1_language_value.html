@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">5.2.1</span>
+   &#160;<span id="projectnumber">5.3.0</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -91,7 +91,7 @@ $(document).ready(function(){initNavTree('dd/db5/class_i_b_m_1_1_watson_1_1_spee
 </div><!--header-->
 <div class="contents">
 
-<p>The identifier of the language for which custom language or custom acoustic models are to be returned. Omit the parameter to see all custom language or custom acoustic models that are owned by the requesting credentials. (<b>Note:</b> The identifier <code>ar-AR</code> is deprecated; use <code>ar-MS</code> instead.)  
+<p>The identifier of the language for which custom language or custom acoustic models are to be returned. Specify the five-character language identifier; for example, specify <code>en-US</code> to see all custom language or custom acoustic models that are based on US English models. Omit the parameter to see all custom language or custom acoustic models that are owned by the requesting credentials. (<b>Note:</b> The identifier <code>ar-AR</code> is deprecated; use <code>ar-MS</code> instead.)  
  <a href="../../dd/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_language_models_enums_1_1_language_value.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
@@ -102,6 +102,9 @@ Static Public Attributes</h2></td></tr>
 <tr class="memitem:ac2add7d046c990dce2f867150420974c"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_language_models_enums_1_1_language_value.html#ac2add7d046c990dce2f867150420974c">AR_MS</a> = &quot;ar-MS&quot;</td></tr>
 <tr class="memdesc:ac2add7d046c990dce2f867150420974c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant AR_MS for ar-MS  <a href="../../dd/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_language_models_enums_1_1_language_value.html#ac2add7d046c990dce2f867150420974c">More...</a><br /></td></tr>
 <tr class="separator:ac2add7d046c990dce2f867150420974c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d3e6b2b1cca3d429e4d2dff2418bbd7"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_language_models_enums_1_1_language_value.html#a4d3e6b2b1cca3d429e4d2dff2418bbd7">CS_CZ</a> = &quot;cs-CZ&quot;</td></tr>
+<tr class="memdesc:a4d3e6b2b1cca3d429e4d2dff2418bbd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant CS_CZ for cs-CZ  <a href="../../dd/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_language_models_enums_1_1_language_value.html#a4d3e6b2b1cca3d429e4d2dff2418bbd7">More...</a><br /></td></tr>
+<tr class="separator:a4d3e6b2b1cca3d429e4d2dff2418bbd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a434e0b1246edb82eb61403bfef16c5"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_language_models_enums_1_1_language_value.html#a4a434e0b1246edb82eb61403bfef16c5">DE_DE</a> = &quot;de-DE&quot;</td></tr>
 <tr class="memdesc:a4a434e0b1246edb82eb61403bfef16c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant DE_DE for de-DE  <a href="../../dd/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_language_models_enums_1_1_language_value.html#a4a434e0b1246edb82eb61403bfef16c5">More...</a><br /></td></tr>
 <tr class="separator:a4a434e0b1246edb82eb61403bfef16c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -117,18 +120,24 @@ Static Public Attributes</h2></td></tr>
 <tr class="memitem:a3bd207a4731805d5b5f47557702f4fda"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_language_models_enums_1_1_language_value.html#a3bd207a4731805d5b5f47557702f4fda">EN_US</a> = &quot;en-US&quot;</td></tr>
 <tr class="memdesc:a3bd207a4731805d5b5f47557702f4fda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant EN_US for en-US  <a href="../../dd/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_language_models_enums_1_1_language_value.html#a3bd207a4731805d5b5f47557702f4fda">More...</a><br /></td></tr>
 <tr class="separator:a3bd207a4731805d5b5f47557702f4fda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89b12a7de72a72311a5cf7350641a819"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_language_models_enums_1_1_language_value.html#a89b12a7de72a72311a5cf7350641a819">EN_WW</a> = &quot;en-WW&quot;</td></tr>
+<tr class="memdesc:a89b12a7de72a72311a5cf7350641a819"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant EN_WW for en-WW  <a href="../../dd/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_language_models_enums_1_1_language_value.html#a89b12a7de72a72311a5cf7350641a819">More...</a><br /></td></tr>
+<tr class="separator:a89b12a7de72a72311a5cf7350641a819"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac23af49477448a02fae219651797b907"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_language_models_enums_1_1_language_value.html#ac23af49477448a02fae219651797b907">ES_AR</a> = &quot;es-AR&quot;</td></tr>
 <tr class="memdesc:ac23af49477448a02fae219651797b907"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant ES_AR for es-AR  <a href="../../dd/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_language_models_enums_1_1_language_value.html#ac23af49477448a02fae219651797b907">More...</a><br /></td></tr>
 <tr class="separator:ac23af49477448a02fae219651797b907"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a073f7708a5dec82a9c00502cd6eabb5c"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_language_models_enums_1_1_language_value.html#a073f7708a5dec82a9c00502cd6eabb5c">ES_ES</a> = &quot;es-ES&quot;</td></tr>
-<tr class="memdesc:a073f7708a5dec82a9c00502cd6eabb5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant ES_ES for es-ES  <a href="../../dd/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_language_models_enums_1_1_language_value.html#a073f7708a5dec82a9c00502cd6eabb5c">More...</a><br /></td></tr>
-<tr class="separator:a073f7708a5dec82a9c00502cd6eabb5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85ef80bbff91fbed71d809849bd641bc"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_language_models_enums_1_1_language_value.html#a85ef80bbff91fbed71d809849bd641bc">ES_CL</a> = &quot;es-CL&quot;</td></tr>
 <tr class="memdesc:a85ef80bbff91fbed71d809849bd641bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant ES_CL for es-CL  <a href="../../dd/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_language_models_enums_1_1_language_value.html#a85ef80bbff91fbed71d809849bd641bc">More...</a><br /></td></tr>
 <tr class="separator:a85ef80bbff91fbed71d809849bd641bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8cee5cc6a74606e9ae725a5670018cc"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_language_models_enums_1_1_language_value.html#ab8cee5cc6a74606e9ae725a5670018cc">ES_CO</a> = &quot;es-CO&quot;</td></tr>
 <tr class="memdesc:ab8cee5cc6a74606e9ae725a5670018cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant ES_CO for es-CO  <a href="../../dd/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_language_models_enums_1_1_language_value.html#ab8cee5cc6a74606e9ae725a5670018cc">More...</a><br /></td></tr>
 <tr class="separator:ab8cee5cc6a74606e9ae725a5670018cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a073f7708a5dec82a9c00502cd6eabb5c"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_language_models_enums_1_1_language_value.html#a073f7708a5dec82a9c00502cd6eabb5c">ES_ES</a> = &quot;es-ES&quot;</td></tr>
+<tr class="memdesc:a073f7708a5dec82a9c00502cd6eabb5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant ES_ES for es-ES  <a href="../../dd/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_language_models_enums_1_1_language_value.html#a073f7708a5dec82a9c00502cd6eabb5c">More...</a><br /></td></tr>
+<tr class="separator:a073f7708a5dec82a9c00502cd6eabb5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a109eea5894e3643c4ac55d5bb73fe549"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_language_models_enums_1_1_language_value.html#a109eea5894e3643c4ac55d5bb73fe549">ES_LA</a> = &quot;es-LA&quot;</td></tr>
+<tr class="memdesc:a109eea5894e3643c4ac55d5bb73fe549"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant ES_LA for es-LA  <a href="../../dd/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_language_models_enums_1_1_language_value.html#a109eea5894e3643c4ac55d5bb73fe549">More...</a><br /></td></tr>
+<tr class="separator:a109eea5894e3643c4ac55d5bb73fe549"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a645d25be16fa08c09851676de5a2a0ed"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_language_models_enums_1_1_language_value.html#a645d25be16fa08c09851676de5a2a0ed">ES_MX</a> = &quot;es-MX&quot;</td></tr>
 <tr class="memdesc:a645d25be16fa08c09851676de5a2a0ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant ES_MX for es-MX  <a href="../../dd/db5/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_speech_to_text_service_1_1_list_language_models_enums_1_1_language_value.html#a645d25be16fa08c09851676de5a2a0ed">More...</a><br /></td></tr>
 <tr class="separator:a645d25be16fa08c09851676de5a2a0ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -167,8 +176,8 @@ Static Public Attributes</h2></td></tr>
 <tr class="separator:a5ab0c930d05ebe35f45738bee184d552"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The identifier of the language for which custom language or custom acoustic models are to be returned. Omit the parameter to see all custom language or custom acoustic models that are owned by the requesting credentials. (<b>Note:</b> The identifier <code>ar-AR</code> is deprecated; use <code>ar-MS</code> instead.) </p>
-<p>To determine the languages for which customization is available, see <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support#custom-language-support">Language support for customization</a>.</p>
+<div class="textblock"><p>The identifier of the language for which custom language or custom acoustic models are to be returned. Specify the five-character language identifier; for example, specify <code>en-US</code> to see all custom language or custom acoustic models that are based on US English models. Omit the parameter to see all custom language or custom acoustic models that are owned by the requesting credentials. (<b>Note:</b> The identifier <code>ar-AR</code> is deprecated; use <code>ar-MS</code> instead.) </p>
+<p>To determine the languages for which customization is available, see <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support">Language support for customization</a>.</p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="a01fa696456d565b6b08f98a46914ece4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a01fa696456d565b6b08f98a46914ece4">&#9670;&nbsp;</a></span>AR_AR</h2>
@@ -215,6 +224,30 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Constant AR_MS for ar-MS </p>
+
+</div>
+</div>
+<a id="a4d3e6b2b1cca3d429e4d2dff2418bbd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d3e6b2b1cca3d429e4d2dff2418bbd7">&#9670;&nbsp;</a></span>CS_CZ</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string IBM.Watson.SpeechToText.v1.SpeechToTextService.ListLanguageModelsEnums.LanguageValue.CS_CZ = &quot;cs-CZ&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constant CS_CZ for cs-CZ </p>
 
 </div>
 </div>
@@ -338,6 +371,30 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a89b12a7de72a72311a5cf7350641a819"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89b12a7de72a72311a5cf7350641a819">&#9670;&nbsp;</a></span>EN_WW</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string IBM.Watson.SpeechToText.v1.SpeechToTextService.ListLanguageModelsEnums.LanguageValue.EN_WW = &quot;en-WW&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constant EN_WW for en-WW </p>
+
+</div>
+</div>
 <a id="ac23af49477448a02fae219651797b907"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac23af49477448a02fae219651797b907">&#9670;&nbsp;</a></span>ES_AR</h2>
 
@@ -431,6 +488,30 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Constant ES_ES for es-ES </p>
+
+</div>
+</div>
+<a id="a109eea5894e3643c4ac55d5bb73fe549"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a109eea5894e3643c4ac55d5bb73fe549">&#9670;&nbsp;</a></span>ES_LA</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string IBM.Watson.SpeechToText.v1.SpeechToTextService.ListLanguageModelsEnums.LanguageValue.ES_LA = &quot;es-LA&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constant ES_LA for es-LA </p>
 
 </div>
 </div>

@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">5.2.1</span>
+   &#160;<span id="projectnumber">5.3.0</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -611,24 +611,15 @@ Public Member Functions</h2></td></tr>
 <p>Create a custom model. </p>
 <p>Creates a new empty custom model. You must specify a name for the new custom model. You can optionally specify the language and a description for the new model. The model is owned by the instance of the service whose credentials are used to create it.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-customModels#cuModelsCreate">Creating a custom model</a>.</p>
-<h3>Important voice updates for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud</h3>
-<p>The service's voices underwent significant change on 2 December 2020.</p><ul>
-<li>The Arabic, Chinese, Dutch, Australian English, and Korean voices are now neural instead of concatenative.</li>
-<li>The <code>ar-AR_OmarVoice</code> voice is deprecated. Use <code>ar-MS_OmarVoice</code> voice instead.</li>
-<li>The <code>ar-AR</code> language identifier cannot be used to create a custom model. Use the <code>ar-MS</code> identifier instead.</li>
-<li>The standard concatenative voices for the following languages are now deprecated: Brazilian Portuguese, United Kingdom and United States English, French, German, Italian, Japanese, and Spanish (all dialects).</li>
-<li>The features expressive SSML, voice transformation SSML, and use of the <code>volume</code> attribute of the <code>&lt;prosody&gt;</code> element are deprecated and are not supported with any of the service's neural voices.</li>
-<li>All of the service's voices are now customizable and generally available (GA) for production use.</li>
-</ul>
-<p>The deprecated voices and features will continue to function for at least one year but might be removed at a future date. You are encouraged to migrate to the equivalent neural voices at your earliest convenience. For more information about all voice updates, see the <a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-release-notes#December2020">2 December 2020 service update</a> in the release notes for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud.</p>
+<p><b>Note:</b> The Arabic, Chinese, Czech, Dutch (Belgian and Netherlands), Australian English, Korean, and Swedish languages and voices are supported only for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud; they are deprecated for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud Pak for Data. Also, the <code>ar-AR</code> language identifier cannot be used to create a custom model; use the <code>ar-MS</code> identifier instead.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>The name of the new custom model.</td></tr>
-    <tr><td class="paramname">language</td><td>The language of the new custom model. You create a custom model for a specific language, not for a specific voice. A custom model can be used with any voice for its specified language. Omit the parameter to use the the default language, <code>en-US</code>. <b>Note:</b> The <code>ar-AR</code> language identifier cannot be used to create a custom model. Use the <code>ar-MS</code> identifier instead.</td></tr>
+    <tr><td class="paramname">language</td><td>The language of the new custom model. You create a custom model for a specific language, not for a specific voice. A custom model can be used with any voice for its specified language. Omit the parameter to use the the default language, <code>en-US</code>.</td></tr>
   </table>
   </dd>
 </dl>
-<p><b><a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud:</b> The Arabic, Chinese, Dutch, Australian English, and Korean languages and voices are supported only for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud. (optional, default to en-US)</p>
+<p><b>Important:</b> If you are using the service on <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud Pak for Data <em>and</em> you install the neural voices, the <code>language</code>parameter is required. You must specify the language for the custom model in the indicated format (for example, <code>en-AU</code> for Australian English). The request fails if you do not specify a language. (optional, default to en-US)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">description</td><td>A description of the new custom model. Specifying a description is recommended. (optional)</td></tr>
@@ -1068,26 +1059,11 @@ Public Member Functions</h2></td></tr>
 <p>Get pronunciation. </p>
 <p>Gets the phonetic pronunciation for the specified word. You can request the pronunciation for a specific format. You can also request the pronunciation for a specific voice to see the default translation for the language of that voice or for a specific custom model to see the translation for that model.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-customWords#cuWordsQueryLanguage">Querying a word from a language</a>.</p>
-<h3>Important voice updates for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud</h3>
-<p>The service's voices underwent significant change on 2 December 2020.</p><ul>
-<li>The Arabic, Chinese, Dutch, Australian English, and Korean voices are now neural instead of concatenative.</li>
-<li>The <code>ar-AR_OmarVoice</code> voice is deprecated. Use <code>ar-MS_OmarVoice</code> voice instead.</li>
-<li>The <code>ar-AR</code> language identifier cannot be used to create a custom model. Use the <code>ar-MS</code> identifier instead.</li>
-<li>The standard concatenative voices for the following languages are now deprecated: Brazilian Portuguese, United Kingdom and United States English, French, German, Italian, Japanese, and Spanish (all dialects).</li>
-<li>The features expressive SSML, voice transformation SSML, and use of the <code>volume</code> attribute of the <code>&lt;prosody&gt;</code> element are deprecated and are not supported with any of the service's neural voices.</li>
-<li>All of the service's voices are now customizable and generally available (GA) for production use.</li>
-</ul>
-<p>The deprecated voices and features will continue to function for at least one year but might be removed at a future date. You are encouraged to migrate to the equivalent neural voices at your earliest convenience. For more information about all voice updates, see the <a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-release-notes#December2020">2 December 2020 service update</a> in the release notes for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud.</p>
+<p><b>Note:</b> The Arabic, Chinese, Czech, Dutch (Belgian and Netherlands), Australian English, Korean, and Swedish languages and voices are supported only for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud; they are deprecated for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud Pak for Data. Also, the <code>ar-AR_OmarVoice</code> voice is deprecated; use the <code>ar-MS_OmarVoice</code> voice instead.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">text</td><td>The word for which the pronunciation is requested.</td></tr>
-    <tr><td class="paramname">voice</td><td>A voice that specifies the language in which the pronunciation is to be returned. All voices for the same language (for example, <code>en-US</code>) return the same translation. For more information about specifying a voice, see <b>Important voice updates for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud</b> in the method description.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p><b><a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud:</b> The Arabic, Chinese, Dutch, Australian English, and Korean languages and voices are supported only for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud. (optional, default to en-US_MichaelV3Voice)</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
+    <tr><td class="paramname">voice</td><td>A voice that specifies the language in which the pronunciation is to be returned. All voices for the same language (for example, <code>en-US</code>) return the same translation. (optional, default to en-US_MichaelV3Voice)</td></tr>
     <tr><td class="paramname">format</td><td>The phoneme format in which to return the pronunciation. The Arabic, Chinese, Dutch, Australian English, and Korean languages support only IPA. Omit the parameter to obtain the pronunciation in the default format. (optional, default to ipa)</td></tr>
     <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of a custom model for which the pronunciation is to be returned. The language of a specified custom model must match the language of the specified voice. If the word is not defined in the specified custom model, the service returns the default translation for the custom model's language. You must make the request with credentials for the instance of the service that owns the custom model. Omit the parameter to see the translation for the specified voice with no customization. (optional)</td></tr>
   </table>
@@ -1175,25 +1151,10 @@ Public Member Functions</h2></td></tr>
 <p>Get a voice. </p>
 <p>Gets information about the specified voice. The information includes the name, language, gender, and other details about the voice. Specify a customization ID to obtain information for a custom model that is defined for the language of the specified voice. To list information about all available voices, use the <a href="../../#listvoices">List voices</a> method.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-voices#listVoice">Listing a specific voice</a>.</p>
-<h3>Important voice updates for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud</h3>
-<p>The service's voices underwent significant change on 2 December 2020.</p><ul>
-<li>The Arabic, Chinese, Dutch, Australian English, and Korean voices are now neural instead of concatenative.</li>
-<li>The <code>ar-AR_OmarVoice</code> voice is deprecated. Use <code>ar-MS_OmarVoice</code> voice instead.</li>
-<li>The <code>ar-AR</code> language identifier cannot be used to create a custom model. Use the <code>ar-MS</code> identifier instead.</li>
-<li>The standard concatenative voices for the following languages are now deprecated: Brazilian Portuguese, United Kingdom and United States English, French, German, Italian, Japanese, and Spanish (all dialects).</li>
-<li>The features expressive SSML, voice transformation SSML, and use of the <code>volume</code> attribute of the <code>&lt;prosody&gt;</code> element are deprecated and are not supported with any of the service's neural voices.</li>
-<li>All of the service's voices are now customizable and generally available (GA) for production use.</li>
-</ul>
-<p>The deprecated voices and features will continue to function for at least one year but might be removed at a future date. You are encouraged to migrate to the equivalent neural voices at your earliest convenience. For more information about all voice updates, see the <a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-release-notes#December2020">2 December 2020 service update</a> in the release notes for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud.</p>
+<p><b>Note:</b> The Arabic, Chinese, Czech, Dutch (Belgian and Netherlands), Australian English, Korean, and Swedish languages and voices are supported only for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud; they are deprecated for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud Pak for Data. Also, the <code>ar-AR_OmarVoice</code> voice is deprecated; use the <code>ar-MS_OmarVoice</code> voice instead.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">voice</td><td>The voice for which information is to be returned. For more information about specifying a voice, see <b>Important voice updates for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud</b> in the method description.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p><b><a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud:</b> The Arabic, Chinese, Dutch, Australian English, and Korean languages and voices are supported only for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
+    <tr><td class="paramname">voice</td><td>The voice for which information is to be returned.</td></tr>
     <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of a custom model for which information is to be returned. You must make the request with credentials for the instance of the service that owns the custom model. Omit the parameter to see information about the specified voice with no customization. (optional)</td></tr>
   </table>
   </dd>
@@ -1485,6 +1446,7 @@ Public Member Functions</h2></td></tr>
 <p>Synthesizes text to audio that is spoken in the specified voice. The service bases its understanding of the language for the input text on the specified voice. Use a voice that matches the language of the input text.</p>
 <p>The method accepts a maximum of 5 KB of input text in the body of the request, and 8 KB for the URL and headers. The 5 KB limit includes any SSML tags that you specify. The service returns the synthesized audio stream as an array of bytes.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-usingHTTP#usingHTTP">The HTTP interface</a>.</p>
+<p><b>Note:</b> The Arabic, Chinese, Czech, Dutch (Belgian and Netherlands), Australian English, Korean, and Swedish languages and voices are supported only for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud; they are deprecated for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud Pak for Data. Also, the <code>ar-AR_OmarVoice</code> voice is deprecated; use the <code>ar-MS_OmarVoice</code> voice instead.</p>
 <h3>Audio formats (accept types)</h3>
 <p>The service can return audio in the following formats (MIME types).</p><ul>
 <li>Where indicated, you can optionally specify the sampling rate (<code>rate</code>) of the audio. You must specify a sampling rate for the <code>audio/l16</code> and <code>audio/mulaw</code> formats. A specified sampling rate must lie in the range of 8 kHz to 192 kHz. Some formats restrict the sampling rate to certain values, as noted.</li>
@@ -1506,16 +1468,6 @@ Public Member Functions</h2></td></tr>
 <li><code>audio/webm;codecs=vorbis</code> - You can optionally specify the <code>rate</code> of the audio. The default sampling rate is 22,050 Hz.</li>
 </ul>
 <p>For more information about specifying an audio format, including additional details about some of the formats, see <a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-audio-formats">Using audio formats</a>.</p>
-<h3>Important voice updates for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud</h3>
-<p>The service's voices underwent significant change on 2 December 2020.</p><ul>
-<li>The Arabic, Chinese, Dutch, Australian English, and Korean voices are now neural instead of concatenative.</li>
-<li>The <code>ar-AR_OmarVoice</code> voice is deprecated. Use <code>ar-MS_OmarVoice</code> voice instead.</li>
-<li>The <code>ar-AR</code> language identifier cannot be used to create a custom model. Use the <code>ar-MS</code> identifier instead.</li>
-<li>The standard concatenative voices for the following languages are now deprecated: Brazilian Portuguese, United Kingdom and United States English, French, German, Italian, Japanese, and Spanish (all dialects).</li>
-<li>The features expressive SSML, voice transformation SSML, and use of the <code>volume</code> attribute of the <code>&lt;prosody&gt;</code> element are deprecated and are not supported with any of the service's neural voices.</li>
-<li>All of the service's voices are now customizable and generally available (GA) for production use.</li>
-</ul>
-<p>The deprecated voices and features will continue to function for at least one year but might be removed at a future date. You are encouraged to migrate to the equivalent neural voices at your earliest convenience. For more information about all voice updates, see the <a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-release-notes#December2020">2 December 2020 service update</a> in the release notes for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud.</p>
 <h3>Warning messages</h3>
 <p>If a request includes invalid query parameters, the service returns a <code>Warnings</code> response header that provides messages about the invalid parameters. The warning includes a descriptive message and a list of invalid argument strings. For example, a message such as <code>"Unknown arguments:"</code> or <code>"Unknown url query
 arguments:"</code> followed by a list of the form <code>"{invalid_arg_1}, {invalid_arg_2}."</code> The request succeeds despite the warnings.</p>
@@ -1523,11 +1475,14 @@ arguments:"</code> followed by a list of the form <code>"{invalid_arg_1}, {inval
   <table class="params">
     <tr><td class="paramname">text</td><td>The text to synthesize.</td></tr>
     <tr><td class="paramname">accept</td><td>The requested format (MIME type) of the audio. You can use the <code>Accept</code> header or the <code>accept</code> parameter to specify the audio format. For more information about specifying an audio format, see <b>Audio formats (accept types)</b> in the method description. (optional, default to audio/ogg;codecs=opus)</td></tr>
-    <tr><td class="paramname">voice</td><td>The voice to use for synthesis. For more information about specifying a voice, see <b>Important voice updates for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud</b> in the method description.</td></tr>
+    <tr><td class="paramname">voice</td><td>The voice to use for synthesis. If you omit the <code>voice</code> parameter, the service uses a default voice, which depends on the version of the service that you are using:<ul>
+<li><em>For <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud,</em> the service always uses the US English <code>en-US_MichaelV3Voice</code> by default.</li>
+<li><em>For <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud Pak for Data,</em> the default voice depends on the voices that you installed. If you installed the <em>enhanced neural voices</em>, the service uses the US English <code>en-US_MichaelV3Voice</code> by default; if that voice is not installed, you must specify a voice. If you installed the <em>neural voices</em>, the service always uses the Australian English <code>en-AU_MadisonVoice</code> by default.</li>
+</ul>
+</td></tr>
   </table>
   </dd>
 </dl>
-<p><b><a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud:</b> The Arabic, Chinese, Dutch, Australian English, and Korean languages and voices are supported only for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud.</p>
 <p><b>See also:</b> See also <a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-voices">Using languages and voices</a>. (optional, default to en-US_MichaelV3Voice)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

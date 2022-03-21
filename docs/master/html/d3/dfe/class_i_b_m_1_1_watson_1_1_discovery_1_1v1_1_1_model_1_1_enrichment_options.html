@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">5.2.1</span>
+   &#160;<span id="projectnumber">5.3.0</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -92,7 +92,7 @@ $(document).ready(function(){initNavTree('d3/dfe/class_i_b_m_1_1_watson_1_1_disc
 </div><!--header-->
 <div class="contents">
 
-<p>Options which are specific to a particular enrichment.  
+<p>Options that are specific to a particular enrichment.  
  <a href="../../d3/dfe/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_enrichment_options.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
@@ -110,11 +110,12 @@ Properties</h2></td></tr>
 <tr class="memdesc:ad081b1a53380ab83c79ebd49688f997b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Object containing Natural Language Understanding features to be used.  <a href="../../d3/dfe/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_enrichment_options.html#ad081b1a53380ab83c79ebd49688f997b">More...</a><br /></td></tr>
 <tr class="separator:ad081b1a53380ab83c79ebd49688f997b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a087c53af950794ce79f762314b1b9306"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/dfe/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_enrichment_options.html#a087c53af950794ce79f762314b1b9306">Model</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a087c53af950794ce79f762314b1b9306"><td class="mdescLeft">&#160;</td><td class="mdescRight">For use with <code>elements</code> enrichments only. The element extraction model to use. The only model available is <code>contract</code>.  <a href="../../d3/dfe/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_enrichment_options.html#a087c53af950794ce79f762314b1b9306">More...</a><br /></td></tr>
+<tr class="memdesc:a087c53af950794ce79f762314b1b9306"><td class="mdescLeft">&#160;</td><td class="mdescRight">The element extraction model to use, which can be <code>contract</code> only. The <code>elements</code> enrichment is deprecated.  <a href="../../d3/dfe/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_enrichment_options.html#a087c53af950794ce79f762314b1b9306">More...</a><br /></td></tr>
 <tr class="separator:a087c53af950794ce79f762314b1b9306"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Options which are specific to a particular enrichment. </p>
+<div class="textblock"><p>Options that are specific to a particular enrichment. </p>
+<p>The <code>elements</code> enrichment type is deprecated. Use the <a href="https://cloud.ibm.com/apidocs/discovery-data#createproject">Create a project</a> method of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> <a class="el" href="../../da/df3/namespace_i_b_m_1_1_watson_1_1_discovery_1_1v2.html">v2</a> API to create a <code>content_intelligence</code> project type instead.</p>
 </div><h2 class="groupheader">Property Documentation</h2>
 <a id="ad081b1a53380ab83c79ebd49688f997b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad081b1a53380ab83c79ebd49688f997b">&#9670;&nbsp;</a></span>Features</h2>
@@ -184,7 +185,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>For use with <code>elements</code> enrichments only. The element extraction model to use. The only model available is <code>contract</code>. </p>
+<p>The element extraction model to use, which can be <code>contract</code> only. The <code>elements</code> enrichment is deprecated. </p>
 
 </div>
 </div>

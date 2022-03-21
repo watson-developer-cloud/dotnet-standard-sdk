@@ -44,6 +44,5 @@ jobs:
         dotnet test --no-build --verbosity normal src/IBM.Watson.Discovery.v1/Test/Unit
         dotnet test --no-build --verbosity normal src/IBM.Watson.Discovery.v2/Test/Unit
         dotnet test --no-build --verbosity normal src/IBM.Watson.LanguageTranslator.v3/Test/Unit
-        dotnet test --no-build --verbosity normal src/IBM.Watson.NaturalLanguageUnderstanding.v1/Test/Unit
         dotnet test --no-build --verbosity normal src/IBM.Watson.SpeechToText.v1/Test/Unit
         dotnet test --no-build --verbosity normal src/IBM.Watson.TextToSpeech.v1/Test/Unit

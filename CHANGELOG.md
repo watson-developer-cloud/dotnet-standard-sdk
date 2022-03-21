@@ -1,3 +1,28 @@
+# [6.0.0](https://github.com/watson-developer-cloud/dotnet-standard-sdk/compare/v5.3.0...v6.0.0) (2022-03-21)
+
+
+### Features
+
+* **assistant-v1:** add models for DialogNodeOutputGeneric ([fe49277](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/fe49277d12b6795df234907aff0c247b4a46b2ec))
+* **assistant-v1:** generated using api-def: master & generator: 3.46.0 ([67d58b7](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/67d58b78d98a4b9af7d545430996e1ebfacd313a))
+* **assistant-v2:** generated using api-def: master & generator: 3.46.0 ([d0d6ca2](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/d0d6ca2db261939fcfd5f7879f43906c65893859))
+* **deprecation:** remove CC, NLC, PI, Tone Analyzer, and Visual Recognition ([a70c7a5](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/a70c7a5b6fdfc6f5905fbe0ceb5a28680c42a50a))
+* **discovery-v1:** document status & query aggregation update ([4faac38](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/4faac38941b570f03aa02af3ed44e1c36d0cc9b6))
+* **language-translator-v3:** update core version ([21b564c](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/21b564c46b32bd73abf38ac4814f7366cea0e51e))
+* **natural-language-understanding-v1:** metadata as a dictionary and comments updated ([42cc44c](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/42cc44ca129a3f3c109c4978cd032b4b85946269))
+* **speech-to-text-v1:** add de-de_multimedia & update comments ([30fa39c](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/30fa39c63ecd1ec0de58b62f589229b7a3a698ed))
+* **speech-to-text-v1:** supportedFeatures: customAcousticModel property added & update comments ([7224286](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/722428602e96a5fbc0def0177651e48922bc723e))
+* **text-to-speech-v1:** add voices and update comments ([2ebd9df](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/2ebd9dfd61489a8456d0e872d4610087bdca2d18))
+
+
+### BREAKING CHANGES
+
+* **discovery-v1:** QueryAggregation: BREAKING QueryAggregation subclasses changed.
+* **assistant-v2:** MessageOutputDebug: BREAKING nodesVisited type DialogNodesVisited changed to
+DialogNodeVisited, RuntimeEntity: BREAKING optional metadata property removed
+* **assistant-v1:** OutputData: BREAKING required text property removed, RuntimeEntity: BREAKING
+optional metadata property removed
+
 # [5.3.0](https://github.com/watson-developer-cloud/dotnet-standard-sdk/compare/v5.2.1...v5.3.0) (2021-09-14)
 
 

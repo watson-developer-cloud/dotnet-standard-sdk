@@ -1,5 +1,0 @@
-var class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_visual_recognition_service_1_1_get_jpeg_image_enums_1_1_size_value =
-[
-    [ "FULL", "d2/d58/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_visual_recognition_service_1_1_get_jpeg_image_enums_1_1_size_value.html#a21fc7de44d3e34f8b15718b98652aafd", null ],
-    [ "THUMBNAIL", "d2/d58/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_visual_recognition_service_1_1_get_jpeg_image_enums_1_1_size_value.html#ad6948ed8eb0e0a921c510be5bf32a686", null ]
-];

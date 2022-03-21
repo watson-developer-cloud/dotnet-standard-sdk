@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">5.2.1</span>
+   &#160;<span id="projectnumber">5.3.0</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -110,7 +110,7 @@ Properties</h2></td></tr>
 <tr class="memdesc:ab1b7f858a918efa072d6b024f47f0409"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the grammar.  <a href="../../d7/dff/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_grammar.html#ab1b7f858a918efa072d6b024f47f0409">More...</a><br /></td></tr>
 <tr class="separator:ab1b7f858a918efa072d6b024f47f0409"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34693c64314b199cfd72c8092b761124"><td class="memItemLeft" align="right" valign="top">long?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dff/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_grammar.html#a34693c64314b199cfd72c8092b761124">OutOfVocabularyWords</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a34693c64314b199cfd72c8092b761124"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of OOV words in the grammar. The value is <code>0</code> while the grammar is being processed.  <a href="../../d7/dff/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_grammar.html#a34693c64314b199cfd72c8092b761124">More...</a><br /></td></tr>
+<tr class="memdesc:a34693c64314b199cfd72c8092b761124"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>For custom models that are based on previous-generation models</em>, the number of OOV words extracted from the grammar. The value is <code>0</code> while the grammar is being processed.  <a href="../../d7/dff/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_grammar.html#a34693c64314b199cfd72c8092b761124">More...</a><br /></td></tr>
 <tr class="separator:a34693c64314b199cfd72c8092b761124"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22c76f4e5450a0ec85c2432c9ef536f7"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/dff/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_grammar.html#a22c76f4e5450a0ec85c2432c9ef536f7">Error</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a22c76f4e5450a0ec85c2432c9ef536f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the status of the grammar is <code>undetermined</code>, the following message: &lsquo;Analysis of grammar &rsquo;{grammar_name}' failed. Please try fixing the error or adding the grammar again by setting the 'allow_overwrite' flag to 'true'.`.  <a href="../../d7/dff/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_grammar.html#a22c76f4e5450a0ec85c2432c9ef536f7">More...</a><br /></td></tr>
@@ -187,7 +187,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The number of OOV words in the grammar. The value is <code>0</code> while the grammar is being processed. </p>
+<p><em>For custom models that are based on previous-generation models</em>, the number of OOV words extracted from the grammar. The value is <code>0</code> while the grammar is being processed. </p>
+<p><em>For custom models that are based on next-generation models</em>, no OOV words are extracted from grammars, so the value is always <code>0</code>.</p>
 
 </div>
 </div>

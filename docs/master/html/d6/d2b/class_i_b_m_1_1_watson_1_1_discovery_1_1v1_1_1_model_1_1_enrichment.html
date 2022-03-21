@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">5.2.1</span>
+   &#160;<span id="projectnumber">5.3.0</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -109,13 +109,13 @@ Properties</h2></td></tr>
 <tr class="memdesc:a9763b8b2171dad437d71ea6347bd8a10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates that the enrichments will overwrite the destination_field field if it already exists.  <a href="../../d6/d2b/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_enrichment.html#a9763b8b2171dad437d71ea6347bd8a10">More...</a><br /></td></tr>
 <tr class="separator:a9763b8b2171dad437d71ea6347bd8a10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aadc62edc68828c3c0ef52ecae2848670"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d2b/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_enrichment.html#aadc62edc68828c3c0ef52ecae2848670">_Enrichment</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:aadc62edc68828c3c0ef52ecae2848670"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the enrichment service to call. Current options are <code>natural_language_understanding</code> and <code>elements</code>.  <a href="../../d6/d2b/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_enrichment.html#aadc62edc68828c3c0ef52ecae2848670">More...</a><br /></td></tr>
+<tr class="memdesc:aadc62edc68828c3c0ef52ecae2848670"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the enrichment service to call. The only supported option is <code>natural_language_understanding</code>. The <code>elements</code> option is deprecated and support ended on 10 July 2020.  <a href="../../d6/d2b/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_enrichment.html#aadc62edc68828c3c0ef52ecae2848670">More...</a><br /></td></tr>
 <tr class="separator:aadc62edc68828c3c0ef52ecae2848670"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaa2db9005e4c041817af6802c34afcfc"><td class="memItemLeft" align="right" valign="top">bool?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d2b/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_enrichment.html#aaa2db9005e4c041817af6802c34afcfc">IgnoreDownstreamErrors</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:aaa2db9005e4c041817af6802c34afcfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">If true, then most errors generated during the enrichment process will be treated as warnings and will not cause the document to fail processing.  <a href="../../d6/d2b/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_enrichment.html#aaa2db9005e4c041817af6802c34afcfc">More...</a><br /></td></tr>
 <tr class="separator:aaa2db9005e4c041817af6802c34afcfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b0dfc876bb70aab97e6d1ebf121bb85"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d3/dfe/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_enrichment_options.html">EnrichmentOptions</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d2b/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_enrichment.html#a4b0dfc876bb70aab97e6d1ebf121bb85">Options</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a4b0dfc876bb70aab97e6d1ebf121bb85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Options which are specific to a particular enrichment.  <a href="../../d6/d2b/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_enrichment.html#a4b0dfc876bb70aab97e6d1ebf121bb85">More...</a><br /></td></tr>
+<tr class="memdesc:a4b0dfc876bb70aab97e6d1ebf121bb85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Options that are specific to a particular enrichment.  <a href="../../d6/d2b/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_enrichment.html#a4b0dfc876bb70aab97e6d1ebf121bb85">More...</a><br /></td></tr>
 <tr class="separator:a4b0dfc876bb70aab97e6d1ebf121bb85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -141,9 +141,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Name of the enrichment service to call. Current options are <code>natural_language_understanding</code> and <code>elements</code>. </p>
-<p>When using <code>natual_language_understanding</code>, the <b>options</b> object must contain Natural Language Understanding options.</p>
-<p>When using <code>elements</code> the <b>options</b> object must contain Element Classification options. Additionally, when using the <code>elements</code> enrichment the configuration specified and files ingested must meet all the criteria specified in <a href="https://cloud.ibm.com/docs/discovery?topic=discovery-element-classification#element-classification">the documentation</a>.</p>
+<p>Name of the enrichment service to call. The only supported option is <code>natural_language_understanding</code>. The <code>elements</code> option is deprecated and support ended on 10 July 2020. </p>
+<p>The <b>options</b> object must contain Natural Language Understanding options.</p>
 
 </div>
 </div>
@@ -239,7 +238,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Options which are specific to a particular enrichment. </p>
+<p>Options that are specific to a particular enrichment. </p>
+<p>The <code>elements</code> enrichment type is deprecated. Use the <a href="https://cloud.ibm.com/apidocs/discovery-data#createproject">Create a project</a> method of the <a class="el" href="../../d4/da8/namespace_i_b_m_1_1_watson_1_1_discovery.html">Discovery</a> <a class="el" href="../../da/df3/namespace_i_b_m_1_1_watson_1_1_discovery_1_1v2.html">v2</a> API to create a <code>content_intelligence</code> project type instead.</p>
 
 </div>
 </div>

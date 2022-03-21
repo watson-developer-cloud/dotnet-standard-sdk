@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">5.2.1</span>
+   &#160;<span id="projectnumber">5.3.0</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -692,13 +692,13 @@ Public Member Functions</h2></td></tr>
 <p>Add a grammar. </p>
 <p>Adds a single grammar file to a custom language model. Submit a plain text file in UTF-8 format that defines the grammar. Use multiple requests to submit multiple grammar files. You must use credentials for the instance of the service that owns a model to add a grammar to it. Adding a grammar does not affect the custom language model until you train the model for the new data by using the <a href="../../#trainlanguagemodel">Train a custom language model</a> method.</p>
 <p>The call returns an HTTP 201 response code if the grammar is valid. The service then asynchronously processes the contents of the grammar and automatically extracts new words that it finds. This operation can take a few seconds or minutes to complete depending on the size and complexity of the grammar, as well as the current load on the service. You cannot submit requests to add additional resources to the custom model or to train the model until the service's analysis of the grammar for the current request completes. Use the <a href="../../#getgrammar">Get a grammar</a> method to check the status of the analysis.</p>
-<p>The service populates the model's words resource with any word that is recognized by the grammar that is not found in the model's base vocabulary. These are referred to as out-of-vocabulary (OOV) words. You can use the <a href="../../#listwords">List custom words</a> method to examine the words resource and use other words-related methods to eliminate typos and modify how words are pronounced as needed.</p>
+<p><em>For grammars that are based on previous-generation models,</em> the service populates the model's words resource with any word that is recognized by the grammar that is not found in the model's base vocabulary. These are referred to as out-of-vocabulary (OOV) words. You can use the <a href="../../#listwords">List custom words</a> method to examine the words resource and use other words-related methods to eliminate typos and modify how words are pronounced as needed. <em>For grammars that are based on next-generation models,</em> the service extracts no OOV words from the grammars.</p>
 <p>To add a grammar that has the same name as an existing grammar, set the <code>allow_overwrite</code> parameter to <code>true</code>; otherwise, the request fails. Overwriting an existing grammar causes the service to process the grammar file and extract OOV words anew. Before doing so, it removes any OOV words associated with the existing grammar from the model's words resource unless they were also added by another resource or they have been modified in some way with the <a href="../../#addwords">Add custom words</a> or <a href="../../#addword">Add a custom word</a> method.</p>
-<p>The service limits the overall amount of data that you can add to a custom model to a maximum of 10 million total words from all sources combined. Also, you can add no more than 90 thousand OOV words to a model. This includes words that the service extracts from corpora and grammars and words that you add directly. Grammars are available for all languages and models that support language customization.</p>
-<p><b>Note:</b> Grammars are supported only for use with previous-generation models. They are not supported for next-generation models.</p>
+<p><em>For grammars that are based on previous-generation models,</em> the service limits the overall amount of data that you can add to a custom model to a maximum of 10 million total words from all sources combined. Also, you can add no more than 90 thousand OOV words to a model. This includes words that the service extracts from corpora and grammars and words that you add directly.</p>
 <p><b>See also:</b></p><ul>
 <li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-grammarUnderstand#grammarUnderstand">Understanding grammars</a></li>
-<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-grammarAdd#addGrammar">Add a grammar to the custom language model</a>.</li>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-grammarAdd#addGrammar">Add a grammar to the custom language model</a></li>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support">Language support for customization</a>.</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1016,6 +1016,7 @@ Public Member Functions</h2></td></tr>
 <p>Creates a new custom acoustic model for a specified base model. The custom acoustic model can be used only with the base model for which it is created. The model is owned by the instance of the service whose credentials are used to create it.</p>
 <p>You can create a maximum of 1024 custom acoustic models per owning credentials. The service returns an error if you attempt to create more than 1024 models. You do not lose any models, but you cannot create any more until your model count is below the limit.</p>
 <p><b>Note:</b> Acoustic model customization is supported only for use with previous-generation models. It is not supported for next-generation models.</p>
+<p><b>Important:</b> Effective 15 March 2022, previous-generation models for all languages other than Arabic and Japanese are deprecated. The deprecated models remain available until 15 September 2022, when they will be removed from the service and the documentation. You must migrate to the equivalent next-generation model by the end of service date. For more information, see <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-migrate">Migrating to next-generation models</a>.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-acoustic#createModel-acoustic">Create a custom acoustic model</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1024,7 +1025,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p>To determine whether a base model supports acoustic model customization, refer to <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support#custom-language-support">Language support for customization</a>.</p>
+<p>To determine whether a base model supports acoustic model customization, refer to <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support">Language support for customization</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">description</td><td>A description of the new custom acoustic model. Use a localized description that matches the language of the custom model. (optional)</td></tr>
@@ -1297,14 +1298,17 @@ Public Member Functions</h2></td></tr>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-audio-formats">Supported audio formats</a>.</p>
 <h3>Next-generation models</h3>
 <p>The service supports next-generation <code>Multimedia</code> (16 kHz) and <code>Telephony</code> (8 kHz) models for many languages. Next-generation models have higher throughput than the service's previous generation of <code>Broadband</code> and <code>Narrowband</code> models. When you use next-generation models, the service can return transcriptions more quickly and also provide noticeably better transcription accuracy.</p>
-<p>You specify a next-generation model by using the <code>model</code> query parameter, as you do a previous-generation model. Many next-generation models also support the <code>low_latency</code> parameter, which is not available with previous-generation models.</p>
-<p>But next-generation models do not support all of the parameters that are available for use with previous-generation models. For more information about all parameters that are supported for use with next-generation models, see <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-ng#models-ng-features">Supported features for next-generation models</a>.</p>
-<p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-ng">Next-generation languages and models</a>.</p>
+<p>You specify a next-generation model by using the <code>model</code> query parameter, as you do a previous-generation model. Many next-generation models also support the <code>low_latency</code> parameter, which is not available with previous-generation models. Next-generation models do not support all of the parameters that are available for use with previous-generation models.</p>
+<p><b>Important:</b> Effective 15 March 2022, previous-generation models for all languages other than Arabic and Japanese are deprecated. The deprecated models remain available until 15 September 2022, when they will be removed from the service and the documentation. You must migrate to the equivalent next-generation model by the end of service date. For more information, see <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-migrate">Migrating to next-generation models</a>.</p>
+<p><b>See also:</b></p><ul>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-ng">Next-generation languages and models</a></li>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-ng#models-ng-features">Supported features for next-generation models</a>.</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">audio</td><td>The audio to transcribe.</td></tr>
     <tr><td class="paramname">contentType</td><td>The format (MIME type) of the audio. For more information about specifying an audio format, see <b>Audio formats (content types)</b> in the method description. (optional)</td></tr>
-    <tr><td class="paramname">model</td><td>The identifier of the model that is to be used for the recognition request. (<b>Note:</b> The model <code>ar-AR_BroadbandModel</code> is deprecated; use <code>ar-MS_BroadbandModel</code> instead.) See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models">Previous-generation languages and models</a> and <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-ng">Next-generation languages and models</a>. (optional, default to en-US_BroadbandModel)</td></tr>
+    <tr><td class="paramname">model</td><td>The identifier of the model that is to be used for the recognition request. (<b>Note:</b> The model <code>ar-AR_BroadbandModel</code> is deprecated; use <code>ar-MS_BroadbandModel</code> instead.) See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-use">Using a model for speech recognition</a>. (optional, default to en-US_BroadbandModel)</td></tr>
     <tr><td class="paramname">callbackUrl</td><td>A URL to which callback notifications are to be sent. The URL must already be successfully allowlisted by using the <a href="../../#registercallback">Register a callback</a> method. You can include the same callback URL with any number of job creation requests. Omit the parameter to poll the service for job completion and results.</td></tr>
   </table>
   </dd>
@@ -1360,24 +1364,30 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">wordAlternativesThreshold</td><td>A confidence value that is the lower bound for identifying a hypothesis as a possible word alternative (also known as "Confusion Networks"). An alternative word is considered if its confidence is greater than or equal to the threshold. Specify a probability between 0.0 and 1.0. By default, the service computes no alternative words. See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-spotting#word-alternatives">Word alternatives</a>. (optional)</td></tr>
     <tr><td class="paramname">wordConfidence</td><td>If <code>true</code>, the service returns a confidence measure in the range of 0.0 to 1.0 for each word. By default, the service returns no word confidence scores. See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-metadata#word-confidence">Word confidence</a>. (optional, default to false)</td></tr>
     <tr><td class="paramname">timestamps</td><td>If <code>true</code>, the service returns time alignment for each word. By default, no timestamps are returned. See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-metadata#word-timestamps">Word timestamps</a>. (optional, default to false)</td></tr>
-    <tr><td class="paramname">profanityFilter</td><td>If <code>true</code>, the service filters profanity from all output except for keyword results by replacing inappropriate words with a series of asterisks. Set the parameter to <code>false</code> to return results with no censoring. Applies to US English and Japanese transcription only. See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-formatting#profanity-filtering">Profanity filtering</a>. (optional, default to true)</td></tr>
+    <tr><td class="paramname">profanityFilter</td><td>If <code>true</code>, the service filters profanity from all output except for keyword results by replacing inappropriate words with a series of asterisks. Set the parameter to <code>false</code> to return results with no censoring.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p><b>Note:</b> The parameter can be used with US English and Japanese transcription only. See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-formatting#profanity-filtering">Profanity filtering</a>. (optional, default to true)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
     <tr><td class="paramname">smartFormatting</td><td>If <code>true</code>, the service converts dates, times, series of digits and numbers, phone numbers, currency values, and internet addresses into more readable, conventional representations in the final transcript of a recognition request. For US English, the service also converts certain keyword strings to punctuation symbols. By default, the service performs no smart formatting.</td></tr>
   </table>
   </dd>
 </dl>
-<p><b>Beta:</b> The parameter is beta functionality. Applies to US English, Japanese, and Spanish transcription only.</p>
+<p><b>Note:</b> The parameter can be used with US English, Japanese, and Spanish (all dialects) transcription only.</p>
 <p>See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-formatting#smart-formatting">Smart formatting</a>. (optional, default to false)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">speakerLabels</td><td>If <code>true</code>, the response includes labels that identify which words were spoken by which participants in a multi-person exchange. By default, the service returns no speaker labels. Setting <code>speaker_labels</code> to <code>true</code> forces the <code>timestamps</code> parameter to be <code>true</code>, regardless of whether you specify <code>false</code> for the parameter.</td></tr>
+    <tr><td class="paramname">speakerLabels</td><td>If <code>true</code>, the response includes labels that identify which words were spoken by which participants in a multi-person exchange. By default, the service returns no speaker labels. Setting <code>speaker_labels</code> to <code>true</code> forces the <code>timestamps</code> parameter to be <code>true</code>, regardless of whether you specify <code>false</code> for the parameter.<ul>
+<li><em>For previous-generation models,</em> the parameter can be used with Australian English, US English, German, Japanese, Korean, and Spanish (both broadband and narrowband models) and UK English (narrowband model) transcription only.</li>
+<li><em>For next-generation models,</em> the parameter can be used with Czech, English (Australian, Indian, UK, and US), German, Japanese, Korean, and Spanish transcription only.</li>
+</ul>
+</td></tr>
   </table>
   </dd>
 </dl>
-<p><b>Beta:</b> The parameter is beta functionality.</p><ul>
-<li>For previous-generation models, the parameter can be used for Australian English, US English, German, Japanese, Korean, and Spanish (both broadband and narrowband models) and UK English (narrowband model) transcription only.</li>
-<li>For next-generation models, the parameter can be used for English (Australian, Indian, UK, and US), German, Japanese, Korean, and Spanish transcription only.</li>
-</ul>
-<p>Restrictions and limitations apply to the use of speaker labels for both types of models. See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-speaker-labels">Speaker labels</a>. (optional, default to false)</p>
+<p>See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-speaker-labels">Speaker labels</a>. (optional, default to false)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">customizationId</td><td>**Deprecated.** Use the <code>language_customization_id</code> parameter to specify the customization ID (GUID) of a custom language model that is to be used with the recognition request. Do not specify both parameters with a request. (optional)</td></tr>
@@ -1385,7 +1395,6 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p><b>Beta:</b> The parameter is beta functionality.</p>
 <p>See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-grammarUse">Using a grammar for speech recognition</a>. (optional)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1394,7 +1403,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <p>When you enable redaction, the service automatically enables smart formatting, regardless of whether you explicitly disable that feature. To ensure maximum security, the service also disables keyword spotting (ignores the <code>keywords</code> and <code>keywords_threshold</code> parameters) and returns only a single final transcript (forces the <code>max_alternatives</code> parameter to be <code>1</code>).</p>
-<p><b>Beta:</b> The parameter is beta functionality. Applies to US English, Japanese, and Korean transcription only.</p>
+<p><b>Note:</b> The parameter can be used with US English, Japanese, and Korean transcription only.</p>
 <p>See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-formatting#numeric-redaction">Numeric redaction</a>. (optional, default to false)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1433,10 +1442,11 @@ Public Member Functions</h2></td></tr>
 <p>See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-parsing#silence-time">End of phrase silence time</a>. (optional)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">splitTranscriptAtPhraseEnd</td><td>If <code>true</code>, directs the service to split the transcript into multiple final results based on semantic features of the input, for example, at the conclusion of meaningful phrases such as sentences. The service bases its understanding of semantic features on the base language model that you use with a request. Custom language models and grammars can also influence how and where the service splits a transcript. By default, the service splits transcripts based solely on the pause interval.</td></tr>
+    <tr><td class="paramname">splitTranscriptAtPhraseEnd</td><td>If <code>true</code>, directs the service to split the transcript into multiple final results based on semantic features of the input, for example, at the conclusion of meaningful phrases such as sentences. The service bases its understanding of semantic features on the base language model that you use with a request. Custom language models and grammars can also influence how and where the service splits a transcript.</td></tr>
   </table>
   </dd>
 </dl>
+<p>By default, the service splits transcripts based solely on the pause interval. If the parameters are used together on the same request, <code>end_of_phrase_silence_time</code> has precedence over <code>split_transcript_at_phrase_end</code>.</p>
 <p>See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-parsing#split-transcript">Split transcript at phrase end</a>. (optional, default to false)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1449,7 +1459,8 @@ Public Member Functions</h2></td></tr>
 <li>0.5 (the default) provides a reasonable compromise for the level of sensitivity.</li>
 <li>1.0 suppresses no audio (speech detection sensitivity is disabled).</li>
 </ul>
-<p>The values increase on a monotonic curve. See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-detection#detection-parameters-sensitivity">Speech detector sensitivity</a>. (optional)</p>
+<p>The values increase on a monotonic curve.</p>
+<p>The parameter is supported with all next-generation models and with most previous-generation models. See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-detection#detection-parameters-sensitivity">Speech detector sensitivity</a> and <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-detection#detection-support">Language model support</a>. (optional)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">backgroundAudioSuppression</td><td>The level to which the service is to suppress background audio based on its volume to prevent it from being transcribed as speech. Use the parameter to suppress side conversations or background noise.</td></tr>
@@ -1461,7 +1472,8 @@ Public Member Functions</h2></td></tr>
 <li>0.5 provides a reasonable level of audio suppression for general usage.</li>
 <li>1.0 suppresses all audio (no audio is transcribed).</li>
 </ul>
-<p>The values increase on a monotonic curve. See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-detection#detection-parameters-suppression">Background audio suppression</a>. (optional)</p>
+<p>The values increase on a monotonic curve.</p>
+<p>The parameter is supported with all next-generation models and with most previous-generation models. See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-detection#detection-parameters-suppression">Background audio suppression</a> and <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-detection#detection-support">Language model support</a>. (optional)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">lowLatency</td><td>If <code>true</code> for next-generation <code>Multimedia</code> and <code>Telephony</code> models that support low latency, directs the service to produce results even more quickly than it usually does. Next-generation models produce transcription results faster than previous-generation models. The <code>low_latency</code> parameter causes the models to produce results even more quickly, though the results might be less accurate when the parameter is used.</td></tr>
@@ -1526,7 +1538,11 @@ Public Member Functions</h2></td></tr>
 <p>Create a custom language model. </p>
 <p>Creates a new custom language model for a specified base model. The custom language model can be used only with the base model for which it is created. The model is owned by the instance of the service whose credentials are used to create it.</p>
 <p>You can create a maximum of 1024 custom language models per owning credentials. The service returns an error if you attempt to create more than 1024 models. You do not lose any models, but you cannot create any more until your model count is below the limit.</p>
-<p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-languageCreate#createModel-language">Create a custom language model</a>.</p>
+<p><b>Important:</b> Effective 15 March 2022, previous-generation models for all languages other than Arabic and Japanese are deprecated. The deprecated models remain available until 15 September 2022, when they will be removed from the service and the documentation. You must migrate to the equivalent next-generation model by the end of service date. For more information, see <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-migrate">Migrating to next-generation models</a>.</p>
+<p><b>See also:</b></p><ul>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-languageCreate#createModel-language">Create a custom language model</a></li>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support">Language support for customization</a>.</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>A user-defined name for the new custom language model. Use a name that is unique among all custom language models that you own. Use a localized name that matches the language of the custom model. Use a name that describes the domain of the custom model, such as <code>Medical custom model</code> or <code>Legal custom model</code>.</td></tr>
@@ -1534,19 +1550,19 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p>To determine whether a base model supports language model customization, use the <a href="../../#getmodel">Get a model</a> method and check that the attribute <code>custom_language_model</code> is set to <code>true</code>. You can also refer to <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support#custom-language-support">Language support for customization</a>.</p>
+<p>To determine whether a base model supports language model customization, use the <a href="../../#getmodel">Get a model</a> method and check that the attribute <code>custom_language_model</code> is set to <code>true</code>. You can also refer to <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support">Language support for customization</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">dialect</td><td>The dialect of the specified language that is to be used with the custom language model. For most languages, the dialect matches the language of the base model by default. For example, <code>en-US</code> is used for the US English language models. All dialect values are case-insensitive.</td></tr>
+    <tr><td class="paramname">dialect</td><td>The dialect of the specified language that is to be used with the custom language model. <em>For all languages, it is always safe to omit this field.</em> The service automatically uses the language identifier from the name of the base model. For example, the service automatically uses <code>en-US</code> for all US English models.</td></tr>
   </table>
   </dd>
 </dl>
-<p>The parameter is meaningful only for Spanish language models, for which you can always safely omit the parameter to have the service create the correct mapping. For Spanish, the service creates a custom language model that is suited for speech in one of the following dialects:</p><ul>
+<p>If you specify the <code>dialect</code> for a new custom model, follow these guidelines. <em>For non-Spanish previous-generation models and for next-generation models,</em> you must specify a value that matches the five-character language identifier from the name of the base model. <em>For Spanish previous-generation models,</em> you must specify one of the following values:</p><ul>
 <li><code>es-ES</code> for Castilian Spanish (<code>es-ES</code> models)</li>
 <li><code>es-LA</code> for Latin American Spanish (<code>es-AR</code>, <code>es-CL</code>, <code>es-CO</code>, and <code>es-PE</code> models)</li>
 <li><code>es-US</code> for Mexican (North American) Spanish (<code>es-MX</code> models)</li>
 </ul>
-<p>If you specify the <code>dialect</code> parameter for a non-Spanish language model, its value must match the language of the base model. If you specify the <code>dialect</code> for a Spanish language model, its value must match one of the defined mappings (<code>es-ES</code>, <code>es-LA</code>, or <code>es-MX</code>). (optional)</p>
+<p>All values that you pass for the <code>dialect</code> field are case-insensitive. (optional)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">description</td><td>A description of the new custom language model. Use a localized description that matches the language of the custom model. (optional)</td></tr>
@@ -1737,9 +1753,11 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Delete a grammar. </p>
-<p>Deletes an existing grammar from a custom language model. The service removes any out-of-vocabulary (OOV) words associated with the grammar from the custom model's words resource unless they were also added by another resource or they were modified in some way with the <a href="../../#addwords">Add custom words</a> or <a href="../../#addword">Add a custom word</a> method. Removing a grammar does not affect the custom model until you train the model with the <a href="../../#trainlanguagemodel">Train a custom language model</a> method. You must use credentials for the instance of the service that owns a model to delete its grammar. Grammars are available for all languages and models that support language customization.</p>
-<p><b>Note:</b> Grammars are supported only for use with previous-generation models. They are not supported for next-generation models.</p>
-<p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageGrammars#deleteGrammar">Deleting a grammar from a custom language model</a>.</p>
+<p>Deletes an existing grammar from a custom language model. <em>For grammars that are based on previous-generation models,</em> the service removes any out-of-vocabulary (OOV) words associated with the grammar from the custom model's words resource unless they were also added by another resource or they were modified in some way with the <a href="../../#addwords">Add custom words</a> or <a href="../../#addword">Add a custom word</a> method. Removing a grammar does not affect the custom model until you train the model with the <a href="../../#trainlanguagemodel">Train a custom language model</a> method. You must use credentials for the instance of the service that owns a model to delete its grammar.</p>
+<p><b>See also:</b></p><ul>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageGrammars#deleteGrammar">Deleting a grammar from a custom language model</a></li>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support">Language support for customization</a>.</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom language model that is to be used for the request. You must make the request with credentials for the instance of the service that owns the custom model.</td></tr>
@@ -1818,7 +1836,10 @@ Public Member Functions</h2></td></tr>
 
 <p>Delete a custom language model. </p>
 <p>Deletes an existing custom language model. The custom model cannot be deleted if another request, such as adding a corpus or grammar to the model, is currently being processed. You must use credentials for the instance of the service that owns a model to delete it.</p>
-<p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageLanguageModels#deleteModel-language">Deleting a custom language model</a>.</p>
+<p><b>See also:</b></p><ul>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageLanguageModels#deleteModel-language">Deleting a custom language model</a></li>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support">Language support for customization</a>.</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom language model that is to be used for the request. You must make the request with credentials for the instance of the service that owns the custom model.</td></tr>
@@ -2105,9 +2126,11 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get a grammar. </p>
-<p>Gets information about a grammar from a custom language model. The information includes the total number of out-of-vocabulary (OOV) words, name, and status of the grammar. You must use credentials for the instance of the service that owns a model to list its grammars. Grammars are available for all languages and models that support language customization.</p>
-<p><b>Note:</b> Grammars are supported only for use with previous-generation models. They are not supported for next-generation models.</p>
-<p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageGrammars#listGrammars">Listing grammars from a custom language model</a>.</p>
+<p>Gets information about a grammar from a custom language model. For each grammar, the information includes the name, status, and (for grammars that are based on previous-generation models) the total number of out-of-vocabulary (OOV) words. You must use credentials for the instance of the service that owns a model to list its grammars.</p>
+<p><b>See also:</b></p><ul>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageGrammars#listGrammars">Listing grammars from a custom language model</a></li>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support">Language support for customization</a>.</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom language model that is to be used for the request. You must make the request with credentials for the instance of the service that owns the custom model.</td></tr>
@@ -2147,7 +2170,10 @@ Public Member Functions</h2></td></tr>
 
 <p>Get a custom language model. </p>
 <p>Gets information about a specified custom language model. You must use credentials for the instance of the service that owns a model to list information about it.</p>
-<p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageLanguageModels#listModels-language">Listing custom language models</a>.</p>
+<p><b>See also:</b></p><ul>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageLanguageModels#listModels-language">Listing custom language models</a></li>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support">Language support for customization</a>.</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom language model that is to be used for the request. You must make the request with credentials for the instance of the service that owns the custom model.</td></tr>
@@ -2186,7 +2212,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Get a model. </p>
 <p>Gets information for a single specified language model that is available for use with the service. The information includes the name of the model and its minimum sampling rate in Hertz, among other things.</p>
-<p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-list">Listing models</a>.</p>
+<p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-list#models-list-specific">Listing a specific model</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">modelId</td><td>The identifier of the model in the form of its name from the output of the <a href="../../#listmodels">List models</a> method. (<b>Note:</b> The model <code>ar-AR_BroadbandModel</code> is deprecated; use <code>ar-MS_BroadbandModel</code> instead.).</td></tr>
@@ -2279,11 +2305,11 @@ Public Member Functions</h2></td></tr>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageAcousticModels#listModels-acoustic">Listing custom acoustic models</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">language</td><td>The identifier of the language for which custom language or custom acoustic models are to be returned. Omit the parameter to see all custom language or custom acoustic models that are owned by the requesting credentials. (<b>Note:</b> The identifier <code>ar-AR</code> is deprecated; use <code>ar-MS</code> instead.)</td></tr>
+    <tr><td class="paramname">language</td><td>The identifier of the language for which custom language or custom acoustic models are to be returned. Specify the five-character language identifier; for example, specify <code>en-US</code> to see all custom language or custom acoustic models that are based on US English models. Omit the parameter to see all custom language or custom acoustic models that are owned by the requesting credentials. (<b>Note:</b> The identifier <code>ar-AR</code> is deprecated; use <code>ar-MS</code> instead.)</td></tr>
   </table>
   </dd>
 </dl>
-<p>To determine the languages for which customization is available, see <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support#custom-language-support">Language support for customization</a>. (optional)</p>
+<p>To determine the languages for which customization is available, see <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support">Language support for customization</a>. (optional)</p>
 <dl class="section return"><dt>Returns</dt><dd>AcousticModelsAcousticModels</dd></dl>
 
 <p>Implements <a class="el" href="../../d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#ae980f741d9dd746e2584eaf5fdd9c979">IBM.Watson.SpeechToText.v1.ISpeechToTextService</a>.</p>
@@ -2394,9 +2420,11 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>List grammars. </p>
-<p>Lists information about all grammars from a custom language model. The information includes the total number of out-of-vocabulary (OOV) words, name, and status of each grammar. You must use credentials for the instance of the service that owns a model to list its grammars. Grammars are available for all languages and models that support language customization.</p>
-<p><b>Note:</b> Grammars are supported only for use with previous-generation models. They are not supported for next-generation models.</p>
-<p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageGrammars#listGrammars">Listing grammars from a custom language model</a>.</p>
+<p>Lists information about all grammars from a custom language model. For each grammar, the information includes the name, status, and (for grammars that are based on previous-generation models) the total number of out-of-vocabulary (OOV) words. You must use credentials for the instance of the service that owns a model to list its grammars.</p>
+<p><b>See also:</b></p><ul>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageGrammars#listGrammars">Listing grammars from a custom language model</a></li>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support">Language support for customization</a>.</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom language model that is to be used for the request. You must make the request with credentials for the instance of the service that owns the custom model.</td></tr>
@@ -2435,14 +2463,17 @@ Public Member Functions</h2></td></tr>
 
 <p>List custom language models. </p>
 <p>Lists information about all custom language models that are owned by an instance of the service. Use the <code>language</code> parameter to see all custom language models for the specified language. Omit the parameter to see all custom language models for all languages. You must use credentials for the instance of the service that owns a model to list information about it.</p>
-<p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageLanguageModels#listModels-language">Listing custom language models</a>.</p>
+<p><b>See also:</b></p><ul>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageLanguageModels#listModels-language">Listing custom language models</a></li>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support">Language support for customization</a>.</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">language</td><td>The identifier of the language for which custom language or custom acoustic models are to be returned. Omit the parameter to see all custom language or custom acoustic models that are owned by the requesting credentials. (<b>Note:</b> The identifier <code>ar-AR</code> is deprecated; use <code>ar-MS</code> instead.)</td></tr>
+    <tr><td class="paramname">language</td><td>The identifier of the language for which custom language or custom acoustic models are to be returned. Specify the five-character language identifier; for example, specify <code>en-US</code> to see all custom language or custom acoustic models that are based on US English models. Omit the parameter to see all custom language or custom acoustic models that are owned by the requesting credentials. (<b>Note:</b> The identifier <code>ar-AR</code> is deprecated; use <code>ar-MS</code> instead.)</td></tr>
   </table>
   </dd>
 </dl>
-<p>To determine the languages for which customization is available, see <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support#custom-language-support">Language support for customization</a>. (optional)</p>
+<p>To determine the languages for which customization is available, see <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support">Language support for customization</a>. (optional)</p>
 <dl class="section return"><dt>Returns</dt><dd>LanguageModelsLanguageModels</dd></dl>
 
 <p>Implements <a class="el" href="../../d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a5b5a2674e00b27f7c6186e31d77ad716">IBM.Watson.SpeechToText.v1.ISpeechToTextService</a>.</p>
@@ -2474,7 +2505,7 @@ Public Member Functions</h2></td></tr>
 
 <p>List models. </p>
 <p>Lists all language models that are available for use with the service. The information includes the name of the model and its minimum sampling rate in Hertz, among other things. The ordering of the list of models can change from call to call; do not rely on an alphabetized or static list of models.</p>
-<p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-list">Listing models</a>.</p>
+<p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-list#models-list-all">Listing all models</a>.</p>
 <dl class="section return"><dt>Returns</dt><dd>SpeechModelsSpeechModels</dd></dl>
 
 <p>Implements <a class="el" href="../../d4/d0f/interface_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_i_speech_to_text_service.html#a826e33505711536f5686dad60450b3e9">IBM.Watson.SpeechToText.v1.ISpeechToTextService</a>.</p>
@@ -2763,11 +2794,14 @@ Public Member Functions</h2></td></tr>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-audio-formats">Supported audio formats</a>.</p>
 <h3>Next-generation models</h3>
 <p>The service supports next-generation <code>Multimedia</code> (16 kHz) and <code>Telephony</code> (8 kHz) models for many languages. Next-generation models have higher throughput than the service's previous generation of <code>Broadband</code> and <code>Narrowband</code> models. When you use next-generation models, the service can return transcriptions more quickly and also provide noticeably better transcription accuracy.</p>
-<p>You specify a next-generation model by using the <code>model</code> query parameter, as you do a previous-generation model. Many next-generation models also support the <code>low_latency</code> parameter, which is not available with previous-generation models.</p>
-<p>But next-generation models do not support all of the parameters that are available for use with previous-generation models. For more information about all parameters that are supported for use with next-generation models, see <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-ng#models-ng-features">Supported features for next-generation models</a>.</p>
-<p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-ng">Next-generation languages and models</a>.</p>
+<p>You specify a next-generation model by using the <code>model</code> query parameter, as you do a previous-generation model. Many next-generation models also support the <code>low_latency</code> parameter, which is not available with previous-generation models. Next-generation models do not support all of the parameters that are available for use with previous-generation models.</p>
+<p><b>Important:</b> Effective 15 March 2022, previous-generation models for all languages other than Arabic and Japanese are deprecated. The deprecated models remain available until 15 September 2022, when they will be removed from the service and the documentation. You must migrate to the equivalent next-generation model by the end of service date. For more information, see <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-migrate">Migrating to next-generation models</a>.</p>
+<p><b>See also:</b></p><ul>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-ng">Next-generation languages and models</a></li>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-ng#models-ng-features">Supported features for next-generation models</a></li>
+</ul>
 <h3>Multipart speech recognition</h3>
-<p><b>Note:</b> The <a class="el" href="../../d2/d15/namespace_i_b_m_1_1_watson.html">Watson</a> SDKs do not support multipart speech recognition.</p>
+<p><b>Note:</b> The asynchronous HTTP interface, WebSocket interface, and <a class="el" href="../../d2/d15/namespace_i_b_m_1_1_watson.html">Watson</a> SDKs do not support multipart speech recognition.</p>
 <p>The HTTP <code>POST</code> method of the service also supports multipart speech recognition. With multipart requests, you pass all audio data as multipart form data. You specify some parameters as request headers and query parameters, but you pass JSON metadata as form data to control most aspects of the transcription. You can use multipart recognition to pass multiple audio files with a single request.</p>
 <p>Use the multipart approach with browsers for which JavaScript is disabled or when the parameters used with the request are greater than the 8 KB limit imposed by most HTTP servers and proxies. You can encounter this limit, for example, if you want to spot a very large number of keywords.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-http#HTTP-multi">Making a multipart HTTP request</a>.</p>
@@ -2775,7 +2809,7 @@ Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">audio</td><td>The audio to transcribe.</td></tr>
     <tr><td class="paramname">contentType</td><td>The format (MIME type) of the audio. For more information about specifying an audio format, see <b>Audio formats (content types)</b> in the method description. (optional)</td></tr>
-    <tr><td class="paramname">model</td><td>The identifier of the model that is to be used for the recognition request. (<b>Note:</b> The model <code>ar-AR_BroadbandModel</code> is deprecated; use <code>ar-MS_BroadbandModel</code> instead.) See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models">Previous-generation languages and models</a> and <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-ng">Next-generation languages and models</a>. (optional, default to en-US_BroadbandModel)</td></tr>
+    <tr><td class="paramname">model</td><td>The identifier of the model that is to be used for the recognition request. (<b>Note:</b> The model <code>ar-AR_BroadbandModel</code> is deprecated; use <code>ar-MS_BroadbandModel</code> instead.) See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-use">Using a model for speech recognition</a>. (optional, default to en-US_BroadbandModel)</td></tr>
     <tr><td class="paramname">languageCustomizationId</td><td>The customization ID (GUID) of a custom language model that is to be used with the recognition request. The base model of the specified custom language model must match the model specified with the <code>model</code> parameter. You must make the request with credentials for the instance of the service that owns the custom model. By default, no custom language model is used. See [Using a custom language model for speech recognition](<a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-languageUse">https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-languageUse</a>).</td></tr>
   </table>
   </dd>
@@ -2808,24 +2842,30 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">wordAlternativesThreshold</td><td>A confidence value that is the lower bound for identifying a hypothesis as a possible word alternative (also known as "Confusion Networks"). An alternative word is considered if its confidence is greater than or equal to the threshold. Specify a probability between 0.0 and 1.0. By default, the service computes no alternative words. See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-spotting#word-alternatives">Word alternatives</a>. (optional)</td></tr>
     <tr><td class="paramname">wordConfidence</td><td>If <code>true</code>, the service returns a confidence measure in the range of 0.0 to 1.0 for each word. By default, the service returns no word confidence scores. See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-metadata#word-confidence">Word confidence</a>. (optional, default to false)</td></tr>
     <tr><td class="paramname">timestamps</td><td>If <code>true</code>, the service returns time alignment for each word. By default, no timestamps are returned. See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-metadata#word-timestamps">Word timestamps</a>. (optional, default to false)</td></tr>
-    <tr><td class="paramname">profanityFilter</td><td>If <code>true</code>, the service filters profanity from all output except for keyword results by replacing inappropriate words with a series of asterisks. Set the parameter to <code>false</code> to return results with no censoring. Applies to US English and Japanese transcription only. See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-formatting#profanity-filtering">Profanity filtering</a>. (optional, default to true)</td></tr>
+    <tr><td class="paramname">profanityFilter</td><td>If <code>true</code>, the service filters profanity from all output except for keyword results by replacing inappropriate words with a series of asterisks. Set the parameter to <code>false</code> to return results with no censoring.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p><b>Note:</b> The parameter can be used with US English and Japanese transcription only. See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-formatting#profanity-filtering">Profanity filtering</a>. (optional, default to true)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
     <tr><td class="paramname">smartFormatting</td><td>If <code>true</code>, the service converts dates, times, series of digits and numbers, phone numbers, currency values, and internet addresses into more readable, conventional representations in the final transcript of a recognition request. For US English, the service also converts certain keyword strings to punctuation symbols. By default, the service performs no smart formatting.</td></tr>
   </table>
   </dd>
 </dl>
-<p><b>Beta:</b> The parameter is beta functionality. Applies to US English, Japanese, and Spanish transcription only.</p>
+<p><b>Note:</b> The parameter can be used with US English, Japanese, and Spanish (all dialects) transcription only.</p>
 <p>See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-formatting#smart-formatting">Smart formatting</a>. (optional, default to false)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">speakerLabels</td><td>If <code>true</code>, the response includes labels that identify which words were spoken by which participants in a multi-person exchange. By default, the service returns no speaker labels. Setting <code>speaker_labels</code> to <code>true</code> forces the <code>timestamps</code> parameter to be <code>true</code>, regardless of whether you specify <code>false</code> for the parameter.</td></tr>
+    <tr><td class="paramname">speakerLabels</td><td>If <code>true</code>, the response includes labels that identify which words were spoken by which participants in a multi-person exchange. By default, the service returns no speaker labels. Setting <code>speaker_labels</code> to <code>true</code> forces the <code>timestamps</code> parameter to be <code>true</code>, regardless of whether you specify <code>false</code> for the parameter.<ul>
+<li><em>For previous-generation models,</em> the parameter can be used with Australian English, US English, German, Japanese, Korean, and Spanish (both broadband and narrowband models) and UK English (narrowband model) transcription only.</li>
+<li><em>For next-generation models,</em> the parameter can be used with Czech, English (Australian, Indian, UK, and US), German, Japanese, Korean, and Spanish transcription only.</li>
+</ul>
+</td></tr>
   </table>
   </dd>
 </dl>
-<p><b>Beta:</b> The parameter is beta functionality.</p><ul>
-<li>For previous-generation models, the parameter can be used for Australian English, US English, German, Japanese, Korean, and Spanish (both broadband and narrowband models) and UK English (narrowband model) transcription only.</li>
-<li>For next-generation models, the parameter can be used for English (Australian, Indian, UK, and US), German, Japanese, Korean, and Spanish transcription only.</li>
-</ul>
-<p>Restrictions and limitations apply to the use of speaker labels for both types of models. See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-speaker-labels">Speaker labels</a>. (optional, default to false)</p>
+<p>See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-speaker-labels">Speaker labels</a>. (optional, default to false)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">customizationId</td><td>**Deprecated.** Use the <code>language_customization_id</code> parameter to specify the customization ID (GUID) of a custom language model that is to be used with the recognition request. Do not specify both parameters with a request. (optional)</td></tr>
@@ -2833,7 +2873,6 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p><b>Beta:</b> The parameter is beta functionality.</p>
 <p>See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-grammarUse">Using a grammar for speech recognition</a>. (optional)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2842,7 +2881,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <p>When you enable redaction, the service automatically enables smart formatting, regardless of whether you explicitly disable that feature. To ensure maximum security, the service also disables keyword spotting (ignores the <code>keywords</code> and <code>keywords_threshold</code> parameters) and returns only a single final transcript (forces the <code>max_alternatives</code> parameter to be <code>1</code>).</p>
-<p><b>Beta:</b> The parameter is beta functionality. Applies to US English, Japanese, and Korean transcription only.</p>
+<p><b>Note:</b> The parameter can be used with US English, Japanese, and Korean transcription only.</p>
 <p>See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-formatting#numeric-redaction">Numeric redaction</a>. (optional, default to false)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2865,10 +2904,11 @@ Public Member Functions</h2></td></tr>
 <p>See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-parsing#silence-time">End of phrase silence time</a>. (optional)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">splitTranscriptAtPhraseEnd</td><td>If <code>true</code>, directs the service to split the transcript into multiple final results based on semantic features of the input, for example, at the conclusion of meaningful phrases such as sentences. The service bases its understanding of semantic features on the base language model that you use with a request. Custom language models and grammars can also influence how and where the service splits a transcript. By default, the service splits transcripts based solely on the pause interval.</td></tr>
+    <tr><td class="paramname">splitTranscriptAtPhraseEnd</td><td>If <code>true</code>, directs the service to split the transcript into multiple final results based on semantic features of the input, for example, at the conclusion of meaningful phrases such as sentences. The service bases its understanding of semantic features on the base language model that you use with a request. Custom language models and grammars can also influence how and where the service splits a transcript.</td></tr>
   </table>
   </dd>
 </dl>
+<p>By default, the service splits transcripts based solely on the pause interval. If the parameters are used together on the same request, <code>end_of_phrase_silence_time</code> has precedence over <code>split_transcript_at_phrase_end</code>.</p>
 <p>See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-parsing#split-transcript">Split transcript at phrase end</a>. (optional, default to false)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2881,7 +2921,8 @@ Public Member Functions</h2></td></tr>
 <li>0.5 (the default) provides a reasonable compromise for the level of sensitivity.</li>
 <li>1.0 suppresses no audio (speech detection sensitivity is disabled).</li>
 </ul>
-<p>The values increase on a monotonic curve. See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-detection#detection-parameters-sensitivity">Speech detector sensitivity</a>. (optional)</p>
+<p>The values increase on a monotonic curve.</p>
+<p>The parameter is supported with all next-generation models and with most previous-generation models. See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-detection#detection-parameters-sensitivity">Speech detector sensitivity</a> and <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-detection#detection-support">Language model support</a>. (optional)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">backgroundAudioSuppression</td><td>The level to which the service is to suppress background audio based on its volume to prevent it from being transcribed as speech. Use the parameter to suppress side conversations or background noise.</td></tr>
@@ -2893,7 +2934,8 @@ Public Member Functions</h2></td></tr>
 <li>0.5 provides a reasonable level of audio suppression for general usage.</li>
 <li>1.0 suppresses all audio (no audio is transcribed).</li>
 </ul>
-<p>The values increase on a monotonic curve. See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-detection#detection-parameters-suppression">Background audio suppression</a>. (optional)</p>
+<p>The values increase on a monotonic curve.</p>
+<p>The parameter is supported with all next-generation models and with most previous-generation models. See <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-detection#detection-parameters-suppression">Background audio suppression</a> and <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-detection#detection-support">Language model support</a>. (optional)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">lowLatency</td><td>If <code>true</code> for next-generation <code>Multimedia</code> and <code>Telephony</code> models that support low latency, directs the service to produce results even more quickly than it usually does. Next-generation models produce transcription results faster than previous-generation models. The <code>low_latency</code> parameter causes the models to produce results even more quickly, though the results might be less accurate when the parameter is used.</td></tr>
@@ -3029,7 +3071,10 @@ Public Member Functions</h2></td></tr>
 
 <p>Reset a custom language model. </p>
 <p>Resets a custom language model by removing all corpora, grammars, and words from the model. Resetting a custom language model initializes the model to its state when it was first created. Metadata such as the name and language of the model are preserved, but the model's words resource is removed and must be re-created. You must use credentials for the instance of the service that owns a model to reset it.</p>
-<p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageLanguageModels#resetModel-language">Resetting a custom language model</a>.</p>
+<p><b>See also:</b></p><ul>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageLanguageModels#resetModel-language">Resetting a custom language model</a></li>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support">Language support for customization</a>.</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom language model that is to be used for the request. You must make the request with credentials for the instance of the service that owns the custom model.</td></tr>
@@ -3151,7 +3196,10 @@ Public Member Functions</h2></td></tr>
 <p>Initiates the training of a custom language model with new resources such as corpora, grammars, and custom words. After adding, modifying, or deleting resources for a custom language model, use this method to begin the actual training of the model on the latest data. You can specify whether the custom language model is to be trained with all words from its words resource or only with words that were added or modified by the user directly. You must use credentials for the instance of the service that owns a model to train it.</p>
 <p>The training method is asynchronous. It can take on the order of minutes to complete depending on the amount of data on which the service is being trained and the current load on the service. The method returns an HTTP 200 response code to indicate that the training process has begun.</p>
 <p>You can monitor the status of the training by using the <a href="../../#getlanguagemodel">Get a custom language model</a> method to poll the model's status. Use a loop to check the status every 10 seconds. The method returns a <code>LanguageModel</code> object that includes <code>status</code> and <code>progress</code> fields. A status of <code>available</code> means that the custom model is trained and ready to use. The service cannot accept subsequent training requests or requests to add new resources until the existing request completes.</p>
-<p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-languageCreate#trainModel-language">Train the custom language model</a>.</p>
+<p><b>See also:</b></p><ul>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-languageCreate#trainModel-language">Train the custom language model</a></li>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support">Language support for customization</a></li>
+</ul>
 <h3>Training failures</h3>
 <p>Training can fail to start for the following reasons:</p><ul>
 <li>The service is currently handling another request for the custom model, such as another training request or a request to add a corpus or grammar to the model.</li>
@@ -3266,7 +3314,8 @@ Public Member Functions</h2></td></tr>
 
 <p>Upgrade a custom acoustic model. </p>
 <p>Initiates the upgrade of a custom acoustic model to the latest version of its base language model. The upgrade method is asynchronous. It can take on the order of minutes or hours to complete depending on the amount of data in the custom model and the current load on the service; typically, upgrade takes approximately twice the length of the total audio contained in the custom model. A custom model must be in the <code>ready</code> or <code>available</code> state to be upgraded. You must use credentials for the instance of the service that owns a model to upgrade it.</p>
-<p>The method returns an HTTP 200 response code to indicate that the upgrade process has begun successfully. You can monitor the status of the upgrade by using the <a href="../../#getacousticmodel">Get a custom acoustic model</a> method to poll the model's status. The method returns an <code>AcousticModel</code> object that includes <code>status</code> and <code>progress</code> fields. Use a loop to check the status once a minute. While it is being upgraded, the custom model has the status <code>upgrading</code>. When the upgrade is complete, the model resumes the status that it had prior to upgrade. The service cannot upgrade a model while it is handling another request for the model. The service cannot accept subsequent requests for the model until the existing upgrade request completes.</p>
+<p>The method returns an HTTP 200 response code to indicate that the upgrade process has begun successfully. You can monitor the status of the upgrade by using the <a href="../../#getacousticmodel">Get a custom acoustic model</a> method to poll the model's status. The method returns an <code>AcousticModel</code> object that includes <code>status</code> and <code>progress</code> fields. Use a loop to check the status once a minute.</p>
+<p>While it is being upgraded, the custom model has the status <code>upgrading</code>. When the upgrade is complete, the model resumes the status that it had prior to upgrade. The service cannot upgrade a model while it is handling another request for the model. The service cannot accept subsequent requests for the model until the existing upgrade request completes.</p>
 <p>If the custom acoustic model was trained with a separately created custom language model, you must use the <code>custom_language_model_id</code> parameter to specify the GUID of that custom language model. The custom language model must be upgraded before the custom acoustic model can be upgraded. Omit the parameter if the custom acoustic model was not trained with a custom language model.</p>
 <p><b>Note:</b> Acoustic model customization is supported only for use with previous-generation models. It is not supported for next-generation models.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-upgrade#custom-upgrade-acoustic">Upgrading a custom acoustic model</a>.</p>
@@ -3310,9 +3359,12 @@ Public Member Functions</h2></td></tr>
 
 <p>Upgrade a custom language model. </p>
 <p>Initiates the upgrade of a custom language model to the latest version of its base language model. The upgrade method is asynchronous. It can take on the order of minutes to complete depending on the amount of data in the custom model and the current load on the service. A custom model must be in the <code>ready</code> or <code>available</code> state to be upgraded. You must use credentials for the instance of the service that owns a model to upgrade it.</p>
-<p>The method returns an HTTP 200 response code to indicate that the upgrade process has begun successfully. You can monitor the status of the upgrade by using the <a href="../../#getlanguagemodel">Get a custom language model</a> method to poll the model's status. The method returns a <code>LanguageModel</code> object that includes <code>status</code> and <code>progress</code> fields. Use a loop to check the status every 10 seconds. While it is being upgraded, the custom model has the status <code>upgrading</code>. When the upgrade is complete, the model resumes the status that it had prior to upgrade. The service cannot accept subsequent requests for the model until the upgrade completes.</p>
-<p><b>Note:</b> Upgrading is necessary only for custom language models that are based on previous-generation models. Only a single version of a custom model that is based on a next-generation model is ever available.</p>
-<p><b>See also:</b> <a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-upgrade#custom-upgrade-language">Upgrading a custom language model</a>.</p>
+<p>The method returns an HTTP 200 response code to indicate that the upgrade process has begun successfully. You can monitor the status of the upgrade by using the <a href="../../#getlanguagemodel">Get a custom language model</a> method to poll the model's status. The method returns a <code>LanguageModel</code> object that includes <code>status</code> and <code>progress</code> fields. Use a loop to check the status every 10 seconds.</p>
+<p>While it is being upgraded, the custom model has the status <code>upgrading</code>. When the upgrade is complete, the model resumes the status that it had prior to upgrade. The service cannot accept subsequent requests for the model until the upgrade completes.</p>
+<p><b>See also:</b></p><ul>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-upgrade#custom-upgrade-language">Upgrading a custom language model</a></li>
+<li><a href="https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support">Language support for customization</a>.</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of the custom language model that is to be used for the request. You must make the request with credentials for the instance of the service that owns the custom model.</td></tr>

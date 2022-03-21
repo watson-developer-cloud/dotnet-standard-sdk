@@ -12,6 +12,7 @@ var class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_integration_tests_1_1_assista
     [ "TestExamples_Success", "dd/d12/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_integration_tests_1_1_assistant_service_integration_tests.html#a4f2be40c9304aede4a56f0afe6b0581c", null ],
     [ "TestIntents_Success", "dd/d12/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_integration_tests_1_1_assistant_service_integration_tests.html#a4852ad132f960bfdbb40ae0104a82411", null ],
     [ "TestMentions_Success", "dd/d12/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_integration_tests_1_1_assistant_service_integration_tests.html#ad3ccfedae1f47d9c39cdf6ecae35652c", null ],
+    [ "TestRuntimeResponseGeneric", "dd/d12/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_integration_tests_1_1_assistant_service_integration_tests.html#a33c29706e533100b53c2c0877e240bb7", null ],
     [ "TestRuntimeResponseGenericRuntimeResponseTypeChannelTransfer", "dd/d12/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_integration_tests_1_1_assistant_service_integration_tests.html#aa96a79aaa192bd71b012364a4a5186d2", null ],
     [ "TestSynonyms_Success", "dd/d12/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_integration_tests_1_1_assistant_service_integration_tests.html#a7d0f1cb11e43050a06ea1edef55b6da3", null ],
     [ "TestValues_Success", "dd/d12/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_integration_tests_1_1_assistant_service_integration_tests.html#a3aede1b786eda03a65508923df902b55", null ],

@@ -78,11 +78,17 @@ var dir_68719292994a88684e382b70f3be8770 =
       [ "PreferenceEnumValue", "df/dcb/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_1_1_preference_enum_value.html", "df/dcb/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_1_1_preference_enum_value" ],
       [ "QueryTypeEnumValue", "d8/d13/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_1_1_query_type_enum_value.html", "d8/d13/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_1_1_query_type_enum_value" ]
     ] ],
+    [ "DialogNodeOutputGenericDialogNodeOutputResponseTypeAudio.cs", "d8/d1e/_dialog_node_output_generic_dialog_node_output_response_type_audio_8cs.html", [
+      [ "DialogNodeOutputGenericDialogNodeOutputResponseTypeAudio", "de/db8/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_dialog_node_output_response_type_audio.html", "de/db8/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_dialog_node_output_response_type_audio" ]
+    ] ],
     [ "DialogNodeOutputGenericDialogNodeOutputResponseTypeChannelTransfer.cs", "d1/d1b/_dialog_node_output_generic_dialog_node_output_response_type_channel_transfer_8cs.html", [
       [ "DialogNodeOutputGenericDialogNodeOutputResponseTypeChannelTransfer", "d9/d41/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_dialog_node_86950de0f5f4313dcb0024366f7a6956.html", "d9/d41/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_dialog_node_86950de0f5f4313dcb0024366f7a6956" ]
     ] ],
     [ "DialogNodeOutputGenericDialogNodeOutputResponseTypeConnectToAgent.cs", "d7/d92/_dialog_node_output_generic_dialog_node_output_response_type_connect_to_agent_8cs.html", [
       [ "DialogNodeOutputGenericDialogNodeOutputResponseTypeConnectToAgent", "d1/d4c/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_dialog_node_41a5e75a7e2f3e5bd86d64c7f895a008.html", "d1/d4c/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_dialog_node_41a5e75a7e2f3e5bd86d64c7f895a008" ]
+    ] ],
+    [ "DialogNodeOutputGenericDialogNodeOutputResponseTypeIframe.cs", "d6/d23/_dialog_node_output_generic_dialog_node_output_response_type_iframe_8cs.html", [
+      [ "DialogNodeOutputGenericDialogNodeOutputResponseTypeIframe", "d7/de4/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_dialog_node_output_response_type_iframe.html", "d7/de4/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_dialog_node_output_response_type_iframe" ]
     ] ],
     [ "DialogNodeOutputGenericDialogNodeOutputResponseTypeImage.cs", "d4/dd6/_dialog_node_output_generic_dialog_node_output_response_type_image_8cs.html", [
       [ "DialogNodeOutputGenericDialogNodeOutputResponseTypeImage", "d3/d5e/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_dialog_node_output_response_type_image.html", "d3/d5e/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_dialog_node_output_response_type_image" ]
@@ -104,6 +110,9 @@ var dir_68719292994a88684e382b70f3be8770 =
     ] ],
     [ "DialogNodeOutputGenericDialogNodeOutputResponseTypeUserDefined.cs", "d1/d9b/_dialog_node_output_generic_dialog_node_output_response_type_user_defined_8cs.html", [
       [ "DialogNodeOutputGenericDialogNodeOutputResponseTypeUserDefined", "d9/d8e/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_dialog_node_72c17b65198134cb44cb50396f7c2d4e.html", "d9/d8e/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_dialog_node_72c17b65198134cb44cb50396f7c2d4e" ]
+    ] ],
+    [ "DialogNodeOutputGenericDialogNodeOutputResponseTypeVideo.cs", "de/df8/_dialog_node_output_generic_dialog_node_output_response_type_video_8cs.html", [
+      [ "DialogNodeOutputGenericDialogNodeOutputResponseTypeVideo", "d4/d3d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_dialog_node_output_response_type_video.html", "d4/d3d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_generic_dialog_node_output_response_type_video" ]
     ] ],
     [ "DialogNodeOutputModifiers.cs", "d4/d83/_dialog_node_output_modifiers_8cs.html", [
       [ "DialogNodeOutputModifiers", "d7/d1c/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_modifiers.html", "d7/d1c/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_dialog_node_output_modifiers" ]
@@ -167,7 +176,7 @@ var dir_68719292994a88684e382b70f3be8770 =
     [ "LogPagination.cs", "d7/d55/_i_b_m_8_watson_8_assistant_8v1_2_model_2_log_pagination_8cs.html", [
       [ "LogPagination", "dd/d7f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_log_pagination.html", "dd/d7f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_log_pagination" ]
     ] ],
-    [ "Mention.cs", "d4/d35/_i_b_m_8_watson_8_assistant_8v1_2_model_2_mention_8cs.html", [
+    [ "Mention.cs", "d4/d79/_mention_8cs.html", [
       [ "Mention", "dd/d2c/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_mention.html", "dd/d2c/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_mention" ]
     ] ],
     [ "MessageContextMetadata.cs", "d3/dd8/_message_context_metadata_8cs.html", [
@@ -185,7 +194,7 @@ var dir_68719292994a88684e382b70f3be8770 =
     [ "OutputData.cs", "d7/da4/_output_data_8cs.html", [
       [ "OutputData", "df/d42/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_output_data.html", "df/d42/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_output_data" ]
     ] ],
-    [ "Pagination.cs", "d2/d7a/_i_b_m_8_watson_8_assistant_8v1_2_model_2_pagination_8cs.html", [
+    [ "Pagination.cs", "df/dc5/_pagination_8cs.html", [
       [ "Pagination", "d0/d4b/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_pagination.html", "d0/d4b/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_pagination" ]
     ] ],
     [ "ResponseGenericChannel.cs", "d0/d03/_i_b_m_8_watson_8_assistant_8v1_2_model_2_response_generic_channel_8cs.html", [
@@ -213,11 +222,17 @@ var dir_68719292994a88684e382b70f3be8770 =
       [ "RuntimeResponseGeneric", "db/d07/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic.html", "db/d07/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic" ],
       [ "PreferenceEnumValue", "d5/d28/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_1_1_preference_enum_value.html", "d5/d28/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_1_1_preference_enum_value" ]
     ] ],
+    [ "RuntimeResponseGenericRuntimeResponseTypeAudio.cs", "de/d23/_i_b_m_8_watson_8_assistant_8v1_2_model_2_runtime_response_generic_runtime_response_type_audio_8cs.html", [
+      [ "RuntimeResponseGenericRuntimeResponseTypeAudio", "dd/de5/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_response_type_audio.html", "dd/de5/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_response_type_audio" ]
+    ] ],
     [ "RuntimeResponseGenericRuntimeResponseTypeChannelTransfer.cs", "dc/df9/_i_b_m_8_watson_8_assistant_8v1_2_model_2_runtime_response_generic_runtime_response_type_channel_transfer_8cs.html", [
       [ "RuntimeResponseGenericRuntimeResponseTypeChannelTransfer", "d8/de8/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_response_type_channel_transfer.html", "d8/de8/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_response_type_channel_transfer" ]
     ] ],
     [ "RuntimeResponseGenericRuntimeResponseTypeConnectToAgent.cs", "d3/dc3/_i_b_m_8_watson_8_assistant_8v1_2_model_2_runtime_response_generic_runtime_response_type_connect_to_agent_8cs.html", [
       [ "RuntimeResponseGenericRuntimeResponseTypeConnectToAgent", "d5/dbc/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_response_type_connect_to_agent.html", "d5/dbc/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_response_type_connect_to_agent" ]
+    ] ],
+    [ "RuntimeResponseGenericRuntimeResponseTypeIframe.cs", "d9/d53/_i_b_m_8_watson_8_assistant_8v1_2_model_2_runtime_response_generic_runtime_response_type_iframe_8cs.html", [
+      [ "RuntimeResponseGenericRuntimeResponseTypeIframe", "d7/d70/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_response_type_iframe.html", "d7/d70/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_response_type_iframe" ]
     ] ],
     [ "RuntimeResponseGenericRuntimeResponseTypeImage.cs", "d2/d18/_i_b_m_8_watson_8_assistant_8v1_2_model_2_runtime_response_generic_runtime_response_type_image_8cs.html", [
       [ "RuntimeResponseGenericRuntimeResponseTypeImage", "da/d5b/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_response_type_image.html", "da/d5b/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_response_type_image" ]
@@ -238,13 +253,16 @@ var dir_68719292994a88684e382b70f3be8770 =
     [ "RuntimeResponseGenericRuntimeResponseTypeUserDefined.cs", "dd/d8c/_i_b_m_8_watson_8_assistant_8v1_2_model_2_runtime_response_generic_runtime_response_type_user_defined_8cs.html", [
       [ "RuntimeResponseGenericRuntimeResponseTypeUserDefined", "d9/d68/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_response_type_user_defined.html", "d9/d68/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_response_type_user_defined" ]
     ] ],
+    [ "RuntimeResponseGenericRuntimeResponseTypeVideo.cs", "df/ddc/_i_b_m_8_watson_8_assistant_8v1_2_model_2_runtime_response_generic_runtime_response_type_video_8cs.html", [
+      [ "RuntimeResponseGenericRuntimeResponseTypeVideo", "d3/d8b/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_response_type_video.html", "d3/d8b/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_response_type_video" ]
+    ] ],
     [ "Synonym.cs", "d3/d42/_synonym_8cs.html", [
       [ "Synonym", "d4/d65/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_synonym.html", "d4/d65/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_synonym" ]
     ] ],
     [ "SynonymCollection.cs", "d5/d32/_synonym_collection_8cs.html", [
       [ "SynonymCollection", "d2/de6/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_synonym_collection.html", "d2/de6/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_synonym_collection" ]
     ] ],
-    [ "Value.cs", "da/d1a/_i_b_m_8_watson_8_assistant_8v1_2_model_2_value_8cs.html", [
+    [ "Value.cs", "dd/dcd/_value_8cs.html", [
       [ "Value", "db/d75/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_value.html", "db/d75/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_value" ],
       [ "TypeEnumValue", "dc/d7c/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_value_1_1_type_enum_value.html", "dc/d7c/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_value_1_1_type_enum_value" ]
     ] ],

@@ -1,4 +1,0 @@
-var namespace_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_integration_tests =
-[
-    [ "PersonalityInsightsServiceIntegrationTests", "d6/db4/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_integration_tests_1_1_personality_insights_service_integration_tests.html", "d6/db4/class_i_b_m_1_1_watson_1_1_personality_insights_1_1v3_1_1_integration_tests_1_1_personality_insights_service_integration_tests" ]
-];

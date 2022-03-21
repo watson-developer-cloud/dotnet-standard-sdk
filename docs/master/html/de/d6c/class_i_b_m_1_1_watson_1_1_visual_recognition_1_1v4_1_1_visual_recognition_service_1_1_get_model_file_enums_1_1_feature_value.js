@@ -1,4 +1,0 @@
-var class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_visual_recognition_service_1_1_get_model_file_enums_1_1_feature_value =
-[
-    [ "OBJECTS", "de/d6c/class_i_b_m_1_1_watson_1_1_visual_recognition_1_1v4_1_1_visual_recognition_service_1_1_get_model_file_enums_1_1_feature_value.html#a89017b96462c95ecfdd248811a84a261", null ]
-];

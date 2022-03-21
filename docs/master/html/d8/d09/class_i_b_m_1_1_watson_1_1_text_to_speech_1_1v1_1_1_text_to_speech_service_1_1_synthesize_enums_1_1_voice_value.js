@@ -2,6 +2,7 @@ var class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1
 [
     [ "AR_AR_OMARVOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#a59e2bf9b5d13424b8515d2602708c26e", null ],
     [ "AR_MS_OMARVOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#a34d1eabadbf89303111edb1044e04470", null ],
+    [ "CS_CZ_ALENAVOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#a8ac16f701265804d052e609de3ba086c", null ],
     [ "DE_DE_BIRGITV3VOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#a5cce7c5494556b9c8e22f6b3a1011633", null ],
     [ "DE_DE_BIRGITVOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#a5d2b923c2e60faf2dade0a2499c07acf", null ],
     [ "DE_DE_DIETERV3VOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#a460f766bd0e791853dcd9d5d54a4bba5", null ],
@@ -9,6 +10,7 @@ var class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1
     [ "DE_DE_ERIKAV3VOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#ab5d01f70bbf35181b8bd04283a43ca37", null ],
     [ "EN_AU_CRAIGVOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#ada63bb391f70b90642b47ae34af9463a", null ],
     [ "EN_AU_MADISONVOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#a740539fdf60740b517781e11c54ae300", null ],
+    [ "EN_AU_STEVEVOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#abfa81db48a382433cf4364c89d6035e3", null ],
     [ "EN_GB_CHARLOTTEV3VOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#a0f3f4f43ece0b23779beb9ee1eb0eadc", null ],
     [ "EN_GB_JAMESV3VOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#ab7ed1186d578ca062ada76baad188d9e", null ],
     [ "EN_GB_KATEV3VOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#add65ebaf940020967f1979aeed07b08e", null ],
@@ -44,10 +46,12 @@ var class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1
     [ "KO_KR_YOUNGMIVOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#a7d978f930fa793c27409b2b31fddd2b4", null ],
     [ "KO_KR_YUNAVOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#acf42a315100060c57945b67f71752302", null ],
     [ "NL_BE_ADELEVOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#ae6396b16b4efbf876bad69356a91c17e", null ],
+    [ "NL_BE_BRAMVOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#a4fc9d1e37d2fab1b1358f7e4de033605", null ],
     [ "NL_NL_EMMAVOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#ad9fcf6110ce3ab80f1657cc7196054ef", null ],
     [ "NL_NL_LIAMVOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#a53a1ef8dc83ee3c6b47896a6d5b661ef", null ],
     [ "PT_BR_ISABELAV3VOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#a8625d912fd8745c16631e67cc0dfe3d1", null ],
     [ "PT_BR_ISABELAVOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#afd69ecf624794ea2b09fa1c53e40286e", null ],
+    [ "SV_SE_INGRIDVOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#a86224be03eab327316e1abfd344b6f29", null ],
     [ "ZH_CN_LINAVOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#ae0efc0d64f58b36d6f499418598e2e59", null ],
     [ "ZH_CN_WANGWEIVOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#a1dd08e8a6db7a604a1f70b94831da35a", null ],
     [ "ZH_CN_ZHANGJINGVOICE", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html#ab83a41301637eeb65b40a5b1facf4459", null ]

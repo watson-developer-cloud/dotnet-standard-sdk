@@ -104,9 +104,6 @@ var dir_1ee6794a256bb6e828d5ee9dbce895d9 =
     [ "ListSentimentModelsResponse.cs", "d3/df0/_list_sentiment_models_response_8cs.html", [
       [ "ListSentimentModelsResponse", "da/d7b/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_list_sentiment_models_response.html", "da/d7b/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_list_sentiment_models_response" ]
     ] ],
-    [ "MetadataOptions.cs", "d8/dd5/_metadata_options_8cs.html", [
-      [ "MetadataOptions", "d0/dbe/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_metadata_options.html", null ]
-    ] ],
     [ "Model.cs", "db/d88/_model_8cs.html", [
       [ "Model", "de/ddd/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_model.html", "de/ddd/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_model" ],
       [ "StatusEnumValue", "d9/d8f/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_model_1_1_status_enum_value.html", "d9/d8f/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_model_1_1_status_enum_value" ]

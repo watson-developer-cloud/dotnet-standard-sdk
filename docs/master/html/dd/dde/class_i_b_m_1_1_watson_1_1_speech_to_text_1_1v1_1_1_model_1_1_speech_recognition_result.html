@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">5.2.1</span>
+   &#160;<span id="projectnumber">5.3.0</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -107,7 +107,7 @@ Properties</h2></td></tr>
 <tr class="memdesc:a639d4e2e34caed4c574efde43d015438"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the <code>split_transcript_at_phrase_end</code> parameter is <code>true</code>, describes the reason for the split:  <a href="../../dd/dde/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html#a639d4e2e34caed4c574efde43d015438">More...</a><br /></td></tr>
 <tr class="separator:a639d4e2e34caed4c574efde43d015438"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d0c92d3fef9de272017573e18b00691"><td class="memItemLeft" align="right" valign="top">bool?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dde/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html#a0d0c92d3fef9de272017573e18b00691">Final</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a0d0c92d3fef9de272017573e18b00691"><td class="mdescLeft">&#160;</td><td class="mdescRight">An indication of whether the transcription results are final. If <code>true</code>, the results for this utterance are not updated further; no additional results are sent for a <code>result_index</code> once its results are indicated as final.  <a href="../../dd/dde/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html#a0d0c92d3fef9de272017573e18b00691">More...</a><br /></td></tr>
+<tr class="memdesc:a0d0c92d3fef9de272017573e18b00691"><td class="mdescLeft">&#160;</td><td class="mdescRight">An indication of whether the transcription results are final:  <a href="../../dd/dde/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html#a0d0c92d3fef9de272017573e18b00691">More...</a><br /></td></tr>
 <tr class="separator:a0d0c92d3fef9de272017573e18b00691"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada77c8f871e7ce979f8a983c91801c75"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="../../dd/de0/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_alternative.html">SpeechRecognitionAlternative</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dde/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html#ada77c8f871e7ce979f8a983c91801c75">Alternatives</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:ada77c8f871e7ce979f8a983c91801c75"><td class="mdescLeft">&#160;</td><td class="mdescRight">An array of alternative transcripts. The <code>alternatives</code> array can include additional requested output such as word confidence or timestamps.  <a href="../../dd/dde/class_i_b_m_1_1_watson_1_1_speech_to_text_1_1v1_1_1_model_1_1_speech_recognition_result.html#ada77c8f871e7ce979f8a983c91801c75">More...</a><br /></td></tr>
@@ -196,7 +196,12 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>An indication of whether the transcription results are final. If <code>true</code>, the results for this utterance are not updated further; no additional results are sent for a <code>result_index</code> once its results are indicated as final. </p>
+<p>An indication of whether the transcription results are final: </p>
+<ul>
+<li>If <code>true</code>, the results for this utterance are final. They are guaranteed not to be updated further.</li>
+<li>If <code>false</code>, the results are interim. They can be updated with further interim results until final results are eventually sent.</li>
+</ul>
+<p><b>Note:</b> Because <code>final</code> is a reserved word in Java and Swift, the field is renamed <code>xFinal</code> in Java and is escaped with back quotes in Swift.</p>
 
 </div>
 </div>

@@ -21,22 +21,18 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Discovery.v2.Model
 {
     /// <summary>
-    /// An object describing an enrichment for a collection.
+    /// An object that describes enrichments that are applied to the training and test data that is used by the document
+    /// classifier.
     /// </summary>
-    public class CollectionEnrichment
+    public class DocumentClassifierEnrichment
     {
         /// <summary>
-        /// The unique identifier of this enrichment. For more information about how to determine the ID of an
-        /// enrichment, see [the product
-        /// documentation](/docs/discovery-data?topic=discovery-data-manage-enrichments#enrichments-ids).
+        /// A unique identifier of the enrichment.
         /// </summary>
         [JsonProperty("enrichment_id", NullValueHandling = NullValueHandling.Ignore)]
         public string EnrichmentId { get; set; }
         /// <summary>
-        /// An array of field names that the enrichment is applied to.
-        ///
-        /// If you apply an enrichment to a field from a JSON file, the data is converted to an array automatically,
-        /// even if the field contains a single value.
+        /// An array of field names where the enrichment is applied.
         /// </summary>
         [JsonProperty("fields", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Fields { get; set; }

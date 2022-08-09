@@ -15,27 +15,21 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Discovery.v2.Model
 {
     /// <summary>
-    /// Configuration for suggested refinements.
-    ///
-    /// **Note**: The **suggested_refinements** parameter that identified dynamic facets from the data is deprecated.
+    /// List of words to filter out of text that is submitted in queries.
     /// </summary>
-    public class QueryLargeSuggestedRefinements
+    public class StopWordList
     {
         /// <summary>
-        /// Whether to perform suggested refinements.
+        /// List of stop words.
         /// </summary>
-        [JsonProperty("enabled", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? Enabled { get; set; }
-        /// <summary>
-        /// Maximum number of suggested refinements texts to be returned. The maximum is `100`.
-        /// </summary>
-        [JsonProperty("count", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Count { get; set; }
+        [JsonProperty("stopwords", NullValueHandling = NullValueHandling.Ignore)]
+        public List<string> Stopwords { get; set; }
     }
 
 }

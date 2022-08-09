@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2020, 2021.
+* (C) Copyright IBM Corp. 2022.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -46,7 +46,9 @@ namespace IBM.Watson.Discovery.v2.Model
         [JsonProperty("aggregation", NullValueHandling = NullValueHandling.Ignore)]
         public string Aggregation { get; set; }
         /// <summary>
-        /// Object that contains suggested refinement settings. Available with Premium plans only.
+        /// Object that contains suggested refinement settings.
+        ///
+        /// **Note**: The `suggested_refinements` parameter that identified dynamic facets from the data is deprecated.
         /// </summary>
         [JsonProperty("suggested_refinements", NullValueHandling = NullValueHandling.Ignore)]
         public DefaultQueryParamsSuggestedRefinements SuggestedRefinements { get; set; }
@@ -56,7 +58,7 @@ namespace IBM.Watson.Discovery.v2.Model
         [JsonProperty("spelling_suggestions", NullValueHandling = NullValueHandling.Ignore)]
         public bool? SpellingSuggestions { get; set; }
         /// <summary>
-        /// When `true`, a highlights for the query are returned by default.
+        /// When `true`, highlights for the query are returned by default.
         /// </summary>
         [JsonProperty("highlight", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Highlight { get; set; }

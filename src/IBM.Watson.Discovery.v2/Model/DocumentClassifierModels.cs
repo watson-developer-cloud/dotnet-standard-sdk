@@ -15,27 +15,21 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Discovery.v2.Model
 {
     /// <summary>
-    /// Configuration for suggested refinements.
-    ///
-    /// **Note**: The **suggested_refinements** parameter that identified dynamic facets from the data is deprecated.
+    /// An object that contains a list of document classifier model definitions.
     /// </summary>
-    public class QueryLargeSuggestedRefinements
+    public class DocumentClassifierModels
     {
         /// <summary>
-        /// Whether to perform suggested refinements.
+        /// An array of document classifier model definitions.
         /// </summary>
-        [JsonProperty("enabled", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? Enabled { get; set; }
-        /// <summary>
-        /// Maximum number of suggested refinements texts to be returned. The maximum is `100`.
-        /// </summary>
-        [JsonProperty("count", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Count { get; set; }
+        [JsonProperty("models", NullValueHandling = NullValueHandling.Ignore)]
+        public List<DocumentClassifierModel> Models { get; set; }
     }
 
 }

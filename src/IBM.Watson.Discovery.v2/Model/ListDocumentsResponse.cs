@@ -15,27 +15,28 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Discovery.v2.Model
 {
     /// <summary>
-    /// Configuration for suggested refinements.
-    ///
-    /// **Note**: The **suggested_refinements** parameter that identified dynamic facets from the data is deprecated.
+    /// Response object that contains an array of documents.
     /// </summary>
-    public class QueryLargeSuggestedRefinements
+    public class ListDocumentsResponse
     {
         /// <summary>
-        /// Whether to perform suggested refinements.
+        /// The number of matching results for the document query.
         /// </summary>
-        [JsonProperty("enabled", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? Enabled { get; set; }
+        [JsonProperty("matching_results", NullValueHandling = NullValueHandling.Ignore)]
+        public long? MatchingResults { get; set; }
         /// <summary>
-        /// Maximum number of suggested refinements texts to be returned. The maximum is `100`.
+        /// An array that lists the documents in a collection. Only the document ID of each document is returned in the
+        /// list. You can use the [Get document](#getdocument) method to get more information about an individual
+        /// document.
         /// </summary>
-        [JsonProperty("count", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Count { get; set; }
+        [JsonProperty("documents", NullValueHandling = NullValueHandling.Ignore)]
+        public List<DocumentDetails> Documents { get; set; }
     }
 
 }

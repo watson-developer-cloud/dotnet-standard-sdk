@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2019, 2021.
+* (C) Copyright IBM Corp. 2022.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ namespace IBM.Watson.Discovery.v2.Model
         [JsonProperty("per_document", NullValueHandling = NullValueHandling.Ignore)]
         public bool? PerDocument { get; set; }
         /// <summary>
-        /// Maximum number of passages to return per document in the result. Ignored if `passages.per_document` is
+        /// Maximum number of passages to return per document in the result. Ignored if **passages.per_document** is
         /// `false`.
         /// </summary>
         [JsonProperty("max_per_document", NullValueHandling = NullValueHandling.Ignore)]
@@ -52,7 +52,7 @@ namespace IBM.Watson.Discovery.v2.Model
         [JsonProperty("fields", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Fields { get; set; }
         /// <summary>
-        /// The maximum number of passages to return. Ignored if `passages.per_document` is `true`.
+        /// The maximum number of passages to return. Ignored if **passages.per_document** is `true`.
         /// </summary>
         [JsonProperty("count", NullValueHandling = NullValueHandling.Ignore)]
         public long? Count { get; set; }

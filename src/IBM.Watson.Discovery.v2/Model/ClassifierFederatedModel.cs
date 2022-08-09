@@ -20,22 +20,16 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Discovery.v2.Model
 {
     /// <summary>
-    /// Configuration for suggested refinements.
-    ///
-    /// **Note**: The **suggested_refinements** parameter that identified dynamic facets from the data is deprecated.
+    /// An object with details for creating federated document classifier models.
     /// </summary>
-    public class QueryLargeSuggestedRefinements
+    public class ClassifierFederatedModel
     {
         /// <summary>
-        /// Whether to perform suggested refinements.
+        /// Name of the field that contains the values from which multiple classifier models are defined. For example,
+        /// you can specify a field that lists product lines to create a separate model per product line.
         /// </summary>
-        [JsonProperty("enabled", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? Enabled { get; set; }
-        /// <summary>
-        /// Maximum number of suggested refinements texts to be returned. The maximum is `100`.
-        /// </summary>
-        [JsonProperty("count", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Count { get; set; }
+        [JsonProperty("field", NullValueHandling = NullValueHandling.Ignore)]
+        public string Field { get; set; }
     }
 
 }

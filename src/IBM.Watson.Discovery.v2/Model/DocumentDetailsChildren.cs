@@ -20,19 +20,20 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Discovery.v2.Model
 {
     /// <summary>
-    /// Configuration for suggested refinements.
-    ///
-    /// **Note**: The **suggested_refinements** parameter that identified dynamic facets from the data is deprecated.
+    /// Information about the child documents that are generated from a single document during ingestion or other
+    /// processing.
     /// </summary>
-    public class QueryLargeSuggestedRefinements
+    public class DocumentDetailsChildren
     {
         /// <summary>
-        /// Whether to perform suggested refinements.
+        /// Indicates whether the child documents have any notices. The value is `false` if the document does not have
+        /// child documents.
         /// </summary>
-        [JsonProperty("enabled", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? Enabled { get; set; }
+        [JsonProperty("have_notices", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? HaveNotices { get; set; }
         /// <summary>
-        /// Maximum number of suggested refinements texts to be returned. The maximum is `100`.
+        /// Number of child documents. The value is `0` when processing of the document doesn't generate any child
+        /// documents.
         /// </summary>
         [JsonProperty("count", NullValueHandling = NullValueHandling.Ignore)]
         public long? Count { get; set; }

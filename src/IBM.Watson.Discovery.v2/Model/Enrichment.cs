@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2020, 2021.
+* (C) Copyright IBM Corp. 2022.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -61,6 +61,10 @@ namespace IBM.Watson.Discovery.v2.Model
             /// Constant WATSON_KNOWLEDGE_STUDIO_MODEL for watson_knowledge_studio_model
             /// </summary>
             public const string WATSON_KNOWLEDGE_STUDIO_MODEL = "watson_knowledge_studio_model";
+            /// <summary>
+            /// Constant CLASSIFIER for classifier
+            /// </summary>
+            public const string CLASSIFIER = "classifier";
             
         }
 

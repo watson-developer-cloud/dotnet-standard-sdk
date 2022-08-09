@@ -20,22 +20,21 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Discovery.v2.Model
 {
     /// <summary>
-    /// Configuration for suggested refinements.
-    ///
-    /// **Note**: The **suggested_refinements** parameter that identified dynamic facets from the data is deprecated.
+    /// An object that contains a new name or description for a document classifier, updated training data, or new or
+    /// updated test data.
     /// </summary>
-    public class QueryLargeSuggestedRefinements
+    public class UpdateDocumentClassifier
     {
         /// <summary>
-        /// Whether to perform suggested refinements.
+        /// A new name for the classifier.
         /// </summary>
-        [JsonProperty("enabled", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? Enabled { get; set; }
+        [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
+        public string Name { get; set; }
         /// <summary>
-        /// Maximum number of suggested refinements texts to be returned. The maximum is `100`.
+        /// A new description for the classifier.
         /// </summary>
-        [JsonProperty("count", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Count { get; set; }
+        [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
+        public string Description { get; set; }
     }
 
 }

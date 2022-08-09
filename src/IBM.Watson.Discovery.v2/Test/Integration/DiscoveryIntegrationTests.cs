@@ -24,6 +24,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace IBM.Watson.Discovery.v2.IntegrationTests
 {
@@ -33,6 +34,7 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
         private DiscoveryService service;
         private string versionDate = "2019-11-22";
         private string filepathToIngest = @"DiscoveryTestData/watson_beats_jeopardy.html";
+        private string classificationTraining = @"DiscoveryTestData/classification_training.csv";
         private string filepathAnalyzeDoc = @"DiscoveryTestData/problem.json";
         private string enrichmentFile = @"DiscoveryTestData/test.csv";
         private string testPDF = @"DiscoveryTestData/test-pdf.pdf";
@@ -916,6 +918,199 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
                     xWatsonDiscoveryForce: true
                     );
             }
+        }
+        #endregion
+
+        #region Document Classifier
+        // [TestMethod]
+        public void TestDocumentClassifierOperations()
+        {
+            using (FileStream fs = File.OpenRead(classificationTraining))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    fs.CopyTo(ms);
+                    List<string> arr1 = new List<string>();
+                    List<DocumentClassifierEnrichment> arr2 = new List<DocumentClassifierEnrichment>();
+                    DocumentClassifierEnrichment documentClassifierEnrichment = new DocumentClassifierEnrichment();
+                    documentClassifierEnrichment.EnrichmentId = "";
+                    documentClassifierEnrichment.Fields = arr1;
+                    CreateDocumentClassifier createDocumentClassifier = new CreateDocumentClassifier();
+                    createDocumentClassifier.Name = "sdk-test";
+                    createDocumentClassifier.Description = "a deletable sdk test classifier";
+                    createDocumentClassifier.Language = "en";
+                    createDocumentClassifier.AnswerField = "facility_temperature";
+                    createDocumentClassifier.Enrichments = arr2;
+                    createDocumentClassifier.Enrichments.Add(documentClassifierEnrichment);
+
+                    service.WithHeader("X-Watson-Test", "1");
+                    var response = service.CreateDocumentClassifier(
+                        projectId: projectId,
+                        trainingData: ms,
+                        testData: ms,
+                        classifier: createDocumentClassifier);
+
+                    Assert.IsNotNull(response.Result.ClassifierId);
+
+                    string classifierId = response.Result.ClassifierId;
+                    string documentId = "1";
+                    try
+                    {
+                        var listDocumentClassifiersResponse = service.ListDocumentClassifiers(projectId);
+                        Assert.IsTrue(listDocumentClassifiersResponse.Result.Classifiers.Count() > 0);
+
+                        var documentClassifierResponse = service.GetDocumentClassifier(
+                            projectId: projectId,
+                            classifierId: classifierId);
+                        Assert.IsNotNull(documentClassifierResponse.Result);
+
+                        string updatedName = "new-sdk-test";
+                        UpdateDocumentClassifier updateDocumentClassifier = new UpdateDocumentClassifier()
+                        {
+                            Name = updatedName
+                        };
+
+                        var updateDocumentClassifierResponse = service.UpdateDocumentClassifier(
+                            projectId: projectId,
+                            classifierId: classifierId,
+                            classifier: updateDocumentClassifier);
+                        Assert.IsNotNull(updateDocumentClassifierResponse.Result);
+                        Assert.IsTrue(updateDocumentClassifierResponse.Result.Name == updatedName);
+
+                        string classifierModelName = "classifier model sdk test";
+
+                        List<double?> regStrengths = new List<double?>();
+                        regStrengths.Add(0.0001);
+                        var createDocumentClassifierModelResponse = service.CreateDocumentClassifierModel(
+                            projectId,
+                            classifierId,
+                            classifierModelName,
+                            learningRate: 0.5,
+                            l1RegularizationStrengths: regStrengths,
+                            trainingMaxSteps: 100000);
+                        Assert.IsNotNull(createDocumentClassifierModelResponse.Result.Name);
+
+                        var listDocumentClassifierModelsResponse = service.ListDocumentClassifierModels(
+                            projectId,
+                            classifierId);
+                        Assert.IsTrue(listDocumentClassifierModelsResponse.Result.Models.Count() > 0);
+
+                        string modelId = listDocumentClassifierModelsResponse.Result.Models[0].ModelId;
+                        Assert.IsNotNull(modelId);
+
+                        var getDocumentClassifierModelResponse = service.GetDocumentClassifierModel(
+                            projectId,
+                            classifierId,
+                            modelId);
+                        Assert.IsNotNull(getDocumentClassifierModelResponse.Result.Name);
+
+                        string updatedModelName = "new sdk test model";
+
+                        var updateDocumentClassifierModelResponse = service.UpdateDocumentClassifierModel(
+                            projectId,
+                            classifierId,
+                            modelId,
+                            name: updatedModelName);
+
+                        Assert.AreEqual(updatedModelName, updateDocumentClassifierModelResponse.Result.Name);
+
+                        var deleteModelResponse = service.DeleteDocumentClassifierModel(
+                            projectId,
+                            classifierId,
+                            modelId);
+                        Assert.IsTrue(deleteModelResponse.StatusCode == 204);
+                    } finally
+                    {
+                        var deleteResponse = service.DeleteDocumentClassifier(
+                            projectId,
+                            classifierId);
+                        Assert.IsTrue(deleteResponse.StatusCode == 204);
+                    }
+                }
+            }
+        }
+
+        [TestMethod]
+        public void TestStopwordLists()
+        {
+            var getStopwordListResponse = service.GetStopwordList(
+                projectId,
+                collectionId);
+            Assert.AreEqual(0, getStopwordListResponse.Result.Stopwords.Count());
+
+            List<string> stopwords = new List<string>();
+            stopwords.Add("it");
+            stopwords.Add("the");
+            var createStopwordListResponse = service.CreateStopwordList(
+                projectId,
+                collectionId,
+                stopwords
+                );
+            Assert.IsNotNull(createStopwordListResponse.Result);
+            Assert.AreEqual("it", createStopwordListResponse.Result.Stopwords[0]);
+            Assert.AreEqual("the", createStopwordListResponse.Result.Stopwords[1]);
+
+            var getStopwordListResponse2 = service.GetStopwordList(
+                projectId,
+                collectionId);
+            Assert.AreEqual(2, getStopwordListResponse2.Result.Stopwords.Count());
+
+            var deleteStopwordListResponse = service.DeleteStopwordList(
+                projectId,
+                collectionId);
+
+            Assert.IsTrue(deleteStopwordListResponse.StatusCode == 204);
+        }
+
+        [TestMethod]
+        public void TestExpansionLists()
+        {
+            var listExpansionsResponse = service.ListExpansions(
+                projectId,
+                collectionId);
+
+            Assert.AreEqual(0, listExpansionsResponse.Result._Expansions.Count());
+
+            string expandedTerm1 = "International Business Machines";
+            string expandedTerm2 = "Big Blue";
+
+            List<string> inputTerms = new List<string>()
+            {
+                "IBM"
+            };
+            List<string> expandedTerms = new List<string>()
+            {
+                expandedTerm1,
+                expandedTerm2
+            };
+            var expansion = new Expansion()
+            {
+                InputTerms = inputTerms,
+                ExpandedTerms = expandedTerms
+            };
+            var expansions = new List<Expansion>()
+            {
+                expansion
+            };
+            var createExpansionsResponse = service.CreateExpansions(
+                projectId,
+                collectionId,
+                expansions);
+            Assert.IsNotNull(createExpansionsResponse.Result);
+            Assert.AreEqual(expandedTerm1, createExpansionsResponse.Result._Expansions[0].ExpandedTerms[0]);
+            Assert.AreEqual(expandedTerm2, createExpansionsResponse.Result._Expansions[0].ExpandedTerms[1]);
+
+            var listExpansionsResponse2 = service.ListExpansions(
+                projectId,
+                collectionId);
+
+            Assert.AreEqual(1, listExpansionsResponse2.Result._Expansions.Count());
+            Assert.AreEqual(2, listExpansionsResponse2.Result._Expansions[0].ExpandedTerms.Count());
+
+            var deleteExpansionsResponse = service.DeleteExpansions(
+                projectId,
+                collectionId);
+            Assert.IsTrue(deleteExpansionsResponse.StatusCode == 204);
         }
         #endregion
     }

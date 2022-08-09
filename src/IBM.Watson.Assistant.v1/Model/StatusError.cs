@@ -20,21 +20,15 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Assistant.v1.Model
 {
     /// <summary>
-    /// An intent identified in the user input.
+    /// An object describing an error that occurred during processing of an asynchronous operation.
     /// </summary>
-    public class RuntimeIntent
+    public class StatusError
     {
         /// <summary>
-        /// The name of the recognized intent.
+        /// The text of the error message.
         /// </summary>
-        [JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
-        public string Intent { get; set; }
-        /// <summary>
-        /// A decimal percentage that represents Watson's confidence in the intent. If you are specifying an intent as
-        /// part of a request, but you do not have a calculated confidence value, specify `1`.
-        /// </summary>
-        [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Confidence { get; set; }
+        [JsonProperty("message", NullValueHandling = NullValueHandling.Ignore)]
+        public string Message { get; set; }
     }
 
 }

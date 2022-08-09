@@ -20,21 +20,27 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Assistant.v1.Model
 {
     /// <summary>
-    /// An intent identified in the user input.
+    /// An object containing properties that indicate how many intents, entities, and dialog nodes are defined in the
+    /// workspace. This property is included only in responses from the **Export workspace asynchronously** method, and
+    /// only when the **verbose** query parameter is set to `true`.
     /// </summary>
-    public class RuntimeIntent
+    public class WorkspaceCounts
     {
         /// <summary>
-        /// The name of the recognized intent.
+        /// The number of intents defined in the workspace.
         /// </summary>
         [JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
-        public string Intent { get; set; }
+        public long? Intent { get; set; }
         /// <summary>
-        /// A decimal percentage that represents Watson's confidence in the intent. If you are specifying an intent as
-        /// part of a request, but you do not have a calculated confidence value, specify `1`.
+        /// The number of entities defined in the workspace.
         /// </summary>
-        [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Confidence { get; set; }
+        [JsonProperty("entity", NullValueHandling = NullValueHandling.Ignore)]
+        public long? Entity { get; set; }
+        /// <summary>
+        /// The number of nodes defined in the workspace.
+        /// </summary>
+        [JsonProperty("node", NullValueHandling = NullValueHandling.Ignore)]
+        public long? Node { get; set; }
     }
 
 }

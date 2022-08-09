@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2022.
+* (C) Copyright IBM Corp. 2022.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -64,6 +64,11 @@ namespace IBM.Watson.Assistant.v1.Model
         /// </summary>
         [JsonProperty("off_topic", NullValueHandling = NullValueHandling.Ignore)]
         public WorkspaceSystemSettingsOffTopic OffTopic { get; set; }
+        /// <summary>
+        /// Workspace settings related to the version of the training algorithms currently used by the skill.
+        /// </summary>
+        [JsonProperty("nlp", NullValueHandling = NullValueHandling.Ignore)]
+        public WorkspaceSystemSettingsNlp Nlp { get; set; }
     }
 
 }

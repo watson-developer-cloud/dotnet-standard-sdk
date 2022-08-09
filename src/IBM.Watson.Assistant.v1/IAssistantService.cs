@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2021.
+* (C) Copyright IBM Corp. 2022.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -30,6 +30,9 @@ namespace IBM.Watson.Assistant.v1
         DetailedResponse<Workspace> GetWorkspace(string workspaceId, bool? export = null, bool? includeAudit = null, string sort = null);
         DetailedResponse<Workspace> UpdateWorkspace(string workspaceId, string name = null, string description = null, string language = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<Webhook> webhooks = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null, bool? append = null, bool? includeAudit = null);
         DetailedResponse<object> DeleteWorkspace(string workspaceId);
+        DetailedResponse<Workspace> CreateWorkspaceAsync(string name = null, string description = null, string language = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<Webhook> webhooks = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null);
+        DetailedResponse<Workspace> UpdateWorkspaceAsync(string workspaceId, string name = null, string description = null, string language = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<Webhook> webhooks = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null, bool? append = null);
+        DetailedResponse<Workspace> ExportWorkspaceAsync(string workspaceId, bool? includeAudit = null, string sort = null, bool? verbose = null);
         DetailedResponse<IntentCollection> ListIntents(string workspaceId, bool? export = null, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null);
         DetailedResponse<Intent> CreateIntent(string workspaceId, string intent, string description = null, List<Example> examples = null, bool? includeAudit = null);
         DetailedResponse<Intent> GetIntent(string workspaceId, string intent, bool? export = null, bool? includeAudit = null);

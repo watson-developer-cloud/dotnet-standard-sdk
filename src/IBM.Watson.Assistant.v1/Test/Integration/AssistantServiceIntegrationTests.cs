@@ -24,6 +24,8 @@ using IBM.Watson.Assistant.v1.Model;
 using System.Collections.Generic;
 using IBM.Cloud.SDK.Core.Util;
 using IBM.Cloud.SDK.Core.Authentication.Iam;
+using System.Threading;
+using IBM.Cloud.SDK.Core.Http;
 
 namespace IBM.Watson.Assistant.v1.IntegrationTests
 {
@@ -1103,6 +1105,68 @@ namespace IBM.Watson.Assistant.v1.IntegrationTests
                 Assert.IsNotNull(response);
                 Assert.IsTrue(response.Result.Output.Generic[0].ResponseType.Contains(inputMessage));
             }
+        }
+
+        [TestMethod]
+        public void TestWorkspaceAsync()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var createWorkspaceAsyncResult = service.CreateWorkspaceAsync(
+                name: createdWorkspaceName,
+                description: createdWorkspaceDescription,
+                language: createdWorkspaceLanguage
+                );
+            var workspaceId = createWorkspaceAsyncResult.Result.WorkspaceId;
+
+            DetailedResponse<Workspace> getWorkspaceResult = null;
+            var workspaceStatus = createWorkspaceAsyncResult.Result.Status;
+            while (workspaceStatus == Workspace.StatusEnumValue.PROCESSING)
+            {
+                Thread.Sleep(10000);
+                getWorkspaceResult = service.GetWorkspace(
+                        workspaceId: workspaceId
+                        );
+                workspaceStatus = getWorkspaceResult.Result.Status;
+            }
+
+            Assert.IsTrue(workspaceStatus == Workspace.StatusEnumValue.AVAILABLE);
+
+            var updateWorkspaceAsyncResult = service.UpdateWorkspaceAsync(
+                workspaceId: workspaceId,
+                name: createdWorkspaceName,
+                description: createdWorkspaceDescription + "-updated",
+                language: createdWorkspaceLanguage,
+                learningOptOut: true
+                );
+
+            workspaceStatus = Workspace.StatusEnumValue.PROCESSING;
+            while (workspaceStatus == Workspace.StatusEnumValue.PROCESSING)
+            {
+                Thread.Sleep(10000);
+                getWorkspaceResult = service.GetWorkspace(
+                        workspaceId: workspaceId
+                        );
+                workspaceStatus = getWorkspaceResult.Result.Status;
+            }
+            Assert.IsTrue(workspaceStatus == Workspace.StatusEnumValue.AVAILABLE);
+            Assert.IsTrue(getWorkspaceResult.Result.Description == createdWorkspaceDescription + "-updated");
+
+            var exportWorkspaceAsyncResult = service.ExportWorkspaceAsync(
+                workspaceId: workspaceId
+                );
+            workspaceStatus = Workspace.StatusEnumValue.PROCESSING;
+
+            while(workspaceStatus == Workspace.StatusEnumValue.PROCESSING)
+            {
+                Thread.Sleep(10000);
+                exportWorkspaceAsyncResult = service.ExportWorkspaceAsync(
+                    workspaceId: workspaceId
+                    );
+                workspaceStatus = getWorkspaceResult.Result.Status;
+            }
+
+            Assert.IsTrue(workspaceStatus == Workspace.StatusEnumValue.AVAILABLE);
+            Assert.IsTrue(exportWorkspaceAsyncResult.Result.Description == createdWorkspaceDescription + "-updated");
         }
         #endregion
     }

@@ -15,31 +15,26 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// An objects containing detailed diagnostic information about a dialog node that was visited during processing of
-    /// the input message.
+    /// ReleaseCollection.
     /// </summary>
-    public class DialogNodeVisited
+    public class ReleaseCollection
     {
         /// <summary>
-        /// A dialog node that was visited during processing of the input message.
+        /// An array of objects describing the releases associated with an assistant.
         /// </summary>
-        [JsonProperty("dialog_node", NullValueHandling = NullValueHandling.Ignore)]
-        public string DialogNode { get; set; }
+        [JsonProperty("releases", NullValueHandling = NullValueHandling.Ignore)]
+        public List<Release> Releases { get; set; }
         /// <summary>
-        /// The title of the dialog node.
+        /// The pagination data for the returned objects.
         /// </summary>
-        [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
-        public string Title { get; set; }
-        /// <summary>
-        /// The conditions that trigger the dialog node.
-        /// </summary>
-        [JsonProperty("conditions", NullValueHandling = NullValueHandling.Ignore)]
-        public string Conditions { get; set; }
+        [JsonProperty("pagination", NullValueHandling = NullValueHandling.Ignore)]
+        public Pagination Pagination { get; set; }
     }
 
 }

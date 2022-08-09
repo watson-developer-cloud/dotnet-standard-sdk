@@ -21,26 +21,33 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// MessageContext.
+    /// TurnEventCalloutCallout.
     /// </summary>
-    public class MessageContext
+    public class TurnEventCalloutCallout
     {
         /// <summary>
-        /// Session context data that is shared by all skills used by the assistant.
+        /// callout type.
         /// </summary>
-        [JsonProperty("global", NullValueHandling = NullValueHandling.Ignore)]
-        public MessageContextGlobal Global { get; set; }
+        public class TypeEnumValue
+        {
+            /// <summary>
+            /// Constant INTEGRATION_INTERACTION for integration_interaction
+            /// </summary>
+            public const string INTEGRATION_INTERACTION = "integration_interaction";
+            
+        }
+
         /// <summary>
-        /// Information specific to particular skills used by the assistant.
+        /// callout type.
+        /// Constants for possible values can be found using TurnEventCalloutCallout.TypeEnumValue
         /// </summary>
-        [JsonProperty("skills", NullValueHandling = NullValueHandling.Ignore)]
-        public Dictionary<string, MessageContextSkill> Skills { get; set; }
+        [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
+        public string Type { get; set; }
         /// <summary>
-        /// An object containing context data that is specific to particular integrations. For more information, see the
-        /// [documentation](https://cloud.ibm.com/docs/assistant?topic=assistant-dialog-integrations).
+        /// For internal use only.
         /// </summary>
-        [JsonProperty("integrations", NullValueHandling = NullValueHandling.Ignore)]
-        public object Integrations { get; set; }
+        [JsonProperty("internal", NullValueHandling = NullValueHandling.Ignore)]
+        public Dictionary<string, object> _Internal { get; set; }
     }
 
 }

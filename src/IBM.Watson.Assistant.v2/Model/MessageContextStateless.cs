@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2020, 2022.
+* (C) Copyright IBM Corp. 2022.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -32,9 +32,6 @@ namespace IBM.Watson.Assistant.v2.Model
         public MessageContextGlobalStateless Global { get; set; }
         /// <summary>
         /// Information specific to particular skills used by the assistant.
-        ///
-        /// **Note:** Currently, only a single child property is supported, containing variables that apply to the
-        /// dialog skill used by the assistant.
         /// </summary>
         [JsonProperty("skills", NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, MessageContextSkill> Skills { get; set; }

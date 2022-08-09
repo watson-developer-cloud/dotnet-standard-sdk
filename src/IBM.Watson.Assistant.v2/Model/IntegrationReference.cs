@@ -20,26 +20,20 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// An objects containing detailed diagnostic information about a dialog node that was visited during processing of
-    /// the input message.
+    /// IntegrationReference.
     /// </summary>
-    public class DialogNodeVisited
+    public class IntegrationReference
     {
         /// <summary>
-        /// A dialog node that was visited during processing of the input message.
+        /// The integration ID of the integration.
         /// </summary>
-        [JsonProperty("dialog_node", NullValueHandling = NullValueHandling.Ignore)]
-        public string DialogNode { get; set; }
+        [JsonProperty("integration_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string IntegrationId { get; set; }
         /// <summary>
-        /// The title of the dialog node.
+        /// The type of the integration.
         /// </summary>
-        [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
-        public string Title { get; set; }
-        /// <summary>
-        /// The conditions that trigger the dialog node.
-        /// </summary>
-        [JsonProperty("conditions", NullValueHandling = NullValueHandling.Ignore)]
-        public string Conditions { get; set; }
+        [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
+        public string Type { get; set; }
     }
 
 }

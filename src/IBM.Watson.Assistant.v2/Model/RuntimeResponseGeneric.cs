@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2022.
+* (C) Copyright IBM Corp. 2022.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -36,11 +36,13 @@ namespace IBM.Watson.Assistant.v2.Model
     /// - RuntimeResponseGenericRuntimeResponseTypeVideo
     /// - RuntimeResponseGenericRuntimeResponseTypeAudio
     /// - RuntimeResponseGenericRuntimeResponseTypeIframe
+    /// - RuntimeResponseGenericRuntimeResponseTypeDate
     /// </summary>
     [JsonConverter(typeof(JsonSubtypes), "response_type")]
     [JsonSubtypes.KnownSubType(typeof(RuntimeResponseGenericRuntimeResponseTypeAudio), "audio")]
     [JsonSubtypes.KnownSubType(typeof(RuntimeResponseGenericRuntimeResponseTypeChannelTransfer), "channel_transfer")]
     [JsonSubtypes.KnownSubType(typeof(RuntimeResponseGenericRuntimeResponseTypeConnectToAgent), "connect_to_agent")]
+    [JsonSubtypes.KnownSubType(typeof(RuntimeResponseGenericRuntimeResponseTypeDate), "date")]
     [JsonSubtypes.KnownSubType(typeof(RuntimeResponseGenericRuntimeResponseTypeIframe), "iframe")]
     [JsonSubtypes.KnownSubType(typeof(RuntimeResponseGenericRuntimeResponseTypeImage), "image")]
     [JsonSubtypes.KnownSubType(typeof(RuntimeResponseGenericRuntimeResponseTypeOption), "option")]
@@ -66,6 +68,7 @@ namespace IBM.Watson.Assistant.v2.Model
         /// - RuntimeResponseGenericRuntimeResponseTypeVideo
         /// - RuntimeResponseGenericRuntimeResponseTypeAudio
         /// - RuntimeResponseGenericRuntimeResponseTypeIframe
+        /// - RuntimeResponseGenericRuntimeResponseTypeDate
         protected RuntimeResponseGeneric()
         {
         }

@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2022.
+* (C) Copyright IBM Corp. 2022.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -22,7 +22,10 @@ namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
     /// Contains information specific to a particular skill used by the assistant. The property name must be the same as
-    /// the name of the skill (for example, `main skill`).
+    /// the name of the skill.
+    ///
+    /// **Note:** The default skill names are `main skill` for the dialog skill (if enabled), and `actions skill` for
+    /// the actions skill.
     /// </summary>
     public class MessageContextSkill
     {

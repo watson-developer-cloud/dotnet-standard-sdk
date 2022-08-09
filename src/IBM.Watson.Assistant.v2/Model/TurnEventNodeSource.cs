@@ -20,11 +20,28 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// An objects containing detailed diagnostic information about a dialog node that was visited during processing of
-    /// the input message.
+    /// TurnEventNodeSource.
     /// </summary>
-    public class DialogNodeVisited
+    public class TurnEventNodeSource
     {
+        /// <summary>
+        /// The type of turn event.
+        /// </summary>
+        public class TypeEnumValue
+        {
+            /// <summary>
+            /// Constant DIALOG_NODE for dialog_node
+            /// </summary>
+            public const string DIALOG_NODE = "dialog_node";
+            
+        }
+
+        /// <summary>
+        /// The type of turn event.
+        /// Constants for possible values can be found using TurnEventNodeSource.TypeEnumValue
+        /// </summary>
+        [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
+        public string Type { get; set; }
         /// <summary>
         /// A dialog node that was visited during processing of the input message.
         /// </summary>
@@ -36,10 +53,10 @@ namespace IBM.Watson.Assistant.v2.Model
         [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
         public string Title { get; set; }
         /// <summary>
-        /// The conditions that trigger the dialog node.
+        /// The condition that triggered the dialog node.
         /// </summary>
-        [JsonProperty("conditions", NullValueHandling = NullValueHandling.Ignore)]
-        public string Conditions { get; set; }
+        [JsonProperty("condition", NullValueHandling = NullValueHandling.Ignore)]
+        public string Condition { get; set; }
     }
 
 }

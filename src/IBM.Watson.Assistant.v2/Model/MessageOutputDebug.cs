@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2022.
+* (C) Copyright IBM Corp. 2022.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -50,7 +50,7 @@ namespace IBM.Watson.Assistant.v2.Model
         [JsonProperty("branch_exited_reason", NullValueHandling = NullValueHandling.Ignore)]
         public string BranchExitedReason { get; set; }
         /// <summary>
-        /// An array of objects containing detailed diagnostic information about dialog nodes that were triggered during
+        /// An array of objects containing detailed diagnostic information about dialog nodes that were visited during
         /// processing of the input message.
         /// </summary>
         [JsonProperty("nodes_visited", NullValueHandling = NullValueHandling.Ignore)]
@@ -65,6 +65,14 @@ namespace IBM.Watson.Assistant.v2.Model
         /// </summary>
         [JsonProperty("branch_exited", NullValueHandling = NullValueHandling.Ignore)]
         public bool? BranchExited { get; set; }
+        /// <summary>
+        /// An array of objects containing detailed diagnostic information about dialog nodes and actions that were
+        /// visited during processing of the input message.
+        ///
+        /// This property is present only if the assistant has an actions skill.
+        /// </summary>
+        [JsonProperty("turn_events", NullValueHandling = NullValueHandling.Ignore)]
+        public List<MessageOutputDebugTurnEvent> TurnEvents { get; set; }
     }
 
 }

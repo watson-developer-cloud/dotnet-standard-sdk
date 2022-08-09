@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2016, 2022.
+* (C) Copyright IBM Corp. 2022.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 */
 
 /**
-* IBM OpenAPI SDK Code Generator Version: 3.46.0-a4e29da0-20220224-210428
+* IBM OpenAPI SDK Code Generator Version: 3.53.0-9710cac3-20220713-193508
 */
  
 using System.Collections.Generic;
@@ -60,6 +60,13 @@ namespace IBM.Watson.TextToSpeech.v1
         /// and other details about the voice. The ordering of the list of voices can change from call to call; do not
         /// rely on an alphabetized or static list of voices. To see information about a specific voice, use the [Get a
         /// voice](#getvoice).
+        ///
+        /// **Note:** Effective 31 March 2022, all neural voices are deprecated. The deprecated voices remain available
+        /// to existing users until 31 March 2023, when they will be removed from the service and the documentation. The
+        /// neural voices are supported only for IBM Cloud; they are not available for IBM Cloud Pak for Data. All
+        /// enhanced neural voices remain available to all users. For more information, see the [31 March 2022 service
+        /// update](https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-release-notes#text-to-speech-31march2022)
+        /// in the release notes.
         ///
         /// **See also:** [Listing all available
         /// voices](https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-voices#listVoices).
@@ -107,9 +114,12 @@ namespace IBM.Watson.TextToSpeech.v1
         /// **See also:** [Listing a specific
         /// voice](https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-voices#listVoice).
         ///
-        /// **Note:** The Arabic, Chinese, Czech, Dutch (Belgian and Netherlands), Australian English, Korean, and
-        /// Swedish languages and voices are supported only for IBM Cloud; they are deprecated for IBM Cloud Pak for
-        /// Data. Also, the `ar-AR_OmarVoice` voice is deprecated; use the `ar-MS_OmarVoice` voice instead.
+        /// **Note:** Effective 31 March 2022, all neural voices are deprecated. The deprecated voices remain available
+        /// to existing users until 31 March 2023, when they will be removed from the service and the documentation. The
+        /// neural voices are supported only for IBM Cloud; they are not available for IBM Cloud Pak for Data. All
+        /// enhanced neural voices remain available to all users. For more information, see the [31 March 2022 service
+        /// update](https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-release-notes#text-to-speech-31march2022)
+        /// in the release notes.
         /// </summary>
         /// <param name="voice">The voice for which information is to be returned.</param>
         /// <param name="customizationId">The customization ID (GUID) of a custom model for which information is to be
@@ -171,10 +181,6 @@ namespace IBM.Watson.TextToSpeech.v1
             public class VoiceValue
             {
                 /// <summary>
-                /// Constant AR_AR_OMARVOICE for ar-AR_OmarVoice
-                /// </summary>
-                public const string AR_AR_OMARVOICE = "ar-AR_OmarVoice";
-                /// <summary>
                 /// Constant AR_MS_OMARVOICE for ar-MS_OmarVoice
                 /// </summary>
                 public const string AR_MS_OMARVOICE = "ar-MS_OmarVoice";
@@ -183,17 +189,9 @@ namespace IBM.Watson.TextToSpeech.v1
                 /// </summary>
                 public const string CS_CZ_ALENAVOICE = "cs-CZ_AlenaVoice";
                 /// <summary>
-                /// Constant DE_DE_BIRGITVOICE for de-DE_BirgitVoice
-                /// </summary>
-                public const string DE_DE_BIRGITVOICE = "de-DE_BirgitVoice";
-                /// <summary>
                 /// Constant DE_DE_BIRGITV3VOICE for de-DE_BirgitV3Voice
                 /// </summary>
                 public const string DE_DE_BIRGITV3VOICE = "de-DE_BirgitV3Voice";
-                /// <summary>
-                /// Constant DE_DE_DIETERVOICE for de-DE_DieterVoice
-                /// </summary>
-                public const string DE_DE_DIETERVOICE = "de-DE_DieterVoice";
                 /// <summary>
                 /// Constant DE_DE_DIETERV3VOICE for de-DE_DieterV3Voice
                 /// </summary>
@@ -223,17 +221,9 @@ namespace IBM.Watson.TextToSpeech.v1
                 /// </summary>
                 public const string EN_GB_JAMESV3VOICE = "en-GB_JamesV3Voice";
                 /// <summary>
-                /// Constant EN_GB_KATEVOICE for en-GB_KateVoice
-                /// </summary>
-                public const string EN_GB_KATEVOICE = "en-GB_KateVoice";
-                /// <summary>
                 /// Constant EN_GB_KATEV3VOICE for en-GB_KateV3Voice
                 /// </summary>
                 public const string EN_GB_KATEV3VOICE = "en-GB_KateV3Voice";
-                /// <summary>
-                /// Constant EN_US_ALLISONVOICE for en-US_AllisonVoice
-                /// </summary>
-                public const string EN_US_ALLISONVOICE = "en-US_AllisonVoice";
                 /// <summary>
                 /// Constant EN_US_ALLISONV3VOICE for en-US_AllisonV3Voice
                 /// </summary>
@@ -251,17 +241,9 @@ namespace IBM.Watson.TextToSpeech.v1
                 /// </summary>
                 public const string EN_US_KEVINV3VOICE = "en-US_KevinV3Voice";
                 /// <summary>
-                /// Constant EN_US_LISAVOICE for en-US_LisaVoice
-                /// </summary>
-                public const string EN_US_LISAVOICE = "en-US_LisaVoice";
-                /// <summary>
                 /// Constant EN_US_LISAV3VOICE for en-US_LisaV3Voice
                 /// </summary>
                 public const string EN_US_LISAV3VOICE = "en-US_LisaV3Voice";
-                /// <summary>
-                /// Constant EN_US_MICHAELVOICE for en-US_MichaelVoice
-                /// </summary>
-                public const string EN_US_MICHAELVOICE = "en-US_MichaelVoice";
                 /// <summary>
                 /// Constant EN_US_MICHAELV3VOICE for en-US_MichaelV3Voice
                 /// </summary>
@@ -271,33 +253,17 @@ namespace IBM.Watson.TextToSpeech.v1
                 /// </summary>
                 public const string EN_US_OLIVIAV3VOICE = "en-US_OliviaV3Voice";
                 /// <summary>
-                /// Constant ES_ES_ENRIQUEVOICE for es-ES_EnriqueVoice
-                /// </summary>
-                public const string ES_ES_ENRIQUEVOICE = "es-ES_EnriqueVoice";
-                /// <summary>
                 /// Constant ES_ES_ENRIQUEV3VOICE for es-ES_EnriqueV3Voice
                 /// </summary>
                 public const string ES_ES_ENRIQUEV3VOICE = "es-ES_EnriqueV3Voice";
-                /// <summary>
-                /// Constant ES_ES_LAURAVOICE for es-ES_LauraVoice
-                /// </summary>
-                public const string ES_ES_LAURAVOICE = "es-ES_LauraVoice";
                 /// <summary>
                 /// Constant ES_ES_LAURAV3VOICE for es-ES_LauraV3Voice
                 /// </summary>
                 public const string ES_ES_LAURAV3VOICE = "es-ES_LauraV3Voice";
                 /// <summary>
-                /// Constant ES_LA_SOFIAVOICE for es-LA_SofiaVoice
-                /// </summary>
-                public const string ES_LA_SOFIAVOICE = "es-LA_SofiaVoice";
-                /// <summary>
                 /// Constant ES_LA_SOFIAV3VOICE for es-LA_SofiaV3Voice
                 /// </summary>
                 public const string ES_LA_SOFIAV3VOICE = "es-LA_SofiaV3Voice";
-                /// <summary>
-                /// Constant ES_US_SOFIAVOICE for es-US_SofiaVoice
-                /// </summary>
-                public const string ES_US_SOFIAVOICE = "es-US_SofiaVoice";
                 /// <summary>
                 /// Constant ES_US_SOFIAV3VOICE for es-US_SofiaV3Voice
                 /// </summary>
@@ -311,25 +277,13 @@ namespace IBM.Watson.TextToSpeech.v1
                 /// </summary>
                 public const string FR_FR_NICOLASV3VOICE = "fr-FR_NicolasV3Voice";
                 /// <summary>
-                /// Constant FR_FR_RENEEVOICE for fr-FR_ReneeVoice
-                /// </summary>
-                public const string FR_FR_RENEEVOICE = "fr-FR_ReneeVoice";
-                /// <summary>
                 /// Constant FR_FR_RENEEV3VOICE for fr-FR_ReneeV3Voice
                 /// </summary>
                 public const string FR_FR_RENEEV3VOICE = "fr-FR_ReneeV3Voice";
                 /// <summary>
-                /// Constant IT_IT_FRANCESCAVOICE for it-IT_FrancescaVoice
-                /// </summary>
-                public const string IT_IT_FRANCESCAVOICE = "it-IT_FrancescaVoice";
-                /// <summary>
                 /// Constant IT_IT_FRANCESCAV3VOICE for it-IT_FrancescaV3Voice
                 /// </summary>
                 public const string IT_IT_FRANCESCAV3VOICE = "it-IT_FrancescaV3Voice";
-                /// <summary>
-                /// Constant JA_JP_EMIVOICE for ja-JP_EmiVoice
-                /// </summary>
-                public const string JA_JP_EMIVOICE = "ja-JP_EmiVoice";
                 /// <summary>
                 /// Constant JA_JP_EMIV3VOICE for ja-JP_EmiV3Voice
                 /// </summary>
@@ -367,10 +321,6 @@ namespace IBM.Watson.TextToSpeech.v1
                 /// </summary>
                 public const string NL_NL_LIAMVOICE = "nl-NL_LiamVoice";
                 /// <summary>
-                /// Constant PT_BR_ISABELAVOICE for pt-BR_IsabelaVoice
-                /// </summary>
-                public const string PT_BR_ISABELAVOICE = "pt-BR_IsabelaVoice";
-                /// <summary>
                 /// Constant PT_BR_ISABELAV3VOICE for pt-BR_IsabelaV3Voice
                 /// </summary>
                 public const string PT_BR_ISABELAV3VOICE = "pt-BR_IsabelaV3Voice";
@@ -407,22 +357,26 @@ namespace IBM.Watson.TextToSpeech.v1
         /// **See also:** [The HTTP
         /// interface](https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-usingHTTP#usingHTTP).
         ///
-        /// **Note:** The Arabic, Chinese, Czech, Dutch (Belgian and Netherlands), Australian English, Korean, and
-        /// Swedish languages and voices are supported only for IBM Cloud; they are deprecated for IBM Cloud Pak for
-        /// Data. Also, the `ar-AR_OmarVoice` voice is deprecated; use the `ar-MS_OmarVoice` voice instead.
+        /// **Note:** Effective 31 March 2022, all neural voices are deprecated. The deprecated voices remain available
+        /// to existing users until 31 March 2023, when they will be removed from the service and the documentation. The
+        /// neural voices are supported only for IBM Cloud; they are not available for IBM Cloud Pak for Data. All
+        /// enhanced neural voices remain available to all users. For more information, see the [31 March 2022 service
+        /// update](https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-release-notes#text-to-speech-31march2022)
+        /// in the release notes.
         ///
         /// ### Audio formats (accept types)
         ///
         ///  The service can return audio in the following formats (MIME types).
         /// * Where indicated, you can optionally specify the sampling rate (`rate`) of the audio. You must specify a
-        /// sampling rate for the `audio/l16` and `audio/mulaw` formats. A specified sampling rate must lie in the range
-        /// of 8 kHz to 192 kHz. Some formats restrict the sampling rate to certain values, as noted.
+        /// sampling rate for the `audio/alaw`, `audio/l16`,  and `audio/mulaw` formats. A specified sampling rate must
+        /// lie in the range of 8 kHz to 192 kHz. Some formats restrict the sampling rate to certain values, as noted.
         /// * For the `audio/l16` format, you can optionally specify the endianness (`endianness`) of the audio:
         /// `endianness=big-endian` or `endianness=little-endian`.
         ///
         /// Use the `Accept` header or the `accept` parameter to specify the requested format of the response audio. If
         /// you omit an audio format altogether, the service returns the audio in Ogg format with the Opus codec
         /// (`audio/ogg;codecs=opus`). The service always returns single-channel audio.
+        /// * `audio/alaw` - You must specify the `rate` of the audio.
         /// * `audio/basic` - The service returns audio with a sampling rate of 8000 Hz.
         /// * `audio/flac` - You can optionally specify the `rate` of the audio. The default sampling rate is 22,050 Hz.
         /// * `audio/l16` - You must specify the `rate` of the audio. You can optionally specify the `endianness` of the
@@ -461,23 +415,36 @@ namespace IBM.Watson.TextToSpeech.v1
         /// `accept` parameter to specify the audio format. For more information about specifying an audio format, see
         /// **Audio formats (accept types)** in the method description. (optional, default to
         /// audio/ogg;codecs=opus)</param>
-        /// <param name="voice">The voice to use for synthesis. If you omit the `voice` parameter, the service uses a
-        /// default voice, which depends on the version of the service that you are using:
-        /// * _For IBM Cloud,_ the service always uses the US English `en-US_MichaelV3Voice` by default.
-        /// * _For IBM Cloud Pak for Data,_ the default voice depends on the voices that you installed. If you installed
-        /// the _enhanced neural voices_, the service uses the US English `en-US_MichaelV3Voice` by default; if that
-        /// voice is not installed, you must specify a voice. If you installed the _neural voices_, the service always
-        /// uses the Australian English `en-AU_MadisonVoice` by default.
+        /// <param name="voice">The voice to use for speech synthesis. If you omit the `voice` parameter, the service
+        /// uses the US English `en-US_MichaelV3Voice` by default.
         ///
-        /// **See also:** See also [Using languages and
-        /// voices](https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-voices). (optional, default to
-        /// en-US_MichaelV3Voice)</param>
+        /// _For IBM Cloud Pak for Data,_ if you do not install the `en-US_MichaelV3Voice`, you must either specify a
+        /// voice with the request or specify a new default voice for your installation of the service.
+        ///
+        /// **See also:**
+        /// * [Using languages and voices](https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-voices)
+        /// * [The default
+        /// voice](https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-voices#specify-voice-default).
+        /// (optional, default to en-US_MichaelV3Voice)</param>
         /// <param name="customizationId">The customization ID (GUID) of a custom model to use for the synthesis. If a
         /// custom model is specified, it works only if it matches the language of the indicated voice. You must make
         /// the request with credentials for the instance of the service that owns the custom model. Omit the parameter
         /// to use the specified voice with no customization. (optional)</param>
+        /// <param name="spellOutMode">*For German voices,* indicates how the service is to spell out strings of
+        /// individual letters. To indicate the pace of the spelling, specify one of the following values:
+        /// * `default` - The service reads the characters at the rate at which it synthesizes speech for the request.
+        /// You can also omit the parameter entirely to achieve the default behavior.
+        /// * `singles` - The service reads the characters one at a time, with a brief pause between each character.
+        /// * `pairs` - The service reads the characters two at a time, with a brief pause between each pair.
+        /// * `triples` - The service reads the characters three at a time, with a brief pause between each triplet.
+        ///
+        /// The parameter is available only for IBM Cloud.
+        ///
+        /// **See also:** [Specifying how strings are spelled
+        /// out](https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-synthesis-params#params-spell-out-mode).
+        /// (optional, default to default)</param>
         /// <returns><see cref="byte[]" />byte[]</returns>
-        public DetailedResponse<System.IO.MemoryStream> Synthesize(string text, string accept = null, string voice = null, string customizationId = null)
+        public DetailedResponse<System.IO.MemoryStream> Synthesize(string text, string accept = null, string voice = null, string customizationId = null, string spellOutMode = null)
         {
             if (string.IsNullOrEmpty(text))
             {
@@ -504,6 +471,10 @@ namespace IBM.Watson.TextToSpeech.v1
                 if (!string.IsNullOrEmpty(customizationId))
                 {
                     restRequest.WithArgument("customization_id", customizationId);
+                }
+                if (!string.IsNullOrEmpty(spellOutMode))
+                {
+                    restRequest.WithArgument("spell_out_mode", spellOutMode);
                 }
                 restRequest.WithHeader("Content-Type", "application/json");
 
@@ -542,6 +513,10 @@ namespace IBM.Watson.TextToSpeech.v1
             /// </summary>
             public class AcceptValue
             {
+                /// <summary>
+                /// Constant AUDIO_ALAW for audio/alaw
+                /// </summary>
+                public const string AUDIO_ALAW = "audio/alaw";
                 /// <summary>
                 /// Constant AUDIO_BASIC for audio/basic
                 /// </summary>
@@ -597,23 +572,19 @@ namespace IBM.Watson.TextToSpeech.v1
                 
             }
             /// <summary>
-            /// The voice to use for synthesis. If you omit the `voice` parameter, the service uses a default voice,
-            /// which depends on the version of the service that you are using:
-            /// * _For IBM Cloud,_ the service always uses the US English `en-US_MichaelV3Voice` by default.
-            /// * _For IBM Cloud Pak for Data,_ the default voice depends on the voices that you installed. If you
-            /// installed the _enhanced neural voices_, the service uses the US English `en-US_MichaelV3Voice` by
-            /// default; if that voice is not installed, you must specify a voice. If you installed the _neural voices_,
-            /// the service always uses the Australian English `en-AU_MadisonVoice` by default.
+            /// The voice to use for speech synthesis. If you omit the `voice` parameter, the service uses the US
+            /// English `en-US_MichaelV3Voice` by default.
             ///
-            /// **See also:** See also [Using languages and
-            /// voices](https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-voices).
+            /// _For IBM Cloud Pak for Data,_ if you do not install the `en-US_MichaelV3Voice`, you must either specify
+            /// a voice with the request or specify a new default voice for your installation of the service.
+            ///
+            /// **See also:**
+            /// * [Using languages and voices](https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-voices)
+            /// * [The default
+            /// voice](https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-voices#specify-voice-default).
             /// </summary>
             public class VoiceValue
             {
-                /// <summary>
-                /// Constant AR_AR_OMARVOICE for ar-AR_OmarVoice
-                /// </summary>
-                public const string AR_AR_OMARVOICE = "ar-AR_OmarVoice";
                 /// <summary>
                 /// Constant AR_MS_OMARVOICE for ar-MS_OmarVoice
                 /// </summary>
@@ -623,17 +594,9 @@ namespace IBM.Watson.TextToSpeech.v1
                 /// </summary>
                 public const string CS_CZ_ALENAVOICE = "cs-CZ_AlenaVoice";
                 /// <summary>
-                /// Constant DE_DE_BIRGITVOICE for de-DE_BirgitVoice
-                /// </summary>
-                public const string DE_DE_BIRGITVOICE = "de-DE_BirgitVoice";
-                /// <summary>
                 /// Constant DE_DE_BIRGITV3VOICE for de-DE_BirgitV3Voice
                 /// </summary>
                 public const string DE_DE_BIRGITV3VOICE = "de-DE_BirgitV3Voice";
-                /// <summary>
-                /// Constant DE_DE_DIETERVOICE for de-DE_DieterVoice
-                /// </summary>
-                public const string DE_DE_DIETERVOICE = "de-DE_DieterVoice";
                 /// <summary>
                 /// Constant DE_DE_DIETERV3VOICE for de-DE_DieterV3Voice
                 /// </summary>
@@ -663,17 +626,9 @@ namespace IBM.Watson.TextToSpeech.v1
                 /// </summary>
                 public const string EN_GB_JAMESV3VOICE = "en-GB_JamesV3Voice";
                 /// <summary>
-                /// Constant EN_GB_KATEVOICE for en-GB_KateVoice
-                /// </summary>
-                public const string EN_GB_KATEVOICE = "en-GB_KateVoice";
-                /// <summary>
                 /// Constant EN_GB_KATEV3VOICE for en-GB_KateV3Voice
                 /// </summary>
                 public const string EN_GB_KATEV3VOICE = "en-GB_KateV3Voice";
-                /// <summary>
-                /// Constant EN_US_ALLISONVOICE for en-US_AllisonVoice
-                /// </summary>
-                public const string EN_US_ALLISONVOICE = "en-US_AllisonVoice";
                 /// <summary>
                 /// Constant EN_US_ALLISONV3VOICE for en-US_AllisonV3Voice
                 /// </summary>
@@ -691,17 +646,9 @@ namespace IBM.Watson.TextToSpeech.v1
                 /// </summary>
                 public const string EN_US_KEVINV3VOICE = "en-US_KevinV3Voice";
                 /// <summary>
-                /// Constant EN_US_LISAVOICE for en-US_LisaVoice
-                /// </summary>
-                public const string EN_US_LISAVOICE = "en-US_LisaVoice";
-                /// <summary>
                 /// Constant EN_US_LISAV3VOICE for en-US_LisaV3Voice
                 /// </summary>
                 public const string EN_US_LISAV3VOICE = "en-US_LisaV3Voice";
-                /// <summary>
-                /// Constant EN_US_MICHAELVOICE for en-US_MichaelVoice
-                /// </summary>
-                public const string EN_US_MICHAELVOICE = "en-US_MichaelVoice";
                 /// <summary>
                 /// Constant EN_US_MICHAELV3VOICE for en-US_MichaelV3Voice
                 /// </summary>
@@ -711,33 +658,17 @@ namespace IBM.Watson.TextToSpeech.v1
                 /// </summary>
                 public const string EN_US_OLIVIAV3VOICE = "en-US_OliviaV3Voice";
                 /// <summary>
-                /// Constant ES_ES_ENRIQUEVOICE for es-ES_EnriqueVoice
-                /// </summary>
-                public const string ES_ES_ENRIQUEVOICE = "es-ES_EnriqueVoice";
-                /// <summary>
                 /// Constant ES_ES_ENRIQUEV3VOICE for es-ES_EnriqueV3Voice
                 /// </summary>
                 public const string ES_ES_ENRIQUEV3VOICE = "es-ES_EnriqueV3Voice";
-                /// <summary>
-                /// Constant ES_ES_LAURAVOICE for es-ES_LauraVoice
-                /// </summary>
-                public const string ES_ES_LAURAVOICE = "es-ES_LauraVoice";
                 /// <summary>
                 /// Constant ES_ES_LAURAV3VOICE for es-ES_LauraV3Voice
                 /// </summary>
                 public const string ES_ES_LAURAV3VOICE = "es-ES_LauraV3Voice";
                 /// <summary>
-                /// Constant ES_LA_SOFIAVOICE for es-LA_SofiaVoice
-                /// </summary>
-                public const string ES_LA_SOFIAVOICE = "es-LA_SofiaVoice";
-                /// <summary>
                 /// Constant ES_LA_SOFIAV3VOICE for es-LA_SofiaV3Voice
                 /// </summary>
                 public const string ES_LA_SOFIAV3VOICE = "es-LA_SofiaV3Voice";
-                /// <summary>
-                /// Constant ES_US_SOFIAVOICE for es-US_SofiaVoice
-                /// </summary>
-                public const string ES_US_SOFIAVOICE = "es-US_SofiaVoice";
                 /// <summary>
                 /// Constant ES_US_SOFIAV3VOICE for es-US_SofiaV3Voice
                 /// </summary>
@@ -751,25 +682,13 @@ namespace IBM.Watson.TextToSpeech.v1
                 /// </summary>
                 public const string FR_FR_NICOLASV3VOICE = "fr-FR_NicolasV3Voice";
                 /// <summary>
-                /// Constant FR_FR_RENEEVOICE for fr-FR_ReneeVoice
-                /// </summary>
-                public const string FR_FR_RENEEVOICE = "fr-FR_ReneeVoice";
-                /// <summary>
                 /// Constant FR_FR_RENEEV3VOICE for fr-FR_ReneeV3Voice
                 /// </summary>
                 public const string FR_FR_RENEEV3VOICE = "fr-FR_ReneeV3Voice";
                 /// <summary>
-                /// Constant IT_IT_FRANCESCAVOICE for it-IT_FrancescaVoice
-                /// </summary>
-                public const string IT_IT_FRANCESCAVOICE = "it-IT_FrancescaVoice";
-                /// <summary>
                 /// Constant IT_IT_FRANCESCAV3VOICE for it-IT_FrancescaV3Voice
                 /// </summary>
                 public const string IT_IT_FRANCESCAV3VOICE = "it-IT_FrancescaV3Voice";
-                /// <summary>
-                /// Constant JA_JP_EMIVOICE for ja-JP_EmiVoice
-                /// </summary>
-                public const string JA_JP_EMIVOICE = "ja-JP_EmiVoice";
                 /// <summary>
                 /// Constant JA_JP_EMIV3VOICE for ja-JP_EmiV3Voice
                 /// </summary>
@@ -807,10 +726,6 @@ namespace IBM.Watson.TextToSpeech.v1
                 /// </summary>
                 public const string NL_NL_LIAMVOICE = "nl-NL_LiamVoice";
                 /// <summary>
-                /// Constant PT_BR_ISABELAVOICE for pt-BR_IsabelaVoice
-                /// </summary>
-                public const string PT_BR_ISABELAVOICE = "pt-BR_IsabelaVoice";
-                /// <summary>
                 /// Constant PT_BR_ISABELAV3VOICE for pt-BR_IsabelaV3Voice
                 /// </summary>
                 public const string PT_BR_ISABELAV3VOICE = "pt-BR_IsabelaV3Voice";
@@ -832,6 +747,41 @@ namespace IBM.Watson.TextToSpeech.v1
                 public const string ZH_CN_ZHANGJINGVOICE = "zh-CN_ZhangJingVoice";
                 
             }
+            /// <summary>
+            /// *For German voices,* indicates how the service is to spell out strings of individual letters. To
+            /// indicate the pace of the spelling, specify one of the following values:
+            /// * `default` - The service reads the characters at the rate at which it synthesizes speech for the
+            /// request. You can also omit the parameter entirely to achieve the default behavior.
+            /// * `singles` - The service reads the characters one at a time, with a brief pause between each character.
+            /// * `pairs` - The service reads the characters two at a time, with a brief pause between each pair.
+            /// * `triples` - The service reads the characters three at a time, with a brief pause between each triplet.
+            ///
+            ///
+            /// The parameter is available only for IBM Cloud.
+            ///
+            /// **See also:** [Specifying how strings are spelled
+            /// out](https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-synthesis-params#params-spell-out-mode).
+            /// </summary>
+            public class SpellOutModeValue
+            {
+                /// <summary>
+                /// Constant DEFAULT for default
+                /// </summary>
+                public const string DEFAULT = "default";
+                /// <summary>
+                /// Constant SINGLES for singles
+                /// </summary>
+                public const string SINGLES = "singles";
+                /// <summary>
+                /// Constant PAIRS for pairs
+                /// </summary>
+                public const string PAIRS = "pairs";
+                /// <summary>
+                /// Constant TRIPLES for triples
+                /// </summary>
+                public const string TRIPLES = "triples";
+                
+            }
         }
         /// <summary>
         /// Get pronunciation.
@@ -840,17 +790,27 @@ namespace IBM.Watson.TextToSpeech.v1
         /// format. You can also request the pronunciation for a specific voice to see the default translation for the
         /// language of that voice or for a specific custom model to see the translation for that model.
         ///
+        /// **Note:** Effective 31 March 2022, all neural voices are deprecated. The deprecated voices remain available
+        /// to existing users until 31 March 2023, when they will be removed from the service and the documentation. The
+        /// neural voices are supported only for IBM Cloud; they are not available for IBM Cloud Pak for Data. All
+        /// enhanced neural voices remain available to all users. For more information, see the [31 March 2022 service
+        /// update](https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-release-notes#text-to-speech-31march2022)
+        /// in the release notes.
+        ///
         /// **See also:** [Querying a word from a
         /// language](https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-customWords#cuWordsQueryLanguage).
-        ///
-        /// **Note:** The Arabic, Chinese, Czech, Dutch (Belgian and Netherlands), Australian English, Korean, and
-        /// Swedish languages and voices are supported only for IBM Cloud; they are deprecated for IBM Cloud Pak for
-        /// Data. Also, the `ar-AR_OmarVoice` voice is deprecated; use the `ar-MS_OmarVoice` voice instead.
         /// </summary>
         /// <param name="text">The word for which the pronunciation is requested.</param>
-        /// <param name="voice">A voice that specifies the language in which the pronunciation is to be returned. All
-        /// voices for the same language (for example, `en-US`) return the same translation. (optional, default to
-        /// en-US_MichaelV3Voice)</param>
+        /// <param name="voice">A voice that specifies the language in which the pronunciation is to be returned. If you
+        /// omit the `voice` parameter, the service uses the US English `en-US_MichaelV3Voice` by default. All voices
+        /// for the same language (for example, `en-US`) return the same translation.
+        ///
+        /// _For IBM Cloud Pak for Data,_ if you do not install the `en-US_MichaelV3Voice`, you must either specify a
+        /// voice with the request or specify a new default voice for your installation of the service.
+        ///
+        /// **See also:** [The default
+        /// voice](https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-voices#specify-voice-default).
+        /// (optional, default to en-US_MichaelV3Voice)</param>
         /// <param name="format">The phoneme format in which to return the pronunciation. The Arabic, Chinese, Dutch,
         /// Australian English, and Korean languages support only IPA. Omit the parameter to obtain the pronunciation in
         /// the default format. (optional, default to ipa)</param>
@@ -918,15 +878,18 @@ namespace IBM.Watson.TextToSpeech.v1
         public class GetPronunciationEnums
         {
             /// <summary>
-            /// A voice that specifies the language in which the pronunciation is to be returned. All voices for the
+            /// A voice that specifies the language in which the pronunciation is to be returned. If you omit the
+            /// `voice` parameter, the service uses the US English `en-US_MichaelV3Voice` by default. All voices for the
             /// same language (for example, `en-US`) return the same translation.
+            ///
+            /// _For IBM Cloud Pak for Data,_ if you do not install the `en-US_MichaelV3Voice`, you must either specify
+            /// a voice with the request or specify a new default voice for your installation of the service.
+            ///
+            /// **See also:** [The default
+            /// voice](https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-voices#specify-voice-default).
             /// </summary>
             public class VoiceValue
             {
-                /// <summary>
-                /// Constant AR_AR_OMARVOICE for ar-AR_OmarVoice
-                /// </summary>
-                public const string AR_AR_OMARVOICE = "ar-AR_OmarVoice";
                 /// <summary>
                 /// Constant AR_MS_OMARVOICE for ar-MS_OmarVoice
                 /// </summary>
@@ -936,17 +899,9 @@ namespace IBM.Watson.TextToSpeech.v1
                 /// </summary>
                 public const string CS_CZ_ALENAVOICE = "cs-CZ_AlenaVoice";
                 /// <summary>
-                /// Constant DE_DE_BIRGITVOICE for de-DE_BirgitVoice
-                /// </summary>
-                public const string DE_DE_BIRGITVOICE = "de-DE_BirgitVoice";
-                /// <summary>
                 /// Constant DE_DE_BIRGITV3VOICE for de-DE_BirgitV3Voice
                 /// </summary>
                 public const string DE_DE_BIRGITV3VOICE = "de-DE_BirgitV3Voice";
-                /// <summary>
-                /// Constant DE_DE_DIETERVOICE for de-DE_DieterVoice
-                /// </summary>
-                public const string DE_DE_DIETERVOICE = "de-DE_DieterVoice";
                 /// <summary>
                 /// Constant DE_DE_DIETERV3VOICE for de-DE_DieterV3Voice
                 /// </summary>
@@ -976,17 +931,9 @@ namespace IBM.Watson.TextToSpeech.v1
                 /// </summary>
                 public const string EN_GB_JAMESV3VOICE = "en-GB_JamesV3Voice";
                 /// <summary>
-                /// Constant EN_GB_KATEVOICE for en-GB_KateVoice
-                /// </summary>
-                public const string EN_GB_KATEVOICE = "en-GB_KateVoice";
-                /// <summary>
                 /// Constant EN_GB_KATEV3VOICE for en-GB_KateV3Voice
                 /// </summary>
                 public const string EN_GB_KATEV3VOICE = "en-GB_KateV3Voice";
-                /// <summary>
-                /// Constant EN_US_ALLISONVOICE for en-US_AllisonVoice
-                /// </summary>
-                public const string EN_US_ALLISONVOICE = "en-US_AllisonVoice";
                 /// <summary>
                 /// Constant EN_US_ALLISONV3VOICE for en-US_AllisonV3Voice
                 /// </summary>
@@ -1004,17 +951,9 @@ namespace IBM.Watson.TextToSpeech.v1
                 /// </summary>
                 public const string EN_US_KEVINV3VOICE = "en-US_KevinV3Voice";
                 /// <summary>
-                /// Constant EN_US_LISAVOICE for en-US_LisaVoice
-                /// </summary>
-                public const string EN_US_LISAVOICE = "en-US_LisaVoice";
-                /// <summary>
                 /// Constant EN_US_LISAV3VOICE for en-US_LisaV3Voice
                 /// </summary>
                 public const string EN_US_LISAV3VOICE = "en-US_LisaV3Voice";
-                /// <summary>
-                /// Constant EN_US_MICHAELVOICE for en-US_MichaelVoice
-                /// </summary>
-                public const string EN_US_MICHAELVOICE = "en-US_MichaelVoice";
                 /// <summary>
                 /// Constant EN_US_MICHAELV3VOICE for en-US_MichaelV3Voice
                 /// </summary>
@@ -1024,33 +963,17 @@ namespace IBM.Watson.TextToSpeech.v1
                 /// </summary>
                 public const string EN_US_OLIVIAV3VOICE = "en-US_OliviaV3Voice";
                 /// <summary>
-                /// Constant ES_ES_ENRIQUEVOICE for es-ES_EnriqueVoice
-                /// </summary>
-                public const string ES_ES_ENRIQUEVOICE = "es-ES_EnriqueVoice";
-                /// <summary>
                 /// Constant ES_ES_ENRIQUEV3VOICE for es-ES_EnriqueV3Voice
                 /// </summary>
                 public const string ES_ES_ENRIQUEV3VOICE = "es-ES_EnriqueV3Voice";
-                /// <summary>
-                /// Constant ES_ES_LAURAVOICE for es-ES_LauraVoice
-                /// </summary>
-                public const string ES_ES_LAURAVOICE = "es-ES_LauraVoice";
                 /// <summary>
                 /// Constant ES_ES_LAURAV3VOICE for es-ES_LauraV3Voice
                 /// </summary>
                 public const string ES_ES_LAURAV3VOICE = "es-ES_LauraV3Voice";
                 /// <summary>
-                /// Constant ES_LA_SOFIAVOICE for es-LA_SofiaVoice
-                /// </summary>
-                public const string ES_LA_SOFIAVOICE = "es-LA_SofiaVoice";
-                /// <summary>
                 /// Constant ES_LA_SOFIAV3VOICE for es-LA_SofiaV3Voice
                 /// </summary>
                 public const string ES_LA_SOFIAV3VOICE = "es-LA_SofiaV3Voice";
-                /// <summary>
-                /// Constant ES_US_SOFIAVOICE for es-US_SofiaVoice
-                /// </summary>
-                public const string ES_US_SOFIAVOICE = "es-US_SofiaVoice";
                 /// <summary>
                 /// Constant ES_US_SOFIAV3VOICE for es-US_SofiaV3Voice
                 /// </summary>
@@ -1064,25 +987,13 @@ namespace IBM.Watson.TextToSpeech.v1
                 /// </summary>
                 public const string FR_FR_NICOLASV3VOICE = "fr-FR_NicolasV3Voice";
                 /// <summary>
-                /// Constant FR_FR_RENEEVOICE for fr-FR_ReneeVoice
-                /// </summary>
-                public const string FR_FR_RENEEVOICE = "fr-FR_ReneeVoice";
-                /// <summary>
                 /// Constant FR_FR_RENEEV3VOICE for fr-FR_ReneeV3Voice
                 /// </summary>
                 public const string FR_FR_RENEEV3VOICE = "fr-FR_ReneeV3Voice";
                 /// <summary>
-                /// Constant IT_IT_FRANCESCAVOICE for it-IT_FrancescaVoice
-                /// </summary>
-                public const string IT_IT_FRANCESCAVOICE = "it-IT_FrancescaVoice";
-                /// <summary>
                 /// Constant IT_IT_FRANCESCAV3VOICE for it-IT_FrancescaV3Voice
                 /// </summary>
                 public const string IT_IT_FRANCESCAV3VOICE = "it-IT_FrancescaV3Voice";
-                /// <summary>
-                /// Constant JA_JP_EMIVOICE for ja-JP_EmiVoice
-                /// </summary>
-                public const string JA_JP_EMIVOICE = "ja-JP_EmiVoice";
                 /// <summary>
                 /// Constant JA_JP_EMIV3VOICE for ja-JP_EmiV3Voice
                 /// </summary>
@@ -1119,10 +1030,6 @@ namespace IBM.Watson.TextToSpeech.v1
                 /// Constant NL_NL_LIAMVOICE for nl-NL_LiamVoice
                 /// </summary>
                 public const string NL_NL_LIAMVOICE = "nl-NL_LiamVoice";
-                /// <summary>
-                /// Constant PT_BR_ISABELAVOICE for pt-BR_IsabelaVoice
-                /// </summary>
-                public const string PT_BR_ISABELAVOICE = "pt-BR_IsabelaVoice";
                 /// <summary>
                 /// Constant PT_BR_ISABELAV3VOICE for pt-BR_IsabelaV3Voice
                 /// </summary>
@@ -1173,20 +1080,17 @@ namespace IBM.Watson.TextToSpeech.v1
         /// **See also:** [Creating a custom
         /// model](https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-customModels#cuModelsCreate).
         ///
-        /// **Note:** The Arabic, Chinese, Czech, Dutch (Belgian and Netherlands), Australian English, Korean, and
-        /// Swedish languages and voices are supported only for IBM Cloud; they are deprecated for IBM Cloud Pak for
-        /// Data. Also, the `ar-AR` language identifier cannot be used to create a custom model; use the `ar-MS`
-        /// identifier instead.
+        /// **Note:** Effective 31 March 2022, all neural voices are deprecated. The deprecated voices remain available
+        /// to existing users until 31 March 2023, when they will be removed from the service and the documentation. The
+        /// neural voices are supported only for IBM Cloud; they are not available for IBM Cloud Pak for Data. All
+        /// enhanced neural voices remain available to all users. For more information, see the [31 March 2022 service
+        /// update](https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-release-notes#text-to-speech-31march2022)
+        /// in the release notes.
         /// </summary>
         /// <param name="name">The name of the new custom model.</param>
         /// <param name="language">The language of the new custom model. You create a custom model for a specific
         /// language, not for a specific voice. A custom model can be used with any voice for its specified language.
-        /// Omit the parameter to use the the default language, `en-US`.
-        ///
-        /// **Important:** If you are using the service on IBM Cloud Pak for Data _and_ you install the neural voices,
-        /// the `language`parameter is required. You must specify the language for the custom model in the indicated
-        /// format (for example, `en-AU` for Australian English). The request fails if you do not specify a language.
-        /// (optional, default to en-US)</param>
+        /// Omit the parameter to use the the default language, `en-US`. (optional, default to en-US)</param>
         /// <param name="description">A description of the new custom model. Specifying a description is recommended.
         /// (optional)</param>
         /// <returns><see cref="CustomModel" />CustomModel</returns>

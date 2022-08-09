@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2021.
+* (C) Copyright IBM Corp. 2022.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -112,7 +112,9 @@ namespace IBM.Watson.SpeechToText.v1.Model
         /// An array of warning messages about invalid parameters included with the request. Each warning includes a
         /// descriptive message and a list of invalid argument strings, for example, `"unexpected query parameter
         /// 'user_token', query parameter 'callback_url' was not specified"`. The request succeeds despite the warnings.
-        /// This field can be returned only by the [Create a job](#createjob) method.
+        /// This field can be returned only by the [Create a job](#createjob) method. (If you use the
+        /// `character_insertion_bias` parameter with a previous-generation model, the warning message refers to the
+        /// parameter as `lambdaBias`.).
         /// </summary>
         [JsonProperty("warnings", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Warnings { get; set; }

@@ -140,11 +140,6 @@ namespace IBM.Watson.Assistant.v2.Model
         [JsonProperty("event", NullValueHandling = NullValueHandling.Ignore)]
         public string _Event { get; protected set; }
         /// <summary>
-        /// Gets or Sets Source
-        /// </summary>
-        [JsonProperty("source", NullValueHandling = NullValueHandling.Ignore)]
-        public TurnEventActionSource Source { get; protected set; }
-        /// <summary>
         /// The time when the action started processing the message.
         /// </summary>
         [JsonProperty("action_start_time", NullValueHandling = NullValueHandling.Ignore)]
@@ -170,11 +165,6 @@ namespace IBM.Watson.Assistant.v2.Model
         /// </summary>
         [JsonProperty("callout", NullValueHandling = NullValueHandling.Ignore)]
         public TurnEventCalloutCallout Callout { get; protected set; }
-        /// <summary>
-        /// Gets or Sets Error
-        /// </summary>
-        [JsonProperty("error", NullValueHandling = NullValueHandling.Ignore)]
-        public TurnEventCalloutError Error { get; protected set; }
     }
 
 }

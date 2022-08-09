@@ -57,11 +57,7 @@ namespace IBM.Watson.Assistant.v2.Model
         /// Gets or Sets Source
         /// </summary>
         [JsonProperty("source", NullValueHandling = NullValueHandling.Ignore)]
-        public new TurnEventActionSource Source
-        {
-            get { return base.Source; }
-            set { base.Source = value; }
-        }
+        public new TurnEventActionSource Source { get; protected set; }
         /// <summary>
         /// The time when the action started processing the message.
         /// </summary>

@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">5.3.0</span>
+   &#160;<span id="projectnumber">6.0.0</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -102,34 +102,60 @@ Inheritance diagram for IBM.Watson.Discovery.v2.IDiscoveryService:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:ad9112fd28ad5734d2fb5a1c60f01ff08"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d8/d8f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_list_projects_response.html">ListProjectsResponse</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#ad9112fd28ad5734d2fb5a1c60f01ff08">ListProjects</a> ()</td></tr>
+<tr class="separator:ad9112fd28ad5734d2fb5a1c60f01ff08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6eca30c37d7d1b3ab0d0b21c640220f0"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d5/ddf/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_project_details.html">ProjectDetails</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a6eca30c37d7d1b3ab0d0b21c640220f0">CreateProject</a> (string name, string type, <a class="el" href="../../d5/df2/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_default_query_params.html">DefaultQueryParams</a> defaultQueryParameters=null)</td></tr>
+<tr class="separator:a6eca30c37d7d1b3ab0d0b21c640220f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ef06b7a9fa010cc3cbe1dc0dbbfe558"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d5/ddf/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_project_details.html">ProjectDetails</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a9ef06b7a9fa010cc3cbe1dc0dbbfe558">GetProject</a> (string projectId)</td></tr>
+<tr class="separator:a9ef06b7a9fa010cc3cbe1dc0dbbfe558"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a568154f17a2a8eeaebba7d766d2b4ebc"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d5/ddf/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_project_details.html">ProjectDetails</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a568154f17a2a8eeaebba7d766d2b4ebc">UpdateProject</a> (string projectId, string name=null)</td></tr>
+<tr class="separator:a568154f17a2a8eeaebba7d766d2b4ebc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c8a23d1f3ccc294e1a53cfbcc1890b3"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a9c8a23d1f3ccc294e1a53cfbcc1890b3">DeleteProject</a> (string projectId)</td></tr>
+<tr class="separator:a9c8a23d1f3ccc294e1a53cfbcc1890b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a897feb55935e396e9dbb85dc3b1b3c88"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../df/d16/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_list_fields_response.html">ListFieldsResponse</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a897feb55935e396e9dbb85dc3b1b3c88">ListFields</a> (string projectId, List&lt; string &gt; collectionIds=null)</td></tr>
+<tr class="separator:a897feb55935e396e9dbb85dc3b1b3c88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07faec9c07f55483a1afb19e4846f9ef"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d7/d64/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_list_collections_response.html">ListCollectionsResponse</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a07faec9c07f55483a1afb19e4846f9ef">ListCollections</a> (string projectId)</td></tr>
 <tr class="separator:a07faec9c07f55483a1afb19e4846f9ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd3df52d8d70eab2da62486645999393"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d1/dcf/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_details.html">CollectionDetails</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#abd3df52d8d70eab2da62486645999393">CreateCollection</a> (string projectId, string name, string description=null, string language=null, List&lt; <a class="el" href="../../d4/dd5/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_enrichment.html">CollectionEnrichment</a> &gt; enrichments=null)</td></tr>
-<tr class="separator:abd3df52d8d70eab2da62486645999393"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f97945490cc82f9cd199019a082c11a"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d1/dcf/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_details.html">CollectionDetails</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a9f97945490cc82f9cd199019a082c11a">CreateCollection</a> (string projectId, string name, string description=null, string language=null, List&lt; <a class="el" href="../../d4/dd5/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_enrichment.html">CollectionEnrichment</a> &gt; enrichments=null, <a class="el" href="../../dc/d44/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_details_smart_document_understanding.html">CollectionDetailsSmartDocumentUnderstanding</a> smartDocumentUnderstanding=null)</td></tr>
+<tr class="separator:a9f97945490cc82f9cd199019a082c11a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a192dcbb61ecceba6461986fd24e0384a"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d1/dcf/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_details.html">CollectionDetails</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a192dcbb61ecceba6461986fd24e0384a">GetCollection</a> (string projectId, string collectionId)</td></tr>
 <tr class="separator:a192dcbb61ecceba6461986fd24e0384a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36d1f6c3d569a12bd9d0dff75be3a949"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d1/dcf/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_details.html">CollectionDetails</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a36d1f6c3d569a12bd9d0dff75be3a949">UpdateCollection</a> (string projectId, string collectionId, string name=null, string description=null, List&lt; <a class="el" href="../../d4/dd5/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_enrichment.html">CollectionEnrichment</a> &gt; enrichments=null)</td></tr>
 <tr class="separator:a36d1f6c3d569a12bd9d0dff75be3a949"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8374f3551c562bca4c547ee0c1819fb7"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a8374f3551c562bca4c547ee0c1819fb7">DeleteCollection</a> (string projectId, string collectionId)</td></tr>
 <tr class="separator:a8374f3551c562bca4c547ee0c1819fb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93c49c49da50da7d6ffe4e0e76daaa83"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../dc/d2f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_response.html">QueryResponse</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a93c49c49da50da7d6ffe4e0e76daaa83">Query</a> (string projectId, List&lt; string &gt; collectionIds=null, string filter=null, string query=null, string naturalLanguageQuery=null, string aggregation=null, long? count=null, List&lt; string &gt; _return=null, long? offset=null, string sort=null, bool? highlight=null, bool? spellingSuggestions=null, <a class="el" href="../../db/dc0/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_large_table_results.html">QueryLargeTableResults</a> tableResults=null, <a class="el" href="../../d7/dc9/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_large_suggested_refinements.html">QueryLargeSuggestedRefinements</a> suggestedRefinements=null, <a class="el" href="../../da/d1a/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_large_passages.html">QueryLargePassages</a> passages=null)</td></tr>
-<tr class="separator:a93c49c49da50da7d6ffe4e0e76daaa83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a379d084e0bf724570a38f0280381ed80"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../db/d16/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_list_documents_response.html">ListDocumentsResponse</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a379d084e0bf724570a38f0280381ed80">ListDocuments</a> (string projectId, string collectionId, long? count=null, string status=null, bool? hasNotices=null, bool? isParent=null, string parentDocumentId=null, string sha256=null)</td></tr>
+<tr class="separator:a379d084e0bf724570a38f0280381ed80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cc1959c9c3be4173af1334d90562889"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d5/dc2/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_document_accepted.html">DocumentAccepted</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a9cc1959c9c3be4173af1334d90562889">AddDocument</a> (string projectId, string collectionId, System.IO.MemoryStream file=null, string filename=null, string fileContentType=null, string metadata=null, bool? xWatsonDiscoveryForce=null)</td></tr>
+<tr class="separator:a9cc1959c9c3be4173af1334d90562889"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ffa8522162ea1eccba1b6ba5d2b86f3"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../dc/d9c/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_document_details.html">DocumentDetails</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a6ffa8522162ea1eccba1b6ba5d2b86f3">GetDocument</a> (string projectId, string collectionId, string documentId)</td></tr>
+<tr class="separator:a6ffa8522162ea1eccba1b6ba5d2b86f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4b2afb5110b9524640ff370652b5fac"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d5/dc2/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_document_accepted.html">DocumentAccepted</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#ad4b2afb5110b9524640ff370652b5fac">UpdateDocument</a> (string projectId, string collectionId, string documentId, System.IO.MemoryStream file=null, string filename=null, string fileContentType=null, string metadata=null, bool? xWatsonDiscoveryForce=null)</td></tr>
+<tr class="separator:ad4b2afb5110b9524640ff370652b5fac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a965f84744f3c12705407a35050821bbb"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d9/de3/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_delete_document_response.html">DeleteDocumentResponse</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a965f84744f3c12705407a35050821bbb">DeleteDocument</a> (string projectId, string collectionId, string documentId, bool? xWatsonDiscoveryForce=null)</td></tr>
+<tr class="separator:a965f84744f3c12705407a35050821bbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9de476347d0ca8279925c7cb7d97e35"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../dc/d2f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_response.html">QueryResponse</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#ab9de476347d0ca8279925c7cb7d97e35">Query</a> (string projectId, List&lt; string &gt; collectionIds=null, string filter=null, string query=null, string naturalLanguageQuery=null, string aggregation=null, long? count=null, List&lt; string &gt; _return=null, long? offset=null, string sort=null, bool? highlight=null, bool? spellingSuggestions=null, <a class="el" href="../../db/dc0/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_large_table_results.html">QueryLargeTableResults</a> tableResults=null, <a class="el" href="../../d7/dc9/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_large_suggested_refinements.html">QueryLargeSuggestedRefinements</a> suggestedRefinements=null, <a class="el" href="../../da/d1a/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_large_passages.html">QueryLargePassages</a> passages=null, <a class="el" href="../../df/d99/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_large_similar.html">QueryLargeSimilar</a> similar=null)</td></tr>
+<tr class="separator:ab9de476347d0ca8279925c7cb7d97e35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a79ee6b07f2e9c6e3625eb82689a072ac"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d4/d9f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_completions.html">Completions</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a79ee6b07f2e9c6e3625eb82689a072ac">GetAutocompletion</a> (string projectId, string prefix, List&lt; string &gt; collectionIds=null, string field=null, long? count=null)</td></tr>
 <tr class="separator:a79ee6b07f2e9c6e3625eb82689a072ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7573b134337839c59c4f6412a37307ae"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../de/d14/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_notices_response.html">QueryNoticesResponse</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a7573b134337839c59c4f6412a37307ae">QueryCollectionNotices</a> (string projectId, string collectionId, string filter=null, string query=null, string naturalLanguageQuery=null, long? count=null, long? offset=null)</td></tr>
 <tr class="separator:a7573b134337839c59c4f6412a37307ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af143bdec2bfdc3921d57d7a94790146b"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../de/d14/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_notices_response.html">QueryNoticesResponse</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#af143bdec2bfdc3921d57d7a94790146b">QueryNotices</a> (string projectId, string filter=null, string query=null, string naturalLanguageQuery=null, long? count=null, long? offset=null)</td></tr>
 <tr class="separator:af143bdec2bfdc3921d57d7a94790146b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a897feb55935e396e9dbb85dc3b1b3c88"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../df/d16/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_list_fields_response.html">ListFieldsResponse</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a897feb55935e396e9dbb85dc3b1b3c88">ListFields</a> (string projectId, List&lt; string &gt; collectionIds=null)</td></tr>
-<tr class="separator:a897feb55935e396e9dbb85dc3b1b3c88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa1c1dd80fa607801b6902faad0e9f1b"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d8/d7c/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_stop_word_list.html">StopWordList</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#aaa1c1dd80fa607801b6902faad0e9f1b">GetStopwordList</a> (string projectId, string collectionId)</td></tr>
+<tr class="separator:aaa1c1dd80fa607801b6902faad0e9f1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbd3173a582031fbc98c03d1e6aa58a3"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d8/d7c/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_stop_word_list.html">StopWordList</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#abbd3173a582031fbc98c03d1e6aa58a3">CreateStopwordList</a> (string projectId, string collectionId, List&lt; string &gt; stopwords=null)</td></tr>
+<tr class="separator:abbd3173a582031fbc98c03d1e6aa58a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3706a338618431fd318a8894436e6039"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a3706a338618431fd318a8894436e6039">DeleteStopwordList</a> (string projectId, string collectionId)</td></tr>
+<tr class="separator:a3706a338618431fd318a8894436e6039"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a690ed1349c93ed5179c9321b2bcabcfd"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../df/d01/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_expansions.html">Expansions</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a690ed1349c93ed5179c9321b2bcabcfd">ListExpansions</a> (string projectId, string collectionId)</td></tr>
+<tr class="separator:a690ed1349c93ed5179c9321b2bcabcfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57fd7dac1210bc43058ac934784c794a"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../df/d01/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_expansions.html">Expansions</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a57fd7dac1210bc43058ac934784c794a">CreateExpansions</a> (string projectId, string collectionId, List&lt; <a class="el" href="../../dd/df9/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_expansion.html">Expansion</a> &gt; expansions)</td></tr>
+<tr class="separator:a57fd7dac1210bc43058ac934784c794a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ee31c891d7931aff188049a9a8bfba0"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a8ee31c891d7931aff188049a9a8bfba0">DeleteExpansions</a> (string projectId, string collectionId)</td></tr>
+<tr class="separator:a8ee31c891d7931aff188049a9a8bfba0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc4c36bedfb0f41b7610853e9391e4d5"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d1/d33/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_component_settings_response.html">ComponentSettingsResponse</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#acc4c36bedfb0f41b7610853e9391e4d5">GetComponentSettings</a> (string projectId)</td></tr>
 <tr class="separator:acc4c36bedfb0f41b7610853e9391e4d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9cc1959c9c3be4173af1334d90562889"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d5/dc2/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_document_accepted.html">DocumentAccepted</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a9cc1959c9c3be4173af1334d90562889">AddDocument</a> (string projectId, string collectionId, System.IO.MemoryStream file=null, string filename=null, string fileContentType=null, string metadata=null, bool? xWatsonDiscoveryForce=null)</td></tr>
-<tr class="separator:a9cc1959c9c3be4173af1334d90562889"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4b2afb5110b9524640ff370652b5fac"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d5/dc2/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_document_accepted.html">DocumentAccepted</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#ad4b2afb5110b9524640ff370652b5fac">UpdateDocument</a> (string projectId, string collectionId, string documentId, System.IO.MemoryStream file=null, string filename=null, string fileContentType=null, string metadata=null, bool? xWatsonDiscoveryForce=null)</td></tr>
-<tr class="separator:ad4b2afb5110b9524640ff370652b5fac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a965f84744f3c12705407a35050821bbb"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d9/de3/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_delete_document_response.html">DeleteDocumentResponse</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a965f84744f3c12705407a35050821bbb">DeleteDocument</a> (string projectId, string collectionId, string documentId, bool? xWatsonDiscoveryForce=null)</td></tr>
-<tr class="separator:a965f84744f3c12705407a35050821bbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ed20b83aa233c7869a7fef8cc8e446f"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../df/df2/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_training_query_set.html">TrainingQuerySet</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a7ed20b83aa233c7869a7fef8cc8e446f">ListTrainingQueries</a> (string projectId)</td></tr>
 <tr class="separator:a7ed20b83aa233c7869a7fef8cc8e446f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46e8f20a5c42f17ddfe4e28d5df9de29"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a46e8f20a5c42f17ddfe4e28d5df9de29">DeleteTrainingQueries</a> (string projectId)</td></tr>
@@ -142,8 +168,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa19e8beb04e799849341f161bf27b2b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5487b85cfeee4c9521125fbb686e5328"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a5487b85cfeee4c9521125fbb686e5328">DeleteTrainingQuery</a> (string projectId, string queryId)</td></tr>
 <tr class="separator:a5487b85cfeee4c9521125fbb686e5328"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5cd12dbc385346b214b14ccf1f8b770"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d8/d0f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_analyzed_document.html">AnalyzedDocument</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#ad5cd12dbc385346b214b14ccf1f8b770">AnalyzeDocument</a> (string projectId, string collectionId, System.IO.MemoryStream file=null, string filename=null, string fileContentType=null, string metadata=null)</td></tr>
-<tr class="separator:ad5cd12dbc385346b214b14ccf1f8b770"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab97dc48d01feef63c9eccfd9f7fa7e9d"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../dd/d1e/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_enrichments.html">Enrichments</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#ab97dc48d01feef63c9eccfd9f7fa7e9d">ListEnrichments</a> (string projectId)</td></tr>
 <tr class="separator:ab97dc48d01feef63c9eccfd9f7fa7e9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0db82adef8cd4c3015222bfc9e38103"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../dd/d84/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_enrichment.html">Enrichment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#ac0db82adef8cd4c3015222bfc9e38103">CreateEnrichment</a> (string projectId, <a class="el" href="../../d0/dfe/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_create_enrichment.html">CreateEnrichment</a> enrichment, System.IO.MemoryStream file=null)</td></tr>
@@ -154,16 +178,28 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a910ac514eecafa795bcb479eb28f950c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41084838a17754003d3021ddf3065acc"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a41084838a17754003d3021ddf3065acc">DeleteEnrichment</a> (string projectId, string enrichmentId)</td></tr>
 <tr class="separator:a41084838a17754003d3021ddf3065acc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad9112fd28ad5734d2fb5a1c60f01ff08"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d8/d8f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_list_projects_response.html">ListProjectsResponse</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#ad9112fd28ad5734d2fb5a1c60f01ff08">ListProjects</a> ()</td></tr>
-<tr class="separator:ad9112fd28ad5734d2fb5a1c60f01ff08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6eca30c37d7d1b3ab0d0b21c640220f0"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d5/ddf/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_project_details.html">ProjectDetails</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a6eca30c37d7d1b3ab0d0b21c640220f0">CreateProject</a> (string name, string type, <a class="el" href="../../d5/df2/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_default_query_params.html">DefaultQueryParams</a> defaultQueryParameters=null)</td></tr>
-<tr class="separator:a6eca30c37d7d1b3ab0d0b21c640220f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ef06b7a9fa010cc3cbe1dc0dbbfe558"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d5/ddf/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_project_details.html">ProjectDetails</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a9ef06b7a9fa010cc3cbe1dc0dbbfe558">GetProject</a> (string projectId)</td></tr>
-<tr class="separator:a9ef06b7a9fa010cc3cbe1dc0dbbfe558"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a568154f17a2a8eeaebba7d766d2b4ebc"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d5/ddf/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_project_details.html">ProjectDetails</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a568154f17a2a8eeaebba7d766d2b4ebc">UpdateProject</a> (string projectId, string name=null)</td></tr>
-<tr class="separator:a568154f17a2a8eeaebba7d766d2b4ebc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c8a23d1f3ccc294e1a53cfbcc1890b3"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a9c8a23d1f3ccc294e1a53cfbcc1890b3">DeleteProject</a> (string projectId)</td></tr>
-<tr class="separator:a9c8a23d1f3ccc294e1a53cfbcc1890b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad705cf5129f41727a4fa74db1a82e3b3"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../de/d14/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_document_classifiers.html">DocumentClassifiers</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#ad705cf5129f41727a4fa74db1a82e3b3">ListDocumentClassifiers</a> (string projectId)</td></tr>
+<tr class="separator:ad705cf5129f41727a4fa74db1a82e3b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6679d39c48d04e4a3547d1c730ed419"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../dd/d85/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_document_classifier.html">DocumentClassifier</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#ab6679d39c48d04e4a3547d1c730ed419">CreateDocumentClassifier</a> (string projectId, System.IO.MemoryStream trainingData, <a class="el" href="../../d7/d15/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_create_document_classifier.html">CreateDocumentClassifier</a> classifier, System.IO.MemoryStream testData=null)</td></tr>
+<tr class="separator:ab6679d39c48d04e4a3547d1c730ed419"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affa4d3b1e56bf819198d7f5b80d92fba"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../dd/d85/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_document_classifier.html">DocumentClassifier</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#affa4d3b1e56bf819198d7f5b80d92fba">GetDocumentClassifier</a> (string projectId, string classifierId)</td></tr>
+<tr class="separator:affa4d3b1e56bf819198d7f5b80d92fba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a729d353ed21acee4903b9bbdc243028c"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../dd/d85/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_document_classifier.html">DocumentClassifier</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a729d353ed21acee4903b9bbdc243028c">UpdateDocumentClassifier</a> (string projectId, string classifierId, <a class="el" href="../../db/df6/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_update_document_classifier.html">UpdateDocumentClassifier</a> classifier, System.IO.MemoryStream trainingData=null, System.IO.MemoryStream testData=null)</td></tr>
+<tr class="separator:a729d353ed21acee4903b9bbdc243028c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40d73fb816b70eb5af8b1acfe3024e14"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a40d73fb816b70eb5af8b1acfe3024e14">DeleteDocumentClassifier</a> (string projectId, string classifierId)</td></tr>
+<tr class="separator:a40d73fb816b70eb5af8b1acfe3024e14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c0f8a6dd8326da23bc90695f7dcda5c"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../db/de2/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_document_classifier_models.html">DocumentClassifierModels</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a2c0f8a6dd8326da23bc90695f7dcda5c">ListDocumentClassifierModels</a> (string projectId, string classifierId)</td></tr>
+<tr class="separator:a2c0f8a6dd8326da23bc90695f7dcda5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae00c51b88fbe804cd42e1fc03349894f"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d9/d61/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_document_classifier_model.html">DocumentClassifierModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#ae00c51b88fbe804cd42e1fc03349894f">CreateDocumentClassifierModel</a> (string projectId, string classifierId, string name, string description=null, double? learningRate=null, List&lt; double?&gt; l1RegularizationStrengths=null, List&lt; double?&gt; l2RegularizationStrengths=null, long? trainingMaxSteps=null, double? improvementRatio=null)</td></tr>
+<tr class="separator:ae00c51b88fbe804cd42e1fc03349894f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9ba3deda5370ef4665954a7a7413012"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d9/d61/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_document_classifier_model.html">DocumentClassifierModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#ad9ba3deda5370ef4665954a7a7413012">GetDocumentClassifierModel</a> (string projectId, string classifierId, string modelId)</td></tr>
+<tr class="separator:ad9ba3deda5370ef4665954a7a7413012"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8441095bf646a81a47ccbdc1e412c31"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d9/d61/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_document_classifier_model.html">DocumentClassifierModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#af8441095bf646a81a47ccbdc1e412c31">UpdateDocumentClassifierModel</a> (string projectId, string classifierId, string modelId, string name=null, string description=null)</td></tr>
+<tr class="separator:af8441095bf646a81a47ccbdc1e412c31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca673f0853c3f8f85ad45fce7e1afda1"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#aca673f0853c3f8f85ad45fce7e1afda1">DeleteDocumentClassifierModel</a> (string projectId, string classifierId, string modelId)</td></tr>
+<tr class="separator:aca673f0853c3f8f85ad45fce7e1afda1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5cd12dbc385346b214b14ccf1f8b770"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d8/d0f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_analyzed_document.html">AnalyzedDocument</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#ad5cd12dbc385346b214b14ccf1f8b770">AnalyzeDocument</a> (string projectId, string collectionId, System.IO.MemoryStream file=null, string filename=null, string fileContentType=null, string metadata=null)</td></tr>
+<tr class="separator:ad5cd12dbc385346b214b14ccf1f8b770"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe0acca2da10d06da9c9b85dd272ef30"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#abe0acca2da10d06da9c9b85dd272ef30">DeleteUserData</a> (string customerId)</td></tr>
 <tr class="separator:abe0acca2da10d06da9c9b85dd272ef30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -224,8 +260,6 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a8c9fc8baf2f28bcd0f9e92f6c2ab28f8">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
-
 </div>
 </div>
 <a id="ad5cd12dbc385346b214b14ccf1f8b770"></a>
@@ -278,12 +312,10 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a43bdfa6525ebda30d8ec31bdb312c8b1">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
-
 </div>
 </div>
-<a id="abd3df52d8d70eab2da62486645999393"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abd3df52d8d70eab2da62486645999393">&#9670;&nbsp;</a></span>CreateCollection()</h2>
+<a id="a9f97945490cc82f9cd199019a082c11a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f97945490cc82f9cd199019a082c11a">&#9670;&nbsp;</a></span>CreateCollection()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -316,7 +348,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">List&lt; <a class="el" href="../../d4/dd5/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_enrichment.html">CollectionEnrichment</a> &gt;&#160;</td>
-          <td class="paramname"><em>enrichments</em> = <code>null</code>&#160;</td>
+          <td class="paramname"><em>enrichments</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dc/d44/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_details_smart_document_understanding.html">CollectionDetailsSmartDocumentUnderstanding</a>&#160;</td>
+          <td class="paramname"><em>smartDocumentUnderstanding</em> = <code>null</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -326,7 +364,121 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a580753bc961355f7150e92fb331d5dde">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a8cf4a188c025f4e29acd5f0fab6e2c64">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
+<a id="ab6679d39c48d04e4a3547d1c730ed419"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6679d39c48d04e4a3547d1c730ed419">&#9670;&nbsp;</a></span>CreateDocumentClassifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../dd/d85/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_document_classifier.html">DocumentClassifier</a>&gt; IBM.Watson.Discovery.v2.IDiscoveryService.CreateDocumentClassifier </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">System.IO.MemoryStream&#160;</td>
+          <td class="paramname"><em>trainingData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d7/d15/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_create_document_classifier.html">CreateDocumentClassifier</a>&#160;</td>
+          <td class="paramname"><em>classifier</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">System.IO.MemoryStream&#160;</td>
+          <td class="paramname"><em>testData</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a927ff0a314754dcf5a7ca9ad39ee9d00">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
+<a id="ae00c51b88fbe804cd42e1fc03349894f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae00c51b88fbe804cd42e1fc03349894f">&#9670;&nbsp;</a></span>CreateDocumentClassifierModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../d9/d61/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_document_classifier_model.html">DocumentClassifierModel</a>&gt; IBM.Watson.Discovery.v2.IDiscoveryService.CreateDocumentClassifierModel </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>classifierId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>description</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double?&#160;</td>
+          <td class="paramname"><em>learningRate</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">List&lt; double?&gt;&#160;</td>
+          <td class="paramname"><em>l1RegularizationStrengths</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">List&lt; double?&gt;&#160;</td>
+          <td class="paramname"><em>l2RegularizationStrengths</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long?&#160;</td>
+          <td class="paramname"><em>trainingMaxSteps</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double?&#160;</td>
+          <td class="paramname"><em>improvementRatio</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a8f1a8bd13aa21e91230412fb31ea03ba">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
 
 </div>
 </div>
@@ -366,6 +518,42 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a57fd7dac1210bc43058ac934784c794a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57fd7dac1210bc43058ac934784c794a">&#9670;&nbsp;</a></span>CreateExpansions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../df/d01/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_expansions.html">Expansions</a>&gt; IBM.Watson.Discovery.v2.IDiscoveryService.CreateExpansions </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>collectionId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">List&lt; <a class="el" href="../../dd/df9/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_expansion.html">Expansion</a> &gt;&#160;</td>
+          <td class="paramname"><em>expansions</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a25f97b4f15c01d242c19fad7b2f66713">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
 <a id="a6eca30c37d7d1b3ab0d0b21c640220f0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6eca30c37d7d1b3ab0d0b21c640220f0">&#9670;&nbsp;</a></span>CreateProject()</h2>
 
@@ -399,6 +587,42 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#aa1810f0a0c3b6fe8a81ad5710aae2090">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
+<a id="abbd3173a582031fbc98c03d1e6aa58a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbd3173a582031fbc98c03d1e6aa58a3">&#9670;&nbsp;</a></span>CreateStopwordList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../d8/d7c/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_stop_word_list.html">StopWordList</a>&gt; IBM.Watson.Discovery.v2.IDiscoveryService.CreateStopwordList </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>collectionId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">List&lt; string &gt;&#160;</td>
+          <td class="paramname"><em>stopwords</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a7347c9b5ac3b9dd8f150a27cf5d7cd1b">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
 
 </div>
 </div>
@@ -516,6 +740,72 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a40d73fb816b70eb5af8b1acfe3024e14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40d73fb816b70eb5af8b1acfe3024e14">&#9670;&nbsp;</a></span>DeleteDocumentClassifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;object&gt; IBM.Watson.Discovery.v2.IDiscoveryService.DeleteDocumentClassifier </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>classifierId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a1e1d6b34227bfab9030e62cb26f294f2">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
+<a id="aca673f0853c3f8f85ad45fce7e1afda1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca673f0853c3f8f85ad45fce7e1afda1">&#9670;&nbsp;</a></span>DeleteDocumentClassifierModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;object&gt; IBM.Watson.Discovery.v2.IDiscoveryService.DeleteDocumentClassifierModel </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>classifierId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>modelId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#afd672871105c3eaf13b3554cbdf11195">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
 <a id="a41084838a17754003d3021ddf3065acc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a41084838a17754003d3021ddf3065acc">&#9670;&nbsp;</a></span>DeleteEnrichment()</h2>
 
@@ -546,6 +836,36 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a8ee31c891d7931aff188049a9a8bfba0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ee31c891d7931aff188049a9a8bfba0">&#9670;&nbsp;</a></span>DeleteExpansions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;object&gt; IBM.Watson.Discovery.v2.IDiscoveryService.DeleteExpansions </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>collectionId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#ac15080de607e93f8660aacf6aba07dfb">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
 <a id="a9c8a23d1f3ccc294e1a53cfbcc1890b3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9c8a23d1f3ccc294e1a53cfbcc1890b3">&#9670;&nbsp;</a></span>DeleteProject()</h2>
 
@@ -563,6 +883,36 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a863d4c83c16102d5ab94431860afff99">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
+<a id="a3706a338618431fd318a8894436e6039"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3706a338618431fd318a8894436e6039">&#9670;&nbsp;</a></span>DeleteStopwordList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;object&gt; IBM.Watson.Discovery.v2.IDiscoveryService.DeleteStopwordList </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>collectionId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#abb376fc79314dcadd4d216d23fc07c3f">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
 
 </div>
 </div>
@@ -631,8 +981,6 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a8324229af96daf64960a73a4f788a079">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
 
 </div>
 </div>
@@ -734,6 +1082,106 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a6ffa8522162ea1eccba1b6ba5d2b86f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ffa8522162ea1eccba1b6ba5d2b86f3">&#9670;&nbsp;</a></span>GetDocument()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../dc/d9c/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_document_details.html">DocumentDetails</a>&gt; IBM.Watson.Discovery.v2.IDiscoveryService.GetDocument </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>collectionId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>documentId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="affa4d3b1e56bf819198d7f5b80d92fba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affa4d3b1e56bf819198d7f5b80d92fba">&#9670;&nbsp;</a></span>GetDocumentClassifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../dd/d85/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_document_classifier.html">DocumentClassifier</a>&gt; IBM.Watson.Discovery.v2.IDiscoveryService.GetDocumentClassifier </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>classifierId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a4106aef09141996f8a7f06535f51f0cc">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
+<a id="ad9ba3deda5370ef4665954a7a7413012"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9ba3deda5370ef4665954a7a7413012">&#9670;&nbsp;</a></span>GetDocumentClassifierModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../d9/d61/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_document_classifier_model.html">DocumentClassifierModel</a>&gt; IBM.Watson.Discovery.v2.IDiscoveryService.GetDocumentClassifierModel </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>classifierId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>modelId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a57e220ac363f094f118f4f96b48f178f">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
 <a id="a85560cf33247e2c2a4e2e79fd1aa9fc3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a85560cf33247e2c2a4e2e79fd1aa9fc3">&#9670;&nbsp;</a></span>GetEnrichment()</h2>
 
@@ -781,6 +1229,36 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#aefe268d3a52f00f856a4ee14b2487c80">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
+<a id="aaa1c1dd80fa607801b6902faad0e9f1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa1c1dd80fa607801b6902faad0e9f1b">&#9670;&nbsp;</a></span>GetStopwordList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../d8/d7c/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_stop_word_list.html">StopWordList</a>&gt; IBM.Watson.Discovery.v2.IDiscoveryService.GetStopwordList </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>collectionId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#af3ee86aadb56b490e1aa197ab5297b5d">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
 
 </div>
 </div>
@@ -834,6 +1312,122 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a2c0f8a6dd8326da23bc90695f7dcda5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c0f8a6dd8326da23bc90695f7dcda5c">&#9670;&nbsp;</a></span>ListDocumentClassifierModels()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../db/de2/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_document_classifier_models.html">DocumentClassifierModels</a>&gt; IBM.Watson.Discovery.v2.IDiscoveryService.ListDocumentClassifierModels </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>classifierId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#ac65d7d9608e06525f17358f94c3414f1">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
+<a id="ad705cf5129f41727a4fa74db1a82e3b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad705cf5129f41727a4fa74db1a82e3b3">&#9670;&nbsp;</a></span>ListDocumentClassifiers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../de/d14/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_document_classifiers.html">DocumentClassifiers</a>&gt; IBM.Watson.Discovery.v2.IDiscoveryService.ListDocumentClassifiers </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#aa6231af44be6f3c7d4b6b2eb656a4eba">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
+<a id="a379d084e0bf724570a38f0280381ed80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a379d084e0bf724570a38f0280381ed80">&#9670;&nbsp;</a></span>ListDocuments()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../db/d16/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_list_documents_response.html">ListDocumentsResponse</a>&gt; IBM.Watson.Discovery.v2.IDiscoveryService.ListDocuments </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>collectionId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long?&#160;</td>
+          <td class="paramname"><em>count</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>status</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool?&#160;</td>
+          <td class="paramname"><em>hasNotices</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool?&#160;</td>
+          <td class="paramname"><em>isParent</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>parentDocumentId</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>sha256</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#acf00575c2d909be05dd89b295069bbca">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
 <a id="ab97dc48d01feef63c9eccfd9f7fa7e9d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab97dc48d01feef63c9eccfd9f7fa7e9d">&#9670;&nbsp;</a></span>ListEnrichments()</h2>
 
@@ -851,6 +1445,36 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#adfa0275b5e161067194491c6e0773bcd">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
+<a id="a690ed1349c93ed5179c9321b2bcabcfd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a690ed1349c93ed5179c9321b2bcabcfd">&#9670;&nbsp;</a></span>ListExpansions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../df/d01/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_expansions.html">Expansions</a>&gt; IBM.Watson.Discovery.v2.IDiscoveryService.ListExpansions </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>collectionId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a27733bb2aa8b3feee4067338d5d395cb">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
 
 </div>
 </div>
@@ -923,8 +1547,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a93c49c49da50da7d6ffe4e0e76daaa83"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a93c49c49da50da7d6ffe4e0e76daaa83">&#9670;&nbsp;</a></span>Query()</h2>
+<a id="ab9de476347d0ca8279925c7cb7d97e35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9de476347d0ca8279925c7cb7d97e35">&#9670;&nbsp;</a></span>Query()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1017,7 +1641,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="../../da/d1a/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_large_passages.html">QueryLargePassages</a>&#160;</td>
-          <td class="paramname"><em>passages</em> = <code>null</code>&#160;</td>
+          <td class="paramname"><em>passages</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../df/d99/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_query_large_similar.html">QueryLargeSimilar</a>&#160;</td>
+          <td class="paramname"><em>similar</em> = <code>null</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1027,7 +1657,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#af5204be7e387a9f573643bdc48624339">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a8f6e2f24556670f480e36295f90c5ecd">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
 
 </div>
 </div>
@@ -1256,6 +1886,102 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a65f6b2f6faa6312b6d165378d556e0b6">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
+<a id="a729d353ed21acee4903b9bbdc243028c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a729d353ed21acee4903b9bbdc243028c">&#9670;&nbsp;</a></span>UpdateDocumentClassifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../dd/d85/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_document_classifier.html">DocumentClassifier</a>&gt; IBM.Watson.Discovery.v2.IDiscoveryService.UpdateDocumentClassifier </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>classifierId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../db/df6/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_update_document_classifier.html">UpdateDocumentClassifier</a>&#160;</td>
+          <td class="paramname"><em>classifier</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">System.IO.MemoryStream&#160;</td>
+          <td class="paramname"><em>trainingData</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">System.IO.MemoryStream&#160;</td>
+          <td class="paramname"><em>testData</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#acf6694d52c0d8d17b1528bdd1aa99324">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
+
+</div>
+</div>
+<a id="af8441095bf646a81a47ccbdc1e412c31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8441095bf646a81a47ccbdc1e412c31">&#9670;&nbsp;</a></span>UpdateDocumentClassifierModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DetailedResponse&lt;<a class="el" href="../../d9/d61/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_document_classifier_model.html">DocumentClassifierModel</a>&gt; IBM.Watson.Discovery.v2.IDiscoveryService.UpdateDocumentClassifierModel </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>projectId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>classifierId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>modelId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>description</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="../../d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a474cd91654f6bc628e7aee1aee6f23c1">IBM.Watson.Discovery.v2.DiscoveryService</a>.</p>
 
 </div>
 </div>

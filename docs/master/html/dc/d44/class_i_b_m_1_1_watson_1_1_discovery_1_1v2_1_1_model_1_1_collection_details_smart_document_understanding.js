@@ -1,0 +1,6 @@
+var class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_details_smart_document_understanding =
+[
+    [ "ModelEnumValue", "d6/da8/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_details_smart_document_understanding_1_1_model_enum_value.html", "d6/da8/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_details_smart_document_understanding_1_1_model_enum_value" ],
+    [ "Enabled", "dc/d44/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_details_smart_document_understanding.html#a78aa818868288e49c18f464bcf79d117", null ],
+    [ "Model", "dc/d44/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_details_smart_document_understanding.html#ac791b3488272986634a908e61daba456", null ]
+];

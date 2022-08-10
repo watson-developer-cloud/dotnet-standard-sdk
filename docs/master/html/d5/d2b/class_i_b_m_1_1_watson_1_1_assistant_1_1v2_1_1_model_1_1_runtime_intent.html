@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">5.3.0</span>
+   &#160;<span id="projectnumber">6.0.0</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -100,8 +100,11 @@ Properties</h2></td></tr>
 <tr class="memdesc:a79d0341aab694e843c4e241f63e947c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the recognized intent.  <a href="../../d5/d2b/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_intent.html#a79d0341aab694e843c4e241f63e947c4">More...</a><br /></td></tr>
 <tr class="separator:a79d0341aab694e843c4e241f63e947c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8820ff02e4e621a512a346cd469505de"><td class="memItemLeft" align="right" valign="top">double?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d2b/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_intent.html#a8820ff02e4e621a512a346cd469505de">Confidence</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a8820ff02e4e621a512a346cd469505de"><td class="mdescLeft">&#160;</td><td class="mdescRight">A decimal percentage that represents <a class="el" href="../../d2/d15/namespace_i_b_m_1_1_watson.html">Watson</a>'s confidence in the intent.  <a href="../../d5/d2b/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_intent.html#a8820ff02e4e621a512a346cd469505de">More...</a><br /></td></tr>
+<tr class="memdesc:a8820ff02e4e621a512a346cd469505de"><td class="mdescLeft">&#160;</td><td class="mdescRight">A decimal percentage that represents <a class="el" href="../../d2/d15/namespace_i_b_m_1_1_watson.html">Watson</a>'s confidence in the intent. If you are specifying an intent as part of a request, but you do not have a calculated confidence value, specify <code>1</code>.  <a href="../../d5/d2b/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_intent.html#a8820ff02e4e621a512a346cd469505de">More...</a><br /></td></tr>
 <tr class="separator:a8820ff02e4e621a512a346cd469505de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af503b4f2f29c470331d1d3e21186545e"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d2b/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_intent.html#af503b4f2f29c470331d1d3e21186545e">Skill</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:af503b4f2f29c470331d1d3e21186545e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The skill that identified the intent. Currently, the only possible values are <code>main skill</code> for the dialog skill (if enabled) and <code>actions skill</code> for the actions skill.  <a href="../../d5/d2b/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_intent.html#af503b4f2f29c470331d1d3e21186545e">More...</a><br /></td></tr>
+<tr class="separator:af503b4f2f29c470331d1d3e21186545e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An intent identified in the user input. </p>
@@ -126,7 +129,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>A decimal percentage that represents <a class="el" href="../../d2/d15/namespace_i_b_m_1_1_watson.html">Watson</a>'s confidence in the intent. </p>
+<p>A decimal percentage that represents <a class="el" href="../../d2/d15/namespace_i_b_m_1_1_watson.html">Watson</a>'s confidence in the intent. If you are specifying an intent as part of a request, but you do not have a calculated confidence value, specify <code>1</code>. </p>
 
 </div>
 </div>
@@ -151,6 +154,31 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The name of the recognized intent. </p>
+
+</div>
+</div>
+<a id="af503b4f2f29c470331d1d3e21186545e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af503b4f2f29c470331d1d3e21186545e">&#9670;&nbsp;</a></span>Skill</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string IBM.Watson.Assistant.v2.Model.RuntimeIntent.Skill</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The skill that identified the intent. Currently, the only possible values are <code>main skill</code> for the dialog skill (if enabled) and <code>actions skill</code> for the actions skill. </p>
+<p>This property is present only if the assistant has both a dialog skill and an actions skill.</p>
 
 </div>
 </div>

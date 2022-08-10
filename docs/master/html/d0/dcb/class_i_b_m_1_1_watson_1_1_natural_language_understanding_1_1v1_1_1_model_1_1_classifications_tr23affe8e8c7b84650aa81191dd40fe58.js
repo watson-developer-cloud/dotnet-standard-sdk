@@ -1,0 +1,5 @@
+var class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_classifications_tr23affe8e8c7b84650aa81191dd40fe58 =
+[
+    [ "MULTI_LABEL", "d0/dcb/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_classifications_tr23affe8e8c7b84650aa81191dd40fe58.html#a02d79daacb4fe9140d1a2264e1c518cd", null ],
+    [ "SINGLE_LABEL", "d0/dcb/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_classifications_tr23affe8e8c7b84650aa81191dd40fe58.html#a2607c53237af163265cd2953c3962fb4", null ]
+];

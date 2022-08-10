@@ -1,5 +1,8 @@
 var class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service =
 [
+    [ "ExportWorkspaceAsyncEnums", "d2/d1c/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_export_workspace_async_enums.html", [
+      [ "SortValue", "d6/dd0/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_export_workspace_async_enums_1_1_sort_value.html", "d6/dd0/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_export_workspace_async_enums_1_1_sort_value" ]
+    ] ],
     [ "GetWorkspaceEnums", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_get_workspace_enums.html", [
       [ "SortValue", "da/de7/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_get_workspace_enums_1_1_sort_value.html", "da/de7/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_get_workspace_enums_1_1_sort_value" ]
     ] ],
@@ -41,6 +44,7 @@ var class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service =
     [ "CreateSynonym", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a139f42eeb119cac9098e60fa758211e9", null ],
     [ "CreateValue", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a05d5c1f07b7c5f02b22864ecd1732f28", null ],
     [ "CreateWorkspace", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a4fbb0fd3bafea1c8e6fe4d40b51924a8", null ],
+    [ "CreateWorkspaceAsync", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#ae3df411bc7d74811be6fb707e7db2a2c", null ],
     [ "DeleteCounterexample", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#acfd6e4ba712d6ef497d1ca58a96e1788", null ],
     [ "DeleteDialogNode", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a90e7a1287b9e1d08235f269703672a5a", null ],
     [ "DeleteEntity", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#aa324d04977b5fb8761f618819006e2e1", null ],
@@ -50,6 +54,7 @@ var class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service =
     [ "DeleteUserData", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#ae8d38c3ed77ede290268377aa6744434", null ],
     [ "DeleteValue", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a0f4971b92206705cf1421325c454f476", null ],
     [ "DeleteWorkspace", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#aaad3e5ce907c827a0fafa9d4f3f984f5", null ],
+    [ "ExportWorkspaceAsync", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#ae0648486141b6c16eff0156fdff94d79", null ],
     [ "GetCounterexample", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#affd3be08eea9138edba6832b3ba35ad2", null ],
     [ "GetDialogNode", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a1adc66adccf681cb648bbe9ec1bdc095", null ],
     [ "GetEntity", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#aab9dffeec875e31f8c16fc076669b419", null ],
@@ -78,5 +83,6 @@ var class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service =
     [ "UpdateSynonym", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a148de02115b73416729f6021828a79fb", null ],
     [ "UpdateValue", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a74f61635bf9f7495cd75f8f04888a869", null ],
     [ "UpdateWorkspace", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#ac9c50ac4403e6036b187d4f94ab54c26", null ],
+    [ "UpdateWorkspaceAsync", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a27e41859ff24deb081f3dd9404a7a08e", null ],
     [ "Version", "d9/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service.html#a1aedd0ce69989f53dd83ad2bdbf5d5bd", null ]
 ];

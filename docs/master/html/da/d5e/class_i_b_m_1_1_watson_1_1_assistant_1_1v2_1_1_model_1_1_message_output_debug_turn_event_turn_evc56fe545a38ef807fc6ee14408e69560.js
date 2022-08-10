@@ -1,0 +1,6 @@
+var class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_output_debug_turn_event_turn_evc56fe545a38ef807fc6ee14408e69560 =
+[
+    [ "ANYTHING_ELSE", "da/d5e/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_output_debug_turn_event_turn_evc56fe545a38ef807fc6ee14408e69560.html#a6d0df0b8a4bcbc185b17d561505e9757", null ],
+    [ "USER_DEFINED", "da/d5e/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_output_debug_turn_event_turn_evc56fe545a38ef807fc6ee14408e69560.html#addcac01bc33031d9d24592e844f0e00f", null ],
+    [ "WELCOME", "da/d5e/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_output_debug_turn_event_turn_evc56fe545a38ef807fc6ee14408e69560.html#a2a060141f72d5e82c0e8490c16088517", null ]
+];

@@ -1,5 +1,6 @@
 var class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_accept_value =
 [
+    [ "AUDIO_ALAW", "de/dfb/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_accept_value.html#a43f0bfcc8a66ec0323a54524d780a0fb", null ],
     [ "AUDIO_BASIC", "de/dfb/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_accept_value.html#a49977a9db93dca6f68dd8ddfefee30c8", null ],
     [ "AUDIO_FLAC", "de/dfb/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_accept_value.html#a68fbd9438eedb5a0e8febed57f1f0580", null ],
     [ "AUDIO_L16", "de/dfb/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_accept_value.html#afd6f65987e977766288d4a6647fc05da", null ],

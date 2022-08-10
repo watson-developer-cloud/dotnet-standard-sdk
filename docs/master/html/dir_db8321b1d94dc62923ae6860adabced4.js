@@ -14,6 +14,10 @@ var dir_db8321b1d94dc62923ae6860adabced4 =
         [ "SortValue", "da/de7/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_get_workspace_enums_1_1_sort_value.html", "da/de7/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_get_workspace_enums_1_1_sort_value" ]
       ] ],
       [ "SortValue", "da/de7/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_get_workspace_enums_1_1_sort_value.html", "da/de7/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_get_workspace_enums_1_1_sort_value" ],
+      [ "ExportWorkspaceAsyncEnums", "d2/d1c/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_export_workspace_async_enums.html", [
+        [ "SortValue", "d6/dd0/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_export_workspace_async_enums_1_1_sort_value.html", "d6/dd0/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_export_workspace_async_enums_1_1_sort_value" ]
+      ] ],
+      [ "SortValue", "d6/dd0/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_export_workspace_async_enums_1_1_sort_value.html", "d6/dd0/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_export_workspace_async_enums_1_1_sort_value" ],
       [ "ListIntentsEnums", "d1/d65/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_list_intents_enums.html", [
         [ "SortValue", "d7/d37/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_list_intents_enums_1_1_sort_value.html", "d7/d37/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_assistant_service_1_1_list_intents_enums_1_1_sort_value" ]
       ] ],

@@ -9,6 +9,7 @@ var interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service =
     [ "CreateSynonym", "df/d56/interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service.html#a33b18d124f6492e13ee4b70e62643112", null ],
     [ "CreateValue", "df/d56/interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service.html#ad0d672820c1f14f754691aa85f5291a7", null ],
     [ "CreateWorkspace", "df/d56/interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service.html#a214dc640d4b20f46e94580ead9bc113b", null ],
+    [ "CreateWorkspaceAsync", "df/d56/interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service.html#a806d80b0d23d348017c44858d28dd1e9", null ],
     [ "DeleteCounterexample", "df/d56/interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service.html#a396ad679141e30b805dec80079302bb0", null ],
     [ "DeleteDialogNode", "df/d56/interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service.html#a21f6826189ec37157828243b5e68112b", null ],
     [ "DeleteEntity", "df/d56/interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service.html#aee598d801466ade469f5f7f96f06e9c7", null ],
@@ -18,6 +19,7 @@ var interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service =
     [ "DeleteUserData", "df/d56/interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service.html#a7fb83f6ecd9f298c5b2f5210b2c40b61", null ],
     [ "DeleteValue", "df/d56/interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service.html#a21627bff924a807f0e30fa38bf0f9315", null ],
     [ "DeleteWorkspace", "df/d56/interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service.html#a6d3e27b59c62ae1ecf88312dc1e9d316", null ],
+    [ "ExportWorkspaceAsync", "df/d56/interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service.html#a1a6bab123ee098797339b3abb3aab4da", null ],
     [ "GetCounterexample", "df/d56/interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service.html#a7c720f15d7426daeeee7df3b2e817106", null ],
     [ "GetDialogNode", "df/d56/interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service.html#ab59059ebc97015a2355f48bdd5c255ec", null ],
     [ "GetEntity", "df/d56/interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service.html#a5b92d89908e270129c52e7d67eadc87b", null ],
@@ -45,5 +47,6 @@ var interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service =
     [ "UpdateIntent", "df/d56/interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service.html#a3b59e746051f93187bd3ad7d12be3544", null ],
     [ "UpdateSynonym", "df/d56/interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service.html#ac709b9881ea1ea94de837bce159e6986", null ],
     [ "UpdateValue", "df/d56/interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service.html#af72eeace2f310cc6d4d78f41c1ce82f6", null ],
-    [ "UpdateWorkspace", "df/d56/interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service.html#a313b976478312554580920796d49d6c6", null ]
+    [ "UpdateWorkspace", "df/d56/interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service.html#a313b976478312554580920796d49d6c6", null ],
+    [ "UpdateWorkspaceAsync", "df/d56/interface_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_i_assistant_service.html#a86fbccfa79e73a08e80832c0cb76e243", null ]
 ];

@@ -12,6 +12,7 @@ var class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service =
     ] ],
     [ "SynthesizeEnums", "d8/d5f/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums.html", [
       [ "AcceptValue", "de/dfb/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_accept_value.html", "de/dfb/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_accept_value" ],
+      [ "SpellOutModeValue", "d8/d32/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_spell_out_mode_value.html", "d8/d32/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_spell_out_mode_value" ],
       [ "VoiceValue", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value.html", "d8/d09/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service_1_1_synthesize_enums_1_1_voice_value" ]
     ] ],
     [ "TextToSpeechService", "da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#a664272a85d42777acf02d2814f8f8689", null ],
@@ -40,6 +41,6 @@ var class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service =
     [ "ListSpeakerModels", "da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#a62c4debbc8251919c573f6ce31d90222", null ],
     [ "ListVoices", "da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#a620414233803ed9dedad7f174b128ed5", null ],
     [ "ListWords", "da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#aaa2ea52d7a7f44b2ec438ba5d859a5e3", null ],
-    [ "Synthesize", "da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#aa24eeb76c7e6b6c1be062831d5d77d01", null ],
+    [ "Synthesize", "da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#a723eb0dabfd8000bf2d9ce6d65e16c5b", null ],
     [ "UpdateCustomModel", "da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#aed4db69aa9075061eefd74e4b1cd7004", null ]
 ];

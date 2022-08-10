@@ -1,0 +1,4 @@
+var class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_turn_event_callout_callout_1_1_type_enum_value =
+[
+    [ "INTEGRATION_INTERACTION", "dd/d65/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_turn_event_callout_callout_1_1_type_enum_value.html#ad147c96dd961efe59a135f3ed1cd5781", null ]
+];

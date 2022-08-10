@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">5.3.0</span>
+   &#160;<span id="projectnumber">6.0.0</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -91,11 +91,14 @@ $(document).ready(function(){initNavTree('d6/dfb/class_i_b_m_1_1_watson_1_1_disc
 </div><!--header-->
 <div class="contents">
 
-<p>The type of this enrichment.  
+<p>The type of this enrichment. The following types are supported:  
  <a href="../../d6/dfb/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_create_enrichment_1_1_type_enum_value.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
+<tr class="memitem:a4c0a85763637af45957ca93d91657dd8"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dfb/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_create_enrichment_1_1_type_enum_value.html#a4c0a85763637af45957ca93d91657dd8">CLASSIFIER</a> = &quot;classifier&quot;</td></tr>
+<tr class="memdesc:a4c0a85763637af45957ca93d91657dd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant CLASSIFIER for classifier  <a href="../../d6/dfb/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_create_enrichment_1_1_type_enum_value.html#a4c0a85763637af45957ca93d91657dd8">More...</a><br /></td></tr>
+<tr class="separator:a4c0a85763637af45957ca93d91657dd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f62f9b0213bce792ded6027d731df1d"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dfb/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_create_enrichment_1_1_type_enum_value.html#a6f62f9b0213bce792ded6027d731df1d">DICTIONARY</a> = &quot;dictionary&quot;</td></tr>
 <tr class="memdesc:a6f62f9b0213bce792ded6027d731df1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant DICTIONARY for dictionary  <a href="../../d6/dfb/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_create_enrichment_1_1_type_enum_value.html#a6f62f9b0213bce792ded6027d731df1d">More...</a><br /></td></tr>
 <tr class="separator:a6f62f9b0213bce792ded6027d731df1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -113,8 +116,42 @@ Static Public Attributes</h2></td></tr>
 <tr class="separator:afa4d61a1d5e2b75720b152e2f45f6a23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The type of this enrichment. </p>
+<div class="textblock"><p>The type of this enrichment. The following types are supported: </p>
+<ul>
+<li><code>classifier</code>: Creates a document classifier enrichment from a document classifier model that you create by using the <a href="../..//apidocs/discovery-data#createdocumentclassifier">Document classifier API</a>. <b>Note</b>: A text classifier enrichment can be created only from the product user interface.</li>
+<li><code>dictionary</code>: Creates a custom dictionary enrichment that you define in a CSV file.</li>
+<li><code>regular_expression</code>: Creates a custom regular expression enrichment from regex syntax that you specify in the request.</li>
+<li><code>rule_based</code>: Creates an enrichment from an advanced rules model that is created and exported as a ZIP file from <a class="el" href="../../d2/d15/namespace_i_b_m_1_1_watson.html">Watson</a> Knowledge Studio.</li>
+<li><code>uima_annotator</code>: Creates an enrichment from a custom UIMA text analysis model that is defined in a PEAR file created in one of the following ways: <pre class="fragment">* Watson Explorer Content Analytics Studio. **Note**: Supported in IBM Cloud Pak for Data instances
+</pre> only. <pre class="fragment">* Rule-based model that is created in Watson Knowledge Studio.
+</pre></li>
+<li><code>watson_knowledge_studio_model</code>: Creates an enrichment from a <a class="el" href="../../d2/d15/namespace_i_b_m_1_1_watson.html">Watson</a> Knowledge Studio machine learning model that is defined in a ZIP file.</li>
+</ul>
 </div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="a4c0a85763637af45957ca93d91657dd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c0a85763637af45957ca93d91657dd8">&#9670;&nbsp;</a></span>CLASSIFIER</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string IBM.Watson.Discovery.v2.Model.CreateEnrichment.TypeEnumValue.CLASSIFIER = &quot;classifier&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constant CLASSIFIER for classifier </p>
+
+</div>
+</div>
 <a id="a6f62f9b0213bce792ded6027d731df1d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6f62f9b0213bce792ded6027d731df1d">&#9670;&nbsp;</a></span>DICTIONARY</h2>
 

@@ -1,0 +1,5 @@
+var class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_classifications_training_parameters =
+[
+    [ "ModelTypeEnumValue", "d0/dcb/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_classifications_tr23affe8e8c7b84650aa81191dd40fe58.html", "d0/dcb/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_classifications_tr23affe8e8c7b84650aa81191dd40fe58" ],
+    [ "ModelType", "da/d15/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_classifications_training_parameters.html#a95e95971ea8608c6b2592d799d44c1a5", null ]
+];

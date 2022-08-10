@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">5.3.0</span>
+   &#160;<span id="projectnumber">6.0.0</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -134,9 +134,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6f3d39199dbfdd8ec80edd00ea5542a2"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d7/dda/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_model_1_1_voice.html">Voice</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#a6f3d39199dbfdd8ec80edd00ea5542a2">GetVoice</a> (string voice, string customizationId=null)</td></tr>
 <tr class="memdesc:a6f3d39199dbfdd8ec80edd00ea5542a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a voice.  <a href="../../da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#a6f3d39199dbfdd8ec80edd00ea5542a2">More...</a><br /></td></tr>
 <tr class="separator:a6f3d39199dbfdd8ec80edd00ea5542a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa24eeb76c7e6b6c1be062831d5d77d01"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; System.IO.MemoryStream &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#aa24eeb76c7e6b6c1be062831d5d77d01">Synthesize</a> (string text, string accept=null, string voice=null, string customizationId=null)</td></tr>
-<tr class="memdesc:aa24eeb76c7e6b6c1be062831d5d77d01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Synthesize audio.  <a href="../../da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#aa24eeb76c7e6b6c1be062831d5d77d01">More...</a><br /></td></tr>
-<tr class="separator:aa24eeb76c7e6b6c1be062831d5d77d01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a723eb0dabfd8000bf2d9ce6d65e16c5b"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; System.IO.MemoryStream &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#a723eb0dabfd8000bf2d9ce6d65e16c5b">Synthesize</a> (string text, string accept=null, string voice=null, string customizationId=null, string spellOutMode=null)</td></tr>
+<tr class="memdesc:a723eb0dabfd8000bf2d9ce6d65e16c5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Synthesize audio.  <a href="../../da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#a723eb0dabfd8000bf2d9ce6d65e16c5b">More...</a><br /></td></tr>
+<tr class="separator:a723eb0dabfd8000bf2d9ce6d65e16c5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3535000d37e26c1bc529e01821dc62e"><td class="memItemLeft" align="right" valign="top">DetailedResponse&lt; <a class="el" href="../../d7/df5/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_model_1_1_pronunciation.html">Pronunciation</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#ac3535000d37e26c1bc529e01821dc62e">GetPronunciation</a> (string text, string voice=null, string format=null, string customizationId=null)</td></tr>
 <tr class="memdesc:ac3535000d37e26c1bc529e01821dc62e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get pronunciation.  <a href="../../da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#ac3535000d37e26c1bc529e01821dc62e">More...</a><br /></td></tr>
 <tr class="separator:ac3535000d37e26c1bc529e01821dc62e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -611,17 +611,11 @@ Public Member Functions</h2></td></tr>
 <p>Create a custom model. </p>
 <p>Creates a new empty custom model. You must specify a name for the new custom model. You can optionally specify the language and a description for the new model. The model is owned by the instance of the service whose credentials are used to create it.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-customModels#cuModelsCreate">Creating a custom model</a>.</p>
-<p><b>Note:</b> The Arabic, Chinese, Czech, Dutch (Belgian and Netherlands), Australian English, Korean, and Swedish languages and voices are supported only for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud; they are deprecated for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud Pak for Data. Also, the <code>ar-AR</code> language identifier cannot be used to create a custom model; use the <code>ar-MS</code> identifier instead.</p>
+<p><b>Note:</b> Effective 31 March 2022, all neural voices are deprecated. The deprecated voices remain available to existing users until 31 March 2023, when they will be removed from the service and the documentation. The neural voices are supported only for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud; they are not available for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud Pak for Data. All enhanced neural voices remain available to all users. For more information, see the <a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-release-notes#text-to-speech-31march2022">31 March 2022 service update</a> in the release notes.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>The name of the new custom model.</td></tr>
-    <tr><td class="paramname">language</td><td>The language of the new custom model. You create a custom model for a specific language, not for a specific voice. A custom model can be used with any voice for its specified language. Omit the parameter to use the the default language, <code>en-US</code>.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p><b>Important:</b> If you are using the service on <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud Pak for Data <em>and</em> you install the neural voices, the <code>language</code>parameter is required. You must specify the language for the custom model in the indicated format (for example, <code>en-AU</code> for Australian English). The request fails if you do not specify a language. (optional, default to en-US)</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
+    <tr><td class="paramname">language</td><td>The language of the new custom model. You create a custom model for a specific language, not for a specific voice. A custom model can be used with any voice for its specified language. Omit the parameter to use the the default language, <code>en-US</code>. (optional, default to en-US)</td></tr>
     <tr><td class="paramname">description</td><td>A description of the new custom model. Specifying a description is recommended. (optional)</td></tr>
   </table>
   </dd>
@@ -1058,12 +1052,19 @@ Public Member Functions</h2></td></tr>
 
 <p>Get pronunciation. </p>
 <p>Gets the phonetic pronunciation for the specified word. You can request the pronunciation for a specific format. You can also request the pronunciation for a specific voice to see the default translation for the language of that voice or for a specific custom model to see the translation for that model.</p>
+<p><b>Note:</b> Effective 31 March 2022, all neural voices are deprecated. The deprecated voices remain available to existing users until 31 March 2023, when they will be removed from the service and the documentation. The neural voices are supported only for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud; they are not available for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud Pak for Data. All enhanced neural voices remain available to all users. For more information, see the <a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-release-notes#text-to-speech-31march2022">31 March 2022 service update</a> in the release notes.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-customWords#cuWordsQueryLanguage">Querying a word from a language</a>.</p>
-<p><b>Note:</b> The Arabic, Chinese, Czech, Dutch (Belgian and Netherlands), Australian English, Korean, and Swedish languages and voices are supported only for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud; they are deprecated for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud Pak for Data. Also, the <code>ar-AR_OmarVoice</code> voice is deprecated; use the <code>ar-MS_OmarVoice</code> voice instead.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">text</td><td>The word for which the pronunciation is requested.</td></tr>
-    <tr><td class="paramname">voice</td><td>A voice that specifies the language in which the pronunciation is to be returned. All voices for the same language (for example, <code>en-US</code>) return the same translation. (optional, default to en-US_MichaelV3Voice)</td></tr>
+    <tr><td class="paramname">voice</td><td>A voice that specifies the language in which the pronunciation is to be returned. If you omit the <code>voice</code> parameter, the service uses the US English <code>en-US_MichaelV3Voice</code> by default. All voices for the same language (for example, <code>en-US</code>) return the same translation.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p><em>For <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud Pak for Data,</em> if you do not install the <code>en-US_MichaelV3Voice</code>, you must either specify a voice with the request or specify a new default voice for your installation of the service.</p>
+<p><b>See also:</b> <a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-voices#specify-voice-default">The default voice</a>. (optional, default to en-US_MichaelV3Voice)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
     <tr><td class="paramname">format</td><td>The phoneme format in which to return the pronunciation. The Arabic, Chinese, Dutch, Australian English, and Korean languages support only IPA. Omit the parameter to obtain the pronunciation in the default format. (optional, default to ipa)</td></tr>
     <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of a custom model for which the pronunciation is to be returned. The language of a specified custom model must match the language of the specified voice. If the word is not defined in the specified custom model, the service returns the default translation for the custom model's language. You must make the request with credentials for the instance of the service that owns the custom model. Omit the parameter to see the translation for the specified voice with no customization. (optional)</td></tr>
   </table>
@@ -1151,7 +1152,7 @@ Public Member Functions</h2></td></tr>
 <p>Get a voice. </p>
 <p>Gets information about the specified voice. The information includes the name, language, gender, and other details about the voice. Specify a customization ID to obtain information for a custom model that is defined for the language of the specified voice. To list information about all available voices, use the <a href="../../#listvoices">List voices</a> method.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-voices#listVoice">Listing a specific voice</a>.</p>
-<p><b>Note:</b> The Arabic, Chinese, Czech, Dutch (Belgian and Netherlands), Australian English, Korean, and Swedish languages and voices are supported only for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud; they are deprecated for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud Pak for Data. Also, the <code>ar-AR_OmarVoice</code> voice is deprecated; use the <code>ar-MS_OmarVoice</code> voice instead.</p>
+<p><b>Note:</b> Effective 31 March 2022, all neural voices are deprecated. The deprecated voices remain available to existing users until 31 March 2023, when they will be removed from the service and the documentation. The neural voices are supported only for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud; they are not available for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud Pak for Data. All enhanced neural voices remain available to all users. For more information, see the <a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-release-notes#text-to-speech-31march2022">31 March 2022 service update</a> in the release notes.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">voice</td><td>The voice for which information is to be returned.</td></tr>
@@ -1350,6 +1351,7 @@ Public Member Functions</h2></td></tr>
 
 <p>List voices. </p>
 <p>Lists all voices available for use with the service. The information includes the name, language, gender, and other details about the voice. The ordering of the list of voices can change from call to call; do not rely on an alphabetized or static list of voices. To see information about a specific voice, use the <a href="../../#getvoice">Get a voice</a>.</p>
+<p><b>Note:</b> Effective 31 March 2022, all neural voices are deprecated. The deprecated voices remain available to existing users until 31 March 2023, when they will be removed from the service and the documentation. The neural voices are supported only for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud; they are not available for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud Pak for Data. All enhanced neural voices remain available to all users. For more information, see the <a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-release-notes#text-to-speech-31march2022">31 March 2022 service update</a> in the release notes.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-voices#listVoices">Listing all available voices</a>.</p>
 <dl class="section return"><dt>Returns</dt><dd>VoicesVoices</dd></dl>
 
@@ -1396,8 +1398,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aa24eeb76c7e6b6c1be062831d5d77d01"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa24eeb76c7e6b6c1be062831d5d77d01">&#9670;&nbsp;</a></span>Synthesize()</h2>
+<a id="a723eb0dabfd8000bf2d9ce6d65e16c5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a723eb0dabfd8000bf2d9ce6d65e16c5b">&#9670;&nbsp;</a></span>Synthesize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1427,7 +1429,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>customizationId</em> = <code>null</code>&#160;</td>
+          <td class="paramname"><em>customizationId</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>spellOutMode</em> = <code>null</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1446,13 +1454,14 @@ Public Member Functions</h2></td></tr>
 <p>Synthesizes text to audio that is spoken in the specified voice. The service bases its understanding of the language for the input text on the specified voice. Use a voice that matches the language of the input text.</p>
 <p>The method accepts a maximum of 5 KB of input text in the body of the request, and 8 KB for the URL and headers. The 5 KB limit includes any SSML tags that you specify. The service returns the synthesized audio stream as an array of bytes.</p>
 <p><b>See also:</b> <a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-usingHTTP#usingHTTP">The HTTP interface</a>.</p>
-<p><b>Note:</b> The Arabic, Chinese, Czech, Dutch (Belgian and Netherlands), Australian English, Korean, and Swedish languages and voices are supported only for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud; they are deprecated for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud Pak for Data. Also, the <code>ar-AR_OmarVoice</code> voice is deprecated; use the <code>ar-MS_OmarVoice</code> voice instead.</p>
+<p><b>Note:</b> Effective 31 March 2022, all neural voices are deprecated. The deprecated voices remain available to existing users until 31 March 2023, when they will be removed from the service and the documentation. The neural voices are supported only for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud; they are not available for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud Pak for Data. All enhanced neural voices remain available to all users. For more information, see the <a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-release-notes#text-to-speech-31march2022">31 March 2022 service update</a> in the release notes.</p>
 <h3>Audio formats (accept types)</h3>
 <p>The service can return audio in the following formats (MIME types).</p><ul>
-<li>Where indicated, you can optionally specify the sampling rate (<code>rate</code>) of the audio. You must specify a sampling rate for the <code>audio/l16</code> and <code>audio/mulaw</code> formats. A specified sampling rate must lie in the range of 8 kHz to 192 kHz. Some formats restrict the sampling rate to certain values, as noted.</li>
+<li>Where indicated, you can optionally specify the sampling rate (<code>rate</code>) of the audio. You must specify a sampling rate for the <code>audio/alaw</code>, <code>audio/l16</code>, and <code>audio/mulaw</code> formats. A specified sampling rate must lie in the range of 8 kHz to 192 kHz. Some formats restrict the sampling rate to certain values, as noted.</li>
 <li>For the <code>audio/l16</code> format, you can optionally specify the endianness (<code>endianness</code>) of the audio: <code>endianness=big-endian</code> or <code>endianness=little-endian</code>.</li>
 </ul>
 <p>Use the <code>Accept</code> header or the <code>accept</code> parameter to specify the requested format of the response audio. If you omit an audio format altogether, the service returns the audio in Ogg format with the Opus codec (<code>audio/ogg;codecs=opus</code>). The service always returns single-channel audio.</p><ul>
+<li><code>audio/alaw</code> - You must specify the <code>rate</code> of the audio.</li>
 <li><code>audio/basic</code> - The service returns audio with a sampling rate of 8000 Hz.</li>
 <li><code>audio/flac</code> - You can optionally specify the <code>rate</code> of the audio. The default sampling rate is 22,050 Hz.</li>
 <li><code>audio/l16</code> - You must specify the <code>rate</code> of the audio. You can optionally specify the <code>endianness</code> of the audio. The default endianness is <code>little-endian</code>.</li>
@@ -1475,24 +1484,33 @@ arguments:"</code> followed by a list of the form <code>"{invalid_arg_1}, {inval
   <table class="params">
     <tr><td class="paramname">text</td><td>The text to synthesize.</td></tr>
     <tr><td class="paramname">accept</td><td>The requested format (MIME type) of the audio. You can use the <code>Accept</code> header or the <code>accept</code> parameter to specify the audio format. For more information about specifying an audio format, see <b>Audio formats (accept types)</b> in the method description. (optional, default to audio/ogg;codecs=opus)</td></tr>
-    <tr><td class="paramname">voice</td><td>The voice to use for synthesis. If you omit the <code>voice</code> parameter, the service uses a default voice, which depends on the version of the service that you are using:<ul>
-<li><em>For <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud,</em> the service always uses the US English <code>en-US_MichaelV3Voice</code> by default.</li>
-<li><em>For <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud Pak for Data,</em> the default voice depends on the voices that you installed. If you installed the <em>enhanced neural voices</em>, the service uses the US English <code>en-US_MichaelV3Voice</code> by default; if that voice is not installed, you must specify a voice. If you installed the <em>neural voices</em>, the service always uses the Australian English <code>en-AU_MadisonVoice</code> by default.</li>
+    <tr><td class="paramname">voice</td><td>The voice to use for speech synthesis. If you omit the <code>voice</code> parameter, the service uses the US English <code>en-US_MichaelV3Voice</code> by default.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p><em>For <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud Pak for Data,</em> if you do not install the <code>en-US_MichaelV3Voice</code>, you must either specify a voice with the request or specify a new default voice for your installation of the service.</p>
+<p><b>See also:</b></p><ul>
+<li><a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-voices">Using languages and voices</a></li>
+<li><a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-voices#specify-voice-default">The default voice</a>. (optional, default to en-US_MichaelV3Voice)</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of a custom model to use for the synthesis. If a custom model is specified, it works only if it matches the language of the indicated voice. You must make the request with credentials for the instance of the service that owns the custom model. Omit the parameter to use the specified voice with no customization. (optional)</td></tr>
+    <tr><td class="paramname">spellOutMode</td><td>*For German voices,* indicates how the service is to spell out strings of individual letters. To indicate the pace of the spelling, specify one of the following values:<ul>
+<li><code>default</code> - The service reads the characters at the rate at which it synthesizes speech for the request. You can also omit the parameter entirely to achieve the default behavior.</li>
+<li><code>singles</code> - The service reads the characters one at a time, with a brief pause between each character.</li>
+<li><code>pairs</code> - The service reads the characters two at a time, with a brief pause between each pair.</li>
+<li><code>triples</code> - The service reads the characters three at a time, with a brief pause between each triplet.</li>
 </ul>
 </td></tr>
   </table>
   </dd>
 </dl>
-<p><b>See also:</b> See also <a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-voices">Using languages and voices</a>. (optional, default to en-US_MichaelV3Voice)</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">customizationId</td><td>The customization ID (GUID) of a custom model to use for the synthesis. If a custom model is specified, it works only if it matches the language of the indicated voice. You must make the request with credentials for the instance of the service that owns the custom model. Omit the parameter to use the specified voice with no customization. (optional)</td></tr>
-  </table>
-  </dd>
-</dl>
+<p>The parameter is available only for <a class="el" href="../../d4/dbb/namespace_i_b_m.html">IBM</a> Cloud.</p>
+<p><b>See also:</b> <a href="https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-synthesis-params#params-spell-out-mode">Specifying how strings are spelled out</a>. (optional, default to default)</p>
 <dl class="section return"><dt>Returns</dt><dd>byte[]byte[]</dd></dl>
 
-<p>Implements <a class="el" href="../../dd/d30/interface_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#a09f4f631c4a62f805faa876cae0e851b">IBM.Watson.TextToSpeech.v1.ITextToSpeechService</a>.</p>
+<p>Implements <a class="el" href="../../dd/d30/interface_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_i_text_to_speech_service.html#ab592ffb9e84fc5ee224211c862b50907">IBM.Watson.TextToSpeech.v1.ITextToSpeechService</a>.</p>
 
 </div>
 </div>

@@ -1,0 +1,6 @@
+var class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_details_smart_document_understanding_1_1_model_enum_value =
+[
+    [ "CUSTOM", "d6/da8/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_details_smart_document_understanding_1_1_model_enum_value.html#a7a39b6b729327311ec4572fa115807ee", null ],
+    [ "PRE_TRAINED", "d6/da8/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_details_smart_document_understanding_1_1_model_enum_value.html#a1cfb5c0b0673fda562907a2042f013cf", null ],
+    [ "TEXT_EXTRACTION", "d6/da8/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_collection_details_smart_document_understanding_1_1_model_enum_value.html#a47728f73758525519279abcf9ba40748", null ]
+];

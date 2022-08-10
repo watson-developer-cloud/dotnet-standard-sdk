@@ -19,7 +19,7 @@ var class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_
     [ "NaturalLanguageUnderstandingService", "d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a7be4f4ee64e6e1b4b67d5ae107e456d0", null ],
     [ "Analyze", "d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a13bdc2d7f13bab2095778e93075c3641", null ],
     [ "CreateCategoriesModel", "d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a75d53f121a79bf8a9e5373dbd774bf25", null ],
-    [ "CreateClassificationsModel", "d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a791f168d37e6de21818c70d0c3579cb9", null ],
+    [ "CreateClassificationsModel", "d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a77c45ba3dd90a16c2f4335997b1721a7", null ],
     [ "CreateSentimentModel", "d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#ad9cae31bbce01e9a1c968a6496e6b4c4", null ],
     [ "DeleteCategoriesModel", "d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a394201499609ccdbcbc7b3291e5413ad", null ],
     [ "DeleteClassificationsModel", "d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a7e5b67046a95e911da0a5d6c8266a49f", null ],
@@ -33,7 +33,7 @@ var class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_
     [ "ListModels", "d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a1bc936de2d5b9e53b9ec9f7f2f19a0cb", null ],
     [ "ListSentimentModels", "d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a91bc84d785e89ee3213d0cc003e72be8", null ],
     [ "UpdateCategoriesModel", "d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a72c767c38d578cc0b2c084955e72cb42", null ],
-    [ "UpdateClassificationsModel", "d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#ad6b068f9e7295ac4fe59de166448e074", null ],
+    [ "UpdateClassificationsModel", "d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#af910c6064d8b9f3ed7c6013ad1b2d134", null ],
     [ "UpdateSentimentModel", "d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#acdaf1be95aa10f15956b7150c52d9ed8", null ],
     [ "Version", "d5/d84/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_natural_language_understanding_service.html#a8e9d90278c0990bd24bf1e74fd348262", null ]
 ];

@@ -16,5 +16,6 @@ var class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_integration_tests_1_1_assista
     [ "TestRuntimeResponseGenericRuntimeResponseTypeChannelTransfer", "dd/d12/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_integration_tests_1_1_assistant_service_integration_tests.html#aa96a79aaa192bd71b012364a4a5186d2", null ],
     [ "TestSynonyms_Success", "dd/d12/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_integration_tests_1_1_assistant_service_integration_tests.html#a7d0f1cb11e43050a06ea1edef55b6da3", null ],
     [ "TestValues_Success", "dd/d12/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_integration_tests_1_1_assistant_service_integration_tests.html#a3aede1b786eda03a65508923df902b55", null ],
+    [ "TestWorkspaceAsync", "dd/d12/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_integration_tests_1_1_assistant_service_integration_tests.html#a185150d900ab2ea30095dab0d67211df", null ],
     [ "TestWorkspaces_Success", "dd/d12/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_integration_tests_1_1_assistant_service_integration_tests.html#af08a934bd8ec046afd08d91f56918571", null ]
 ];

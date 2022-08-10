@@ -80,7 +80,7 @@ var dir_f918a9c434a2a184dbb4779f6e2bb01d =
       [ "EnrichmentOptions", "d3/dfe/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_enrichment_options.html", "d3/dfe/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_enrichment_options" ],
       [ "LanguageEnumValue", "d4/d8e/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_enrichment_options_1_1_language_enum_value.html", "d4/d8e/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_enrichment_options_1_1_language_enum_value" ]
     ] ],
-    [ "Environment.cs", "de/d3f/_environment_8cs.html", [
+    [ "Environment.cs", "de/d43/_i_b_m_8_watson_8_discovery_8v1_2_model_2_environment_8cs.html", [
       [ "Environment", "d3/d1e/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_environment.html", "d3/d1e/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_environment" ],
       [ "StatusEnumValue", "d5/d7c/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_environment_1_1_status_enum_value.html", "d5/d7c/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_environment_1_1_status_enum_value" ],
       [ "SizeEnumValue", "d1/d44/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_environment_1_1_size_enum_value.html", "d1/d44/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_environment_1_1_size_enum_value" ]
@@ -91,10 +91,10 @@ var dir_f918a9c434a2a184dbb4779f6e2bb01d =
     [ "EventData.cs", "d4/d6b/_event_data_8cs.html", [
       [ "EventData", "d5/d15/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_event_data.html", "d5/d15/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_event_data" ]
     ] ],
-    [ "Expansion.cs", "d3/dd1/_expansion_8cs.html", [
+    [ "Expansion.cs", "d6/d0d/_i_b_m_8_watson_8_discovery_8v1_2_model_2_expansion_8cs.html", [
       [ "Expansion", "dc/d1e/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_expansion.html", "dc/d1e/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_expansion" ]
     ] ],
-    [ "Expansions.cs", "d3/d31/_expansions_8cs.html", [
+    [ "Expansions.cs", "dd/d2c/_i_b_m_8_watson_8_discovery_8v1_2_model_2_expansions_8cs.html", [
       [ "Expansions", "df/d93/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_expansions.html", "df/d93/class_i_b_m_1_1_watson_1_1_discovery_1_1v1_1_1_model_1_1_expansions" ]
     ] ],
     [ "Field.cs", "df/d96/_i_b_m_8_watson_8_discovery_8v1_2_model_2_field_8cs.html", [

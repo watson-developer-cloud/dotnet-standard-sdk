@@ -41,6 +41,10 @@ var dir_1ee6794a256bb6e828d5ee9dbce895d9 =
     [ "ClassificationsResult.cs", "d0/d0c/_classifications_result_8cs.html", [
       [ "ClassificationsResult", "de/d54/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_classifications_result.html", "de/d54/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_classifications_result" ]
     ] ],
+    [ "ClassificationsTrainingParameters.cs", "dd/d49/_classifications_training_parameters_8cs.html", [
+      [ "ClassificationsTrainingParameters", "da/d15/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_classifications_training_parameters.html", "da/d15/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_classifications_training_parameters" ],
+      [ "ModelTypeEnumValue", "d0/dcb/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_classifications_tr23affe8e8c7b84650aa81191dd40fe58.html", "d0/dcb/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_classifications_tr23affe8e8c7b84650aa81191dd40fe58" ]
+    ] ],
     [ "ConceptsOptions.cs", "d2/d09/_concepts_options_8cs.html", [
       [ "ConceptsOptions", "da/d4a/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_concepts_options.html", "da/d4a/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_concepts_options" ]
     ] ],

@@ -2,6 +2,7 @@ var class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace =
 [
     [ "StatusEnumValue", "df/dfe/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_1_1_status_enum_value.html", "df/dfe/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_1_1_status_enum_value" ],
     [ "Counterexamples", "d6/d2d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace.html#a16c27c2cccf0fa03e4e401111fd5f19d", null ],
+    [ "Counts", "d6/d2d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace.html#a4cee24068b8ec8f711e250d1bba9139b", null ],
     [ "Created", "d6/d2d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace.html#a8c0ead662a9983581ad3cd86fd9bf25e", null ],
     [ "Description", "d6/d2d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace.html#ad965a2e5bb0d7c4eaf5fcf594c6bd32e", null ],
     [ "DialogNodes", "d6/d2d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace.html#afd2f2a54da07d733e36bbce5774f7a65", null ],
@@ -12,6 +13,7 @@ var class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace =
     [ "Metadata", "d6/d2d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace.html#a71bf9ba4ed855927e9976ab6c1c2238b", null ],
     [ "Name", "d6/d2d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace.html#a64e70b83cce5a7b1d05470c70670258d", null ],
     [ "Status", "d6/d2d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace.html#a3a74a5b79535c8b65e50d41382941188", null ],
+    [ "StatusErrors", "d6/d2d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace.html#a5cc8896f14422a1f95631ba4215af049", null ],
     [ "SystemSettings", "d6/d2d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace.html#a92cd639a8056aee65e05ac1e2c23a85f", null ],
     [ "Updated", "d6/d2d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace.html#add1877bc5b374ef99beb16f615b4764c", null ],
     [ "Webhooks", "d6/d2d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace.html#a6541a0b6d12f29801f1493797dd9038d", null ],

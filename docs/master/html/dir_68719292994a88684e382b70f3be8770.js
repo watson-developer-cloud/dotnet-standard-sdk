@@ -194,7 +194,7 @@ var dir_68719292994a88684e382b70f3be8770 =
     [ "OutputData.cs", "d7/da4/_output_data_8cs.html", [
       [ "OutputData", "df/d42/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_output_data.html", "df/d42/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_output_data" ]
     ] ],
-    [ "Pagination.cs", "df/dc5/_pagination_8cs.html", [
+    [ "Pagination.cs", "d2/d7a/_i_b_m_8_watson_8_assistant_8v1_2_model_2_pagination_8cs.html", [
       [ "Pagination", "d0/d4b/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_pagination.html", "d0/d4b/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_pagination" ]
     ] ],
     [ "ResponseGenericChannel.cs", "d0/d03/_i_b_m_8_watson_8_assistant_8v1_2_model_2_response_generic_channel_8cs.html", [
@@ -256,6 +256,9 @@ var dir_68719292994a88684e382b70f3be8770 =
     [ "RuntimeResponseGenericRuntimeResponseTypeVideo.cs", "df/ddc/_i_b_m_8_watson_8_assistant_8v1_2_model_2_runtime_response_generic_runtime_response_type_video_8cs.html", [
       [ "RuntimeResponseGenericRuntimeResponseTypeVideo", "d3/d8b/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_response_type_video.html", "d3/d8b/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_runtime_response_generic_runtime_response_type_video" ]
     ] ],
+    [ "StatusError.cs", "d8/d5a/_status_error_8cs.html", [
+      [ "StatusError", "d8/dff/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_status_error.html", "d8/dff/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_status_error" ]
+    ] ],
     [ "Synonym.cs", "d3/d42/_synonym_8cs.html", [
       [ "Synonym", "d4/d65/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_synonym.html", "d4/d65/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_synonym" ]
     ] ],
@@ -282,12 +285,19 @@ var dir_68719292994a88684e382b70f3be8770 =
     [ "WorkspaceCollection.cs", "d0/dc3/_workspace_collection_8cs.html", [
       [ "WorkspaceCollection", "d6/dfb/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_collection.html", "d6/dfb/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_collection" ]
     ] ],
+    [ "WorkspaceCounts.cs", "d8/dc8/_workspace_counts_8cs.html", [
+      [ "WorkspaceCounts", "dc/daf/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_counts.html", "dc/daf/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_counts" ]
+    ] ],
     [ "WorkspaceSystemSettings.cs", "da/df2/_workspace_system_settings_8cs.html", [
       [ "WorkspaceSystemSettings", "dc/d9f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings.html", "dc/d9f/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings" ]
     ] ],
     [ "WorkspaceSystemSettingsDisambiguation.cs", "de/d85/_workspace_system_settings_disambiguation_8cs.html", [
       [ "WorkspaceSystemSettingsDisambiguation", "db/d06/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings_disambiguation.html", "db/d06/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings_disambiguation" ],
       [ "SensitivityEnumValue", "d2/d90/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings_disambiguation_1_1_sensitivity_enum_value.html", "d2/d90/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings_disambiguation_1_1_sensitivity_enum_value" ]
+    ] ],
+    [ "WorkspaceSystemSettingsNlp.cs", "dc/dd9/_workspace_system_settings_nlp_8cs.html", [
+      [ "WorkspaceSystemSettingsNlp", "d4/d12/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings_nlp.html", "d4/d12/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings_nlp" ],
+      [ "ModelEnumValue", "df/dab/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings_nlp_1_1_model_enum_value.html", "df/dab/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings_nlp_1_1_model_enum_value" ]
     ] ],
     [ "WorkspaceSystemSettingsOffTopic.cs", "de/d3d/_workspace_system_settings_off_topic_8cs.html", [
       [ "WorkspaceSystemSettingsOffTopic", "d7/dd1/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings_off_topic.html", "d7/dd1/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_system_settings_off_topic" ]

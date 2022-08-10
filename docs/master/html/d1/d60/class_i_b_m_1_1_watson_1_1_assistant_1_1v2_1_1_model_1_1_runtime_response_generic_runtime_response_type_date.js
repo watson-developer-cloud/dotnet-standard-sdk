@@ -1,0 +1,4 @@
+var class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_date =
+[
+    [ "ResponseType", "d1/d60/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_date.html#aa21617096ae028b1c024e2c5895d2b3a", null ]
+];

@@ -1,5 +1,6 @@
 var class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_enrichment_1_1_type_enum_value =
 [
+    [ "CLASSIFIER", "db/d68/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_enrichment_1_1_type_enum_value.html#a4ed501c956724bef42abd3b11e047900", null ],
     [ "DICTIONARY", "db/d68/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_enrichment_1_1_type_enum_value.html#aae60318995d5c541c9329db971157f4d", null ],
     [ "NATURAL_LANGUAGE_UNDERSTANDING", "db/d68/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_enrichment_1_1_type_enum_value.html#a1015c9e83d127bace37dcc0025bf95da", null ],
     [ "PART_OF_SPEECH", "db/d68/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_enrichment_1_1_type_enum_value.html#ab0b45e66f080ac8216b9c331792b2376", null ],

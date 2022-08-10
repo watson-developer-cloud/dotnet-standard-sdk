@@ -7,5 +7,6 @@ var class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_entity =
     [ "Interpretation", "d3/d1f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_entity.html#a9b24097573fc1c336bd3c82a1f7a4e22", null ],
     [ "Location", "d3/d1f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_entity.html#a3423c8bb415a64a94ea6789925fd32fe", null ],
     [ "Role", "d3/d1f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_entity.html#a9b5590732cf3eeb9e3d22762d2e641ff", null ],
+    [ "Skill", "d3/d1f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_entity.html#add885f732eeae8166c24bd8c88cd6b88", null ],
     [ "Value", "d3/d1f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_entity.html#abfcf67836bebc69e5c6bf2d9fe765914", null ]
 ];

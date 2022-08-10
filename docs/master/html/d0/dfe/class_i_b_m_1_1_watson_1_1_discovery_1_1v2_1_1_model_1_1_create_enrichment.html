@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Watson Developer Cloud .NET Standard SDK
-   &#160;<span id="projectnumber">5.3.0</span>
+   &#160;<span id="projectnumber">6.0.0</span>
    </div>
    <div id="projectbrief">The .NET SDK uses the Watson Developer Cloud services, a collection of REST APIs and SDKs that use cognitive computing to solve complex problems.</div>
   </td>
@@ -98,13 +98,13 @@ $(document).ready(function(){initNavTree('d0/dfe/class_i_b_m_1_1_watson_1_1_disc
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dfb/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_create_enrichment_1_1_type_enum_value.html">TypeEnumValue</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of this enrichment.  <a href="../../d6/dfb/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_create_enrichment_1_1_type_enum_value.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of this enrichment. The following types are supported:  <a href="../../d6/dfb/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_create_enrichment_1_1_type_enum_value.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:ac6771a3b5070a2ab8033d39d44980008"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/dfe/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_create_enrichment.html#ac6771a3b5070a2ab8033d39d44980008">Type</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:ac6771a3b5070a2ab8033d39d44980008"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of this enrichment. Constants for possible values can be found using <a class="el" href="../../d6/dfb/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_create_enrichment_1_1_type_enum_value.html" title="The type of this enrichment.">CreateEnrichment.TypeEnumValue</a>  <a href="../../d0/dfe/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_create_enrichment.html#ac6771a3b5070a2ab8033d39d44980008">More...</a><br /></td></tr>
+<tr class="memdesc:ac6771a3b5070a2ab8033d39d44980008"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of this enrichment. The following types are supported:  <a href="../../d0/dfe/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_create_enrichment.html#ac6771a3b5070a2ab8033d39d44980008">More...</a><br /></td></tr>
 <tr class="separator:ac6771a3b5070a2ab8033d39d44980008"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afcacdb0881630c28c8534968420d87d7"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/dfe/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_create_enrichment.html#afcacdb0881630c28c8534968420d87d7">Name</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:afcacdb0881630c28c8534968420d87d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The human readable name for this enrichment.  <a href="../../d0/dfe/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_create_enrichment.html#afcacdb0881630c28c8534968420d87d7">More...</a><br /></td></tr>
@@ -211,7 +211,17 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The type of this enrichment. Constants for possible values can be found using <a class="el" href="../../d6/dfb/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_create_enrichment_1_1_type_enum_value.html" title="The type of this enrichment.">CreateEnrichment.TypeEnumValue</a> </p>
+<p>The type of this enrichment. The following types are supported: </p>
+<ul>
+<li><code>classifier</code>: Creates a document classifier enrichment from a document classifier model that you create by using the <a href="../..//apidocs/discovery-data#createdocumentclassifier">Document classifier API</a>. <b>Note</b>: A text classifier enrichment can be created only from the product user interface.</li>
+<li><code>dictionary</code>: Creates a custom dictionary enrichment that you define in a CSV file.</li>
+<li><code>regular_expression</code>: Creates a custom regular expression enrichment from regex syntax that you specify in the request.</li>
+<li><code>rule_based</code>: Creates an enrichment from an advanced rules model that is created and exported as a ZIP file from <a class="el" href="../../d2/d15/namespace_i_b_m_1_1_watson.html">Watson</a> Knowledge Studio.</li>
+<li><code>uima_annotator</code>: Creates an enrichment from a custom UIMA text analysis model that is defined in a PEAR file created in one of the following ways: <pre class="fragment">* Watson Explorer Content Analytics Studio. **Note**: Supported in IBM Cloud Pak for Data instances
+</pre> only. <pre class="fragment">* Rule-based model that is created in Watson Knowledge Studio.
+</pre></li>
+<li><code>watson_knowledge_studio_model</code>: Creates an enrichment from a <a class="el" href="../../d2/d15/namespace_i_b_m_1_1_watson.html">Watson</a> Knowledge Studio machine learning model that is defined in a ZIP file. Constants for possible values can be found using <a class="el" href="../../d6/dfb/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_model_1_1_create_enrichment_1_1_type_enum_value.html" title="The type of this enrichment. The following types are supported:">CreateEnrichment.TypeEnumValue</a></li>
+</ul>
 
 </div>
 </div>

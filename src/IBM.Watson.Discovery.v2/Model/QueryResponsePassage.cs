@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2020, 2021.
+* (C) Copyright IBM Corp. 2020, 2022.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -31,7 +31,8 @@ namespace IBM.Watson.Discovery.v2.Model
         [JsonProperty("passage_text", NullValueHandling = NullValueHandling.Ignore)]
         public string PassageText { get; set; }
         /// <summary>
-        /// The confidence score of the passage's analysis. A higher score indicates greater confidence.
+        /// The confidence score of the passage's analysis. A higher score indicates greater confidence. The score is
+        /// used to rank the passages from all documents and is returned only if **passages.per_document** is `false`.
         /// </summary>
         [JsonProperty("passage_score", NullValueHandling = NullValueHandling.Ignore)]
         public double? PassageScore { get; set; }

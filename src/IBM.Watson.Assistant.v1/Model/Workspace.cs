@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2020.
+* (C) Copyright IBM Corp. 2018, 2022.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -27,26 +27,37 @@ namespace IBM.Watson.Assistant.v1.Model
     public class Workspace
     {
         /// <summary>
-        /// The current status of the workspace.
+        /// The current status of the workspace:
+        ///  - **Available**: The workspace is available and ready to process messages.
+        ///  - **Failed**: An asynchronous operation has failed. See the **status_errors** property for more information
+        /// about the cause of the failure. Returned only by the **Export workspace asynchronously** method.
+        ///  - **Non Existent**: The workspace does not exist.
+        ///  - **Processing**: An asynchronous operation has not yet completed. Returned only by the **Export workspace
+        /// asynchronously** method.
+        ///  - **Training**: The workspace is training based on new data such as intents or examples.
         /// </summary>
         public class StatusEnumValue
         {
             /// <summary>
-            /// Constant NON_EXISTENT for Non Existent
+            /// Constant AVAILABLE for Available
             /// </summary>
-            public const string NON_EXISTENT = "Non Existent";
-            /// <summary>
-            /// Constant TRAINING for Training
-            /// </summary>
-            public const string TRAINING = "Training";
+            public const string AVAILABLE = "Available";
             /// <summary>
             /// Constant FAILED for Failed
             /// </summary>
             public const string FAILED = "Failed";
             /// <summary>
-            /// Constant AVAILABLE for Available
+            /// Constant NON_EXISTENT for Non Existent
             /// </summary>
-            public const string AVAILABLE = "Available";
+            public const string NON_EXISTENT = "Non Existent";
+            /// <summary>
+            /// Constant PROCESSING for Processing
+            /// </summary>
+            public const string PROCESSING = "Processing";
+            /// <summary>
+            /// Constant TRAINING for Training
+            /// </summary>
+            public const string TRAINING = "Training";
             /// <summary>
             /// Constant UNAVAILABLE for Unavailable
             /// </summary>
@@ -55,7 +66,14 @@ namespace IBM.Watson.Assistant.v1.Model
         }
 
         /// <summary>
-        /// The current status of the workspace.
+        /// The current status of the workspace:
+        ///  - **Available**: The workspace is available and ready to process messages.
+        ///  - **Failed**: An asynchronous operation has failed. See the **status_errors** property for more information
+        /// about the cause of the failure. Returned only by the **Export workspace asynchronously** method.
+        ///  - **Non Existent**: The workspace does not exist.
+        ///  - **Processing**: An asynchronous operation has not yet completed. Returned only by the **Export workspace
+        /// asynchronously** method.
+        ///  - **Training**: The workspace is training based on new data such as intents or examples.
         /// Constants for possible values can be found using Workspace.StatusEnumValue
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
@@ -117,6 +135,11 @@ namespace IBM.Watson.Assistant.v1.Model
         [JsonProperty("system_settings", NullValueHandling = NullValueHandling.Ignore)]
         public WorkspaceSystemSettings SystemSettings { get; set; }
         /// <summary>
+        /// An array of messages about errors that caused an asynchronous operation to fail.
+        /// </summary>
+        [JsonProperty("status_errors", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual List<StatusError> StatusErrors { get; private set; }
+        /// <summary>
         /// Gets or Sets Webhooks
         /// </summary>
         [JsonProperty("webhooks", NullValueHandling = NullValueHandling.Ignore)]
@@ -131,6 +154,13 @@ namespace IBM.Watson.Assistant.v1.Model
         /// </summary>
         [JsonProperty("entities", NullValueHandling = NullValueHandling.Ignore)]
         public List<Entity> Entities { get; set; }
+        /// <summary>
+        /// An object containing properties that indicate how many intents, entities, and dialog nodes are defined in
+        /// the workspace. This property is included only in responses from the **Export workspace asynchronously**
+        /// method, and only when the **verbose** query parameter is set to `true`.
+        /// </summary>
+        [JsonProperty("counts", NullValueHandling = NullValueHandling.Ignore)]
+        public WorkspaceCounts Counts { get; set; }
     }
 
 }

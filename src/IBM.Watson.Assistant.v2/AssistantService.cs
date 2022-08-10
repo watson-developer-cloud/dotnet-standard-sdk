@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2021.
+* (C) Copyright IBM Corp. 2018, 2022.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 */
 
 /**
-* IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-902c9336-20210513-140138
+* IBM OpenAPI SDK Code Generator Version: 3.53.0-9710cac3-20220713-193508
 */
  
 using System.Collections.Generic;
@@ -29,6 +29,7 @@ using IBM.Watson.Assistant.v2.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using Environment = IBM.Watson.Assistant.v2.Model.Environment;
 
 namespace IBM.Watson.Assistant.v2
 {
@@ -100,6 +101,11 @@ namespace IBM.Watson.Assistant.v2
                 {
                     restRequest.WithArgument("version", Version);
                 }
+                restRequest.WithHeader("Content-Type", "application/json");
+
+                JObject bodyObject = new JObject();
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
+                restRequest.WithBodyContent(httpContent);
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v2", "CreateSession"));
                 restRequest.WithHeaders(customRequestHeaders);
@@ -390,9 +396,9 @@ namespace IBM.Watson.Assistant.v2
         /// </summary>
         /// <param name="skillId">Unique identifier of the skill. To find the skill ID in the Watson Assistant user
         /// interface, open the skill settings and click **API Details**.</param>
-        /// <param name="input">An array of input utterances to classify. (optional)</param>
+        /// <param name="input">An array of input utterances to classify.</param>
         /// <returns><see cref="BulkClassifyResponse" />BulkClassifyResponse</returns>
-        public DetailedResponse<BulkClassifyResponse> BulkClassify(string skillId, List<BulkClassifyUtterance> input = null)
+        public DetailedResponse<BulkClassifyResponse> BulkClassify(string skillId, List<BulkClassifyUtterance> input)
         {
             if (string.IsNullOrEmpty(skillId))
             {
@@ -405,6 +411,10 @@ namespace IBM.Watson.Assistant.v2
             if (string.IsNullOrEmpty(Version))
             {
                 throw new ArgumentNullException("`Version` is required");
+            }
+            if (input == null)
+            {
+                throw new ArgumentNullException("`input` is required for `BulkClassify`");
             }
             DetailedResponse<BulkClassifyResponse> result = null;
 
@@ -453,6 +463,10 @@ namespace IBM.Watson.Assistant.v2
         /// List the events from the log of an assistant.
         ///
         /// This method requires Manager access, and is available only with Enterprise plans.
+        ///
+        /// **Note:** If you use the **cursor** parameter to retrieve results one page at a time, subsequent requests
+        /// must be no more than 5 minutes apart. Any returned value for the **cursor** parameter becomes invalid after
+        /// 5 minutes. For more information about using pagination, see [Pagination](#pagination).
         /// </summary>
         /// <param name="assistantId">Unique identifier of the assistant. To find the assistant ID in the Watson
         /// Assistant user interface, open the assistant settings and click **API Details**. For information about
@@ -585,6 +599,472 @@ namespace IBM.Watson.Assistant.v2
                 if (result == null)
                 {
                     result = new DetailedResponse<object>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// List environments.
+        ///
+        /// List the environments associated with an assistant.
+        /// </summary>
+        /// <param name="assistantId">Unique identifier of the assistant. To find the assistant ID in the Watson
+        /// Assistant user interface, open the assistant settings and click **API Details**. For information about
+        /// creating assistants, see the
+        /// [documentation](https://cloud.ibm.com/docs/assistant?topic=assistant-assistant-add#assistant-add-task).
+        ///
+        /// **Note:** Currently, the v2 API does not support creating assistants.</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
+        /// <param name="includeCount">Whether to include information about the number of records that satisfy the
+        /// request, regardless of the page limit. If this parameter is `true`, the `pagination` object in the response
+        /// includes the `total` property. (optional, default to false)</param>
+        /// <param name="sort">The attribute by which returned environments will be sorted. To reverse the sort order,
+        /// prefix the value with a minus sign (`-`). (optional)</param>
+        /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="EnvironmentCollection" />EnvironmentCollection</returns>
+        public DetailedResponse<EnvironmentCollection> ListEnvironments(string assistantId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
+        {
+            if (string.IsNullOrEmpty(assistantId))
+            {
+                throw new ArgumentNullException("`assistantId` is required for `ListEnvironments`");
+            }
+            else
+            {
+                assistantId = Uri.EscapeDataString(assistantId);
+            }
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
+            DetailedResponse<EnvironmentCollection> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v2/assistants/{assistantId}/environments");
+
+                restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
+                if (pageLimit != null)
+                {
+                    restRequest.WithArgument("page_limit", pageLimit);
+                }
+                if (includeCount != null)
+                {
+                    restRequest.WithArgument("include_count", includeCount);
+                }
+                if (!string.IsNullOrEmpty(sort))
+                {
+                    restRequest.WithArgument("sort", sort);
+                }
+                if (!string.IsNullOrEmpty(cursor))
+                {
+                    restRequest.WithArgument("cursor", cursor);
+                }
+                if (includeAudit != null)
+                {
+                    restRequest.WithArgument("include_audit", includeAudit);
+                }
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v2", "ListEnvironments"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<EnvironmentCollection>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<EnvironmentCollection>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Enum values for ListEnvironments.
+        /// </summary>
+        public class ListEnvironmentsEnums
+        {
+            /// <summary>
+            /// The attribute by which returned environments will be sorted. To reverse the sort order, prefix the value
+            /// with a minus sign (`-`).
+            /// </summary>
+            public class SortValue
+            {
+                /// <summary>
+                /// Constant NAME for name
+                /// </summary>
+                public const string NAME = "name";
+                /// <summary>
+                /// Constant UPDATED for updated
+                /// </summary>
+                public const string UPDATED = "updated";
+                
+            }
+        }
+
+        /// <summary>
+        /// Get environment.
+        ///
+        /// Get information about an environment. For more information about environments, see
+        /// [Environments](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-publish-overview#environments).
+        /// </summary>
+        /// <param name="assistantId">Unique identifier of the assistant. To find the assistant ID in the Watson
+        /// Assistant user interface, open the assistant settings and click **API Details**. For information about
+        /// creating assistants, see the
+        /// [documentation](https://cloud.ibm.com/docs/assistant?topic=assistant-assistant-add#assistant-add-task).
+        ///
+        /// **Note:** Currently, the v2 API does not support creating assistants.</param>
+        /// <param name="environmentId">Unique identifier of the environment. To find the environment ID in the Watson
+        /// Assistant user interface, open the environment settings and click **API Details**. **Note:** Currently, the
+        /// API does not support creating environments.</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="Environment" />Environment</returns>
+        public DetailedResponse<Environment> GetEnvironment(string assistantId, string environmentId, bool? includeAudit = null)
+        {
+            if (string.IsNullOrEmpty(assistantId))
+            {
+                throw new ArgumentNullException("`assistantId` is required for `GetEnvironment`");
+            }
+            else
+            {
+                assistantId = Uri.EscapeDataString(assistantId);
+            }
+            if (string.IsNullOrEmpty(environmentId))
+            {
+                throw new ArgumentNullException("`environmentId` is required for `GetEnvironment`");
+            }
+            else
+            {
+                environmentId = Uri.EscapeDataString(environmentId);
+            }
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
+            DetailedResponse<Environment> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v2/assistants/{assistantId}/environments/{environmentId}");
+
+                restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
+                if (includeAudit != null)
+                {
+                    restRequest.WithArgument("include_audit", includeAudit);
+                }
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v2", "GetEnvironment"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<Environment>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<Environment>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// List releases.
+        ///
+        /// List the releases associated with an assistant. (In the Watson Assistant user interface, a release is called
+        /// a *version*.).
+        /// </summary>
+        /// <param name="assistantId">Unique identifier of the assistant. To find the assistant ID in the Watson
+        /// Assistant user interface, open the assistant settings and click **API Details**. For information about
+        /// creating assistants, see the
+        /// [documentation](https://cloud.ibm.com/docs/assistant?topic=assistant-assistant-add#assistant-add-task).
+        ///
+        /// **Note:** Currently, the v2 API does not support creating assistants.</param>
+        /// <param name="pageLimit">The number of records to return in each page of results. (optional)</param>
+        /// <param name="includeCount">Whether to include information about the number of records that satisfy the
+        /// request, regardless of the page limit. If this parameter is `true`, the `pagination` object in the response
+        /// includes the `total` property. (optional, default to false)</param>
+        /// <param name="sort">The attribute by which returned workspaces will be sorted. To reverse the sort order,
+        /// prefix the value with a minus sign (`-`). (optional)</param>
+        /// <param name="cursor">A token identifying the page of results to retrieve. (optional)</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="ReleaseCollection" />ReleaseCollection</returns>
+        public DetailedResponse<ReleaseCollection> ListReleases(string assistantId, long? pageLimit = null, bool? includeCount = null, string sort = null, string cursor = null, bool? includeAudit = null)
+        {
+            if (string.IsNullOrEmpty(assistantId))
+            {
+                throw new ArgumentNullException("`assistantId` is required for `ListReleases`");
+            }
+            else
+            {
+                assistantId = Uri.EscapeDataString(assistantId);
+            }
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
+            DetailedResponse<ReleaseCollection> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v2/assistants/{assistantId}/releases");
+
+                restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
+                if (pageLimit != null)
+                {
+                    restRequest.WithArgument("page_limit", pageLimit);
+                }
+                if (includeCount != null)
+                {
+                    restRequest.WithArgument("include_count", includeCount);
+                }
+                if (!string.IsNullOrEmpty(sort))
+                {
+                    restRequest.WithArgument("sort", sort);
+                }
+                if (!string.IsNullOrEmpty(cursor))
+                {
+                    restRequest.WithArgument("cursor", cursor);
+                }
+                if (includeAudit != null)
+                {
+                    restRequest.WithArgument("include_audit", includeAudit);
+                }
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v2", "ListReleases"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<ReleaseCollection>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<ReleaseCollection>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Enum values for ListReleases.
+        /// </summary>
+        public class ListReleasesEnums
+        {
+            /// <summary>
+            /// The attribute by which returned workspaces will be sorted. To reverse the sort order, prefix the value
+            /// with a minus sign (`-`).
+            /// </summary>
+            public class SortValue
+            {
+                /// <summary>
+                /// Constant NAME for name
+                /// </summary>
+                public const string NAME = "name";
+                /// <summary>
+                /// Constant UPDATED for updated
+                /// </summary>
+                public const string UPDATED = "updated";
+                
+            }
+        }
+
+        /// <summary>
+        /// Get release.
+        ///
+        /// Get information about a release.
+        ///
+        /// Release data is not available until publishing of the release completes. If publishing is still in progress,
+        /// you can continue to poll by calling the same request again and checking the value of the **status**
+        /// property. When processing has completed, the request returns the release data.
+        /// </summary>
+        /// <param name="assistantId">Unique identifier of the assistant. To find the assistant ID in the Watson
+        /// Assistant user interface, open the assistant settings and click **API Details**. For information about
+        /// creating assistants, see the
+        /// [documentation](https://cloud.ibm.com/docs/assistant?topic=assistant-assistant-add#assistant-add-task).
+        ///
+        /// **Note:** Currently, the v2 API does not support creating assistants.</param>
+        /// <param name="release">Unique identifier of the release.</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="Release" />Release</returns>
+        public DetailedResponse<Release> GetRelease(string assistantId, string release, bool? includeAudit = null)
+        {
+            if (string.IsNullOrEmpty(assistantId))
+            {
+                throw new ArgumentNullException("`assistantId` is required for `GetRelease`");
+            }
+            else
+            {
+                assistantId = Uri.EscapeDataString(assistantId);
+            }
+            if (string.IsNullOrEmpty(release))
+            {
+                throw new ArgumentNullException("`release` is required for `GetRelease`");
+            }
+            else
+            {
+                release = Uri.EscapeDataString(release);
+            }
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
+            DetailedResponse<Release> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v2/assistants/{assistantId}/releases/{release}");
+
+                restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
+                if (includeAudit != null)
+                {
+                    restRequest.WithArgument("include_audit", includeAudit);
+                }
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v2", "GetRelease"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<Release>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<Release>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Deploy release.
+        ///
+        /// Update the environment with the content of the release. All snapshots saved as part of the release become
+        /// active in the environment.
+        /// </summary>
+        /// <param name="assistantId">Unique identifier of the assistant. To find the assistant ID in the Watson
+        /// Assistant user interface, open the assistant settings and click **API Details**. For information about
+        /// creating assistants, see the
+        /// [documentation](https://cloud.ibm.com/docs/assistant?topic=assistant-assistant-add#assistant-add-task).
+        ///
+        /// **Note:** Currently, the v2 API does not support creating assistants.</param>
+        /// <param name="release">Unique identifier of the release.</param>
+        /// <param name="environmentId">The environment ID of the environment where the release is to be
+        /// deployed.</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <returns><see cref="Environment" />Environment</returns>
+        public DetailedResponse<Environment> DeployRelease(string assistantId, string release, string environmentId, bool? includeAudit = null)
+        {
+            if (string.IsNullOrEmpty(assistantId))
+            {
+                throw new ArgumentNullException("`assistantId` is required for `DeployRelease`");
+            }
+            else
+            {
+                assistantId = Uri.EscapeDataString(assistantId);
+            }
+            if (string.IsNullOrEmpty(release))
+            {
+                throw new ArgumentNullException("`release` is required for `DeployRelease`");
+            }
+            else
+            {
+                release = Uri.EscapeDataString(release);
+            }
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
+            if (string.IsNullOrEmpty(environmentId))
+            {
+                throw new ArgumentNullException("`environmentId` is required for `DeployRelease`");
+            }
+            DetailedResponse<Environment> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v2/assistants/{assistantId}/releases/{release}/deploy");
+
+                restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
+                if (includeAudit != null)
+                {
+                    restRequest.WithArgument("include_audit", includeAudit);
+                }
+                restRequest.WithHeader("Content-Type", "application/json");
+
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(environmentId))
+                {
+                    bodyObject["environment_id"] = environmentId;
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
+                restRequest.WithBodyContent(httpContent);
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v2", "DeployRelease"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<Environment>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<Environment>();
                 }
             }
             catch (AggregateException ae)

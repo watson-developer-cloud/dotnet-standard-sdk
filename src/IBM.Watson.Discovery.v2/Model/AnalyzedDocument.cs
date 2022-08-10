@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2020, 2021.
+* (C) Copyright IBM Corp. 2020, 2022.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -21,12 +21,13 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Discovery.v2.Model
 {
     /// <summary>
-    /// An object that contains the converted document and any identified enrichments.
+    /// An object that contains the converted document and any identified enrichments. Root-level fields from the
+    /// original file are returned also.
     /// </summary>
     public class AnalyzedDocument
     {
         /// <summary>
-        /// Array of document results that match the query.
+        /// Array of notices that are triggered when the files are processed.
         /// </summary>
         [JsonProperty("notices", NullValueHandling = NullValueHandling.Ignore)]
         public List<Notice> Notices { get; set; }

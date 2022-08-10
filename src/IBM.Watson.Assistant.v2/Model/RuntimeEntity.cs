@@ -76,6 +76,14 @@ namespace IBM.Watson.Assistant.v2.Model
         /// </summary>
         [JsonProperty("role", NullValueHandling = NullValueHandling.Ignore)]
         public RuntimeEntityRole Role { get; set; }
+        /// <summary>
+        /// The skill that recognized the entity value. Currently, the only possible values are `main skill` for the
+        /// dialog skill (if enabled) and `actions skill` for the actions skill.
+        ///
+        /// This property is present only if the assistant has both a dialog skill and an actions skill.
+        /// </summary>
+        [JsonProperty("skill", NullValueHandling = NullValueHandling.Ignore)]
+        public string Skill { get; set; }
     }
 
 }

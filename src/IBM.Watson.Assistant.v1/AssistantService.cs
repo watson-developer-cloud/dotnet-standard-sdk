@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2021.
+* (C) Copyright IBM Corp. 2018, 2022.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 */
 
 /**
-* IBM OpenAPI SDK Code Generator Version: 3.38.0-07189efd-20210827-205025
+* IBM OpenAPI SDK Code Generator Version: 3.53.0-9710cac3-20220713-193508
 */
  
 using System.Collections.Generic;
@@ -345,6 +345,9 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// Create a workspace based on component objects. You must provide workspace components defining the content of
         /// the new workspace.
+        ///
+        /// **Note:** The new workspace data cannot be larger than 1.5 MB. For larger requests, use the **Create
+        /// workspace asynchronously** method.
         /// </summary>
         /// <param name="name">The name of the workspace. This string cannot contain carriage return, newline, or tab
         /// characters. (optional)</param>
@@ -557,6 +560,9 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// Update an existing workspace with new or modified data. You must provide component objects defining the
         /// content of the updated workspace.
+        ///
+        /// **Note:** The new workspace data cannot be larger than 1.5 MB. For larger requests, use the **Update
+        /// workspace asynchronously** method.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="name">The name of the workspace. This string cannot contain carriage return, newline, or tab
@@ -742,6 +748,354 @@ namespace IBM.Watson.Assistant.v1
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Create workspace asynchronously.
+        ///
+        /// Create a workspace asynchronously based on component objects. You must provide workspace components defining
+        /// the content of the new workspace.
+        ///
+        /// A successful call to this method only initiates asynchronous creation of the workspace. The new workspace is
+        /// not available until processing completes. To check the status of the asynchronous operation, use the
+        /// **Export workspace asynchronously** method.
+        /// </summary>
+        /// <param name="name">The name of the workspace. This string cannot contain carriage return, newline, or tab
+        /// characters. (optional)</param>
+        /// <param name="description">The description of the workspace. This string cannot contain carriage return,
+        /// newline, or tab characters. (optional)</param>
+        /// <param name="language">The language of the workspace. (optional)</param>
+        /// <param name="dialogNodes">An array of objects describing the dialog nodes in the workspace.
+        /// (optional)</param>
+        /// <param name="counterexamples">An array of objects defining input examples that have been marked as
+        /// irrelevant input. (optional)</param>
+        /// <param name="metadata">Any metadata related to the workspace. (optional)</param>
+        /// <param name="learningOptOut">Whether training data from the workspace (including artifacts such as intents
+        /// and entities) can be used by IBM for general service improvements. `true` indicates that workspace training
+        /// data is not to be used. (optional, default to false)</param>
+        /// <param name="systemSettings">Global settings for the workspace. (optional)</param>
+        /// <param name="webhooks"> (optional)</param>
+        /// <param name="intents">An array of objects defining the intents for the workspace. (optional)</param>
+        /// <param name="entities">An array of objects describing the entities for the workspace. (optional)</param>
+        /// <returns><see cref="Workspace" />Workspace</returns>
+        public DetailedResponse<Workspace> CreateWorkspaceAsync(string name = null, string description = null, string language = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<Webhook> webhooks = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null)
+        {
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
+            DetailedResponse<Workspace> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces_async");
+
+                restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
+                restRequest.WithHeader("Content-Type", "application/json");
+
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(name))
+                {
+                    bodyObject["name"] = name;
+                }
+                if (!string.IsNullOrEmpty(description))
+                {
+                    bodyObject["description"] = description;
+                }
+                if (!string.IsNullOrEmpty(language))
+                {
+                    bodyObject["language"] = language;
+                }
+                if (dialogNodes != null && dialogNodes.Count > 0)
+                {
+                    bodyObject["dialog_nodes"] = JToken.FromObject(dialogNodes);
+                }
+                if (counterexamples != null && counterexamples.Count > 0)
+                {
+                    bodyObject["counterexamples"] = JToken.FromObject(counterexamples);
+                }
+                if (metadata != null)
+                {
+                    bodyObject["metadata"] = JToken.FromObject(metadata);
+                }
+                if (learningOptOut != null)
+                {
+                    bodyObject["learning_opt_out"] = JToken.FromObject(learningOptOut);
+                }
+                if (systemSettings != null)
+                {
+                    bodyObject["system_settings"] = JToken.FromObject(systemSettings);
+                }
+                if (webhooks != null && webhooks.Count > 0)
+                {
+                    bodyObject["webhooks"] = JToken.FromObject(webhooks);
+                }
+                if (intents != null && intents.Count > 0)
+                {
+                    bodyObject["intents"] = JToken.FromObject(intents);
+                }
+                if (entities != null && entities.Count > 0)
+                {
+                    bodyObject["entities"] = JToken.FromObject(entities);
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
+                restRequest.WithBodyContent(httpContent);
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "CreateWorkspaceAsync"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<Workspace>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<Workspace>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Update workspace asynchronously.
+        ///
+        /// Update an existing workspace asynchronously with new or modified data. You must provide component objects
+        /// defining the content of the updated workspace.
+        ///
+        /// A successful call to this method only initiates an asynchronous update of the workspace. The updated
+        /// workspace is not available until processing completes. To check the status of the asynchronous operation,
+        /// use the **Export workspace asynchronously** method.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="name">The name of the workspace. This string cannot contain carriage return, newline, or tab
+        /// characters. (optional)</param>
+        /// <param name="description">The description of the workspace. This string cannot contain carriage return,
+        /// newline, or tab characters. (optional)</param>
+        /// <param name="language">The language of the workspace. (optional)</param>
+        /// <param name="dialogNodes">An array of objects describing the dialog nodes in the workspace.
+        /// (optional)</param>
+        /// <param name="counterexamples">An array of objects defining input examples that have been marked as
+        /// irrelevant input. (optional)</param>
+        /// <param name="metadata">Any metadata related to the workspace. (optional)</param>
+        /// <param name="learningOptOut">Whether training data from the workspace (including artifacts such as intents
+        /// and entities) can be used by IBM for general service improvements. `true` indicates that workspace training
+        /// data is not to be used. (optional, default to false)</param>
+        /// <param name="systemSettings">Global settings for the workspace. (optional)</param>
+        /// <param name="webhooks"> (optional)</param>
+        /// <param name="intents">An array of objects defining the intents for the workspace. (optional)</param>
+        /// <param name="entities">An array of objects describing the entities for the workspace. (optional)</param>
+        /// <param name="append">Whether the new data is to be appended to the existing data in the object. If
+        /// **append**=`false`, elements included in the new data completely replace the corresponding existing
+        /// elements, including all subelements. For example, if the new data for a workspace includes **entities** and
+        /// **append**=`false`, all existing entities in the workspace are discarded and replaced with the new entities.
+        ///
+        /// If **append**=`true`, existing elements are preserved, and the new elements are added. If any elements in
+        /// the new data collide with existing elements, the update request fails. (optional, default to false)</param>
+        /// <returns><see cref="Workspace" />Workspace</returns>
+        public DetailedResponse<Workspace> UpdateWorkspaceAsync(string workspaceId, string name = null, string description = null, string language = null, List<DialogNode> dialogNodes = null, List<Counterexample> counterexamples = null, Dictionary<string, object> metadata = null, bool? learningOptOut = null, WorkspaceSystemSettings systemSettings = null, List<Webhook> webhooks = null, List<CreateIntent> intents = null, List<CreateEntity> entities = null, bool? append = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+            {
+                throw new ArgumentNullException("`workspaceId` is required for `UpdateWorkspaceAsync`");
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
+            DetailedResponse<Workspace> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.PostAsync($"{this.Endpoint}/v1/workspaces_async/{workspaceId}");
+
+                restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
+                if (append != null)
+                {
+                    restRequest.WithArgument("append", append);
+                }
+                restRequest.WithHeader("Content-Type", "application/json");
+
+                JObject bodyObject = new JObject();
+                if (!string.IsNullOrEmpty(name))
+                {
+                    bodyObject["name"] = name;
+                }
+                if (!string.IsNullOrEmpty(description))
+                {
+                    bodyObject["description"] = description;
+                }
+                if (!string.IsNullOrEmpty(language))
+                {
+                    bodyObject["language"] = language;
+                }
+                if (dialogNodes != null && dialogNodes.Count > 0)
+                {
+                    bodyObject["dialog_nodes"] = JToken.FromObject(dialogNodes);
+                }
+                if (counterexamples != null && counterexamples.Count > 0)
+                {
+                    bodyObject["counterexamples"] = JToken.FromObject(counterexamples);
+                }
+                if (metadata != null)
+                {
+                    bodyObject["metadata"] = JToken.FromObject(metadata);
+                }
+                if (learningOptOut != null)
+                {
+                    bodyObject["learning_opt_out"] = JToken.FromObject(learningOptOut);
+                }
+                if (systemSettings != null)
+                {
+                    bodyObject["system_settings"] = JToken.FromObject(systemSettings);
+                }
+                if (webhooks != null && webhooks.Count > 0)
+                {
+                    bodyObject["webhooks"] = JToken.FromObject(webhooks);
+                }
+                if (intents != null && intents.Count > 0)
+                {
+                    bodyObject["intents"] = JToken.FromObject(intents);
+                }
+                if (entities != null && entities.Count > 0)
+                {
+                    bodyObject["entities"] = JToken.FromObject(entities);
+                }
+                var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
+                restRequest.WithBodyContent(httpContent);
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "UpdateWorkspaceAsync"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<Workspace>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<Workspace>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Export workspace asynchronously.
+        ///
+        /// Export the entire workspace asynchronously, including all workspace content.
+        ///
+        /// A successful call to this method only initiates an asynchronous export. The exported JSON data is not
+        /// available until processing completes. After the initial request is submitted, you can continue to poll by
+        /// calling the same request again and checking the value of the **status** property. When processing has
+        /// completed, the request returns the exported JSON data. Remember that the usual rate limits apply.
+        /// </summary>
+        /// <param name="workspaceId">Unique identifier of the workspace.</param>
+        /// <param name="includeAudit">Whether to include the audit properties (`created` and `updated` timestamps) in
+        /// the response. (optional, default to false)</param>
+        /// <param name="sort">Indicates how the returned workspace data will be sorted. Specify `sort=stable` to sort
+        /// all workspace objects by unique identifier, in ascending alphabetical order. (optional)</param>
+        /// <param name="verbose">Whether the response should include the `counts` property, which indicates how many of
+        /// each component (such as intents and entities) the workspace contains. (optional, default to false)</param>
+        /// <returns><see cref="Workspace" />Workspace</returns>
+        public DetailedResponse<Workspace> ExportWorkspaceAsync(string workspaceId, bool? includeAudit = null, string sort = null, bool? verbose = null)
+        {
+            if (string.IsNullOrEmpty(workspaceId))
+            {
+                throw new ArgumentNullException("`workspaceId` is required for `ExportWorkspaceAsync`");
+            }
+            else
+            {
+                workspaceId = Uri.EscapeDataString(workspaceId);
+            }
+            if (string.IsNullOrEmpty(Version))
+            {
+                throw new ArgumentNullException("`Version` is required");
+            }
+            DetailedResponse<Workspace> result = null;
+
+            try
+            {
+                IClient client = this.Client;
+                SetAuthentication();
+
+                var restRequest = client.GetAsync($"{this.Endpoint}/v1/workspaces_async/{workspaceId}/export");
+
+                restRequest.WithHeader("Accept", "application/json");
+                if (!string.IsNullOrEmpty(Version))
+                {
+                    restRequest.WithArgument("version", Version);
+                }
+                if (includeAudit != null)
+                {
+                    restRequest.WithArgument("include_audit", includeAudit);
+                }
+                if (!string.IsNullOrEmpty(sort))
+                {
+                    restRequest.WithArgument("sort", sort);
+                }
+                if (verbose != null)
+                {
+                    restRequest.WithArgument("verbose", verbose);
+                }
+
+                restRequest.WithHeaders(Common.GetSdkHeaders("conversation", "v1", "ExportWorkspaceAsync"));
+                restRequest.WithHeaders(customRequestHeaders);
+                ClearCustomRequestHeaders();
+
+                result = restRequest.As<Workspace>().Result;
+                if (result == null)
+                {
+                    result = new DetailedResponse<Workspace>();
+                }
+            }
+            catch (AggregateException ae)
+            {
+                throw ae.Flatten();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Enum values for ExportWorkspaceAsync.
+        /// </summary>
+        public class ExportWorkspaceAsyncEnums
+        {
+            /// <summary>
+            /// Indicates how the returned workspace data will be sorted. Specify `sort=stable` to sort all workspace
+            /// objects by unique identifier, in ascending alphabetical order.
+            /// </summary>
+            public class SortValue
+            {
+                /// <summary>
+                /// Constant STABLE for stable
+                /// </summary>
+                public const string STABLE = "stable";
+                
+            }
         }
         /// <summary>
         /// List intents.
@@ -4238,6 +4592,10 @@ namespace IBM.Watson.Assistant.v1
         /// List the events from the log of a specific workspace.
         ///
         /// This method requires Manager access.
+        ///
+        /// **Note:** If you use the **cursor** parameter to retrieve results one page at a time, subsequent requests
+        /// must be no more than 5 minutes apart. Any returned value for the **cursor** parameter becomes invalid after
+        /// 5 minutes. For more information about using pagination, see [Pagination](#pagination).
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="sort">How to sort the returned log events. You can sort by **request_timestamp**. To reverse
@@ -4316,6 +4674,10 @@ namespace IBM.Watson.Assistant.v1
         /// List log events in all workspaces.
         ///
         /// List the events from the logs of all workspaces in the service instance.
+        ///
+        /// **Note:** If you use the **cursor** parameter to retrieve results one page at a time, subsequent requests
+        /// must be no more than 5 minutes apart. Any returned value for the **cursor** parameter becomes invalid after
+        /// 5 minutes. For more information about using pagination, see [Pagination](#pagination).
         /// </summary>
         /// <param name="filter">A cacheable parameter that limits the results to those matching the specified filter.
         /// You must specify a filter query that includes a value for `language`, as well as a value for

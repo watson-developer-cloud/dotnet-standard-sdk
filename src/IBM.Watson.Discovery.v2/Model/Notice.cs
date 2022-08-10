@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2019, 2022.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -50,12 +50,13 @@ namespace IBM.Watson.Discovery.v2.Model
         /// <summary>
         /// Identifies the notice. Many notices might have the same ID. This field exists so that user applications can
         /// programmatically identify a notice and take automatic corrective action. Typical notice IDs include:
+        ///
         /// `index_failed`, `index_failed_too_many_requests`, `index_failed_incompatible_field`,
         /// `index_failed_cluster_unavailable`, `ingestion_timeout`, `ingestion_error`, `bad_request`, `internal_error`,
         /// `missing_model`, `unsupported_model`, `smart_document_understanding_failed_incompatible_field`,
         /// `smart_document_understanding_failed_internal_error`, `smart_document_understanding_failed_internal_error`,
         /// `smart_document_understanding_failed_warning`, `smart_document_understanding_page_error`,
-        /// `smart_document_understanding_page_warning`. **Note:** This is not a complete list, other values might be
+        /// `smart_document_understanding_page_warning`. **Note:** This is not a complete list. Other values might be
         /// returned.
         /// </summary>
         [JsonProperty("notice_id", NullValueHandling = NullValueHandling.Ignore)]

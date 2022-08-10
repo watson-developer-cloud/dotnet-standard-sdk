@@ -32,9 +32,6 @@ namespace IBM.Watson.Assistant.v2.Model
         public MessageContextGlobal Global { get; set; }
         /// <summary>
         /// Information specific to particular skills used by the assistant.
-        ///
-        /// **Note:** Currently, only a single child property is supported, containing variables that apply to the
-        /// dialog skill used by the assistant.
         /// </summary>
         [JsonProperty("skills", NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, MessageContextSkill> Skills { get; set; }

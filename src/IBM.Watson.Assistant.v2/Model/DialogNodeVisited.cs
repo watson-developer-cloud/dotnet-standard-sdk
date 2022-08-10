@@ -20,13 +20,13 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// An objects containing detailed diagnostic information about a dialog node that was triggered during processing
-    /// of the input message.
+    /// An objects containing detailed diagnostic information about a dialog node that was visited during processing of
+    /// the input message.
     /// </summary>
     public class DialogNodeVisited
     {
         /// <summary>
-        /// A dialog node that was triggered during processing of the input message.
+        /// A dialog node that was visited during processing of the input message.
         /// </summary>
         [JsonProperty("dialog_node", NullValueHandling = NullValueHandling.Ignore)]
         public string DialogNode { get; set; }

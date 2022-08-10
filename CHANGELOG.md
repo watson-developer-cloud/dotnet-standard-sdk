@@ -1,3 +1,15 @@
+# [6.1.0](https://github.com/watson-developer-cloud/dotnet-standard-sdk/compare/v6.0.0...v6.1.0) (2022-08-10)
+
+
+### Features
+
+* **assistant-v1:** update models and add new methods ([2b8a2fc](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/2b8a2fcec27d79f26222a69fc46a0e56eff8ec6e))
+* **assistant-v2:** update models and add new methods ([ca838f9](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/ca838f90913c41866b80acff978a42ec72c3f852))
+* **discovery-v2:** update models and add new methods ([495295f](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/495295f8008e02ccb882265ae9ca1347c16ef6a1))
+* **nlu:** add new parameter to create/updateClassificationsModel ([e7d0b01](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/e7d0b0118b4d67115f44fd79cbbdb29f2898f7c5))
+* **stt:** add and remove method parameters ([dbbc35f](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/dbbc35f727ad9988bab05f434e8904ac7f7a8ad9))
+* **tts:** add method parameters ([44f4095](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/44f409504b6c552e8c18f525c0bc62a5f968c69f))
+
 # [6.0.0](https://github.com/watson-developer-cloud/dotnet-standard-sdk/compare/v5.3.0...v6.0.0) (2022-03-21)
 
 

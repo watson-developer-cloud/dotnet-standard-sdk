@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2021.
+* (C) Copyright IBM Corp. 2018, 2022.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -35,20 +35,17 @@ namespace IBM.Watson.SpeechToText.v1.Model
         [JsonProperty("word", NullValueHandling = NullValueHandling.Ignore)]
         public string Word { get; set; }
         /// <summary>
-        /// _For a custom model that is based on a previous-generation model_, an array of sounds-like pronunciations
-        /// for the custom word. Specify how words that are difficult to pronounce, foreign words, acronyms, and so on
-        /// can be pronounced by users.
-        /// * For a word that is not in the service's base vocabulary, omit the parameter to have the service
-        /// automatically generate a sounds-like pronunciation for the word.
+        /// As array of sounds-like pronunciations for the custom word. Specify how words that are difficult to
+        /// pronounce, foreign words, acronyms, and so on can be pronounced by users.
+        /// * _For custom models that are based on previous-generation models_, for a word that is not in the service's
+        /// base vocabulary, omit the parameter to have the service automatically generate a sounds-like pronunciation
+        /// for the word.
         /// * For a word that is in the service's base vocabulary, use the parameter to specify additional
         /// pronunciations for the word. You cannot override the default pronunciation of a word; pronunciations you add
         /// augment the pronunciation from the base vocabulary.
         ///
         /// A word can have at most five sounds-like pronunciations. A pronunciation can include at most 40 characters
         /// not including spaces.
-        ///
-        /// _For a custom model that is based on a next-generation model_, omit this field. Custom models based on
-        /// next-generation models do not support the `sounds_like` field. The service ignores the field.
         /// </summary>
         [JsonProperty("sounds_like", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> SoundsLike { get; set; }
@@ -56,6 +53,9 @@ namespace IBM.Watson.SpeechToText.v1.Model
         /// An alternative spelling for the custom word when it appears in a transcript. Use the parameter when you want
         /// the word to have a spelling that is different from its usual representation or from its spelling in corpora
         /// training data.
+        ///
+        /// _For custom models that are based on next-generation models_, the service uses the spelling of the word as
+        /// the display-as value if you omit the field.
         /// </summary>
         [JsonProperty("display_as", NullValueHandling = NullValueHandling.Ignore)]
         public string DisplayAs { get; set; }

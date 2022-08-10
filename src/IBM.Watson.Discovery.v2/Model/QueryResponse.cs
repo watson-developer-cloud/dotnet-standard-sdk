@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2019, 2021.
+* (C) Copyright IBM Corp. 2019, 2022.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -52,7 +52,8 @@ namespace IBM.Watson.Discovery.v2.Model
         [JsonProperty("suggested_query", NullValueHandling = NullValueHandling.Ignore)]
         public string SuggestedQuery { get; set; }
         /// <summary>
-        /// Array of suggested refinements.
+        /// Array of suggested refinements. **Note**: The `suggested_refinements` parameter that identified dynamic
+        /// facets from the data is deprecated.
         /// </summary>
         [JsonProperty("suggested_refinements", NullValueHandling = NullValueHandling.Ignore)]
         public List<QuerySuggestedRefinement> SuggestedRefinements { get; set; }

@@ -16,7 +16,7 @@
 */
 
 /**
-* IBM OpenAPI SDK Code Generator Version: 3.46.0-a4e29da0-20220224-210428
+* IBM OpenAPI SDK Code Generator Version: 3.53.0-9710cac3-20220713-193508
 */
  
 using System.Collections.Generic;
@@ -351,6 +351,10 @@ namespace IBM.Watson.SpeechToText.v1
                 /// </summary>
                 public const string IT_IT_NARROWBANDMODEL = "it-IT_NarrowbandModel";
                 /// <summary>
+                /// Constant IT_IT_MULTIMEDIA for it-IT_Multimedia
+                /// </summary>
+                public const string IT_IT_MULTIMEDIA = "it-IT_Multimedia";
+                /// <summary>
                 /// Constant IT_IT_TELEPHONY for it-IT_Telephony
                 /// </summary>
                 public const string IT_IT_TELEPHONY = "it-IT_Telephony";
@@ -402,6 +406,10 @@ namespace IBM.Watson.SpeechToText.v1
                 /// Constant PT_BR_BROADBANDMODEL for pt-BR_BroadbandModel
                 /// </summary>
                 public const string PT_BR_BROADBANDMODEL = "pt-BR_BroadbandModel";
+                /// <summary>
+                /// Constant PT_BR_MULTIMEDIA for pt-BR_Multimedia
+                /// </summary>
+                public const string PT_BR_MULTIMEDIA = "pt-BR_Multimedia";
                 /// <summary>
                 /// Constant PT_BR_NARROWBANDMODEL for pt-BR_NarrowbandModel
                 /// </summary>
@@ -493,9 +501,17 @@ namespace IBM.Watson.SpeechToText.v1
         /// transcriptions more quickly and also provide noticeably better transcription accuracy.
         ///
         /// You specify a next-generation model by using the `model` query parameter, as you do a previous-generation
-        /// model. Many next-generation models also support the `low_latency` parameter, which is not available with
-        /// previous-generation models. Next-generation models do not support all of the parameters that are available
-        /// for use with previous-generation models.
+        /// model. Most next-generation models support the `low_latency` parameter, and all next-generation models
+        /// support the `character_insertion_bias` parameter. These parameters are not available with
+        /// previous-generation models.
+        ///
+        /// Next-generation models do not support all of the speech recognition parameters that are available for use
+        /// with previous-generation models. Next-generation models do not support the following parameters:
+        /// * `acoustic_customization_id`
+        /// * `keywords` and `keywords_threshold`
+        /// * `max_alternatives`
+        /// * `processing_metrics` and `processing_metrics_interval`
+        /// * `word_alternatives_threshold`
         ///
         /// **Important:** Effective 15 March 2022, previous-generation models for all languages other than Arabic and
         /// Japanese are deprecated. The deprecated models remain available until 15 September 2022, when they will be
@@ -529,10 +545,19 @@ namespace IBM.Watson.SpeechToText.v1
         /// <param name="audio">The audio to transcribe.</param>
         /// <param name="contentType">The format (MIME type) of the audio. For more information about specifying an
         /// audio format, see **Audio formats (content types)** in the method description. (optional)</param>
-        /// <param name="model">The identifier of the model that is to be used for the recognition request. (**Note:**
-        /// The model `ar-AR_BroadbandModel` is deprecated; use `ar-MS_BroadbandModel` instead.) See [Using a model for
-        /// speech recognition](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-use). (optional,
-        /// default to en-US_BroadbandModel)</param>
+        /// <param name="model">The model to use for speech recognition. If you omit the `model` parameter, the service
+        /// uses the US English `en-US_BroadbandModel` by default. (The model `ar-AR_BroadbandModel` is deprecated; use
+        /// `ar-MS_BroadbandModel` instead.)
+        ///
+        /// _For IBM Cloud Pak for Data,_ if you do not install the `en-US_BroadbandModel`, you must either specify a
+        /// model with the request or specify a new default model for your installation of the service.
+        ///
+        /// **See also:**
+        /// * [Using a model for speech
+        /// recognition](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-use)
+        /// * [The default
+        /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-use#models-use-default).
+        /// (optional, default to en-US_BroadbandModel)</param>
         /// <param name="languageCustomizationId">The customization ID (GUID) of a custom language model that is to be
         /// used with the recognition request. The base model of the specified custom language model must match the
         /// model specified with the `model` parameter. You must make the request with credentials for the instance of
@@ -642,9 +667,6 @@ namespace IBM.Watson.SpeechToText.v1
         ///
         /// See [Speaker labels](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-speaker-labels).
         /// (optional, default to false)</param>
-        /// <param name="customizationId">**Deprecated.** Use the `language_customization_id` parameter to specify the
-        /// customization ID (GUID) of a custom language model that is to be used with the recognition request. Do not
-        /// specify both parameters with a request. (optional)</param>
         /// <param name="grammarName">The name of a grammar that is to be used with the recognition request. If you
         /// specify a grammar, you must also use the `language_customization_id` parameter to specify the name of the
         /// custom language model for which the grammar is defined. The service recognizes only strings that are
@@ -712,7 +734,8 @@ namespace IBM.Watson.SpeechToText.v1
         /// * 0.5 (the default) provides a reasonable compromise for the level of sensitivity.
         /// * 1.0 suppresses no audio (speech detection sensitivity is disabled).
         ///
-        /// The values increase on a monotonic curve.
+        /// The values increase on a monotonic curve. Specifying one or two decimal places of precision (for example,
+        /// `0.55`) is typically more than sufficient.
         ///
         /// The parameter is supported with all next-generation models and with most previous-generation models. See
         /// [Speech detector
@@ -729,7 +752,8 @@ namespace IBM.Watson.SpeechToText.v1
         /// * 0.5 provides a reasonable level of audio suppression for general usage.
         /// * 1.0 suppresses all audio (no audio is transcribed).
         ///
-        /// The values increase on a monotonic curve.
+        /// The values increase on a monotonic curve. Specifying one or two decimal places of precision (for example,
+        /// `0.55`) is typically more than sufficient.
         ///
         /// The parameter is supported with all next-generation models and with most previous-generation models. See
         /// [Background audio
@@ -744,14 +768,34 @@ namespace IBM.Watson.SpeechToText.v1
         /// parameter is used.
         ///
         /// The parameter is not available for previous-generation `Broadband` and `Narrowband` models. It is available
-        /// only for some next-generation models. For a list of next-generation models that support low latency, see
-        /// [Supported next-generation language
+        /// for most next-generation models.
+        /// * For a list of next-generation models that support low latency, see [Supported next-generation language
         /// models](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-ng#models-ng-supported).
         /// * For more information about the `low_latency` parameter, see [Low
         /// latency](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-interim#low-latency). (optional,
         /// default to false)</param>
+        /// <param name="characterInsertionBias">For next-generation `Multimedia` and `Telephony` models, an indication
+        /// of whether the service is biased to recognize shorter or longer strings of characters when developing
+        /// transcription hypotheses. By default, the service is optimized for each individual model to balance its
+        /// recognition of strings of different lengths. The model-specific bias is equivalent to 0.0.
+        ///
+        /// The value that you specify represents a change from a model's default bias. The allowable range of values is
+        /// -1.0 to 1.0.
+        /// * Negative values bias the service to favor hypotheses with shorter strings of characters.
+        /// * Positive values bias the service to favor hypotheses with longer strings of characters.
+        ///
+        /// As the value approaches -1.0 or 1.0, the impact of the parameter becomes more pronounced. To determine the
+        /// most effective value for your scenario, start by setting the value of the parameter to a small increment,
+        /// such as -0.1, -0.05, 0.05, or 0.1, and assess how the value impacts the transcription results. Then
+        /// experiment with different values as necessary, adjusting the value by small increments.
+        ///
+        /// The parameter is not available for previous-generation `Broadband` and `Narrowband` models.
+        ///
+        /// See [Character insertion
+        /// bias](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-parsing#insertion-bias).
+        /// (optional)</param>
         /// <returns><see cref="SpeechRecognitionResults" />SpeechRecognitionResults</returns>
-        public DetailedResponse<SpeechRecognitionResults> Recognize(System.IO.MemoryStream audio, string contentType = null, string model = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, bool? audioMetrics = null, double? endOfPhraseSilenceTime = null, bool? splitTranscriptAtPhraseEnd = null, float? speechDetectorSensitivity = null, float? backgroundAudioSuppression = null, bool? lowLatency = null)
+        public DetailedResponse<SpeechRecognitionResults> Recognize(System.IO.MemoryStream audio, string contentType = null, string model = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string grammarName = null, bool? redaction = null, bool? audioMetrics = null, double? endOfPhraseSilenceTime = null, bool? splitTranscriptAtPhraseEnd = null, float? speechDetectorSensitivity = null, float? backgroundAudioSuppression = null, bool? lowLatency = null, float? characterInsertionBias = null)
         {
             if (audio == null)
             {
@@ -832,10 +876,6 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     restRequest.WithArgument("speaker_labels", speakerLabels);
                 }
-                if (!string.IsNullOrEmpty(customizationId))
-                {
-                    restRequest.WithArgument("customization_id", customizationId);
-                }
                 if (!string.IsNullOrEmpty(grammarName))
                 {
                     restRequest.WithArgument("grammar_name", grammarName);
@@ -867,6 +907,10 @@ namespace IBM.Watson.SpeechToText.v1
                 if (lowLatency != null)
                 {
                     restRequest.WithArgument("low_latency", lowLatency);
+                }
+                if (characterInsertionBias != null)
+                {
+                    restRequest.WithArgument("character_insertion_bias", characterInsertionBias);
                 }
                 var httpContent = new ByteArrayContent(audio.ToArray());
                 httpContent.Headers.Add("Content-Type", "application/octet-stream");
@@ -971,9 +1015,18 @@ namespace IBM.Watson.SpeechToText.v1
                 
             }
             /// <summary>
-            /// The identifier of the model that is to be used for the recognition request. (**Note:** The model
-            /// `ar-AR_BroadbandModel` is deprecated; use `ar-MS_BroadbandModel` instead.) See [Using a model for speech
-            /// recognition](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-use).
+            /// The model to use for speech recognition. If you omit the `model` parameter, the service uses the US
+            /// English `en-US_BroadbandModel` by default. (The model `ar-AR_BroadbandModel` is deprecated; use
+            /// `ar-MS_BroadbandModel` instead.)
+            ///
+            /// _For IBM Cloud Pak for Data,_ if you do not install the `en-US_BroadbandModel`, you must either specify
+            /// a model with the request or specify a new default model for your installation of the service.
+            ///
+            /// **See also:**
+            /// * [Using a model for speech
+            /// recognition](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-use)
+            /// * [The default
+            /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-use#models-use-default).
             /// </summary>
             public class ModelValue
             {
@@ -1170,6 +1223,10 @@ namespace IBM.Watson.SpeechToText.v1
                 /// </summary>
                 public const string IT_IT_NARROWBANDMODEL = "it-IT_NarrowbandModel";
                 /// <summary>
+                /// Constant IT_IT_MULTIMEDIA for it-IT_Multimedia
+                /// </summary>
+                public const string IT_IT_MULTIMEDIA = "it-IT_Multimedia";
+                /// <summary>
                 /// Constant IT_IT_TELEPHONY for it-IT_Telephony
                 /// </summary>
                 public const string IT_IT_TELEPHONY = "it-IT_Telephony";
@@ -1221,6 +1278,10 @@ namespace IBM.Watson.SpeechToText.v1
                 /// Constant PT_BR_BROADBANDMODEL for pt-BR_BroadbandModel
                 /// </summary>
                 public const string PT_BR_BROADBANDMODEL = "pt-BR_BroadbandModel";
+                /// <summary>
+                /// Constant PT_BR_MULTIMEDIA for pt-BR_Multimedia
+                /// </summary>
+                public const string PT_BR_MULTIMEDIA = "pt-BR_Multimedia";
                 /// <summary>
                 /// Constant PT_BR_NARROWBANDMODEL for pt-BR_NarrowbandModel
                 /// </summary>
@@ -1471,9 +1532,17 @@ namespace IBM.Watson.SpeechToText.v1
         /// transcriptions more quickly and also provide noticeably better transcription accuracy.
         ///
         /// You specify a next-generation model by using the `model` query parameter, as you do a previous-generation
-        /// model. Many next-generation models also support the `low_latency` parameter, which is not available with
-        /// previous-generation models. Next-generation models do not support all of the parameters that are available
-        /// for use with previous-generation models.
+        /// model. Most next-generation models support the `low_latency` parameter, and all next-generation models
+        /// support the `character_insertion_bias` parameter. These parameters are not available with
+        /// previous-generation models.
+        ///
+        /// Next-generation models do not support all of the speech recognition parameters that are available for use
+        /// with previous-generation models. Next-generation models do not support the following parameters:
+        /// * `acoustic_customization_id`
+        /// * `keywords` and `keywords_threshold`
+        /// * `max_alternatives`
+        /// * `processing_metrics` and `processing_metrics_interval`
+        /// * `word_alternatives_threshold`
         ///
         /// **Important:** Effective 15 March 2022, previous-generation models for all languages other than Arabic and
         /// Japanese are deprecated. The deprecated models remain available until 15 September 2022, when they will be
@@ -1490,10 +1559,19 @@ namespace IBM.Watson.SpeechToText.v1
         /// <param name="audio">The audio to transcribe.</param>
         /// <param name="contentType">The format (MIME type) of the audio. For more information about specifying an
         /// audio format, see **Audio formats (content types)** in the method description. (optional)</param>
-        /// <param name="model">The identifier of the model that is to be used for the recognition request. (**Note:**
-        /// The model `ar-AR_BroadbandModel` is deprecated; use `ar-MS_BroadbandModel` instead.) See [Using a model for
-        /// speech recognition](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-use). (optional,
-        /// default to en-US_BroadbandModel)</param>
+        /// <param name="model">The model to use for speech recognition. If you omit the `model` parameter, the service
+        /// uses the US English `en-US_BroadbandModel` by default. (The model `ar-AR_BroadbandModel` is deprecated; use
+        /// `ar-MS_BroadbandModel` instead.)
+        ///
+        /// _For IBM Cloud Pak for Data,_ if you do not install the `en-US_BroadbandModel`, you must either specify a
+        /// model with the request or specify a new default model for your installation of the service.
+        ///
+        /// **See also:**
+        /// * [Using a model for speech
+        /// recognition](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-use)
+        /// * [The default
+        /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-use#models-use-default).
+        /// (optional, default to en-US_BroadbandModel)</param>
         /// <param name="callbackUrl">A URL to which callback notifications are to be sent. The URL must already be
         /// successfully allowlisted by using the [Register a callback](#registercallback) method. You can include the
         /// same callback URL with any number of job creation requests. Omit the parameter to poll the service for job
@@ -1634,9 +1712,6 @@ namespace IBM.Watson.SpeechToText.v1
         ///
         /// See [Speaker labels](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-speaker-labels).
         /// (optional, default to false)</param>
-        /// <param name="customizationId">**Deprecated.** Use the `language_customization_id` parameter to specify the
-        /// customization ID (GUID) of a custom language model that is to be used with the recognition request. Do not
-        /// specify both parameters with a request. (optional)</param>
         /// <param name="grammarName">The name of a grammar that is to be used with the recognition request. If you
         /// specify a grammar, you must also use the `language_customization_id` parameter to specify the name of the
         /// custom language model for which the grammar is defined. The service recognizes only strings that are
@@ -1727,7 +1802,8 @@ namespace IBM.Watson.SpeechToText.v1
         /// * 0.5 (the default) provides a reasonable compromise for the level of sensitivity.
         /// * 1.0 suppresses no audio (speech detection sensitivity is disabled).
         ///
-        /// The values increase on a monotonic curve.
+        /// The values increase on a monotonic curve. Specifying one or two decimal places of precision (for example,
+        /// `0.55`) is typically more than sufficient.
         ///
         /// The parameter is supported with all next-generation models and with most previous-generation models. See
         /// [Speech detector
@@ -1744,7 +1820,8 @@ namespace IBM.Watson.SpeechToText.v1
         /// * 0.5 provides a reasonable level of audio suppression for general usage.
         /// * 1.0 suppresses all audio (no audio is transcribed).
         ///
-        /// The values increase on a monotonic curve.
+        /// The values increase on a monotonic curve. Specifying one or two decimal places of precision (for example,
+        /// `0.55`) is typically more than sufficient.
         ///
         /// The parameter is supported with all next-generation models and with most previous-generation models. See
         /// [Background audio
@@ -1759,14 +1836,34 @@ namespace IBM.Watson.SpeechToText.v1
         /// parameter is used.
         ///
         /// The parameter is not available for previous-generation `Broadband` and `Narrowband` models. It is available
-        /// only for some next-generation models. For a list of next-generation models that support low latency, see
-        /// [Supported next-generation language
+        /// for most next-generation models.
+        /// * For a list of next-generation models that support low latency, see [Supported next-generation language
         /// models](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-ng#models-ng-supported).
         /// * For more information about the `low_latency` parameter, see [Low
         /// latency](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-interim#low-latency). (optional,
         /// default to false)</param>
+        /// <param name="characterInsertionBias">For next-generation `Multimedia` and `Telephony` models, an indication
+        /// of whether the service is biased to recognize shorter or longer strings of characters when developing
+        /// transcription hypotheses. By default, the service is optimized for each individual model to balance its
+        /// recognition of strings of different lengths. The model-specific bias is equivalent to 0.0.
+        ///
+        /// The value that you specify represents a change from a model's default bias. The allowable range of values is
+        /// -1.0 to 1.0.
+        /// * Negative values bias the service to favor hypotheses with shorter strings of characters.
+        /// * Positive values bias the service to favor hypotheses with longer strings of characters.
+        ///
+        /// As the value approaches -1.0 or 1.0, the impact of the parameter becomes more pronounced. To determine the
+        /// most effective value for your scenario, start by setting the value of the parameter to a small increment,
+        /// such as -0.1, -0.05, 0.05, or 0.1, and assess how the value impacts the transcription results. Then
+        /// experiment with different values as necessary, adjusting the value by small increments.
+        ///
+        /// The parameter is not available for previous-generation `Broadband` and `Narrowband` models.
+        ///
+        /// See [Character insertion
+        /// bias](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-parsing#insertion-bias).
+        /// (optional)</param>
         /// <returns><see cref="RecognitionJob" />RecognitionJob</returns>
-        public DetailedResponse<RecognitionJob> CreateJob(System.IO.MemoryStream audio, string contentType = null, string model = null, string callbackUrl = null, string events = null, string userToken = null, long? resultsTtl = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string customizationId = null, string grammarName = null, bool? redaction = null, bool? processingMetrics = null, float? processingMetricsInterval = null, bool? audioMetrics = null, double? endOfPhraseSilenceTime = null, bool? splitTranscriptAtPhraseEnd = null, float? speechDetectorSensitivity = null, float? backgroundAudioSuppression = null, bool? lowLatency = null)
+        public DetailedResponse<RecognitionJob> CreateJob(System.IO.MemoryStream audio, string contentType = null, string model = null, string callbackUrl = null, string events = null, string userToken = null, long? resultsTtl = null, string languageCustomizationId = null, string acousticCustomizationId = null, string baseModelVersion = null, double? customizationWeight = null, long? inactivityTimeout = null, List<string> keywords = null, float? keywordsThreshold = null, long? maxAlternatives = null, float? wordAlternativesThreshold = null, bool? wordConfidence = null, bool? timestamps = null, bool? profanityFilter = null, bool? smartFormatting = null, bool? speakerLabels = null, string grammarName = null, bool? redaction = null, bool? processingMetrics = null, float? processingMetricsInterval = null, bool? audioMetrics = null, double? endOfPhraseSilenceTime = null, bool? splitTranscriptAtPhraseEnd = null, float? speechDetectorSensitivity = null, float? backgroundAudioSuppression = null, bool? lowLatency = null, float? characterInsertionBias = null)
         {
             if (audio == null)
             {
@@ -1863,10 +1960,6 @@ namespace IBM.Watson.SpeechToText.v1
                 {
                     restRequest.WithArgument("speaker_labels", speakerLabels);
                 }
-                if (!string.IsNullOrEmpty(customizationId))
-                {
-                    restRequest.WithArgument("customization_id", customizationId);
-                }
                 if (!string.IsNullOrEmpty(grammarName))
                 {
                     restRequest.WithArgument("grammar_name", grammarName);
@@ -1906,6 +1999,10 @@ namespace IBM.Watson.SpeechToText.v1
                 if (lowLatency != null)
                 {
                     restRequest.WithArgument("low_latency", lowLatency);
+                }
+                if (characterInsertionBias != null)
+                {
+                    restRequest.WithArgument("character_insertion_bias", characterInsertionBias);
                 }
                 var httpContent = new ByteArrayContent(audio.ToArray());
                 httpContent.Headers.Add("Content-Type", "application/octet-stream");
@@ -2010,9 +2107,18 @@ namespace IBM.Watson.SpeechToText.v1
                 
             }
             /// <summary>
-            /// The identifier of the model that is to be used for the recognition request. (**Note:** The model
-            /// `ar-AR_BroadbandModel` is deprecated; use `ar-MS_BroadbandModel` instead.) See [Using a model for speech
-            /// recognition](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-use).
+            /// The model to use for speech recognition. If you omit the `model` parameter, the service uses the US
+            /// English `en-US_BroadbandModel` by default. (The model `ar-AR_BroadbandModel` is deprecated; use
+            /// `ar-MS_BroadbandModel` instead.)
+            ///
+            /// _For IBM Cloud Pak for Data,_ if you do not install the `en-US_BroadbandModel`, you must either specify
+            /// a model with the request or specify a new default model for your installation of the service.
+            ///
+            /// **See also:**
+            /// * [Using a model for speech
+            /// recognition](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-use)
+            /// * [The default
+            /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-use#models-use-default).
             /// </summary>
             public class ModelValue
             {
@@ -2209,6 +2315,10 @@ namespace IBM.Watson.SpeechToText.v1
                 /// </summary>
                 public const string IT_IT_NARROWBANDMODEL = "it-IT_NarrowbandModel";
                 /// <summary>
+                /// Constant IT_IT_MULTIMEDIA for it-IT_Multimedia
+                /// </summary>
+                public const string IT_IT_MULTIMEDIA = "it-IT_Multimedia";
+                /// <summary>
                 /// Constant IT_IT_TELEPHONY for it-IT_Telephony
                 /// </summary>
                 public const string IT_IT_TELEPHONY = "it-IT_Telephony";
@@ -2260,6 +2370,10 @@ namespace IBM.Watson.SpeechToText.v1
                 /// Constant PT_BR_BROADBANDMODEL for pt-BR_BroadbandModel
                 /// </summary>
                 public const string PT_BR_BROADBANDMODEL = "pt-BR_BroadbandModel";
+                /// <summary>
+                /// Constant PT_BR_MULTIMEDIA for pt-BR_Multimedia
+                /// </summary>
+                public const string PT_BR_MULTIMEDIA = "pt-BR_Multimedia";
                 /// <summary>
                 /// Constant PT_BR_NARROWBANDMODEL for pt-BR_NarrowbandModel
                 /// </summary>
@@ -2947,8 +3061,13 @@ namespace IBM.Watson.SpeechToText.v1
         /// See [Using customization
         /// weight](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-languageUse#weight).
         /// (optional)</param>
+        /// <param name="strict">If `false`, allows training of the custom language model to proceed as long as the
+        /// model contains at least one valid resource. The method returns an array of `TrainingWarning` objects that
+        /// lists any invalid resources. By default (`true`), training of a custom language model fails (status code
+        /// 400) if the model contains one or more invalid resources (corpus files, grammar files, or custom words).
+        /// (optional, default to true)</param>
         /// <returns><see cref="TrainingResponse" />TrainingResponse</returns>
-        public DetailedResponse<TrainingResponse> TrainLanguageModel(string customizationId, string wordTypeToAdd = null, double? customizationWeight = null)
+        public DetailedResponse<TrainingResponse> TrainLanguageModel(string customizationId, string wordTypeToAdd = null, double? customizationWeight = null, bool? strict = null)
         {
             if (string.IsNullOrEmpty(customizationId))
             {
@@ -2975,6 +3094,10 @@ namespace IBM.Watson.SpeechToText.v1
                 if (customizationWeight != null)
                 {
                     restRequest.WithArgument("customization_weight", customizationWeight);
+                }
+                if (strict != null)
+                {
+                    restRequest.WithArgument("strict", strict);
                 }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("speech_to_text", "v1", "TrainLanguageModel"));
@@ -3228,7 +3351,7 @@ namespace IBM.Watson.SpeechToText.v1
         /// referred to as out-of-vocabulary (OOV) words. After adding a corpus, you must validate the words resource to
         /// ensure that each OOV word's definition is complete and valid. You can use the [List custom
         /// words](#listwords) method to examine the words resource. You can use other words method to eliminate typos
-        /// and modify how words are pronounced as needed.
+        /// and modify how words are pronounced and displayed as needed.
         ///
         /// To add a corpus file that has the same name as an existing corpus, set the `allow_overwrite` parameter to
         /// `true`; otherwise, the request fails. Overwriting an existing corpus causes the service to process the
@@ -3486,9 +3609,12 @@ namespace IBM.Watson.SpeechToText.v1
         /// Lists information about custom words from a custom language model. You can list all words from the custom
         /// model's words resource, only custom words that were added or modified by the user, or, _for a custom model
         /// that is based on a previous-generation model_, only out-of-vocabulary (OOV) words that were extracted from
-        /// corpora or are recognized by grammars. You can also indicate the order in which the service is to return
-        /// words; by default, the service lists words in ascending alphabetical order. You must use credentials for the
-        /// instance of the service that owns a model to list information about its words.
+        /// corpora or are recognized by grammars. _For a custom model that is based on a next-generation model_, you
+        /// can list all words or only those words that were added directly by a user, which return the same results.
+        ///
+        /// You can also indicate the order in which the service is to return words; by default, the service lists words
+        /// in ascending alphabetical order. You must use credentials for the instance of the service that owns a model
+        /// to list information about its words.
         ///
         /// **See also:** [Listing words from a custom language
         /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-manageWords#listWords).
@@ -3640,14 +3766,13 @@ namespace IBM.Watson.SpeechToText.v1
         /// * The `display_as` field provides a different way of spelling the word in a transcript. Use the parameter
         /// when you want the word to appear different from its usual representation or from its spelling in training
         /// data. For example, you might indicate that the word `IBM` is to be displayed as `IBM&trade;`.
-        /// * The `sounds_like` field, _which can be used only with a custom model that is based on a
-        /// previous-generation model_, provides an array of one or more pronunciations for the word. Use the parameter
-        /// to specify how the word can be pronounced by users. Use the parameter for words that are difficult to
+        /// * The `sounds_like` field provides an array of one or more pronunciations for the word. Use the parameter to
+        /// specify how the word can be pronounced by users. Use the parameter for words that are difficult to
         /// pronounce, foreign words, acronyms, and so on. For example, you might specify that the word `IEEE` can sound
-        /// like `i triple e`. You can specify a maximum of five sounds-like pronunciations for a word. If you omit the
-        /// `sounds_like` field, the service attempts to set the field to its pronunciation of the word. It cannot
-        /// generate a pronunciation for all words, so you must review the word's definition to ensure that it is
-        /// complete and valid.
+        /// like `I triple E`. You can specify a maximum of five sounds-like pronunciations for a word. _For a custom
+        /// model that is based on a previous-generation model_, if you omit the `sounds_like` field, the service
+        /// attempts to set the field to its pronunciation of the word. It cannot generate a pronunciation for all
+        /// words, so you must review the word's definition to ensure that it is complete and valid.
         ///
         /// If you add a custom word that already exists in the words resource for the custom model, the new definition
         /// overwrites the existing data for the word. If the service encounters an error with the input data, it
@@ -3761,14 +3886,13 @@ namespace IBM.Watson.SpeechToText.v1
         /// * The `display_as` field provides a different way of spelling the word in a transcript. Use the parameter
         /// when you want the word to appear different from its usual representation or from its spelling in training
         /// data. For example, you might indicate that the word `IBM` is to be displayed as `IBM&trade;`.
-        /// * The `sounds_like` field, _which can be used only with a custom model that is based on a
-        /// previous-generation model_, provides an array of one or more pronunciations for the word. Use the parameter
-        /// to specify how the word can be pronounced by users. Use the parameter for words that are difficult to
+        /// * The `sounds_like` field provides an array of one or more pronunciations for the word. Use the parameter to
+        /// specify how the word can be pronounced by users. Use the parameter for words that are difficult to
         /// pronounce, foreign words, acronyms, and so on. For example, you might specify that the word `IEEE` can sound
-        /// like `i triple e`. You can specify a maximum of five sounds-like pronunciations for a word. If you omit the
-        /// `sounds_like` field, the service attempts to set the field to its pronunciation of the word. It cannot
-        /// generate a pronunciation for all words, so you must review the word's definition to ensure that it is
-        /// complete and valid.
+        /// like `i triple e`. You can specify a maximum of five sounds-like pronunciations for a word. _For custom
+        /// models that are based on previous-generation models_, if you omit the `sounds_like` field, the service
+        /// attempts to set the field to its pronunciation of the word. It cannot generate a pronunciation for all
+        /// words, so you must review the word's definition to ensure that it is complete and valid.
         ///
         /// If you add a custom word that already exists in the words resource for the custom model, the new definition
         /// overwrites the existing data for the word. If the service encounters an error, it does not add the word to
@@ -3798,24 +3922,23 @@ namespace IBM.Watson.SpeechToText.v1
         /// (underscore) to connect the tokens of compound words.
         ///
         /// Omit this parameter for the [Add a custom word](#addword) method. (optional)</param>
-        /// <param name="soundsLike">_For a custom model that is based on a previous-generation model_, an array of
-        /// sounds-like pronunciations for the custom word. Specify how words that are difficult to pronounce, foreign
-        /// words, acronyms, and so on can be pronounced by users.
-        /// * For a word that is not in the service's base vocabulary, omit the parameter to have the service
-        /// automatically generate a sounds-like pronunciation for the word.
+        /// <param name="soundsLike">As array of sounds-like pronunciations for the custom word. Specify how words that
+        /// are difficult to pronounce, foreign words, acronyms, and so on can be pronounced by users.
+        /// * _For custom models that are based on previous-generation models_, for a word that is not in the service's
+        /// base vocabulary, omit the parameter to have the service automatically generate a sounds-like pronunciation
+        /// for the word.
         /// * For a word that is in the service's base vocabulary, use the parameter to specify additional
         /// pronunciations for the word. You cannot override the default pronunciation of a word; pronunciations you add
         /// augment the pronunciation from the base vocabulary.
         ///
         /// A word can have at most five sounds-like pronunciations. A pronunciation can include at most 40 characters
-        /// not including spaces.
-        ///
-        /// _For a custom model that is based on a next-generation model_, omit this field. Custom models based on
-        /// next-generation models do not support the `sounds_like` field. The service ignores the field.
-        /// (optional)</param>
+        /// not including spaces. (optional)</param>
         /// <param name="displayAs">An alternative spelling for the custom word when it appears in a transcript. Use the
         /// parameter when you want the word to have a spelling that is different from its usual representation or from
-        /// its spelling in corpora training data. (optional)</param>
+        /// its spelling in corpora training data.
+        ///
+        /// _For custom models that are based on next-generation models_, the service uses the spelling of the word as
+        /// the display-as value if you omit the field. (optional)</param>
         /// <returns><see cref="object" />object</returns>
         public DetailedResponse<object> AddWord(string customizationId, string wordName, string word = null, List<string> soundsLike = null, string displayAs = null)
         {
@@ -4817,8 +4940,12 @@ namespace IBM.Watson.SpeechToText.v1
         /// of the audio resources. The custom language model must be based on the same version of the same base model
         /// as the custom acoustic model, and the custom language model must be fully trained and available. The
         /// credentials specified with the request must own both custom models. (optional)</param>
+        /// <param name="strict">If `false`, allows training of the custom acoustic model to proceed as long as the
+        /// model contains at least one valid audio resource. The method returns an array of `TrainingWarning` objects
+        /// that lists any invalid resources. By default (`true`), training of a custom acoustic model fails (status
+        /// code 400) if the model contains one or more invalid audio resources. (optional, default to true)</param>
         /// <returns><see cref="TrainingResponse" />TrainingResponse</returns>
-        public DetailedResponse<TrainingResponse> TrainAcousticModel(string customizationId, string customLanguageModelId = null)
+        public DetailedResponse<TrainingResponse> TrainAcousticModel(string customizationId, string customLanguageModelId = null, bool? strict = null)
         {
             if (string.IsNullOrEmpty(customizationId))
             {
@@ -4841,6 +4968,10 @@ namespace IBM.Watson.SpeechToText.v1
                 if (!string.IsNullOrEmpty(customLanguageModelId))
                 {
                     restRequest.WithArgument("custom_language_model_id", customLanguageModelId);
+                }
+                if (strict != null)
+                {
+                    restRequest.WithArgument("strict", strict);
                 }
 
                 restRequest.WithHeaders(Common.GetSdkHeaders("speech_to_text", "v1", "TrainAcousticModel"));

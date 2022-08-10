@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2020, 2021.
+* (C) Copyright IBM Corp. 2020, 2022.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -21,12 +21,14 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Discovery.v2.Model
 {
     /// <summary>
-    /// An object describing an Enrichment for a collection.
+    /// An object describing an enrichment for a collection.
     /// </summary>
     public class CollectionEnrichment
     {
         /// <summary>
-        /// The unique identifier of this enrichment.
+        /// The unique identifier of this enrichment. For more information about how to determine the ID of an
+        /// enrichment, see [the product
+        /// documentation](/docs/discovery-data?topic=discovery-data-manage-enrichments#enrichments-ids).
         /// </summary>
         [JsonProperty("enrichment_id", NullValueHandling = NullValueHandling.Ignore)]
         public string EnrichmentId { get; set; }

@@ -16,7 +16,7 @@
 */
 
 /**
-* IBM OpenAPI SDK Code Generator Version: 3.46.0-a4e29da0-20220224-210428
+* IBM OpenAPI SDK Code Generator Version: 3.53.0-9710cac3-20220713-193508
 */
  
 using System.Collections.Generic;
@@ -1150,8 +1150,10 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// <param name="workspaceId">ID of the Watson Knowledge Studio workspace that deployed this model to Natural
         /// Language Understanding. (optional)</param>
         /// <param name="versionDescription">The description of the version. (optional)</param>
+        /// <param name="trainingParameters">Optional classifications training parameters along with model train
+        /// requests. (optional)</param>
         /// <returns><see cref="ClassificationsModel" />ClassificationsModel</returns>
-        public DetailedResponse<ClassificationsModel> CreateClassificationsModel(string language, System.IO.MemoryStream trainingData, string trainingDataContentType = null, string name = null, string description = null, string modelVersion = null, string workspaceId = null, string versionDescription = null)
+        public DetailedResponse<ClassificationsModel> CreateClassificationsModel(string language, System.IO.MemoryStream trainingData, string trainingDataContentType = null, string name = null, string description = null, string modelVersion = null, string workspaceId = null, string versionDescription = null, ClassificationsTrainingParameters trainingParameters = null)
         {
             if (string.IsNullOrEmpty(Version))
             {
@@ -1220,6 +1222,13 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
                     var versionDescriptionContent = new StringContent(versionDescription, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
                     versionDescriptionContent.Headers.ContentType = null;
                     formData.Add(versionDescriptionContent, "version_description");
+                }
+
+                if (trainingParameters != null)
+                {
+                    var trainingParametersContent = new StringContent(JsonConvert.SerializeObject(trainingParameters), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
+                    trainingParametersContent.Headers.ContentType = null;
+                    formData.Add(trainingParametersContent, "training_parameters");
                 }
 
                 IClient client = this.Client;
@@ -1391,8 +1400,10 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// <param name="workspaceId">ID of the Watson Knowledge Studio workspace that deployed this model to Natural
         /// Language Understanding. (optional)</param>
         /// <param name="versionDescription">The description of the version. (optional)</param>
+        /// <param name="trainingParameters">Optional classifications training parameters along with model train
+        /// requests. (optional)</param>
         /// <returns><see cref="ClassificationsModel" />ClassificationsModel</returns>
-        public DetailedResponse<ClassificationsModel> UpdateClassificationsModel(string modelId, string language, System.IO.MemoryStream trainingData, string trainingDataContentType = null, string name = null, string description = null, string modelVersion = null, string workspaceId = null, string versionDescription = null)
+        public DetailedResponse<ClassificationsModel> UpdateClassificationsModel(string modelId, string language, System.IO.MemoryStream trainingData, string trainingDataContentType = null, string name = null, string description = null, string modelVersion = null, string workspaceId = null, string versionDescription = null, ClassificationsTrainingParameters trainingParameters = null)
         {
             if (string.IsNullOrEmpty(Version))
             {
@@ -1469,6 +1480,13 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
                     var versionDescriptionContent = new StringContent(versionDescription, Encoding.UTF8, HttpMediaType.TEXT_PLAIN);
                     versionDescriptionContent.Headers.ContentType = null;
                     formData.Add(versionDescriptionContent, "version_description");
+                }
+
+                if (trainingParameters != null)
+                {
+                    var trainingParametersContent = new StringContent(JsonConvert.SerializeObject(trainingParameters), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
+                    trainingParametersContent.Headers.ContentType = null;
+                    formData.Add(trainingParametersContent, "training_parameters");
                 }
 
                 IClient client = this.Client;

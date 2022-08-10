@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2020, 2021.
+* (C) Copyright IBM Corp. 2020, 2022.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -20,7 +20,9 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Discovery.v2.Model
 {
     /// <summary>
-    /// Object that contains suggested refinement settings. Available with Premium plans only.
+    /// Object that contains suggested refinement settings.
+    ///
+    /// **Note**: The `suggested_refinements` parameter that identified dynamic facets from the data is deprecated.
     /// </summary>
     public class DefaultQueryParamsSuggestedRefinements
     {

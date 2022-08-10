@@ -64,6 +64,11 @@ namespace IBM.Watson.Assistant.v1.Model
         /// </summary>
         [JsonProperty("off_topic", NullValueHandling = NullValueHandling.Ignore)]
         public WorkspaceSystemSettingsOffTopic OffTopic { get; set; }
+        /// <summary>
+        /// Workspace settings related to the version of the training algorithms currently used by the skill.
+        /// </summary>
+        [JsonProperty("nlp", NullValueHandling = NullValueHandling.Ignore)]
+        public WorkspaceSystemSettingsNlp Nlp { get; set; }
     }
 
 }

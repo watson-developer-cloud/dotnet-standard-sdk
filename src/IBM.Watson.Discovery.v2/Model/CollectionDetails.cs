@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2020.
+* (C) Copyright IBM Corp. 2020, 2022.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -47,15 +47,26 @@ namespace IBM.Watson.Discovery.v2.Model
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
         public virtual DateTime? Created { get; private set; }
         /// <summary>
-        /// The language of the collection.
+        /// The language of the collection. For a list of supported languages, see the [product
+        /// documentation](/docs/discovery-data?topic=discovery-data-language-support).
         /// </summary>
         [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
         public string Language { get; set; }
         /// <summary>
-        /// An array of enrichments that are applied to this collection.
+        /// An array of enrichments that are applied to this collection. To get a list of enrichments that are available
+        /// for a project, use the [List enrichments](#listenrichments) method.
+        ///
+        /// If no enrichments are specified when the collection is created, the default enrichments for the project type
+        /// are applied. For more information about project default settings, see the [product
+        /// documentation](/docs/discovery-data?topic=discovery-data-project-defaults).
         /// </summary>
         [JsonProperty("enrichments", NullValueHandling = NullValueHandling.Ignore)]
         public List<CollectionEnrichment> Enrichments { get; set; }
+        /// <summary>
+        /// An object that describes the Smart Document Understanding model for a collection.
+        /// </summary>
+        [JsonProperty("smart_document_understanding", NullValueHandling = NullValueHandling.Ignore)]
+        public CollectionDetailsSmartDocumentUnderstanding SmartDocumentUnderstanding { get; set; }
     }
 
 }

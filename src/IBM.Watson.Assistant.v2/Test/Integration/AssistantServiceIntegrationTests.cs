@@ -231,5 +231,67 @@ namespace IBM.Watson.Assistant.v2.IntegrationTests
             }
         }
         #endregion
-    }
+
+        #region Environments
+        [TestMethod]
+        public void TestListEnvironments()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var response = service.ListEnvironments(
+                assistantId: assistantId);
+
+            Assert.IsNotNull(response.Result.Environments);
+            Assert.IsNotNull(response.Result.Environments[0].Name);
+            Assert.IsNotNull(response.Result.Environments[0].EnvironmentId);
+        }
+
+        public void TestGetEnvironment()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var response = service.GetEnvironment(
+                assistantId: assistantId,
+                environmentId: "environmentId");
+
+            Assert.IsNotNull(response.Result.Name);
+            Assert.IsNotNull(response.Result.EnvironmentId);
+        }
+        #endregion
+
+        #region Releases
+        [TestMethod]
+        public void TestListReleases()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var response = service.ListReleases(
+                assistantId: assistantId);
+
+            Assert.IsNotNull(response.Result);
+            Assert.IsNotNull(response.Result.Releases[0].Status);
+        }
+
+        [TestMethod]
+        public void TestGetRelease()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var response = service.GetRelease(
+                assistantId: assistantId,
+                release: "1");
+
+            Assert.IsNotNull(response.Result);
+            Assert.IsTrue(response.Result.Status == "Available");
+        }
+
+        public void TestDeployRelease()
+        {
+            service.WithHeader("X-Watson-Test", "1");
+            var response = service.DeployRelease(
+                assistantId: assistantId,
+                release: "2",
+                environmentId: "environmentId");
+            Assert.IsNotNull(response.Result);
+            Assert.IsNotNull(response.Result.Name);
+            Assert.IsNotNull(response.Result.EnvironmentId);
+        }
+        #endregion
+     }
 }

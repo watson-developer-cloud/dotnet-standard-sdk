@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2018, 2022.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -30,7 +30,8 @@ namespace IBM.Watson.Assistant.v1.Model
         [JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
         public string Intent { get; set; }
         /// <summary>
-        /// A decimal percentage that represents Watson's confidence in the intent.
+        /// A decimal percentage that represents Watson's confidence in the intent. If you are specifying an intent as
+        /// part of a request, but you do not have a calculated confidence value, specify `1`.
         /// </summary>
         [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
         public double? Confidence { get; set; }

@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2019, 2021.
+* (C) Copyright IBM Corp. 2019, 2022.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -35,10 +35,10 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         DetailedResponse<CategoriesModel> GetCategoriesModel(string modelId);
         DetailedResponse<CategoriesModel> UpdateCategoriesModel(string modelId, string language, System.IO.MemoryStream trainingData, string trainingDataContentType = null, string name = null, string description = null, string modelVersion = null, string workspaceId = null, string versionDescription = null);
         DetailedResponse<DeleteModelResults> DeleteCategoriesModel(string modelId);
-        DetailedResponse<ClassificationsModel> CreateClassificationsModel(string language, System.IO.MemoryStream trainingData, string trainingDataContentType = null, string name = null, string description = null, string modelVersion = null, string workspaceId = null, string versionDescription = null);
+        DetailedResponse<ClassificationsModel> CreateClassificationsModel(string language, System.IO.MemoryStream trainingData, string trainingDataContentType = null, string name = null, string description = null, string modelVersion = null, string workspaceId = null, string versionDescription = null, ClassificationsTrainingParameters trainingParameters = null);
         DetailedResponse<ClassificationsModelList> ListClassificationsModels();
         DetailedResponse<ClassificationsModel> GetClassificationsModel(string modelId);
-        DetailedResponse<ClassificationsModel> UpdateClassificationsModel(string modelId, string language, System.IO.MemoryStream trainingData, string trainingDataContentType = null, string name = null, string description = null, string modelVersion = null, string workspaceId = null, string versionDescription = null);
+        DetailedResponse<ClassificationsModel> UpdateClassificationsModel(string modelId, string language, System.IO.MemoryStream trainingData, string trainingDataContentType = null, string name = null, string description = null, string modelVersion = null, string workspaceId = null, string versionDescription = null, ClassificationsTrainingParameters trainingParameters = null);
         DetailedResponse<DeleteModelResults> DeleteClassificationsModel(string modelId);
     }
 }

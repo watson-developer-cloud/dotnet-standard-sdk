@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2017, 2022.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Discovery.v1.Model
 {
     /// <summary>
-    /// An aggregation produced by  Discovery to analyze the input provided.
+    /// An aggregation produced by Discovery to analyze the input provided.
     /// </summary>
     [JsonConverter(typeof(JsonSubtypes), "type")]
     [JsonSubtypes.KnownSubType(typeof(QueryHistogramAggregation), "histogram")]

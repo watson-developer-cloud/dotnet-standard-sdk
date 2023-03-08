@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2017, 2019.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -36,7 +36,8 @@ namespace IBM.Watson.Discovery.v1.Model
         [JsonProperty("collection_id", NullValueHandling = NullValueHandling.Ignore)]
         public string CollectionId { get; set; }
         /// <summary>
-        /// Array of training queries.
+        /// Array of training queries. At least 50 queries are required for training to begin. A maximum of 10,000
+        /// queries are returned.
         /// </summary>
         [JsonProperty("queries", NullValueHandling = NullValueHandling.Ignore)]
         public List<TrainingQuery> Queries { get; set; }

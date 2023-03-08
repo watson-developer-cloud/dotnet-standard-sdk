@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -31,7 +31,8 @@ namespace IBM.Watson.Assistant.v1.Model
         [JsonProperty("intents", NullValueHandling = NullValueHandling.Ignore)]
         public List<Intent> Intents { get; set; }
         /// <summary>
-        /// The pagination data for the returned objects.
+        /// The pagination data for the returned objects. For more information about using pagination, see
+        /// [Pagination](#pagination).
         /// </summary>
         [JsonProperty("pagination", NullValueHandling = NullValueHandling.Ignore)]
         public Pagination Pagination { get; set; }

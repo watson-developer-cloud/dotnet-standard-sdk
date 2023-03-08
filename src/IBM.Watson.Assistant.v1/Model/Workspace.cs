@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2022.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -30,10 +30,9 @@ namespace IBM.Watson.Assistant.v1.Model
         /// The current status of the workspace:
         ///  - **Available**: The workspace is available and ready to process messages.
         ///  - **Failed**: An asynchronous operation has failed. See the **status_errors** property for more information
-        /// about the cause of the failure. Returned only by the **Export workspace asynchronously** method.
+        /// about the cause of the failure.
         ///  - **Non Existent**: The workspace does not exist.
-        ///  - **Processing**: An asynchronous operation has not yet completed. Returned only by the **Export workspace
-        /// asynchronously** method.
+        ///  - **Processing**: An asynchronous operation has not yet completed.
         ///  - **Training**: The workspace is training based on new data such as intents or examples.
         /// </summary>
         public class StatusEnumValue
@@ -69,10 +68,9 @@ namespace IBM.Watson.Assistant.v1.Model
         /// The current status of the workspace:
         ///  - **Available**: The workspace is available and ready to process messages.
         ///  - **Failed**: An asynchronous operation has failed. See the **status_errors** property for more information
-        /// about the cause of the failure. Returned only by the **Export workspace asynchronously** method.
+        /// about the cause of the failure.
         ///  - **Non Existent**: The workspace does not exist.
-        ///  - **Processing**: An asynchronous operation has not yet completed. Returned only by the **Export workspace
-        /// asynchronously** method.
+        ///  - **Processing**: An asynchronous operation has not yet completed.
         ///  - **Training**: The workspace is training based on new data such as intents or examples.
         /// Constants for possible values can be found using Workspace.StatusEnumValue
         /// </summary>
@@ -160,7 +158,7 @@ namespace IBM.Watson.Assistant.v1.Model
         /// method, and only when the **verbose** query parameter is set to `true`.
         /// </summary>
         [JsonProperty("counts", NullValueHandling = NullValueHandling.Ignore)]
-        public WorkspaceCounts Counts { get; set; }
+        public virtual WorkspaceCounts Counts { get; private set; }
     }
 
 }

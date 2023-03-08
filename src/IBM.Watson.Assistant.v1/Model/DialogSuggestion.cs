@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2021.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -34,6 +34,9 @@ namespace IBM.Watson.Assistant.v1.Model
         /// <summary>
         /// An object defining the message input, intents, and entities to be sent to the Watson Assistant service if
         /// the user selects the corresponding disambiguation option.
+        ///
+        ///  **Note:** These properties must be included in the request body of the next message sent to the assistant.
+        /// Do not modify or remove any of the included properties.
         /// </summary>
         [JsonProperty("value", NullValueHandling = NullValueHandling.Ignore)]
         public DialogSuggestionValue Value { get; set; }

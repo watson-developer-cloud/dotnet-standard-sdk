@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2022.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -25,30 +25,13 @@ namespace IBM.Watson.Assistant.v1.Model
     public class WorkspaceSystemSettingsNlp
     {
         /// <summary>
-        /// The policy the skill follows for selecting the algorithm version to use:
+        /// The policy the skill follows for selecting the algorithm version to use. For more information, see the
+        /// [documentation](/docs/watson-assistant?topic=watson-assistant-algorithm-version).
         ///
-        ///  - `baseline`: the latest mature version
-        ///  - `beta`: the latest beta version.
-        /// </summary>
-        public class ModelEnumValue
-        {
-            /// <summary>
-            /// Constant BASELINE for baseline
-            /// </summary>
-            public const string BASELINE = "baseline";
-            /// <summary>
-            /// Constant BETA for beta
-            /// </summary>
-            public const string BETA = "beta";
-            
-        }
-
-        /// <summary>
-        /// The policy the skill follows for selecting the algorithm version to use:
+        ///  On IBM Cloud, you can specify `latest`, `previous`, or `beta`.
         ///
-        ///  - `baseline`: the latest mature version
-        ///  - `beta`: the latest beta version.
-        /// Constants for possible values can be found using WorkspaceSystemSettingsNlp.ModelEnumValue
+        ///  On IBM Cloud Pak for Data, you can specify either `beta` or the date of the version you want to use, in
+        /// `YYYY-MM-DD` format.
         /// </summary>
         [JsonProperty("model", NullValueHandling = NullValueHandling.Ignore)]
         public string Model { get; set; }

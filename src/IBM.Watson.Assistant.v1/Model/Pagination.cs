@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2017, 2020.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -20,7 +20,8 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Assistant.v1.Model
 {
     /// <summary>
-    /// The pagination data for the returned objects.
+    /// The pagination data for the returned objects. For more information about using pagination, see
+    /// [Pagination](#pagination).
     /// </summary>
     public class Pagination
     {

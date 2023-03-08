@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2020.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -27,7 +27,8 @@ namespace IBM.Watson.Assistant.v1.Model
     public class Context : DynamicModel<object>
     {
         /// <summary>
-        /// The unique identifier of the conversation.
+        /// The unique identifier of the conversation. The conversation ID cannot contain any of the following
+        /// characters: `+` `=` `&&` `||` `>` `<` `!` `(` `)` `{` `}` `[` `]` `^` `"` `~` `*` `?` `:` `\` `/`.
         /// </summary>
         [JsonProperty("conversation_id", NullValueHandling = NullValueHandling.Ignore)]
         public string ConversationId { get; set; }

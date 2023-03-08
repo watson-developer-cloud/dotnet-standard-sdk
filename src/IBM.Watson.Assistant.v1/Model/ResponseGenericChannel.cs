@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2021.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -26,6 +26,8 @@ namespace IBM.Watson.Assistant.v1.Model
     {
         /// <summary>
         /// A channel for which the response is intended.
+        ///
+        ///  **Note:** On IBM Cloud Pak for Data, only `chat` is supported.
         /// </summary>
         public class ChannelEnumValue
         {
@@ -62,6 +64,8 @@ namespace IBM.Watson.Assistant.v1.Model
 
         /// <summary>
         /// A channel for which the response is intended.
+        ///
+        ///  **Note:** On IBM Cloud Pak for Data, only `chat` is supported.
         /// Constants for possible values can be found using ResponseGenericChannel.ChannelEnumValue
         /// </summary>
         [JsonProperty("channel", NullValueHandling = NullValueHandling.Ignore)]

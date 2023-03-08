@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2022.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 */
 
 /**
-* IBM OpenAPI SDK Code Generator Version: 3.53.0-9710cac3-20220713-193508
+* IBM OpenAPI SDK Code Generator Version: 3.64.1-cee95189-20230124-211647
 */
  
 using System.Collections.Generic;
@@ -757,8 +757,8 @@ namespace IBM.Watson.Assistant.v1
         /// the content of the new workspace.
         ///
         /// A successful call to this method only initiates asynchronous creation of the workspace. The new workspace is
-        /// not available until processing completes. To check the status of the asynchronous operation, use the
-        /// **Export workspace asynchronously** method.
+        /// not available until processing completes. To check the status of the asynchronous operation, use the **Get
+        /// information about a workspace** method.
         /// </summary>
         /// <param name="name">The name of the workspace. This string cannot contain carriage return, newline, or tab
         /// characters. (optional)</param>
@@ -874,7 +874,7 @@ namespace IBM.Watson.Assistant.v1
         ///
         /// A successful call to this method only initiates an asynchronous update of the workspace. The updated
         /// workspace is not available until processing completes. To check the status of the asynchronous operation,
-        /// use the **Export workspace asynchronously** method.
+        /// use the **Get information about a workspace** method.
         /// </summary>
         /// <param name="workspaceId">Unique identifier of the workspace.</param>
         /// <param name="name">The name of the workspace. This string cannot contain carriage return, newline, or tab

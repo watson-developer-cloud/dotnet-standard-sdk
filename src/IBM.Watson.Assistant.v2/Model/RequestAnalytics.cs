@@ -20,26 +20,26 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// The pagination data for the returned objects. For more information about using pagination, see
-    /// [Pagination](#pagination).
+    /// An optional object containing analytics data. Currently, this data is used only for events sent to the Segment
+    /// extension.
     /// </summary>
-    public class LogPagination
+    public class RequestAnalytics
     {
         /// <summary>
-        /// The URL that will return the next page of results, if any.
+        /// The browser that was used to send the message that triggered the event.
         /// </summary>
-        [JsonProperty("next_url", NullValueHandling = NullValueHandling.Ignore)]
-        public string NextUrl { get; set; }
+        [JsonProperty("browser", NullValueHandling = NullValueHandling.Ignore)]
+        public string Browser { get; set; }
         /// <summary>
-        /// Reserved for future use.
+        /// The type of device that was used to send the message that triggered the event.
         /// </summary>
-        [JsonProperty("matched", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Matched { get; set; }
+        [JsonProperty("device", NullValueHandling = NullValueHandling.Ignore)]
+        public string Device { get; set; }
         /// <summary>
-        /// A token identifying the next page of results.
+        /// The URL of the web page that was used to send the message that triggered the event.
         /// </summary>
-        [JsonProperty("next_cursor", NullValueHandling = NullValueHandling.Ignore)]
-        public string NextCursor { get; set; }
+        [JsonProperty("pageUrl", NullValueHandling = NullValueHandling.Ignore)]
+        public string PageUrl { get; set; }
     }
 
 }

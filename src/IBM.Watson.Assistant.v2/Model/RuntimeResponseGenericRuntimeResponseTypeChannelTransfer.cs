@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2021.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -28,6 +28,8 @@ namespace IBM.Watson.Assistant.v2.Model
         /// <summary>
         /// The type of response returned by the dialog node. The specified response type must be supported by the
         /// client application or channel.
+        ///
+        ///  **Note:** The `channel_transfer` response type is not supported on IBM Cloud Pak for Data.
         /// </summary>
         [JsonProperty("response_type", NullValueHandling = NullValueHandling.Ignore)]
         public new string ResponseType
@@ -48,7 +50,11 @@ namespace IBM.Watson.Assistant.v2.Model
         /// Information used by an integration to transfer the conversation to a different channel.
         /// </summary>
         [JsonProperty("transfer_info", NullValueHandling = NullValueHandling.Ignore)]
-        public new ChannelTransferInfo TransferInfo { get; protected set; }
+        public new ChannelTransferInfo TransferInfo
+        {
+            get { return base.TransferInfo; }
+            set { base.TransferInfo = value; }
+        }
         /// <summary>
         /// An array of objects specifying channels for which the response is intended. If **channels** is present, the
         /// response is intended for a built-in integration and should not be handled by an API client.

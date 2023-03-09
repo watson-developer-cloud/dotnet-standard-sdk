@@ -20,26 +20,25 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// The pagination data for the returned objects. For more information about using pagination, see
-    /// [Pagination](#pagination).
+    /// An object describing the search skill configuration.
     /// </summary>
-    public class LogPagination
+    public class SearchSettings
     {
         /// <summary>
-        /// The URL that will return the next page of results, if any.
+        /// Configuration settings for the Watson Discovery service instance used by the search integration.
         /// </summary>
-        [JsonProperty("next_url", NullValueHandling = NullValueHandling.Ignore)]
-        public string NextUrl { get; set; }
+        [JsonProperty("discovery", NullValueHandling = NullValueHandling.Ignore)]
+        public SearchSettingsDiscovery Discovery { get; set; }
         /// <summary>
-        /// Reserved for future use.
+        /// The messages included with responses from the search integration.
         /// </summary>
-        [JsonProperty("matched", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Matched { get; set; }
+        [JsonProperty("messages", NullValueHandling = NullValueHandling.Ignore)]
+        public SearchSettingsMessages Messages { get; set; }
         /// <summary>
-        /// A token identifying the next page of results.
+        /// The mapping between fields in the Watson Discovery collection and properties in the search response.
         /// </summary>
-        [JsonProperty("next_cursor", NullValueHandling = NullValueHandling.Ignore)]
-        public string NextCursor { get; set; }
+        [JsonProperty("schema_mapping", NullValueHandling = NullValueHandling.Ignore)]
+        public SearchSettingsSchemaMapping SchemaMapping { get; set; }
     }
 
 }

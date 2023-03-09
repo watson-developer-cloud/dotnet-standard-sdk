@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2022.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -37,12 +37,6 @@ namespace IBM.Watson.Assistant.v2.Model
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
         /// <summary>
-        /// The language of the environment. An environment is always created with the same language as the assistant it
-        /// is associated with.
-        /// </summary>
-        [JsonProperty("language", NullValueHandling = NullValueHandling.Ignore)]
-        public string Language { get; set; }
-        /// <summary>
         /// The assistant ID of the assistant the environment is associated with.
         /// </summary>
         [JsonProperty("assistant_id", NullValueHandling = NullValueHandling.Ignore)]
@@ -62,14 +56,14 @@ namespace IBM.Watson.Assistant.v2.Model
         /// An object describing the release that is currently deployed in the environment.
         /// </summary>
         [JsonProperty("release_reference", NullValueHandling = NullValueHandling.Ignore)]
-        public EnvironmentReleaseReference ReleaseReference { get; set; }
+        public virtual BaseEnvironmentReleaseReference ReleaseReference { get; private set; }
         /// <summary>
         /// The search skill orchestration settings for the environment.
         /// </summary>
         [JsonProperty("orchestration", NullValueHandling = NullValueHandling.Ignore)]
-        public EnvironmentOrchestration Orchestration { get; set; }
+        public virtual BaseEnvironmentOrchestration Orchestration { get; private set; }
         /// <summary>
-        /// The session inactivity timeout setting for the environment.
+        /// The session inactivity timeout setting for the environment (in seconds).
         /// </summary>
         [JsonProperty("session_timeout", NullValueHandling = NullValueHandling.Ignore)]
         public long? SessionTimeout { get; set; }
@@ -77,12 +71,12 @@ namespace IBM.Watson.Assistant.v2.Model
         /// An array of objects describing the integrations that exist in the environment.
         /// </summary>
         [JsonProperty("integration_references", NullValueHandling = NullValueHandling.Ignore)]
-        public List<IntegrationReference> IntegrationReferences { get; set; }
+        public virtual List<IntegrationReference> IntegrationReferences { get; private set; }
         /// <summary>
-        /// An array of objects describing the skills (such as actions and dialog) that exist in the environment.
+        /// An array of objects identifying the skills (such as action and dialog) that exist in the environment.
         /// </summary>
         [JsonProperty("skill_references", NullValueHandling = NullValueHandling.Ignore)]
-        public List<SkillReference> SkillReferences { get; set; }
+        public List<EnvironmentSkill> SkillReferences { get; set; }
         /// <summary>
         /// The timestamp for creation of the object.
         /// </summary>

@@ -20,19 +20,20 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// An object defining the message input to be sent to the assistant if the user selects the corresponding
-    /// disambiguation option.
-    ///
-    ///  **Note:** This entire message input object must be included in the request body of the next message sent to the
-    /// assistant. Do not modify or remove any of the included properties.
+    /// Status information about the skills for the assistant. Included in responses only if **status**=`Available`.
     /// </summary>
-    public class DialogSuggestionValue
+    public class AssistantState
     {
         /// <summary>
-        /// An input object that includes the input text.
+        /// Whether the action skill is disabled in the draft environment.
         /// </summary>
-        [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
-        public MessageInput Input { get; set; }
+        [JsonProperty("action_disabled", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? ActionDisabled { get; set; }
+        /// <summary>
+        /// Whether the dialog skill is disabled in the draft environment.
+        /// </summary>
+        [JsonProperty("dialog_disabled", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? DialogDisabled { get; set; }
     }
 
 }

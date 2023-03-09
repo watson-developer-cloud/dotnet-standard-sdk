@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2022.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -205,7 +205,7 @@ namespace IBM.Watson.Assistant.v2.Model
         /// For internal use only.
         /// </summary>
         [JsonProperty("channel_options", NullValueHandling = NullValueHandling.Ignore)]
-        public object ChannelOptions { get; protected set; }
+        public Dictionary<string, object> ChannelOptions { get; protected set; }
         /// <summary>
         /// The URL of an image that shows a preview of the embedded content.
         /// </summary>

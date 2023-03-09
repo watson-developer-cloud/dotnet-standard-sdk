@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2020, 2022.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ namespace IBM.Watson.Assistant.v2.Model
         /// The type of the message:
         ///
         /// - `text`: The user input is processed normally by the assistant.
-        /// - `search`: Only search results are returned. (Any dialog or actions skill is bypassed.)
+        /// - `search`: Only search results are returned. (Any dialog or action skill is bypassed.)
         ///
         /// **Note:** A `search` message results in an error if no search skill is configured for the assistant.
         /// </summary>
@@ -50,7 +50,7 @@ namespace IBM.Watson.Assistant.v2.Model
         /// The type of the message:
         ///
         /// - `text`: The user input is processed normally by the assistant.
-        /// - `search`: Only search results are returned. (Any dialog or actions skill is bypassed.)
+        /// - `search`: Only search results are returned. (Any dialog or action skill is bypassed.)
         ///
         /// **Note:** A `search` message results in an error if no search skill is configured for the assistant.
         /// Constants for possible values can be found using MessageInputStateless.MessageTypeEnumValue
@@ -80,13 +80,19 @@ namespace IBM.Watson.Assistant.v2.Model
         [JsonProperty("suggestion_id", NullValueHandling = NullValueHandling.Ignore)]
         public string SuggestionId { get; set; }
         /// <summary>
-        /// An array of multimedia attachments to be sent with the message.
+        /// An array of multimedia attachments to be sent with the message. Attachments are not processed by the
+        /// assistant itself, but can be sent to external services by webhooks.
         ///
-        /// **Note:** Attachments are not processed by the assistant itself, but can be sent to external services by
-        /// webhooks.
+        ///  **Note:** Attachments are not supported on IBM Cloud Pak for Data.
         /// </summary>
         [JsonProperty("attachments", NullValueHandling = NullValueHandling.Ignore)]
         public List<MessageInputAttachment> Attachments { get; set; }
+        /// <summary>
+        /// An optional object containing analytics data. Currently, this data is used only for events sent to the
+        /// Segment extension.
+        /// </summary>
+        [JsonProperty("analytics", NullValueHandling = NullValueHandling.Ignore)]
+        public RequestAnalytics Analytics { get; set; }
         /// <summary>
         /// Optional properties that control how the assistant responds.
         /// </summary>

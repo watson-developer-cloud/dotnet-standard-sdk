@@ -20,19 +20,15 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// An object defining the message input to be sent to the assistant if the user selects the corresponding
-    /// disambiguation option.
-    ///
-    ///  **Note:** This entire message input object must be included in the request body of the next message sent to the
-    /// assistant. Do not modify or remove any of the included properties.
+    /// An object describing an error that occurred during processing of an asynchronous operation.
     /// </summary>
-    public class DialogSuggestionValue
+    public class StatusError
     {
         /// <summary>
-        /// An input object that includes the input text.
+        /// The text of the error message.
         /// </summary>
-        [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
-        public MessageInput Input { get; set; }
+        [JsonProperty("message", NullValueHandling = NullValueHandling.Ignore)]
+        public string Message { get; set; }
     }
 
 }

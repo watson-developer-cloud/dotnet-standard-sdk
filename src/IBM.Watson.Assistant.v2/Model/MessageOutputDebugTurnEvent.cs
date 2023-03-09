@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2022.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -140,10 +140,21 @@ namespace IBM.Watson.Assistant.v2.Model
         [JsonProperty("event", NullValueHandling = NullValueHandling.Ignore)]
         public string _Event { get; protected set; }
         /// <summary>
+        /// Gets or Sets Source
+        /// </summary>
+        [JsonProperty("source", NullValueHandling = NullValueHandling.Ignore)]
+        public TurnEventActionSource Source { get; protected set; }
+        /// <summary>
         /// The time when the action started processing the message.
         /// </summary>
         [JsonProperty("action_start_time", NullValueHandling = NullValueHandling.Ignore)]
         public string ActionStartTime { get; protected set; }
+        /// <summary>
+        /// The variable where the result of the call to the action is stored. Included only if
+        /// **reason**=`subaction_return`.
+        /// </summary>
+        [JsonProperty("result_variable", NullValueHandling = NullValueHandling.Ignore)]
+        public string ResultVariable { get; protected set; }
         /// <summary>
         /// The state of all action variables at the time the action finished.
         /// </summary>
@@ -165,6 +176,11 @@ namespace IBM.Watson.Assistant.v2.Model
         /// </summary>
         [JsonProperty("callout", NullValueHandling = NullValueHandling.Ignore)]
         public TurnEventCalloutCallout Callout { get; protected set; }
+        /// <summary>
+        /// Gets or Sets Error
+        /// </summary>
+        [JsonProperty("error", NullValueHandling = NullValueHandling.Ignore)]
+        public TurnEventCalloutError Error { get; protected set; }
     }
 
 }

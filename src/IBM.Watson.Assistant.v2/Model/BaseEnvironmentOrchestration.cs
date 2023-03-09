@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2022.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -20,15 +20,16 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// An object describing the release that is currently deployed in the environment.
+    /// The search skill orchestration settings for the environment.
     /// </summary>
-    public class EnvironmentReleaseReference
+    public class BaseEnvironmentOrchestration
     {
         /// <summary>
-        /// The name of the deployed release.
+        /// Whether assistants deployed to the environment fall back to a search skill when responding to messages that
+        /// do not match any intent. If no search skill is configured for the assistant, this property is ignored.
         /// </summary>
-        [JsonProperty("release", NullValueHandling = NullValueHandling.Ignore)]
-        public string Release { get; set; }
+        [JsonProperty("search_skill_fallback", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? SearchSkillFallback { get; set; }
     }
 
 }

@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2022.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -21,7 +21,8 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// An object describing the versionable content objects (such as skill snapshots) that are included in the release.
+    /// An object identifying the versionable content objects (such as skill snapshots) that are included in the
+    /// release.
     /// </summary>
     public class ReleaseContent
     {
@@ -29,7 +30,7 @@ namespace IBM.Watson.Assistant.v2.Model
         /// The skill snapshots that are included in the release.
         /// </summary>
         [JsonProperty("skills", NullValueHandling = NullValueHandling.Ignore)]
-        public virtual List<ReleaseSkillReference> Skills { get; private set; }
+        public virtual List<ReleaseSkill> Skills { get; private set; }
     }
 
 }

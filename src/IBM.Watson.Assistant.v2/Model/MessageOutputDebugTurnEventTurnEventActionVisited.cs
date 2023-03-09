@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2022.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -101,7 +101,11 @@ namespace IBM.Watson.Assistant.v2.Model
         /// Gets or Sets Source
         /// </summary>
         [JsonProperty("source", NullValueHandling = NullValueHandling.Ignore)]
-        public new TurnEventActionSource Source { get; protected set; }
+        public new TurnEventActionSource Source
+        {
+            get { return base.Source; }
+            set { base.Source = value; }
+        }
         /// <summary>
         /// The time when the action started processing the message.
         /// </summary>
@@ -110,6 +114,16 @@ namespace IBM.Watson.Assistant.v2.Model
         {
             get { return base.ActionStartTime; }
             set { base.ActionStartTime = value; }
+        }
+        /// <summary>
+        /// The variable where the result of the call to the action is stored. Included only if
+        /// **reason**=`subaction_return`.
+        /// </summary>
+        [JsonProperty("result_variable", NullValueHandling = NullValueHandling.Ignore)]
+        public new string ResultVariable
+        {
+            get { return base.ResultVariable; }
+            set { base.ResultVariable = value; }
         }
     }
 

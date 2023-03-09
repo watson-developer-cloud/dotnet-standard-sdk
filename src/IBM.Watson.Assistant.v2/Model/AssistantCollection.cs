@@ -15,24 +15,27 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// An object defining the message input to be sent to the assistant if the user selects the corresponding
-    /// disambiguation option.
-    ///
-    ///  **Note:** This entire message input object must be included in the request body of the next message sent to the
-    /// assistant. Do not modify or remove any of the included properties.
+    /// AssistantCollection.
     /// </summary>
-    public class DialogSuggestionValue
+    public class AssistantCollection
     {
         /// <summary>
-        /// An input object that includes the input text.
+        /// An array of objects describing the assistants associated with the instance.
         /// </summary>
-        [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
-        public MessageInput Input { get; set; }
+        [JsonProperty("assistants", NullValueHandling = NullValueHandling.Ignore)]
+        public List<AssistantData> Assistants { get; set; }
+        /// <summary>
+        /// The pagination data for the returned objects. For more information about using pagination, see
+        /// [Pagination](#pagination).
+        /// </summary>
+        [JsonProperty("pagination", NullValueHandling = NullValueHandling.Ignore)]
+        public Pagination Pagination { get; set; }
     }
 
 }

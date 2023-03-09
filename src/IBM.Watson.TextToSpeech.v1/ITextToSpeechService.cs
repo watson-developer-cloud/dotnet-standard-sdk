@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2016, 2022.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ namespace IBM.Watson.TextToSpeech.v1
     {
         DetailedResponse<Voices> ListVoices();
         DetailedResponse<Voice> GetVoice(string voice, string customizationId = null);
-        DetailedResponse<System.IO.MemoryStream> Synthesize(string text, string accept = null, string voice = null, string customizationId = null, string spellOutMode = null);
+        DetailedResponse<System.IO.MemoryStream> Synthesize(string text, string accept = null, string voice = null, string customizationId = null, string spellOutMode = null, long? ratePercentage = null, long? pitchPercentage = null);
         DetailedResponse<Pronunciation> GetPronunciation(string text, string voice = null, string format = null, string customizationId = null);
         DetailedResponse<CustomModel> CreateCustomModel(string name, string language = null, string description = null);
         DetailedResponse<CustomModels> ListCustomModels(string language = null);

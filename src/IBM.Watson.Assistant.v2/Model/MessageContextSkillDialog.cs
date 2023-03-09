@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2022.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,21 +15,26 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// The search skill orchestration settings for the environment.
+    /// Context variables that are used by the dialog skill.
     /// </summary>
-    public class EnvironmentOrchestration
+    public class MessageContextSkillDialog
     {
         /// <summary>
-        /// Whether assistants deployed to the environment fall back to a search skill when responding to messages that
-        /// do not match any intent. If no search skill is configured for the assistant, this property is ignored.
+        /// An object containing any arbitrary variables that can be read and written by a particular skill.
         /// </summary>
-        [JsonProperty("search_skill_fallback", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? SearchSkillFallback { get; set; }
+        [JsonProperty("user_defined", NullValueHandling = NullValueHandling.Ignore)]
+        public Dictionary<string, object> UserDefined { get; set; }
+        /// <summary>
+        /// System context data used by the skill.
+        /// </summary>
+        [JsonProperty("system", NullValueHandling = NullValueHandling.Ignore)]
+        public MessageContextSkillSystem System { get; set; }
     }
 
 }

@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2022.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -69,7 +69,7 @@ namespace IBM.Watson.Assistant.v2.Model
         /// An array of objects containing detailed diagnostic information about dialog nodes and actions that were
         /// visited during processing of the input message.
         ///
-        /// This property is present only if the assistant has an actions skill.
+        /// This property is present only if the assistant has an action skill.
         /// </summary>
         [JsonProperty("turn_events", NullValueHandling = NullValueHandling.Ignore)]
         public List<MessageOutputDebugTurnEvent> TurnEvents { get; set; }

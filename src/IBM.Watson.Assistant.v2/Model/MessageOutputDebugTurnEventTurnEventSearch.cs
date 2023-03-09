@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2022.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -37,12 +37,20 @@ namespace IBM.Watson.Assistant.v2.Model
         /// Gets or Sets Source
         /// </summary>
         [JsonProperty("source", NullValueHandling = NullValueHandling.Ignore)]
-        public new TurnEventActionSource Source { get; protected set; }
+        public new TurnEventActionSource Source
+        {
+            get { return base.Source; }
+            set { base.Source = value; }
+        }
         /// <summary>
         /// Gets or Sets Error
         /// </summary>
         [JsonProperty("error", NullValueHandling = NullValueHandling.Ignore)]
-        public new TurnEventSearchError Error { get; protected set; }
+        public new TurnEventSearchError Error
+        {
+            get { return base.Error; }
+            set { base.Error = value; }
+        }
     }
 
 }

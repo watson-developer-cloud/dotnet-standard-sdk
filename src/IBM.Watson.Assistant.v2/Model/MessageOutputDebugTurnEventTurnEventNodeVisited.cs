@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2022.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -69,7 +69,11 @@ namespace IBM.Watson.Assistant.v2.Model
         /// Gets or Sets Source
         /// </summary>
         [JsonProperty("source", NullValueHandling = NullValueHandling.Ignore)]
-        public new TurnEventNodeSource Source { get; protected set; }
+        public new TurnEventNodeSource Source
+        {
+            get { return base.Source; }
+            set { base.Source = value; }
+        }
     }
 
 }

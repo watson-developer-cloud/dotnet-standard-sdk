@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2022.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -25,8 +25,8 @@ namespace IBM.Watson.Assistant.v2.Model
     public class EnvironmentReference
     {
         /// <summary>
-        /// The type of the deployed environment. All environments other than the draft and live environments have the
-        /// type `staging`.
+        /// The type of the environment. All environments other than the draft and live environments have the type
+        /// `staging`.
         /// </summary>
         public class EnvironmentEnumValue
         {
@@ -46,19 +46,19 @@ namespace IBM.Watson.Assistant.v2.Model
         }
 
         /// <summary>
-        /// The type of the deployed environment. All environments other than the draft and live environments have the
-        /// type `staging`.
+        /// The type of the environment. All environments other than the draft and live environments have the type
+        /// `staging`.
         /// Constants for possible values can be found using EnvironmentReference.EnvironmentEnumValue
         /// </summary>
         [JsonProperty("environment", NullValueHandling = NullValueHandling.Ignore)]
         public string Environment { get; set; }
         /// <summary>
-        /// The name of the deployed environment.
+        /// The name of the environment.
         /// </summary>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
         /// <summary>
-        /// The environment ID of the deployed environment.
+        /// The unique identifier of the environment.
         /// </summary>
         [JsonProperty("environment_id", NullValueHandling = NullValueHandling.Ignore)]
         public virtual string EnvironmentId { get; private set; }

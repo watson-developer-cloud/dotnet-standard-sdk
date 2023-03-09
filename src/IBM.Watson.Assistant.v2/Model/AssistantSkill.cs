@@ -15,46 +15,46 @@
 *
 */
 
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// TurnEventCalloutCallout.
+    /// AssistantSkill.
     /// </summary>
-    public class TurnEventCalloutCallout
+    public class AssistantSkill
     {
         /// <summary>
-        /// The type of callout. Currently, the only supported value is `integration_interaction` (for calls to
-        /// extensions).
+        /// The type of the skill.
         /// </summary>
         public class TypeEnumValue
         {
             /// <summary>
-            /// Constant INTEGRATION_INTERACTION for integration_interaction
+            /// Constant DIALOG for dialog
             /// </summary>
-            public const string INTEGRATION_INTERACTION = "integration_interaction";
+            public const string DIALOG = "dialog";
+            /// <summary>
+            /// Constant ACTION for action
+            /// </summary>
+            public const string ACTION = "action";
+            /// <summary>
+            /// Constant SEARCH for search
+            /// </summary>
+            public const string SEARCH = "search";
             
         }
 
         /// <summary>
-        /// The type of callout. Currently, the only supported value is `integration_interaction` (for calls to
-        /// extensions).
-        /// Constants for possible values can be found using TurnEventCalloutCallout.TypeEnumValue
+        /// The type of the skill.
+        /// Constants for possible values can be found using AssistantSkill.TypeEnumValue
         /// </summary>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public string Type { get; set; }
         /// <summary>
-        /// For internal use only.
+        /// The skill ID of the skill.
         /// </summary>
-        [JsonProperty("internal", NullValueHandling = NullValueHandling.Ignore)]
-        public Dictionary<string, object> _Internal { get; set; }
-        /// <summary>
-        /// The name of the variable where the callout result is stored.
-        /// </summary>
-        [JsonProperty("result_variable", NullValueHandling = NullValueHandling.Ignore)]
-        public string ResultVariable { get; set; }
+        [JsonProperty("skill_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string SkillId { get; set; }
     }
 
 }

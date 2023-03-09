@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2022.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -20,9 +20,9 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// SkillReference.
+    /// EnvironmentSkill.
     /// </summary>
-    public class SkillReference
+    public class EnvironmentSkill
     {
         /// <summary>
         /// The type of the skill.
@@ -46,7 +46,7 @@ namespace IBM.Watson.Assistant.v2.Model
 
         /// <summary>
         /// The type of the skill.
-        /// Constants for possible values can be found using SkillReference.TypeEnumValue
+        /// Constants for possible values can be found using EnvironmentSkill.TypeEnumValue
         /// </summary>
         [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public string Type { get; set; }
@@ -62,7 +62,7 @@ namespace IBM.Watson.Assistant.v2.Model
         [JsonProperty("disabled", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Disabled { get; set; }
         /// <summary>
-        /// The name of the snapshot (skill version) that is saved as part of the release (for example, `draft` or `1`).
+        /// The name of the skill snapshot that is deployed to the environment (for example, `draft` or `1`).
         /// </summary>
         [JsonProperty("snapshot", NullValueHandling = NullValueHandling.Ignore)]
         public string Snapshot { get; set; }
@@ -71,7 +71,7 @@ namespace IBM.Watson.Assistant.v2.Model
         /// skill), `actions skill`, and `search skill`.
         /// </summary>
         [JsonProperty("skill_reference", NullValueHandling = NullValueHandling.Ignore)]
-        public string _SkillReference { get; set; }
+        public string SkillReference { get; set; }
     }
 
 }

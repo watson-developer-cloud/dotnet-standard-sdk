@@ -20,19 +20,15 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// An object defining the message input to be sent to the assistant if the user selects the corresponding
-    /// disambiguation option.
-    ///
-    ///  **Note:** This entire message input object must be included in the request body of the next message sent to the
-    /// assistant. Do not modify or remove any of the included properties.
+    /// An object describing the release that is currently deployed in the environment.
     /// </summary>
-    public class DialogSuggestionValue
+    public class BaseEnvironmentReleaseReference
     {
         /// <summary>
-        /// An input object that includes the input text.
+        /// The name of the deployed release.
         /// </summary>
-        [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
-        public MessageInput Input { get; set; }
+        [JsonProperty("release", NullValueHandling = NullValueHandling.Ignore)]
+        public string Release { get; set; }
     }
 
 }

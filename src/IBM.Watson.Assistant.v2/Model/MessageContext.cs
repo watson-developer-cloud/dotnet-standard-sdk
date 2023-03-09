@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2022.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -31,16 +31,16 @@ namespace IBM.Watson.Assistant.v2.Model
         [JsonProperty("global", NullValueHandling = NullValueHandling.Ignore)]
         public MessageContextGlobal Global { get; set; }
         /// <summary>
-        /// Information specific to particular skills used by the assistant.
+        /// Context data specific to particular skills used by the assistant.
         /// </summary>
         [JsonProperty("skills", NullValueHandling = NullValueHandling.Ignore)]
-        public Dictionary<string, MessageContextSkill> Skills { get; set; }
+        public MessageContextSkills Skills { get; set; }
         /// <summary>
         /// An object containing context data that is specific to particular integrations. For more information, see the
         /// [documentation](https://cloud.ibm.com/docs/assistant?topic=assistant-dialog-integrations).
         /// </summary>
         [JsonProperty("integrations", NullValueHandling = NullValueHandling.Ignore)]
-        public object Integrations { get; set; }
+        public Dictionary<string, object> Integrations { get; set; }
     }
 
 }

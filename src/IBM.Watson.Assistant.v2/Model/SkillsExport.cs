@@ -15,24 +15,27 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// An object defining the message input to be sent to the assistant if the user selects the corresponding
-    /// disambiguation option.
-    ///
-    ///  **Note:** This entire message input object must be included in the request body of the next message sent to the
-    /// assistant. Do not modify or remove any of the included properties.
+    /// SkillsExport.
     /// </summary>
-    public class DialogSuggestionValue
+    public class SkillsExport
     {
         /// <summary>
-        /// An input object that includes the input text.
+        /// An array of objects describing the skills for the assistant. Included in responses only if
+        /// **status**=`Available`.
         /// </summary>
-        [JsonProperty("input", NullValueHandling = NullValueHandling.Ignore)]
-        public MessageInput Input { get; set; }
+        [JsonProperty("assistant_skills", NullValueHandling = NullValueHandling.Ignore)]
+        public List<Skill> AssistantSkills { get; set; }
+        /// <summary>
+        /// Status information about the skills for the assistant. Included in responses only if **status**=`Available`.
+        /// </summary>
+        [JsonProperty("assistant_state", NullValueHandling = NullValueHandling.Ignore)]
+        public AssistantState AssistantState { get; set; }
     }
 
 }

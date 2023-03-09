@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2022.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ namespace IBM.Watson.Assistant.v2.Model
         /// The name of the release. The name is the version number (an integer), returned as a string.
         /// </summary>
         [JsonProperty("release", NullValueHandling = NullValueHandling.Ignore)]
-        public string _Release { get; set; }
+        public virtual string _Release { get; private set; }
         /// <summary>
         /// The description of the release.
         /// </summary>
@@ -74,11 +74,11 @@ namespace IBM.Watson.Assistant.v2.Model
         [JsonProperty("environment_references", NullValueHandling = NullValueHandling.Ignore)]
         public virtual List<EnvironmentReference> EnvironmentReferences { get; private set; }
         /// <summary>
-        /// An object describing the versionable content objects (such as skill snapshots) that are included in the
+        /// An object identifying the versionable content objects (such as skill snapshots) that are included in the
         /// release.
         /// </summary>
         [JsonProperty("content", NullValueHandling = NullValueHandling.Ignore)]
-        public ReleaseContent Content { get; set; }
+        public virtual ReleaseContent Content { get; private set; }
         /// <summary>
         /// The timestamp for creation of the object.
         /// </summary>

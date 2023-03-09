@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2016, 2022.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 */
 
 /**
-* IBM OpenAPI SDK Code Generator Version: 3.53.0-9710cac3-20220713-193508
+* IBM OpenAPI SDK Code Generator Version: 3.64.1-cee95189-20230124-211647
 */
  
 using System.Collections.Generic;
@@ -105,8 +105,7 @@ namespace IBM.Watson.SpeechToText.v1
         /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-list#models-list-specific).
         /// </summary>
         /// <param name="modelId">The identifier of the model in the form of its name from the output of the [List
-        /// models](#listmodels) method. (**Note:** The model `ar-AR_BroadbandModel` is deprecated; use
-        /// `ar-MS_BroadbandModel` instead.).</param>
+        /// models](#listmodels) method.</param>
         /// <returns><see cref="SpeechModel" />SpeechModel</returns>
         public DetailedResponse<SpeechModel> GetModel(string modelId)
         {
@@ -154,14 +153,10 @@ namespace IBM.Watson.SpeechToText.v1
         {
             /// <summary>
             /// The identifier of the model in the form of its name from the output of the [List models](#listmodels)
-            /// method. (**Note:** The model `ar-AR_BroadbandModel` is deprecated; use `ar-MS_BroadbandModel` instead.).
+            /// method.
             /// </summary>
             public class ModelIdValue
             {
-                /// <summary>
-                /// Constant AR_AR_BROADBANDMODEL for ar-AR_BroadbandModel
-                /// </summary>
-                public const string AR_AR_BROADBANDMODEL = "ar-AR_BroadbandModel";
                 /// <summary>
                 /// Constant AR_MS_BROADBANDMODEL for ar-MS_BroadbandModel
                 /// </summary>
@@ -315,6 +310,10 @@ namespace IBM.Watson.SpeechToText.v1
                 /// </summary>
                 public const string FR_CA_BROADBANDMODEL = "fr-CA_BroadbandModel";
                 /// <summary>
+                /// Constant FR_CA_MULTIMEDIA for fr-CA_Multimedia
+                /// </summary>
+                public const string FR_CA_MULTIMEDIA = "fr-CA_Multimedia";
+                /// <summary>
                 /// Constant FR_CA_NARROWBANDMODEL for fr-CA_NarrowbandModel
                 /// </summary>
                 public const string FR_CA_NARROWBANDMODEL = "fr-CA_NarrowbandModel";
@@ -371,6 +370,10 @@ namespace IBM.Watson.SpeechToText.v1
                 /// </summary>
                 public const string JA_JP_NARROWBANDMODEL = "ja-JP_NarrowbandModel";
                 /// <summary>
+                /// Constant JA_JP_TELEPHONY for ja-JP_Telephony
+                /// </summary>
+                public const string JA_JP_TELEPHONY = "ja-JP_Telephony";
+                /// <summary>
                 /// Constant KO_KR_BROADBANDMODEL for ko-KR_BroadbandModel
                 /// </summary>
                 public const string KO_KR_BROADBANDMODEL = "ko-KR_BroadbandModel";
@@ -395,6 +398,10 @@ namespace IBM.Watson.SpeechToText.v1
                 /// </summary>
                 public const string NL_NL_BROADBANDMODEL = "nl-NL_BroadbandModel";
                 /// <summary>
+                /// Constant NL_NL_MULTIMEDIA for nl-NL_Multimedia
+                /// </summary>
+                public const string NL_NL_MULTIMEDIA = "nl-NL_Multimedia";
+                /// <summary>
                 /// Constant NL_NL_NARROWBANDMODEL for nl-NL_NarrowbandModel
                 /// </summary>
                 public const string NL_NL_NARROWBANDMODEL = "nl-NL_NarrowbandModel";
@@ -418,6 +425,10 @@ namespace IBM.Watson.SpeechToText.v1
                 /// Constant PT_BR_TELEPHONY for pt-BR_Telephony
                 /// </summary>
                 public const string PT_BR_TELEPHONY = "pt-BR_Telephony";
+                /// <summary>
+                /// Constant SV_SE_TELEPHONY for sv-SE_Telephony
+                /// </summary>
+                public const string SV_SE_TELEPHONY = "sv-SE_Telephony";
                 /// <summary>
                 /// Constant ZH_CN_BROADBANDMODEL for zh-CN_BroadbandModel
                 /// </summary>
@@ -509,15 +520,13 @@ namespace IBM.Watson.SpeechToText.v1
         /// with previous-generation models. Next-generation models do not support the following parameters:
         /// * `acoustic_customization_id`
         /// * `keywords` and `keywords_threshold`
-        /// * `max_alternatives`
         /// * `processing_metrics` and `processing_metrics_interval`
         /// * `word_alternatives_threshold`
         ///
-        /// **Important:** Effective 15 March 2022, previous-generation models for all languages other than Arabic and
-        /// Japanese are deprecated. The deprecated models remain available until 15 September 2022, when they will be
-        /// removed from the service and the documentation. You must migrate to the equivalent next-generation model by
-        /// the end of service date. For more information, see [Migrating to next-generation
-        /// models](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-migrate).
+        /// **Important:** Effective **31 July 2023**, all previous-generation models will be removed from the service
+        /// and the documentation. Most previous-generation models were deprecated on 15 March 2022. You must migrate to
+        /// the equivalent next-generation model by 31 July 2023. For more information, see [Migrating to
+        /// next-generation models](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-migrate).
         ///
         /// **See also:**
         /// * [Next-generation languages and
@@ -546,8 +555,7 @@ namespace IBM.Watson.SpeechToText.v1
         /// <param name="contentType">The format (MIME type) of the audio. For more information about specifying an
         /// audio format, see **Audio formats (content types)** in the method description. (optional)</param>
         /// <param name="model">The model to use for speech recognition. If you omit the `model` parameter, the service
-        /// uses the US English `en-US_BroadbandModel` by default. (The model `ar-AR_BroadbandModel` is deprecated; use
-        /// `ar-MS_BroadbandModel` instead.)
+        /// uses the US English `en-US_BroadbandModel` by default.
         ///
         /// _For IBM Cloud Pak for Data,_ if you do not install the `en-US_BroadbandModel`, you must either specify a
         /// model with the request or specify a new default model for your installation of the service.
@@ -555,7 +563,7 @@ namespace IBM.Watson.SpeechToText.v1
         /// **See also:**
         /// * [Using a model for speech
         /// recognition](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-use)
-        /// * [The default
+        /// * [Using the default
         /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-use#models-use-default).
         /// (optional, default to en-US_BroadbandModel)</param>
         /// <param name="languageCustomizationId">The customization ID (GUID) of a custom language model that is to be
@@ -584,13 +592,16 @@ namespace IBM.Watson.SpeechToText.v1
         /// the custom language model compared to those from the base model for the current request.
         ///
         /// Specify a value between 0.0 and 1.0. Unless a different customization weight was specified for the custom
-        /// model when it was trained, the default value is 0.3. A customization weight that you specify overrides a
-        /// weight that was specified when the custom model was trained.
+        /// model when the model was trained, the default value is:
+        /// * 0.3 for previous-generation models
+        /// * 0.2 for most next-generation models
+        /// * 0.1 for next-generation English and Japanese models
         ///
-        /// The default value yields the best performance in general. Assign a higher value if your audio makes frequent
-        /// use of OOV words from the custom model. Use caution when setting the weight: a higher value can improve the
-        /// accuracy of phrases from the custom model's domain, but it can negatively affect performance on non-domain
-        /// phrases.
+        /// A customization weight that you specify overrides a weight that was specified when the custom model was
+        /// trained. The default value yields the best performance in general. Assign a higher value if your audio makes
+        /// frequent use of OOV words from the custom model. Use caution when setting the weight: a higher value can
+        /// improve the accuracy of phrases from the custom model's domain, but it can negatively affect performance on
+        /// non-domain phrases.
         ///
         /// See [Using customization
         /// weight](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-languageUse#weight).
@@ -696,10 +707,10 @@ namespace IBM.Watson.SpeechToText.v1
         ///
         /// See [Audio metrics](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-metrics#audio-metrics).
         /// (optional, default to false)</param>
-        /// <param name="endOfPhraseSilenceTime">If `true`, specifies the duration of the pause interval at which the
-        /// service splits a transcript into multiple final results. If the service detects pauses or extended silence
-        /// before it reaches the end of the audio stream, its response can include multiple final results. Silence
-        /// indicates a point at which the speaker pauses between spoken words or phrases.
+        /// <param name="endOfPhraseSilenceTime">Specifies the duration of the pause interval at which the service
+        /// splits a transcript into multiple final results. If the service detects pauses or extended silence before it
+        /// reaches the end of the audio stream, its response can include multiple final results. Silence indicates a
+        /// point at which the speaker pauses between spoken words or phrases.
         ///
         /// Specify a value for the pause interval in the range of 0.0 to 120.0.
         /// * A value greater than 0 specifies the interval that the service is to use for speech recognition.
@@ -774,13 +785,11 @@ namespace IBM.Watson.SpeechToText.v1
         /// * For more information about the `low_latency` parameter, see [Low
         /// latency](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-interim#low-latency). (optional,
         /// default to false)</param>
-        /// <param name="characterInsertionBias">For next-generation `Multimedia` and `Telephony` models, an indication
-        /// of whether the service is biased to recognize shorter or longer strings of characters when developing
-        /// transcription hypotheses. By default, the service is optimized for each individual model to balance its
-        /// recognition of strings of different lengths. The model-specific bias is equivalent to 0.0.
+        /// <param name="characterInsertionBias">For next-generation models, an indication of whether the service is
+        /// biased to recognize shorter or longer strings of characters when developing transcription hypotheses. By
+        /// default, the service is optimized to produce the best balance of strings of different lengths.
         ///
-        /// The value that you specify represents a change from a model's default bias. The allowable range of values is
-        /// -1.0 to 1.0.
+        /// The default bias is 0.0. The allowable range of values is -1.0 to 1.0.
         /// * Negative values bias the service to favor hypotheses with shorter strings of characters.
         /// * Positive values bias the service to favor hypotheses with longer strings of characters.
         ///
@@ -789,7 +798,7 @@ namespace IBM.Watson.SpeechToText.v1
         /// such as -0.1, -0.05, 0.05, or 0.1, and assess how the value impacts the transcription results. Then
         /// experiment with different values as necessary, adjusting the value by small increments.
         ///
-        /// The parameter is not available for previous-generation `Broadband` and `Narrowband` models.
+        /// The parameter is not available for previous-generation models.
         ///
         /// See [Character insertion
         /// bias](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-parsing#insertion-bias).
@@ -1016,8 +1025,7 @@ namespace IBM.Watson.SpeechToText.v1
             }
             /// <summary>
             /// The model to use for speech recognition. If you omit the `model` parameter, the service uses the US
-            /// English `en-US_BroadbandModel` by default. (The model `ar-AR_BroadbandModel` is deprecated; use
-            /// `ar-MS_BroadbandModel` instead.)
+            /// English `en-US_BroadbandModel` by default.
             ///
             /// _For IBM Cloud Pak for Data,_ if you do not install the `en-US_BroadbandModel`, you must either specify
             /// a model with the request or specify a new default model for your installation of the service.
@@ -1025,15 +1033,11 @@ namespace IBM.Watson.SpeechToText.v1
             /// **See also:**
             /// * [Using a model for speech
             /// recognition](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-use)
-            /// * [The default
+            /// * [Using the default
             /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-use#models-use-default).
             /// </summary>
             public class ModelValue
             {
-                /// <summary>
-                /// Constant AR_AR_BROADBANDMODEL for ar-AR_BroadbandModel
-                /// </summary>
-                public const string AR_AR_BROADBANDMODEL = "ar-AR_BroadbandModel";
                 /// <summary>
                 /// Constant AR_MS_BROADBANDMODEL for ar-MS_BroadbandModel
                 /// </summary>
@@ -1187,6 +1191,10 @@ namespace IBM.Watson.SpeechToText.v1
                 /// </summary>
                 public const string FR_CA_BROADBANDMODEL = "fr-CA_BroadbandModel";
                 /// <summary>
+                /// Constant FR_CA_MULTIMEDIA for fr-CA_Multimedia
+                /// </summary>
+                public const string FR_CA_MULTIMEDIA = "fr-CA_Multimedia";
+                /// <summary>
                 /// Constant FR_CA_NARROWBANDMODEL for fr-CA_NarrowbandModel
                 /// </summary>
                 public const string FR_CA_NARROWBANDMODEL = "fr-CA_NarrowbandModel";
@@ -1243,6 +1251,10 @@ namespace IBM.Watson.SpeechToText.v1
                 /// </summary>
                 public const string JA_JP_NARROWBANDMODEL = "ja-JP_NarrowbandModel";
                 /// <summary>
+                /// Constant JA_JP_TELEPHONY for ja-JP_Telephony
+                /// </summary>
+                public const string JA_JP_TELEPHONY = "ja-JP_Telephony";
+                /// <summary>
                 /// Constant KO_KR_BROADBANDMODEL for ko-KR_BroadbandModel
                 /// </summary>
                 public const string KO_KR_BROADBANDMODEL = "ko-KR_BroadbandModel";
@@ -1267,6 +1279,10 @@ namespace IBM.Watson.SpeechToText.v1
                 /// </summary>
                 public const string NL_NL_BROADBANDMODEL = "nl-NL_BroadbandModel";
                 /// <summary>
+                /// Constant NL_NL_MULTIMEDIA for nl-NL_Multimedia
+                /// </summary>
+                public const string NL_NL_MULTIMEDIA = "nl-NL_Multimedia";
+                /// <summary>
                 /// Constant NL_NL_NARROWBANDMODEL for nl-NL_NarrowbandModel
                 /// </summary>
                 public const string NL_NL_NARROWBANDMODEL = "nl-NL_NarrowbandModel";
@@ -1290,6 +1306,10 @@ namespace IBM.Watson.SpeechToText.v1
                 /// Constant PT_BR_TELEPHONY for pt-BR_Telephony
                 /// </summary>
                 public const string PT_BR_TELEPHONY = "pt-BR_Telephony";
+                /// <summary>
+                /// Constant SV_SE_TELEPHONY for sv-SE_Telephony
+                /// </summary>
+                public const string SV_SE_TELEPHONY = "sv-SE_Telephony";
                 /// <summary>
                 /// Constant ZH_CN_BROADBANDMODEL for zh-CN_BroadbandModel
                 /// </summary>
@@ -1540,15 +1560,13 @@ namespace IBM.Watson.SpeechToText.v1
         /// with previous-generation models. Next-generation models do not support the following parameters:
         /// * `acoustic_customization_id`
         /// * `keywords` and `keywords_threshold`
-        /// * `max_alternatives`
         /// * `processing_metrics` and `processing_metrics_interval`
         /// * `word_alternatives_threshold`
         ///
-        /// **Important:** Effective 15 March 2022, previous-generation models for all languages other than Arabic and
-        /// Japanese are deprecated. The deprecated models remain available until 15 September 2022, when they will be
-        /// removed from the service and the documentation. You must migrate to the equivalent next-generation model by
-        /// the end of service date. For more information, see  [Migrating to next-generation
-        /// models](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-migrate).
+        /// **Important:** Effective **31 July 2023**, all previous-generation models will be removed from the service
+        /// and the documentation. Most previous-generation models were deprecated on 15 March 2022. You must migrate to
+        /// the equivalent next-generation model by 31 July 2023. For more information, see [Migrating to
+        /// next-generation models](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-migrate).
         ///
         /// **See also:**
         /// * [Next-generation languages and
@@ -1560,8 +1578,7 @@ namespace IBM.Watson.SpeechToText.v1
         /// <param name="contentType">The format (MIME type) of the audio. For more information about specifying an
         /// audio format, see **Audio formats (content types)** in the method description. (optional)</param>
         /// <param name="model">The model to use for speech recognition. If you omit the `model` parameter, the service
-        /// uses the US English `en-US_BroadbandModel` by default. (The model `ar-AR_BroadbandModel` is deprecated; use
-        /// `ar-MS_BroadbandModel` instead.)
+        /// uses the US English `en-US_BroadbandModel` by default.
         ///
         /// _For IBM Cloud Pak for Data,_ if you do not install the `en-US_BroadbandModel`, you must either specify a
         /// model with the request or specify a new default model for your installation of the service.
@@ -1569,7 +1586,7 @@ namespace IBM.Watson.SpeechToText.v1
         /// **See also:**
         /// * [Using a model for speech
         /// recognition](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-use)
-        /// * [The default
+        /// * [Using the default
         /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-use#models-use-default).
         /// (optional, default to en-US_BroadbandModel)</param>
         /// <param name="callbackUrl">A URL to which callback notifications are to be sent. The URL must already be
@@ -1629,13 +1646,16 @@ namespace IBM.Watson.SpeechToText.v1
         /// the custom language model compared to those from the base model for the current request.
         ///
         /// Specify a value between 0.0 and 1.0. Unless a different customization weight was specified for the custom
-        /// model when it was trained, the default value is 0.3. A customization weight that you specify overrides a
-        /// weight that was specified when the custom model was trained.
+        /// model when the model was trained, the default value is:
+        /// * 0.3 for previous-generation models
+        /// * 0.2 for most next-generation models
+        /// * 0.1 for next-generation English and Japanese models
         ///
-        /// The default value yields the best performance in general. Assign a higher value if your audio makes frequent
-        /// use of OOV words from the custom model. Use caution when setting the weight: a higher value can improve the
-        /// accuracy of phrases from the custom model's domain, but it can negatively affect performance on non-domain
-        /// phrases.
+        /// A customization weight that you specify overrides a weight that was specified when the custom model was
+        /// trained. The default value yields the best performance in general. Assign a higher value if your audio makes
+        /// frequent use of OOV words from the custom model. Use caution when setting the weight: a higher value can
+        /// improve the accuracy of phrases from the custom model's domain, but it can negatively affect performance on
+        /// non-domain phrases.
         ///
         /// See [Using customization
         /// weight](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-languageUse#weight).
@@ -1764,10 +1784,10 @@ namespace IBM.Watson.SpeechToText.v1
         ///
         /// See [Audio metrics](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-metrics#audio-metrics).
         /// (optional, default to false)</param>
-        /// <param name="endOfPhraseSilenceTime">If `true`, specifies the duration of the pause interval at which the
-        /// service splits a transcript into multiple final results. If the service detects pauses or extended silence
-        /// before it reaches the end of the audio stream, its response can include multiple final results. Silence
-        /// indicates a point at which the speaker pauses between spoken words or phrases.
+        /// <param name="endOfPhraseSilenceTime">Specifies the duration of the pause interval at which the service
+        /// splits a transcript into multiple final results. If the service detects pauses or extended silence before it
+        /// reaches the end of the audio stream, its response can include multiple final results. Silence indicates a
+        /// point at which the speaker pauses between spoken words or phrases.
         ///
         /// Specify a value for the pause interval in the range of 0.0 to 120.0.
         /// * A value greater than 0 specifies the interval that the service is to use for speech recognition.
@@ -1842,13 +1862,11 @@ namespace IBM.Watson.SpeechToText.v1
         /// * For more information about the `low_latency` parameter, see [Low
         /// latency](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-interim#low-latency). (optional,
         /// default to false)</param>
-        /// <param name="characterInsertionBias">For next-generation `Multimedia` and `Telephony` models, an indication
-        /// of whether the service is biased to recognize shorter or longer strings of characters when developing
-        /// transcription hypotheses. By default, the service is optimized for each individual model to balance its
-        /// recognition of strings of different lengths. The model-specific bias is equivalent to 0.0.
+        /// <param name="characterInsertionBias">For next-generation models, an indication of whether the service is
+        /// biased to recognize shorter or longer strings of characters when developing transcription hypotheses. By
+        /// default, the service is optimized to produce the best balance of strings of different lengths.
         ///
-        /// The value that you specify represents a change from a model's default bias. The allowable range of values is
-        /// -1.0 to 1.0.
+        /// The default bias is 0.0. The allowable range of values is -1.0 to 1.0.
         /// * Negative values bias the service to favor hypotheses with shorter strings of characters.
         /// * Positive values bias the service to favor hypotheses with longer strings of characters.
         ///
@@ -1857,7 +1875,7 @@ namespace IBM.Watson.SpeechToText.v1
         /// such as -0.1, -0.05, 0.05, or 0.1, and assess how the value impacts the transcription results. Then
         /// experiment with different values as necessary, adjusting the value by small increments.
         ///
-        /// The parameter is not available for previous-generation `Broadband` and `Narrowband` models.
+        /// The parameter is not available for previous-generation models.
         ///
         /// See [Character insertion
         /// bias](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-parsing#insertion-bias).
@@ -2108,8 +2126,7 @@ namespace IBM.Watson.SpeechToText.v1
             }
             /// <summary>
             /// The model to use for speech recognition. If you omit the `model` parameter, the service uses the US
-            /// English `en-US_BroadbandModel` by default. (The model `ar-AR_BroadbandModel` is deprecated; use
-            /// `ar-MS_BroadbandModel` instead.)
+            /// English `en-US_BroadbandModel` by default.
             ///
             /// _For IBM Cloud Pak for Data,_ if you do not install the `en-US_BroadbandModel`, you must either specify
             /// a model with the request or specify a new default model for your installation of the service.
@@ -2117,15 +2134,11 @@ namespace IBM.Watson.SpeechToText.v1
             /// **See also:**
             /// * [Using a model for speech
             /// recognition](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-use)
-            /// * [The default
+            /// * [Using the default
             /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-use#models-use-default).
             /// </summary>
             public class ModelValue
             {
-                /// <summary>
-                /// Constant AR_AR_BROADBANDMODEL for ar-AR_BroadbandModel
-                /// </summary>
-                public const string AR_AR_BROADBANDMODEL = "ar-AR_BroadbandModel";
                 /// <summary>
                 /// Constant AR_MS_BROADBANDMODEL for ar-MS_BroadbandModel
                 /// </summary>
@@ -2279,6 +2292,10 @@ namespace IBM.Watson.SpeechToText.v1
                 /// </summary>
                 public const string FR_CA_BROADBANDMODEL = "fr-CA_BroadbandModel";
                 /// <summary>
+                /// Constant FR_CA_MULTIMEDIA for fr-CA_Multimedia
+                /// </summary>
+                public const string FR_CA_MULTIMEDIA = "fr-CA_Multimedia";
+                /// <summary>
                 /// Constant FR_CA_NARROWBANDMODEL for fr-CA_NarrowbandModel
                 /// </summary>
                 public const string FR_CA_NARROWBANDMODEL = "fr-CA_NarrowbandModel";
@@ -2335,6 +2352,10 @@ namespace IBM.Watson.SpeechToText.v1
                 /// </summary>
                 public const string JA_JP_NARROWBANDMODEL = "ja-JP_NarrowbandModel";
                 /// <summary>
+                /// Constant JA_JP_TELEPHONY for ja-JP_Telephony
+                /// </summary>
+                public const string JA_JP_TELEPHONY = "ja-JP_Telephony";
+                /// <summary>
                 /// Constant KO_KR_BROADBANDMODEL for ko-KR_BroadbandModel
                 /// </summary>
                 public const string KO_KR_BROADBANDMODEL = "ko-KR_BroadbandModel";
@@ -2359,6 +2380,10 @@ namespace IBM.Watson.SpeechToText.v1
                 /// </summary>
                 public const string NL_NL_BROADBANDMODEL = "nl-NL_BroadbandModel";
                 /// <summary>
+                /// Constant NL_NL_MULTIMEDIA for nl-NL_Multimedia
+                /// </summary>
+                public const string NL_NL_MULTIMEDIA = "nl-NL_Multimedia";
+                /// <summary>
                 /// Constant NL_NL_NARROWBANDMODEL for nl-NL_NarrowbandModel
                 /// </summary>
                 public const string NL_NL_NARROWBANDMODEL = "nl-NL_NarrowbandModel";
@@ -2382,6 +2407,10 @@ namespace IBM.Watson.SpeechToText.v1
                 /// Constant PT_BR_TELEPHONY for pt-BR_Telephony
                 /// </summary>
                 public const string PT_BR_TELEPHONY = "pt-BR_Telephony";
+                /// <summary>
+                /// Constant SV_SE_TELEPHONY for sv-SE_Telephony
+                /// </summary>
+                public const string SV_SE_TELEPHONY = "sv-SE_Telephony";
                 /// <summary>
                 /// Constant ZH_CN_BROADBANDMODEL for zh-CN_BroadbandModel
                 /// </summary>
@@ -2601,11 +2630,10 @@ namespace IBM.Watson.SpeechToText.v1
         /// if you attempt to create more than 1024 models. You do not lose any models, but you cannot create any more
         /// until your model count is below the limit.
         ///
-        /// **Important:** Effective 15 March 2022, previous-generation models for all languages other than Arabic and
-        /// Japanese are deprecated. The deprecated models remain available until 15 September 2022, when they will be
-        /// removed from the service and the documentation. You must migrate to the equivalent next-generation model by
-        /// the end of service date. For more information, see [Migrating to next-generation
-        /// models](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-migrate).
+        /// **Important:** Effective **31 July 2023**, all previous-generation models will be removed from the service
+        /// and the documentation. Most previous-generation models were deprecated on 15 March 2022. You must migrate to
+        /// the equivalent next-generation model by 31 July 2023. For more information, see [Migrating to
+        /// next-generation models](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-migrate).
         ///
         /// **See also:**
         /// * [Create a custom language
@@ -2613,10 +2641,13 @@ namespace IBM.Watson.SpeechToText.v1
         /// * [Language support for
         /// customization](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support).
         /// </summary>
-        /// <param name="name">A user-defined name for the new custom language model. Use a name that is unique among
-        /// all custom language models that you own. Use a localized name that matches the language of the custom model.
-        /// Use a name that describes the domain of the custom model, such as `Medical custom model` or `Legal custom
-        /// model`.</param>
+        /// <param name="name">A user-defined name for the new custom language model. Use a localized name that matches
+        /// the language of the custom model. Use a name that describes the domain of the custom model, such as `Medical
+        /// custom model` or `Legal custom model`. Use a name that is unique among all custom language models that you
+        /// own.
+        ///
+        /// Include a maximum of 256 characters in the name. Do not use backslashes, slashes, colons, equal signs,
+        /// ampersands, or question marks in the name.</param>
         /// <param name="baseModelName">The name of the base language model that is to be customized by the new custom
         /// language model. The new custom model can be used only with the base model that it customizes.
         ///
@@ -2638,8 +2669,9 @@ namespace IBM.Watson.SpeechToText.v1
         /// * `es-US` for Mexican (North American) Spanish (`es-MX` models)
         ///
         /// All values that you pass for the `dialect` field are case-insensitive. (optional)</param>
-        /// <param name="description">A description of the new custom language model. Use a localized description that
-        /// matches the language of the custom model. (optional)</param>
+        /// <param name="description">A recommended description of the new custom language model. Use a localized
+        /// description that matches the language of the custom model. Include a maximum of 128 characters in the
+        /// description. (optional)</param>
         /// <returns><see cref="LanguageModel" />LanguageModel</returns>
         public DetailedResponse<LanguageModel> CreateLanguageModel(string name, string baseModelName, string dialect = null, string description = null)
         {
@@ -2718,8 +2750,7 @@ namespace IBM.Watson.SpeechToText.v1
         /// <param name="language">The identifier of the language for which custom language or custom acoustic models
         /// are to be returned. Specify the five-character language identifier; for example, specify `en-US` to see all
         /// custom language or custom acoustic models that are based on US English models. Omit the parameter to see all
-        /// custom language or custom acoustic models that are owned by the requesting credentials. (**Note:** The
-        /// identifier `ar-AR` is deprecated; use `ar-MS` instead.)
+        /// custom language or custom acoustic models that are owned by the requesting credentials.
         ///
         /// To determine the languages for which customization is available, see [Language support for
         /// customization](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support).
@@ -2769,18 +2800,13 @@ namespace IBM.Watson.SpeechToText.v1
             /// The identifier of the language for which custom language or custom acoustic models are to be returned.
             /// Specify the five-character language identifier; for example, specify `en-US` to see all custom language
             /// or custom acoustic models that are based on US English models. Omit the parameter to see all custom
-            /// language or custom acoustic models that are owned by the requesting credentials. (**Note:** The
-            /// identifier `ar-AR` is deprecated; use `ar-MS` instead.)
+            /// language or custom acoustic models that are owned by the requesting credentials.
             ///
             /// To determine the languages for which customization is available, see [Language support for
             /// customization](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support).
             /// </summary>
             public class LanguageValue
             {
-                /// <summary>
-                /// Constant AR_AR for ar-AR
-                /// </summary>
-                public const string AR_AR = "ar-AR";
                 /// <summary>
                 /// Constant AR_MS for ar-MS
                 /// </summary>
@@ -2877,6 +2903,10 @@ namespace IBM.Watson.SpeechToText.v1
                 /// Constant PT_BR for pt-BR
                 /// </summary>
                 public const string PT_BR = "pt-BR";
+                /// <summary>
+                /// Constant SV_SE for sv-SE
+                /// </summary>
+                public const string SV_SE = "sv-SE";
                 /// <summary>
                 /// Constant ZH_CN for zh-CN
                 /// </summary>
@@ -3010,16 +3040,26 @@ namespace IBM.Watson.SpeechToText.v1
         /// HTTP 200 response code to indicate that the training process has begun.
         ///
         /// You can monitor the status of the training by using the [Get a custom language model](#getlanguagemodel)
-        /// method to poll the model's status. Use a loop to check the status every 10 seconds. The method returns a
-        /// `LanguageModel` object that includes `status` and `progress` fields. A status of `available` means that the
-        /// custom model is trained and ready to use. The service cannot accept subsequent training requests or requests
-        /// to add new resources until the existing request completes.
+        /// method to poll the model's status. Use a loop to check the status every 10 seconds. If you added custom
+        /// words directly to a custom model that is based on a next-generation model, allow for some minutes of extra
+        /// training time for the model.
+        ///
+        /// The method returns a `LanguageModel` object that includes `status` and `progress` fields. A status of
+        /// `available` means that the custom model is trained and ready to use. The service cannot accept subsequent
+        /// training requests or requests to add new resources until the existing request completes.
+        ///
+        /// For custom models that are based on improved base language models, training also performs an automatic
+        /// upgrade to a newer version of the base model. You do not need to use the [Upgrade a custom language
+        /// model](#upgradelanguagemodel) method to perform the upgrade.
         ///
         /// **See also:**
-        /// * [Train the custom language
-        /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-languageCreate#trainModel-language)
         /// * [Language support for
         /// customization](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support)
+        /// * [Train the custom language
+        /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-languageCreate#trainModel-language)
+        /// * [Upgrading custom language models that are based on improved next-generation
+        /// models](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-upgrade#custom-upgrade-language-ng)
+        ///
         ///
         /// ### Training failures
         ///
@@ -3047,8 +3087,11 @@ namespace IBM.Watson.SpeechToText.v1
         /// unnecessary. (optional, default to all)</param>
         /// <param name="customizationWeight">Specifies a customization weight for the custom language model. The
         /// customization weight tells the service how much weight to give to words from the custom language model
-        /// compared to those from the base model for speech recognition. Specify a value between 0.0 and 1.0; the
-        /// default is 0.3.
+        /// compared to those from the base model for speech recognition. Specify a value between 0.0 and 1.0. The
+        /// default value is:
+        /// * 0.3 for previous-generation models
+        /// * 0.2 for most next-generation models
+        /// * 0.1 for next-generation English and Japanese models
         ///
         /// The default value yields the best performance in general. Assign a higher value if your audio makes frequent
         /// use of OOV words from the custom model. Use caution when setting the weight: a higher value can improve the
@@ -3224,11 +3267,17 @@ namespace IBM.Watson.SpeechToText.v1
         /// model resumes the status that it had prior to upgrade. The service cannot accept subsequent requests for the
         /// model until the upgrade completes.
         ///
+        /// For custom models that are based on improved base language models, the [Train a custom language
+        /// model](#trainlanguagemodel) method also performs an automatic upgrade to a newer version of the base model.
+        /// You do not need to use the upgrade method.
+        ///
         /// **See also:**
+        /// * [Language support for
+        /// customization](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support)
         /// * [Upgrading a custom language
         /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-upgrade#custom-upgrade-language)
-        /// * [Language support for
-        /// customization](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support).
+        /// * [Upgrading custom language models that are based on improved next-generation
+        /// models](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-upgrade#custom-upgrade-language-ng).
         /// </summary>
         /// <param name="customizationId">The customization ID (GUID) of the custom language model that is to be used
         /// for the request. You must make the request with credentials for the instance of the service that owns the
@@ -4505,27 +4554,29 @@ namespace IBM.Watson.SpeechToText.v1
         /// **Note:** Acoustic model customization is supported only for use with previous-generation models. It is not
         /// supported for next-generation models.
         ///
-        /// **Important:** Effective 15 March 2022, previous-generation models for all languages other than Arabic and
-        /// Japanese are deprecated. The deprecated models remain available until 15 September 2022, when they will be
-        /// removed from the service and the documentation. You must migrate to the equivalent next-generation model by
-        /// the end of service date. For more information, see [Migrating to next-generation
-        /// models](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-migrate).
+        /// **Important:** Effective **31 July 2023**, all previous-generation models will be removed from the service
+        /// and the documentation. Most previous-generation models were deprecated on 15 March 2022. You must migrate to
+        /// the equivalent next-generation model by 31 July 2023. For more information, see [Migrating to
+        /// next-generation models](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-models-migrate).
         ///
         /// **See also:** [Create a custom acoustic
         /// model](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-acoustic#createModel-acoustic).
         /// </summary>
-        /// <param name="name">A user-defined name for the new custom acoustic model. Use a name that is unique among
-        /// all custom acoustic models that you own. Use a localized name that matches the language of the custom model.
-        /// Use a name that describes the acoustic environment of the custom model, such as `Mobile custom model` or
-        /// `Noisy car custom model`.</param>
+        /// <param name="name">A user-defined name for the new custom acoustic model. Use a localized name that matches
+        /// the language of the custom model. Use a name that describes the acoustic environment of the custom model,
+        /// such as `Mobile custom model` or `Noisy car custom model`. Use a name that is unique among all custom
+        /// acoustic models that you own.
+        ///
+        /// Include a maximum of 256 characters in the name. Do not use backslashes, slashes, colons, equal signs,
+        /// ampersands, or question marks in the name.</param>
         /// <param name="baseModelName">The name of the base language model that is to be customized by the new custom
-        /// acoustic model. The new custom model can be used only with the base model that it customizes. (**Note:** The
-        /// model `ar-AR_BroadbandModel` is deprecated; use `ar-MS_BroadbandModel` instead.)
+        /// acoustic model. The new custom model can be used only with the base model that it customizes.
         ///
         /// To determine whether a base model supports acoustic model customization, refer to [Language support for
         /// customization](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support).</param>
-        /// <param name="description">A description of the new custom acoustic model. Use a localized description that
-        /// matches the language of the custom model. (optional)</param>
+        /// <param name="description">A recommended description of the new custom acoustic model. Use a localized
+        /// description that matches the language of the custom model. Include a maximum of 128 characters in the
+        /// description. (optional)</param>
         /// <returns><see cref="AcousticModel" />AcousticModel</returns>
         public DetailedResponse<AcousticModel> CreateAcousticModel(string name, string baseModelName, string description = null)
         {
@@ -4600,8 +4651,7 @@ namespace IBM.Watson.SpeechToText.v1
         /// <param name="language">The identifier of the language for which custom language or custom acoustic models
         /// are to be returned. Specify the five-character language identifier; for example, specify `en-US` to see all
         /// custom language or custom acoustic models that are based on US English models. Omit the parameter to see all
-        /// custom language or custom acoustic models that are owned by the requesting credentials. (**Note:** The
-        /// identifier `ar-AR` is deprecated; use `ar-MS` instead.)
+        /// custom language or custom acoustic models that are owned by the requesting credentials.
         ///
         /// To determine the languages for which customization is available, see [Language support for
         /// customization](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support).
@@ -4651,18 +4701,13 @@ namespace IBM.Watson.SpeechToText.v1
             /// The identifier of the language for which custom language or custom acoustic models are to be returned.
             /// Specify the five-character language identifier; for example, specify `en-US` to see all custom language
             /// or custom acoustic models that are based on US English models. Omit the parameter to see all custom
-            /// language or custom acoustic models that are owned by the requesting credentials. (**Note:** The
-            /// identifier `ar-AR` is deprecated; use `ar-MS` instead.)
+            /// language or custom acoustic models that are owned by the requesting credentials.
             ///
             /// To determine the languages for which customization is available, see [Language support for
             /// customization](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-custom-support).
             /// </summary>
             public class LanguageValue
             {
-                /// <summary>
-                /// Constant AR_AR for ar-AR
-                /// </summary>
-                public const string AR_AR = "ar-AR";
                 /// <summary>
                 /// Constant AR_MS for ar-MS
                 /// </summary>
@@ -4759,6 +4804,10 @@ namespace IBM.Watson.SpeechToText.v1
                 /// Constant PT_BR for pt-BR
                 /// </summary>
                 public const string PT_BR = "pt-BR";
+                /// <summary>
+                /// Constant SV_SE for sv-SE
+                /// </summary>
+                public const string SV_SE = "sv-SE";
                 /// <summary>
                 /// Constant ZH_CN for zh-CN
                 /// </summary>
@@ -4921,7 +4970,11 @@ namespace IBM.Watson.SpeechToText.v1
         ///  Training can fail to start for the following reasons:
         /// * The service is currently handling another request for the custom model, such as another training request
         /// or a request to add audio resources to the model.
-        /// * The custom model contains less than 10 minutes or more than 200 hours of audio data.
+        /// * The custom model contains less than 10 minutes of audio that includes speech, not silence.
+        /// * The custom model contains more than 50 hours of audio (for IBM Cloud) or more that 200 hours of audio (for
+        /// IBM Cloud Pak for Data). **Note:** For IBM Cloud, the maximum hours of audio for a custom acoustic model was
+        /// reduced from 200 to 50 hours in August and September 2022. For more information, see [Maximum hours of
+        /// audio](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-audioResources#audioMaximum).
         /// * You passed a custom language model with the `custom_language_model_id` query parameter that is not in the
         /// available state. A custom language model must be fully trained and available to be used to train a custom
         /// acoustic model.
@@ -5215,10 +5268,14 @@ namespace IBM.Watson.SpeechToText.v1
         ///
         /// You can use this method to add any number of audio resources to a custom model by calling the method once
         /// for each audio or archive file. You can add multiple different audio resources at the same time. You must
-        /// add a minimum of 10 minutes and a maximum of 200 hours of audio that includes speech, not just silence, to a
-        /// custom acoustic model before you can train it. No audio resource, audio- or archive-type, can be larger than
-        /// 100 MB. To add an audio resource that has the same name as an existing audio resource, set the
-        /// `allow_overwrite` parameter to `true`; otherwise, the request fails.
+        /// add a minimum of 10 minutes of audio that includes speech, not just silence, to a custom acoustic model
+        /// before you can train it. No audio resource, audio- or archive-type, can be larger than 100 MB. To add an
+        /// audio resource that has the same name as an existing audio resource, set the `allow_overwrite` parameter to
+        /// `true`; otherwise, the request fails. A custom model can contain no more than 50 hours of audio (for IBM
+        /// Cloud) or 200 hours of audio (for IBM Cloud Pak for Data). **Note:** For IBM Cloud, the maximum hours of
+        /// audio for a custom acoustic model was reduced from 200 to 50 hours in August and September 2022. For more
+        /// information, see [Maximum hours of
+        /// audio](https://cloud.ibm.com/docs/speech-to-text?topic=speech-to-text-audioResources#audioMaximum).
         ///
         /// The method is asynchronous. It can take several seconds or minutes to complete depending on the duration of
         /// the audio and, in the case of an archive file, the total number of audio files being processed. The service

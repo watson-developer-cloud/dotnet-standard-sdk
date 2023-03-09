@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2017, 2022.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -102,6 +102,8 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
         /// (Experimental) Returns a summary of content.
         ///
         /// Supported languages: English only.
+        ///
+        /// Supported regions: Dallas region only.
         /// </summary>
         [JsonProperty("summarization", NullValueHandling = NullValueHandling.Ignore)]
         public SummarizationOptions Summarization { get; set; }

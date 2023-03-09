@@ -20,26 +20,25 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Assistant.v2.Model
 {
     /// <summary>
-    /// The pagination data for the returned objects. For more information about using pagination, see
-    /// [Pagination](#pagination).
+    /// The messages included with responses from the search integration.
     /// </summary>
-    public class LogPagination
+    public class SearchSettingsMessages
     {
         /// <summary>
-        /// The URL that will return the next page of results, if any.
+        /// The message to include in the response to a successful query.
         /// </summary>
-        [JsonProperty("next_url", NullValueHandling = NullValueHandling.Ignore)]
-        public string NextUrl { get; set; }
+        [JsonProperty("success", NullValueHandling = NullValueHandling.Ignore)]
+        public string Success { get; set; }
         /// <summary>
-        /// Reserved for future use.
+        /// The message to include in the response when the query encounters an error.
         /// </summary>
-        [JsonProperty("matched", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Matched { get; set; }
+        [JsonProperty("error", NullValueHandling = NullValueHandling.Ignore)]
+        public string Error { get; set; }
         /// <summary>
-        /// A token identifying the next page of results.
+        /// The message to include in the response when there is no result from the query.
         /// </summary>
-        [JsonProperty("next_cursor", NullValueHandling = NullValueHandling.Ignore)]
-        public string NextCursor { get; set; }
+        [JsonProperty("no_result", NullValueHandling = NullValueHandling.Ignore)]
+        public string NoResult { get; set; }
     }
 
 }

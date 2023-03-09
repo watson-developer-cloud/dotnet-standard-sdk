@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2022.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -37,9 +37,9 @@ namespace IBM.Watson.Assistant.v2.Model
         public double? Confidence { get; set; }
         /// <summary>
         /// The skill that identified the intent. Currently, the only possible values are `main skill` for the dialog
-        /// skill (if enabled) and `actions skill` for the actions skill.
+        /// skill (if enabled) and `actions skill` for the action skill.
         ///
-        /// This property is present only if the assistant has both a dialog skill and an actions skill.
+        /// This property is present only if the assistant has both a dialog skill and an action skill.
         /// </summary>
         [JsonProperty("skill", NullValueHandling = NullValueHandling.Ignore)]
         public string Skill { get; set; }

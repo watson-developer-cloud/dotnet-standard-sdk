@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2019, 2021.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -65,8 +65,9 @@ namespace IBM.Watson.Assistant.v2.Model
         /// An array specifying segments of text within the result that were identified as direct answers to the search
         /// query. Currently, only the single answer with the highest confidence (if any) is returned.
         ///
-        /// **Note:** This property uses the answer finding beta feature, and is available only if the search skill is
-        /// connected to a Discovery v2 service instance.
+        /// **Notes:**
+        ///  - Answer finding is available only if the search skill is connected to a Discovery v2 service instance.
+        ///  - Answer finding is not supported on IBM Cloud Pak for Data.
         /// </summary>
         [JsonProperty("answers", NullValueHandling = NullValueHandling.Ignore)]
         public List<SearchResultAnswer> Answers { get; set; }

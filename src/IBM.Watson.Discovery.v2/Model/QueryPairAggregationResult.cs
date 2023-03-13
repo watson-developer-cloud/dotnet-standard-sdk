@@ -21,20 +21,17 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Discovery.v2.Model
 {
     /// <summary>
-    /// A query response that contains the matching documents for the preceding aggregations.
+    /// Result for the `pair` aggregation.
     /// </summary>
-    public class QueryTopHitsAggregationResult
+    public class QueryPairAggregationResult
     {
         /// <summary>
-        /// Number of matching results.
+        /// Array of subaggregations of type `term`, `group_by`, `histogram`, or `timeslice`. Each element of the matrix
+        /// that is returned contains a **relevancy** value that is calculated from the combination of each value from
+        /// the first and second aggregations.
         /// </summary>
-        [JsonProperty("matching_results", NullValueHandling = NullValueHandling.Ignore)]
-        public long? MatchingResults { get; set; }
-        /// <summary>
-        /// An array of the document results in an ordered list.
-        /// </summary>
-        [JsonProperty("hits", NullValueHandling = NullValueHandling.Ignore)]
-        public List<Dictionary<string, object>> Hits { get; set; }
+        [JsonProperty("aggregations", NullValueHandling = NullValueHandling.Ignore)]
+        public List<Dictionary<string, object>> Aggregations { get; set; }
     }
 
 }

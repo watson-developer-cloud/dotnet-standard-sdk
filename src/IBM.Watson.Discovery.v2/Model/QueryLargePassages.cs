@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2019, 2022.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -46,8 +46,9 @@ namespace IBM.Watson.Discovery.v2.Model
         [JsonProperty("max_per_document", NullValueHandling = NullValueHandling.Ignore)]
         public long? MaxPerDocument { get; set; }
         /// <summary>
-        /// A list of fields to extract passages from. If this parameter is an empty list, then all root-level fields
-        /// are included.
+        /// A list of fields to extract passages from. By default, passages are extracted from the `text` and `title`
+        /// fields only. If you add this parameter and specify an empty list (`[]`) as its value, then the service
+        /// searches all root-level fields for suitable passages.
         /// </summary>
         [JsonProperty("fields", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Fields { get; set; }

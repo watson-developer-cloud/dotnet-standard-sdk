@@ -169,7 +169,7 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
 
             Assert.IsNotNull(queryResult.Result);
             Assert.IsTrue(queryResult.Result.Aggregations[0].Type == "filter");
-            Assert.IsTrue((queryResult.Result.Aggregations[0] as QueryFilterAggregation).Match == "enriched_text.concepts.text:cloud computing");
+            Assert.IsTrue((queryResult.Result.Aggregations[0] as QueryAggregationQueryFilterAggregation).Match == "enriched_text.concepts.text:cloud computing");
         }
 
         [TestMethod]
@@ -188,8 +188,8 @@ namespace IBM.Watson.Discovery.v2.IntegrationTests
 
             Assert.IsNotNull(queryResult.Result);
             Assert.IsNotNull(queryResult.Result.Aggregations[0]);
-            Assert.IsTrue((queryResult.Result.Aggregations[0] as QueryTermAggregation).Field == "enriched_text.entities.text");
-            Assert.IsTrue((queryResult.Result.Aggregations[0] as QueryTermAggregation).Type == "term");
+            Assert.IsTrue((queryResult.Result.Aggregations[0] as QueryAggregationQueryTermAggregation).Field == "enriched_text.entities.text");
+            Assert.IsTrue((queryResult.Result.Aggregations[0] as QueryAggregationQueryTermAggregation).Type == "term");
         }
 
         [TestMethod]

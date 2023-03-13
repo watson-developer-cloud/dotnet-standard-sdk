@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2019, 2021.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ namespace IBM.Watson.Discovery.v2.Model
         [JsonProperty("result_metadata", NullValueHandling = NullValueHandling.Ignore)]
         public QueryResultMetadata ResultMetadata { get; set; }
         /// <summary>
-        /// Passages from the document that best matches the query.
+        /// Passages from the document that best matches the query. Returned if **passages.per_document** is `true`.
         /// </summary>
         [JsonProperty("document_passages", NullValueHandling = NullValueHandling.Ignore)]
         public List<QueryResultPassage> DocumentPassages { get; set; }

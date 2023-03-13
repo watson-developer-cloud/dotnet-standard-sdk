@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2019, 2021.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -24,28 +24,45 @@ namespace IBM.Watson.Discovery.v2.Model
     /// Numeric interval segments to categorize documents by using field values from a single numeric field to describe
     /// the category.
     /// </summary>
-    public class QueryHistogramAggregation : QueryAggregation
+    public class QueryAggregationQueryHistogramAggregation : QueryAggregation
     {
+        /// <summary>
+        /// Specifies that the aggregation type is `histogram`.
+        /// </summary>
+        [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
+        public new string Type
+        {
+            get { return base.Type; }
+            set { base.Type = value; }
+        }
         /// <summary>
         /// The numeric field name used to create the histogram.
         /// </summary>
         [JsonProperty("field", NullValueHandling = NullValueHandling.Ignore)]
-        public string Field { get; set; }
+        public new string Field
+        {
+            get { return base.Field; }
+            set { base.Field = value; }
+        }
         /// <summary>
         /// The size of the sections that the results are split into.
         /// </summary>
         [JsonProperty("interval", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Interval { get; set; }
+        public new long? Interval { get; protected set; }
         /// <summary>
-        /// Identifier specified in the query request of this aggregation.
+        /// Identifier that can optionally be specified in the query request of this aggregation.
         /// </summary>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
-        public string Name { get; set; }
+        public new string Name
+        {
+            get { return base.Name; }
+            set { base.Name = value; }
+        }
         /// <summary>
         /// Array of numeric intervals.
         /// </summary>
         [JsonProperty("results", NullValueHandling = NullValueHandling.Ignore)]
-        public List<QueryHistogramAggregationResult> Results { get; set; }
+        public new List<QueryHistogramAggregationResult> Results { get; protected set; }
     }
 
 }

@@ -79,15 +79,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.Discovery.v2.Uni
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.IntegrationTests", "src\IBM.Watson.IntegrationTests\IBM.Watson.IntegrationTests.csproj", "{034DFAD3-4A2D-4483-8D3C-DFE82BA8EFDA}"
 EndProject
-Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "IBM.Watson.Discovery.v1.Examples", "src\IBM.Watson.Discovery.v1\Examples\IBM.Watson.Discovery.v1.Examples.csproj", "{E8B3D0E1-5A82-458E-BD65-0661E10FB5BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.Discovery.v1.Examples", "src\IBM.Watson.Discovery.v1\Examples\IBM.Watson.Discovery.v1.Examples.csproj", "{E8B3D0E1-5A82-458E-BD65-0661E10FB5BF}"
 EndProject
-Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "IBM.Watson.NLU.v1.Examples", "src\IBM.Watson.NaturalLanguageUnderstanding.v1\Examples\IBM.Watson.NLU.v1.Examples.csproj", "{6BE05584-9060-4C60-9FEC-69E0304E1AAF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.NLU.v1.Examples", "src\IBM.Watson.NaturalLanguageUnderstanding.v1\Examples\IBM.Watson.NLU.v1.Examples.csproj", "{6BE05584-9060-4C60-9FEC-69E0304E1AAF}"
 EndProject
-Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "IBM.Watson.LanguageTranslator.v3.Examples", "src\IBM.Watson.LanguageTranslator.v3\Examples\IBM.Watson.LanguageTranslator.v3.Examples.csproj", "{BA973578-B37F-4455-AB08-E21BBB481AF5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.LanguageTranslator.v3.Examples", "src\IBM.Watson.LanguageTranslator.v3\Examples\IBM.Watson.LanguageTranslator.v3.Examples.csproj", "{BA973578-B37F-4455-AB08-E21BBB481AF5}"
 EndProject
-Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "IBM.Watson.Assistant.v2.Examples", "src\IBM.Watson.Assistant.v2\Examples\IBM.Watson.Assistant.v2.Examples.csproj", "{06F83A14-C285-4D10-A7EC-CECDEB19BD6F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.Assistant.v2.Examples", "src\IBM.Watson.Assistant.v2\Examples\IBM.Watson.Assistant.v2.Examples.csproj", "{06F83A14-C285-4D10-A7EC-CECDEB19BD6F}"
 EndProject
-Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "IBM.Watson.Discovery.v2.Examples", "src\IBM.Watson.Discovery.v2\Examples\IBM.Watson.Discovery.v2.Examples.csproj", "{1090A444-1E84-4BBE-B827-4131C1FF9A8E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBM.Watson.Discovery.v2.Examples", "src\IBM.Watson.Discovery.v2\Examples\IBM.Watson.Discovery.v2.Examples.csproj", "{1090A444-1E84-4BBE-B827-4131C1FF9A8E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

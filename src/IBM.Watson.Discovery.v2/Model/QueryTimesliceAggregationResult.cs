@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2019, 2021.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -41,10 +41,10 @@ namespace IBM.Watson.Discovery.v2.Model
         [JsonProperty("matching_results", NullValueHandling = NullValueHandling.Ignore)]
         public long? MatchingResults { get; set; }
         /// <summary>
-        /// An array of sub-aggregations.
+        /// An array of subaggregations. Returned only when this aggregation is returned as a subaggregation.
         /// </summary>
         [JsonProperty("aggregations", NullValueHandling = NullValueHandling.Ignore)]
-        public List<QueryAggregation> Aggregations { get; set; }
+        public List<Dictionary<string, object>> Aggregations { get; set; }
     }
 
 }

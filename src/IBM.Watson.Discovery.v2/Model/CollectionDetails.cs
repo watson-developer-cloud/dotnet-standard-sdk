@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2020, 2022.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -66,7 +66,7 @@ namespace IBM.Watson.Discovery.v2.Model
         /// An object that describes the Smart Document Understanding model for a collection.
         /// </summary>
         [JsonProperty("smart_document_understanding", NullValueHandling = NullValueHandling.Ignore)]
-        public CollectionDetailsSmartDocumentUnderstanding SmartDocumentUnderstanding { get; set; }
+        public virtual CollectionDetailsSmartDocumentUnderstanding SmartDocumentUnderstanding { get; private set; }
     }
 
 }

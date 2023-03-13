@@ -21,20 +21,17 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Discovery.v2.Model
 {
     /// <summary>
-    /// A query response that contains the matching documents for the preceding aggregations.
+    /// Result for the `trend` aggregation.
     /// </summary>
-    public class QueryTopHitsAggregationResult
+    public class QueryTrendAggregationResult
     {
         /// <summary>
-        /// Number of matching results.
+        /// Array of subaggregations of type `term` or `group_by` and `timeslice`. Each element of the matrix that is
+        /// returned contains a **trend_indicator** that is calculated from the combination of each aggregation value
+        /// and segment of time.
         /// </summary>
-        [JsonProperty("matching_results", NullValueHandling = NullValueHandling.Ignore)]
-        public long? MatchingResults { get; set; }
-        /// <summary>
-        /// An array of the document results in an ordered list.
-        /// </summary>
-        [JsonProperty("hits", NullValueHandling = NullValueHandling.Ignore)]
-        public List<Dictionary<string, object>> Hits { get; set; }
+        [JsonProperty("aggregations", NullValueHandling = NullValueHandling.Ignore)]
+        public List<Dictionary<string, object>> Aggregations { get; set; }
     }
 
 }

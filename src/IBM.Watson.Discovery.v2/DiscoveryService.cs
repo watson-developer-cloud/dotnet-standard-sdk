@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2019, 2022.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 */
 
 /**
-* IBM OpenAPI SDK Code Generator Version: 3.53.0-9710cac3-20220713-193508
+* IBM OpenAPI SDK Code Generator Version: 3.64.1-cee95189-20230124-211647
 */
  
 using System.Collections.Generic;
@@ -494,10 +494,8 @@ namespace IBM.Watson.Discovery.v2
         /// If no enrichments are specified when the collection is created, the default enrichments for the project type
         /// are applied. For more information about project default settings, see the [product
         /// documentation](/docs/discovery-data?topic=discovery-data-project-defaults). (optional)</param>
-        /// <param name="smartDocumentUnderstanding">An object that describes the Smart Document Understanding model for
-        /// a collection. (optional)</param>
         /// <returns><see cref="CollectionDetails" />CollectionDetails</returns>
-        public DetailedResponse<CollectionDetails> CreateCollection(string projectId, string name, string description = null, string language = null, List<CollectionEnrichment> enrichments = null, CollectionDetailsSmartDocumentUnderstanding smartDocumentUnderstanding = null)
+        public DetailedResponse<CollectionDetails> CreateCollection(string projectId, string name, string description = null, string language = null, List<CollectionEnrichment> enrichments = null)
         {
             if (string.IsNullOrEmpty(Version))
             {
@@ -547,10 +545,6 @@ namespace IBM.Watson.Discovery.v2
                 if (enrichments != null && enrichments.Count > 0)
                 {
                     bodyObject["enrichments"] = JToken.FromObject(enrichments);
-                }
-                if (smartDocumentUnderstanding != null)
-                {
-                    bodyObject["smart_document_understanding"] = JToken.FromObject(smartDocumentUnderstanding);
                 }
                 var httpContent = new StringContent(JsonConvert.SerializeObject(bodyObject), Encoding.UTF8, HttpMediaType.APPLICATION_JSON);
                 restRequest.WithBodyContent(httpContent);
@@ -791,7 +785,8 @@ namespace IBM.Watson.Discovery.v2
         /// returns information for up to 10,000 documents.
         ///
         /// **Note**: This method is available only from Cloud Pak for Data version 4.0.9 and later installed instances
-        /// and from Plus and Enterprise plan IBM Cloud-managed instances.
+        /// and from Plus and Enterprise plan IBM Cloud-managed instances. It is not currently available from Premium
+        /// plan instances.
         /// </summary>
         /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
         /// page in Discovery.</param>
@@ -915,8 +910,8 @@ namespace IBM.Watson.Discovery.v2
         ///
         /// Returns immediately after the system has accepted the document for processing.
         ///
-        /// This operation works with a file upload collection. It cannot be used to modify a collection that crawls an
-        /// external data source.
+        /// Use this method to upload a file to the collection. You cannot use this method to crawl an external data
+        /// source.
         ///
         ///  * For a list of supported file types, see the [product
         /// documentation](/docs/discovery-data?topic=discovery-data-collections#supportedfiletypes).
@@ -944,7 +939,7 @@ namespace IBM.Watson.Discovery.v2
         /// <param name="collectionId">The ID of the collection.</param>
         /// <param name="file">When adding a document, the content of the document to ingest. For maximum supported file
         /// size limits, see [the
-        /// documentation](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-collections#collections-doc-limits).
+        /// documentation](/docs/discovery-data?topic=discovery-data-collections#collections-doc-limits).
         ///
         /// When analyzing a document, the content of the document to analyze but not ingest. Only the
         /// `application/json` content type is supported currently. For maximum supported file size limits, see [the
@@ -1090,7 +1085,8 @@ namespace IBM.Watson.Discovery.v2
         /// external data source.
         ///
         /// **Note**: This method is available only from Cloud Pak for Data version 4.0.9 and later installed instances
-        /// and from Plus and Enterprise plan IBM Cloud-managed instances.
+        /// and from Plus and Enterprise plan IBM Cloud-managed instances. It is not currently available from Premium
+        /// plan instances.
         /// </summary>
         /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
         /// page in Discovery.</param>
@@ -1166,8 +1162,8 @@ namespace IBM.Watson.Discovery.v2
         /// Replace an existing document or add a document with a specified document ID. Starts ingesting a document
         /// with optional metadata.
         ///
-        /// This operation works with a file upload collection. It cannot be used to modify a collection that crawls an
-        /// external data source.
+        /// Use this method to upload a file to a collection. You cannot use this method to crawl an external data
+        /// source.
         ///
         /// If the document is uploaded to a collection that shares its data with another collection, the
         /// **X-Watson-Discovery-Force** header must be set to `true`.
@@ -1186,7 +1182,7 @@ namespace IBM.Watson.Discovery.v2
         /// <param name="documentId">The ID of the document.</param>
         /// <param name="file">When adding a document, the content of the document to ingest. For maximum supported file
         /// size limits, see [the
-        /// documentation](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-collections#collections-doc-limits).
+        /// documentation](/docs/discovery-data?topic=discovery-data-collections#collections-doc-limits).
         ///
         /// When analyzing a document, the content of the document to analyze but not ingest. Only the
         /// `application/json` content type is supported currently. For maximum supported file size limits, see [the
@@ -1336,14 +1332,16 @@ namespace IBM.Watson.Discovery.v2
         /// <summary>
         /// Delete a document.
         ///
-        /// If the given document ID is invalid, or if the document is not found, then the a success response is
-        /// returned (HTTP status code `200`) with the status set to 'deleted'.
+        /// Deletes the document with the document ID that you specify from the collection. Removes uploaded documents
+        /// from the collection permanently. If you delete a document that was added by crawling an external data
+        /// source, the document will be added again with the next scheduled crawl of the data source. The delete
+        /// function removes the document from the collection, not from the external data source.
         ///
-        /// **Note:** This operation only works on collections created to accept direct file uploads. It cannot be used
-        /// to modify a collection that connects to an external source such as Microsoft SharePoint.
-        ///
-        /// **Note:** Segments of an uploaded document cannot be deleted individually. Delete all segments by deleting
-        /// using the `parent_document_id` of a segment result.
+        /// **Note:** Files such as CSV or JSON files generate subdocuments when they are added to a collection. If you
+        /// delete a subdocument, and then repeat the action that created it, the deleted document is added back in to
+        /// your collection. To remove subdocuments that are generated by an uploaded file, delete the original document
+        /// instead. You can get the document ID of the original document from the `parent_document_id` of the
+        /// subdocument result.
         /// </summary>
         /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
         /// page in Discovery.</param>
@@ -1424,11 +1422,10 @@ namespace IBM.Watson.Discovery.v2
         ///
         /// Search your data by submitting queries that are written in natural language or formatted in the Discovery
         /// Query Language. For more information, see the [Discovery
-        /// documentation](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-query-concepts). The default
-        /// query parameters differ by project type. For more information about the project default settings, see the
-        /// [Discovery documentation](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-query-defaults).
-        /// See [the Projects API documentation](#create-project) for details about how to set custom default query
-        /// settings.
+        /// documentation](/docs/discovery-data?topic=discovery-data-query-concepts). The default query parameters
+        /// differ by project type. For more information about the project default settings, see the [Discovery
+        /// documentation](/docs/discovery-data?topic=discovery-data-query-defaults). See [the Projects API
+        /// documentation](#create-project) for details about how to set custom default query settings.
         ///
         /// The length of the UTF-8 encoding of the POST body cannot exceed 10,000 bytes, which is roughly equivalent to
         /// 10,000 characters in English.
@@ -1450,8 +1447,7 @@ namespace IBM.Watson.Discovery.v2
         /// <param name="aggregation">An aggregation search that returns an exact answer by combining query search with
         /// filters. Useful for applications to build lists, tables, and time series. For more information about the
         /// supported types of aggregations, see the [Discovery
-        /// documentation](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-query-aggregations).
-        /// (optional)</param>
+        /// documentation](/docs/discovery-data?topic=discovery-data-query-aggregations). (optional)</param>
         /// <param name="count">Number of results to return. (optional)</param>
         /// <param name="_return">A list of the fields in the document hierarchy to return. You can specify both
         /// root-level (`text`) and nested (`extracted_metadata.filename`) fields. If this parameter is an empty list,
@@ -1937,10 +1933,9 @@ namespace IBM.Watson.Discovery.v2
         /// A default stop words list is used by all collections. The default list is applied both at indexing time and
         /// at query time. A custom stop words list that you add is used at query time only.
         ///
-        /// The custom stop words list replaces the default stop words list. Therefore, if you want to keep the stop
-        /// words that were used when the collection was indexed, get the default stop words list for the language of
-        /// the collection first and edit it to create your custom list. For information about the default stop words
-        /// lists per language, see [the product documentation](/docs/discovery-data?topic=discovery-data-stopwords).
+        /// The custom stop words list augments the default stop words list; you cannot remove stop words. For
+        /// information about the default stop words lists per language, see [the product
+        /// documentation](/docs/discovery-data?topic=discovery-data-stopwords).
         /// </summary>
         /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
         /// page in Discovery.</param>
@@ -2466,7 +2461,7 @@ namespace IBM.Watson.Discovery.v2
         /// </summary>
         /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
         /// page in Discovery.</param>
-        /// <param name="naturalLanguageQuery">The natural text query for the training query.</param>
+        /// <param name="naturalLanguageQuery">The natural text query that is used as the training query.</param>
         /// <param name="examples">Array of training examples.</param>
         /// <param name="filter">The filter used on the collection before the **natural_language_query** is applied.
         /// (optional)</param>
@@ -2615,7 +2610,7 @@ namespace IBM.Watson.Discovery.v2
         /// <param name="projectId">The ID of the project. This information can be found from the *Integrate and Deploy*
         /// page in Discovery.</param>
         /// <param name="queryId">The ID of the query used for training.</param>
-        /// <param name="naturalLanguageQuery">The natural text query for the training query.</param>
+        /// <param name="naturalLanguageQuery">The natural text query that is used as the training query.</param>
         /// <param name="examples">Array of training examples.</param>
         /// <param name="filter">The filter used on the collection before the **natural_language_query** is applied.
         /// (optional)</param>
@@ -3188,7 +3183,7 @@ namespace IBM.Watson.Discovery.v2
         /// must include a field that contains the text you want to classify and a field that contains the
         /// classification labels that you want to use to classify your data. If you want to specify multiple values in
         /// a single field, use a semicolon as the value separator. For a sample file, see [the product
-        /// documentation](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-cm-doc-classifier).</param>
+        /// documentation](/docs/discovery-data?topic=discovery-data-cm-doc-classifier).</param>
         /// <param name="classifier">An object that manages the settings and data that is required to train a document
         /// classification model.</param>
         /// <param name="testData">The CSV with test data to upload. The column values in the test file must be the same
@@ -3357,8 +3352,7 @@ namespace IBM.Watson.Discovery.v2
         /// must include a field that contains the text you want to classify and a field that contains the
         /// classification labels that you want to use to classify your data. If you want to specify multiple values in
         /// a single column, use a semicolon as the value separator. For a sample file, see [the product
-        /// documentation](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-cm-doc-classifier).
-        /// (optional)</param>
+        /// documentation](/docs/discovery-data?topic=discovery-data-cm-doc-classifier). (optional)</param>
         /// <param name="testData">The CSV with test data to upload. The column values in the test file must be the same
         /// as the column values in the training data file. If no test data is provided, the training data is split into
         /// two separate groups of training and test data. (optional)</param>
@@ -3949,7 +3943,7 @@ namespace IBM.Watson.Discovery.v2
         /// <param name="collectionId">The ID of the collection.</param>
         /// <param name="file">When adding a document, the content of the document to ingest. For maximum supported file
         /// size limits, see [the
-        /// documentation](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-collections#collections-doc-limits).
+        /// documentation](/docs/discovery-data?topic=discovery-data-collections#collections-doc-limits).
         ///
         /// When analyzing a document, the content of the document to analyze but not ingest. Only the
         /// `application/json` content type is supported currently. For maximum supported file size limits, see [the
@@ -4088,8 +4082,7 @@ namespace IBM.Watson.Discovery.v2
         ///
         /// You associate a customer ID with data by passing the **X-Watson-Metadata** header with a request that passes
         /// data. For more information about personal data and customer IDs, see [Information
-        /// security](https://cloud.ibm.com/docs/discovery-data?topic=discovery-data-information-security#information-security).
-        ///
+        /// security](/docs/discovery-data?topic=discovery-data-information-security#information-security).
         ///
         /// **Note:** This method is only supported on IBM Cloud instances of Discovery.
         /// </summary>

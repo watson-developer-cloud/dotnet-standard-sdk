@@ -69,11 +69,7 @@ namespace IBM.Watson.Assistant.v2.Model
         /// Gets or Sets Source
         /// </summary>
         [JsonProperty("source", NullValueHandling = NullValueHandling.Ignore)]
-        public new TurnEventNodeSource Source
-        {
-            get { return base.Source; }
-            set { base.Source = value; }
-        }
+        public new TurnEventNodeSource Source { get; protected set; }
     }
 
 }

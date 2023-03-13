@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2019, 2021.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ namespace IBM.Watson.Discovery.v2.Model
         [JsonProperty("query_id", NullValueHandling = NullValueHandling.Ignore)]
         public virtual string QueryId { get; private set; }
         /// <summary>
-        /// The natural text query for the training query.
+        /// The natural text query that is used as the training query.
         /// </summary>
         [JsonProperty("natural_language_query", NullValueHandling = NullValueHandling.Ignore)]
         public string NaturalLanguageQuery { get; set; }

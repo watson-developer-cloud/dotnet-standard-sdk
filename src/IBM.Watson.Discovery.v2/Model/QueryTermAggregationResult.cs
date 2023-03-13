@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2019, 2021.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -21,12 +21,12 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Discovery.v2.Model
 {
     /// <summary>
-    /// Top value result for the term aggregation.
+    /// Top value result for the `term` aggregation.
     /// </summary>
     public class QueryTermAggregationResult
     {
         /// <summary>
-        /// Value of the field with a non-zero frequency in the document set.
+        /// Value of the field with a nonzero frequency in the document set.
         /// </summary>
         [JsonProperty("key", NullValueHandling = NullValueHandling.Ignore)]
         public string Key { get; set; }
@@ -36,27 +36,28 @@ namespace IBM.Watson.Discovery.v2.Model
         [JsonProperty("matching_results", NullValueHandling = NullValueHandling.Ignore)]
         public long? MatchingResults { get; set; }
         /// <summary>
-        /// The relevancy for this term.
+        /// The relevancy score for this result. Returned only if `relevancy:true` is specified in the request.
         /// </summary>
         [JsonProperty("relevancy", NullValueHandling = NullValueHandling.Ignore)]
         public double? Relevancy { get; set; }
         /// <summary>
-        /// The number of documents which have the term as the value of specified field in the whole set of documents in
-        /// this collection. Returned only when the `relevancy` parameter is set to `true`.
+        /// Number of documents in the collection that contain the term in the specified field. Returned only when
+        /// `relevancy:true` is specified in the request.
         /// </summary>
         [JsonProperty("total_matching_documents", NullValueHandling = NullValueHandling.Ignore)]
         public long? TotalMatchingDocuments { get; set; }
         /// <summary>
-        /// The estimated number of documents which would match the query and also meet the condition. Returned only
-        /// when the `relevancy` parameter is set to `true`.
+        /// Number of documents that are estimated to match the query and also meet the condition. Returned only when
+        /// `relevancy:true` is specified in the request.
         /// </summary>
-        [JsonProperty("estimated_matching_documents", NullValueHandling = NullValueHandling.Ignore)]
-        public long? EstimatedMatchingDocuments { get; set; }
+        [JsonProperty("estimated_matching_results", NullValueHandling = NullValueHandling.Ignore)]
+        public double? EstimatedMatchingResults { get; set; }
         /// <summary>
-        /// An array of sub-aggregations.
+        /// An array of subaggregations. Returned only when this aggregation is combined with other aggregations in the
+        /// request or is returned as a subaggregation.
         /// </summary>
         [JsonProperty("aggregations", NullValueHandling = NullValueHandling.Ignore)]
-        public List<QueryAggregation> Aggregations { get; set; }
+        public List<Dictionary<string, object>> Aggregations { get; set; }
     }
 
 }

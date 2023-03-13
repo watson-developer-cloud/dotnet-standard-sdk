@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2019, 2022.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ namespace IBM.Watson.Discovery.v2
         DetailedResponse<object> DeleteProject(string projectId);
         DetailedResponse<ListFieldsResponse> ListFields(string projectId, List<string> collectionIds = null);
         DetailedResponse<ListCollectionsResponse> ListCollections(string projectId);
-        DetailedResponse<CollectionDetails> CreateCollection(string projectId, string name, string description = null, string language = null, List<CollectionEnrichment> enrichments = null, CollectionDetailsSmartDocumentUnderstanding smartDocumentUnderstanding = null);
+        DetailedResponse<CollectionDetails> CreateCollection(string projectId, string name, string description = null, string language = null, List<CollectionEnrichment> enrichments = null);
         DetailedResponse<CollectionDetails> GetCollection(string projectId, string collectionId);
         DetailedResponse<CollectionDetails> UpdateCollection(string projectId, string collectionId, string name = null, string description = null, List<CollectionEnrichment> enrichments = null);
         DetailedResponse<object> DeleteCollection(string projectId, string collectionId);

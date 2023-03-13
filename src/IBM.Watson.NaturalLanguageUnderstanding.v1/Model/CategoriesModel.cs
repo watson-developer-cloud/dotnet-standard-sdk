@@ -73,7 +73,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.Model
         /// An optional map of metadata key-value pairs to store with this model.
         /// </summary>
         [JsonProperty("user_metadata", NullValueHandling = NullValueHandling.Ignore)]
-        public Dictionary<string, Dictionary> UserMetadata { get; set; }
+        public Dictionary<string, object> UserMetadata { get; set; }
         /// <summary>
         /// The 2-letter language code of this model.
         /// </summary>

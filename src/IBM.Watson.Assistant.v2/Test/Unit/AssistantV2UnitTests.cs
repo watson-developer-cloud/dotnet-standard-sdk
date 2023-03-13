@@ -412,7 +412,7 @@ namespace IBM.Watson.Assistant.v2.UnitTests
                         TurnCount = 2
                     }
                 },
-                Skills = new Dictionary<string, MessageContextSkill>()
+                Skills = new MessageContextSkills()
             };
             #endregion
 

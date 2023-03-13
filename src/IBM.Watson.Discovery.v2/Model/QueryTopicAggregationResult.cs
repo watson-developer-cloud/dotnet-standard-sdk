@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2019.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15,26 +15,23 @@
 *
 */
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace IBM.Watson.Discovery.v2.Model
 {
     /// <summary>
-    /// Returns a scalar calculation across all documents for the field specified. Possible calculations include min,
-    /// max, sum, average, and unique_count.
+    /// Result for the `topic` aggregation.
     /// </summary>
-    public class QueryCalculationAggregation : QueryAggregation
+    public class QueryTopicAggregationResult
     {
         /// <summary>
-        /// The field to perform the calculation on.
+        /// Array of subaggregations  of type `term` or `group_by` and `timeslice`. Each element of the matrix that is
+        /// returned contains a **topic_indicator** that is calculated from the combination of each aggregation value
+        /// and segment of time.
         /// </summary>
-        [JsonProperty("field", NullValueHandling = NullValueHandling.Ignore)]
-        public string Field { get; set; }
-        /// <summary>
-        /// The value of the calculation.
-        /// </summary>
-        [JsonProperty("value", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Value { get; set; }
+        [JsonProperty("aggregations", NullValueHandling = NullValueHandling.Ignore)]
+        public List<Dictionary<string, object>> Aggregations { get; set; }
     }
 
 }

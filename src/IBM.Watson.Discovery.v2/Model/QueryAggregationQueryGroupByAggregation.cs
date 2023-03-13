@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2020.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -21,15 +21,24 @@ using Newtonsoft.Json;
 namespace IBM.Watson.Discovery.v2.Model
 {
     /// <summary>
-    /// Returns the top values for the field specified.
+    /// Separates document results into groups that meet the conditions you specify.
     /// </summary>
-    public class QueryGroupByAggregation : QueryAggregation
+    public class QueryAggregationQueryGroupByAggregation : QueryAggregation
     {
         /// <summary>
-        /// Array of top values for the field.
+        /// Specifies that the aggregation type is `group_by`.
+        /// </summary>
+        [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
+        public new string Type
+        {
+            get { return base.Type; }
+            set { base.Type = value; }
+        }
+        /// <summary>
+        /// An array of results.
         /// </summary>
         [JsonProperty("results", NullValueHandling = NullValueHandling.Ignore)]
-        public List<QueryGroupByAggregationResult> Results { get; set; }
+        public new List<QueryGroupByAggregationResult> Results { get; protected set; }
     }
 
 }

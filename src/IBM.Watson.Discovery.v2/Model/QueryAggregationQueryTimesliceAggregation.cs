@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2018, 2020.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -23,28 +23,45 @@ namespace IBM.Watson.Discovery.v2.Model
     /// <summary>
     /// A specialized histogram aggregation that uses dates to create interval segments.
     /// </summary>
-    public class QueryTimesliceAggregation : QueryAggregation
+    public class QueryAggregationQueryTimesliceAggregation : QueryAggregation
     {
+        /// <summary>
+        /// Specifies that the aggregation type is `timeslice`.
+        /// </summary>
+        [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
+        public new string Type
+        {
+            get { return base.Type; }
+            set { base.Type = value; }
+        }
         /// <summary>
         /// The date field name used to create the timeslice.
         /// </summary>
         [JsonProperty("field", NullValueHandling = NullValueHandling.Ignore)]
-        public string Field { get; set; }
+        public new string Field
+        {
+            get { return base.Field; }
+            set { base.Field = value; }
+        }
         /// <summary>
         /// The date interval value. Valid values are seconds, minutes, hours, days, weeks, and years.
         /// </summary>
         [JsonProperty("interval", NullValueHandling = NullValueHandling.Ignore)]
-        public string Interval { get; set; }
+        public new string Interval { get; protected set; }
         /// <summary>
-        /// Identifier specified in the query request of this aggregation.
+        /// Identifier that can optionally be specified in the query request of this aggregation.
         /// </summary>
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
-        public string Name { get; set; }
+        public new string Name
+        {
+            get { return base.Name; }
+            set { base.Name = value; }
+        }
         /// <summary>
         /// Array of aggregation results.
         /// </summary>
         [JsonProperty("results", NullValueHandling = NullValueHandling.Ignore)]
-        public List<QueryTimesliceAggregationResult> Results { get; set; }
+        public new List<QueryTimesliceAggregationResult> Results { get; protected set; }
     }
 
 }

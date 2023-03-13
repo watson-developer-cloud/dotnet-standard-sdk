@@ -1,5 +1,5 @@
 /**
-* (C) Copyright IBM Corp. 2020, 2022.
+* (C) Copyright IBM Corp. 2023.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -62,12 +62,8 @@ namespace IBM.Watson.Discovery.v2.Model
         [JsonProperty("field", NullValueHandling = NullValueHandling.Ignore)]
         public string Field { get; set; }
         /// <summary>
-        /// An estimate of the probability that the passage is relevant.
-        /// </summary>
-        [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
-        public double? Confidence { get; set; }
-        /// <summary>
-        /// An array of extracted answers to the specified query.
+        /// An array of extracted answers to the specified query. Returned for natural language queries when
+        /// **passages.per_document** is `false`.
         /// </summary>
         [JsonProperty("answers", NullValueHandling = NullValueHandling.Ignore)]
         public List<ResultPassageAnswer> Answers { get; set; }

@@ -1,3 +1,31 @@
+# [7.0.0](https://github.com/watson-developer-cloud/dotnet-standard-sdk/compare/v6.1.0...v7.0.0) (2023-03-17)
+
+
+### Bug Fixes
+
+* **all:** use correct csproj version ([7c40755](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/7c4075580b0122b271b4b55f7a61b92f7bca4b27))
+* **assistantv2:** discriminator hand edits ([6c51a6e](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/6c51a6e24b6eb068891932de164a51bf59eeb21c))
+* **assistantv2:** final edits ([1b032ce](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/1b032ce382522e51e80751fb9995019abd2c02e2))
+* **nlu:** hand edits ([de18cc7](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/de18cc7e340bfb256c205ca1fc5006900605d17a))
+
+
+### Features
+
+* **assistantv2:** add several new functions ([0f5dff8](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/0f5dff8eab633a207a9ed9025361c6d8c98c62e6))
+* **discov2:** new aggregation types ([f0ab5dd](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/f0ab5ddd41348c75227f259bff20e378cc1be0ba))
+* **nlu:** remove all sentimentModel functions ([b70f481](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/b70f481763abc25f437a060a8b4fe9d2e961aa4e))
+* **stt:** add and remove models ([3096572](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/3096572712914686d1b4d088d3df0050b970aee4))
+* **tts:** add params and model constants ([f32894a](https://github.com/watson-developer-cloud/dotnet-standard-sdk/commit/f32894aed31599727a5fda15ec1b77e7cc4504e8))
+
+
+### BREAKING CHANGES
+
+* **discov2:** smartDocumentUnderstanding param removed
+* **discov2:** QueryAggregation structure changed
+* **discov2:** object type properties changed to Dictionaries
+* **assistantv2:** removing and changing of classes
+* **nlu:** remove all sentimentModel functions and models
+
 # [6.1.0](https://github.com/watson-developer-cloud/dotnet-standard-sdk/compare/v6.0.0...v6.1.0) (2022-08-10)
 
 

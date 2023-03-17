@@ -1,6 +1,10 @@
 var _i_b_m_8_watson_8_assistant_8v2_2_assistant_service_8cs =
 [
     [ "AssistantService", "d6/d20/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_assistant_service.html", "d6/d20/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_assistant_service" ],
+    [ "ListAssistantsEnums", "d2/dae/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_assistant_service_1_1_list_assistants_enums.html", [
+      [ "SortValue", "d2/d1a/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_assistant_service_1_1_list_assistants_enums_1_1_sort_value.html", "d2/d1a/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_assistant_service_1_1_list_assistants_enums_1_1_sort_value" ]
+    ] ],
+    [ "SortValue", "d2/d1a/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_assistant_service_1_1_list_assistants_enums_1_1_sort_value.html", "d2/d1a/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_assistant_service_1_1_list_assistants_enums_1_1_sort_value" ],
     [ "ListEnvironmentsEnums", "df/d69/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_assistant_service_1_1_list_environments_enums.html", [
       [ "SortValue", "de/dfd/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_assistant_service_1_1_list_environments_enums_1_1_sort_value.html", "de/dfd/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_assistant_service_1_1_list_environments_enums_1_1_sort_value" ]
     ] ],

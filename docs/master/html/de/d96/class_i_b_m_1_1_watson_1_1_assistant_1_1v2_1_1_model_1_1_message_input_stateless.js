@@ -1,6 +1,7 @@
 var class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_stateless =
 [
     [ "MessageTypeEnumValue", "d2/dd8/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_stateless_1_1_message_type_enum_value.html", "d2/dd8/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_stateless_1_1_message_type_enum_value" ],
+    [ "Analytics", "de/d96/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_stateless.html#a63663c32a3adadb81ebacde5e48bf889", null ],
     [ "Attachments", "de/d96/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_stateless.html#ab4b42da09ecd4c7ce9617acb6a90311a", null ],
     [ "Entities", "de/d96/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_stateless.html#a3f7d4ec0df49f1c15ae6dbc9de2cd84c", null ],
     [ "Intents", "de/d96/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_input_stateless.html#abdb911330cbf9b5c1be63ab7d028713b", null ],

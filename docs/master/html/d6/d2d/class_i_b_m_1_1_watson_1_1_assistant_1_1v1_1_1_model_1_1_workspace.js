@@ -2,7 +2,7 @@ var class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace =
 [
     [ "StatusEnumValue", "df/dfe/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_1_1_status_enum_value.html", "df/dfe/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace_1_1_status_enum_value" ],
     [ "Counterexamples", "d6/d2d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace.html#a16c27c2cccf0fa03e4e401111fd5f19d", null ],
-    [ "Counts", "d6/d2d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace.html#a4cee24068b8ec8f711e250d1bba9139b", null ],
+    [ "Counts", "d6/d2d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace.html#ae09b8eca781587b35b9929d39734a2e8", null ],
     [ "Created", "d6/d2d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace.html#a8c0ead662a9983581ad3cd86fd9bf25e", null ],
     [ "Description", "d6/d2d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace.html#ad965a2e5bb0d7c4eaf5fcf594c6bd32e", null ],
     [ "DialogNodes", "d6/d2d/class_i_b_m_1_1_watson_1_1_assistant_1_1v1_1_1_model_1_1_workspace.html#afd2f2a54da07d733e36bbce5774f7a65", null ],

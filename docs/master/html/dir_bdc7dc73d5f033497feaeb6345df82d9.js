@@ -1,4 +1,4 @@
 var dir_bdc7dc73d5f033497feaeb6345df82d9 =
 [
-    [ "netcoreapp2.0", "dir_13895a56009a4a91f81dbcd9767d7955.html", "dir_13895a56009a4a91f81dbcd9767d7955" ]
+    [ "net7.0", "dir_d07bdcb92417811ca4fcef7e3f89a705.html", "dir_d07bdcb92417811ca4fcef7e3f89a705" ]
 ];

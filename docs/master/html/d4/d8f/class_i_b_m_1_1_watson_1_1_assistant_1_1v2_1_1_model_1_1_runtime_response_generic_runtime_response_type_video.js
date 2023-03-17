@@ -1,7 +1,7 @@
 var class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_video =
 [
     [ "AltText", "d4/d8f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_video.html#a65addda11add1c34789660e8b01c9bf4", null ],
-    [ "ChannelOptions", "d4/d8f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_video.html#a96be234564b6992a2f193d60fd8a634c", null ],
+    [ "ChannelOptions", "d4/d8f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_video.html#aaf44161fbc8db597ed91600ab8b6ce04", null ],
     [ "Channels", "d4/d8f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_video.html#ad8691768b8f13e83e461fa0f09b29385", null ],
     [ "Description", "d4/d8f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_video.html#a10a983d298dafea0e2474902f465f359", null ],
     [ "ResponseType", "d4/d8f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_runtime_response_generic_runtime_response_type_video.html#a6fa3760fb97f97f367151542e6dd2e3b", null ],

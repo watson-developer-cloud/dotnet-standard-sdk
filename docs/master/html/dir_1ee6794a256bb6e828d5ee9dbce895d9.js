@@ -105,9 +105,6 @@ var dir_1ee6794a256bb6e828d5ee9dbce895d9 =
     [ "ListModelsResults.cs", "d7/d0c/_list_models_results_8cs.html", [
       [ "ListModelsResults", "d8/d5a/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_list_models_results.html", "d8/d5a/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_list_models_results" ]
     ] ],
-    [ "ListSentimentModelsResponse.cs", "d3/df0/_list_sentiment_models_response_8cs.html", [
-      [ "ListSentimentModelsResponse", "da/d7b/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_list_sentiment_models_response.html", "da/d7b/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_list_sentiment_models_response" ]
-    ] ],
     [ "Model.cs", "db/d88/_model_8cs.html", [
       [ "Model", "de/ddd/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_model.html", "de/ddd/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_model" ],
       [ "StatusEnumValue", "d9/d8f/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_model_1_1_status_enum_value.html", "d9/d8f/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_model_1_1_status_enum_value" ]
@@ -153,10 +150,6 @@ var dir_1ee6794a256bb6e828d5ee9dbce895d9 =
     ] ],
     [ "SentenceResult.cs", "dd/d85/_sentence_result_8cs.html", [
       [ "SentenceResult", "dd/dbc/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentence_result.html", "dd/dbc/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentence_result" ]
-    ] ],
-    [ "SentimentModel.cs", "d2/d4e/_sentiment_model_8cs.html", [
-      [ "SentimentModel", "d2/d70/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_model.html", "d2/d70/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_model" ],
-      [ "StatusEnumValue", "de/daa/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_model_1_1_status_enum_value.html", "de/daa/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_model_1_1_status_enum_value" ]
     ] ],
     [ "SentimentOptions.cs", "d4/df8/_sentiment_options_8cs.html", [
       [ "SentimentOptions", "df/dc8/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_options.html", "df/dc8/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_sentiment_options" ]

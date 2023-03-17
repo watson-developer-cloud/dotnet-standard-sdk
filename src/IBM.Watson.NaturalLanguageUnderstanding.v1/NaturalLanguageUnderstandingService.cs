@@ -312,7 +312,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// Language Understanding. (optional)</param>
         /// <param name="versionDescription">The description of the version. (optional)</param>
         /// <returns><see cref="CategoriesModel" />CategoriesModel</returns>
-        public DetailedResponse<CategoriesModel> CreateCategoriesModel(string language, System.IO.MemoryStream trainingData, string trainingDataContentType = null, string name = null, string description = null, string modelVersion = null, string workspaceId = null, string versionDescription = null)
+        public DetailedResponse<CategoriesModel> CreateCategoriesModel(string language, System.IO.MemoryStream trainingData, string trainingDataContentType, string name = null, string description = null, string modelVersion = null, string workspaceId = null, string versionDescription = null)
         {
             if (string.IsNullOrEmpty(Version))
             {
@@ -325,6 +325,10 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
             if (trainingData == null)
             {
                 throw new ArgumentNullException("`trainingData` is required for `CreateCategoriesModel`");
+            }
+            if (string.IsNullOrEmpty(trainingDataContentType))
+            {
+                throw new ArgumentNullException("`trainingDataContentType` is required for `CreateCategoriesModel`");
             }
             DetailedResponse<CategoriesModel> result = null;
 
@@ -552,7 +556,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// Language Understanding. (optional)</param>
         /// <param name="versionDescription">The description of the version. (optional)</param>
         /// <returns><see cref="CategoriesModel" />CategoriesModel</returns>
-        public DetailedResponse<CategoriesModel> UpdateCategoriesModel(string modelId, string language, System.IO.MemoryStream trainingData, string trainingDataContentType = null, string name = null, string description = null, string modelVersion = null, string workspaceId = null, string versionDescription = null)
+        public DetailedResponse<CategoriesModel> UpdateCategoriesModel(string modelId, string language, System.IO.MemoryStream trainingData, string trainingDataContentType, string name = null, string description = null, string modelVersion = null, string workspaceId = null, string versionDescription = null)
         {
             if (string.IsNullOrEmpty(Version))
             {
@@ -573,6 +577,10 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
             if (trainingData == null)
             {
                 throw new ArgumentNullException("`trainingData` is required for `UpdateCategoriesModel`");
+            }
+            if (string.IsNullOrEmpty(trainingDataContentType))
+            {
+                throw new ArgumentNullException("`trainingDataContentType` is required for `UpdateCategoriesModel`");
             }
             DetailedResponse<CategoriesModel> result = null;
 
@@ -757,7 +765,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// <param name="trainingParameters">Optional classifications training parameters along with model train
         /// requests. (optional)</param>
         /// <returns><see cref="ClassificationsModel" />ClassificationsModel</returns>
-        public DetailedResponse<ClassificationsModel> CreateClassificationsModel(string language, System.IO.MemoryStream trainingData, string trainingDataContentType = null, string name = null, string description = null, string modelVersion = null, string workspaceId = null, string versionDescription = null, ClassificationsTrainingParameters trainingParameters = null)
+        public DetailedResponse<ClassificationsModel> CreateClassificationsModel(string language, System.IO.MemoryStream trainingData, string trainingDataContentType, string name = null, string description = null, string modelVersion = null, string workspaceId = null, string versionDescription = null, ClassificationsTrainingParameters trainingParameters = null)
         {
             if (string.IsNullOrEmpty(Version))
             {
@@ -770,6 +778,10 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
             if (trainingData == null)
             {
                 throw new ArgumentNullException("`trainingData` is required for `CreateClassificationsModel`");
+            }
+            if (string.IsNullOrEmpty(trainingDataContentType))
+            {
+                throw new ArgumentNullException("`trainingDataContentType` is required for `CreateClassificationsModel`");
             }
             DetailedResponse<ClassificationsModel> result = null;
 
@@ -1007,7 +1019,7 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
         /// <param name="trainingParameters">Optional classifications training parameters along with model train
         /// requests. (optional)</param>
         /// <returns><see cref="ClassificationsModel" />ClassificationsModel</returns>
-        public DetailedResponse<ClassificationsModel> UpdateClassificationsModel(string modelId, string language, System.IO.MemoryStream trainingData, string trainingDataContentType = null, string name = null, string description = null, string modelVersion = null, string workspaceId = null, string versionDescription = null, ClassificationsTrainingParameters trainingParameters = null)
+        public DetailedResponse<ClassificationsModel> UpdateClassificationsModel(string modelId, string language, System.IO.MemoryStream trainingData, string trainingDataContentType, string name = null, string description = null, string modelVersion = null, string workspaceId = null, string versionDescription = null, ClassificationsTrainingParameters trainingParameters = null)
         {
             if (string.IsNullOrEmpty(Version))
             {
@@ -1028,6 +1040,10 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1
             if (trainingData == null)
             {
                 throw new ArgumentNullException("`trainingData` is required for `UpdateClassificationsModel`");
+            }
+            if (string.IsNullOrEmpty(trainingDataContentType))
+            {
+                throw new ArgumentNullException("`trainingDataContentType` is required for `UpdateClassificationsModel`");
             }
             DetailedResponse<ClassificationsModel> result = null;
 

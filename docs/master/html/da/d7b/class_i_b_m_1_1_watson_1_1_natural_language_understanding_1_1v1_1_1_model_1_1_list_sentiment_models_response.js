@@ -1,4 +1,0 @@
-var class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_list_sentiment_models_response =
-[
-    [ "Models", "da/d7b/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_model_1_1_list_sentiment_models_response.html#a955289e841abe29df90513b3ee884f8b", null ]
-];

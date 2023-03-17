@@ -8,7 +8,7 @@ var class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service =
     [ "DiscoveryService", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a8261d78aca1da9cf469877191c3dcfa5", null ],
     [ "DiscoveryService", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a6647216411f0ea33b8c7d2a554b279cd", null ],
     [ "DiscoveryService", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#ad1fb42f06e95e3056a81113e209faee2", null ],
-    [ "CreateCollection", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a8cf4a188c025f4e29acd5f0fab6e2c64", null ],
+    [ "CreateCollection", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a580753bc961355f7150e92fb331d5dde", null ],
     [ "CreateDocumentClassifier", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a927ff0a314754dcf5a7ca9ad39ee9d00", null ],
     [ "CreateDocumentClassifierModel", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a8f1a8bd13aa21e91230412fb31ea03ba", null ],
     [ "CreateEnrichment", "d3/d7f/class_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_discovery_service.html#a3f55bbe42c88ab63eefa01583ed5a92f", null ],

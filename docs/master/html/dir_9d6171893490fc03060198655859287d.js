@@ -1,4 +1,4 @@
 var dir_9d6171893490fc03060198655859287d =
 [
-    [ "netcoreapp2.0", "dir_20368956ad74978d3810e9f2724b4bcc.html", "dir_20368956ad74978d3810e9f2724b4bcc" ]
+    [ "net7.0", "dir_5a251c05ac0d375f9a5e278c59c9bc1f.html", "dir_5a251c05ac0d375f9a5e278c59c9bc1f" ]
 ];

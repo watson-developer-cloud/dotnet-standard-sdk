@@ -3,6 +3,25 @@ var dir_e05cd18fe37823e65ffef40a75ea096b =
     [ "AgentAvailabilityMessage.cs", "de/d05/_i_b_m_8_watson_8_assistant_8v2_2_model_2_agent_availability_message_8cs.html", [
       [ "AgentAvailabilityMessage", "d1/db1/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_agent_availability_message.html", "d1/db1/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_agent_availability_message" ]
     ] ],
+    [ "AssistantCollection.cs", "d3/d59/_assistant_collection_8cs.html", [
+      [ "AssistantCollection", "dc/da6/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_assistant_collection.html", "dc/da6/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_assistant_collection" ]
+    ] ],
+    [ "AssistantData.cs", "d8/ddd/_assistant_data_8cs.html", [
+      [ "AssistantData", "de/d56/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_assistant_data.html", "de/d56/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_assistant_data" ]
+    ] ],
+    [ "AssistantSkill.cs", "de/da3/_assistant_skill_8cs.html", [
+      [ "AssistantSkill", "d2/d55/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_assistant_skill.html", "d2/d55/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_assistant_skill" ],
+      [ "TypeEnumValue", "da/d16/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_assistant_skill_1_1_type_enum_value.html", "da/d16/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_assistant_skill_1_1_type_enum_value" ]
+    ] ],
+    [ "AssistantState.cs", "da/d48/_assistant_state_8cs.html", [
+      [ "AssistantState", "d6/d24/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_assistant_state.html", "d6/d24/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_assistant_state" ]
+    ] ],
+    [ "BaseEnvironmentOrchestration.cs", "d2/d80/_base_environment_orchestration_8cs.html", [
+      [ "BaseEnvironmentOrchestration", "db/dc8/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_base_environment_orchestration.html", "db/dc8/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_base_environment_orchestration" ]
+    ] ],
+    [ "BaseEnvironmentReleaseReference.cs", "d5/d92/_base_environment_release_reference_8cs.html", [
+      [ "BaseEnvironmentReleaseReference", "da/dc8/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_base_environment_release_reference.html", "da/dc8/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_base_environment_release_reference" ]
+    ] ],
     [ "BulkClassifyOutput.cs", "d9/d9f/_i_b_m_8_watson_8_assistant_8v2_2_model_2_bulk_classify_output_8cs.html", [
       [ "BulkClassifyOutput", "df/dae/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_bulk_classify_output.html", "df/dae/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_bulk_classify_output" ]
     ] ],
@@ -56,15 +75,13 @@ var dir_e05cd18fe37823e65ffef40a75ea096b =
     [ "EnvironmentCollection.cs", "d8/d42/_environment_collection_8cs.html", [
       [ "EnvironmentCollection", "d3/df3/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_environment_collection.html", "d3/df3/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_environment_collection" ]
     ] ],
-    [ "EnvironmentOrchestration.cs", "d5/dc6/_environment_orchestration_8cs.html", [
-      [ "EnvironmentOrchestration", "de/d40/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_environment_orchestration.html", "de/d40/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_environment_orchestration" ]
-    ] ],
     [ "EnvironmentReference.cs", "dc/d4e/_environment_reference_8cs.html", [
       [ "EnvironmentReference", "d0/df2/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_environment_reference.html", "d0/df2/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_environment_reference" ],
       [ "EnvironmentEnumValue", "d9/de7/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_environment_reference_1_1_environment_enum_value.html", "d9/de7/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_environment_reference_1_1_environment_enum_value" ]
     ] ],
-    [ "EnvironmentReleaseReference.cs", "db/dba/_environment_release_reference_8cs.html", [
-      [ "EnvironmentReleaseReference", "d2/dcc/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_environment_release_reference.html", "d2/dcc/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_environment_release_reference" ]
+    [ "EnvironmentSkill.cs", "d7/da9/_environment_skill_8cs.html", [
+      [ "EnvironmentSkill", "d5/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_environment_skill.html", "d5/ddd/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_environment_skill" ],
+      [ "TypeEnumValue", "d9/d90/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_environment_skill_1_1_type_enum_value.html", "d9/d90/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_environment_skill_1_1_type_enum_value" ]
     ] ],
     [ "IntegrationReference.cs", "d3/d9b/_integration_reference_8cs.html", [
       [ "IntegrationReference", "d4/db0/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_integration_reference.html", "d4/db0/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_integration_reference" ]
@@ -108,6 +125,15 @@ var dir_e05cd18fe37823e65ffef40a75ea096b =
     ] ],
     [ "MessageContextSkill.cs", "d4/d95/_message_context_skill_8cs.html", [
       [ "MessageContextSkill", "db/df3/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skill.html", "db/df3/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skill" ]
+    ] ],
+    [ "MessageContextSkillAction.cs", "d7/d85/_message_context_skill_action_8cs.html", [
+      [ "MessageContextSkillAction", "d0/dbb/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skill_action.html", "d0/dbb/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skill_action" ]
+    ] ],
+    [ "MessageContextSkillDialog.cs", "d5/dbd/_message_context_skill_dialog_8cs.html", [
+      [ "MessageContextSkillDialog", "dc/dab/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skill_dialog.html", "dc/dab/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skill_dialog" ]
+    ] ],
+    [ "MessageContextSkills.cs", "d5/d7d/_message_context_skills_8cs.html", [
+      [ "MessageContextSkills", "db/d4e/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skills.html", "db/d4e/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skills" ]
     ] ],
     [ "MessageContextSkillSystem.cs", "d1/d37/_message_context_skill_system_8cs.html", [
       [ "MessageContextSkillSystem", "d4/df4/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skill_system.html", "d4/df4/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_message_context_skill_system" ]
@@ -203,9 +229,16 @@ var dir_e05cd18fe37823e65ffef40a75ea096b =
     [ "ReleaseContent.cs", "d4/d27/_release_content_8cs.html", [
       [ "ReleaseContent", "d4/d6c/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_release_content.html", "d4/d6c/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_release_content" ]
     ] ],
+    [ "ReleaseSkill.cs", "da/d85/_release_skill_8cs.html", [
+      [ "ReleaseSkill", "d6/d92/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_release_skill.html", "d6/d92/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_release_skill" ],
+      [ "TypeEnumValue", "d1/d6f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_release_skill_1_1_type_enum_value.html", "d1/d6f/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_release_skill_1_1_type_enum_value" ]
+    ] ],
     [ "ReleaseSkillReference.cs", "d4/d0a/_release_skill_reference_8cs.html", [
       [ "ReleaseSkillReference", "d8/d13/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_release_skill_reference.html", "d8/d13/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_release_skill_reference" ],
       [ "TypeEnumValue", "dc/d37/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_release_skill_reference_1_1_type_enum_value.html", "dc/d37/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_release_skill_reference_1_1_type_enum_value" ]
+    ] ],
+    [ "RequestAnalytics.cs", "d2/d39/_request_analytics_8cs.html", [
+      [ "RequestAnalytics", "db/d37/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_request_analytics.html", "db/d37/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_request_analytics" ]
     ] ],
     [ "ResponseGenericChannel.cs", "d6/d48/_i_b_m_8_watson_8_assistant_8v2_2_model_2_response_generic_channel_8cs.html", [
       [ "ResponseGenericChannel", "d1/da6/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_response_generic_channel.html", "d1/da6/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_response_generic_channel" ]
@@ -283,12 +316,46 @@ var dir_e05cd18fe37823e65ffef40a75ea096b =
     [ "SearchResultMetadata.cs", "d0/d9f/_search_result_metadata_8cs.html", [
       [ "SearchResultMetadata", "db/d58/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result_metadata.html", "db/d58/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_result_metadata" ]
     ] ],
+    [ "SearchSettings.cs", "d7/d7c/_search_settings_8cs.html", [
+      [ "SearchSettings", "d9/d65/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_settings.html", "d9/d65/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_settings" ]
+    ] ],
+    [ "SearchSettingsDiscovery.cs", "dd/d2e/_search_settings_discovery_8cs.html", [
+      [ "SearchSettingsDiscovery", "dc/de1/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_settings_discovery.html", "dc/de1/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_settings_discovery" ]
+    ] ],
+    [ "SearchSettingsDiscoveryAuthentication.cs", "df/d2a/_search_settings_discovery_authentication_8cs.html", [
+      [ "SearchSettingsDiscoveryAuthentication", "de/d9c/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_settings_discovery_authentication.html", "de/d9c/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_settings_discovery_authentication" ]
+    ] ],
+    [ "SearchSettingsMessages.cs", "d8/d4a/_search_settings_messages_8cs.html", [
+      [ "SearchSettingsMessages", "d5/d04/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_settings_messages.html", "d5/d04/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_settings_messages" ]
+    ] ],
+    [ "SearchSettingsSchemaMapping.cs", "d7/dca/_search_settings_schema_mapping_8cs.html", [
+      [ "SearchSettingsSchemaMapping", "dc/df3/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_settings_schema_mapping.html", "dc/df3/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_settings_schema_mapping" ]
+    ] ],
+    [ "SearchSkillWarning.cs", "d1/d93/_search_skill_warning_8cs.html", [
+      [ "SearchSkillWarning", "d5/dd4/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_skill_warning.html", "d5/dd4/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_search_skill_warning" ]
+    ] ],
     [ "SessionResponse.cs", "dc/d4b/_session_response_8cs.html", [
       [ "SessionResponse", "d8/dca/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_session_response.html", "d8/dca/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_session_response" ]
     ] ],
-    [ "SkillReference.cs", "d3/da5/_skill_reference_8cs.html", [
-      [ "SkillReference", "d7/dc9/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_skill_reference.html", "d7/dc9/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_skill_reference" ],
-      [ "TypeEnumValue", "d1/df0/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_skill_reference_1_1_type_enum_value.html", "d1/df0/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_skill_reference_1_1_type_enum_value" ]
+    [ "Skill.cs", "d8/d1d/_skill_8cs.html", [
+      [ "Skill", "d1/d56/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_skill.html", "d1/d56/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_skill" ],
+      [ "StatusEnumValue", "d5/d6a/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_skill_1_1_status_enum_value.html", "d5/d6a/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_skill_1_1_status_enum_value" ],
+      [ "TypeEnumValue", "db/db6/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_skill_1_1_type_enum_value.html", "db/db6/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_skill_1_1_type_enum_value" ]
+    ] ],
+    [ "SkillImport.cs", "dc/d1e/_skill_import_8cs.html", [
+      [ "SkillImport", "df/db7/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_skill_import.html", "df/db7/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_skill_import" ],
+      [ "StatusEnumValue", "d1/d90/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_skill_import_1_1_status_enum_value.html", "d1/d90/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_skill_import_1_1_status_enum_value" ],
+      [ "TypeEnumValue", "d1/d45/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_skill_import_1_1_type_enum_value.html", "d1/d45/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_skill_import_1_1_type_enum_value" ]
+    ] ],
+    [ "SkillsAsyncRequestStatus.cs", "d8/d66/_skills_async_request_status_8cs.html", [
+      [ "SkillsAsyncRequestStatus", "df/d68/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_skills_async_request_status.html", "df/d68/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_skills_async_request_status" ],
+      [ "StatusEnumValue", "d5/df7/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_skills_async_request_status_1_1_status_enum_value.html", "d5/df7/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_skills_async_request_status_1_1_status_enum_value" ]
+    ] ],
+    [ "SkillsExport.cs", "d3/da2/_skills_export_8cs.html", [
+      [ "SkillsExport", "d9/d21/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_skills_export.html", "d9/d21/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_skills_export" ]
+    ] ],
+    [ "StatusError.cs", "db/d6e/_i_b_m_8_watson_8_assistant_8v2_2_model_2_status_error_8cs.html", [
+      [ "StatusError", "db/dd0/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_status_error.html", "db/dd0/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_status_error" ]
     ] ],
     [ "TurnEventActionSource.cs", "d2/d0a/_turn_event_action_source_8cs.html", [
       [ "TurnEventActionSource", "df/d55/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_turn_event_action_source.html", "df/d55/class_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_model_1_1_turn_event_action_source" ],

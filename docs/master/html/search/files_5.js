@@ -1,9 +1,25 @@
 var searchData=
 [
-  ['features_2ecs_3850',['Features.cs',['../d0/d31/_features_8cs.html',1,'']]],
-  ['featuresentimentresults_2ecs_3851',['FeatureSentimentResults.cs',['../d8/d65/_feature_sentiment_results_8cs.html',1,'']]],
-  ['featuresresultsmetadata_2ecs_3852',['FeaturesResultsMetadata.cs',['../dc/df4/_features_results_metadata_8cs.html',1,'']]],
-  ['feed_2ecs_3853',['Feed.cs',['../d8/d27/_feed_8cs.html',1,'']]],
-  ['field_2ecs_3854',['Field.cs',['../df/d96/_i_b_m_8_watson_8_discovery_8v1_2_model_2_field_8cs.html',1,'(Global Namespace)'],['../d2/de4/_i_b_m_8_watson_8_discovery_8v2_2_model_2_field_8cs.html',1,'(Global Namespace)']]],
-  ['fontsetting_2ecs_3855',['FontSetting.cs',['../d1/de4/_font_setting_8cs.html',1,'']]]
+  ['emotionoptions_2ecs_4036',['EmotionOptions.cs',['../db/de1/_emotion_options_8cs.html',1,'']]],
+  ['emotionresult_2ecs_4037',['EmotionResult.cs',['../df/d38/_emotion_result_8cs.html',1,'']]],
+  ['emotionscores_2ecs_4038',['EmotionScores.cs',['../d2/d9e/_emotion_scores_8cs.html',1,'']]],
+  ['enrichment_2ecs_4039',['Enrichment.cs',['../db/d85/_i_b_m_8_watson_8_discovery_8v2_2_model_2_enrichment_8cs.html',1,'(Global Namespace)'],['../da/d59/_i_b_m_8_watson_8_discovery_8v1_2_model_2_enrichment_8cs.html',1,'(Global Namespace)']]],
+  ['enrichmentoptions_2ecs_4040',['EnrichmentOptions.cs',['../d9/d7e/_i_b_m_8_watson_8_discovery_8v2_2_model_2_enrichment_options_8cs.html',1,'(Global Namespace)'],['../dd/dd2/_i_b_m_8_watson_8_discovery_8v1_2_model_2_enrichment_options_8cs.html',1,'(Global Namespace)']]],
+  ['enrichments_2ecs_4041',['Enrichments.cs',['../dc/d60/_enrichments_8cs.html',1,'']]],
+  ['entitiesoptions_2ecs_4042',['EntitiesOptions.cs',['../d2/d0e/_entities_options_8cs.html',1,'']]],
+  ['entitiesresult_2ecs_4043',['EntitiesResult.cs',['../d5/dfb/_entities_result_8cs.html',1,'']]],
+  ['entity_2ecs_4044',['Entity.cs',['../de/db3/_entity_8cs.html',1,'']]],
+  ['entitycollection_2ecs_4045',['EntityCollection.cs',['../d4/df5/_entity_collection_8cs.html',1,'']]],
+  ['entitymention_2ecs_4046',['EntityMention.cs',['../d8/d9c/_i_b_m_8_watson_8_assistant_8v1_2_model_2_entity_mention_8cs.html',1,'(Global Namespace)'],['../da/d86/_i_b_m_8_watson_8_natural_language_understanding_8v1_2_model_2_entity_mention_8cs.html',1,'(Global Namespace)']]],
+  ['entitymentioncollection_2ecs_4047',['EntityMentionCollection.cs',['../dc/dc7/_entity_mention_collection_8cs.html',1,'']]],
+  ['environment_2ecs_4048',['Environment.cs',['../de/d43/_i_b_m_8_watson_8_discovery_8v1_2_model_2_environment_8cs.html',1,'(Global Namespace)'],['../d2/db0/_i_b_m_8_watson_8_assistant_8v2_2_model_2_environment_8cs.html',1,'(Global Namespace)']]],
+  ['environmentcollection_2ecs_4049',['EnvironmentCollection.cs',['../d8/d42/_environment_collection_8cs.html',1,'']]],
+  ['environmentdocuments_2ecs_4050',['EnvironmentDocuments.cs',['../d7/d1a/_environment_documents_8cs.html',1,'']]],
+  ['environmentreference_2ecs_4051',['EnvironmentReference.cs',['../dc/d4e/_environment_reference_8cs.html',1,'']]],
+  ['environmentskill_2ecs_4052',['EnvironmentSkill.cs',['../d7/da9/_environment_skill_8cs.html',1,'']]],
+  ['eventdata_2ecs_4053',['EventData.cs',['../d4/d6b/_event_data_8cs.html',1,'']]],
+  ['example_2ecs_4054',['Example.cs',['../d6/d38/_example_8cs.html',1,'']]],
+  ['examplecollection_2ecs_4055',['ExampleCollection.cs',['../d3/df9/_example_collection_8cs.html',1,'']]],
+  ['expansion_2ecs_4056',['Expansion.cs',['../d6/d7d/_i_b_m_8_watson_8_discovery_8v2_2_model_2_expansion_8cs.html',1,'(Global Namespace)'],['../d6/d0d/_i_b_m_8_watson_8_discovery_8v1_2_model_2_expansion_8cs.html',1,'(Global Namespace)']]],
+  ['expansions_2ecs_4057',['Expansions.cs',['../d5/d74/_i_b_m_8_watson_8_discovery_8v2_2_model_2_expansions_8cs.html',1,'(Global Namespace)'],['../dd/d2c/_i_b_m_8_watson_8_discovery_8v1_2_model_2_expansions_8cs.html',1,'(Global Namespace)']]]
 ];

@@ -15,14 +15,10 @@ var class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_integrat
     [ "Setup", "df/d49/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_integration_tests_1_1_natura0bb300eed2efca6b7088142ddb06d25d.html#a32f88153e7a400e7234146a1ac3b09cf", null ],
     [ "TestCreateCategoriesModel", "df/d49/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_integration_tests_1_1_natura0bb300eed2efca6b7088142ddb06d25d.html#ab936716e21f1ddb13acc889a937f83bd", null ],
     [ "TestCreateClassificationModel", "df/d49/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_integration_tests_1_1_natura0bb300eed2efca6b7088142ddb06d25d.html#a22303c0ae2fa49ee516a8d1111843324", null ],
-    [ "TestCreateSentimentModel", "df/d49/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_integration_tests_1_1_natura0bb300eed2efca6b7088142ddb06d25d.html#a2d0c5fdd421cbc6d0945e0acd390186a", null ],
     [ "TestGetCategoriesModel", "df/d49/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_integration_tests_1_1_natura0bb300eed2efca6b7088142ddb06d25d.html#a6f0ad5f334b96369fafa6d5f35665ea9", null ],
     [ "TestGetClassificationModel", "df/d49/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_integration_tests_1_1_natura0bb300eed2efca6b7088142ddb06d25d.html#a39fe553c6f3e28e8613dbae25572b1c6", null ],
-    [ "TestGetSentimentModel", "df/d49/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_integration_tests_1_1_natura0bb300eed2efca6b7088142ddb06d25d.html#a7b6edff189d59d8c2fea2bde172bde50", null ],
     [ "TestListCategoriesModels", "df/d49/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_integration_tests_1_1_natura0bb300eed2efca6b7088142ddb06d25d.html#a5842fdf664533f16f9f44154f2b7e2ca", null ],
     [ "TestListClassificationModel", "df/d49/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_integration_tests_1_1_natura0bb300eed2efca6b7088142ddb06d25d.html#aac06be47e71c1ce2b9d5fcdddce99365", null ],
-    [ "TestListSentimentModels", "df/d49/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_integration_tests_1_1_natura0bb300eed2efca6b7088142ddb06d25d.html#aecdda65428fac4af76264258514fec2a", null ],
     [ "TestUpdateCategoriesModel", "df/d49/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_integration_tests_1_1_natura0bb300eed2efca6b7088142ddb06d25d.html#a8c6a7cd59b08619db1613a593893c2c9", null ],
-    [ "TestUpdateClassificationModel", "df/d49/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_integration_tests_1_1_natura0bb300eed2efca6b7088142ddb06d25d.html#a53357dce00a8c3c6818c75bf549f2689", null ],
-    [ "TestUpdateSentimentModel", "df/d49/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_integration_tests_1_1_natura0bb300eed2efca6b7088142ddb06d25d.html#ae2ff2c411c5601a93938151b8a2beedc", null ]
+    [ "TestUpdateClassificationModel", "df/d49/class_i_b_m_1_1_watson_1_1_natural_language_understanding_1_1v1_1_1_integration_tests_1_1_natura0bb300eed2efca6b7088142ddb06d25d.html#a53357dce00a8c3c6818c75bf549f2689", null ]
 ];

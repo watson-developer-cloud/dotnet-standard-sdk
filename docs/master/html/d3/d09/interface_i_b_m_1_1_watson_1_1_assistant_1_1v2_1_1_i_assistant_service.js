@@ -1,15 +1,26 @@
 var interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service =
 [
     [ "BulkClassify", "d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html#a17472fb384253923745956a112b1e041", null ],
-    [ "CreateSession", "d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html#aa9bc9d62392eba21814cdb08db5b0389", null ],
+    [ "CreateAssistant", "d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html#a14dc2501a7a3689da5557315fb4e116f", null ],
+    [ "CreateRelease", "d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html#a4dc895015d097aa95ca3ecc982303d8a", null ],
+    [ "CreateSession", "d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html#ac6f76b5c715eb3f8e5225027ccb16e27", null ],
+    [ "DeleteAssistant", "d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html#a3ead741b5617e10265263fb7a35f3783", null ],
+    [ "DeleteRelease", "d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html#a486c375f156036cbd51e96a00840a96e", null ],
     [ "DeleteSession", "d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html#a2a140a03fc5ea08fbbb8b0764e4b1fb1", null ],
     [ "DeleteUserData", "d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html#a17e283cc47d82666d2d36132354e13be", null ],
     [ "DeployRelease", "d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html#a6ff70b902bbbb3ce782b86ebaf9be3ec", null ],
+    [ "ExportSkills", "d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html#ad5d5421a4c750aa57ee379952672a682", null ],
     [ "GetEnvironment", "d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html#a8a387641e62f67997a627308ac41f74c", null ],
     [ "GetRelease", "d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html#ac4755232c91f3bd88b0d0b4a4c8064b6", null ],
+    [ "GetSkill", "d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html#a81ea6740f3406c6679ca81c48d149cd5", null ],
+    [ "ImportSkills", "d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html#a8bc57c108201603489596c96205cf457", null ],
+    [ "ImportSkillsStatus", "d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html#a4bc7c0d023ab98cb525b41159dc82367", null ],
+    [ "ListAssistants", "d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html#a16e00c8ae83a0bc1cac05300aa96b9d8", null ],
     [ "ListEnvironments", "d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html#ac8c4923b0623a211f8b9e6e0dfb33fd6", null ],
     [ "ListLogs", "d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html#acca99a62aa091cfc64478594fdac0f17", null ],
     [ "ListReleases", "d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html#aad61ad0bb54bedd36c5d46790f07dc08", null ],
     [ "Message", "d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html#a8e2dfab871099665b35379393e4527b7", null ],
-    [ "MessageStateless", "d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html#ad326d208581bc5ada768a7e087d6bcac", null ]
+    [ "MessageStateless", "d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html#ad326d208581bc5ada768a7e087d6bcac", null ],
+    [ "UpdateEnvironment", "d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html#aebf135834abb34dc787e128c82f65437", null ],
+    [ "UpdateSkill", "d3/d09/interface_i_b_m_1_1_watson_1_1_assistant_1_1v2_1_1_i_assistant_service.html#ada86b7a1fc2aca4c8cbf084c330b04b8", null ]
 ];

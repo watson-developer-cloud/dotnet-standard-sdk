@@ -41,6 +41,6 @@ var class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service =
     [ "ListSpeakerModels", "da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#a62c4debbc8251919c573f6ce31d90222", null ],
     [ "ListVoices", "da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#a620414233803ed9dedad7f174b128ed5", null ],
     [ "ListWords", "da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#aaa2ea52d7a7f44b2ec438ba5d859a5e3", null ],
-    [ "Synthesize", "da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#a723eb0dabfd8000bf2d9ce6d65e16c5b", null ],
+    [ "Synthesize", "da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#ad60e6c61ba1ddc657416ad1b8478896a", null ],
     [ "UpdateCustomModel", "da/de3/class_i_b_m_1_1_watson_1_1_text_to_speech_1_1v1_1_1_text_to_speech_service.html#aed4db69aa9075061eefd74e4b1cd7004", null ]
 ];

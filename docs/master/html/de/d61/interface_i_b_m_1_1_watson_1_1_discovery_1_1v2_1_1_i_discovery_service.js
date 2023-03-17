@@ -2,7 +2,7 @@ var interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service =
 [
     [ "AddDocument", "de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a9cc1959c9c3be4173af1334d90562889", null ],
     [ "AnalyzeDocument", "de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#ad5cd12dbc385346b214b14ccf1f8b770", null ],
-    [ "CreateCollection", "de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#a9f97945490cc82f9cd199019a082c11a", null ],
+    [ "CreateCollection", "de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#abd3df52d8d70eab2da62486645999393", null ],
     [ "CreateDocumentClassifier", "de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#ab6679d39c48d04e4a3547d1c730ed419", null ],
     [ "CreateDocumentClassifierModel", "de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#ae00c51b88fbe804cd42e1fc03349894f", null ],
     [ "CreateEnrichment", "de/d61/interface_i_b_m_1_1_watson_1_1_discovery_1_1v2_1_1_i_discovery_service.html#ac0db82adef8cd4c3015222bfc9e38103", null ],

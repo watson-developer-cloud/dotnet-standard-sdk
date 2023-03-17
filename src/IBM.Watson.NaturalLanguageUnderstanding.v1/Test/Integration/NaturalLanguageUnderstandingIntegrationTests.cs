@@ -438,7 +438,8 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.IntegrationTests
                     name: "newString",
                     modelId: modelId,
                     language: "en",
-                    trainingData: trainingData
+                    trainingData: trainingData,
+                    trainingDataContentType: "application/json"
                     );
 
                 Assert.IsNotNull(response2.Result);
@@ -706,7 +707,8 @@ namespace IBM.Watson.NaturalLanguageUnderstanding.v1.IntegrationTests
                     name: "newString",
                     modelId: modelId,
                     language: "en",
-                    trainingData: trainingData
+                    trainingData: trainingData,
+                    trainingDataContentType: "application/json"
                     );
 
                 Assert.IsNotNull(response2.Result);

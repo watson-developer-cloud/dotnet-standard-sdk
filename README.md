@@ -6,6 +6,9 @@
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![Documentation](https://img.shields.io/badge/documentation-API-blue.svg)][dotnet-standard-sdk-documentation]
 
+# Deprecation
+This repo and the Nuget package associated with it are being deprecated. While this repo will no longer see active support from the IBM team, contributions by the community via PRs are still welcomed and will be reviewed. Keep in mind, updates will no longer be published to Nuget and changes made after this update will need to be built independently.
+
 ## Deprecated builds
 [![Build status](https://ci.appveyor.com/api/projects/status/bcbl2ripwdmh1918/branch/master?svg=true)](https://ci.appveyor.com/project/mediumTaj/dotnet-standard-sdk/branch/master)
 
